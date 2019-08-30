@@ -1,5 +1,5 @@
 
-# Welcome to Frozen World
+# A warm welcome to Frozen World
 
 Frozen World provides a stable and reliable frame of reference, binding the virtual/holographic world to the real world.
 
