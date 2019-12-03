@@ -1,0 +1,58 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [ "WorldLocking.Plugin/**/*.cs", "WorldLocking.Core/**/*.cs", "WorldLocking.Tools/**/*.cs", "WorldLocking.Examples/**/*.cs" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": "Assets"
+        }
+      ],
+      "dest": "DocGen/Temp/obj/api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [ "**/*.yml" ],
+        "src": "DocGen/Temp/obj/api",
+        "dest": "DocGen/Temp/api"
+      },
+      {
+        "files": [ "DocGen/api_doc/**" ]
+      },
+      {
+        "files": [ "DocGen/Documentation/**/*.md", "*.md", "*.yml", "toc.yml", "DocGen/Documentation/**/*.yml", "DocGen/Documentation/Architecture/**", "Assets/**/*.md", "DocGen/External/Documentation/*.md", "DocGen/External/HowTo/*.md" ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [ "index.html", "DocGen/web/**" ]
+      },
+      {
+        "files": [ "DocGen/External/ReadMeImages/**" ]
+      },
+      {
+        "files": [ "DocGen/Images/**" ]
+      }
+    ],
+    "template": [
+        "default",
+        "DocGen/templates/worldlockingtools"
+    ],
+    "globalMetadata": {
+      "_appTitle": "World Locking Tools for Unity Documentation",
+      "_enableSearch": true,
+      "_disableNavbar": false,
+      "_appLogoPath": "DocGen/External/ReadMeImages/mrt_logo_icon.png",
+      "_appFaviconPath": "DocGen/External/ReadMeImages/favicon.ico",
+      "_gitContribute": {
+        "repo": "https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity.git",
+        "branch": "development"
+      }
+    },
+    "markdownEngineName": "markdig",
+    "dest": "DocGen/Temp/doc",
+    "xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ]
+  }
+}

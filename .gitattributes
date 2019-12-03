@@ -1,0 +1,14 @@
+* text=auto
+
+*.cs diff=csharp
+
+*.asset eol=lf
+*.controller eol=lf
+*.prefab eol=lf
+*.meta eol=lf
+*.mat eol=lf
+*.anim eol=lf
+*.unity eol=lf
+Library/*.txt eol=lf
+Packages/*.json eol=lf
+ProjectSettings/*.txt eol=lf

@@ -1,0 +1,22 @@
+{
+    "name": "Microsoft.MixedReality.WorldLocking.Examples",
+    "references": [
+        "Microsoft.MixedReality.WorldLocking.Core",
+        "Microsoft.MixedReality.WorldLocking.Tools",
+        "Microsoft.MixedReality.Toolkit",
+        "Microsoft.MixedReality.Toolkit.SDK",
+        "Microsoft.MixedReality.Toolkit.Services.InputSystem",
+        "Microsoft.MixedReality.WorldLocking.Engine"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor",
+        "WSA"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

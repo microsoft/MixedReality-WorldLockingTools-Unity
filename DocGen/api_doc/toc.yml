@@ -1,0 +1,18 @@
+- name: Architecture
+  href: Architecture.md
+  items: 
+  - name: Frozen World Manager
+    href: Managers/WorldLockingManager.md
+  - name: Anchor management
+    href: Managers/IAnchorManager.md
+  - name: Fragment management
+    href: Managers/IFragmentManager.md
+  - name: Attachment point management
+    href: Managers/IAttachmentPointManager.md
+  - name: Alignment management
+    href: Managers/IAlignmentManager.md
+  - name: Frozen World Engine DLL
+    href: FrozenWorldDLL.md
+- name: Reference
+  href: ../Temp/obj/api/toc.yml
+  
