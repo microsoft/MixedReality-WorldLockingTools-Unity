@@ -8,7 +8,7 @@ While the traditional WorldAnchor approach to aligning Holograms with real world
 
 Scale error in head tracking space means that even if a WorldAnchor keeps one end of a virtual object, sized only a few meters long, perfectly aligned with a real world feature, the other end is likely to be misaligned with a corresponding real world feature. This is because the distance traveled through head tracked space tends to differ from the distance traveled through physical space with an error bound of +-10%. The actual error is often less (it depends on a number of environment and device characteristics), but will generally be significant, and grow without bounds as the scale of the project grows.
 
-Put another way, if a user wearing a HoloLens walks ten meters in the real world, the distance travelled in virtual space, as reported by the head tracker, will be between 9 and 11 meters. If the user walks 100 meters, the error grows to +-10 meters.
+Put another way, if a user wearing a HoloLens walks ten meters in the real world, the distance travelled in virtual space, as reported by the head tracker, will be between 9 and 11 meters. If the user walks 50 meters, the error grows to +-5 meters. The farther the user walks, the greater the error grows.
 
 Thus, a 10 meter beam (in modeling space) with one end point perfectly aligned to the zero end of a tape measure in real space will have the other end registered to the tape measure at somewhere between 9 and 11 meters.
 
@@ -20,7 +20,7 @@ There is an additional concern. The Unity coordinate system in HoloLens is indet
 
 This is not an issue for many tasks. If the goal is to cast a ray into the spatial mapping of the room and place a Hologram at the hit position, then the numerical values of the hit position are irrelevant.
 
-Likewise, when popping up UX elements around the user, the absolute coordinates to place a UX element at don't matter, only the coordinates relative to the user.
+Likewise, when popping up UX elements around the user, the absolute coordinates to place a UX element don't matter, only the coordinates relative to the user.
 
 However, more involved scenarios can be complicated by the unpredictable coordinate system. To load a large collection of objects, for example a user's desktop or an entire office room, into virtual space with a fixed relation to physical space, requires some compensating transform to align the modeling space objects with the head based coordinate frame. 
 
@@ -38,7 +38,7 @@ World Locking Tools at its core provides a stable world locked coordinate system
 
 But there are an infinite number of spaces that satisfy that goal. In fact, given one world-locked space, transforming it by any arbitrary position and rotation produces another equally valid world-locked space.
 
-The Space Pin feature applies an additional constraint that removes the indeterminate nature of the World Locking Tools world-locking transform.
+The Space Pin feature applies an additional constraint that removes the indeterminate nature of the world-locking transform.
 
 That constraint is that when "near" a Space Pin, the pose of that Space Pin in world-locked space will be the same as the pose of the Space Pin in modeling space.
 
@@ -65,6 +65,62 @@ The Space Pin feature works in tandem with the rest of World Locking Tools' pers
 When enabled, the AutoSave/AutoLoad feature on the World Locking Tools Manager will allow the full spatial alignment of the virtual world to the real world to be restored on subsequent sessions.
 
 In practice, this means that a single or small number of preliminary sessions may be used to establish an adequate scan of the physical environment, and alignment of that physical environment with Unity's modeling coordinate space. Subsequent sessions will then load the virtual environment correctly aligned with the real world without further user action required.
+
+## Interpolation and extrapolation
+
+Interpolation and extrapolation are both techniques for estimating data values where no direct measurement has been made. The space pins, as discussed so far, are locations where measurements have been made. The virtual coordinates are the desired coordinates, and the physical coordinates are measured coordinates we want those virtual coordinates to appear at.
+
+The system performs interpolation, but not extrapolation, as discussed below. In general, interpolation is safer and more stable than extrapolation. The piecewise linear interpolation provided will fulfill most applications' needs. Extrapolation is less safe, and its ideal implementation generally requires knowledge at the application level. It is therefore left for the application to handle extrapolation as described below. 
+
+Without the application adding extrapolation pins, outside the bounds of the pins the space is pinned exclusively by the value at the nearest boundary. If there are only two pins, A and B, then as the user moves from A to B the pinning blends between that specified by A and that specified by B (interpolation). But when the user passes B then the pinning locks to exactly that specified by B (constant extension).
+
+### Interpolation
+
+In the 2D region between pins, the spatial localization is linearly interpolated. This means that if the space pins are accurately placed, and the tracking error is evenly distributed over the region, then the correction applied in between the space pins will be exactly correct.
+
+It should be stressed here that the assumption of equal error distribution is exactly not correct. However, as an approximation, the linear model provides excellent correction results.
+
+### Extrapolation
+
+The system provides no built-in extrapolation service, using constant value extension outside the convex hull of space pins. This is equivalent to assuming, incorrectly of course, that there is no scale error outside the application provided space pins.
+
+However, if the application has knowledge about the error distribution, or is satisfied with an estimate, it can create any extrapolation desired by adding more space pins in the periphery.
+
+### Extrapolation example
+
+Consider a scene with four space pins, placed in a square with edges 4 meters long.
+
+Now, let's say that the actual space the user will be moving around in is twelve by twelve (12 x 12) meters, with the physical markers corresponding to the 4 pins surrounding the center of the space. 
+
+If the application is satisfied with a constant error approximation, then it has all the information it needs to add 4 or more space pins to provide coverage over the entire 12x12m space.
+
+We'll label the pins at the corners of the 4x4 square by their cardinal directions, NE, NW, SW, and SE. We'll also label the virtual positions at each point virtualNE etc, and the physical positions at each point physicalNE etc.
+
+![](../../../Images/Simple4Pins.png)
+
+One strategy would be to add outer cardinal points creating a 12x12 meter square surrounding the inner square, by adding 4 more cardinal points, outerNE, outerNW, outerSW, and outerSE. The virtual and physical positions of each of these is simple to compute. Taking outerNE for example:
+
+```
+virtualOuterNE = virtualNE + (virtualNE - virtualSW);
+physicalOuterNE = physicalNE + (physicalNE - virtualSW);
+```
+
+![](../../../Images/Simple4and4Pins.png)
+
+Note that creating an extrapolation space of 20x20 meters only changes the scale of the delta applied:
+
+```
+scale = (outerSize - innerSize) / innerSize / 2;
+virtualOuterNE = virtualNE + (virtualNE - virtualSW) * scale;
+physicalOuterNE = physicalNE + (physicalNE - virtualSW) * scale;
+```
+
+With an outerSize of 20m, and an innerSize of 4m, the scale would be 2.
+
+An alternate strategy might be to add eight more points in addition to the corners as shown below. Computing the new pin locations from the existing ones is exactly as above. Be cautioned that, while it is true that adding additional pins generally improves stability, it does not necessarily improve accuracy. 
+
+![](../../../Images/Simple4and12Pins.png)
+
 
 ### See also
 
