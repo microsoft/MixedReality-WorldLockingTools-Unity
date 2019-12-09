@@ -44,11 +44,23 @@ steps:
     clean: true
     restoreNugetPackages: true
 
+- task: PublishBuildArtifacts@1
+  displayName: Publish x86 Artifacts
+  inputs:
+    artifactName: wlt-build-x86
+    pathtoPublish: $(Build.ArtifactStagingDirectory)\build\AppPackages\WorldLockingTools\WorldLockingTools_1.0.0.0_Win32_Test
+
 - task: MSBuild@1
-  displayName: Build UWP x86
+  displayName: Build UWP ARM
   inputs:
     solution: $(Build.ArtifactStagingDirectory)\build\WorldLockingTools.sln
     platform: arm
     configuration: release
     clean: true
     restoreNugetPackages: true
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish ARM Artifacts
+  inputs:
+    artifactName: wlt-build-x86
+    pathtoPublish: $(Build.ArtifactStagingDirectory)\build\AppPackages\WorldLockingTools\WorldLockingTools_1.0.0.0_ARM_Test
