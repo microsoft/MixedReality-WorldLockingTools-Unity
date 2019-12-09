@@ -97,8 +97,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <param name="worldHeadPose"></param>
         public void ComputePinnedPose(Pose lockedHeadPose)
         {
-            CheckFragment();
             CheckSend();
+            CheckFragment();
             CheckSave();
             if (activePoses.Count < 1)
             {
@@ -234,15 +234,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <inheritdocs />
         public void SendAlignmentAnchors()
         {
-            activePoses.Clear();
+            sentPoses.Clear();
             for (int i = 0; i < referencePoses.Count; ++i)
             {
-                if (referencePoses[i].IsActive)
-                {
-                    activePoses.Add(referencePoses[i]);
-                }
+                sentPoses.Add(referencePoses[i]);
             }
-            BuildTriangulation();
+            ActivateCurrentFragment();
         }
 
         /// <inheritdocs />
@@ -796,9 +793,24 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private readonly List<ReferencePose> referencePoses = new List<ReferencePose>();
 
         /// <summary>
-        /// All reference poses that have been submitted by <see cref="SendAlignmentAnchors"/>.
+        /// Poses that have been activated by <see cref="SendAlignmentAnchors"/>.
+        /// </summary>
+        private readonly List<ReferencePose> sentPoses = new List<ReferencePose>();
+
+        /// <summary>
+        /// All reference poses in the current fragment that have been submitted by <see cref="SendAlignmentAnchors"/>.
         /// </summary>
         private readonly List<ReferencePose> activePoses = new List<ReferencePose>();
+
+        /// <summary>
+        /// The fragment all the active poses belong in. Stored as ulong for serialization.
+        /// </summary>
+        private ulong activeFragmentId = (ulong)FragmentId.Unknown;
+
+        /// <summary>
+        /// Converter of fragment all active poses are in into FragmentId.
+        /// </summary>
+        private FragmentId ActiveFragmentId { get { return (FragmentId)activeFragmentId; } set { activeFragmentId = (ulong)value; } }
 
         /// <summary>
         /// WeightedPoses with a final normalized weight each computed"/>
@@ -858,6 +870,20 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
+        private void ActivateCurrentFragment()
+        {
+            activePoses.Clear();
+            for (int i = 0; i < sentPoses.Count; ++i)
+            {
+                if (sentPoses[i].IsActive)
+                {
+                    activePoses.Add(sentPoses[i]);
+                }
+            }
+            ActiveFragmentId = CurrentFragmentId;
+            BuildTriangulation();
+        }
+
         /// <summary>
         /// Search input list for reference pose with given id.
         /// </summary>
@@ -871,7 +897,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private void OnRefit(FragmentId mainId, FragmentId[] absorbedIds)
         {
-            needSend = true;
+            ActiveFragmentId = FragmentId.Unknown;
         }
 
         #endregion Internal utilities
@@ -936,6 +962,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private void CheckFragment()
         {
+            bool changed = ActiveFragmentId != CurrentFragmentId;
             if (needFragment && CurrentFragmentId.IsKnown())
             {
                 FragmentId fragmentId = CurrentFragmentId;
@@ -944,9 +971,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     if (!referencePoses[i].fragmentId.IsKnown())
                     {
                         referencePoses[i].fragmentId = fragmentId;
+                        changed = true;
                     }
                 }
                 needFragment = false;
+            }
+            if (changed)
+            {
+                ActivateCurrentFragment();
             }
         }
 
