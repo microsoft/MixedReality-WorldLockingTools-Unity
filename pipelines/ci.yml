@@ -10,7 +10,7 @@ jobs:
     - Unity2018.4.6f1
     - SDK_18362 -equals TRUE
   steps:
-  #- template: build.yml
+  - template: build.yml
   #- template: test.yml
   #- template: package.yml
   - template: end.yml

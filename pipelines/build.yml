@@ -1,0 +1,54 @@
+# [Template] Tasks to validate WLT build
+
+steps:
+- powershell: |
+    # Find unity.exe
+    $editor = Get-ChildItem ${env:$(UnityVersion)} -Filter 'Unity.exe' -Recurse | Select-Object -First 1 -ExpandProperty FullName
+
+    # build variables
+    $outDir = "$(Build.ArtifactStagingDirectory)\build\"
+    $logFile = New-Item -Path "$outDir\build.log" -ItemType File -Force 
+    $sceneList = "Assets\WorldLocking.Examples\Scenes\WorldLockingBasic.unity"
+
+    # argument list
+    $arguments = "
+    -projectPath $(Get-Location) 
+    -executeMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild 
+    -batchmode 
+    -buildTarget WSAPlayer
+    -sceneList $sceneList
+    -buildOutput $outDir 
+    -logfile $logFile"
+
+    $proc = Start-Process -FilePath $editor -ArgumentList $arguments -PassThru
+    $ljob = Start-Job -ScriptBlock { param($log) Get-Content $log -Wait } -ArgumentList $logFile.FullName
+
+    while (-not $proc.HasExited -and $ljob.HasMoreData)
+    {
+        Receive-Job $ljob
+        Start-Sleep -Milliseconds 200
+    }
+    Receive-Job $ljob
+
+    Stop-Job $ljob
+    Remove-Job $ljob
+    Stop-Process $proc
+  displayName: Build Unity Player
+
+- task: MSBuild@1
+  displayName: Build UWP x86
+  inputs:
+    solution: $(Build.ArtifactStagingDirectory)\build\WorldLockingTools.sln
+    platform: x86
+    configuration: release
+    clean: true
+    restoreNugetPackages: true
+
+- task: MSBuild@1
+  displayName: Build UWP x86
+  inputs:
+    solution: $(Build.ArtifactStagingDirectory)\build\WorldLockingTools.sln
+    platform: arm
+    configuration: release
+    clean: true
+    restoreNugetPackages: true
