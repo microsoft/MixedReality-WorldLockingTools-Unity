@@ -11,6 +11,6 @@ jobs:
     - SDK_18362 -equals TRUE
   steps:
   - template: build.yml
-  #- template: test.yml
+  - template: test.yml
   #- template: package.yml
   - template: end.yml
