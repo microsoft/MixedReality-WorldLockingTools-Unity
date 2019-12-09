@@ -1,0 +1,7 @@
+- name: Home
+  href: README.md
+- name: Guides
+  href: DocGen/Documentation/
+  homepage: DocGen/Documentation/GettingStartedWithWorldLocking.md
+- name: API Documentation
+  href: DocGen/api_doc/

@@ -1,0 +1,14 @@
+{
+    "name": "Microsoft.MixedReality.WorldLocking.Core",
+    "references": [
+        "Microsoft.MixedReality.WorldLocking.Engine"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
