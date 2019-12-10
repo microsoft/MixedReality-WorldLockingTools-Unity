@@ -1,0 +1,21 @@
+# [Template] Create Unity packages and publish them for this build
+
+steps:
+- task: PowerShell@2
+  displayName: Create .unitypackages
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/scripts/unitypackage.ps1
+    arguments: >
+      -UnityDirectory ${env:$(UnityVersion)}
+      -OutputDirectory $(Build.ArtifactStagingDirectory)\build\unitypackages\output
+      -RepoDirectory $(Get-Location)
+      -LogDirectory $(Build.ArtifactStagingDirectory)\build\unitypackages\logs
+      -Clean
+      -Verbose
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish .unitypackages
+  inputs:
+    pathtoPublish: $(Build.ArtifactStagingDirectory)\build\unitypackages\output
+    artifactName: wlt-unitypackages
