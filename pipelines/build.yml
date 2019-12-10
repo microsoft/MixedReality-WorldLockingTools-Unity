@@ -60,5 +60,5 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: Publish ARM Artifacts
   inputs:
-    artifactName: wlt-build-x86
+    artifactName: wlt-build-arm
     pathtoPublish: $(Build.ArtifactStagingDirectory)\build\AppPackages\WorldLockingTools\WorldLockingTools_1.0.0.0_ARM_Test
