@@ -42,7 +42,6 @@ steps:
     platform: x86
     configuration: release
     clean: true
-    restoreNugetPackages: true
 
 - task: PublishBuildArtifacts@1
   displayName: Publish x86 Artifacts
@@ -57,7 +56,6 @@ steps:
     platform: arm
     configuration: release
     clean: true
-    restoreNugetPackages: true
 
 - task: PublishBuildArtifacts@1
   displayName: Publish ARM Artifacts
