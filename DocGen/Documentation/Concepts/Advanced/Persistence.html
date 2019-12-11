@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Persistence | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Persistence | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="persistence">Persistence</h1>
+
+<p>In general, the benefits of World Locking Tools' persistence capabilities are of more interest than the details of their implementation.</p>
+<p>This article will therefore begin with a discussion of the experiences that World Locking Tools persistence enables, and how World Locking Tools State persistence may be managed. It will then close with a brief sketch of what data is actually saved and loaded.</p>
+<h2 id="world-locking-tools-across-sessions">World Locking Tools across sessions</h2>
+<p>As defined <a href="../BasicConcepts.html">elsewhere</a>, the Frozen State is all data necessary to resume the current world-locked stable Frozen Space.</p>
+<p>The primary utility of World Locking Tools' persistence is in allowing the benefits of a preliminary session's work, scanning an area and aligning virtual space to the real world, to be used in subsequent sessions.</p>
+<p>This allows subsequent sessions to forego tedious or time consuming setup and get straight to the focal experience.</p>
+<h2 id="saving-world-locking-tools-state">Saving World Locking Tools State</h2>
+<p>Before it can be loaded, the Frozen State must be saved.</p>
+<p>The most straightforward way to save the Frozen State is to enable AutoSave on the World Locking Tools Manager, either in the Unity inspector on the <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.html">World Locking Tools Context</a>, or at runtime via script.</p>
+<p>Setting World Locking Tools Manager state via script is performed by first getting the state, changing it in any desired way, and then setting the state back as a block. For example, to toggle the AutoSave feature:</p>
+<pre><code>var settings = WorldLockingManger.GetInstance().Settings;
+settings.AutoSave = !settings.AutoSave;
+WorldLockingManager.GetInstance().Settings = settings;
+</code></pre>
+<p>If the AutoSave feature goes from enabled to disabled during a session, no further periodic saves will be attempted. If it goes from disabled to enabled, periodic saves will be begun or resumed.</p>
+<p>The AutoSave feature will keep an up-to-date saved state by periodically saving the current state asynchronously.</p>
+<p>If more control over the timing of the saving of state is required, then the AutoSave may be set to false, and manual saving done via script. The asynchronous save is easily triggered, as:</p>
+<pre><code>WorldLockingManager.GetInstance().Save();
+</code></pre>
+<p>As the save is asynchronous, additional attempts to invoke a <code>Save()</code> while a previous is still under way will be ignored.</p>
+<h2 id="loading-frozen-state">Loading Frozen State</h2>
+<p>Having saved off a Frozen State, it might be desired to reload World Locking Tools back into that state, either in a subsequent session or even later in the same session.</p>
+<p>As in saving Frozen State, there are two paths for loading state.</p>
+<p>If the AutoLoad flag on the World Locking Tools Manager is enabled, then any previous saved state will be loaded at startup time. If there is no saved state to load, no error is generated and startup proceeds as if the flag wasn't set.</p>
+<p>Note that setting the AutoLoad flag from false to true (e.g. via script) at runtime will have no effect. The AutoLoad either happens at initial load, or doesn't happen at all.</p>
+<p>However, a load may be initiated from script at any time through the World Locking Tools Manager's Load function:</p>
+<pre><code>WorldLockingManager.GetInstance().Load();
+</code></pre>
+<p>As with the Save, the Load is performed asynchronously. Any subsequent calls to Load while one is still ongoing will be ignored.</p>
+<h2 id="what-is-saved">What is saved?</h2>
+<p>The data required to reconstruct the World Locking Tools mapping, that is the alignment of the virtual world to the real world, can be broken into three groups.</p>
+<ul>
+<li><p><strong>WorldAnchors</strong> - The underlying network of WorldAnchors created and maintained internally by World Locking Tools' <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html">Anchor Manager</a>, supply the requisite binding to the real world. Those anchors are persisted via Unity's WorldAnchorStore.</p>
+</li>
+<li><p><strong>Engine State</strong> - Additional state is persisted in to allow the engine to resume its current mapping. This removes such indeterminacies as the initial pose of the head in the previous session(s).</p>
+</li>
+<li><p><strong>Space Pinning</strong> - If the application has applied any further Space Pins to force alignment of modeling coordinates to the real world at a discrete set of points, that additional mapping is also persisted.</p>
+</li>
+</ul>
+<h2 id="what-is-not-saved">What is not saved?</h2>
+<p>Note that only state is saved. In particular, settings are not saved. Any configuration changes by the application, for example changes made through the WorldLockingManager API, are reset each time the application starts up to their values as set in the Unity Inspector, or if they aren't set in the Inspector then to their default values in code.</p>
+<p>For example, say the application wants to present the user with the option to AutoSave World Locking state, and have the user's preference persist across sessions until changed. Then the application must:</p>
+<ol>
+<li>Present the user with UX for setting AutoSave preference (presumably with other application settings).</li>
+<li>Forward the user's preference to the WorldLockingManager</li>
+<li>Record the preference to file (presumably with other application settings).</li>
+<li>On application startup, load the saved preference (if any has been saved) and forward to WorldLockingManager.</li>
+</ol>
+<p>See notes in <a href="../../HowTos/WorldLockingContext.html#all-settings-may-be-applied-from-script">WorldLockingContext</a> regarding timing issues when mixing state setting between assets and script.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="SpacePins.html">Space Pins</a></li>
+<li><a href="AttachmentPoints.html">Attachment points</a></li>
+<li><a href="Fragments.html">Fragments</a></li>
+<li><a href="RefitOperations.html">Refit operations</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/development/DocGen/Documentation/Concepts/Advanced/Persistence.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2048"
+   height="768"
+   viewBox="0 0 541.86665 203.2"
+   version="1.1"
+   id="svg3777"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="WorldLockingTools_01.svg">
+  <defs
+     id="defs3771" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-31.428571"
+     inkscape:cy="560"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer2"
+     showgrid="false"
+     units="px"
+     inkscape:pagecheckerboard="true"
+     inkscape:window-width="2256"
+     inkscape:window-height="1410"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3774">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-93.799983)" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Thing"
+     transform="translate(0,-93.799983)">
+    <text
+       y="149.77824"
+       x="370.05023"
+       font-weight="900"
+       font-size="117"
+       id="text3757"
+       style="font-weight:900;font-size:30.95624924px;font-family:Arial, Arial_MSFontService, sans-serif;display:inline;overflow:hidden;stroke-width:0.26458332">WORLD<tspan
+   x="370.05023"
+   y="187.0845"
+   id="tspan3749"
+   style="stroke-width:0.26458332">LOCKING</tspan>
+<tspan
+   x="370.05023"
+   y="224.12617"
+   id="tspan3751"
+   style="stroke-width:0.26458332">TOOLS</tspan>
+<tspan
+   font-style="italic"
+   font-weight="400"
+   font-size="88"
+   x="370.05023"
+   y="254.28867"
+   id="tspan3753"
+   style="font-style:italic;font-weight:400;font-size:23.28333282px;stroke-width:0.26458332">for</tspan>
+<tspan
+   font-style="oblique"
+   font-size="88"
+   x="405.01941"
+   y="254.28867"
+   id="tspan3755"
+   style="font-style:oblique;font-size:23.28333282px;stroke-width:0.26458332">Unity</tspan>
+</text>
+    <path
+       d="m 219.84282,196.21263 c 0,-40.69583 32.63529,-73.68646 72.8927,-73.68646 40.25742,0 72.89272,32.99063 72.89272,73.68646 0,40.69583 -32.6353,73.68646 -72.89272,73.68646 -40.25741,0 -72.8927,-32.99063 -72.8927,-73.68646 z"
+       id="path3759"
+       inkscape:connector-curvature="0"
+       style="display:inline;overflow:hidden;fill-rule:evenodd;stroke-width:0.26458332" />
+    <path
+       d="m 205.55532,190.52409 c 0,-40.6228 32.57602,-73.55417 72.76041,-73.55417 40.18439,0 72.76042,32.93137 72.76042,73.55417 0,40.6228 -32.57603,73.55417 -72.76042,73.55417 -40.18439,0 -72.76041,-32.93137 -72.76041,-73.55417 z"
+       id="path3761"
+       inkscape:connector-curvature="0"
+       style="display:inline;overflow:hidden;fill:#ff3210;fill-rule:evenodd;stroke-width:0.26458332" />
+  </g>
+</svg>

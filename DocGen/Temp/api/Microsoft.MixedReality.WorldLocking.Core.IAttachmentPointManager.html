@@ -1,0 +1,336 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IAttachmentPointManager
+   | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IAttachmentPointManager
+   | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../api_doc/toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager">
+  
+  
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager" class="text-break">Interface IAttachmentPointManager
+  </h1>
+  <div class="markdown level0 summary"><p>Interface for application creation and manipulation of attachment points. In particular, the creation and release
+of attachment points must be conducted through the IAttachmentPointManager.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IAttachmentPointManager</code></pre>
+  </div>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Obtain access to the attachment point manager through the WorldLockingManager.</p>
+</div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_CreateAttachmentPoint_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.CreateAttachmentPoint*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_CreateAttachmentPoint_Vector3_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_AdjustLocationDelegate_Microsoft_MixedReality_WorldLocking_Core_AdjustStateDelegate_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.CreateAttachmentPoint(Vector3,Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint,Microsoft.MixedReality.WorldLocking.Core.AdjustLocationDelegate,Microsoft.MixedReality.WorldLocking.Core.AdjustStateDelegate)">CreateAttachmentPoint(Vector3, IAttachmentPoint, AdjustLocationDelegate, AdjustStateDelegate)</h4>
+  <div class="markdown level1 summary"><p>Create and register a new attachment point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IAttachmentPoint CreateAttachmentPoint(Vector3 frozenPosition, IAttachmentPoint context, AdjustLocationDelegate locationHandler, AdjustStateDelegate stateHandler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">frozenPosition</span></td>
+        <td><p>The position in the frozen space at which to start the attachment point</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint.html">IAttachmentPoint</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The optional context into which to create the attachment point (may be null)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.AdjustLocationDelegate.html">AdjustLocationDelegate</a></td>
+        <td><span class="parametername">locationHandler</span></td>
+        <td><p>Delegate to handle Frozen World engine system adjustments to position</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.AdjustStateDelegate.html">AdjustStateDelegate</a></td>
+        <td><span class="parametername">stateHandler</span></td>
+        <td><p>Delegate to handle Frozen World engine connectivity changes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint.html">IAttachmentPoint</a></td>
+        <td><p>The new attachment point interface.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_CreateAttachmentPoint_Vector3_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_AdjustLocationDelegate_Microsoft_MixedReality_WorldLocking_Core_AdjustStateDelegate__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The attachment point itself is a fairly opaque handle. Its effects are propagated to the client via the
+two handlers associated with it.
+The context interface is optional. It should be given if the new attachment point is conceptually
+spawned from an existing attachment point (or its target object).
+If null, then conceptually the new attachment point was spawned from the current camera.
+The attachment point itself is a fairly opaque handle. The actual adjustments are made via
+notifications through the two delegates passed into the creation.
+The locationHandler is strictly to notify of adjustments when refitting (Merge or Refreeze).
+The stateHandler notifies whether this attachment point is &quot;connected&quot; with the current fragment.
+Both handlers are optional and may be null.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_MoveAttachmentPoint_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.MoveAttachmentPoint*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_MoveAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_Vector3_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.MoveAttachmentPoint(Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint,Vector3)">MoveAttachmentPoint(IAttachmentPoint, Vector3)</h4>
+  <div class="markdown level1 summary"><p>Move (as opposed to Teleport) means that the object is meant to have traversed
+world locked space from its old position to the given new position on some continuous path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void MoveAttachmentPoint(IAttachmentPoint attachPointIface, Vector3 newFrozenPosition)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint.html">IAttachmentPoint</a></td>
+        <td><span class="parametername">attachPointIface</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">newFrozenPosition</span></td>
+        <td><p>The new position in world locked space</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_MoveAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_Vector3__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Not to be used for automatic (i.e. FrozenWorld Engine instigated) moves.
+Use this for continuous movement through space. For discontinuous movement (i.e. teleportation), use <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html#Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_TeleportAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_Vector3_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_">TeleportAttachmentPoint(IAttachmentPoint, Vector3, IAttachmentPoint)</a></p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_ReleaseAttachmentPoint_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.ReleaseAttachmentPoint*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_ReleaseAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.ReleaseAttachmentPoint(Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint)">ReleaseAttachmentPoint(IAttachmentPoint)</h4>
+  <div class="markdown level1 summary"><p>Release an attachment point for disposal. The attachment point is no longer valid after this call.
+This also un-registers the handlers (if any) given when it was created.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ReleaseAttachmentPoint(IAttachmentPoint attachPointIface)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint.html">IAttachmentPoint</a></td>
+        <td><span class="parametername">attachPointIface</span></td>
+        <td><p>The attachment point to release.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_ReleaseAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In the unlikely circumstance that another attachment point has been spawned from this one
+but has not yet been processed (is still in the pending queue),
+that relationship is broken on release of this one, and when the other attachment point is
+finally processed, it will be as if it was created with a null context.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_TeleportAttachmentPoint_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.TeleportAttachmentPoint*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_TeleportAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_Vector3_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.TeleportAttachmentPoint(Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint,Vector3,Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint)">TeleportAttachmentPoint(IAttachmentPoint, Vector3, IAttachmentPoint)</h4>
+  <div class="markdown level1 summary"><p>Teleport (as opposed to Move) means that the object is meant to have disappeared at its old position
+and instantaneously reappeared at its new position in world locked space without traversing the space in between.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void TeleportAttachmentPoint(IAttachmentPoint attachPointIface, Vector3 newFrozenPosition, IAttachmentPoint context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint.html">IAttachmentPoint</a></td>
+        <td><span class="parametername">attachPointIface</span></td>
+        <td><p>The attachment point to teleport</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">newFrozenPosition</span></td>
+        <td><p>The position to teleport to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint.html">IAttachmentPoint</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The optional context.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_TeleportAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_Vector3_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Use this for discontinuous movement through space (i.e. teleportation). For continuous movement, use <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html#Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_MoveAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_Vector3_">MoveAttachmentPoint(IAttachmentPoint, Vector3)</a>.
+This is equivalent to releasing the attachment point (<a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html#Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_ReleaseAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_">ReleaseAttachmentPoint(IAttachmentPoint)</a>) and creating it (<a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html#Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_CreateAttachmentPoint_Vector3_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_AdjustLocationDelegate_Microsoft_MixedReality_WorldLocking_Core_AdjustStateDelegate_">CreateAttachmentPoint(Vector3, IAttachmentPoint, AdjustLocationDelegate, AdjustStateDelegate)</a>)
+at the new location in the given context, except that using Teleport allows the reference to the existing attachment point to remains valid.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

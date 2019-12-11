@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface ITriangulator
+   | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface ITriangulator
+   | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../api_doc/toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.Triangulator.ITriangulator">
+  
+  
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_Triangulator_ITriangulator" data-uid="Microsoft.MixedReality.WorldLocking.Core.Triangulator.ITriangulator" class="text-break">Interface ITriangulator
+  </h1>
+  <div class="markdown level0 summary"><p>Very simple interface for triangulator, to avoid building complex dependencies.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.Triangulator.html">Microsoft.MixedReality.WorldLocking.Core.Triangulator</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_Triangulator_ITriangulator_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ITriangulator</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_Triangulator_ITriangulator_Add_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Triangulator.ITriangulator.Add*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Triangulator_ITriangulator_Add_Vector3___" data-uid="Microsoft.MixedReality.WorldLocking.Core.Triangulator.ITriangulator.Add(Vector3[])">Add(Vector3[])</h4>
+  <div class="markdown level1 summary"><p>Add vertices.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Add(Vector3[] vertices)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span>[]</td>
+        <td><span class="parametername">vertices</span></td>
+        <td><p>The vertices to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True on success.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_Triangulator_ITriangulator_Clear_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Triangulator.ITriangulator.Clear*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Triangulator_ITriangulator_Clear" data-uid="Microsoft.MixedReality.WorldLocking.Core.Triangulator.ITriangulator.Clear">Clear()</h4>
+  <div class="markdown level1 summary"><p>Clear out all vertices added so far.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Clear()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_Triangulator_ITriangulator_Find_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Triangulator.ITriangulator.Find*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Triangulator_ITriangulator_Find_Vector3_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Triangulator.ITriangulator.Find(Vector3)">Find(Vector3)</h4>
+  <div class="markdown level1 summary"><p>Find the interpolant for the given query position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Interpolant Find(Vector3 pos)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">pos</span></td>
+        <td><p>The query positon.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.Triangulator.Interpolant.html">Interpolant</a></td>
+        <td><p>An interpolant if found, else null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_Triangulator_ITriangulator_Find_Vector3__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Note that one or more weights may be zero, but otherwise all indices returned will be valid.
+But while the data behind a vertex with weight zero may be referenced (as the index is valid),
+it is otherwise meaningless.
+The return value of null only happens if no vertices have been added to be interpolated.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_Triangulator_ITriangulator_SetBounds_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Triangulator.ITriangulator.SetBounds*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Triangulator_ITriangulator_SetBounds_Vector3_Vector3_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Triangulator.ITriangulator.SetBounds(Vector3,Vector3)">SetBounds(Vector3, Vector3)</h4>
+  <div class="markdown level1 summary"><p>Set the bounds of vertices to be triangulated. All vertices entered in Add() should be inside the quad formed by these bounds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetBounds(Vector3 minPos, Vector3 maxPos)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">minPos</span></td>
+        <td><p>The minimum coordinates of the bounds.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">maxPos</span></td>
+        <td><p>The maximum coordinates of the bounds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_Triangulator_ITriangulator_SetBounds_Vector3_Vector3__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The vertical coordinate Y is ignored.
+Note that queries outsde the bounds are okay, only all vertices must be contained.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

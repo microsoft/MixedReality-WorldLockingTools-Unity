@@ -1,0 +1,566 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IAlignmentManager
+   | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IAlignmentManager
+   | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../api_doc/toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager">
+  
+  
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager" class="text-break">Interface IAlignmentManager
+  </h1>
+  <div class="markdown level0 summary"><p>Manage pinning the world-locked frozen space to user defined coordinate frame
+at a discrete set of points in the world.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IAlignmentManager</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_PinnedFromLocked_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.PinnedFromLocked*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_PinnedFromLocked" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.PinnedFromLocked">PinnedFromLocked</h4>
+  <div class="markdown level1 summary"><p>The pose to insert into the camera's hierarchy above the WorldLocking Adjustment transform (if any).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Pose PinnedFromLocked { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_AddAlignmentAnchor_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.AddAlignmentAnchor*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_AddAlignmentAnchor_System_String_Pose_Pose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.AddAlignmentAnchor(System.String,Pose,Pose)">AddAlignmentAnchor(String, Pose, Pose)</h4>
+  <div class="markdown level1 summary"><p>Add an anchor for aligning a virtual pose to a pose in real space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">AnchorId AddAlignmentAnchor(string uniqueName, Pose virtualPose, Pose lockedPose)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">uniqueName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td><span class="parametername">virtualPose</span></td>
+        <td><p>The pose in modeling space.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td><span class="parametername">lockedPose</span></td>
+        <td><p>The pose in world locked space.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AnchorId</span></td>
+        <td><p>The id for the added anchor if successful, else AnchorId.Unknown. See remarks.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_AddAlignmentAnchor_System_String_Pose_Pose__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This must be followed by <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_SendAlignmentAnchors">SendAlignmentAnchors()</a> before it will have any effect.
+The returned AnchorId may be stored for future manipulation of the created anchor (e.g. for individual removal in <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_RemoveAlignmentAnchor_AnchorId_">RemoveAlignmentAnchor(AnchorId)</a>).
+The system must be currently tracking to successfully add an alignment anchor. The alignment anchor
+will be in the current <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.Fragment.html">Fragment</a>.
+The current fragment will be available when there is no tracking, and so this call will fail.
+If this call fails, indicated by a return of AnchorId.Unknown, then it should be called again
+on a later frame until it succeeds.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_ClearAlignmentAnchors_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.ClearAlignmentAnchors*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_ClearAlignmentAnchors" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.ClearAlignmentAnchors">ClearAlignmentAnchors()</h4>
+  <div class="markdown level1 summary"><p>Remove all alignment anchors that have been added. More efficient than removing them individually,
+and doesn't require having stored their ids on creation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ClearAlignmentAnchors()</code></pre>
+  </div>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_ClearAlignmentAnchors_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This is more efficient than removing one by one, but take care to discard all existing AnchorIds returned by <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_AddAlignmentAnchor_System_String_Pose_Pose_">AddAlignmentAnchor(String, Pose, Pose)</a>
+after this call, as it will be an error to try to use any of them.
+Also note that this clears the Alignment Anchors staged for commit with the next <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_SendAlignmentAnchors">SendAlignmentAnchors()</a>,
+but the current ones will remain effective until the next call to SendAlignmentAnchors, which will send an empty list,
+unless it has been repopulated after the call to ClearAlignmentAnchors.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_ComputePinnedPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.ComputePinnedPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_ComputePinnedPose_Pose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.ComputePinnedPose(Pose)">ComputePinnedPose(Pose)</h4>
+  <div class="markdown level1 summary"><p>Update based on new head position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ComputePinnedPose(Pose lockedHeadPose)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td><span class="parametername">lockedHeadPose</span></td>
+        <td><p>Head pose in world locked space.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_GetAlignmentPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.GetAlignmentPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_GetAlignmentPose_AnchorId_Pose__" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.GetAlignmentPose(AnchorId,Pose@)">GetAlignmentPose(AnchorId, out Pose)</h4>
+  <div class="markdown level1 summary"><p>Get the world locked space pose associated with this alignment anchor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool GetAlignmentPose(AnchorId anchorId, out Pose lockedPose)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AnchorId</span></td>
+        <td><span class="parametername">anchorId</span></td>
+        <td><p>Which anchor.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td><span class="parametername">lockedPose</span></td>
+        <td><p>Pose to fill out if alignment anchor is found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if anchor is found and lockedPose filled in, else false and lockedPose set to identity.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_Load_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.Load*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_Load" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.Load">Load()</h4>
+  <div class="markdown level1 summary"><p>Load all persisted state required for reconstructing the current pinning.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Load()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if loaded.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_Load_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The state required for reconstructing the pinning is loaded, but the reconstruction
+does not occur. Rather, the <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.PostAlignmentLoadedDelegate.html">PostAlignmentLoadedDelegate</a> is triggered, to
+prompt external actors to use the <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_RestoreAlignmentAnchor_System_String_Pose_">RestoreAlignmentAnchor(String, Pose)</a>
+API to effect the reconstruction. 👍</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_RegisterForLoad_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.RegisterForLoad*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_RegisterForLoad_Microsoft_MixedReality_WorldLocking_Core_PostAlignmentLoadedDelegate_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.RegisterForLoad(Microsoft.MixedReality.WorldLocking.Core.PostAlignmentLoadedDelegate)">RegisterForLoad(PostAlignmentLoadedDelegate)</h4>
+  <div class="markdown level1 summary"><p>Register for notification that pin data has finished loaded and is available.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RegisterForLoad(PostAlignmentLoadedDelegate del)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.PostAlignmentLoadedDelegate.html">PostAlignmentLoadedDelegate</a></td>
+        <td><span class="parametername">del</span></td>
+        <td><p>Delegate to notify.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_RegisterForLoad_Microsoft_MixedReality_WorldLocking_Core_PostAlignmentLoadedDelegate__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The delegate should be unregistered when no longer needed, e.g. owning object is destroyed.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_RemoveAlignmentAnchor_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.RemoveAlignmentAnchor*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_RemoveAlignmentAnchor_AnchorId_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.RemoveAlignmentAnchor(AnchorId)">RemoveAlignmentAnchor(AnchorId)</h4>
+  <div class="markdown level1 summary"><p>Remove the given alignment anchor from the system.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveAlignmentAnchor(AnchorId anchorId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AnchorId</span></td>
+        <td><span class="parametername">anchorId</span></td>
+        <td><p>The anchor to remove (as returned by <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_AddAlignmentAnchor_System_String_Pose_Pose_">AddAlignmentAnchor(String, Pose, Pose)</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the anchor was found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_RestoreAlignmentAnchor_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.RestoreAlignmentAnchor*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_RestoreAlignmentAnchor_System_String_Pose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.RestoreAlignmentAnchor(System.String,Pose)">RestoreAlignmentAnchor(String, Pose)</h4>
+  <div class="markdown level1 summary"><p>Attempt to restore an alignment anchor from an earlier session. Stored alignment anchor
+must match in both uniqueName and virtual pose.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">AnchorId RestoreAlignmentAnchor(string uniqueName, Pose virtualPose)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">uniqueName</span></td>
+        <td><p>Unique name use previously to create the alignment anchor.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td><span class="parametername">virtualPose</span></td>
+        <td><p>Virtual pose to match with stored anchor pose.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AnchorId</span></td>
+        <td><p>AnchorId of restored Alignment Anchor on success, else AnchorId.Invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_RestoreAlignmentAnchor_System_String_Pose__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If successful, alignment anchor is added but not sent. It must be followed by a call to SendAlignmentAnchors
+to take effect.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_Save_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.Save*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_Save" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.Save">Save()</h4>
+  <div class="markdown level1 summary"><p>Save state needed to reconstruct later from persistent storage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Save()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if saved (even if empty).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_SendAlignmentAnchors_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.SendAlignmentAnchors*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_SendAlignmentAnchors" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.SendAlignmentAnchors">SendAlignmentAnchors()</h4>
+  <div class="markdown level1 summary"><p>Submit all accumulated alignment anchors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SendAlignmentAnchors()</code></pre>
+  </div>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_SendAlignmentAnchors_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>All anchors previously submitted via SendAlignmentAnchors() will be cleared and replaced by the current set.
+SendAlignmentAnchors() submits the current set of anchors, but they will have no effect until the next
+<a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IFragmentManager_Refreeze">Refreeze()</a> is successfully performed.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_UnregisterForLoad_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.UnregisterForLoad*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_UnregisterForLoad_Microsoft_MixedReality_WorldLocking_Core_PostAlignmentLoadedDelegate_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.UnregisterForLoad(Microsoft.MixedReality.WorldLocking.Core.PostAlignmentLoadedDelegate)">UnregisterForLoad(PostAlignmentLoadedDelegate)</h4>
+  <div class="markdown level1 summary"><p>Unregister for notification that pin data has finished loaded and is available.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UnregisterForLoad(PostAlignmentLoadedDelegate del)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.PostAlignmentLoadedDelegate.html">PostAlignmentLoadedDelegate</a></td>
+        <td><span class="parametername">del</span></td>
+        <td><p>Delegate to remove from notifications.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

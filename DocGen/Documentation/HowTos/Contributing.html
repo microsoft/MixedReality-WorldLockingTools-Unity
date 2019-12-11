@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Contributing to the World Locking Tools for Unity project | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Contributing to the World Locking Tools for Unity project | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="contributing-to-the-world-locking-tools-for-unity-project">Contributing to the World Locking Tools for Unity project</h1>
+
+<p>The most valuable way to contribute to the World Locking Tools project at this time is by filing issues. Any and all feedback on better aligning the World Locking Tools for Unity project with your project's needs is extremely valuable.</p>
+<p>While any feedback you post is valuable, here are some tips on making yours more actionable.</p>
+<h2 id="use-labels-appropriately">Use labels appropriately</h2>
+<p>Both when initially submitting an issue, and when following up on an issue as a contributor, proper use of labels is extremely helpful on coordinating with other contributors.</p>
+<p>Try to differentiate accurately between what is a bug, what is a feature request, and what is a broader suggestion going forward. All are valuable, but they are more valuable once identified as such.</p>
+<p>Likewise, if an issue seems unactionable in its current form, applying the appropriate label (e.g. &quot;unclear&quot;) can help get it improved to where it is actionable. Specific comments in the issue itself are, of course, extremely valuable. But the proper label may lead others to see a comment that might otherwise go unnoticed.</p>
+<h2 id="reporting-a-bug">Reporting a bug</h2>
+<p>Issues may be submitted from the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues">issues portal</a> on GitHub. Taking the time to report a problem or make a suggestion that others will benefit from as well is always appreciated.</p>
+<p>Every bug report has its own context, but in general, the more of the following that are included the more quickly an issue can get resolved.</p>
+<h3 id="log-files-from-the-device">Log files from the device</h3>
+<p>Log files from the device can be immeasurably helpful in investigating issues, especially in conjunction with screen captures suggested below. They may be obtained using the Windows Device Portal while connected to your device, under System &gt; File explorer &gt; User Folders \ LocalAppData \ WorldLockingTools</p>
+<blockquote>
+<h4 id="the-unity-app-log-file">The Unity app log file:</h4>
+<p><em>UnityPlayer.log</em> is located in the <em>TempState</em> sub-folder. This is a plain text file.</p>
+</blockquote>
+<blockquote>
+<h4 id="the-world-locking-tools-diagnostics-recording">The World Locking Tools diagnostics recording:</h4>
+<p>The diagnostics file's name is auto-generated according to the following pattern:</p>
+<p><code>FrozenWorld-&lt;device name&gt;-&lt;capture date and time&gt;.hkfw</code></p>
+<p>It is a binary file which needs specialized software to examine.</p>
+<p>Note that to capture a diagnostics recording requires enabling Diagnostics Recording on the World Locking Tools Manager component in your scene.</p>
+</blockquote>
+<h3 id="repro-steps">Repro steps</h3>
+<p>Specify how readily the issue happens. The ideal is having a bug that occurs 100% of the time following a certain set of step. But even for a bug that you've only seen happen once, the more detailed you can relate the steps leading up to the issue, the better.</p>
+<p>Repro steps should follow the following general form:</p>
+<ol>
+<li>Starting from this normal stable state...</li>
+<li>Then I did this (or noticed this unusual thing)...</li>
+<li>Then the system started showing this incorrect behavior...</li>
+</ol>
+<h3 id="screen-captures">Screen captures</h3>
+<p>Screen captures will help identify the full context the issue occurred in. In particular, having World Locking Tools diagnostics displayed on screen can help correlate your experience to the information in the logs. These can either be snapshot images, or video captures.</p>
+<h3 id="device-info">Device info</h3>
+<ul>
+<li>What type of device?</li>
+<li>Running what OS-version?</li>
+</ul>
+<h3 id="build-environment">Build environment</h3>
+<ul>
+<li>Unity version</li>
+<li>Visual Studio version</li>
+</ul>
+<h2 id="proposing-a-feature">Proposing a feature</h2>
+<p>When you find that World Locking Tools <em>almost</em> does what you need, the chances are that someone else is suffering the same limitation.  We are just as interested in fixing gaps in our documentation and examples as in providing new capabilities.</p>
+<p>In proposing a new feature, it's most valuable to make clear what it is you are trying to get done. While ideas on how to implement it can also be helpful, proposals that make clear the added value are more likely to gain traction. Make the problem the feature solves obvious, preferably with what you could accomplish with it in a real world scenario.</p>
+<p>Make sure to attach the &quot;enhancement&quot; label to the submitted proposal issue.</p>
+<h2 id="contributing-code">Contributing code</h2>
+<p>This is an open source project, so of course anyone can make a fork to develop on at any time. If someone is generous enough to share back work, then it is greatly appreciated, whether it gets folded back into the main repository or not.</p>
+<p>During this initial roll out period, we will have limited resources to review and accept pull requests into the main repository. It is advisable to avoid investing a lot of time into a fork under the assumption that it will be merged back to the main repository.</p>
+<p>One way to mitigate the risk is to submit an issue proposing what is intended (labeled &quot;enhancement&quot;) before investing a lot of time in an implementation. This is also considerate toward other contributors that might be looking at the same problem area.</p>
+<h2 id="see-also">See also</h2>
+<p><a href="CodingConventions.html">Coding Conventions</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/development/DocGen/Documentation/HowTos/Contributing.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

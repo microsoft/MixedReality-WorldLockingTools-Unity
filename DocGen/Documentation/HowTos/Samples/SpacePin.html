@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Space Pin Sample | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Space Pin Sample | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="space-pin-sample">Space Pin Sample</h1>
+
+<p>The functionality demonstrated in the Space Pin example is also available in the main Frozen Physics Sample scene.</p>
+<p>However, the Space Pin scene offers a simplified and more focused view of the <a href="../../Concepts/Advanced/SpacePins.html">Space Pin feature</a>. It is intended to be closer to the inner workings of a real world application which needs to align a large object or objects with real world features.</p>
+<p>It therefore lacks many of the options and runtime UX of the more general <a href="WorldLockedPhysicsSample.html">Frozen Physics Sample</a>.</p>
+<h2 id="default-settings">Default settings</h2>
+<p>The <a href="../WorldLockingContext.html">World Locking Tools Manager settings</a> applied may be examined in the Unity Inspector by selecting the WorldLocking &gt; WorldLockingManager node.</p>
+<p>In particular, note that World Locking Tools' AutoSave and AutoLoad features are enabled. Therefore, after aligning the spheres and measuring beam to real world features, as described below, then subsequent session on startup will resume that alignment automatically.</p>
+<p>To reset the sample to a clean state, uninstall it and re-deploy. There are, of course, APIs to reset to a clean slate from script, but these are omitted here for clarity. See <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_ClearAlignmentAnchors">IAlignmentManager.ClearAlignmentAnchors()</a>.</p>
+<p>Also note that the demo enables automatic refit operations. See <a href="#refit-operations">below</a>.</p>
+<h2 id="physical-space-setup">Physical space setup</h2>
+<p>This sample contains 4 markers. To fully explore the sample, place physical markers in a space corresponding to the layout of the virtual markers.</p>
+<p><em>NOTE: The layout of the virtual markers in the Unity scene may be altered to fit any physical space. There is nothing special about the default layout. However, seeing the benefits of the Space Pinning feature requires a considerable spread of the markers, with separations of at least a few meters.</em></p>
+<p>The layout of the physical markers in the room should match the layout of the virtual markers in the Unity scene, as shown in this diagram:</p>
+<p><img src="../../../Images/PinMarkerLayout.png" alt=""></p>
+<h2 id="running-the-sample">Running the Sample</h2>
+<h3 id="startup">Startup</h3>
+<p>On startup for the first session, the origin of the Unity coordinate space will be at the head pose at startup.</p>
+<p>Looking to the left and forward 6 meters will reveal a cyan sphere,  with a cyan cube above it.</p>
+<p>Looking to the right and back will show a red sphere and cube, 10 meters away.</p>
+<p>Moving forward from the origin and looking back reveals a white sphere and cube. Eight meters beyond it is a yellow sphere and cube.</p>
+<p>There are also beams of alternating colors running beneath the spheres. Their purpose will become clear during the walkthrough.</p>
+<h3 id="aligning-the-world">Aligning the world</h3>
+<p>Move to any one of the colored spheres. This walk-through will start with the red sphere.</p>
+<p>Walk to the red sphere. The sphere may be grabbed from a distance using hand-rays in HL2, or gaze and pinch with HL1. On HL2, it may also be grabbed in hand.</p>
+<p>Look around and find the marker placed in the physical room corresponding to the red sphere. Grab the virtual red sphere by one of the above methods and drag it to the red sphere's marker. Further adjust the sphere to align with the physical marker as well as possible.</p>
+<p>Note that the other spheres have now moved as well. However, their orientation is unchanged. That is, the virtual world has been translated to put the red sphere on its marker, but the orientation of the world has not yet been affected.</p>
+<p>Move to another sphere. For this walk-through the white sphere will be next.</p>
+<p>Repeat the above procedure, moving the virtual white sphere to align with its physical marker.</p>
+<p>Note that now the virtual space has been rotated as well as translated, so that the red, white, and cyan spheres are still in a line, with the yellow sphere on a perpendicular offset from the white sphere.</p>
+<p>Verify that when near the white sphere, it is aligned with its physical marker. Walk to the red sphere and verify that it is aligned with its physical marker.</p>
+<p>Now walk to a remaining sphere. This walk-through will proceed to the cyan sphere.</p>
+<p>Note that while the cyan sphere is in line with the red and white spheres, it is not correctly positioned at its marker. The exact vector and magnitude of the error are device and even situation dependent, ut it is likely that it is near correctly on the red-white sphere line, but short of the physical marker.</p>
+<p>Drag the cyan sphere to its correct alignment with the physical marker. Verify, by walking to each and examining them, that each of the 3 placed markers are now correctly aligned when in each one's proximity.</p>
+<p>If desired, repeat this process for the final sphere.</p>
+<h2 id="alternate-manipulation-mode">Alternate manipulation mode</h2>
+<p>The above walk-through is based on the default configuration in the application, in which the orientation of the virtual space is implied by the relative positioning of the markers.</p>
+<p>In an alternate mode, the orientation may be explicitly set by grabbing the spheres and rotating them about the Y-axis.</p>
+<p>The default manipulation mode described above is generally much easier, because positioning of objects in virtual space tends to be much more precise than rotating them to a specific orientation.</p>
+<p>Similarly, when using QR codes for automatic alignment, the position returned for a QR code marker tends to be much more reliable than the orientation.</p>
+<p>However, some applications may have advance and specific knowledge of the desired orientation of space, which they may leverage using this second method.</p>
+<p>To enable the explicit orientation method in the demo, simply disable the active Space Pin Orientable Manipulation components on the marker spheres in:</p>
+<pre><code>Content &gt; Manipulation &gt; Markers &gt; CyanSphere/RedSphere/YellowSphere/GreySphere.
+</code></pre>
+<p>and enable the currently disabled Space Pin Manipulation components.</p>
+<p>The suggested walk-through is then:</p>
+<p>Position one of the spheres aligned with its physical marker, and orient it so that the other spheres are in the correct direction from it.</p>
+<p>The other spheres will now be at incorrect distances, but along approximately the correct vector.</p>
+<p>Move to the other spheres in turn and reposition each to align with it's physical marker. No further orientation changes should be required.</p>
+<h3 id="examining-the-results">Examining the results</h3>
+<p>If a measuring tool, such as a tape measure, is available, this alignment can be further examined.</p>
+<p>If the spheres were placed correctly, there should be zero error at each of the spheres.</p>
+<p>The T-beam running beneath the spheres alternates colors at every meter. By measuring the deviation of the color changes in the beams with the meter marks in the measuring device, the error in the areas between Space Pins may be seen.</p>
+<h3 id="refit-operations">Refit operations</h3>
+<p>Automatic refit operations will most probably manifest as follows:</p>
+<ol>
+<li>After positioning one or more of the spheres, the virtual objects are aligned as expected.</li>
+<li>Subsequently, tracking is lost.</li>
+<li>Tracking resumes after moving to another physical area.</li>
+<li>The alignment from the first spheres is lost and has no effect (because they are in a different <a href="../../Concepts/Advanced/Fragments.html">fragment</a>).</li>
+<li>After moving about the new section of space (possibly positioning another sphere), the head moves back to the original space.</li>
+<li>A <a href="../../Concepts/Advanced/RefitOperations.html">refit operation</a> silently and automatically combines the original and new fragments.</li>
+<li>The alignment from the first spheres becomes effective again (because they are all in the same fragment now).</li>
+</ol>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/development/DocGen/Documentation/HowTos/Samples/SpacePin.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

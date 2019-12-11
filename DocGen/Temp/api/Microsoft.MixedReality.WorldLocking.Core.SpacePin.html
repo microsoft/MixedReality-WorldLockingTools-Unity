@@ -1,0 +1,610 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class SpacePin
+   | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class SpacePin
+   | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../api_doc/toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin">
+  
+  
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin" class="text-break">Class SpacePin
+  </h1>
+  <div class="markdown level0 summary"><p>Component helper for pinning the world locked space at a single reference point.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">SpacePin</span></div>
+      <div class="level2"><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html">SpacePinOrientable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SpacePin : MonoBehaviour</code></pre>
+  </div>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>This component captures the initial pose of its gameObject, and then a second pose. It then
+adds that pair to the WorldLocking Alignment Manager. The manager then negotiates between all
+such added pins, based on the current head pose, to generate a frame-to-frame mapping aligning
+the Frozen Space such that the pins match up as well as possible.
+Another way to phrase this is:
+Given an arbitrary pose (the &quot;modeling pose&quot;),
+and a pose aligned somehow to the real world (the &quot;world locked pose&quot;),
+apply a correction to the camera such that a virtual object with coordinates of the modeling pose
+will appear overlaid on the real world at the position and orientation described by the locked pose.
+For this component, the locked pose must come in via one of the following three APIs:
+<a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetFrozenPose_Pose_">SetFrozenPose(Pose)</a> with input pose in Frozen Space, which includes pinning.
+<a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetSpongyPose_Pose_">SetSpongyPose(Pose)</a> with input pose in Spongy Space, which is the space of the camera's parent,
+and is the same space the camera moves in, and that native APIs return values in (e.g. XR).
+<a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetLockedPose_Pose_">SetLockedPose(Pose)</a> with input pose in Locked Space, which is the space stabilized by
+the Frozen World engine DLL but excluding pinning.
+Note that since the Frozen Space is shifted by the AlignmentManager, calling SetFrozenPose(p) with the same Pose p
+twice is probably an error, since the Pose p would refer to different a location after the first call.</p>
+</div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_AnchorName_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorName*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_AnchorName" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorName">AnchorName</h4>
+  <div class="markdown level1 summary"><p>Provide a unique anchor name. This is used for persistence.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual string AnchorName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_FragmentId_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.FragmentId*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_FragmentId" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.FragmentId">FragmentId</h4>
+  <div class="markdown level1 summary"><p>Id for fragment this pin belongs in.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected FragmentId FragmentId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FragmentId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_InitialPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.InitialPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_InitialPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.InitialPose">InitialPose</h4>
+  <div class="markdown level1 summary"><p>Pose at startup.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Pose InitialPose { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_LockedPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.LockedPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_LockedPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.LockedPose">LockedPose</h4>
+  <div class="markdown level1 summary"><p>Accessor for world locked pose for derived classes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Pose LockedPose { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_Manager_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.Manager*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_Manager" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.Manager">Manager</h4>
+  <div class="markdown level1 summary"><p>Read only access to manager dependency from derived classes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected WorldLockingManager Manager { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html">WorldLockingManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPose">ModelingPose</h4>
+  <div class="markdown level1 summary"><p>First of the pair of poses submitted to alignment manager for alignment.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Pose ModelingPose { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_PinActive_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.PinActive*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_PinActive" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.PinActive">PinActive</h4>
+  <div class="markdown level1 summary"><p>Whether this space pin is in active use pinning space</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool PinActive { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ForceAttachment_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ForceAttachment*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ForceAttachment" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ForceAttachment">ForceAttachment()</h4>
+  <div class="markdown level1 summary"><p>Ensure that there is an attachment, and it is positioned up to date.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ForceAttachment()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_OnDestroy_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.OnDestroy*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_OnDestroy" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.OnDestroy">OnDestroy()</h4>
+  <div class="markdown level1 summary"><p>On destroy, unregister for the loaded event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDestroy()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_OnLocationUpdate_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.OnLocationUpdate*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_OnLocationUpdate_Pose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.OnLocationUpdate(Pose)">OnLocationUpdate(Pose)</h4>
+  <div class="markdown level1 summary"><p>Callback for refit operations. Apply adjustment transform to locked pose.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnLocationUpdate(Pose adjustment)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td><span class="parametername">adjustment</span></td>
+        <td><p>Adjustment to apply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_PushAlignmentData_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.PushAlignmentData*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_PushAlignmentData_Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.PushAlignmentData(Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager)">PushAlignmentData(IAlignmentManager)</h4>
+  <div class="markdown level1 summary"><p>Communicate the data from this point to the alignment manager.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void PushAlignmentData(IAlignmentManager mgr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html">IAlignmentManager</a></td>
+        <td><span class="parametername">mgr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ReleaseAttachment_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ReleaseAttachment*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ReleaseAttachment" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ReleaseAttachment">ReleaseAttachment()</h4>
+  <div class="markdown level1 summary"><p>Dispose of any previously created attachment point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ReleaseAttachment()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_Reset_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.Reset*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_Reset" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.Reset">Reset()</h4>
+  <div class="markdown level1 summary"><p>Go back to initial state, including removal of self-artifacts from alignment manager.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Reset()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_RestoreOnLoad_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestoreOnLoad*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_RestoreOnLoad" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestoreOnLoad">RestoreOnLoad()</h4>
+  <div class="markdown level1 summary"><p>Callback on notification of the alignment manager's database to check
+if this preset has been persisted, and restore it to operation if it has.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void RestoreOnLoad()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_SendAlignmentData_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.SendAlignmentData*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_SendAlignmentData_Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.SendAlignmentData(Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager)">SendAlignmentData(IAlignmentManager)</h4>
+  <div class="markdown level1 summary"><p>Notify the manager that all necessary updates have been submitted and
+are ready for processing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void SendAlignmentData(IAlignmentManager mgr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html">IAlignmentManager</a></td>
+        <td><span class="parametername">mgr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetAdjustedPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetAdjustedPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetAdjustedPose_Pose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetAdjustedPose(Pose)">SetAdjustedPose(Pose)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;SetAdjustedPosition deprecated - use SetLockedPosition&quot;)]
+public void SetAdjustedPose(Pose lockedPose)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td><span class="parametername">lockedPose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetFrozenPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetFrozenPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetFrozenPose_Pose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetFrozenPose(Pose)">SetFrozenPose(Pose)</h4>
+  <div class="markdown level1 summary"><p>Transform pose to Locked Space and pass through.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFrozenPose(Pose frozenPose)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td><span class="parametername">frozenPose</span></td>
+        <td><p>Pose in frozen space.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetLockedPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetLockedPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetLockedPose_Pose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetLockedPose(Pose)">SetLockedPose(Pose)</h4>
+  <div class="markdown level1 summary"><p>Record the locked pose and push data to the manager.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void SetLockedPose(Pose lockedPose)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td><span class="parametername">lockedPose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetSpongyPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetSpongyPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetSpongyPose_Pose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetSpongyPose(Pose)">SetSpongyPose(Pose)</h4>
+  <div class="markdown level1 summary"><p>Transform pose to Locked Space and pass through.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSpongyPose(Pose spongyPose)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td><span class="parametername">spongyPose</span></td>
+        <td><p>Pose in spongy space.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_Start_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.Start*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_Start" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.Start">Start()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Start()</code></pre>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

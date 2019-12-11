@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Ray Pins Example | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Ray Pins Example | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="ray-pins-example">Ray Pins Example</h1>
+
+<h2 id="related-samples">Related samples</h2>
+<p>The <a href="SpacePin.html">Space Pins</a> sample demonstrates setting up Space Pins by manually manipulating marker objects into position using MRTK affordances. More abstract discussion about the <a href="../../Concepts/Advanced/SpacePins.html">Space Pin feature</a> is also relevant background for this sample.</p>
+<p>Rather than manual manipulation of objects, this sample uses ray cast tests onto the spatial reconstruction meshes to set the world alignment.</p>
+<p>Significantly, this sample also creates all required World Locking Tools components from script, rather than needing assets setup in the editor.</p>
+<h2 id="scene-contents">Scene contents</h2>
+<p>There are eight (8) Space Pin virtual marker objects in the RayPins scene. Four (4) are floor level, at the northeast, southeast, northwest, and southwest corners of a square four meters (4m) per side.</p>
+<p>Another four (4) pins are one meter up, suggesting they are points on walls six meters (6m) apart.</p>
+<h2 id="running-the-sample">Running the sample</h2>
+<h3 id="physical-setup">Physical setup</h3>
+<p>Find a physical space with some clearance. Place markers on the floor and walls at the same separations as the virtual markers in the scene. It's not necessary to have a physical marker for every virtual marker.</p>
+<p>It is helpful to either label the physical markers with the name of the corresponding virtual marker (e.g. &quot;NW&quot;), or draw a map with their placement labeled.</p>
+<h3 id="app-setup">App setup</h3>
+<p>Build and deploy the RayPins scene to device.</p>
+<h3 id="running-the-app">Running the app</h3>
+<h4 id="startup">Startup</h4>
+<p>On startup, the coordinate system is based on the head position, and the virtual grid and markers placement is arbitrary.</p>
+<h4 id="first-marker">First marker</h4>
+<p>On the radio selection, pick one of the markers for which there is a corresponding physical marker in the room. Click on the physical marker in the room. The scene will shift to align the selected virtual marker to the ray hit physical marker.</p>
+<p>If the alignment is unsatisfactory, for example because of a slip at the moment of selection, simply repeat selecting, with the appropriate radio button still selected, until satisfactory alignment is achieved.</p>
+<h4 id="second-marker">Second marker</h4>
+<p>Move to another physical marker in the room, and select its virtual marker in the radio selection. Click on that physical marker. The grid and markers now rotate to align with both markers aligned.</p>
+<h4 id="more-markers">More markers</h4>
+<p>When near either of the first two pins placed, alignment should be quite close between the physical and virtual markers.</p>
+<p>For other markers, however, there may be significant misalignments between physical and virtual. These may arise from a number of sources, but primarily from inexact placement of physical markers, or from tracker error.</p>
+<p>Repeat the radio selection and ray hit placement of virtual markers for any further physical markers placed in the room. After this placement process, any such marker should show good alignment when near it.</p>
+<h4 id="verification">Verification</h4>
+<p>A physical tape measure may be used to verify the interpolated alignment between markers. The grid lines are spaced one meter (1m) apart, and the lines are one centimeter (1cm) wide.</p>
+<h3 id="persistence">Persistence</h3>
+<p>Note that since AutoSave and AutoLoad are enabled on the WorldLockingContext in the RayPins scene, after aligning the content to a physical room and exiting the app, on running the application again the virtual grid and markers will resume their alignment with the physical room.</p>
+<p>To clear the alignment and start over, either select the Reset radio button, or uninstall and reinstall the application.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/development/DocGen/Documentation/HowTos/Samples/RayPins.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

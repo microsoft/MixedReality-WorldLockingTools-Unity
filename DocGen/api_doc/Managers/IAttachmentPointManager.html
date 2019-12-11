@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>IAttachmentPointManager | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="IAttachmentPointManager | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="iattachmentpointmanager">IAttachmentPointManager</h1>
+
+<p>The IAttachmentPointManager is the most common Frozen World interface for a client application to access.</p>
+<p>But the attachment point interface is extremely small. It gives opportunity for the client application to perform the four operations available on attachment points.</p>
+<ul>
+<li>Create</li>
+<li>Release</li>
+<li>Move</li>
+<li>Teleport</li>
+</ul>
+<h3 id="createattachmentpoint">CreateAttachmentPoint</h3>
+<p>The interesting thing to note here is the delegates passed in as arguments to the create function.</p>
+<p>Either or both of these arguments may be null, in which case the created attachment point will not receive any notifications corresponding to that delegate.</p>
+<p>These delegates may not be changed after creation. This should not be a burden, as the delegate itself may fork behavior based on current state. If even that is not possible, then the attachment point must be released and a new attachment point with the desired new delegates created.</p>
+<h3 id="releaseattachmentpoint">ReleaseAttachmentPoint</h3>
+<p>When the attachment point is no longer needed, the client application should notify the system via the release API.</p>
+<h3 id="moveattachmentpoint">MoveAttachmentPoint</h3>
+<p>Unlike most spatial anchors, and Unity's WorldAnchor's in particular, attachment points may move freely through the world, automatically binding to the most relevant anchors at their new positions.</p>
+<p>As an attachment point moves, its owner should notify the system of its new position. This movement might be from physics simulation, or any other animation technique.</p>
+<h3 id="teleportattachmentpoint">TeleportAttachmentPoint</h3>
+<p>Confusingly, teleporting is more closely related to creation than movement. Rather than thinking of teleport as moving to a new location, it is helpful to think of it as ceasing to exist, then beginning existence again in a (possibly) new location.</p>
+<p>The rule of thumb is, if the object moved continuously from old location to new location, use MoveAttachmentPoint. If it popped into existence in the new location, use TeleportAttachmentPoint.</p>
+<h2 id="contexts-for-creation-and-teleporting">Contexts for creation and teleporting</h2>
+<p>Creation and the conceptually similar teleport take an optional (may be null) parameter of a creation context. The context is an already existing attachment point that gives the system several hints about where in the anchor graph (which may not be fully connected in the case of multiple fragments) to find the best anchor to base this attachment point on.</p>
+<p>The current implementation of IAttachmentPointManager is in Assets/WorldLocking.Core/Scripts/FragmentManager.cs, which also implements the IFragmentManager interface.</p>
+<h2 id="move-and-teleport-via-manager-or-attachment-point-apis">Move and teleport via manager or attachment point APIs</h2>
+<p>It may be noticed that, in addition to the move and teleport interfaces described here, there are corresponding methods on the IAttachmentPoint interface. These are equivalent, and whichever is more convenient to the caller may be used.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="WorldLockingManager.html">WorldLockingManager</a></li>
+<li><a href="IFragmentManager.html">IFragmentManager</a></li>
+<li><a href="IAnchorManager.html">IAnchorManager</a></li>
+</ul>
+<p>And in API reference:</p>
+<ul>
+<li><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html">WorldLockingManager</a></li>
+<li><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html">IAnchorManager</a></li>
+<li><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.html">IFragmentManager</a></li>
+<li><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html">IAttachmentPointManager</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/development/DocGen/api_doc/Managers/IAttachmentPointManager.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

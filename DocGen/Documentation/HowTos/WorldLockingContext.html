@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>World Locking Tools Context and Manager settings | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="World Locking Tools Context and Manager settings | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="world-locking-tools-context-and-manager-settings">World Locking Tools Context and Manager settings</h1>
+
+<p>The <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.html">World Locking Tools Context</a> allows parametric customization of the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html">World Locking Tools Manager</a>
+in the Unity Inspector.</p>
+<p>While the WorldLockingContext component presents a UI for the WorldLockingManager, it is important to understand that they are not the same thing, and in some situations it may be important to understand their relationship.</p>
+<h2 id="the-manager-is-a-singleton">The Manager is a singleton</h2>
+<p>The WorldLockingManager is a singleton created on demand and persisting through the lifetime of the application. If no calls are made to the WorldLockingManager, it will never be instantiated. Once instantiated, it will remain live until the application is shut down. It is never destroyed and re-instantiated.</p>
+<p>The WorldLockingManager is <strong>not</strong> a Unity object, it is a generic C# class. Its Update is driven by a proxy Unity component, an instance of the private WorldLockingManager.UpdateProxy class. It is otherwise independent from Unity's creation/update/destruction cycles.</p>
+<h2 id="the-context-is-a-unity-component">The Context is a Unity component</h2>
+<p>The WorldLockingContext is a Unity component which is added to an object in the scene in the usual manner. It's fields appear in the Unity Inspector as would any other regular Unity component's fields.</p>
+<p>While it is not an error to have multiple active WorldLockingContexts in a single scene, it is probably not desired, as the behavior would be undefined, dependent on the unknown order of object loads.</p>
+<p>The settings on a context are applied <strong>when the <em>WorldLockingContext</em> is loaded</strong>. Specifically, the context pushes its settings onto the World Locking Tools Manager in its OnEnable call, and any time its scene becomes the active scene. The latter is applied as part of the Unity.SceneManager.activeSceneChanged callback, if and only if the new active scene is the scene the context belongs to.</p>
+<h2 id="all-settings-may-be-applied-from-script">All settings may be applied from script</h2>
+<p>At any point in the runtime, the application may apply custom settings to the WorldLockingManager via script. If any teardown and rebuilding of resources is required to effect a change in settings, that reconstruction will take place immediately on the settings change.</p>
+<p>While there are some convenience members to get individual property values from the WorldLockingManager, for example <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AutoSave">AutoSave</a>, setting of parameters always happens in aggregate. For example, code to toggle the AutoMerge and AutoRefreeze features might look like this:</p>
+<pre><code>/// Get a copy of the current settings
+var settings = WorldLockingManager.GetInstance().Settings;
+/// Modify the copy
+settings.AutoMerge = !settings.AutoMerge;
+settings.AutoRefreeze = !settings.AutoRefreeze;
+/// Update the current settings to the values in the copy.
+WorldLockingManager.GetInstance().Settings = settings;
+</code></pre>
+<p>Likewise for the diagnostics settings.</p>
+<p>Note that changing multiple settings at once in this way only incurs the cost of a single rebuild (if any is required).</p>
+<h2 id="settings-precedence">Settings precedence</h2>
+<p>Rules for the settings currently applied to the WorldLockingManager are very simple:</p>
+<ol>
+<li><p>If no scene containing a context has been loaded, and no settings have been explicitly set from script, the WorldLockingManager has default settings.</p>
+</li>
+<li><p>A setting will retain its value until it is overridden by a WorldLockingContext loading with a scene, or an explicit change invoked from the application in script.</p>
+</li>
+</ol>
+<p>Caution should be used when mixing World Locking Tools Manager settings from contexts and settings from scripts. Since the context always applies its settings on load, a script manually applying setting during load, particularly from its OnEnable callback, will likely run into race conditions and indeterminate behavior.</p>
+<h2 id="available-settings">Available settings</h2>
+<p>The available settings for controlling World Locking Tools behavior are broken into three groups as follows.</p>
+<h3 id="manager-settings">Manager settings</h3>
+<p>Manager settings control the runtime behavior of the World Locking Tools Manager. The fields available for modification and their implications are documented within the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.ManagerSettings.html">ManagerSettings</a> class.</p>
+<h3 id="linkage-settings">Linkage settings</h3>
+<p>Linkage settings are used to explicitly define the scene GameObjects whose transforms will be used to apply World Locking Tools' corrections.</p>
+<p>The &quot;Use Existing&quot; field allows the linked objects to be set once in the scene with the camera rig (with &quot;Use Existing&quot; false), and not overridden by loading subsequent content scenes (with &quot;Use Existing&quot; true).</p>
+<p>Conversely, setting &quot;Use Existing&quot; to false allows allows multiple scenes each with a different camera rig to bind to the appropriate places in the camera's hierarchy.</p>
+<p>When creating and managing the camera hierarchy from script, the &quot;Use Existing&quot; field should be set to true on all Contexts,and the linkages updated explicitly from the camera managing scripts.</p>
+<p>When the required transforms are not supplied, either left null or all Contexts have &quot;Use Existing&quot;, then the system issues a warning and tries to infer good choices. It is recommended, but not required, to explicitly set the appropriate transforms, rather than having the system guess.</p>
+<h3 id="diagnostics-settings">Diagnostics settings</h3>
+<p>The Diagnostics settings control the gather of diagnostics for analysis of behavior and debugging. They should normally be left with &quot;Use Defaults&quot; set, which, among other things, disables the collection of diagnostics. The diagnostics collection is a great performance drag, so should be avoided unless needed.</p>
+<p>During development, when unexpected and undesirable behavior is being seen, the diagnostics data collected by disabling <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.DiagnosticsSettings.html#Microsoft_MixedReality_WorldLocking_Core_DiagnosticsSettings_UseDefaults">Use Defaults</a> and enabling <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.DiagnosticsSettings.html#Microsoft_MixedReality_WorldLocking_Core_DiagnosticsSettings_Enabled">DiagnosticsSettings.Enabled</a> will enable the collection of data which can be instrumental in understanding and fixing that behavior.</p>
+<p>The fields available for modification are described within the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.DiagnosticsSettings.html">DiagnosticsSettings</a> class.</p>
+<h2 id="default-settings">Default settings</h2>
+<p>Both the manager and diagnostics settings each contain a &quot;Use Defaults&quot; checkbox in the settings. The &quot;Use Defaults&quot; property is also available from script.</p>
+<p>When the &quot;Use Defaults&quot; property is true, the current default settings are used. If default values for a property change in a new release, the &quot;Use Defaults&quot; property instructs the system to use the new property value.</p>
+<p>Setting the &quot;Use Defaults&quot; property to true at any time will reset all values to their <em>current</em> default values. To lock the values at a snapshot of the default values at a given time, enable the &quot;Use Defaults&quot; property to reset all fields to the current defaults, then unset the checkbox to prevent them from being changed with an update.</p>
+<p>It is suggested to leave the &quot;Use Defaults&quot; set to true, except during development for experimentation and debugging.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html">WorldLockingManager</a></p>
+</li>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.html">WorldLockingContext</a></p>
+</li>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.ManagerSettings.html">ManagerSettings</a></p>
+</li>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.html">LinkageSettings</a></p>
+</li>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.DiagnosticsSettings.html">DiagnosticsSettings</a></p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/development/DocGen/Documentation/HowTos/WorldLockingContext.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

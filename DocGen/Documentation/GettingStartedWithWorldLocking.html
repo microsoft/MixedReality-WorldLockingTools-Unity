@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Getting started in World Locking Tools | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Getting started in World Locking Tools | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="getting-started-in-world-locking-tools">Getting started in World Locking Tools</h1>
+
+<p>Getting started in World Locking Tools can be as simple as dragging a prefab into a Unity scene.</p>
+<p>However, understanding the work the Unity layer of World Locking Tools performs, as well as the underlying FrozenWorld engine, can be helpful as well as educational.</p>
+<h3 id="goals-of-this-documentation">Goals of this documentation</h3>
+<p>The first goal is to establish an understanding of what World Locking Tools is trying to do. This can help in setting expectations for what problems World Locking Tools can solve, and what problems are out of its scope.</p>
+<p>The number-crunching optimization at the core of World Locking Tools is performed in an engine implemented as an efficient C-style DLL. While a C# shim is provided for directly interfacing to the World Locking Tools engine from Unity scripting, it is hoped that low level interaction with the engine will be rarely if ever needed.</p>
+<p>It is important to understand that World Locking Tools' Unity layer acts as a proxy application, performing the tasks that the vast majority of applications built on Unity would need to perform in managing the FrozenWorld engine. Sharing this engine harness makes sense, avoiding each application developer being responsible for implementing essentially the same control structure.</p>
+<p>But for an application which is in the minority having special requirements, World Locking Tools' Unity layer acts as a sample scaffolding for building a custom harness for the engine. Understanding what the provided scaffolding is doing is necessary to modify it, or to implement a variation of it.</p>
+<p>It will be shown that a good deal of customization is available, even without modifying code. Understanding what World Locking Tools is doing, as well as the customizable properties, is helpful for fine tuning World Locking Tools for a specific application.</p>
+<p>Finally, an understanding of World Locking Tools can be helpful when things go wrong, in narrowing which system is faulty, providing useful bug reports, and establishing workarounds.</p>
+<h3 id="guide-structure">Guide structure</h3>
+<p>These guides are arranged to both build an understanding of World Locking Tools at a conceptual level, and provide practical step-by-step instructions on putting World Locking Tools to use in real world MR applications.</p>
+<ul>
+<li><a href="Concepts.html">Concepts</a></li>
+<li><a href="Concepts/BasicConcepts.html">The basic system</a></li>
+<li><a href="Concepts/AdvancedConcepts.html">Advanced topics</a></li>
+<li><a href="HowTos.html">How-to articles</a></li>
+<li><a href="HowTos/SampleApplications.html">Samples</a></li>
+</ul>
+<p>Additionally, the <a href="../api_doc/Architecture.html">API documenation</a> provides a reference on programmatic interfaces into World Locking Tools. It should be stressed that in most cases, there will be no need to code directly to the World Locking Tools interfaces, and scene setup and property settings in the inspector are all that are required. The exception is with <strong>attachment points</strong>, which are covered later both <a href="Concepts/Advanced/AttachmentPoints.html">conceptually</a> and in the <a class="xref" href="../Temp/api/Microsoft.MixedReality.WorldLocking.Core.AttachmentPoint.html">programming reference</a>.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/development/DocGen/Documentation/GettingStartedWithWorldLocking.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

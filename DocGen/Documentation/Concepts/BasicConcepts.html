@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Spongy and frozen spaces | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Spongy and frozen spaces | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="spongy-and-frozen-spaces">Spongy and frozen spaces</h1>
+
+<h2 id="spongy-space">Spongy space</h2>
+<p>At the core of World Locking Tools is an optimization engine. It takes as inputs a graph of currently active spatial anchors in the world, along with the current head tracking information. This is commonly referred to, within this and related documentation and code, as the <strong>Spongy state</strong>. The spongy state is so named because it is constantly in flux. The spatial anchors are always in motion relative to each other, and within their native <em>spongy</em> coordinate space, as incoming sensor data refines their state.</p>
+<p>This spongy space is the only coordinate system previously available in which the mixed reality application developer could work.</p>
+<h2 id="frozen-space">Frozen space</h2>
+<p>From the spongy state, the World Locking Tools engine computes a stable space which optimally aligns the spongy space with the physical world. This stable space is referred to as <strong>Frozen space</strong>, and its full state as the <em>frozen state</em>.</p>
+<p>It is important to realize that both spongy space and frozen space are rigid cartesian coordinate systems, and in fact differ from each other by only a rotation and offset. However, the transform from spongy space to frozen space changes each frame, as new sensor data is processed.</p>
+<p>The difference between the two spaces is that, while incoming sensor data is free to refine (i.e. move) spatial anchors relative to each other and the head in spongy space, frozen space is chosen to minimize such movements. This allows scene objects placed in frozen space to appear fixed in the physical world without being attached to individual spatial anchors. Each frame the engine computes the frozen space in which the underlying anchors are most stable. That is, the frozen space in which virtual objects stay optimally aligned with real world features.</p>
+<p>This transform is applied to the scene each frame by adjusting the local transform of a parent of the camera in the scene graph. Since the camera defines the original spongy space, inserting this &quot;frozen from spongy&quot; transform into the camera's hierarchy establishes the root space of the scene to be frozen space.</p>
+<h2 id="persistence">Persistence</h2>
+<p>The Frozen State can optionally be persisted across sessions. There are manual controls for both saving the current state and for loading from a saved state. Additionally, flags on the World Locking Tools Manager enable or disable automatic periodic saving of Frozen State, and automatic loading of the last saved state at startup.</p>
+<p>Using these features allows the scanning and stabilization of a real space to persist over multiple sessions.</p>
+<p>Additionally, if the Space Pin feature is used to align modeling space to the real space, that alignment can be persisted. In that case, after an initial alignment session to set up the Space Pins to align the modeled scene to a physical space, subsequent sessions can automatically load the modeled scene into the physical space with virtual and real features aligned.</p>
+<p>See <a href="Advanced/Persistence.html">Persistence</a> and <a href="Advanced/SpacePins.html">Space Pin feature</a> for further details.</p>
+<h2 id="camera-movement-implications">Camera movement implications</h2>
+<p>A subtle but important thing to note here is that, by applying the correction transform to the camera, the native Unity &quot;stationary frame of reference&quot; has been converted into the optimal frozen frame of reference. Since no objects in the scene were moved, this will not interfere with physics simulation or other dynamics calculations.</p>
+<p>However, the camera being moved within the stationary frame of reference does have implications. Specifically, any sub-systems which assume that the head transform is the only transform between the stationary frame of reference and the camera space will be incorrect.</p>
+<p>This is generally not a problem, as such capabilities as teleport already rely on the ability to place a transform between the camera and root space.</p>
+<p>Also, the MRTK already factors in the need for such transforms, so for users of MRTK services this will &quot;just work&quot;.</p>
+<p>For users requiring direct access to lower level systems that are unable to take advantage of MRTK, samples are provided for building adapters. A few such examples are listed below:</p>
+<ul>
+<li><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.WorldAnchorAdapter.html">A world anchor adapter</a></li>
+<li><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenTapToAdd.html">Tap event adapting</a></li>
+<li><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenSpatialMapping.html">Spatial mapping adapter</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="AdvancedConcepts.html">Advanced topics</a></li>
+<li><a href="../HowTos.html">How-to articles</a></li>
+<li><a href="../HowTos/SampleApplications.html">Samples</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/development/DocGen/Documentation/Concepts/BasicConcepts.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

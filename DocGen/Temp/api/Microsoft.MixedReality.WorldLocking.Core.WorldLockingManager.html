@@ -1,0 +1,1179 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class WorldLockingManager
+   | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class WorldLockingManager
+   | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../api_doc/toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager">
+  
+  
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager" class="text-break">Class WorldLockingManager
+  </h1>
+  <div class="markdown level0 summary"><p>Ultimate manager of World Locking.
+WorldLockingManager supplies access to the sub-managers, <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html">IAnchorManager</a>, <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.html">IFragmentManager</a>, and <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html">IAttachmentPointManager</a>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">WorldLockingManager</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class WorldLockingManager</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Plugin" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Plugin">Plugin</h4>
+  <div class="markdown level1 summary"><p>Direct interface to the plugin. It is not generally necessary or desired to
+directly manipulate the plugin, but may be useful for manual override
+of some plugin inputs, outputs, or controls.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly Plugin Plugin</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Plugin</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AdjustmentFrame_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AdjustmentFrame*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AdjustmentFrame" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AdjustmentFrame">AdjustmentFrame</h4>
+  <div class="markdown level1 summary"><p>The transform at which to apply the camera adjustment. This can't be the camera node, as its
+transform is overwritten every frame with head pose data. But the camera should be an attached
+descendant of this node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Transform AdjustmentFrame { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AlignmentManager_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AlignmentManager*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AlignmentManager" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AlignmentManager">AlignmentManager</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IAlignmentManager AlignmentManager { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html">IAlignmentManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AnchorManager_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorManager*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AnchorManager" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorManager">AnchorManager</h4>
+  <div class="markdown level1 summary"><p>Interface to the Anchor Manager.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IAnchorManager AnchorManager { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html">IAnchorManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AttachmentPointManager_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AttachmentPointManager*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AttachmentPointManager" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AttachmentPointManager">AttachmentPointManager</h4>
+  <div class="markdown level1 summary"><p>Interface to the attachment point manager. Use for creating and manipulating attachment points.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IAttachmentPointManager AttachmentPointManager { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html">IAttachmentPointManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AutoLoad_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AutoLoad*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AutoLoad" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AutoLoad">AutoLoad</h4>
+  <div class="markdown level1 summary"><p>Automatically load the WorldLocking state from disk at startup.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AutoLoad { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AutoMerge_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AutoMerge*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AutoMerge" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AutoMerge">AutoMerge</h4>
+  <div class="markdown level1 summary"><p>Automatically trigger a fragment merge whenever the FrozenWorld engine indicates that
+one would be appropriate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AutoMerge { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AutoRefreeze_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AutoRefreeze*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AutoRefreeze" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AutoRefreeze">AutoRefreeze</h4>
+  <div class="markdown level1 summary"><p>Automatically trigger a refreeze whenever the FrozenWorld engine indicates that
+one would be appropriate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AutoRefreeze { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AutoSave_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AutoSave*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AutoSave" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AutoSave">AutoSave</h4>
+  <div class="markdown level1 summary"><p>Periodically save the WorldLocking state to disk.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AutoSave { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_CameraFromSpongy_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.CameraFromSpongy*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_CameraFromSpongy" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.CameraFromSpongy">CameraFromSpongy</h4>
+  <div class="markdown level1 summary"><p>Inverse of the camera transform (camera from parent).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose CameraFromSpongy { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_CameraParent_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.CameraParent*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_CameraParent" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.CameraParent">CameraParent</h4>
+  <div class="markdown level1 summary"><p>The camera parent node defines the &quot;spongy frame of reference&quot;. All raw head based data,
+such as the spatial mapping, gesture events, and XR head pose data, are relative to this
+transform.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Transform CameraParent { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_DiagnosticsSettings_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.DiagnosticsSettings*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_DiagnosticsSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.DiagnosticsSettings">DiagnosticsSettings</h4>
+  <div class="markdown level1 summary"><p>Get a copy of the shared diagnostics configuration settings, or set the
+shared settings to a copy of the input.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DiagnosticsSettings DiagnosticsSettings { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.DiagnosticsSettings.html">DiagnosticsSettings</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Enabled_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Enabled*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Enabled" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Enabled">Enabled</h4>
+  <div class="markdown level1 summary"><p>Whether the system is currently active and stabilizing space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Enabled { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_ErrorStatus_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ErrorStatus*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_ErrorStatus" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ErrorStatus">ErrorStatus</h4>
+  <div class="markdown level1 summary"><p>The current error status of the WorldLockingManager</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ErrorStatus { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_FragmentManager_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FragmentManager*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_FragmentManager" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FragmentManager">FragmentManager</h4>
+  <div class="markdown level1 summary"><p>Interface to the fragment manager.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IFragmentManager FragmentManager { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.html">IFragmentManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_FrozenFromLocked_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenFromLocked*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_FrozenFromLocked" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenFromLocked">FrozenFromLocked</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose FrozenFromLocked { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_FrozenFromPinned_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenFromPinned*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_FrozenFromPinned" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenFromPinned">FrozenFromPinned</h4>
+  <div class="markdown level1 summary"><p>Any application applied transform above the adjustment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose FrozenFromPinned { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_FrozenFromSpongy_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenFromSpongy*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_FrozenFromSpongy" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenFromSpongy">FrozenFromSpongy</h4>
+  <div class="markdown level1 summary"><p>Transform from spongy space to frozen space. Spongy space is that native to
+XR interfaces. Transform includes the WorldLocking adjustment to the camera, as
+well as any other transforms applied to the camera (e.g. teleport).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose FrozenFromSpongy { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LockedFromFrozen_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LockedFromFrozen*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LockedFromFrozen" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LockedFromFrozen">LockedFromFrozen</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose LockedFromFrozen { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LockedFromPinned_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LockedFromPinned*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LockedFromPinned" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LockedFromPinned">LockedFromPinned</h4>
+  <div class="markdown level1 summary"><p>From pinned space back to the world-locked space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose LockedFromPinned { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LockedFromPlayspace_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LockedFromPlayspace*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LockedFromPlayspace" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LockedFromPlayspace">LockedFromPlayspace</h4>
+  <div class="markdown level1 summary"><p>Adjustment transform to world-lock the coordinate space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose LockedFromPlayspace { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LockedFromSpongy_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LockedFromSpongy*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LockedFromSpongy" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LockedFromSpongy">LockedFromSpongy</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose LockedFromSpongy { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_MergeIndicated_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.MergeIndicated*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_MergeIndicated" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.MergeIndicated">MergeIndicated</h4>
+  <div class="markdown level1 summary"><p>Indicator for the FrozenWorld engine internal heuristics of whether a merge should be performed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MergeIndicated { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_PinnedFromFrozen_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.PinnedFromFrozen*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_PinnedFromFrozen" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.PinnedFromFrozen">PinnedFromFrozen</h4>
+  <div class="markdown level1 summary"><p>Transform from application's frozen space back to space computed by WorldLocking.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose PinnedFromFrozen { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_PinnedFromLocked_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.PinnedFromLocked*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_PinnedFromLocked" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.PinnedFromLocked">PinnedFromLocked</h4>
+  <div class="markdown level1 summary"><p>Transform from the world locked space computed by WorldLocking to the space pinned in place.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose PinnedFromLocked { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_PlayspaceFromLocked_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.PlayspaceFromLocked*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_PlayspaceFromLocked" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.PlayspaceFromLocked">PlayspaceFromLocked</h4>
+  <div class="markdown level1 summary"><p>Inverse of adjustment transform to world-lock the coordinate space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose PlayspaceFromLocked { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_PlayspaceFromSpongy_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.PlayspaceFromSpongy*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_PlayspaceFromSpongy" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.PlayspaceFromSpongy">PlayspaceFromSpongy</h4>
+  <div class="markdown level1 summary"><p>Transform applied by (optional) camera parent node (e.g. for teleport).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose PlayspaceFromSpongy { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_RefreezeIndicated_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.RefreezeIndicated*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_RefreezeIndicated" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.RefreezeIndicated">RefreezeIndicated</h4>
+  <div class="markdown level1 summary"><p>Indicator for the FrozenWorld engine internal heuristics of whether a refreeze should be performed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RefreezeIndicated { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Settings_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Settings*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Settings" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Settings">Settings</h4>
+  <div class="markdown level1 summary"><p>The configuration settings may only be set as a block.
+Get returns a snapshot of current settings, and set copies entire block.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ManagerSettings Settings { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.ManagerSettings.html">ManagerSettings</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Settings_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>To change an individual field in the settings, retrieve the entire settings block,
+change the desired field(s), then set the entire block. E.g.
+var settings = mgr.Settings;
+settings.AutoLoad = false;
+settings.AutoSave = true;
+mgr.Settings = settings;</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_SpongyFromCamera_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.SpongyFromCamera*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_SpongyFromCamera" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.SpongyFromCamera">SpongyFromCamera</h4>
+  <div class="markdown level1 summary"><p>The camera transform (parent from camera).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose SpongyFromCamera { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_SpongyFromFrozen_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.SpongyFromFrozen*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_SpongyFromFrozen" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.SpongyFromFrozen">SpongyFromFrozen</h4>
+  <div class="markdown level1 summary"><p>Transform from frozen space to XR native spongy space, including other
+transforms accumulated in the camera's ancestors (e.g. teleport).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose SpongyFromFrozen { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_SpongyFromLocked_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.SpongyFromLocked*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_SpongyFromLocked" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.SpongyFromLocked">SpongyFromLocked</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose SpongyFromLocked { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_SpongyFromPlayspace_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.SpongyFromPlayspace*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_SpongyFromPlayspace" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.SpongyFromPlayspace">SpongyFromPlayspace</h4>
+  <div class="markdown level1 summary"><p>Inverse of transform applied by (optional) camera parent node (e.g. for teleport).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pose SpongyFromPlayspace { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Version_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Version*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Version" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Version">Version</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Version { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Dispose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Dispose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Dispose" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Dispose of internals on shutdown.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Finalize_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Finalize*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Finalize" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Finalize">Finalize()</h4>
+  <div class="markdown level1 summary"><p>Dispose of internals on shutdown.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_GetInstance_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.GetInstance*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_GetInstance" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.GetInstance">GetInstance()</h4>
+  <div class="markdown level1 summary"><p>Get the WorldLockingManager instance. This may be called at any time in program execution,
+but if called during load its settings may not have been loaded from a new scene yet.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static WorldLockingManager GetInstance()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html">WorldLockingManager</a></td>
+        <td><p>The WorldLockingManager</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Load_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Load*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Load" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Load">Load()</h4>
+  <div class="markdown level1 summary"><p>Manually trigger a load operation for the WorldLocking state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Load()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Reset_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Reset*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Reset" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Reset">Reset()</h4>
+  <div class="markdown level1 summary"><p>Bring WorldLocking to a well-defined, empty state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Reset()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Save_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Save*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Save" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Save">Save()</h4>
+  <div class="markdown level1 summary"><p>Manually trigger a save operation for the WorldLocking state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Save()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_SetContext_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.SetContext*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_SetContext_Microsoft_MixedReality_WorldLocking_Core_WorldLockingContext_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.SetContext(Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext)">SetContext(WorldLockingContext)</h4>
+  <div class="markdown level1 summary"><p>Start using shared settings from given context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetContext(WorldLockingContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.html">WorldLockingContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The context supplying the new shared settings.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

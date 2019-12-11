@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Attachment points | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Attachment points | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="attachment-points">Attachment points</h1>
+
+<p>First and foremost, World Locking Tools provides a stable world-locked coordinate system, the frozen space. This space remains as fixed as possible relative to the physical world. And objects within frozen space enjoy capabilities requiring such a stable frame of reference, such as maintaining relative placement to other virtual objects, simulation of natural physics laws, kinematics, and other animation techniques.</p>
+<p>In fact, depending on the needs of the application, frozen space may be sufficient for some or all scene content.</p>
+<p>But while frozen space will remain optimally aligned with physical space, there are situations to be described later in which it is not possible for multiple points in frozen space to remain both fixed in their common coordinate space and fixed relative to reference points in the physical world.</p>
+<p>For a trivial but illuminating example, suppose that the sensor maps one anchor to the position (3,0,0) and another to the position (-3,0,0). Later, as sensor refinements are processed, it is established that the two coordinates should have been (3,0,0) and (-2,0,0). There is clearly no rotation and offset that can be applied to the camera which will transform a 6 meter distance between the two anchors into a 5 meter offset.</p>
+<p>Using Unity's WorldAnchor system, the two anchors would just silently move into their newly scanned positions.</p>
+<p>But World Locking Tools guarantees that in frozen space, non-moving objects will &quot;mostly&quot; never move. And in fact, any motion is up to the owning application.</p>
+<p>Attachment points are the codification of that contract between World Locking Tools and the application. An application creates and positions attachment points using World Locking Tools APIs. When a correction in the position of an attachment point is determined by a refit operation, the application is notified via callback of the new position in frozen space that will keep the attachment point at its old position in physical space.</p>
+<p>Some scenarios in which World Locking Tools attachment points might be the solution:</p>
+<ul>
+<li>It is more important to remain fixed relative to features in the physical world than relative to other virtual objects.</li>
+<li>Objects are placed in the world at runtime rather than in Unity at design time, and it may be important to reconcile relative positions separated by disruptions in tracking (see discussion of <a href="Fragments.html">fragments</a>).</li>
+<li>It is important to manage an object's visibility based on the validity of its physical space positioning.</li>
+</ul>
+<h2 id="using-attachment-points">Using attachment points</h2>
+<p>Use of attachment points is fairly straightforward.</p>
+<h3 id="client-responsibilities">Client responsibilities</h3>
+<p>For each attachment point required, the client must:</p>
+<ol>
+<li>Request attachment points from the system. See <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html#Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_CreateAttachmentPoint_">CreateAttachmentPoint</a></li>
+<li>Dispose of attachment points that are no longer needed. See <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html#Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_ReleaseAttachmentPoint_">ReleaseAttachmentPoint</a></li>
+<li>Apprise the system of the attachment point's initial position and movement. See <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html#Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_CreateAttachmentPoint_">CreateAttachmentPoint</a>, <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html#Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_MoveAttachmentPoint_">MoveAttachmentPoint</a>, and <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html#Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_TeleportAttachmentPoint_">TeleportAttachmentPoint</a></li>
+<li>Handle refit operation events. See below.</li>
+</ol>
+<h3 id="world-locking-tools-responsibilities">World Locking Tools responsibilities</h3>
+<p>World Locking Tools will notify the application, for each affected attachment point, when either of the following occurs:</p>
+<ol>
+<li>The validity of the attachment point's physical world tracking changes.</li>
+<li>Its coordinates in frozen space change due to a refit operation, which may be either a <a href="RefitOperations.html#fragment-merge">fragment merge</a> or a <a href="RefitOperations.html#refreeze-operations">refreeze</a>.</li>
+</ol>
+<p>These notifications are broadcast through delegates which the application hands to the WorldLockingManager on creation of the attachment point.</p>
+<p>How to best handle these notifications is left to the application, as each will have its own considerations. Sample handlers, which are used internally and may be either used as is or used as a starting point for custom implementations, are provided.</p>
+<p>For an attachment point that is to remain fixed in the physical world, and which should hide its contents when its tracking is not valid, <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html">AdjusterFixed</a> implements the <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.AdjustStateDelegate.html">AdjustStateDelegate</a> with its HandleAdjustState member,and the <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.AdjustLocationDelegate.html">AdjustLocationDelegate</a> with its HandleAdjustLocation member. A similar component for moving objects is in <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving.html">AdjusterMoving</a>.</p>
+<p>It is worth noting that supplying either or both these delegates is optional, and in fact reactions to state and location changes may be implemented based on polling rather than events. But unless their use is impossible due to specifics of the application, the event based system using delegates forms a much more efficient implementation.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="Fragments.html">Fragments</a></li>
+<li><a href="RefitOperations.html">Refit operations</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/development/DocGen/Documentation/Concepts/Advanced/AttachmentPoints.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

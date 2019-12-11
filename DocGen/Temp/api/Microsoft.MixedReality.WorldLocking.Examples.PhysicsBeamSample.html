@@ -1,0 +1,645 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PhysicsBeamSample
+   | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PhysicsBeamSample
+   | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../api_doc/toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample">
+  
+  
+  <h1 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample" class="text-break">Class PhysicsBeamSample
+  </h1>
+  <div class="markdown level0 summary"><p>Example component using Frozen World to facilitate physics simulation.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">PhysicsBeamSample</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">IMixedRealityPointerHandler</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Examples.html">Microsoft.MixedReality.WorldLocking.Examples</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class PhysicsBeamSample : InputSystemGlobalHandlerListener, IMixedRealityPointerHandler</code></pre>
+  </div>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>This MRTK based component uses MRTK for inputs to abstract out device.</p>
+<p>In all modes, the ray cast intersection as reported by MRTK is further filtered
+to specifically exclude UI elements. Along with collidable objects in the scene,
+a collidable spatial map is also included as ray cast target. The &quot;hit point&quot; is
+the intersection of the currently active pointer ray with those collidables, along with
+information about that object and the intersection (e.g. surface normal at hit point).
+If there is no current hit point, after excluding UI elements, no operation is performed.</p>
+<p>The component itself has 5 modes of operation:</p>
+<ol>
+<li>Idle - ignore inputs, do nothing</li>
+<li>Throw darts - compute and display an ballistic arc to toss a physics rigid body at
+the current hit point.</li>
+<li>Place pillar - Place an upright pillar at hit point. If the hit object is not a beam or
+pillar (e.g. is the spatial map), then a static pillar is added, else a physically simulated pillar.</li>
+<li>Place beam - A two part operation. The first select of a hit point establishes the first end point
+of a beam, and the second hit point the other beam's end point. A physically simulated beam stretched to have those two
+endpoints is generated and added to the scene.</li>
+<li>Remove object - Clicking on an object added to the scene in one of the above modes will remove it from the scene.</li>
+</ol>
+<p>Mode selection is done via the MRTK radio buttons (see Microsoft.MixedReality.Toolkit.UI.InteractableToggleCollection)
+included in the scene as an addition to the dashboard.</p>
+</div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_AttachRoot_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.AttachRoot*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_AttachRoot" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.AttachRoot">AttachRoot</h4>
+  <div class="markdown level1 summary"><p>The subroot to attach created objects to.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Transform AttachRoot { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_LineMaterial_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.LineMaterial*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_LineMaterial" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.LineMaterial">LineMaterial</h4>
+  <div class="markdown level1 summary"><p>Material to use when rendering line for beam placement.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Material LineMaterial { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Material</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabBeam_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabBeam*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabBeam" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabBeam">PrefabBeam</h4>
+  <div class="markdown level1 summary"><p>The prefab of the beam to place in the world at gaze position on air taps.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject PrefabBeam { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabDart_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabDart*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabDart" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabDart">PrefabDart</h4>
+  <div class="markdown level1 summary"><p>The prefab of the dart to place in the world at gaze position on air taps.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject PrefabDart { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabHybridLockedSphere_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabHybridLockedSphere*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabHybridLockedSphere" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabHybridLockedSphere">PrefabHybridLockedSphere</h4>
+  <div class="markdown level1 summary"><p>The prefab of the hybrid-locked 'sphere' to place in the world at gaze position on air taps in Pin Sphere Mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject PrefabHybridLockedSphere { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabPillarDynamic_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabPillarDynamic*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabPillarDynamic" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabPillarDynamic">PrefabPillarDynamic</h4>
+  <div class="markdown level1 summary"><p>The prefab of dynamic pillars to place in the world at gaze position on air taps.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject PrefabPillarDynamic { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabPillarFixed_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabPillarFixed*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabPillarFixed" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabPillarFixed">PrefabPillarFixed</h4>
+  <div class="markdown level1 summary"><p>The prefab of fixed pillars to place in the world at gaze position on air taps.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject PrefabPillarFixed { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabUnlockedSphere_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabUnlockedSphere*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabUnlockedSphere" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabUnlockedSphere">PrefabUnlockedSphere</h4>
+  <div class="markdown level1 summary"><p>The prefab of the non-locked 'sphere' to place in the world at gaze position on air taps in Pin Sphere Mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject PrefabUnlockedSphere { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabWorldLockedSphere_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabWorldLockedSphere*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_PrefabWorldLockedSphere" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.PrefabWorldLockedSphere">PrefabWorldLockedSphere</h4>
+  <div class="markdown level1 summary"><p>The prefab of the world-locked 'sphere' to place in the world at gaze position on air taps in Pin Sphere Mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject PrefabWorldLockedSphere { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterBeamMode_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterBeamMode*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterBeamMode" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterBeamMode">EnterBeamMode()</h4>
+  <div class="markdown level1 summary"><p>Switch into cross-beam placement mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnterBeamMode()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterDartMode_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterDartMode*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterDartMode" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterDartMode">EnterDartMode()</h4>
+  <div class="markdown level1 summary"><p>Switch into dart tossing mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnterDartMode()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterIdleMode_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterIdleMode*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterIdleMode" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterIdleMode">EnterIdleMode()</h4>
+  <div class="markdown level1 summary"><p>Switch into idle mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnterIdleMode()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterPillarMode_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterPillarMode*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterPillarMode" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterPillarMode">EnterPillarMode()</h4>
+  <div class="markdown level1 summary"><p>Switch into pillar placement mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnterPillarMode()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterPinSphereMode_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterPinSphereMode*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterPinSphereMode" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterPinSphereMode">EnterPinSphereMode()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnterPinSphereMode()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterRemoveMode_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterRemoveMode*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterRemoveMode" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterRemoveMode">EnterRemoveMode()</h4>
+  <div class="markdown level1 summary"><p>Switch into object removal mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnterRemoveMode()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterWorldLockHybridLocked_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterWorldLockHybridLocked*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterWorldLockHybridLocked" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterWorldLockHybridLocked">EnterWorldLockHybridLocked()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnterWorldLockHybridLocked()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterWorldLockUnlocked_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterWorldLockUnlocked*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterWorldLockUnlocked" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterWorldLockUnlocked">EnterWorldLockUnlocked()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnterWorldLockUnlocked()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterWorldLockWorldLocked_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterWorldLockWorldLocked*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_EnterWorldLockWorldLocked" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.EnterWorldLockWorldLocked">EnterWorldLockWorldLocked()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnterWorldLockWorldLocked()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_OnPointerClicked_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.OnPointerClicked*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_OnPointerClicked_MixedRealityPointerEventData_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.OnPointerClicked(MixedRealityPointerEventData)">OnPointerClicked(MixedRealityPointerEventData)</h4>
+  <div class="markdown level1 summary"><p>Process pointer clicked event if ray cast has result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnPointerClicked(MixedRealityPointerEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">MixedRealityPointerEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_OnPointerDown_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.OnPointerDown*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_OnPointerDown_MixedRealityPointerEventData_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.OnPointerDown(MixedRealityPointerEventData)">OnPointerDown(MixedRealityPointerEventData)</h4>
+  <div class="markdown level1 summary"><p>No-op on pointer down.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnPointerDown(MixedRealityPointerEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">MixedRealityPointerEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_OnPointerDragged_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.OnPointerDragged*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_OnPointerDragged_MixedRealityPointerEventData_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.OnPointerDragged(MixedRealityPointerEventData)">OnPointerDragged(MixedRealityPointerEventData)</h4>
+  <div class="markdown level1 summary"><p>No-op on pointer drag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnPointerDragged(MixedRealityPointerEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">MixedRealityPointerEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_OnPointerUp_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.OnPointerUp*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_OnPointerUp_MixedRealityPointerEventData_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.OnPointerUp(MixedRealityPointerEventData)">OnPointerUp(MixedRealityPointerEventData)</h4>
+  <div class="markdown level1 summary"><p>No-op on pointer up.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnPointerUp(MixedRealityPointerEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">MixedRealityPointerEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_RegisterHandlers_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.RegisterHandlers*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_RegisterHandlers" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.RegisterHandlers">RegisterHandlers()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void RegisterHandlers()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_Start_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.Start*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_Start" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.Start">Start()</h4>
+  <div class="markdown level1 summary"><p>Override InputSystemGlobalListener Start() method for additional one-time setup.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Start()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_UnregisterHandlers_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.UnregisterHandlers*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_PhysicsBeamSample_UnregisterHandlers" data-uid="Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.UnregisterHandlers">UnregisterHandlers()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void UnregisterHandlers()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">IMixedRealityPointerHandler</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

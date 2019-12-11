@@ -1,0 +1,444 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AnchorManager
+   | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AnchorManager
+   | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.48.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/External/ReadMeImages/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../api_doc/toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/External/ReadMeImages/mrt_logo_icon.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager">
+  
+  
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager" class="text-break">Class AnchorManager
+  </h1>
+  <div class="markdown level0 summary"><p>Encapsulation of spongy world (raw input) state. Its primary duty is the creation and maintenance
+of the graph of (spongy) anchors built up over the space traversed by the camera.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">AnchorManager</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html">IAnchorManager</a></div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AnchorManager : IAnchorManager, IDisposable</code></pre>
+  </div>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Anchor and Edge creation algorithm:</p>
+<p>Goal: a simple and robust algorithm that guarantees an even distribution of anchors, fully connected by
+edges between nearest neighbors with a minimum of redundant edges</p>
+<p>For simplicity, the algorithm should be stateless between time steps</p>
+<p>Rules</p>
+<ul>
+<li>two parameters define spheres MIN and MAX around current position</li>
+<li>whenever MIN does not contain any anchors, a new anchor is created</li>
+<li>when a new anchor is created is is linked by edges to all anchors within MAX</li>
+<li>the MAX radius is 20cm larger than MIN radius which would require 12 m/s beyond world record sprinting speed to cover in one frame</li>
+<li>whenever MIN contains more than one anchor, the anchor closest to current position is connected to all others within MIN</li>
+</ul>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager__ctor_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.#ctor*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager__ctor_Plugin_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.#ctor(Plugin)">AnchorManager(Plugin)</h4>
+  <div class="markdown level1 summary"><p>Set up an anchor manager.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AnchorManager(Plugin plugin)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Plugin</span></td>
+        <td><span class="parametername">plugin</span></td>
+        <td><p>The engine interface to update with the current anchor graph.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_ErrorStatus_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.ErrorStatus*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_ErrorStatus" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.ErrorStatus">ErrorStatus</h4>
+  <div class="markdown level1 summary"><p>Error string for last error, cleared at beginning of each update.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ErrorStatus { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_NumAnchors_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.NumAnchors*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_NumAnchors" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.NumAnchors">NumAnchors</h4>
+  <div class="markdown level1 summary"><p>Return the current number of spongy anchors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int NumAnchors { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_NumEdges_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.NumEdges*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_NumEdges" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.NumEdges">NumEdges</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int NumEdges { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SpongyAnchors_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchors*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SpongyAnchors" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchors">SpongyAnchors</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;AnchorId, SpongyAnchor&gt; SpongyAnchors { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<span class="xref">AnchorId</span>, <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html">SpongyAnchor</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_Dispose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Dispose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_Dispose" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Explicit dispose to release resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_Finalize_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Finalize*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_Finalize" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Finalize">Finalize()</h4>
+  <div class="markdown level1 summary"><p>GC release of resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_LoadAnchors_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.LoadAnchors*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_LoadAnchors" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.LoadAnchors">LoadAnchors()</h4>
+  <div class="markdown level1 summary"><p>Load the spongy anchors from persistent storage</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task LoadAnchors()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_LoadAnchors_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The set of spongy anchors loaded by this routine is defined by the frozen anchors
+previously loaded into the plugin.</p>
+<p>Likewise, when a spongy anchor fails to load, this routine will delete its frozen
+counterpart from the plugin.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_Reset_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Reset*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_Reset" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Reset">Reset()</h4>
+  <div class="markdown level1 summary"><p>Delete all spongy anchor objects and reset internal state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Reset()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SaveAnchors_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SaveAnchors*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SaveAnchors" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SaveAnchors">SaveAnchors()</h4>
+  <div class="markdown level1 summary"><p>Save the spongy anchors to persistent storage</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task SaveAnchors()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_Update_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Update*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorManager_Update" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Update">Update()</h4>
+  <div class="markdown level1 summary"><p>Create missing spongy anchors/edges and feed plugin with up-to-date input</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Update()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Boolean: Has the plugin received input to provide an adjustment?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html">IAnchorManager</a>
+  </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>
