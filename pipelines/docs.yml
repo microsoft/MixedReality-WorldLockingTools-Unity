@@ -24,54 +24,48 @@ jobs:
       }
     displayName: 'Generate docs'
 
-  # - powershell: |
-  #     Write-Host "get the commit sha and title"
-  #     $commitSha = git log -1 --pretty=%h
-  #     $commitTitle = git log -1 --pretty=%b
+  - powershell: |
+      Write-Host "get the commit sha and title"
+      $commitSha = git log -1 --pretty=%h
+      $commitTitle = git log -1 --pretty=%b
 
-  #     $branch = "$env:SOURCE_BRANCH"
-  #     $branch = $branch.Replace("refs/heads/", "")
+      $branch = "$env:SOURCE_BRANCH"
+      $branch = $branch.Replace("refs/heads/", "")
 
-  #     Write-Host "clean pages directory if it exists"
-  #     if (Test-Path .\pages)
-  #     {
-  #         Remove-Item .\pages -Force -Recurse
-  #     }
+      Write-Host "clean pages directory if it exists"
+      if (Test-Path .\pages)
+      {
+          Remove-Item .\pages -Force -Recurse
+      }
 
-  #     Write-Host "create auth token"
-  #     $Authorization = "Basic " + [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes( '$(GitHub.User):$(GitHub.PAT)'))
+      Write-Host "create auth token"
+      $Authorization = "Basic " + [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes( '$(GitHub.User):$(GitHub.PAT)'))
 
-  #     Write-Host "add config for all github commands to use"
-  #     git config --global --add "http.https://github.com/.extraheader" "AUTHORIZATION: $Authorization"
-  #     git config --global --add "http.https://microsoft.visualstudio.com.extraheader" "AUTHORIZATION: Bearer $env:SYSTEM_ACCESSTOKEN"
-  #     git config --global user.email $(GitHub.User)
-  #     git config --global user.name $(GitHub.Name)
+      Write-Host "add config for all github commands to use"
+      git config --global --add "http.https://github.com/.extraheader" "AUTHORIZATION: $Authorization"
+      git config --global --add "http.https://microsoft.visualstudio.com.extraheader" "AUTHORIZATION: Bearer $env:SYSTEM_ACCESSTOKEN"
+      git config --global user.email $(GitHub.User)
+      git config --global user.name $(GitHub.Name)
 
-  #     Write-Host "clone gh-pages"
-  #     git clone https://github.com/Microsoft/MixedRealityToolkit-Unity.git --branch gh-pages .\pages
+      Write-Host "clone gh-pages"
+      git clone https://github.com/microsoft/MixedReality-WorldLockingTools-Unity --branch gh-pages .\pages
 
-  #     Get-ChildItem ".\pages" -Exclude "version" | Remove-Item -Force -Recurse
-  #     Copy-Item ".\doc\*" -Destination ".\pages" -Force -Recurse
+      Get-ChildItem ".\pages" | Remove-Item -Force -Recurse
+      Copy-Item ".\DocGen\Temp\doc\*" -Destination ".\pages" -Force -Recurse
 
-  #     Write-Host "commit changes if if they exist"
-  #     Set-Location .\pages
-  #     if (git status --short)
-  #     {
-  #         git add -A
-  #         git commit -m "Docs for commit $commitSha ($commitTitle)"
-  #         git push origin gh-pages
-  #     }
-  #     else
-  #     {
-  #         Write-Host "docs up to date"
-  #     }
-  #   env:
-  #     SOURCE_BRANCH: $(Build.SourceBranch)
-  #   displayName: Push docs to git
-
-  - task: PublishBuildArtifacts@1
-    displayName: Temporary docs publish
-    inputs:
-      artifactName: wlt-docs
-      pathtoPublish: .\DocGen\Temp\doc
-
+      Write-Host "commit changes if they exist"
+      Set-Location .\pages
+      if (git status --short)
+      {
+          git add -A
+          git commit -m "Docs for commit $commitSha ($commitTitle)"
+          git push origin gh-pages
+      }
+      else
+      {
+          Write-Host "docs up to date"
+      }
+    displayName: Push docs to git
+    env:
+      SOURCE_BRANCH: $(Build.SourceBranch)
+    condition: and(not(eq(variables['Build.Reason'], 'PullRequest')), eq(variables['Agent.JobStatus'], 'Succeeded'))
