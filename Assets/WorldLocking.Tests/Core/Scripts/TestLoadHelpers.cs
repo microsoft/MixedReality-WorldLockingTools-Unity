@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 using NUnit.Framework;
 using UnityEngine.TestTools;
 
-namespace Microsoft.MixedReality.WorldLocking.Core.Tests
+namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 {
     public class TestLoadHelpers
     {

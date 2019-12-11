@@ -10,7 +10,7 @@ using UnityEngine.TestTools.Utils;
 
 using Microsoft.MixedReality.WorldLocking.Core;
 
-namespace Microsoft.MixedReality.WorldLocking.Core.Tests
+namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 {
     public class AlignmentManagerTest
     {
@@ -40,6 +40,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Tests
         
         public void AlignmentManagerTestTearDown()
         {
+            var alignMgr = WorldLockingManager.GetInstance().AlignmentManager;
+            alignMgr.ClearAlignmentAnchors();
+            alignMgr.SendAlignmentAnchors();
+
             loadHelper.TearDown();
         }
 

@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 #endif // UNITY_EDITOR
 
-namespace Microsoft.MixedReality.WorldLocking.Core.Tests
+namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 {
     public class WorldLockingManagerTest
     {
