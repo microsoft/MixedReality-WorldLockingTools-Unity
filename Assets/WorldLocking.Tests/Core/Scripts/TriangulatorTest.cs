@@ -246,6 +246,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             int reduction = 4;
             List<long> buildTimes = new List<long>();
             List<long> findTimes = new List<long>();
+            int maxMsPerVertBuild = 4;
 
             Interpolant triIter;
             ITriangulator triangulator = CreateDefaultTriangulator();
@@ -255,7 +256,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             stopwatch.Stop();
             UnityEngine.Debug.Log($"Processed {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
             buildTimes.Add(stopwatch.ElapsedMilliseconds);
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * 2);
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * maxMsPerVertBuild);
             stopwatch.Restart();
             triIter = triangulator.Find(new Vector3(maxX * 0.33f, 0, maxZ * 0.33f));
             stopwatch.Stop();
@@ -271,7 +272,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             stopwatch.Stop();
             UnityEngine.Debug.Log($"Processed {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
             buildTimes.Add(stopwatch.ElapsedMilliseconds);
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * 2);
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * maxMsPerVertBuild);
             stopwatch.Restart();
             triIter = triangulator.Find(new Vector3(maxX * 0.33f, 0, maxZ * 0.33f));
             stopwatch.Stop();
@@ -287,7 +288,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             stopwatch.Stop();
             UnityEngine.Debug.Log($"Processed {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
             buildTimes.Add(stopwatch.ElapsedMilliseconds);
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * 2);
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * maxMsPerVertBuild);
             stopwatch.Restart();
             triIter = triangulator.Find(new Vector3(maxX * 0.33f, 0, maxZ * 0.33f));
             stopwatch.Stop();
