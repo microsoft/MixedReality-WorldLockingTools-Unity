@@ -219,6 +219,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                         found = true;
                     }
                 }
+                for (int i = referencePosesToSave.Count - 1; i >= 0; --i)
+                {
+                    if (referencePosesToSave[i].anchorId == anchorId)
+                    {
+                        referencePosesToSave.RemoveAt(i);
+                    }
+                }
             }
             return found;
         }
@@ -229,6 +236,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             poseDB.Clear();
             CheckDBSave();
             referencePoses.Clear();
+            referencePosesToSave.Clear();
         }
 
         /// <inheritdocs />

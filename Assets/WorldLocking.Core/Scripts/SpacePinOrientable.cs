@@ -73,9 +73,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public Vector3 LockedPosition { get { return LockedPose.position; } }
 
-        [Obsolete("AdjustedPosition deprecated - use LockedPosition")]
-        public Vector3 AdjustedPosition => LockedPosition;
-
         /// <summary>
         /// Accept the rotation as computed by the IOrienter.
         /// </summary>
@@ -117,11 +114,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             SetLockedPose(new Pose(lockedPosition, Quaternion.identity));
         }
 
-        [Obsolete("SetAdjustedPosition deprecated - use SetLockedPosition")]
-        public void SetAdjustedPosition(Vector3 adjustedPosition)
-        {
-            SetLockedPosition(adjustedPosition);
-        }
         #endregion Public APIs added
 
         #region SpacePin overrides

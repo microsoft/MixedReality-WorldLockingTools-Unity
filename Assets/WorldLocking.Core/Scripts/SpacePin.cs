@@ -136,7 +136,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             manager = WorldLockingManager.GetInstance();
 
             /// Cache the initial pose.
-            initialPose = transform.GetGlobalPose();
+            ResetModelingPose();
 
             /// Register for post-loaded messages from the Alignment Manager.
             /// When these come in check for the loading of the reference point
@@ -189,10 +189,20 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             SendAlignmentData(mgr);
         }
 
-        [Obsolete("SetAdjustedPosition deprecated - use SetLockedPosition")]
-        public void SetAdjustedPose(Pose lockedPose)
+        /// <summary>
+        /// Reset the modeling pose to the current transform.
+        /// </summary>
+        /// <remarks>
+        /// In normal usage, the modeling pose is the transform as set in Unity and as cached at start.
+        /// In some circumstances, such as creation of pins from script, it may be convenient to set the 
+        /// transform after Start(). In this case, the change of transform should be recorded by a
+        /// call to ResetModelingPose().
+        /// This must happen before the modeling pose is used implicitly by a call to set the 
+        /// virtual pose, via SetFrozenPose, SetSpongyPose, or SetLockedPose.
+        /// </remarks>
+        public void ResetModelingPose()
         {
-            SetLockedPose(lockedPose);
+            initialPose = transform.GetGlobalPose();
         }
 
         /// <summary>

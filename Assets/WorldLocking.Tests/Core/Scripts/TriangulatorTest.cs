@@ -9,9 +9,10 @@ using NUnit.Framework;
 using UnityEngine.TestTools;
 using UnityEngine.TestTools.Utils;
 
+using Microsoft.MixedReality.WorldLocking.Core;
 using Microsoft.MixedReality.WorldLocking.Core.Triangulator;
 
-namespace Microsoft.MixedReality.WorldLocking.Core.Tests
+namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 {
     public class TriangulatorTest 
     {
@@ -24,7 +25,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Tests
             return lhs + eps >= rhs && lhs <= rhs + eps;
         }
 
-        private static void CheckWeight(Triangulator.Interpolant interp, int idx, float weight)
+        private static void CheckWeight(Interpolant interp, int idx, float weight)
         {
             int found = 0;
             for (int i = 0; i < interp.idx.Length; ++i)
@@ -39,7 +40,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Tests
             Assert.IsTrue((weight == 0 && found == 0) || (weight > 0 && found == 1));
         }
 
-        private static void CheckWeightZero(Triangulator.Interpolant interp, int idx)
+        private static void CheckWeightZero(Interpolant interp, int idx)
         {
             for (int i = 0; i < interp.idx.Length; ++i)
             {
@@ -49,7 +50,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Tests
                 }
             }
         }
-        private static void CheckWeightsZero(Triangulator.Interpolant interp, int[] idx)
+        private static void CheckWeightsZero(Interpolant interp, int[] idx)
         {
             for (int i = 0; i < idx.Length; ++i)
             {
@@ -78,7 +79,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Tests
             Vector3[] vertices = { new Vector3(0, 0, 0), new Vector3(2, 0, 0), new Vector3(1, 0, 0.04f) };
             triangulator.Add(vertices);
 
-            Triangulator.Interpolant interp = triangulator.Find(new Vector3(0, 0, 0));
+            Interpolant interp = triangulator.Find(new Vector3(0, 0, 0));
             CheckWeight(interp, 0, 1);
             CheckWeightsZero(interp, new int[] { 1, 2 });
 
@@ -117,7 +118,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Tests
         /// <param name="vertices"></param>
         private void CheckVertices(ITriangulator triangulator, Vector3[] vertices)
         {
-            Triangulator.Interpolant interp;
+            Interpolant interp;
             for (int i = 0; i < vertices.Length; ++i)
             {
                 interp = triangulator.Find(vertices[i]);
@@ -150,7 +151,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Tests
 
             CheckVertices(triangulator, vertices);
 
-            Triangulator.Interpolant interp;
+            Interpolant interp;
 
             Vector3 center = Vector3.zero;
             for (int i = 0; i < vertices.Length; ++i)
@@ -195,7 +196,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Tests
             };
             triangulator.Add(vertices);
 
-            Triangulator.Interpolant interp;
+            Interpolant interp;
 
             for (int i = 0; i < vertices.Length; ++i)
             {
@@ -245,8 +246,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Tests
             int reduction = 4;
             List<long> buildTimes = new List<long>();
             List<long> findTimes = new List<long>();
+            int maxMsPerVertBuild = 4;
 
-            Triangulator.Interpolant triIter;
+            Interpolant triIter;
             ITriangulator triangulator = CreateDefaultTriangulator();
             Vector3[] vertArray = vertices.ToArray();
             var stopwatch = Stopwatch.StartNew();
@@ -254,11 +256,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Tests
             stopwatch.Stop();
             UnityEngine.Debug.Log($"Processed {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
             buildTimes.Add(stopwatch.ElapsedMilliseconds);
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * maxMsPerVertBuild);
             stopwatch.Restart();
             triIter = triangulator.Find(new Vector3(maxX * 0.33f, 0, maxZ * 0.33f));
             stopwatch.Stop();
             UnityEngine.Debug.Log($"Searched {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
             findTimes.Add(stopwatch.ElapsedMilliseconds);
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds <= 1);
 
             triangulator = CreateDefaultTriangulator();
             vertices.RemoveRange(vertices.Count / reduction, vertices.Count - vertices.Count / reduction);
@@ -268,11 +272,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Tests
             stopwatch.Stop();
             UnityEngine.Debug.Log($"Processed {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
             buildTimes.Add(stopwatch.ElapsedMilliseconds);
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * maxMsPerVertBuild);
             stopwatch.Restart();
             triIter = triangulator.Find(new Vector3(maxX * 0.33f, 0, maxZ * 0.33f));
             stopwatch.Stop();
             UnityEngine.Debug.Log($"Searched {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
             findTimes.Add(stopwatch.ElapsedMilliseconds);
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds <= 1);
 
             triangulator = CreateDefaultTriangulator();
             vertices.RemoveRange(vertices.Count / reduction, vertices.Count - vertices.Count / reduction);
@@ -282,11 +288,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Tests
             stopwatch.Stop();
             UnityEngine.Debug.Log($"Processed {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
             buildTimes.Add(stopwatch.ElapsedMilliseconds);
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * maxMsPerVertBuild);
             stopwatch.Restart();
             triIter = triangulator.Find(new Vector3(maxX * 0.33f, 0, maxZ * 0.33f));
             stopwatch.Stop();
             UnityEngine.Debug.Log($"Searched {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
             findTimes.Add(stopwatch.ElapsedMilliseconds);
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds <= 1);
 
         }
     }
