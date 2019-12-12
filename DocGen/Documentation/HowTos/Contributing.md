@@ -80,3 +80,4 @@ One way to mitigate the risk is to submit an issue proposing what is intended (l
 ## See also
 
 [Coding Conventions](CodingConventions.md)
+[Release Process](ReleaseProcess.md)
