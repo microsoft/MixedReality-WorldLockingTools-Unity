@@ -402,7 +402,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/BasicConcepts.html",
-          "hash": "qjAkMZ3ZZHSjjWQlcMBwag=="
+          "hash": "Z1fEiLOhu3UBVaJqM9ec5g=="
         }
       },
       "is_incremental": false,
@@ -1684,17 +1684,17 @@
           "total_file_count": 53,
           "skipped_file_count": 0
         },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 62,
-          "skipped_file_count": 0
-        },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 62,
           "skipped_file_count": 0
         }
       }
