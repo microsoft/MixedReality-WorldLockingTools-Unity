@@ -31,8 +31,6 @@ Further, reference materials for interfacing through script with World Locking T
 
 # Build Status
 
-https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_apis/build/status/wlt_ci?branchName=master
-
 | Branch | CI Status | Docs Status |
 |---|---|---|
 | `master` |[![CI Status](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_apis/build/status/wlt_ci?branchName=master)](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_build/latest?definitionId=50)|[![Docs Status](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_apis/build/status/wlt_docs?branchName=master)](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_build/latest?definitionId=51)
