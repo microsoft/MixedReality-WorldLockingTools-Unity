@@ -29,6 +29,13 @@ These ideas are further explored in the conceptual guide. To complement the theo
 
 Further, reference materials for interfacing through script with World Locking Tools is included in the [API Documentation](DocGen/api_doc/Architecture.md).
 
+# Build Status
+
+| Branch | CI Status | Docs Status |
+|---|---|---|
+| `master` |[![CI Status](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_apis/build/status/wlt_ci?branchName=master)](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_build/latest?definitionId=50)|[![Docs Status](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_apis/build/status/wlt_docs?branchName=master)](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_build/latest?definitionId=51)
+
+
 # Open source and related resources
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). 
