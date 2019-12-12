@@ -1,5 +1,37 @@
 
-# Submitting new code
+# Developing new code and documentation
+
+Depending on access level, new code and documentation may be developed in a new feature branch, or in a fork. In general, working from a separate fork is preferred, and is sometimes the only alternative.
+
+Best practices in git/GitHub development are outside the scope of this documentation, but further reading may be found [here](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks).
+
+## Submitting a pull request (PR)
+
+Any pull request should include a manual run through the CI build pipeline. The pipeline is triggered by adding a comment to the PR. The following will trigger a full build:
+
+```
+/azp run
+```
+
+If it is known that the changes are entirely restricted to either code or documentation, then only that side of the build may be run. For example, to check only code changes:
+
+```
+/azp run wlt_ci
+```
+
+Or to check only documentation changes:
+
+```
+/azp run wlt_docs
+```
+
+However, keep in mind that even changes restricted to code (.cs) files may trigger documentation changes. It is always safer to run the full build.
+
+## Code review
+
+All PRs must also be reviewed by another developer before they may be completed.
+
+When performing code reviews, please maintain a friendly and collaborative atmosphere. It is always worth a little extra time to find a way to express a suggestion or correction which leaves the other side feeling positive about the changes.
 
 # Publishing a new release
 
