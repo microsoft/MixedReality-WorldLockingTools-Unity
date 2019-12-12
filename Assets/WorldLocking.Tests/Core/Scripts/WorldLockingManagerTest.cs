@@ -26,7 +26,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
         public void WorldLockingManagerTestSimplePasses()
         {
             // Use the Assert class to test conditions
-
+            Assert.IsTrue(false);
             var wlMgr = WorldLockingManager.GetInstance();
             Assert.IsNotNull(wlMgr); /// wlMgr is not a Unity object, so this should work.
             UnityEngine.Assertions.Assert.IsNotNull(wlMgr); /// This should work whether or not object overrides == null.
