@@ -9,7 +9,7 @@ But they are not as good at telling where the head is relative to where the head
 
 Then when the head travels from point B back to point A, it will again be wrong about the distance traveled. It will be impressively close to correct, but noticeably incorrect. This is also referred to as "drift".
 
-These problems are discussed more in this [FAQ](../IntroFAQ.md).
+These problems are discussed more in this [FAQ](../XIntroFAQ.md#why-are-the-virtual-and-real-world-markers-inconsistent).
 
 What matters here is that the World Locking Tools can fix these problems. In the latter case, of drift, the World Locking Tools can recognize that the head is back near point A, from the physical features around point A, and correct the head's position.
 
