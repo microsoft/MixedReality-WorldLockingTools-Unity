@@ -2111,6 +2111,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.Reset
   nameWithType: SpacePin.Reset
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ResetModelingPose
+  name: ResetModelingPose()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ResetModelingPose
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ResetModelingPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ResetModelingPose()
+  nameWithType: SpacePin.ResetModelingPose()
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ResetModelingPose*
+  name: ResetModelingPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ResetModelingPose_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ResetModelingPose
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ResetModelingPose
+  nameWithType: SpacePin.ResetModelingPose
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestoreOnLoad
   name: RestoreOnLoad()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_RestoreOnLoad
@@ -2137,19 +2150,6 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.SendAlignmentData
   nameWithType: SpacePin.SendAlignmentData
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetAdjustedPose(Pose)
-  name: SetAdjustedPose(Pose)
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetAdjustedPose_Pose_
-  commentId: M:Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetAdjustedPose(Pose)
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetAdjustedPose(Pose)
-  nameWithType: SpacePin.SetAdjustedPose(Pose)
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetAdjustedPose*
-  name: SetAdjustedPose
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetAdjustedPose_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetAdjustedPose
-  isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetAdjustedPose
-  nameWithType: SpacePin.SetAdjustedPose
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetFrozenPose(Pose)
   name: SetFrozenPose(Pose)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetFrozenPose_Pose_
@@ -2208,19 +2208,6 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable
   nameWithType: SpacePinOrientable
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.AdjustedPosition
-  name: AdjustedPosition
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_AdjustedPosition
-  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.AdjustedPosition
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.AdjustedPosition
-  nameWithType: SpacePinOrientable.AdjustedPosition
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.AdjustedPosition*
-  name: AdjustedPosition
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_AdjustedPosition_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.AdjustedPosition
-  isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.AdjustedPosition
-  nameWithType: SpacePinOrientable.AdjustedPosition
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.FragmentId
   name: FragmentId
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_FragmentId
@@ -2338,19 +2325,6 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.RestoreOnLoad
   nameWithType: SpacePinOrientable.RestoreOnLoad
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.SetAdjustedPosition(Vector3)
-  name: SetAdjustedPosition(Vector3)
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_SetAdjustedPosition_Vector3_
-  commentId: M:Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.SetAdjustedPosition(Vector3)
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.SetAdjustedPosition(Vector3)
-  nameWithType: SpacePinOrientable.SetAdjustedPosition(Vector3)
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.SetAdjustedPosition*
-  name: SetAdjustedPosition
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_SetAdjustedPosition_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.SetAdjustedPosition
-  isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.SetAdjustedPosition
-  nameWithType: SpacePinOrientable.SetAdjustedPosition
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.SetFrozenPosition(Vector3)
   name: SetFrozenPosition(Vector3)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_SetFrozenPosition_Vector3_

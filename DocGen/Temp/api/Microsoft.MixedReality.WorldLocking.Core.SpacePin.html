@@ -409,6 +409,25 @@ twice is probably an error, since the Pose p would refer to different a location
   </div>
   
   
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ResetModelingPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ResetModelingPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ResetModelingPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ResetModelingPose">ResetModelingPose()</h4>
+  <div class="markdown level1 summary"><p>Reset the modeling pose to the current transform.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetModelingPose()</code></pre>
+  </div>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ResetModelingPose_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In normal usage, the modeling pose is the transform as set in Unity and as cached at start.
+In some circumstances, such as creation of pins from script, it may be convenient to set the
+transform after Start(). In this case, the change of transform should be recorded by a
+call to ResetModelingPose().
+This must happen before the modeling pose is used implicitly by a call to set the
+virtual pose, via SetFrozenPose, SetSpongyPose, or SetLockedPose.</p>
+</div>
+  
+  
   <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_RestoreOnLoad_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestoreOnLoad*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_RestoreOnLoad" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestoreOnLoad">RestoreOnLoad()</h4>
   <div class="markdown level1 summary"><p>Callback on notification of the alignment manager's database to check
@@ -444,34 +463,6 @@ are ready for processing.</p>
       <tr>
         <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html">IAlignmentManager</a></td>
         <td><span class="parametername">mgr</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetAdjustedPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetAdjustedPose*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_SetAdjustedPose_Pose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.SetAdjustedPose(Pose)">SetAdjustedPose(Pose)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;SetAdjustedPosition deprecated - use SetLockedPosition&quot;)]
-public void SetAdjustedPose(Pose lockedPose)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Pose</span></td>
-        <td><span class="parametername">lockedPose</span></td>
         <td></td>
       </tr>
     </tbody>
