@@ -40,15 +40,25 @@ First, go to the [build pipeline page](https://dev.azure.com/aipmr/MixedReality-
 
 Update the [WorldLockingManager.Version field](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Version) to properly reflect the new version.
 
+### Create a release branch
+
+For example, create a branch named "release/v0.3.6-alpha". While somewhat redundant with the tag, this will allow for hot-fixes to the release which wouldn't be suitable for the main development branch "master".
+
+### Publish the release
+
 Go to the [World Locking Tools for Unity releases page](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases).
 
 Click the "Create a new release" button.
 
-Specify a tag. The tag should be of the form vX.Y.Z[-prerelease-modifier]. This X.Y.Z of this tag are 3 integers which should match the version as specified in the [WorldLockingManager.Version field](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Version). 
+Specify a tag. The tag should be of the form vX.Y.Z[-prerelease-modifier]. This X.Y.Z of this tag are 3 integers which should match the version as specified in the [WorldLockingManager.Version field](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Version). This should also match the release branch name.
+
+Specify the release branch created above as the target.
 
 Fill in the title and description fields appropriately.
 
 Drag the .unitypackage files created [above](#building-the-unity-packages) into the rectangle labeled "Attach binaries by dropping them here or selecting them".
+
+The large Examples package, which also contains a snapshot of its MRTK dependency, may take considerable time to upload. It is safest to not leave that page until the upload has completed successfully.
 
 When the .unitypackage files have successfully uploaded, click the Publish Release button.
 

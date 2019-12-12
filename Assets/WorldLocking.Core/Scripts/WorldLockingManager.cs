@@ -24,6 +24,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         #region Public accessors
 
+        /// <summary>
+        /// The version of this release. This will be displayed in the WorldLockingContext component in the Unity Inspector,
+        /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
+        /// It has no effect in code, but serves only as a label.
+        /// </summary>
         public static string Version => "0.3.6";
 
         /// <summary>
