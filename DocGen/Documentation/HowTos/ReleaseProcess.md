@@ -46,25 +46,25 @@ Both channels are available on the [WLTU's GitHub releases page](https://github.
 
 ## Building the unity packages
 
-First, go to the [build pipeline page](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_build?definitionId=50). Be sure that "wlt_ci" is selected.
+1) First, go to the [build pipeline page](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_build?definitionId=50). Be sure that "wlt_ci" is selected.
 
-*Select the build that matches the commit that will be the basis for the release.*
+2) Select the build that matches the commit that will be the basis for the release.
 
-![](../../Images/Release/SelectBuild.PNG)
+  ![](../../Images/Release/SelectBuild.PNG)
 
-*That will lead to the following screen, from which the build artifacts may be accessed.*
+3) That will lead to the following screen, from which the build artifacts may be accessed.*
 
-![](../../Images/Release/Artifacts.PNG)
+  ![](../../Images/Release/Artifacts.PNG)
 
-*Select the unity packages.*
+4) Select the unity packages.
 
 ![](../../Images/Release/ArtifactUnityPackages.png)
 
-*Then download as zip.*
+5) Then download as zip.
 
 ![](../../Images/Release/DownloadUnityPackages.png)
 
-*After installing and testing the packages, they may be integrated into a new release.*
+6) After installing and testing the packages, they may be integrated into a new release.
 
 ## Creating the release
 
