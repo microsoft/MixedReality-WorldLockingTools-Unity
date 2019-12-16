@@ -6,6 +6,8 @@
   - name: Advanced Topics
     href: Concepts/AdvancedConcepts.md
     items: 
+    - name: Persistence
+      href: Concepts/Advanced/Persistence.md
     - name: Space Pins
       href: Concepts/Advanced/SpacePins.md
     - name: Attachment Points
@@ -14,8 +16,6 @@
       href: Concepts/Advanced/Fragments.md
     - name: Refit Operations
       href: Concepts/Advanced/RefitOperations.md
-    - name: Persistence
-      href: Concepts/Advanced/Persistence.md
 - name: How-tos
   href: HowTos.md
   items:
@@ -23,6 +23,12 @@
     href: HowTos/InitialSetup.md
   - name: World Locking Tools Contexts
     href: HowTos/WorldLockingContext.md
+  - name: Contributing
+    href: HowTos/Contributing.md
+  - name: Coding Conventions
+    href: HowTos/CodingConventions.md
+  - name: Release Process
+    href: HowTos/ReleaseProcess.md
   - name: Sample Applications
     href: HowTos/SampleApplications.md
     items:
