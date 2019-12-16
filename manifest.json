@@ -450,7 +450,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/Contributing.html",
-          "hash": "JTQcYR7aCARCgDy+6k7Yww=="
+          "hash": "2ZwcK5aeN6HvpSqrp2Q7Jw=="
         }
       },
       "is_incremental": false,
@@ -463,6 +463,18 @@
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/InitialSetup.html",
           "hash": "vb/gJ7NZSd1rMbLt0VDvFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "DocGen/Documentation/HowTos/ReleaseProcess.md",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Documentation/HowTos/ReleaseProcess.html",
+          "hash": "IVKd4meWdnU2F9KEuuvbrw=="
         }
       },
       "is_incremental": false,
@@ -558,7 +570,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/toc.html",
-          "hash": "+M30ZYg+h98dvQp2Ab6CHw=="
+          "hash": "HT4axuvZO0TEOVh1PNSz9g=="
         }
       },
       "is_incremental": false,
@@ -713,6 +725,50 @@
       "output": {
         "resource": {
           "relative_path": "DocGen/Images/PinMarkerLayout.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Release/ArtifactUnityPackages.png",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Release/ArtifactUnityPackages.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Release/Artifacts.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Release/Artifacts.PNG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Release/DownloadUnityPackages.png",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Release/DownloadUnityPackages.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Release/SelectBuild.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Release/SelectBuild.PNG"
         }
       },
       "is_incremental": false,
@@ -1176,7 +1232,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html",
-          "hash": "GXi9nlaDBR/tETzKikDUkw=="
+          "hash": "EIwUyq7v/h/Vt5MfnGtGVg=="
         }
       },
       "is_incremental": false,
@@ -1681,7 +1737,13 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 53,
+          "total_file_count": 54,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 62,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
@@ -1689,12 +1751,6 @@
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
-          "skipped_file_count": 0
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 62,
           "skipped_file_count": 0
         }
       }
