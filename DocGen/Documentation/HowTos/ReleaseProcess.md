@@ -27,6 +27,8 @@ Or to check only documentation changes:
 
 However, keep in mind that even changes restricted to code (.cs) files may trigger documentation changes. It is always safer to run the full build.
 
+Please run the appropriate version after any significant changes to a PR, and before final completion of the PR. Remember, those tools are in place to protect contributors from breaking the build. Using them is to your own benefit, as well as the benefit of others working in the same space.
+
 ## Code review
 
 All PRs must also be reviewed by another developer before they may be completed.
