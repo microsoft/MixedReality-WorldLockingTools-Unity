@@ -44,8 +44,8 @@
       "_appTitle": "World Locking Tools for Unity Documentation",
       "_enableSearch": true,
       "_disableNavbar": false,
-      "_appLogoPath": "DocGen/External/ReadMeImages/mrt_logo_icon.png",
-      "_appFaviconPath": "DocGen/External/ReadMeImages/favicon.ico",
+      "_appLogoPath": "DocGen/Images/Logos/WorldLock64.png",
+      "_appFaviconPath": "DocGen/Images/Logos/favicon.ico",
       "_gitContribute": {
         "repo": "https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity.git",
         "branch": "development"
