@@ -124,6 +124,35 @@ twice is probably an error, since the Pose p would refer to different a location
   </h3>
   
   
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_AnchorId_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorId*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_AnchorId" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorId">AnchorId</h4>
+  <div class="markdown level1 summary"><p>This wrapper for the anchorId is because the anchorId has to be stored
+as a ulong, which is the base class for the AnchorId enum. Unity only
+supports int-based enums, so will complain on serialization etc. for
+the ulong based AnchorId.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AnchorId AnchorId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AnchorId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_AnchorName_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorName*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_AnchorName" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorName">AnchorName</h4>
   <div class="markdown level1 summary"><p>Provide a unique anchor name. This is used for persistence.</p>
@@ -157,7 +186,7 @@ twice is probably an error, since the Pose p would refer to different a location
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected FragmentId FragmentId { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public FragmentId FragmentId { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -209,7 +238,7 @@ twice is probably an error, since the Pose p would refer to different a location
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Pose LockedPose { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Pose LockedPose { get; protected set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -261,7 +290,7 @@ twice is probably an error, since the Pose p would refer to different a location
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Pose ModelingPose { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual Pose ModelingPose { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -287,7 +316,7 @@ twice is probably an error, since the Pose p would refer to different a location
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool PinActive { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool PinActive { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">

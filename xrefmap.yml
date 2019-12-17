@@ -1942,6 +1942,19 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Core.SpacePin
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin
   nameWithType: SpacePin
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorId
+  name: AnchorId
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_AnchorId
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorId
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorId
+  nameWithType: SpacePin.AnchorId
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorId*
+  name: AnchorId
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_AnchorId_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorId
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorId
+  nameWithType: SpacePin.AnchorId
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorName
   name: AnchorName
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_AnchorName
