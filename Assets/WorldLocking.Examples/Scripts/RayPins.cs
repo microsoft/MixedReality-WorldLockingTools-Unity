@@ -107,7 +107,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             WorldLockingManager.GetInstance().AlignmentManager.SendAlignmentAnchors();
             // Could optionally also reset all existing WorldAnchors for a true reset.
             // If wanted, uncomment this line.
-            //WorldLockingManager.GetInstance().Reset();
+            WorldLockingManager.GetInstance().Reset();
 
             // Also go back to idle mode.
             activePin = -1;

@@ -17,6 +17,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// </remarks>
     public class Orienter : MonoBehaviour, IOrienter
     {
+        #region Private members
         /// <summary>
         /// An object whose rotation needs to be computed, and the weight of its rotation.
         /// </summary>
@@ -30,7 +31,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 
         /// <summary>
-        /// Registered orienables.
+        /// Registered orientables.
         /// </summary>
         private readonly List<IOrientable> orientables = new List<IOrientable>();
 
@@ -39,6 +40,22 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private readonly List<WeightedRotation> actives = new List<WeightedRotation>();
 
+        #endregion Private members
+
+        #region Unity overloads
+        private void Start()
+        {
+            WorldLockingManager.GetInstance().FragmentManager.RegisterForRefitNotifications(OnRefit);
+        }
+
+        private void OnDestroy()
+        {
+            WorldLockingManager.GetInstance().FragmentManager.UnregisterForRefitNotifications(OnRefit);
+        }
+
+        #endregion Unity overloads
+
+        #region Public APIs
         /// <inheritdocs />
         public void Register(IOrientable orientable)
         {
@@ -72,6 +89,33 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
+        #endregion Public APIs
+
+        #region Private implementations
+
+        /// <summary>
+        /// Adjust to refit operations. 
+        /// </summary>
+        /// <param name="mainId">The new combined fragment.</param>
+        /// <param name="absorbedIds">Id's of other fragments being merged into mainId.</param>
+        /// <remarks>
+        /// This callback occurs *after* the refit operation. As part of the refit, 
+        /// positions of the managed SpacePinOrientables may have changed, and therefore
+        /// their implied orientations must be re-calculated.
+        /// Note that there is an apparent race condition, as there is no order guarantee on
+        /// the order of refit notifications, and the AlignmentManager also relies on the
+        /// refit notification to adjust after refit operations. 
+        /// However, both the Orienter and the AlignmentManager rely only on the positions
+        /// having been set, which was accomplished during the refit and before the refit
+        /// notification. So it really doesn't matter whether the Orienter.OnRefit or the 
+        /// AlignmentManager.OnRefit is called first.
+        /// </remarks>
+        private void OnRefit(FragmentId mainId, FragmentId[] absorbedIds)
+        {
+            IAlignmentManager alignMgr = WorldLockingManager.GetInstance().AlignmentManager;
+            Reorient(mainId, alignMgr);
+            alignMgr.SendAlignmentAnchors();
+        }
 
         /// <summary>
         /// Collect all orientables in the current fragment for processing.
@@ -188,5 +232,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return true;
         }
 
+        #endregion Private implementations
     }
 }

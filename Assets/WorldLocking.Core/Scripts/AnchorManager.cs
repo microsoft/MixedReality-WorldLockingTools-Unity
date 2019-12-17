@@ -75,20 +75,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private Dictionary<AnchorId, SpongyAnchor> spongyAnchors = new Dictionary<AnchorId, SpongyAnchor>();
         public Dictionary<AnchorId, SpongyAnchor> SpongyAnchors => spongyAnchors;
 
-        /// <summary>
-        /// List of alignment anchors and edges that have been submitted to the plugin. 
-        /// anchorId1 is alignment anchor, and full edge is edge from alignment anchor to real frozen anchor.
-        /// This relies on the fact that there is a single edge for each alignment anchor, linking
-        /// the alignment anchor (anchorId1) to the current most significant anchor (anchorId2).
-        /// </summary>
-        private List<AnchorEdge> submittedAlignmentAnchors = new List<AnchorEdge>();
-
-        /// <summary>
-        /// Current list of alignment edges submitted from client. These are generally edges from
-        /// the submitted frozen anchor to the most significant anchor at the time of the submission.
-        /// </summary>
-        private List<AnchorEdge> alignmentEdges = new List<AnchorEdge>();
-
         private float lastAnchorAddTime;
         private float lastTrackingInactiveTime;
 
