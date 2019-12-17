@@ -55,10 +55,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// supports int-based enums, so will complain on serialization etc. for
         /// the ulong based AnchorId.
         /// </summary>
-        private AnchorId AnchorId
+        public AnchorId AnchorId
         {
             get { return (AnchorId)ulAnchorId; }
-            set { ulAnchorId = (ulong)value; }
+            private set { ulAnchorId = (ulong)value; }
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// Whether this space pin is in active use pinning space
         /// </summary>
-        protected bool PinActive { get { return AnchorId.IsKnown(); } }
+        public bool PinActive { get { return AnchorId.IsKnown(); } }
 
         /// <summary>
         /// initialPose is Pose the gameObject is in at startup.
@@ -87,7 +87,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// First of the pair of poses submitted to alignment manager for alignment.
         /// </summary>
-        protected virtual Pose ModelingPose
+        public virtual Pose ModelingPose
         {
             get { return initialPose; }
         }
@@ -99,10 +99,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// Accessor for world locked pose for derived classes.
         /// </summary>
-        protected Pose LockedPose
+        public Pose LockedPose
         {
             get { return lockedPose; }
-            set { lockedPose = value; }
+            protected set { lockedPose = value; }
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// Id for fragment this pin belongs in.
         /// </summary>
-        protected FragmentId FragmentId
+        public FragmentId FragmentId
         {
             get
             {

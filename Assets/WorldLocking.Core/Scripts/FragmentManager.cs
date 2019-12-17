@@ -416,8 +416,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public void Reset()
         {
             fragments.Clear();
-            refitNotifications?.Invoke(FragmentId.Invalid, new FragmentId[0]);
             CurrentFragmentId = FragmentId.Invalid;
+            refitNotifications?.Invoke(FragmentId.Invalid, new FragmentId[0]);
         }
 
         /// <summary>
@@ -499,9 +499,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
             }
             CurrentFragmentId = targetFragmentId;
-            refitNotifications?.Invoke(targetFragment.FragmentId, ExtractFragmentIds(mergeAdjustments));
 
             ApplyActiveCurrentFragment();
+
+            refitNotifications?.Invoke(targetFragment.FragmentId, ExtractFragmentIds(mergeAdjustments));
 
             return true;
         }
@@ -543,13 +544,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
             }
             CurrentFragmentId = targetFragmentId;
-            refitNotifications?.Invoke(targetFragment.FragmentId, absorbedIds);
 
             // now apply individual adjustments to each attachment point.
             targetFragment.AdjustAll(plugin);
 
             // now that all adjustments have been made, notify the plugin to finish up the operation.
             plugin.RefreezeFinish();
+
+            refitNotifications?.Invoke(targetFragment.FragmentId, absorbedIds);
 
             return true;
         }

@@ -127,7 +127,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// It would also be possible to leave this rotation as is and factor it out of the computed rotation with
         /// some additional math.
         /// </remarks>
-        protected override Pose ModelingPose
+        public override Pose ModelingPose
         {
             get { return new Pose(InitialPose.position, Quaternion.identity); }
         }
