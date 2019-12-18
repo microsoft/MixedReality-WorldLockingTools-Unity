@@ -17,22 +17,22 @@ In the former case, of the scale problem, the World Locking Tools can take addit
 
 To understand further _how_ the World Locking Tools accomplish this, some additional terminology will be helpful.
 
-# Spongy and frozen spaces
+# Spongy and world locked spaces
 
 ## Spongy space
 At the core of World Locking Tools is an optimization engine. It takes as inputs a graph of currently active spatial anchors in the world, along with the current head tracking information. This is commonly referred to, within this and related documentation and code, as the **Spongy state**. The spongy state is so named because it is constantly in flux. The spatial anchors are always in motion relative to each other, and within their native *spongy* coordinate space, as incoming sensor data refines their state. 
 
 This spongy space is the only coordinate system previously available in which the mixed reality application developer could work.
 
-## Frozen space
+## World locked space
 
-From the spongy state, the World Locking Tools engine computes a stable space which optimally aligns the spongy space with the physical world. This stable space is referred to as **Frozen space**, and its full state as the *frozen state*.
+From the spongy state, the World Locking Tools engine computes a stable space which optimally aligns the spongy space with the physical world. This stable space is referred to as **World locked space**, and its full state as the *frozen state*.
 
-It is important to realize that both spongy space and frozen space are rigid cartesian coordinate systems, and in fact differ from each other by only a rotation and offset. However, the transform from spongy space to frozen space changes each frame, as new sensor data is processed.
+It is important to realize that both spongy space and world locked space are rigid cartesian coordinate systems, and in fact differ from each other by only a rotation and offset. However, the transform from spongy space to world locked space changes each frame, as new sensor data is processed.
 
-The difference between the two spaces is that, while incoming sensor data is free to refine (i.e. move) spatial anchors relative to each other and the head in spongy space, frozen space is chosen to minimize such movements. This allows scene objects placed in frozen space to appear fixed in the physical world without being attached to individual spatial anchors. Each frame the engine computes the frozen space in which the underlying anchors are most stable. That is, the frozen space in which virtual objects stay optimally aligned with real world features. 
+The difference between the two spaces is that, while incoming sensor data is free to refine (i.e. move) spatial anchors relative to each other and the head in spongy space, world locked space is chosen to minimize such movements. This allows scene objects placed in world locked space to appear fixed in the physical world without being attached to individual spatial anchors. Each frame the engine computes the world locked space in which the underlying anchors are most stable. That is, the world locked space in which virtual objects stay optimally aligned with real world features. 
 
-This transform is applied to the scene each frame by adjusting the local transform of a parent of the camera in the scene graph. Since the camera defines the original spongy space, inserting this "frozen from spongy" transform into the camera's hierarchy establishes the root space of the scene to be frozen space.
+This transform is applied to the scene each frame by adjusting the local transform of a parent of the camera in the scene graph. Since the camera defines the original spongy space, inserting this "world-locked from spongy" transform into the camera's hierarchy establishes the root space of the scene to be world locked space.
 
 ## Persistence
 
@@ -46,7 +46,7 @@ See [Persistence](Advanced/Persistence.md) and [Space Pin feature](Advanced/Spac
 
 ## Camera movement implications
 
-A subtle but important thing to note here is that, by applying the correction transform to the camera, the native Unity "stationary frame of reference" has been converted into the optimal frozen frame of reference. Since no objects in the scene were moved, this will not interfere with physics simulation or other dynamics calculations.
+A subtle but important thing to note here is that, by applying the correction transform to the camera, the native Unity "stationary frame of reference" has been converted into the optimal world locked frame of reference. Since no objects in the scene were moved, this will not interfere with physics simulation or other dynamics calculations.
 
 However, the camera being moved within the stationary frame of reference does have implications. Specifically, any sub-systems which assume that the head transform is the only transform between the stationary frame of reference and the camera space will be incorrect. 
 

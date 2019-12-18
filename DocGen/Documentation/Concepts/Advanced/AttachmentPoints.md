@@ -1,18 +1,18 @@
 # Attachment points
 
-First and foremost, World Locking Tools provides a stable world-locked coordinate system, the frozen space. This space remains as fixed as possible relative to the physical world. And objects within frozen space enjoy capabilities requiring such a stable frame of reference, such as maintaining relative placement to other virtual objects, simulation of natural physics laws, kinematics, and other animation techniques.
+First and foremost, World Locking Tools provides a stable world-locked coordinate system, the world locked space. This space remains as fixed as possible relative to the physical world. And objects within world locked space enjoy capabilities requiring such a stable frame of reference, such as maintaining relative placement to other virtual objects, simulation of natural physics laws, kinematics, and other animation techniques.
 
-In fact, depending on the needs of the application, frozen space may be sufficient for some or all scene content.
+In fact, depending on the needs of the application, world locked space may be sufficient for some or all scene content.
 
-But while frozen space will remain optimally aligned with physical space, there are situations to be described later in which it is not possible for multiple points in frozen space to remain both fixed in their common coordinate space and fixed relative to reference points in the physical world.
+But while world locked space will remain optimally aligned with physical space, there are situations to be described later in which it is not possible for multiple points in world locked space to remain both fixed in their common coordinate space and fixed relative to reference points in the physical world.
 
 For a trivial but illuminating example, suppose that the sensor maps one anchor to the position (3,0,0) and another to the position (-3,0,0). Later, as sensor refinements are processed, it is established that the two coordinates should have been (3,0,0) and (-2,0,0). There is clearly no rotation and offset that can be applied to the camera which will transform a 6 meter distance between the two anchors into a 5 meter offset.
 
 Using Unity's WorldAnchor system, the two anchors would just silently move into their newly scanned positions.
 
-But World Locking Tools guarantees that in frozen space, non-moving objects will "mostly" never move. And in fact, any motion is up to the owning application.
+But World Locking Tools guarantees that in world locked space, non-moving objects will "mostly" never move. And in fact, any motion is up to the owning application.
 
-Attachment points are the codification of that contract between World Locking Tools and the application. An application creates and positions attachment points using World Locking Tools APIs. When a correction in the position of an attachment point is determined by a refit operation, the application is notified via callback of the new position in frozen space that will keep the attachment point at its old position in physical space.
+Attachment points are the codification of that contract between World Locking Tools and the application. An application creates and positions attachment points using World Locking Tools APIs. When a correction in the position of an attachment point is determined by a refit operation, the application is notified via callback of the new position in world locked space that will keep the attachment point at its old position in physical space.
 
 Some scenarios in which World Locking Tools attachment points might be the solution:
 
@@ -38,7 +38,7 @@ For each attachment point required, the client must:
 World Locking Tools will notify the application, for each affected attachment point, when either of the following occurs:
 
 1) The validity of the attachment point's physical world tracking changes. 
-2) Its coordinates in frozen space change due to a refit operation, which may be either a [fragment merge](RefitOperations.md#fragment-merge) or a [refreeze](RefitOperations.md#refreeze-operations).
+2) Its coordinates in world locked space change due to a refit operation, which may be either a [fragment merge](RefitOperations.md#fragment-merge) or a [refreeze](RefitOperations.md#refreeze-operations).
 
 These notifications are broadcast through delegates which the application hands to the WorldLockingManager on creation of the attachment point.
 

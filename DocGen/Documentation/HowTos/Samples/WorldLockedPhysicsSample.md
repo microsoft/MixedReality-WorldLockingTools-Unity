@@ -1,4 +1,4 @@
-# Frozen Physics Sample.
+# World Locked Physics Sample.
 
 The Physics Beam Sample offers a few virtual physics experiences which are enabled by World Locking Tools' world locked coordinate system.
 

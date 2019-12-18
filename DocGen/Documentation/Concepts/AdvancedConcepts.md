@@ -6,13 +6,13 @@ These concepts are discussed more thoroughly in subsequent sections of this docu
 
 * **Persistence** is the saving of World Locking Tools state from earlier sessions to enhance subsequent sessions, by leveraging the state collected and computed in the earlier sessions, rather than requiring it to be collected or computed again. 
 
-* **Space Pins** are a discrete and sparse set of points at which the Frozen Space may be mapped to modeling coordinates. In addition to allowing objects modeled in Unity's coordinate space to be aligned with the real world, they provide a solution to the tracker's "scale problem". 
+* **Space Pins** are a discrete and sparse set of points at which the World Locked Space may be mapped to modeling coordinates. In addition to allowing objects modeled in Unity's coordinate space to be aligned with the real world, they provide a solution to the tracker's "scale problem". 
 
 * **Attachment points** are special markers in the world which remain optimally registered to the physical world through infrequent adjustment events.
 
 * A **fragment** is a collection of things which exist in known relation with each other in the same coordinate space. In contrast, there is generally no meaningful spatial relationship between different fragments. These are elsewhere referred to as "tracker islands".
 
-* **Refit operations** are infrequent adjustment events, at times when additional sensor data enables an improved registration of virtual objects with the physical world, but only at the cost of moving them within frozen space.
+* **Refit operations** are infrequent adjustment events, at times when additional sensor data enables an improved registration of virtual objects with the physical world, but only at the cost of moving them within world locked space.
 
 There are two types of refit operations.
 

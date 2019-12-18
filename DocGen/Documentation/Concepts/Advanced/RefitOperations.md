@@ -29,11 +29,11 @@ When more information is acquired, then there is an opportunity to adjust the co
 
 This operation of collapsing multiple fragments into a single fragment is a *merge operation*. 
 
-It's important to note here that for normal Unity objects placed in the world in frozen space, the merge operation will have no effect. Movement of objects from refit operations only happens through attachment points. 
+It's important to note here that for normal Unity objects placed in the scene in world locked space, the merge operation will have no effect. Movement of objects from refit operations only happens through attachment points. 
 
 ## Refreeze operations
 
-Another situation that arises is when, as the positions of the anchors are refined over time, it becomes apparent that a rotation/offset transform is no longer adequate to compensate for the difference between the initial rough anchor positions and the more recent improved positions in the physical world. Keep in mind that the anchors themselves are constantly moving relative to each other in spongy space. But the attachment points derived from these anchors are fixed in frozen space.
+Another situation that arises is when, as the positions of the anchors are refined over time, it becomes apparent that a rotation/offset transform is no longer adequate to compensate for the difference between the initial rough anchor positions and the more recent improved positions in the physical world. Keep in mind that the anchors themselves are constantly moving relative to each other in spongy space. But the attachment points derived from these anchors are fixed in world locked space.
 
 When the system recognizes that the attachment points it manages could be better registered with the physical world, because of updates to anchor positions, then it has another opportunity for a correction event. This adjustment of attachment point positions to reflect new sensor data is known as a *refreeze operation*. Whereas in a merge operation the contents of a fragment are all adjusted by a single transform to merge coordinate spaces of two fragments into a single unified space, a refreeze adjusts each attachment point individually based on the updated positions of the anchors influencing it.
 

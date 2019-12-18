@@ -1,6 +1,6 @@
 # IAlignmentManager
 
-The IAlignmentManager interface abstracts the service of translating and rotating the world-locked frozen space to align with the physical world at a discrete set of Space Pins.
+The IAlignmentManager interface abstracts the service of translating and rotating the world-locked space to align with the physical world at a discrete set of Space Pins.
 
 The alignment concepts are described in detail in an article dedicated to [Space Pins](../../Documentation/Concepts/Advanced/SpacePins.md).
 

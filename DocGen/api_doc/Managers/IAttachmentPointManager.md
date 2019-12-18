@@ -1,6 +1,6 @@
 # IAttachmentPointManager
 
-The IAttachmentPointManager is the most common Frozen World interface for a client application to access.
+The IAttachmentPointManager is the most common World Locking Tools interface for a client application to access.
 
 But the attachment point interface is extremely small. It gives opportunity for the client application to perform the four operations available on attachment points.
 

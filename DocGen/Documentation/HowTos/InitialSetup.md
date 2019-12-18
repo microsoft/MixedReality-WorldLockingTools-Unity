@@ -95,7 +95,7 @@ Note that since some of the World Locking Tools Examples use features from MRTK,
 
 Within a Unity project containing the FrozenWorld engine (from nuget.org), any desired World Locking Tools Assets layers (but at least WorldLocking.Core), and optionally MRTK, create a new scene (or open an existing scene).
 
-Add an extra node at the root of the camera hierarchy. This node will be used to adjust the head tracked camera into frozen space. (If using MRTK, this new GameObject would be the parent of the MixedRealityPlayspace.)
+Add an extra node at the root of the camera hierarchy. This node will be used to adjust the head tracked camera into world locked space. (If using MRTK, this new GameObject would be the parent of the MixedRealityPlayspace.)
 
 ### The core experience
 
@@ -118,7 +118,7 @@ If using MRTK, add the latest versions of at least the following packages:
 * MixedReality.Toolkit.Services
 * MixedReality.Toolkit.SDK 
 
-### [Optional] Visualizing spongy and frozen anchors
+### [Optional] Visualizing spongy and world locked anchors
 
 This requires the addition of WorldLocking.Tools to the project's Assets.
 
@@ -148,7 +148,7 @@ ToggleWorldAnchor works exactly the same as a WorldAnchor, with the important di
 
 If for some other reason WorldAnchors are still required in the scene (e.g. for network sharing), their can be used with an adapter, supplied as [WorldAnchorAdapter](xref:Microsoft.MixedReality.WorldLocking.Tools.WorldAnchorAdapter).
 
-The WorldAnchorAdapter transforms the raw position of a GameObject positioned by a WorldAnchor, into the frozen Unity global space, and then applies the transform to a target object. To use it, rather than adding a WorldAnchor directly to an object, the WorldAnchor should be applied to a proxy object (usually an otherwise empty GameObject), and then on Update() the WorldAnchorAdapter reads the pose of the WorldAnchor, transforms it correctly, and applies it to the target. 
+The WorldAnchorAdapter transforms the raw position of a GameObject positioned by a WorldAnchor, into the world locked Unity global space, and then applies the transform to a target object. To use it, rather than adding a WorldAnchor directly to an object, the WorldAnchor should be applied to a proxy object (usually an otherwise empty GameObject), and then on Update() the WorldAnchorAdapter reads the pose of the WorldAnchor, transforms it correctly, and applies it to the target. 
 
 ## Setup complete
 
