@@ -138,7 +138,7 @@
 <p>Note that since some of the World Locking Tools Examples use features from MRTK, a compatible MRTK snapshot is included with the Examples unitypackage. For the latest MRTK release, look <a href="https://github.com/Microsoft/MixedRealityToolkit-Unity/releases">here</a>.</p>
 <h2 id="adding-world-locking-tools-to-a-unity-scene">Adding World Locking Tools to a Unity scene</h2>
 <p>Within a Unity project containing the FrozenWorld engine (from nuget.org), any desired World Locking Tools Assets layers (but at least WorldLocking.Core), and optionally MRTK, create a new scene (or open an existing scene).</p>
-<p>Add an extra node at the root of the camera hierarchy. This node will be used to adjust the head tracked camera into frozen space. (If using MRTK, this new GameObject would be the parent of the MixedRealityPlayspace.)</p>
+<p>Add an extra node at the root of the camera hierarchy. This node will be used to adjust the head tracked camera into world locked space. (If using MRTK, this new GameObject would be the parent of the MixedRealityPlayspace.)</p>
 <h3 id="the-core-experience">The core experience</h3>
 <p>Drag a WorldLockingManager prefab from Assets/WorldLocking.Core/Prefabs into your scene. Its place in the scene doesn't matter, but it should <strong>not</strong> be in the camera tree.</p>
 <p>There are settings available on the WorldLockingManager prefab, but leaving them to their default values is recommended to get started.</p>
@@ -153,7 +153,7 @@
 <li>MixedReality.Toolkit.Services</li>
 <li>MixedReality.Toolkit.SDK</li>
 </ul>
-<h3 id="optional-visualizing-spongy-and-frozen-anchors">[Optional] Visualizing spongy and frozen anchors</h3>
+<h3 id="optional-visualizing-spongy-and-world-locked-anchors">[Optional] Visualizing spongy and world locked anchors</h3>
 <p>This requires the addition of WorldLocking.Tools to the project's Assets.</p>
 <p>If you want to visualize your anchors, drag AnchorGraphVisual prefab from Assets/WorldLocking.Tools/Prefabs into your scene. Check-boxes to toggle aspects of the visualization in the inspector are on the <a href="WorldLockingContext.html">WorldLockingManager</a>.</p>
 <p>Note that, as diagnostics, the WorldLocking.Tools visualizations are not heavily optimized, and will become a drag on performance long before the core World Locking Tools processing time becomes relevant.</p>
@@ -168,7 +168,7 @@
 <p>If it is desirable to compare world-locking with and without World Locking Tools, then instead of removing WorldAnchors, they may be replaced with the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.ToggleWorldAnchor.html">ToggleWorldAnchor</a> supplied in WorldLocking.Tools.</p>
 <p>ToggleWorldAnchor works exactly the same as a WorldAnchor, with the important difference that when the World Locking Tools Manager is active, it conveniently disables itself and gets out of the way. When the World Locking Tools Manager is disabled, it behaves as a normal WorldAnchor.</p>
 <p>If for some other reason WorldAnchors are still required in the scene (e.g. for network sharing), their can be used with an adapter, supplied as <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.WorldAnchorAdapter.html">WorldAnchorAdapter</a>.</p>
-<p>The WorldAnchorAdapter transforms the raw position of a GameObject positioned by a WorldAnchor, into the frozen Unity global space, and then applies the transform to a target object. To use it, rather than adding a WorldAnchor directly to an object, the WorldAnchor should be applied to a proxy object (usually an otherwise empty GameObject), and then on Update() the WorldAnchorAdapter reads the pose of the WorldAnchor, transforms it correctly, and applies it to the target.</p>
+<p>The WorldAnchorAdapter transforms the raw position of a GameObject positioned by a WorldAnchor, into the world locked Unity global space, and then applies the transform to a target object. To use it, rather than adding a WorldAnchor directly to an object, the WorldAnchor should be applied to a proxy object (usually an otherwise empty GameObject), and then on Update() the WorldAnchorAdapter reads the pose of the WorldAnchor, transforms it correctly, and applies it to the target.</p>
 <h2 id="setup-complete">Setup complete</h2>
 <p>Having followed the above steps, the project deployed to device will run adjusted by World Locking Tools to maintain an optimally stable world-locked space. Any fixed objects placed in the scene will remain visually consistent both relative to each other and with the physical world.</p>
 <h2 id="running-a-more-complicated-sample">Running a more complicated sample</h2>

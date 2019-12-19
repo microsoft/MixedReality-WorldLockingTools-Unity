@@ -82,7 +82,7 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="ianchormanager">IAnchorManager</h1>
 
-<p>The Frozen World engine relies on a network of spatial anchors surrounding the user, from which to calculate the ideal frozen space.</p>
+<p>The Frozen World engine relies on a network of spatial anchors surrounding the user, from which to calculate the ideal world locked space.</p>
 <p>The IAnchorManager maintains that network, and supplies it to the engine for processing each frame.</p>
 <p>The current implementation of IAnchorManager is in Assets/WorldLocking.Core/Scripts/AnchorManager.cs. AnchorManager is built on Unity's WorldAnchor spatial anchors. The Frozen World engine itself is agnostic to the type of anchors used.</p>
 <p>As the user moves around the environment, AnchorManager grows the graph of anchors according to the following simple but effective algorithm:</p>

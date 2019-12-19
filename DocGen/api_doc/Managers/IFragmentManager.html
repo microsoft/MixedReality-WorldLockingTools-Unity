@@ -83,7 +83,7 @@
 <h1 id="ifragmentmanager">IFragmentManager</h1>
 
 <p>The fragment manager maintains the mapping of which attachment points are associated with which fragments.</p>
-<p>While the concept of fragments is important in understanding Frozen World, fragments themselves are generally not interesting outside of the Frozen World library.</p>
+<p>While the concept of fragments is important in understanding the World Locking Tools, fragments themselves are generally not interesting outside of the World Locking library.</p>
 <p>A client application might want to know whether the fragment an object belongs to is currently being tracked, but that information is supplied directly to the attachment point through its AdjustStateDelegate.</p>
 <p>Likewise, a fragment merge operation will affect the position of an attachment point, but the attachment point will be notified directly of the location modification irrespective of the containing fragment.</p>
 <p>The fragment manager handles the book-keeping of which fragment an attachment point is created into, and which fragment it might move into because of refit operations. It also implements the refit operation notifications.</p>
