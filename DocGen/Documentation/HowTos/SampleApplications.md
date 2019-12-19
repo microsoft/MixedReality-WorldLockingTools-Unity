@@ -6,7 +6,7 @@ They also attempt to show best practices in coding against the World Locking Too
 
 ### See also
 
-[Frozen Physics Sample](Samples/WorldLockedPhysicsSample.md)
+[World Locked Physics Sample](Samples/WorldLockedPhysicsSample.md)
 
 [Space Pin Sample](Samples/SpacePin.md)
 

@@ -34,7 +34,7 @@ The Space Pinning feature addresses both of these issues at once. It does so by 
 
 ### Aligning Unity space wth the real world
 
-World Locking Tools at its core provides a stable world locked coordinate system. This means that a virtual object placed into Frozen Space registered with a real world feature will remain registered with that real world feature over time.
+World Locking Tools at its core provides a stable world locked coordinate system. This means that a virtual object placed into World Locked Space registered with a real world feature will remain registered with that real world feature over time.
 
 But there are an infinite number of spaces that satisfy that goal. In fact, given one world-locked space, transforming it by any arbitrary position and rotation produces another equally valid world-locked space.
 

@@ -1,7 +1,7 @@
 - name: Architecture
   href: Architecture.md
   items: 
-  - name: Frozen World Manager
+  - name: World Locking Manager
     href: Managers/WorldLockingManager.md
   - name: Anchor management
     href: Managers/IAnchorManager.md

@@ -32,7 +32,7 @@
   - name: Sample Applications
     href: HowTos/SampleApplications.md
     items:
-      - name: Frozen Physics Sample
+      - name: World Locked Physics Sample
         href: HowTos/Samples/WorldLockedPhysicsSample.md
       - name: Space Pin Sample
         href: HowTos/Samples/SpacePin.md

@@ -7,7 +7,7 @@ This article will therefore begin with a discussion of the experiences that Worl
 
 ## World Locking Tools across sessions
 
-As defined [elsewhere](../BasicConcepts.md), the Frozen State is all data necessary to resume the current world-locked stable Frozen Space.
+As defined [elsewhere](../BasicConcepts.md), the Frozen State is all data necessary to resume the current world-locked stable space.
 
 The primary utility of World Locking Tools' persistence is in allowing the benefits of a preliminary session's work, scanning an area and aligning virtual space to the real world, to be used in subsequent sessions.
 

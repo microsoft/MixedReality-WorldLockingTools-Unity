@@ -3,7 +3,7 @@
 
 The fragment manager maintains the mapping of which attachment points are associated with which fragments.
 
-While the concept of fragments is important in understanding Frozen World, fragments themselves are generally not interesting outside of the Frozen World library. 
+While the concept of fragments is important in understanding the World Locking Tools, fragments themselves are generally not interesting outside of the World Locking library. 
 
 A client application might want to know whether the fragment an object belongs to is currently being tracked, but that information is supplied directly to the attachment point through its AdjustStateDelegate.
 

@@ -1,10 +1,10 @@
 # Space Pin Sample
 
-The functionality demonstrated in the Space Pin example is also available in the main Frozen Physics Sample scene. 
+The functionality demonstrated in the Space Pin example is also available in the main World Locked Physics Sample scene. 
 
 However, the Space Pin scene offers a simplified and more focused view of the [Space Pin feature](../../Concepts/Advanced/SpacePins.md). It is intended to be closer to the inner workings of a real world application which needs to align a large object or objects with real world features.
 
-It therefore lacks many of the options and runtime UX of the more general [Frozen Physics Sample](WorldLockedPhysicsSample.md).
+It therefore lacks many of the options and runtime UX of the more general [World Locked Physics Sample](WorldLockedPhysicsSample.md).
 
 ## Default settings
 

@@ -1,6 +1,6 @@
 # IAnchorManager
 
-The Frozen World engine relies on a network of spatial anchors surrounding the user, from which to calculate the ideal frozen space.
+The Frozen World engine relies on a network of spatial anchors surrounding the user, from which to calculate the ideal world locked space.
 
 The IAnchorManager maintains that network, and supplies it to the engine for processing each frame.
 
