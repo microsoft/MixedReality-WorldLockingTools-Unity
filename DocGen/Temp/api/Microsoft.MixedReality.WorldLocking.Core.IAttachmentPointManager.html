@@ -110,7 +110,7 @@ of attachment points must be conducted through the IAttachmentPointManager.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IAttachmentPoint CreateAttachmentPoint(Vector3 frozenPosition, IAttachmentPoint context, AdjustLocationDelegate locationHandler, AdjustStateDelegate stateHandler)</code></pre>
+    <pre><code class="lang-csharp hljs">IAttachmentPoint CreateAttachmentPoint(Vector3 lockedPosition, IAttachmentPoint context, AdjustLocationDelegate locationHandler, AdjustStateDelegate stateHandler)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -124,8 +124,8 @@ of attachment points must be conducted through the IAttachmentPointManager.</p>
     <tbody>
       <tr>
         <td><span class="xref">Vector3</span></td>
-        <td><span class="parametername">frozenPosition</span></td>
-        <td><p>The position in the frozen space at which to start the attachment point</p>
+        <td><span class="parametername">lockedPosition</span></td>
+        <td><p>The position in the world locked space at which to start the attachment point</p>
 </td>
       </tr>
       <tr>
