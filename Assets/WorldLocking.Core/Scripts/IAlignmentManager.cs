@@ -8,7 +8,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     public delegate void PostAlignmentLoadedDelegate();
 
     /// <summary>
-    /// Manage pinning the world-locked frozen space to user defined coordinate frame
+    /// Manage pinning the world-locked space to user defined coordinate frame
     /// at a discrete set of points in the world.
     /// </summary>
     public interface IAlignmentManager

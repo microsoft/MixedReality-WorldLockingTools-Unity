@@ -15,7 +15,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// This component captures the initial pose of its gameObject, and then a second pose. It then
     /// adds that pair to the WorldLocking Alignment Manager. The manager then negotiates between all
     /// such added pins, based on the current head pose, to generate a frame-to-frame mapping aligning
-    /// the Frozen Space such that the pins match up as well as possible.
+    /// the Frozen Space, i.e. Unity's Global Space, such that the pins match up as well as possible.
     /// Another way to phrase this is:
     ///    Given an arbitrary pose (the "modeling pose"),
     ///    and a pose aligned somehow to the real world (the "world locked pose"),

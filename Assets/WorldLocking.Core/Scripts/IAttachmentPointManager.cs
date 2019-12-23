@@ -29,12 +29,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// The stateHandler notifies whether this attachment point is "connected" with the current fragment.
         /// Both handlers are optional and may be null.
         /// </remarks>
-        /// <param name="frozenPosition">The position in the frozen space at which to start the attachment point</param>
+        /// <param name="lockedPosition">The position in the world locked space at which to start the attachment point</param>
         /// <param name="context">The optional context into which to create the attachment point (may be null)</param>
         /// <param name="locationHandler">Delegate to handle Frozen World engine system adjustments to position</param>
         /// <param name="stateHandler">Delegate to handle Frozen World engine connectivity changes</param>
         /// <returns>The new attachment point interface.</returns>
-        IAttachmentPoint CreateAttachmentPoint(Vector3 frozenPosition, IAttachmentPoint context,
+        IAttachmentPoint CreateAttachmentPoint(Vector3 lockedPosition, IAttachmentPoint context,
                 AdjustLocationDelegate locationHandler, AdjustStateDelegate stateHandler);
 
         /// <summary>
