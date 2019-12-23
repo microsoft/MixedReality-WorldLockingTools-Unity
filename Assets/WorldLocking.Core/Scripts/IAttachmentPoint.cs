@@ -25,7 +25,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     public delegate void AdjustStateDelegate(AttachmentPointStateType state);
 
     /// <summary>
-    /// Notification that a correction in the frozen space has been computed and
+    /// Notification that a correction in the world locked space has been computed and
     /// should be applied to this object.
     /// </summary>
     /// <param name="adjustment">The adjustment to apply</param>
@@ -33,7 +33,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
     /// <summary>
     /// Opaque handle to an attachment point. Create one of these to enable
-    /// WorldLocking to adjust an attached object as corrections to the frozen space 
+    /// WorldLocking to adjust an attached object as corrections to the world locked space 
     /// optimization are made. 
     /// </summary>
     /// <remarks>

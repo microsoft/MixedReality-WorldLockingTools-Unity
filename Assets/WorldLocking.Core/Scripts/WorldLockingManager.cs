@@ -162,7 +162,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         /// <summary>
         /// Transform from spongy space to frozen space. Spongy space is that native to
-        /// XR interfaces. Transform includes the WorldLocking adjustment to the camera, as
+        /// XR interfaces. Frozen is Unity's global coordinate space. 
+        /// Transform includes the WorldLocking adjustment to the camera, as
         /// well as any other transforms applied to the camera (e.g. teleport).
         /// </summary>
         public Pose FrozenFromSpongy { get { return FrozenFromLocked.Multiply(LockedFromSpongy); } }
@@ -478,7 +479,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// to Unity's global space, referred to here as FrozenSpace.
             /// The AdjustmentFrame's transform is composed of two transforms. 
             /// The first comes from the FrozenWorld engine DLL as the inverse of Plugin.GetAlignment(), 
-            /// and transforms from Playspace to the base stable frozen space, labeled as
+            /// and transforms from Playspace to the base stable world locked space, labeled as
             /// LockedFromPlayspace.
             /// The second transforms from this stable but arbitrary space to a space locked
             /// to a finite set of real world markers. This transform is labeled PinnedFromLocked.

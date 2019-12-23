@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
     /// <summary>
-    /// Encapsulation of state for the frozen (world locked output) world.
+    /// Manager for multiple fragments (isolated islands of spatial relevance).
     /// </summary>
     internal class FragmentManager : IFragmentManager, IAttachmentPointManager
     {
@@ -122,17 +122,17 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// graph to bind the new attachment point.
         /// See <see cref="IAttachmentPointManager.CreateAttachmentPoint"/>.
         /// </remarks>
-        /// <param name="frozenPosition">The position in the frozen world at which to start the attachment point</param>
+        /// <param name="globalPosition">The position in the global space at which to start the attachment point</param>
         /// <param name="context">The optional context into which to create the attachment point (may be null)</param>
         /// <param name="locationHandler">Delegate to handle WorldLocking system adjustments to position</param>
         /// <param name="stateHandler">Delegate to handle WorldLocking connectivity changes</param>
         /// <returns>The new attachment point interface.</returns>
-        public IAttachmentPoint CreateAttachmentPoint(Vector3 frozenPosition, IAttachmentPoint context,
+        public IAttachmentPoint CreateAttachmentPoint(Vector3 globalPosition, IAttachmentPoint context,
             AdjustLocationDelegate locationHandler, AdjustStateDelegate stateHandler)
         {
             FragmentId fragmentId = GetTargetFragmentId(context);
             AttachmentPoint attachPoint = new AttachmentPoint(locationHandler, stateHandler);
-            attachPoint.ObjectPosition = frozenPosition;
+            attachPoint.ObjectPosition = globalPosition;
             if (fragmentId.IsKnown())
             {
                 SetupAttachmentPoint(plugin, attachPoint, context);
@@ -200,31 +200,31 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         /// <summary>
         /// Move (as opposed to Teleport) means that the object is meant to have traversed 
-        /// frozen space from its old position to the given new position on some continuous path.
+        /// global space from its old position to the given new position on some continuous path.
         /// </summary>
         /// <remarks>
         /// Not to be used for automatic (i.e. FrozenWorld Engine instigated) moves.
         /// See <see cref="WorldLockingManager.MoveAttachmentPoint"/>
         /// </remarks>
         /// <param name="attachPoint">Attachment point to move</param>
-        /// <param name="newFrozenPosition">The new position in frozen space</param>
-        public void MoveAttachmentPoint(IAttachmentPoint attachPointIface, Vector3 newFrozenPosition)
+        /// <param name="newGlobalPosition">The new position in global space</param>
+        public void MoveAttachmentPoint(IAttachmentPoint attachPointIface, Vector3 newGlobalPosition)
         {
             AttachmentPoint attachPoint = attachPointIface as AttachmentPoint;
             if (attachPoint != null)
             {
-                attachPoint.ObjectPosition = newFrozenPosition;
+                attachPoint.ObjectPosition = newGlobalPosition;
 
                 // If it's not in a valid fragment, it is still pending and will get processed when the system is ready.
                 if (attachPoint.FragmentId.IsKnown())
                 {
                     float minDistToUpdateSq = 0.5f * 0.5f;
 
-                    float moveDistanceSq = (newFrozenPosition - attachPoint.CachedPosition).sqrMagnitude;
+                    float moveDistanceSq = (newGlobalPosition - attachPoint.CachedPosition).sqrMagnitude;
                     if (moveDistanceSq > minDistToUpdateSq)
                     {
-                        attachPoint.LocationFromAnchor = plugin.MoveAttachmentPoint(newFrozenPosition, attachPoint.AnchorId, attachPoint.LocationFromAnchor);
-                        attachPoint.CachedPosition = newFrozenPosition;
+                        attachPoint.LocationFromAnchor = plugin.MoveAttachmentPoint(newGlobalPosition, attachPoint.AnchorId, attachPoint.LocationFromAnchor);
+                        attachPoint.CachedPosition = newGlobalPosition;
                     }
                     // Else we haven't moved enough to bother doing anything.
                 }
@@ -233,7 +233,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         /// <summary>
         /// Teleport (as opposed to Move) means that the object is meant to have disappeared at its old position 
-        /// and instantaneously reappeared at its new position in frozen space without traversing the space in between.
+        /// and instantaneously reappeared at its new position in world locked space without traversing the space in between.
         /// </summary>
         /// <remarks>
         /// This is equivalent to releasing the existing attachment point and creating a new one,
@@ -241,14 +241,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// See <see cref="WorldLockingManager.TeleportAttachmentPoint"/>.
         /// </remarks>
         /// <param name="attachPointIface">The attachment point to teleport</param>
-        /// <param name="newFrozenPosition">The position to teleport to.</param>
+        /// <param name="newGlobalPosition">The position to teleport to.</param>
         /// <param name="context">The optional context.</param>
-        public void TeleportAttachmentPoint(IAttachmentPoint attachPointIface, Vector3 newFrozenPosition, IAttachmentPoint context)
+        public void TeleportAttachmentPoint(IAttachmentPoint attachPointIface, Vector3 newGlobalPosition, IAttachmentPoint context)
         {
             AttachmentPoint attachPoint = attachPointIface as AttachmentPoint;
             if (attachPoint != null)
             {
-                attachPoint.ObjectPosition = newFrozenPosition;
+                attachPoint.ObjectPosition = newGlobalPosition;
 
                 // Save the fragment it's currently in, in case it changes here.
                 FragmentId oldFragmentId = attachPoint.FragmentId;
@@ -317,7 +317,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 for (int i = 0; i < pendingCount; ++i)
                 {
                     AttachmentPoint target = pendingAttachments[i].target;
-                    Vector3 frozenPosition = pendingAttachments[i].target.ObjectPosition;
+                    Vector3 globalPosition = pendingAttachments[i].target.ObjectPosition;
                     IAttachmentPoint context = pendingAttachments[i].context;
 
                     SetupAttachmentPoint(plugin, target, context);
@@ -375,7 +375,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         /// <param name="plugin">The global plugin</param>
         /// <param name="target">The attachment point to setup</param>
-        /// <param name="frozenPosition">The position to set it up at</param>
         /// <param name="context">The optional context <see cref="CreateAttachmentPoint"/></param>
         public static void SetupAttachmentPoint(Plugin plugin, AttachmentPoint target, IAttachmentPoint context)
         {

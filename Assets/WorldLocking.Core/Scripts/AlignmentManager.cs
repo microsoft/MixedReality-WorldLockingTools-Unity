@@ -17,7 +17,7 @@ using UnityEngine.XR.WSA.Persistence;
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
     /// <summary>
-    /// Unity level implementation of aligning Unity's coordinate system (Frozen Space) 
+    /// Unity level implementation of aligning Unity's coordinate system  
     /// with a discrete finite set of markers in the real world.
     /// </summary>
     /// <remarks>
