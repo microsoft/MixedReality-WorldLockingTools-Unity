@@ -5,13 +5,13 @@ Inside-out head tracking systems are an amazing new technology. At their strengt
 
 Inside-out head tracking systems, like those in the HoloLens, are very good at telling where the head is relative to nearby physical features. Equivalently, they are very good at telling where real-world features are relative to the head.
 
-But they are not as good at telling where the head is relative to where the head was. When the head moves from point A to point B, the tracking system will generally be slightly wrong about how far the head is traveled. That means the tracking system will be incorrect about the distance between points A and B. This is frequently and confusingly called "the scale problem".
+But they are not as good at telling where the head is relative to where the head was. When the head moves from point A to point B, the tracking system will generally be slightly wrong about how far the head has traveled. That means the tracking system will be incorrect about the distance between points A and B. This is frequently and confusingly called "the scale problem".
 
 Then when the head travels from point B back to point A, it will again be wrong about the distance traveled. It will be impressively close to correct, but noticeably incorrect. This is also referred to as "drift".
 
 These problems are discussed more in this [FAQ](../IntroFAQ.md#why-are-the-virtual-and-real-world-markers-inconsistent).
 
-What matters here is that the World Locking Tools can fix these problems. In the latter case, of drift, the World Locking Tools can recognize that the head is back near point A, from the physical features around point A, and correct the head's position.
+What matters here is that the World Locking Tools can fix these problems. In the latter case, of drift, the World Locking Tools can recognize that the head is back near point A, from the physical features around point A, and correct the head's coordinates.
 
 In the former case, of the scale problem, the World Locking Tools can take additional input from the application to know where point B is relative to point A, and correct that distance travelled as well.
 
