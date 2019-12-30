@@ -91,6 +91,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         private void UpdateSpongy()
         {
+#if false
             Debug.Assert(manager != null, "This should not be called without a valid manager");
             AnchorManager anchorManager = manager.AnchorManager as AnchorManager;
             Debug.Assert(anchorManager != null, "This should not be called without a valid AnchorManager");
@@ -132,6 +133,84 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 {
                     spongyAnchorVizs[id].SetNoSupport();
                 }
+            }
+#else
+            Debug.Assert(manager != null, "This should not be called without a valid manager");
+            AnchorManager anchorManager = manager.AnchorManager as AnchorManager;
+            Debug.Assert(anchorManager != null, "This should not be called without a valid AnchorManager");
+
+            CheckSpongyRoot(manager);
+
+            var currentDict = anchorManager.SpongyAnchors;
+            List<SyncLists.IdPair<AnchorId, SpongyAnchor>> current = new List<SyncLists.IdPair<AnchorId, SpongyAnchor>>();
+            foreach (var item in currentDict)
+            {
+                current.Add(new SyncLists.IdPair<AnchorId, SpongyAnchor>() { id = item.Key, target = item.Value });
+            }
+            current.Sort(SyncLists.IdPair<AnchorId, SpongyAnchor>.CompareById);
+
+            var existingDict = spongyAnchorVizs;
+            List<SyncLists.IdPair<AnchorId, SpongyAnchorVisual>> existing = new List<SyncLists.IdPair<AnchorId, SpongyAnchorVisual>>();
+            foreach (var item in existingDict)
+            {
+                existing.Add(new SyncLists.IdPair<AnchorId, SpongyAnchorVisual>() { id = item.Key, target = item.Value });
+            }
+            existing.Sort(SyncLists.IdPair<AnchorId, SpongyAnchorVisual>.CompareById);
+
+            SyncLists.Sync(existing, current, Comparer<AnchorId>.Default, CreateSpongyVisual, DestroySpongyVisual);
+
+
+            // Visualize the support relevances.
+            var supportRelevances = manager.Plugin.GetSupportRelevances();
+
+            for (int i = 0; i < existing.Count; ++i)
+            {
+                AnchorId id = existing[i].id;
+                float relevance;
+                if (supportRelevances.TryGetValue(id, out relevance))
+                {
+                    existing[i].target.SetSupportRelevance(relevance);
+                }
+                else
+                {
+                    existing[i].target.SetNoSupport();
+                }
+            }
+
+            spongyAnchorVizs.Clear();
+            for(int i = 0; i < existing.Count; ++i)
+            {
+                spongyAnchorVizs[existing[i].id] = existing[i].target;
+            }
+#endif
+        }
+
+        public SyncLists.IdPair<AnchorId, SpongyAnchorVisual> CreateSpongyVisual(SyncLists.IdPair<AnchorId, SpongyAnchor> source)
+        {
+            var spongyAnchorVisual = Prefab_SpongyAnchorViz.Instantiate(
+                spongyWorldViz,
+                source.target.GetComponent<WorldAnchor>());
+
+            return new SyncLists.IdPair<AnchorId, SpongyAnchorVisual>()
+            {
+                id = source.id,
+                target = spongyAnchorVisual
+            };
+        }
+
+        public void DestroySpongyVisual(SyncLists.IdPair<AnchorId, SpongyAnchorVisual> target)
+        {
+            Destroy(target.target);
+        }
+
+        private void CheckSpongyRoot(WorldLockingManager manager)
+        {
+            // The spongyWorldViz object is hung off the SpongyFrame.
+            if (!spongyWorldViz)
+            {
+                spongyWorldViz = Instantiate(Prefab_FrameViz, manager.AdjustmentFrame.transform);
+                spongyWorldViz.name = "Spongy";
+                spongyWorldViz.color = Color.green;
             }
         }
 
