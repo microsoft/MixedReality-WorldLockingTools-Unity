@@ -237,5 +237,170 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
                 dstPoses[i] = anchorPose;
             }
         }
+
+        //#####################################################################################################
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="IdType"></typeparam>
+        /// <typeparam name="T"></typeparam>
+        private class IdPair<IdType, T>
+        {
+            public IdType id;
+            public T target;
+        };
+
+        private delegate IdPair<IdType, T> CreatePair<IdType, S, T>(IdPair<IdType, S> source);
+        private delegate void DestroyPair<IdType, T>(IdPair<IdType, T> item);
+
+        private void SyncLists<IdType, VisualType, TargetType>(
+            List<IdPair<IdType, VisualType>> existingVisuals,
+            List<IdPair<IdType, TargetType>> currentAnchors,
+            Comparer<IdType> compareIds,
+            CreatePair<IdType, TargetType, VisualType> creator,
+            DestroyPair<IdType, VisualType> destroyer)
+        {
+            int iVis = existingVisuals.Count - 1;
+            int iAnc = currentAnchors.Count - 1;
+
+            while (iVis >= 0 && iAnc >= 0)
+            {
+                /// If the existing visuals is greater than the current anchor,
+                /// then there is no corresponding current anchor. So delete the visual
+                int comparison = compareIds.Compare(existingVisuals[iVis].id, currentAnchors[iAnc].id);
+                if (comparison > 0)
+                {
+                    /// delete existingVisuals[iVis].
+                    destroyer(existingVisuals[iVis]);
+                    existingVisuals.RemoveAt(iVis);
+                    --iVis;
+                    /// Remain on iAnc
+                }
+                /// If the existing visuals is less, then we are missing a visual for the larger current anchors.
+                /// Add it now.
+                else if (comparison < 0)
+                {
+                    var item = creator(currentAnchors[iAnc]);
+                    existingVisuals.Insert(iVis + 1, item);
+                    /// Now ca[ianc] <==> ev[ivis+1]. So move on to ca[ianc-1] / ev[ivis];
+                    --iAnc;
+                }
+                else
+                {
+                    --iAnc;
+                    --iVis;
+                }
+            }
+
+            // If iVis && iAnc are both less than zero, then we are done.
+            // If iVis < 0 but iAnc >= 0, then we need more visuals created, from iAnc on down.
+            // If iVis >= 0 but iAnc < 0, then from iVis down needs to be deleted.
+            Debug.Assert(iVis < 0 || iAnc < 0);
+            while (iAnc >= 0)
+            {
+                existingVisuals.Insert(0, creator(currentAnchors[iAnc]));
+                --iAnc;
+            }
+            while (iVis >= 0)
+            {
+                destroyer(existingVisuals[iVis]);
+                existingVisuals.RemoveAt(iVis);
+                --iVis;
+            }
+        }
+
+        private class AnchorVisTest
+        {
+            public AnchorId id;
+
+            public static IdPair<AnchorId, AnchorVisTest> Create(IdPair<AnchorId, AnchorDummy> source)
+            {
+                return new IdPair<AnchorId, AnchorVisTest>()
+                {
+                    id = source.id,
+                    target = new AnchorVisTest() { id = source.id }
+                };
+            }
+
+            public static void Destroy(IdPair<AnchorId, AnchorVisTest> target)
+            {
+
+            }
+        }
+
+        private class AnchorIdVisTestPair : IdPair<AnchorId, AnchorVisTest>
+        {
+            public static AnchorIdVisTestPair Create(AnchorId id)
+            {
+                return new AnchorIdVisTestPair()
+                {
+                    id = id,
+                    target = new AnchorVisTest()
+                    {
+                        id = id
+                    }
+                };
+            }
+
+            public static AnchorIdVisTestPair Create(int id)
+            {
+                return Create((AnchorId)id);
+            }
+        }
+
+        private struct AnchorDummy
+        {
+            public AnchorId id;
+
+            public static AnchorDummy Create(AnchorId id)
+            {
+                return new AnchorDummy() { id = id };
+            }
+
+            public static AnchorDummy Create(int id)
+            {
+                return Create((AnchorId)id);
+            }
+        }
+
+        [Test]
+        public void ListSyncTest()
+        {
+            UnityEngine.Debug.Log("Enter Sync Test");
+
+            List<IdPair<AnchorId, AnchorVisTest>> existing = new List<IdPair<AnchorId, AnchorVisTest>>();
+            for (int i = 2; i < 6; ++i)
+            {
+                existing.Add(AnchorIdVisTestPair.Create(i));
+            }
+
+            List<IdPair<AnchorId, AnchorDummy>> current = new List<IdPair<AnchorId, AnchorDummy>>();
+            for (int i = 1; i < 7; ++i)
+            {
+                current.Add(new IdPair<AnchorId, AnchorDummy>() { id = (AnchorId)i, target = AnchorDummy.Create(i) });
+            }
+
+            SyncLists<AnchorId, AnchorVisTest, AnchorDummy>(
+                existing,
+                current,
+                Comparer<AnchorId>.Default,
+                AnchorVisTest.Create,
+                AnchorVisTest.Destroy
+                );
+
+            current.RemoveAt(current.Count / 2);
+
+            SyncLists<AnchorId, AnchorVisTest, AnchorDummy>(
+                existing,
+                current,
+                Comparer<AnchorId>.Default,
+                AnchorVisTest.Create,
+                AnchorVisTest.Destroy
+                );
+
+            current.RemoveAt(current.Count / 2);
+
+        }
     }
 }
