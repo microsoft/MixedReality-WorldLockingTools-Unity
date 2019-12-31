@@ -4,15 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Microsoft.MixedReality.WorldLocking.Core;
 
-namespace Microsoft.MixedReality.WorldLocking.Tools
+namespace Microsoft.MixedReality.WorldLocking.Core
 {
     public class SyncLists
     {
-        public class IdPair<IdType, T>
+        public class IdItem<IdType>
         {
             public IdType id;
+        };
+
+        public class IdPair<IdType, T> : IdItem<IdType>
+        {
             public T target;
 
             public static int CompareById(IdPair<IdType, T> lhs, IdPair<IdType, T> rhs)
@@ -21,15 +24,16 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             }
         };
 
-        public delegate IdPair<IdType, T> CreatePair<IdType, S, T>(IdPair<IdType, S> source);
-        public delegate void DestroyPair<IdType, T>(IdPair<IdType, T> item);
+        public delegate IdPair<IdType, ResourceType> CreatePair<IdType, ItemType, ResourceType>(ItemType source);
+        public delegate void DestroyPair<IdType, ResourceType>(IdPair<IdType, ResourceType> item);
 
-        public static void Sync<IdType, VisualType, TargetType>(
+        public static void Sync<IdType, VisualType, ItemType>(
             List<IdPair<IdType, VisualType>> existingVisuals,
-            List<IdPair<IdType, TargetType>> currentAnchors,
+            List<ItemType> currentAnchors,
             Comparer<IdType> compareIds,
-            CreatePair<IdType, TargetType, VisualType> creator,
+            CreatePair<IdType, ItemType, VisualType> creator,
             DestroyPair<IdType, VisualType> destroyer)
+            where ItemType : IdItem<IdType>
         {
             int iVis = existingVisuals.Count - 1;
             int iAnc = currentAnchors.Count - 1;
