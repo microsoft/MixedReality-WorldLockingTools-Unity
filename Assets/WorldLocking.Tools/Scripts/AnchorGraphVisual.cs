@@ -26,9 +26,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         private GameObject worldLockingVizRoot;
         private Dictionary<FragmentId, FrameVisual> frozenFragmentVizs = new Dictionary<FragmentId, FrameVisual>();
 
-        private Dictionary<AnchorId, SpongyAnchorVisual> spongyAnchorVizs = new Dictionary<AnchorId, SpongyAnchorVisual>();
-        private Dictionary<AnchorId, FrozenAnchorVisual> frozenAnchorVizs = new Dictionary<AnchorId, FrozenAnchorVisual>();
-        private Dictionary<AnchorEdge, ConnectingLine> edgeVizs = new Dictionary<AnchorEdge, ConnectingLine>();
+        //private Dictionary<AnchorId, SpongyAnchorVisual> spongyAnchorVizs = new Dictionary<AnchorId, SpongyAnchorVisual>();
+        private List<SyncLists.IdPair<AnchorId, SpongyAnchorVisual>> spongyResources = new List<SyncLists.IdPair<AnchorId, SpongyAnchorVisual>>();
+        //private Dictionary<AnchorId, FrozenAnchorVisual> frozenAnchorVizs = new Dictionary<AnchorId, FrozenAnchorVisual>();
+        private List<SyncLists.IdPair<AnchorId, FrozenAnchorVisual>> frozenResources = new List<SyncLists.IdPair<AnchorId, FrozenAnchorVisual>>();
+        //private Dictionary<AnchorEdge, ConnectingLine> edgeVizs = new Dictionary<AnchorEdge, ConnectingLine>();
+        private List<SyncLists.IdPair<AnchorEdge, ConnectingLine>> edgeResources = new List<SyncLists.IdPair<AnchorEdge, ConnectingLine>>();
         private Dictionary<AnchorId, ConnectingLine> displacementVizs = new Dictionary<AnchorId, ConnectingLine>();
 
         private void Reset()
@@ -54,9 +57,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             }
             frozenFragmentVizs.Clear();
 
-            spongyAnchorVizs.Clear();
-            frozenAnchorVizs.Clear();
-            edgeVizs.Clear();
+            // mafinc spongyAnchorVizs.Clear();
+            spongyResources.Clear();
+            // mafinc frozenAnchorVizs.Clear();
+            frozenResources.Clear();
+            // mafinc edgeVizs.Clear();
+            edgeResources.Clear();
             displacementVizs.Clear();
         }
 
@@ -141,66 +147,260 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             CheckSpongyRoot(manager);
 
-            var currentDict = anchorManager.SpongyAnchors;
-            List<SyncLists.IdPair<AnchorId, SpongyAnchor>> current = new List<SyncLists.IdPair<AnchorId, SpongyAnchor>>();
-            foreach (var item in currentDict)
+            var spongyCurrentDict = anchorManager.SpongyAnchors;
+            List<SyncLists.IdPair<AnchorId, SpongyAnchor>> spongyCurrent = new List<SyncLists.IdPair<AnchorId, SpongyAnchor>>();
+            foreach (var item in spongyCurrentDict)
             {
-                current.Add(new SyncLists.IdPair<AnchorId, SpongyAnchor>() { id = item.Key, target = item.Value });
+                spongyCurrent.Add(new SyncLists.IdPair<AnchorId, SpongyAnchor>() { id = item.Key, target = item.Value });
             }
-            current.Sort(SyncLists.IdPair<AnchorId, SpongyAnchor>.CompareById);
+            spongyCurrent.Sort(SyncLists.IdPair<AnchorId, SpongyAnchor>.CompareById);
 
-            var existingDict = spongyAnchorVizs;
-            List<SyncLists.IdPair<AnchorId, SpongyAnchorVisual>> existing = new List<SyncLists.IdPair<AnchorId, SpongyAnchorVisual>>();
-            foreach (var item in existingDict)
+#if false // mafinc
+            var resourceDict = spongyAnchorVizs;
+            List<SyncLists.IdPair<AnchorId, SpongyAnchorVisual>> spongyResources = new List<SyncLists.IdPair<AnchorId, SpongyAnchorVisual>>();
+            foreach (var item in resourceDict)
             {
-                existing.Add(new SyncLists.IdPair<AnchorId, SpongyAnchorVisual>() { id = item.Key, target = item.Value });
+                spongyResources.Add(new SyncLists.IdPair<AnchorId, SpongyAnchorVisual>() { id = item.Key, target = item.Value });
             }
-            existing.Sort(SyncLists.IdPair<AnchorId, SpongyAnchorVisual>.CompareById);
+            spongyResources.Sort(SyncLists.IdPair<AnchorId, SpongyAnchorVisual>.CompareById);
+#endif // mafinc
 
-            SyncLists.Sync(existing, current, Comparer<AnchorId>.Default, CreateSpongyVisual, DestroySpongyVisual);
+            SpongyVisualCreator spongyCreator = new SpongyVisualCreator(Prefab_SpongyAnchorViz, spongyWorldViz);
+            SyncLists.Sync(
+                spongyCurrent,
+                spongyResources,
+                (item, res) => item.id.CompareTo(res.id), 
+                spongyCreator.CreateSpongyVisual, 
+                spongyCreator.UpdateSpongyVisual,
+                spongyCreator.DestroySpongyVisual);
 
 
             // Visualize the support relevances.
             var supportRelevances = manager.Plugin.GetSupportRelevances();
 
-            for (int i = 0; i < existing.Count; ++i)
+            for (int i = 0; i < spongyResources.Count; ++i)
             {
-                AnchorId id = existing[i].id;
+                AnchorId id = spongyResources[i].id;
                 float relevance;
                 if (supportRelevances.TryGetValue(id, out relevance))
                 {
-                    existing[i].target.SetSupportRelevance(relevance);
+                    spongyResources[i].target.SetSupportRelevance(relevance);
                 }
                 else
                 {
-                    existing[i].target.SetNoSupport();
+                    spongyResources[i].target.SetNoSupport();
                 }
-            }
-
-            spongyAnchorVizs.Clear();
-            for(int i = 0; i < existing.Count; ++i)
-            {
-                spongyAnchorVizs[existing[i].id] = existing[i].target;
             }
 #endif
         }
 
-        public SyncLists.IdPair<AnchorId, SpongyAnchorVisual> CreateSpongyVisual(SyncLists.IdPair<AnchorId, SpongyAnchor> source)
+        private static AnchorEdge RegularizeEdge(AnchorEdge edge)
         {
-            var spongyAnchorVisual = Prefab_SpongyAnchorViz.Instantiate(
-                spongyWorldViz,
-                source.target.GetComponent<WorldAnchor>());
-
-            return new SyncLists.IdPair<AnchorId, SpongyAnchorVisual>()
+            if (edge.anchorId2 < edge.anchorId1)
             {
-                id = source.id,
-                target = spongyAnchorVisual
-            };
+                var id = edge.anchorId2;
+                edge.anchorId2 = edge.anchorId1;
+                edge.anchorId1 = id;
+            }
+            return edge;
         }
 
-        public void DestroySpongyVisual(SyncLists.IdPair<AnchorId, SpongyAnchorVisual> target)
+        private Comparer<SyncLists.IdPair<AnchorId, SpongyAnchorVisual>> spongyAnchorVisualById
+            = Comparer<SyncLists.IdPair<AnchorId, SpongyAnchorVisual>>.Create((x, y) => x.id.CompareTo(y.id));
+        private Comparer<SyncLists.IdPair<AnchorId, FrozenAnchorVisual>> frozenAnchorVisualById
+            = Comparer<SyncLists.IdPair<AnchorId, FrozenAnchorVisual>>.Create((x, y) => x.id.CompareTo(y.id));
+
+        private static int CompareAnchorEdges(AnchorEdge lhs, AnchorEdge rhs)
         {
-            Destroy(target.target);
+            Debug.LogError(lhs.anchorId1 < lhs.anchorId2);
+            Debug.LogError(rhs.anchorId1 < rhs.anchorId2);
+            if (lhs.anchorId1 < rhs.anchorId1)
+            {
+                return -1;
+            }
+            if (lhs.anchorId1 > rhs.anchorId1)
+            {
+                return 1;
+            }
+            if (lhs.anchorId2 < rhs.anchorId2)
+            {
+                return -1;
+            }
+            if (lhs.anchorId2 > rhs.anchorId2)
+            {
+                return 1;
+            }
+            return 0;
+        }
+        private Comparer<AnchorEdge> anchorEdgeComparer = Comparer<AnchorEdge>.Create((x, y) => CompareAnchorEdges(x, y));
+
+        private static SyncLists.IdPair<S, T> FindInSortedList<S, T>(S key, List<SyncLists.IdPair<S, T>> list, IComparer<SyncLists.IdPair<S, T>> comparer)
+        {
+            SyncLists.IdPair<S, T> item = new SyncLists.IdPair<S, T>() { id = key };
+            int idx = list.BinarySearch(item, comparer);
+            if (idx < 0)
+            {
+                Debug.LogError("Item not found in sorted list");
+                return null;
+            }
+            return list[idx];
+        }
+
+        private static SyncLists.IdPair<S, T> FindInSortedList<S, T>(S key, List<SyncLists.IdPair<S, T>> list, Comparison<S> comparison)
+        {
+            var comparer = Comparer<SyncLists.IdPair<S, T>>.Create((lhs, rhs) => comparison(lhs.id, rhs.id));
+            return FindInSortedList(key, list, comparer);
+        }
+
+        private class SpongyVisualCreator
+        {
+            private readonly SpongyAnchorVisual Prefab_SpongyAnchorVisual;
+            private readonly FrameVisual spongyWorldVisual;
+
+            public SpongyVisualCreator(SpongyAnchorVisual prefab, FrameVisual spongyWorldVisual)
+            {
+                this.Prefab_SpongyAnchorVisual = prefab;
+                this.spongyWorldVisual = spongyWorldVisual;
+            }
+
+            public SyncLists.IdPair<AnchorId, SpongyAnchorVisual> CreateSpongyVisual(SyncLists.IdPair<AnchorId, SpongyAnchor> source)
+            {
+                var spongyAnchorVisual = Prefab_SpongyAnchorVisual.Instantiate(
+                    spongyWorldVisual,
+                    source.target.GetComponent<WorldAnchor>());
+
+                return new SyncLists.IdPair<AnchorId, SpongyAnchorVisual>()
+                {
+                    id = source.id,
+                    target = spongyAnchorVisual
+                };
+            }
+
+            public void UpdateSpongyVisual(SyncLists.IdPair<AnchorId, SpongyAnchor> source, SyncLists.IdPair<AnchorId, SpongyAnchorVisual> target)
+            {
+
+            }
+
+            public void DestroySpongyVisual(SyncLists.IdPair<AnchorId, SpongyAnchorVisual> target)
+            {
+                Destroy(target.target);
+            }
+        }
+
+        private class FrozenAnchorVisualCreator
+        {
+            private readonly FrozenAnchorVisual Prefab_FrozenAnchorViz;
+            private readonly HashSet<FragmentId> activeFragmentIds;
+            private readonly Dictionary<FragmentId, FrameVisual> frozenFragmentVisuals;
+            private readonly Pose frozenFromLocked;
+
+            public FrozenAnchorVisualCreator(
+                FrozenAnchorVisual prefab,
+                HashSet<FragmentId> activeFragmentIds,
+                Dictionary<FragmentId, FrameVisual> fragmentVisuals,
+                Pose frozenFromLocked)
+            {
+                this.Prefab_FrozenAnchorViz = prefab;
+                this.activeFragmentIds = activeFragmentIds;
+                this.frozenFragmentVisuals = fragmentVisuals;
+                this.frozenFromLocked = frozenFromLocked;
+            }
+
+            public SyncLists.IdPair<AnchorId, FrozenAnchorVisual> CreateFrozenVisual(SyncLists.IdPair<AnchorId, FragmentPose> source)
+            {
+                FragmentId fragmentId = source.target.fragmentId;
+                if (!activeFragmentIds.Contains(fragmentId))
+                {
+                    return null;
+                }
+
+                AnchorId anchorId = source.id;
+                Pose localPose = source.target.pose;
+                localPose = frozenFromLocked.Multiply(localPose);
+
+
+                // Already ensured this exists in above block.
+                FrameVisual frozenFragmentViz = frozenFragmentVisuals[fragmentId];
+
+                // If there isn't a visualization for this anchor, add one.
+                FrozenAnchorVisual frozenAnchorVisual;
+                frozenAnchorVisual = Prefab_FrozenAnchorViz.Instantiate(anchorId.FormatStr(), frozenFragmentViz);
+                frozenAnchorVisual.gameObject.AddComponent<AdjusterMoving>();
+
+                // Put the frozen anchor vis at the world locked transform of the anchor
+                frozenAnchorVisual.transform.SetLocalPose(localPose);
+
+                return new SyncLists.IdPair<AnchorId, FrozenAnchorVisual>()
+                {
+                    id = source.id,
+                    target = frozenAnchorVisual
+                };
+            }
+
+            public void UpdateFrozenVisual(SyncLists.IdPair<AnchorId, FragmentPose> source, SyncLists.IdPair<AnchorId, FrozenAnchorVisual> target)
+            {
+                Pose localPose = source.target.pose;
+                localPose = frozenFromLocked.Multiply(localPose);
+
+                // Put the frozen anchor vis at the world locked transform of the anchor
+                target.target.transform.SetLocalPose(localPose);
+            }
+
+            public void DestroyFrozenVisual(SyncLists.IdPair<AnchorId, FrozenAnchorVisual> target)
+            {
+                Destroy(target.target);
+            }
+
+        }
+
+        private class FrozenEdgeVisualCreator
+        {
+            private readonly AnchorGraphVisual owner;
+            private readonly List<SyncLists.IdPair<AnchorId, FrozenAnchorVisual>> frozenResources;
+
+            public FrozenEdgeVisualCreator(AnchorGraphVisual owner, List<SyncLists.IdPair<AnchorId, FrozenAnchorVisual>> frozenResources)
+            {
+                this.owner = owner;
+                this.frozenResources = frozenResources;
+            }
+
+
+            public SyncLists.IdPair<AnchorEdge, ConnectingLine> CreateFrozenEdge(AnchorEdge edge)
+            {
+                var anchorId1 = edge.anchorId1;
+                var anchorId2 = edge.anchorId2;
+
+                var frozenAnchor1 = FindInSortedList(anchorId1, frozenResources, (x, y) => x.CompareTo(y));
+                var frozenAnchor2 = FindInSortedList(anchorId2, frozenResources, (x, y) => x.CompareTo(y));
+                if (frozenAnchor1 == null || frozenAnchor2 == null)
+                {
+                    return null;
+                }
+
+                Color color = Color.blue;
+                float width = 0.002f;
+                Transform parent = frozenAnchor1.target.transform;
+
+                var edgeVisual = ConnectingLine.Create(parent,
+                    frozenAnchor1.target.transform, frozenAnchor2.target.transform,
+                    width, color);
+
+                return new SyncLists.IdPair<AnchorEdge, ConnectingLine>()
+                {
+                    id = edge,
+                    target = edgeVisual
+                };
+            }
+
+            public void UpdateFrozenEdge(AnchorEdge source, SyncLists.IdPair<AnchorEdge, ConnectingLine> target)
+            {
+
+            }
+
+            public void DestroyFrozenEdge(SyncLists.IdPair<AnchorEdge, ConnectingLine> target)
+            {
+                Destroy(target.target);
+            }
         }
 
         private void CheckSpongyRoot(WorldLockingManager manager)
@@ -218,23 +418,32 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         {
             Debug.Assert(manager != null, "This should not be called without a valid manager");
             var plugin = manager.Plugin;
-            var uptodateFrozenAnchors = plugin.GetFrozenAnchors();
-            var uptodateEdges = plugin.GetFrozenEdges();
 
-            // Cull out any frozen anchors the DLL doesn't know about
-            foreach (var staleId in frozenAnchorVizs.Keys.Except(uptodateFrozenAnchors.Keys).ToArray())
+            // mafinc - holder
+            var frozenAnchorDict = plugin.GetFrozenAnchors();
+            List<SyncLists.IdPair<AnchorId, FragmentPose>> frozenCurrent = new List<SyncLists.IdPair<AnchorId, FragmentPose>>();
+            foreach (var item in frozenAnchorDict)
             {
-                Destroy(frozenAnchorVizs[staleId]);
-                frozenAnchorVizs.Remove(staleId);
+                frozenCurrent.Add(new SyncLists.IdPair<AnchorId, FragmentPose>() { id = item.Key, target = item.Value });
             }
+            frozenCurrent.Sort((x, y) => x.id.CompareTo(y.id));
 
-            // Cull out any edges the DLL has forgotten about.
-            foreach (var staleEdge in edgeVizs.Keys.Except(uptodateEdges).ToArray())
-            {
-                Destroy(edgeVizs[staleEdge]);
-                edgeVizs.Remove(staleEdge);
-            }
+            var activeFragmentIds = UpdateFragmentVisuals();
 
+            /// The "frozen" coordinates here are ignoring the rest of the transform up the camera tree.
+            Pose frozenFromLocked = manager.FrozenFromLocked;
+
+
+            var frozenCreator = new FrozenAnchorVisualCreator(Prefab_FrozenAnchorViz, activeFragmentIds, frozenFragmentVizs, frozenFromLocked);
+            SyncLists.Sync(
+                frozenCurrent,
+                frozenResources, 
+                (item, res) => item.id.CompareTo(res.id),
+                frozenCreator.CreateFrozenVisual,
+                frozenCreator.UpdateFrozenVisual,
+                frozenCreator.DestroyFrozenVisual);
+
+#if false // mafinc
             // DisplacementVizs is lines from frozen to spongy anchors. Cull any that we don't have frozen anchors for.
             foreach (var staleId in displacementVizs.Keys.Except(uptodateFrozenAnchors.Keys).ToArray())
             {
@@ -242,8 +451,80 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 displacementVizs.Remove(staleId);
             }
 
-            // Now go through and find all fragment GameObjects that are active (not disabled).
-            // The visualization is still enabled, even though everything in the fragment is disabled.
+            // kv.Key == anchorId
+            // kv.Value.fragmentId == fragmentId
+            // kv.Value.pose == WorldLockingAnchors[anchorId].tranform, so world locked transform of the anchor
+            foreach (var kv in frozenCurrent)
+            {
+                FragmentId fragmentId = kv.target.fragmentId;
+                if (!activeFragmentIds.Contains(fragmentId))
+                    continue;
+
+                AnchorId anchorId = kv.id;
+                Pose localPose = kv.Value.pose;
+                localPose = frozenFromLocked.Multiply(localPose);
+
+                bool breakLoop = false;
+
+                // We just made sure we have all spongy anchor visualizations in UpdateSpongy().
+
+                // if we have both a frozen anchor (assured above) and a spongy anchor (assured in UpdateSpongy() above), 
+                // but no connecting line, add one now.
+#if false // mafinc
+                if (spongyAnchorVizs.ContainsKey(anchorId) && !displacementVizs.ContainsKey(anchorId))
+                {
+                    var newLine = ConnectingLine.Create(frozenFragmentViz.transform,
+                                                        frozenAnchorViz.transform,
+                                                        spongyAnchorVizs[anchorId].transform,
+                                                        0.01f, Color.red);
+                    displacementVizs[anchorId] = newLine;
+                    breakLoop = true;
+                }
+#else
+                var spongyResource = FindInSortedList(anchorId, spongyResources, spongyAnchorVisualById);
+                if (spongyResource != null && !displacementVizs.ContainsKey(anchorId))
+                {
+                    var newLine = ConnectingLine.Create(frozenFragmentViz.transform,
+                                                        frozenAnchorViz.transform,
+                                                        spongyResource.target.transform,
+                                                        0.01f, Color.red);
+                    displacementVizs[anchorId] = newLine;
+                    breakLoop = true;
+                }
+#endif // mafinc
+
+                if (breakLoop)
+                {
+                    break; // create at most one frozen anchor per frame to avoid performance spike
+                }
+            }
+#endif // mafinc
+
+#if true // mafinc
+            // mafinc - holder
+            var uptodateEdges = plugin.GetFrozenEdges();
+            List<AnchorEdge> edgeCurrent = new List<AnchorEdge>();
+            foreach (var edge in uptodateEdges)
+            {
+                edgeCurrent.Add(RegularizeEdge(edge));
+            }
+            edgeCurrent.Sort(anchorEdgeComparer);
+
+            var frozenEdgeCreator = new FrozenEdgeVisualCreator(this, frozenResources);
+            SyncLists.Sync(
+                edgeCurrent,
+                edgeResources,
+                (x, y) => CompareAnchorEdges(x, y.id),
+                frozenEdgeCreator.CreateFrozenEdge,
+                frozenEdgeCreator.UpdateFrozenEdge,
+                frozenEdgeCreator.DestroyFrozenEdge);
+
+#endif
+        }
+
+        private HashSet<FragmentId> UpdateFragmentVisuals()
+        {
+            // Go through and find all fragment GameObjects that are active (not disabled).
             var activeFragmentIds = new HashSet<FragmentId>();
 
             GameObject worldLockingRoot = EnsureWorldLockingVizRoot();
@@ -257,7 +538,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                     FrameVisual frozenFragmentViz;
                     if (!frozenFragmentVizs.TryGetValue(fragmentId, out frozenFragmentViz))
                     {
-                        frozenFragmentViz = Instantiate(Prefab_FrameViz, worldLockingVizRoot.transform);
+                        frozenFragmentViz = Instantiate(Prefab_FrameViz, worldLockingRoot.transform);
                         frozenFragmentViz.name = fragmentId.ToString();
                         frozenFragmentVizs[fragmentId] = frozenFragmentViz;
                         frozenFragmentViz.gameObject.AddComponent<AdjusterMoving>();
@@ -265,102 +546,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                     frozenFragmentViz.color = fragmentId == fragmentManager.CurrentFragmentId ? Color.blue : Color.gray;
                 }
             }
-
-            /// The "frozen" coordinates here are ignoring the rest of the transform up the camera tree.
-            Pose frozenFromLocked = manager.FrozenFromLocked;
-
-            // kv.Key == anchorId
-            // kv.Value.fragmentId == fragmentId
-            // kv.Value.pose == WorldLockingAnchors[anchorId].tranform, so world locked transform of the anchor
-            foreach (var kv in uptodateFrozenAnchors)
-            {
-                FragmentId fragmentId = kv.Value.fragmentId;
-                if (!activeFragmentIds.Contains(fragmentId))
-                    continue;
-
-                AnchorId anchorId = kv.Key;
-                Pose localPose = kv.Value.pose;
-                localPose = frozenFromLocked.Multiply(localPose);
-
-                bool breakLoop = false;
-
-                // Already ensured this exists in above block.
-                FrameVisual frozenFragmentViz = frozenFragmentVizs[fragmentId];
-
-                // If there isn't a visualization for this anchor, add one.
-                FrozenAnchorVisual frozenAnchorViz;
-                if (!frozenAnchorVizs.TryGetValue(anchorId, out frozenAnchorViz))
-                {
-                    frozenAnchorViz = Prefab_FrozenAnchorViz.Instantiate(anchorId.FormatStr(), frozenFragmentViz);
-                    frozenAnchorVizs[anchorId] = frozenAnchorViz;
-                    frozenAnchorViz.gameObject.AddComponent<AdjusterMoving>();
-                    breakLoop = true;
-                }
-
-                // Put the frozen anchor vis at the world locked transform of the anchor
-                frozenAnchorViz.transform.SetLocalPose(localPose);
-
-                // We just made sure we have all spongy anchor visualizations in UpdateSpongy().
-
-                // if we have both a frozen anchor (assured above) and a spongy anchor (assured in UpdateSpongy() above), 
-                // but no connecting line, add one now.
-                if (spongyAnchorVizs.ContainsKey(anchorId) && !displacementVizs.ContainsKey(anchorId))
-                {
-                    var newLine = ConnectingLine.Create(frozenFragmentViz.transform,
-                                                        frozenAnchorViz.transform,
-                                                        spongyAnchorVizs[anchorId].transform,
-                                                        0.01f, Color.red);
-                    displacementVizs[anchorId] = newLine;
-                    breakLoop = true;
-                }
-
-                if (breakLoop)
-                {
-                    break; // create at most one frozen anchor per frame to avoid performance spike
-                }
-            }
-
-            foreach (var edge in uptodateEdges.Except(edgeVizs.Keys))
-            {
-                var anchorId1 = edge.anchorId1;
-                var anchorId2 = edge.anchorId2;
-
-                FrozenAnchorVisual frozenAnchorViz1;
-                FrozenAnchorVisual frozenAnchorViz2;
-                if (!frozenAnchorVizs.TryGetValue(anchorId1, out frozenAnchorViz1) || !frozenAnchorVizs.TryGetValue(anchorId2, out frozenAnchorViz2))
-                {
-                    continue;
-                }
-
-                var fragmentId1 = uptodateFrozenAnchors[anchorId1].fragmentId;
-                var fragmentId2 = uptodateFrozenAnchors[anchorId2].fragmentId;
-
-                Color color;
-                float width;
-                Transform parent;
-
-                if (fragmentId1 == fragmentId2)
-                {
-                    // regular edges (within a fragment)
-                    color = Color.blue;
-                    width = 0.001f;
-                    parent = frozenAnchorViz1.transform;
-                }
-                else
-                {
-                    // inter-fragment edge
-                    color = Color.yellow;
-                    width = 0.004f;
-                    GameObject root = EnsureWorldLockingVizRoot();
-                    parent = root.transform;
-                }
-
-                edgeVizs[edge] = ConnectingLine.Create(parent,
-                    frozenAnchorViz1.transform, frozenAnchorViz2.transform,
-                    width, color);
-
-                break; // create at most one edge visualization per frame to avoid performance spike
-            }
+            return activeFragmentIds;
         }
 
         private GameObject EnsureWorldLockingVizRoot()

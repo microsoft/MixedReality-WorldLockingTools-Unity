@@ -41,6 +41,11 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
                 return new AnchorIdVisTestPair(source.id);
             }
 
+            public static void Update(SyncLists.IdPair<AnchorId, AnchorDummy> source, SyncLists.IdPair<AnchorId, AnchorVisTest> target)
+            {
+                Assert.AreEqual(source.id, target.id);
+            }
+
             public static void Destroy(SyncLists.IdPair<AnchorId, AnchorVisTest> target)
             {
 
@@ -81,22 +86,25 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             }
             current.Sort(SyncLists.IdPair<AnchorId, AnchorDummy>.CompareById);
 
-            SyncLists.Sync<AnchorId, AnchorVisTest, SyncLists.IdPair<AnchorId, AnchorDummy>>(
-                existing,
+            SyncLists.Sync<SyncLists.IdPair<AnchorId, AnchorDummy>, SyncLists.IdPair<AnchorId, AnchorVisTest>>(
                 current,
-                Comparer<AnchorId>.Default,
+                existing,
+                (item, res) => item.id.CompareTo(res.id),
                 AnchorIdVisTestPair.Create,
+                AnchorIdVisTestPair.Update,
                 AnchorIdVisTestPair.Destroy
                 );
             CheckSynced(existing, current);
 
             current.RemoveAt(current.Count / 2);
 
-            SyncLists.Sync<AnchorId, AnchorVisTest, SyncLists.IdPair<AnchorId, AnchorDummy>>(
-                existing,
+            SyncLists.CompareToResource<SyncLists.IdPair<AnchorId, AnchorDummy>, SyncLists.IdPair<AnchorId, AnchorVisTest>> comparisonById = (item, res) => item.id.CompareTo(res.id);
+            SyncLists.Sync<SyncLists.IdPair<AnchorId, AnchorDummy>, SyncLists.IdPair<AnchorId, AnchorVisTest>>(
                 current,
-                Comparer<AnchorId>.Default,
+                existing,
+                comparisonById,
                 AnchorIdVisTestPair.Create,
+                AnchorIdVisTestPair.Update,
                 AnchorIdVisTestPair.Destroy
                 );
             CheckSynced(existing, current);
@@ -105,20 +113,22 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             current.RemoveAt(current.Count - 1);
 
             SyncLists.Sync(
-                existing,
                 current,
-                Comparer<AnchorId>.Default,
+                existing,
+                comparisonById, // reused from above
                 AnchorIdVisTestPair.Create,
+                AnchorIdVisTestPair.Update,
                 AnchorIdVisTestPair.Destroy
                 );
             CheckSynced(existing, current);
 
             current.Clear();
             SyncLists.Sync(
-                existing,
                 current,
-                Comparer<AnchorId>.Default,
+                existing,
+                comparisonById,
                 AnchorIdVisTestPair.Create,
+                AnchorIdVisTestPair.Update,
                 AnchorIdVisTestPair.Destroy
                 );
             CheckSynced(existing, current);
@@ -145,9 +155,14 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
             public AnchorEdgeVisTestPair(int id1, int id2) : this(new AnchorEdge() { anchorId1 = (AnchorId)id1, anchorId2 = (AnchorId)id2 }) { }
 
-            public static SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest> Create(SyncLists.IdItem<AnchorEdge> source)
+            public static SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest> Create(AnchorEdge source)
             {
-                return new AnchorEdgeVisTestPair(source.id);
+                return new AnchorEdgeVisTestPair(source);
+            }
+
+            public static void Update(AnchorEdge source, SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest> target)
+            {
+                Assert.AreEqual(source, target.id);
             }
 
             public static void Destroy(SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest> target)
@@ -157,7 +172,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
         }
 
 
-#if true
+
         public static int CompareEdges(AnchorEdge lhs, AnchorEdge rhs)
         {
             if (lhs.anchorId1 < rhs.anchorId1)
@@ -178,11 +193,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             }
             return 0;
         }
-        public static int CompareEdges(SyncLists.IdItem<AnchorEdge> lhs, SyncLists.IdItem<AnchorEdge> rhs)
-        {
-            return CompareEdges(lhs.id, rhs.id);
-        }
-
         private class EdgeComparer : Comparer<AnchorEdge>
         {
             public override int Compare(AnchorEdge x, AnchorEdge y)
@@ -191,14 +201,15 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             }
         };
 
-        private void RegularizeEdge(SyncLists.IdItem<AnchorEdge> edge)
+        private AnchorEdge RegularizeEdge(AnchorEdge edge)
         {
-            if (edge.id.anchorId2 < edge.id.anchorId1)
+            if (edge.anchorId2 < edge.anchorId1)
             {
-                var id = edge.id.anchorId2;
-                edge.id.anchorId2 = edge.id.anchorId1;
-                edge.id.anchorId1 = id;
+                var id = edge.anchorId2;
+                edge.anchorId2 = edge.anchorId1;
+                edge.anchorId1 = id;
             }
+            return edge;
         }
 
         [Test]
@@ -207,46 +218,81 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             UnityEngine.Debug.Log("Enter Sync Edge");
 
             List<SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest>> existing = new List<SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest>>();
-            for (int i = 2; i < 6; ++i)
-            {
-                existing.Add(new AnchorEdgeVisTestPair(i, i+1));
-            }
-            existing.ForEach(e => RegularizeEdge(e));
-            existing.Sort(CompareEdges);
 
-            List<SyncLists.IdItem<AnchorEdge>> current = new List<SyncLists.IdItem<AnchorEdge>>();
+            List<AnchorEdge> current = new List<AnchorEdge>();
             for (int i = 1; i < 7; ++i)
             {
-                current.Add(new SyncLists.IdPair<AnchorEdge, AnchorDummy>()
-                {
-                    id = new AnchorEdge()
+                current.Add(
+                    RegularizeEdge(new AnchorEdge()
                     {
                         anchorId1 = (AnchorId)i,
                         anchorId2 = (AnchorId)(i + 1)
-                    },
-                    target = AnchorDummy.Create(i)
-                });
+                    }
+                ));
             }
-            current.ForEach(e => RegularizeEdge(e));
             current.Sort(CompareEdges);
 
-            SyncLists.Sync<AnchorEdge, AnchorEdgeVisTest, SyncLists.IdItem<AnchorEdge>>(
-                existing,
+            SyncLists.Sync<AnchorEdge, SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest>>(
                 current,
-                new EdgeComparer(), 
+                existing,
+                (item, res) => CompareEdges(item, res.id), 
                 AnchorEdgeVisTestPair.Create,
+                AnchorEdgeVisTestPair.Update,
                 AnchorEdgeVisTestPair.Destroy
                 );
             CheckSynced(existing, current);
-        }
-#endif
 
-        private void CheckSynced<IdType, ResourceType>(List<SyncLists.IdPair<IdType, ResourceType>> existing, List<SyncLists.IdItem<IdType>> current)
+            current.RemoveAt(current.Count / 2);
+
+            SyncLists.Sync(
+                current,
+                existing,
+                (item, res) => CompareEdges(item, res.id),
+                AnchorEdgeVisTestPair.Create,
+                AnchorEdgeVisTestPair.Update,
+                AnchorEdgeVisTestPair.Destroy
+                );
+            CheckSynced(existing, current);
+
+            current.Add(
+                RegularizeEdge(new AnchorEdge()
+                {
+                    anchorId1 = (AnchorId)100,
+                    anchorId2 = (AnchorId)(100 + 1)
+                }
+            ));
+            current.RemoveAt(current.Count / 2);
+
+            SyncLists.Sync(
+                current,
+                existing,
+                (item, res) => CompareEdges(item, res.id),
+                AnchorEdgeVisTestPair.Create,
+                AnchorEdgeVisTestPair.Update,
+                AnchorEdgeVisTestPair.Destroy
+                );
+            CheckSynced(existing, current);
+
+            current.Clear();
+
+            SyncLists.Sync(
+                current,
+                existing,
+                (item, res) => CompareEdges(item, res.id),
+                AnchorEdgeVisTestPair.Create,
+                AnchorEdgeVisTestPair.Update,
+                AnchorEdgeVisTestPair.Destroy
+                );
+            CheckSynced(existing, current);
+
+        }
+
+        private void CheckSynced<IdType, ResourceType>(List<SyncLists.IdPair<IdType, ResourceType>> existing, List<IdType> current)
         {
             Assert.AreEqual(existing.Count, current.Count);
             for (int i = 0; i < existing.Count; ++i)
             {
-                Assert.AreEqual(existing[i].id, current[i].id);
+                Assert.AreEqual(existing[i].id, current[i]);
             }
         }
 
