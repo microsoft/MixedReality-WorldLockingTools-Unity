@@ -41,9 +41,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 /// If the existing visuals is greater than the current anchor,
                 /// then there is no corresponding current anchor. So delete the visual
                 int comparison = compareIds(currentItems[iAnc], resources[iVis]);
-                if (comparison > 0)
+                if (comparison < 0)
                 {
-                    /// delete existingVisuals[iVis].
+                    /// items id less than resources, means
+                    ///    no item for this resource.
+                    /// delete the surplus resource.
                     destroyer(resources[iVis]);
                     resources.RemoveAt(iVis);
                     --iVis;
@@ -51,8 +53,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
                 /// If the existing visuals is less, then we are missing a visual for the larger current anchors.
                 /// Add it now.
-                else if (comparison < 0)
+                else if (comparison > 0)
                 {
+                    /// items id greater than resources, means
+                    ///    for this item, no matching resource.
+                    /// create and add.
                     var item = creator(currentItems[iAnc]);
                     resources.Insert(iVis + 1, item);
                     /// Now ca[ianc] <==> ev[ivis+1]. So move on to ca[ianc-1] / ev[ivis];
@@ -60,6 +65,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
                 else
                 {
+                    /// item and resource match, just update.
                     updater(currentItems[iAnc], resources[iVis]);
                     --iAnc;
                     --iVis;

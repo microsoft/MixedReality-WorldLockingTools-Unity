@@ -86,24 +86,30 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             }
             current.Sort(SyncLists.IdPair<AnchorId, AnchorDummy>.CompareById);
 
+            /// Initial state is:
+            ///   current == [1..7]
+            ///   existing == [2..6]
+            /// Expected is to add 1 and 7 to existing.
             SyncLists.Sync<SyncLists.IdPair<AnchorId, AnchorDummy>, SyncLists.IdPair<AnchorId, AnchorVisTest>>(
                 current,
                 existing,
                 (item, res) => item.id.CompareTo(res.id),
                 AnchorIdVisTestPair.Create,
                 AnchorIdVisTestPair.Update,
-                AnchorIdVisTestPair.Destroy
+                x => { Debug.LogError("Not expecting to be deleting here, only adding."); }
                 );
             CheckSynced(existing, current);
 
             current.RemoveAt(current.Count / 2);
 
+            /// Lists are the same, except one has been removed from current.
+            /// Expect a single matching resource removed from existing.
             SyncLists.CompareToResource<SyncLists.IdPair<AnchorId, AnchorDummy>, SyncLists.IdPair<AnchorId, AnchorVisTest>> comparisonById = (item, res) => item.id.CompareTo(res.id);
             SyncLists.Sync<SyncLists.IdPair<AnchorId, AnchorDummy>, SyncLists.IdPair<AnchorId, AnchorVisTest>>(
                 current,
                 existing,
                 comparisonById,
-                AnchorIdVisTestPair.Create,
+                x => { Debug.LogError("Not expecting to be creating resources here, only deleting."); return null; },
                 AnchorIdVisTestPair.Update,
                 AnchorIdVisTestPair.Destroy
                 );
