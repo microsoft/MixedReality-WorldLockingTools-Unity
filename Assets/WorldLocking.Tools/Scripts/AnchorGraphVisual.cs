@@ -27,13 +27,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         private GameObject worldLockingVizRoot;
         private Dictionary<FragmentId, FrameVisual> frozenFragmentVizs = new Dictionary<FragmentId, FrameVisual>();
 
-        //private Dictionary<AnchorId, SpongyAnchorVisual> spongyAnchorVizs = new Dictionary<AnchorId, SpongyAnchorVisual>();
         private List<IdPair<AnchorId, SpongyAnchorVisual>> spongyResources = new List<IdPair<AnchorId, SpongyAnchorVisual>>();
-        //private Dictionary<AnchorId, FrozenAnchorVisual> frozenAnchorVizs = new Dictionary<AnchorId, FrozenAnchorVisual>();
         private List<IdPair<AnchorId, FrozenAnchorVisual>> frozenResources = new List<IdPair<AnchorId, FrozenAnchorVisual>>();
-        //private Dictionary<AnchorEdge, ConnectingLine> edgeVizs = new Dictionary<AnchorEdge, ConnectingLine>();
         private List<IdPair<AnchorEdge, ConnectingLine>> edgeResources = new List<IdPair<AnchorEdge, ConnectingLine>>();
-        //private Dictionary<AnchorId, ConnectingLine> displacementVizs = new Dictionary<AnchorId, ConnectingLine>();
         private List<IdPair<AnchorId, ConnectingLine>> displacementResources = new List<IdPair<AnchorId, ConnectingLine>>();
 
         private void Reset()
@@ -102,11 +98,11 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             CheckSpongyRoot(manager);
 
-            var spongyCurrentDict = anchorManager.SpongyAnchors;
+            var spongyCurrentSource = anchorManager.SpongyAnchors;
             List<IdPair<AnchorId, SpongyAnchor>> spongyCurrent = new List<IdPair<AnchorId, SpongyAnchor>>();
-            foreach (var item in spongyCurrentDict)
+            foreach (var item in spongyCurrentSource)
             {
-                spongyCurrent.Add(new IdPair<AnchorId, SpongyAnchor>() { id = item.Key, target = item.Value });
+                spongyCurrent.Add(new IdPair<AnchorId, SpongyAnchor>() { id = item.anchorId, target = item.spongyAnchor });
             }
             spongyCurrent.Sort(IdPair<AnchorId, SpongyAnchor>.CompareById);
 
@@ -119,7 +115,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 spongyCreator.UpdateSpongyVisual,
                 spongyCreator.DestroySpongyVisual);
 
-            // mafinc - no dictionary from plugin
             // Visualize the support relevances.
             var supportRelevancesSource = manager.Plugin.GetSupportRelevances();
             List<IdPair<AnchorId, float>> supportRelevances = new List<IdPair<AnchorId, float>>();
