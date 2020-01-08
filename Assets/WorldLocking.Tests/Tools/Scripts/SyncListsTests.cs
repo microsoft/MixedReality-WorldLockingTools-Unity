@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 
 using Microsoft.MixedReality.WorldLocking.Core;
+using Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper;
 using Microsoft.MixedReality.WorldLocking.Tools;
 
 namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
@@ -22,7 +23,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
         }
 
-        private class AnchorIdVisTestPair : SyncLists.IdPair<AnchorId, AnchorVisTest>
+        private class AnchorIdVisTestPair : IdPair<AnchorId, AnchorVisTest>
         {
 
             public AnchorIdVisTestPair(AnchorId id)
@@ -36,17 +37,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
             public AnchorIdVisTestPair(int id) : this((AnchorId)id) { }
 
-            public static SyncLists.IdPair<AnchorId, AnchorVisTest> Create(SyncLists.IdPair<AnchorId, AnchorDummy> source)
+            public static IdPair<AnchorId, AnchorVisTest> Create(IdPair<AnchorId, AnchorDummy> source)
             {
                 return new AnchorIdVisTestPair(source.id);
             }
 
-            public static void Update(SyncLists.IdPair<AnchorId, AnchorDummy> source, SyncLists.IdPair<AnchorId, AnchorVisTest> target)
+            public static void Update(IdPair<AnchorId, AnchorDummy> source, IdPair<AnchorId, AnchorVisTest> target)
             {
                 Assert.AreEqual(source.id, target.id);
             }
 
-            public static void Destroy(SyncLists.IdPair<AnchorId, AnchorVisTest> target)
+            public static void Destroy(IdPair<AnchorId, AnchorVisTest> target)
             {
 
             }
@@ -72,25 +73,25 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
         {
             UnityEngine.Debug.Log("Enter Sync Test");
 
-            List<SyncLists.IdPair<AnchorId, AnchorVisTest>> existing = new List<SyncLists.IdPair<AnchorId, AnchorVisTest>>();
+            List<IdPair<AnchorId, AnchorVisTest>> existing = new List<IdPair<AnchorId, AnchorVisTest>>();
             for (int i = 2; i < 6; ++i)
             {
                 existing.Add(new AnchorIdVisTestPair(i));
             }
-            existing.Sort(SyncLists.IdPair<AnchorId, AnchorVisTest>.CompareById);
+            existing.Sort(IdPair<AnchorId, AnchorVisTest>.CompareById);
 
-            List<SyncLists.IdPair<AnchorId, AnchorDummy>> current = new List<SyncLists.IdPair<AnchorId, AnchorDummy>>();
+            List<IdPair<AnchorId, AnchorDummy>> current = new List<IdPair<AnchorId, AnchorDummy>>();
             for (int i = 1; i < 7; ++i)
             {
-                current.Add(new SyncLists.IdPair<AnchorId, AnchorDummy>() { id = (AnchorId)i, target = AnchorDummy.Create(i) });
+                current.Add(new IdPair<AnchorId, AnchorDummy>() { id = (AnchorId)i, target = AnchorDummy.Create(i) });
             }
-            current.Sort(SyncLists.IdPair<AnchorId, AnchorDummy>.CompareById);
+            current.Sort(IdPair<AnchorId, AnchorDummy>.CompareById);
 
             /// Initial state is:
             ///   current == [1..7]
             ///   existing == [2..6]
             /// Expected is to add 1 and 7 to existing.
-            SyncLists.Sync<SyncLists.IdPair<AnchorId, AnchorDummy>, SyncLists.IdPair<AnchorId, AnchorVisTest>>(
+            ResourceMirror.Sync<IdPair<AnchorId, AnchorDummy>, IdPair<AnchorId, AnchorVisTest>>(
                 current,
                 existing,
                 (item, res) => item.id.CompareTo(res.id),
@@ -104,8 +105,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
             /// Lists are the same, except one has been removed from current.
             /// Expect a single matching resource removed from existing.
-            SyncLists.CompareToResource<SyncLists.IdPair<AnchorId, AnchorDummy>, SyncLists.IdPair<AnchorId, AnchorVisTest>> comparisonById = (item, res) => item.id.CompareTo(res.id);
-            SyncLists.Sync<SyncLists.IdPair<AnchorId, AnchorDummy>, SyncLists.IdPair<AnchorId, AnchorVisTest>>(
+            ResourceMirror.CompareToResource<IdPair<AnchorId, AnchorDummy>, IdPair<AnchorId, AnchorVisTest>> comparisonById = (item, res) => item.id.CompareTo(res.id);
+            ResourceMirror.Sync<IdPair<AnchorId, AnchorDummy>, IdPair<AnchorId, AnchorVisTest>>(
                 current,
                 existing,
                 comparisonById,
@@ -118,7 +119,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             current.RemoveAt(0);
             current.RemoveAt(current.Count - 1);
 
-            SyncLists.Sync(
+            ResourceMirror.Sync(
                 current,
                 existing,
                 comparisonById, // reused from above
@@ -129,7 +130,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             CheckSynced(existing, current);
 
             current.Clear();
-            SyncLists.Sync(
+            ResourceMirror.Sync(
                 current,
                 existing,
                 comparisonById,
@@ -147,7 +148,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
         }
 
-        private class AnchorEdgeVisTestPair : SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest>
+        private class AnchorEdgeVisTestPair : IdPair<AnchorEdge, AnchorEdgeVisTest>
         {
 
             public AnchorEdgeVisTestPair(AnchorEdge id)
@@ -161,17 +162,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
             public AnchorEdgeVisTestPair(int id1, int id2) : this(new AnchorEdge() { anchorId1 = (AnchorId)id1, anchorId2 = (AnchorId)id2 }) { }
 
-            public static SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest> Create(AnchorEdge source)
+            public static IdPair<AnchorEdge, AnchorEdgeVisTest> Create(AnchorEdge source)
             {
                 return new AnchorEdgeVisTestPair(source);
             }
 
-            public static void Update(AnchorEdge source, SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest> target)
+            public static void Update(AnchorEdge source, IdPair<AnchorEdge, AnchorEdgeVisTest> target)
             {
                 Assert.AreEqual(source, target.id);
             }
 
-            public static void Destroy(SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest> target)
+            public static void Destroy(IdPair<AnchorEdge, AnchorEdgeVisTest> target)
             {
 
             }
@@ -223,7 +224,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
         {
             UnityEngine.Debug.Log("Enter Sync Edge");
 
-            List<SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest>> existing = new List<SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest>>();
+            List<IdPair<AnchorEdge, AnchorEdgeVisTest>> existing = new List<IdPair<AnchorEdge, AnchorEdgeVisTest>>();
 
             List<AnchorEdge> current = new List<AnchorEdge>();
             for (int i = 1; i < 7; ++i)
@@ -238,7 +239,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             }
             current.Sort(CompareEdges);
 
-            SyncLists.Sync<AnchorEdge, SyncLists.IdPair<AnchorEdge, AnchorEdgeVisTest>>(
+            ResourceMirror.Sync<AnchorEdge, IdPair<AnchorEdge, AnchorEdgeVisTest>>(
                 current,
                 existing,
                 (item, res) => CompareEdges(item, res.id),
@@ -250,7 +251,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
             current.RemoveAt(current.Count / 2);
 
-            SyncLists.Sync(
+            ResourceMirror.Sync(
                 current,
                 existing,
                 (item, res) => CompareEdges(item, res.id),
@@ -269,7 +270,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             ));
             current.RemoveAt(current.Count / 2);
 
-            SyncLists.Sync(
+            ResourceMirror.Sync(
                 current,
                 existing,
                 (item, res) => CompareEdges(item, res.id),
@@ -281,7 +282,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
             current.Clear();
 
-            SyncLists.Sync(
+            ResourceMirror.Sync(
                 current,
                 existing,
                 (item, res) => CompareEdges(item, res.id),
@@ -293,7 +294,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
         }
 
-        private void CheckSynced<IdType, ResourceType>(List<SyncLists.IdPair<IdType, ResourceType>> existing, List<IdType> current)
+        private void CheckSynced<IdType, ResourceType>(List<IdPair<IdType, ResourceType>> existing, List<IdType> current)
         {
             Assert.AreEqual(existing.Count, current.Count);
             for (int i = 0; i < existing.Count; ++i)
@@ -302,7 +303,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             }
         }
 
-        private void CheckSynced<IdType, ResourceType, ItemType>(List<SyncLists.IdPair<IdType, ResourceType>> existing, List<SyncLists.IdPair<IdType, ItemType>> current)
+        private void CheckSynced<IdType, ResourceType, ItemType>(List<IdPair<IdType, ResourceType>> existing, List<IdPair<IdType, ItemType>> current)
         {
             Assert.AreEqual(existing.Count, current.Count);
             for (int i = 0; i < existing.Count; ++i)
@@ -324,9 +325,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
                 transform.position = pos;
             }
 
-            public static SyncLists.IdPair<AnchorId, PositionDummy> MakePair(int id, float x, float y)
+            public static IdPair<AnchorId, PositionDummy> MakePair(int id, float x, float y)
             {
-                SyncLists.IdPair<AnchorId, PositionDummy> ret = new SyncLists.IdPair<AnchorId, PositionDummy>();
+                IdPair<AnchorId, PositionDummy> ret = new IdPair<AnchorId, PositionDummy>();
                 ret.id = (AnchorId)id;
                 ret.target = new PositionDummy(new Vector3(x, y, 0));
                 return ret;
@@ -345,27 +346,27 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             {
             }
 
-            public SyncLists.IdPair<AnchorId, PositionDummyPair> CreateDisplacement(AnchorId id, PositionDummy frozen, PositionDummy spongy)
+            public IdPair<AnchorId, PositionDummyPair> CreateDisplacement(AnchorId id, PositionDummy frozen, PositionDummy spongy)
             {
                 PositionDummyPair newLine;
                 newLine.frozen = frozen.transform.position;
                 newLine.spongy = spongy.transform.position;
 
-                return new SyncLists.IdPair<AnchorId, PositionDummyPair>()
+                return new IdPair<AnchorId, PositionDummyPair>()
                 {
                     id = id,
                     target = newLine
                 };
             }
 
-            public void DestroyDisplacement(SyncLists.IdPair<AnchorId, PositionDummyPair> target)
+            public void DestroyDisplacement(IdPair<AnchorId, PositionDummyPair> target)
             {
                 
             }
 
             public bool ShouldConnect(
-                SyncLists.IdPair<AnchorId, PositionDummy> frozen,
-                SyncLists.IdPair<AnchorId, PositionDummy> spongy)
+                IdPair<AnchorId, PositionDummy> frozen,
+                IdPair<AnchorId, PositionDummy> spongy)
             {
                 if (frozen.id != spongy.id)
                 {
@@ -383,9 +384,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
         private void RunDisplacementTestCopy(
             DisplacementTestCreator displacementCreator,
-            List<SyncLists.IdPair<AnchorId, PositionDummy>> frozenResources,
-            List<SyncLists.IdPair<AnchorId, PositionDummy>> spongyResources,
-            List<SyncLists.IdPair<AnchorId, PositionDummyPair>> displacementResources)
+            List<IdPair<AnchorId, PositionDummy>> frozenResources,
+            List<IdPair<AnchorId, PositionDummy>> spongyResources,
+            List<IdPair<AnchorId, PositionDummyPair>> displacementResources)
         {
             /// Following is exact copy from AnchorGraphVisual for testing. Not ideal, but expedient.
             int iFrozen = 0;
@@ -439,15 +440,15 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
         [Test]
         public void ThreeListTest()
         {
-            List<SyncLists.IdPair<AnchorId, PositionDummy>> frozenResources = new List<SyncLists.IdPair<AnchorId, PositionDummy>>();
-            List<SyncLists.IdPair<AnchorId, PositionDummy>> spongyResources = new List<SyncLists.IdPair<AnchorId, PositionDummy>>();
-            List<SyncLists.IdPair<AnchorId, PositionDummyPair>> displacementResources 
-                = new List<SyncLists.IdPair<AnchorId, PositionDummyPair>>();
+            List<IdPair<AnchorId, PositionDummy>> frozenResources = new List<IdPair<AnchorId, PositionDummy>>();
+            List<IdPair<AnchorId, PositionDummy>> spongyResources = new List<IdPair<AnchorId, PositionDummy>>();
+            List<IdPair<AnchorId, PositionDummyPair>> displacementResources 
+                = new List<IdPair<AnchorId, PositionDummyPair>>();
             List<int> intersection = new List<int>();
 
             /// spongy resources anchorids are generally a subset of frozen ids. First test checks that scenario.
             /// frozen = [1..8], spongy is [2,4,6], expect displacements for [2,4,6]
-            SyncLists.IdPair<AnchorId, PositionDummy> ape = new SyncLists.IdPair<AnchorId, PositionDummy>();
+            IdPair<AnchorId, PositionDummy> ape = new IdPair<AnchorId, PositionDummy>();
             for(int i = 1; i < 9; ++i)
             {
                 frozenResources.Add(PositionDummy.MakePair(i, i, 0));
@@ -500,24 +501,24 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             }
         }
 
-        private static int FindInSortedList<S, T>(S key, List<SyncLists.IdPair<S, T>> list, IComparer<SyncLists.IdPair<S, T>> comparer)
+        private static int FindInSortedList<S, T>(S key, List<IdPair<S, T>> list, IComparer<IdPair<S, T>> comparer)
         {
-            SyncLists.IdPair<S, T> item = new SyncLists.IdPair<S, T>() { id = key };
+            IdPair<S, T> item = new IdPair<S, T>() { id = key };
             int idx = list.BinarySearch(item, comparer);
             return idx;
         }
 
-        private static int FindInSortedList<S, T>(S key, List<SyncLists.IdPair<S, T>> list, System.Comparison<S> comparison)
+        private static int FindInSortedList<S, T>(S key, List<IdPair<S, T>> list, System.Comparison<S> comparison)
         {
-            var comparer = Comparer<SyncLists.IdPair<S, T>>.Create((lhs, rhs) => comparison(lhs.id, rhs.id));
+            var comparer = Comparer<IdPair<S, T>>.Create((lhs, rhs) => comparison(lhs.id, rhs.id));
             return FindInSortedList(key, list, comparer);
         }
 
         private void CheckDisplacements(
             DisplacementTestCreator displacementCreator,
-            List<SyncLists.IdPair<AnchorId, PositionDummy>> frozenResources,
-            List<SyncLists.IdPair<AnchorId, PositionDummy>> spongyResources,
-            List<SyncLists.IdPair<AnchorId, PositionDummyPair>> displacementResources
+            List<IdPair<AnchorId, PositionDummy>> frozenResources,
+            List<IdPair<AnchorId, PositionDummy>> spongyResources,
+            List<IdPair<AnchorId, PositionDummyPair>> displacementResources
             )
         {
 

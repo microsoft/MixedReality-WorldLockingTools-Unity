@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
-    public class SyncLists
+    namespace ResourceMirrorHelper
     {
-        public class IdPair<IdType, T> 
+        public class IdPair<IdType, T>
         {
             public IdType id;
             public T target;
@@ -20,6 +20,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         };
 
+    };
+
+    public class ResourceMirror
+    {
         public delegate ResourceType CreateResource<ItemType, ResourceType>(ItemType item);
         public delegate void UpdateResource<ItemType, ResourceType>(ItemType item, ResourceType resource);
         public delegate void DestroyResource<ResourceType>(ResourceType resource);
