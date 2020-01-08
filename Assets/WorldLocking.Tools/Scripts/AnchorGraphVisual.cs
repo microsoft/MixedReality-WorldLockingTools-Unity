@@ -34,27 +34,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         private List<SyncLists.IdPair<AnchorEdge, ConnectingLine>> edgeResources = new List<SyncLists.IdPair<AnchorEdge, ConnectingLine>>();
         //private Dictionary<AnchorId, ConnectingLine> displacementVizs = new Dictionary<AnchorId, ConnectingLine>();
         private List<SyncLists.IdPair<AnchorId, ConnectingLine>> displacementResources = new List<SyncLists.IdPair<AnchorId, ConnectingLine>>();
-        private void DumpChildren(Transform parent)
-        {
-            Debug.Log($"Children of {parent.name}");
-            for(int i = 0; i < parent.childCount; ++i)
-            {
-                string str = parent.GetChild(i).name;
-                Debug.Log(str);
-            }
-        }
+
         private void Reset()
         {
             if (spongyWorldViz != null)
             {
-                DumpChildren(spongyWorldViz.transform);
                 Destroy(spongyWorldViz.gameObject);
             }
             spongyWorldViz = null;
 
             if (worldLockingVizRoot != null)
             {
-                DumpChildren(worldLockingVizRoot.transform);
                 Destroy(worldLockingVizRoot);
             }
             worldLockingVizRoot = null;
@@ -63,7 +53,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             {
                 if (p != null)
                 {
-                    DumpChildren(p.transform);
                     Destroy(p.gameObject);
                 }
             }
@@ -278,8 +267,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 FragmentId fragmentId = source.target.fragmentId;
 
                 AnchorId anchorId = source.id;
-                Pose localPose = source.target.pose;
-                localPose = frozenFromLocked.Multiply(localPose);
 
                 FrameVisual frozenFragmentViz = frozenFragmentVisuals[fragmentId];
 
@@ -289,7 +276,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 frozenAnchorVisual.gameObject.AddComponent<AdjusterMoving>();
 
                 // Put the frozen anchor vis at the world locked transform of the anchor
-                frozenAnchorVisual.transform.SetLocalPose(localPose);
+                SetPose(source, frozenAnchorVisual);
 
                 return new SyncLists.IdPair<AnchorId, FrozenAnchorVisual>()
                 {
@@ -298,13 +285,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 };
             }
 
-            public void UpdateFrozenVisual(SyncLists.IdPair<AnchorId, FragmentPose> source, SyncLists.IdPair<AnchorId, FrozenAnchorVisual> target)
+            private void SetPose(SyncLists.IdPair<AnchorId, FragmentPose> source, FrozenAnchorVisual target)
             {
                 Pose localPose = source.target.pose;
                 localPose = frozenFromLocked.Multiply(localPose);
+                localPose.position.y += 0.25f;
+                target.transform.SetLocalPose(localPose);
+            }
 
-                // Put the frozen anchor vis at the world locked transform of the anchor
-                target.target.transform.SetLocalPose(localPose);
+            public void UpdateFrozenVisual(SyncLists.IdPair<AnchorId, FragmentPose> source, SyncLists.IdPair<AnchorId, FrozenAnchorVisual> target)
+            {
+                SetPose(source, target.target);
             }
 
             public void DestroyFrozenVisual(SyncLists.IdPair<AnchorId, FrozenAnchorVisual> target)
@@ -512,60 +503,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 }
             }
 #else
-            /// Have 3 lists
-            /// frozenAnchorVizs
-            /// spongyAnchorVizs
-            /// displacementVizs
-            /// 
-            /// The plan is something like:
-            ///   foreach spongyAnchor {
-            ///      skip frozenAnchors with id lt spongyAnchor
-            ///      if frozenAnchor.id eq spongyAnchor.id {
-            ///         if distance from frozenAnchor to spongyAnchor great enough {
-            ///             delete displacements from current while lt frozenAnchor.id
-            ///             if displacement.id > frozenAnchor.id {
-            ///                 insert a new displacement from frozenAnchor to spongyAnchor
-            ///             }
-            ///         }
-            ///     }
-            ///  }
-            ///  delete displacements from current to end
-            ///   
+            // Connect frozen anchors with corresponding spongy anchors with a line.
             DisplacementCreator displacementCreator = new DisplacementCreator();
-            int iFrozen = 0;
-            int iDisplace = 0;
-            for (int iSpongy = 0; iSpongy < spongyResources.Count; ++iSpongy)
-            {
-                while (iFrozen < frozenResources.Count && frozenResources[iFrozen].id < spongyResources[iSpongy].id)
-                {
-                    iFrozen++;
-                }
-                if (displacementCreator.ShouldConnect(frozenResources[iFrozen], spongyResources[iSpongy]))
-                {
-                    AnchorId id = frozenResources[iFrozen].id;
-                    Debug.Assert(id == spongyResources[iSpongy].id);
-                    while (iDisplace < displacementResources.Count && displacementResources[iDisplace].id < id)
-                    {
-                        displacementCreator.DestroyDisplacement(displacementResources[iDisplace]);
-                    }
-                    if (iDisplace < displacementResources.Count && displacementResources[iDisplace].id > id)
-                    {
-                        displacementResources.Insert(iDisplace, 
-                            displacementCreator.CreateDisplacement(
-                                id,
-                                frozenResources[iFrozen].target, 
-                                spongyResources[iSpongy].target));
-                    }
-                    ++iDisplace;
-                }
-            }
-            int displacementCount = iDisplace;
-            while (iDisplace < displacementResources.Count)
-            {
-                displacementCreator.DestroyDisplacement(displacementResources[iDisplace++]);
-            }
-            displacementResources.RemoveRange(displacementCount, displacementResources.Count - displacementCount);
-            Debug.Assert(displacementResources.Count == displacementCount);
+            SyncDisplacements(displacementCreator,
+                frozenResources,
+                spongyResources,
+                displacementResources);
 
 #endif // mafinc
 
@@ -587,6 +530,59 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 frozenEdgeCreator.UpdateFrozenEdge,
                 frozenEdgeCreator.DestroyFrozenEdge);
 
+        }
+
+        private void SyncDisplacements(
+            DisplacementCreator displacementCreator,
+            List<SyncLists.IdPair<AnchorId, FrozenAnchorVisual>> frozenResources,
+            List<SyncLists.IdPair<AnchorId, SpongyAnchorVisual>> spongyResources,
+            List<SyncLists.IdPair<AnchorId, ConnectingLine>> displacementResources)
+        {
+            int iFrozen = 0;
+            int iDisplace = 0;
+            for (int iSpongy = 0; iSpongy < spongyResources.Count; ++iSpongy)
+            {
+                while (iFrozen < frozenResources.Count && frozenResources[iFrozen].id < spongyResources[iSpongy].id)
+                {
+                    iFrozen++;
+                }
+                /// If we've reached the end of the frozen resources, we're finished creating.
+                if (iFrozen >= frozenResources.Count)
+                {
+                    break;
+                }
+                if (displacementCreator.ShouldConnect(frozenResources[iFrozen], spongyResources[iSpongy]))
+                {
+                    AnchorId id = frozenResources[iFrozen].id;
+                    Debug.Assert(id == spongyResources[iSpongy].id);
+                    while (iDisplace < displacementResources.Count && displacementResources[iDisplace].id < id)
+                    {
+                        displacementCreator.DestroyDisplacement(displacementResources[iDisplace]);
+                        displacementResources.RemoveAt(iDisplace);
+                    }
+                    Debug.Assert(iDisplace <= displacementResources.Count);
+                    Debug.Assert(iDisplace == displacementResources.Count || displacementResources[iDisplace].id >= id);
+                    if (iDisplace == displacementResources.Count || displacementResources[iDisplace].id > id)
+                    {
+                        displacementResources.Insert(iDisplace,
+                            displacementCreator.CreateDisplacement(
+                                id,
+                                frozenResources[iFrozen].target,
+                                spongyResources[iSpongy].target));
+                    }
+                    ++iDisplace;
+                }
+            }
+            // Finished creating. Now destroy any displacements further in the list, as they no longer have matching
+            // frozen/spongy pairs.
+            Debug.Assert(iDisplace <= displacementResources.Count);
+            int displacementCount = iDisplace;
+            while (iDisplace < displacementResources.Count)
+            {
+                displacementCreator.DestroyDisplacement(displacementResources[iDisplace++]);
+            }
+            displacementResources.RemoveRange(displacementCount, displacementResources.Count - displacementCount);
+            Debug.Assert(displacementResources.Count == displacementCount);
         }
 
         private void UpdateFragmentVisuals()
