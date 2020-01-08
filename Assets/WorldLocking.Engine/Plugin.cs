@@ -52,6 +52,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public Pose pose;
     }
 
+    /// <summary>
+    /// Simple struct associating a FragmentPose with an AnchorId.
+    /// </summary>
     public struct AnchorFragmentPose
     {
         public AnchorId anchorId;
@@ -67,6 +70,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public AnchorId anchorId2;
     };
 
+    /// <summary>
+    /// Simple struct for relevance by anchor id.
+    /// </summary>
     public struct AnchorRelevance
     {
         public AnchorId anchorId;
@@ -307,30 +313,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return res;
         }
 
-#if false
-        unsafe public IDictionary<AnchorId, FragmentPose> GetFrozenAnchors()
-        {
-            int numAnchors = FrozenWorld_GetNumAnchors(FrozenWorld_Snapshot.FROZEN);
-            checkError();
-
-            var res = new Dictionary<AnchorId, FragmentPose>();
-
-            if (numAnchors > 0)
-            {
-                FrozenWorld_Anchor* fwa = stackalloc FrozenWorld_Anchor[numAnchors];
-
-                numAnchors = FrozenWorld_GetAnchors(FrozenWorld_Snapshot.FROZEN, numAnchors, fwa);
-                checkError();
-
-                for (int i = 0; i < numAnchors; i++)
-                {
-                    res[(AnchorId)fwa[i].anchorId] = new FragmentPose() { fragmentId = (FragmentId)fwa[i].fragmentId, pose = FtoU(fwa[i].transform) };
-                }
-            }
-
-            return res;
-        }
-#else
         unsafe public AnchorFragmentPose[] GetFrozenAnchors()
         {
             int numAnchors = FrozenWorld_GetNumAnchors(FrozenWorld_Snapshot.FROZEN);
@@ -361,7 +343,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             return res;
         }
-#endif
 
         unsafe public FragmentId GetMostSignificantFragmentId()
         {
