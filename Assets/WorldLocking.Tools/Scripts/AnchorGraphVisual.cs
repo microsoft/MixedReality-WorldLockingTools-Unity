@@ -58,13 +58,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             }
             frozenFragmentVizs.Clear();
 
-            // mafinc spongyAnchorVizs.Clear();
             spongyResources.Clear();
-            // mafinc frozenAnchorVizs.Clear();
             frozenResources.Clear();
-            // mafinc edgeVizs.Clear();
             edgeResources.Clear();
-            //displacementVizs.Clear();
             displacementResources.Clear();
         }
 
@@ -124,11 +120,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             // mafinc - no dictionary from plugin
             // Visualize the support relevances.
-            var supportRelevancesDict = manager.Plugin.GetSupportRelevances();
+            var supportRelevancesSource = manager.Plugin.GetSupportRelevances();
             List<SyncLists.IdPair<AnchorId, float>> supportRelevances = new List<SyncLists.IdPair<AnchorId, float>>();
-            foreach (var support in supportRelevancesDict)
+            foreach (var support in supportRelevancesSource)
             {
-                supportRelevances.Add(new SyncLists.IdPair<AnchorId, float>() { id = support.Key, target = support.Value });
+                supportRelevances.Add(
+                    new SyncLists.IdPair<AnchorId, float>()
+                    {
+                        id = support.anchorId,
+                        target = support.relevance
+                    }
+                );
             }
             supportRelevances.Sort((x, y) => x.id.CompareTo(y.id));
 
@@ -423,86 +425,34 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             Debug.Assert(manager != null, "This should not be called without a valid manager");
             var plugin = manager.Plugin;
 
-            // mafinc - holder
-            var frozenAnchorDict = plugin.GetFrozenAnchors();
-            List<SyncLists.IdPair<AnchorId, FragmentPose>> frozenCurrent = new List<SyncLists.IdPair<AnchorId, FragmentPose>>();
-            foreach (var item in frozenAnchorDict)
+            var frozenAnchorSource = plugin.GetFrozenAnchors();
+            List<SyncLists.IdPair<AnchorId, FragmentPose>> frozenItems = new List<SyncLists.IdPair<AnchorId, FragmentPose>>();
+            foreach (var item in frozenAnchorSource)
             {
-                frozenCurrent.Add(new SyncLists.IdPair<AnchorId, FragmentPose>() { id = item.Key, target = item.Value });
+                frozenItems.Add(
+                    new SyncLists.IdPair<AnchorId, FragmentPose>()
+                    {
+                        id = item.anchorId,
+                        target = item.fragmentPose
+                    }
+                );
             }
-            frozenCurrent.Sort((x, y) => x.id.CompareTo(y.id));
+            frozenItems.Sort((x, y) => x.id.CompareTo(y.id));
 
             UpdateFragmentVisuals();
 
             /// The "frozen" coordinates here are ignoring the rest of the transform up the camera tree.
             Pose frozenFromLocked = manager.FrozenFromLocked;
 
-
             var frozenCreator = new FrozenAnchorVisualCreator(Prefab_FrozenAnchorViz, frozenFragmentVizs, frozenFromLocked);
             SyncLists.Sync(
-                frozenCurrent,
+                frozenItems,
                 frozenResources, 
                 (item, res) => item.id.CompareTo(res.id),
                 frozenCreator.CreateFrozenVisual,
                 frozenCreator.UpdateFrozenVisual,
                 frozenCreator.DestroyFrozenVisual);
 
-#if false // mafinc
-            // DisplacementVizs is lines from frozen to spongy anchors. Cull any that we don't have frozen anchors for.
-            foreach (var staleId in displacementVizs.Keys.Except(uptodateFrozenAnchors.Keys).ToArray())
-            {
-                Destroy(displacementVizs[staleId]);
-                displacementVizs.Remove(staleId);
-            }
-
-            // kv.Key == anchorId
-            // kv.Value.fragmentId == fragmentId
-            // kv.Value.pose == WorldLockingAnchors[anchorId].tranform, so world locked transform of the anchor
-            foreach (var kv in frozenCurrent)
-            {
-                FragmentId fragmentId = kv.target.fragmentId;
-                if (!activeFragmentIds.Contains(fragmentId))
-                    continue;
-
-                AnchorId anchorId = kv.id;
-                Pose localPose = kv.Value.pose;
-                localPose = frozenFromLocked.Multiply(localPose);
-
-                bool breakLoop = false;
-
-                // We just made sure we have all spongy anchor visualizations in UpdateSpongy().
-
-                // if we have both a frozen anchor (assured above) and a spongy anchor (assured in UpdateSpongy() above), 
-                // but no connecting line, add one now.
-#if false // mafinc
-                if (spongyAnchorVizs.ContainsKey(anchorId) && !displacementVizs.ContainsKey(anchorId))
-                {
-                    var newLine = ConnectingLine.Create(frozenFragmentViz.transform,
-                                                        frozenAnchorViz.transform,
-                                                        spongyAnchorVizs[anchorId].transform,
-                                                        0.01f, Color.red);
-                    displacementVizs[anchorId] = newLine;
-                    breakLoop = true;
-                }
-#else
-                var spongyResource = FindInSortedList(anchorId, spongyResources, spongyAnchorVisualById);
-                if (spongyResource != null && !displacementVizs.ContainsKey(anchorId))
-                {
-                    var newLine = ConnectingLine.Create(frozenFragmentViz.transform,
-                                                        frozenAnchorViz.transform,
-                                                        spongyResource.target.transform,
-                                                        0.01f, Color.red);
-                    displacementVizs[anchorId] = newLine;
-                    breakLoop = true;
-                }
-#endif // mafinc
-
-                if (breakLoop)
-                {
-                    break; // create at most one frozen anchor per frame to avoid performance spike
-                }
-            }
-#else
             // Connect frozen anchors with corresponding spongy anchors with a line.
             DisplacementCreator displacementCreator = new DisplacementCreator();
             SyncDisplacements(displacementCreator,
@@ -510,20 +460,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 spongyResources,
                 displacementResources);
 
-#endif // mafinc
-
-            // mafinc - holder
-            var uptodateEdges = plugin.GetFrozenEdges();
-            List<AnchorEdge> edgeCurrent = new List<AnchorEdge>();
-            foreach (var edge in uptodateEdges)
+            var edgesSource = plugin.GetFrozenEdges();
+            List<AnchorEdge> edgeItems = new List<AnchorEdge>();
+            foreach (var edge in edgesSource)
             {
-                edgeCurrent.Add(RegularizeEdge(edge));
+                edgeItems.Add(RegularizeEdge(edge));
             }
-            edgeCurrent.Sort(anchorEdgeComparer);
+            edgeItems.Sort(anchorEdgeComparer);
 
             var frozenEdgeCreator = new FrozenEdgeVisualCreator(this, frozenResources);
             SyncLists.Sync(
-                edgeCurrent,
+                edgeItems,
                 edgeResources,
                 (x, y) => CompareAnchorEdges(x, y.id),
                 frozenEdgeCreator.CreateFrozenEdge,

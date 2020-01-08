@@ -52,6 +52,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public Pose pose;
     }
 
+    public struct AnchorFragmentPose
+    {
+        public AnchorId anchorId;
+        public FragmentPose fragmentPose;
+    }
+
     /// <summary>
     /// Simple struct representing a non-directional edge between two anchors.
     /// </summary>
@@ -60,6 +66,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public AnchorId anchorId1;
         public AnchorId anchorId2;
     };
+
+    public struct AnchorRelevance
+    {
+        public AnchorId anchorId;
+        public float relevance;
+    }
 
 
     /// <summary>
@@ -272,7 +284,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
-        unsafe public IEnumerable<AnchorId> GetFrozenAnchorIds()
+        unsafe public AnchorId[] GetFrozenAnchorIds()
         {
             int numAnchors = FrozenWorld_GetNumAnchors(FrozenWorld_Snapshot.FROZEN);
             checkError();
@@ -295,6 +307,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return res;
         }
 
+#if false
         unsafe public IDictionary<AnchorId, FragmentPose> GetFrozenAnchors()
         {
             int numAnchors = FrozenWorld_GetNumAnchors(FrozenWorld_Snapshot.FROZEN);
@@ -317,6 +330,38 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             return res;
         }
+#else
+        unsafe public AnchorFragmentPose[] GetFrozenAnchors()
+        {
+            int numAnchors = FrozenWorld_GetNumAnchors(FrozenWorld_Snapshot.FROZEN);
+            checkError();
+
+            var res = new AnchorFragmentPose[numAnchors];
+
+            if (numAnchors > 0)
+            {
+                FrozenWorld_Anchor* fwa = stackalloc FrozenWorld_Anchor[numAnchors];
+
+                numAnchors = FrozenWorld_GetAnchors(FrozenWorld_Snapshot.FROZEN, numAnchors, fwa);
+                checkError();
+
+                for (int i = 0; i < numAnchors; i++)
+                {
+                    res[i] = new AnchorFragmentPose()
+                    {
+                        anchorId = (AnchorId)fwa[i].anchorId,
+                        fragmentPose = new FragmentPose()
+                        {
+                            fragmentId = (FragmentId)fwa[i].fragmentId,
+                            pose = FtoU(fwa[i].transform)
+                        }
+                    };
+                }
+            }
+
+            return res;
+        }
+#endif
 
         unsafe public FragmentId GetMostSignificantFragmentId()
         {
@@ -412,12 +457,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 
 
-        unsafe public IDictionary<AnchorId, float> GetSupportRelevances()
+        unsafe public AnchorRelevance[] GetSupportRelevances()
         {
             int numSupports = FrozenWorld_GetNumSupports();
             checkError();
 
-            var res = new Dictionary<AnchorId, float>();
+            var res = new AnchorRelevance[numSupports];
 
             if (numSupports > 0)
             {
@@ -429,8 +474,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 {
                     Debug.Assert(FtoU(fws[i].attachmentPoint.locationFromAnchor).Equals(Vector3.zero), "delocalized support not yet implemented");
                     var anchorId = (AnchorId)fws[i].attachmentPoint.anchorId;
-                    Debug.Assert(!res.ContainsKey(anchorId), "multiple supports per anchor not yet implemented");
-                    res[anchorId] = fws[i].relevance;
+                    Debug.Assert(!Array.Exists(res, x => x.anchorId == anchorId), "multiple supports per anchor not yet implemented");
+                    res[i] = new AnchorRelevance()
+                    {
+                        anchorId = anchorId,
+                        relevance = fws[i].relevance
+                    };
                 }
             }
 
@@ -444,7 +493,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return numEdges;
         }
 
-        unsafe public ICollection<AnchorEdge> GetFrozenEdges()
+        unsafe public AnchorEdge[] GetFrozenEdges()
         {
             int numEdges = GetNumFrozenEdges();
             checkError();
