@@ -136,6 +136,14 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         {
         }
 
+        private void SetTextIfChanged(TextMesh textMesh, string newText)
+        {
+            if (textMesh.text != newText)
+            {
+                textMesh.text = newText;
+            }
+        }
+
         private void Update()
         {
             var worldLockingManager = WorldLockingManager.GetInstance();
@@ -143,11 +151,11 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             {
                 if (VersionTimestampEnabled)
                 {
-                    textMeshVersionTimestamp.text = CaptureVersionTimestamp(worldLockingManager); ;
+                    SetTextIfChanged(textMeshVersionTimestamp, CaptureVersionTimestamp(worldLockingManager));
                 }
                 if (ErrorStatusEnabled)
                 {
-                    textMeshErrorStatus.text = worldLockingManager.ErrorStatus;
+                    SetTextIfChanged(textMeshErrorStatus, worldLockingManager.ErrorStatus);
                 }
 
                 bool indicatorActive = false;
@@ -155,12 +163,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 {
                     if (worldLockingManager.RefreezeIndicated)
                     {
-                        textMeshStateIndicator.text = "Refreeze indicated";
+                        SetTextIfChanged(textMeshStateIndicator, "Refreeze indicated");
                         indicatorActive = true;
                     }
                     else if (worldLockingManager.MergeIndicated)
                     {
-                        textMeshStateIndicator.text = "Merge indicated";
+                        SetTextIfChanged(textMeshStateIndicator, "Merge indicated");
                         indicatorActive = true;
                     }
                 }
@@ -168,12 +176,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
                 if (InfoEnabled)
                 {
-                    textMeshInfo.text = CaptureInfoText(worldLockingManager);
+                    SetTextIfChanged(textMeshInfo, CaptureInfoText(worldLockingManager));
                 }
 
                 if (MetricsEnabled)
                 {
-                    textMeshMetrics.text = CaptureMetrics(worldLockingManager);
+                    SetTextIfChanged(textMeshMetrics, CaptureMetrics(worldLockingManager));
                 }
             }
         }
@@ -193,9 +201,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             float fps = average > 0 ? 1.0f / average : 0.0f;
             float secToMs = 1000.0f;
             string version = ""
-                + string.Format("Version\t\t\t: {0}\n", manager.Plugin.VersionCompact)
-                + string.Format("TimeStamp\t: {0:F3}\n", Time.time)
-                + string.Format("Frames/sec\t: {0:F1} [{1:F1}ms ({2:F1})max]", fps, average * secToMs, maximum * secToMs);
+                + string.Format("WLT Version\t: {0}\n", WorldLockingManager.Version)
+                + string.Format("DLL Version\t\t: {0}\n", manager.Plugin.VersionCompact)
+                + string.Format("TimeStamp\t\t: {0:F3}\n", Time.time)
+                + string.Format("Frames/sec\t\t: {0:F1} [{1:F1}ms ({2:F1})max]", fps, average * secToMs, maximum * secToMs);
             return version;
         }
 

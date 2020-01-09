@@ -413,9 +413,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                         anchorId = id,
                         spongyAnchor = spongyAnchor
                     });
-                    if (id > maxId)
+                    if (maxId <= id)
                     {
-                        maxId = id;
+                        maxId = id + 1;
                     }
                 }
                 else

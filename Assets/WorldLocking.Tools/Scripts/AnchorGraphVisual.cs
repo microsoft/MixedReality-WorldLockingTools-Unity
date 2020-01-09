@@ -194,10 +194,11 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         {
             IdPair<S, T> item = new IdPair<S, T>() { id = key };
             int idx = list.BinarySearch(item, comparer);
+            Debug.Assert(idx >= 0 && idx < list.Count);
             if (idx < 0)
             {
                 Debug.LogError("Item not found in sorted list");
-                return null;
+                return new IdPair<S, T>();
             }
             return list[idx];
         }
@@ -322,10 +323,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
                 var frozenAnchor1 = FindInSortedList(anchorId1, frozenResources, (x, y) => x.CompareTo(y));
                 var frozenAnchor2 = FindInSortedList(anchorId2, frozenResources, (x, y) => x.CompareTo(y));
-                if (frozenAnchor1 == null || frozenAnchor2 == null)
-                {
-                    return null;
-                }
 
                 Transform parent1 = frozenAnchor1.target.transform.parent;
                 Transform parent2 = frozenAnchor2.target.transform.parent;
@@ -472,7 +469,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 frozenEdgeCreator.CreateFrozenEdge,
                 frozenEdgeCreator.UpdateFrozenEdge,
                 frozenEdgeCreator.DestroyFrozenEdge);
-
         }
 
         private void SyncDisplacements(

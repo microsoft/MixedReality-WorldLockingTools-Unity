@@ -9,7 +9,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 {
     namespace ResourceMirrorHelper
     {
-        public class IdPair<IdType, T>
+        public struct IdPair<IdType, T>
         {
             public IdType id;
             public T target;

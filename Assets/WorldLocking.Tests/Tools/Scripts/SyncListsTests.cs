@@ -23,23 +23,30 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
         }
 
-        private class AnchorIdVisTestPair : IdPair<AnchorId, AnchorVisTest>
+        private class AnchorIdVisTestCreator 
         {
 
-            public AnchorIdVisTestPair(AnchorId id)
+            public static IdPair<AnchorId, AnchorVisTest> Make(AnchorId id)
             {
-                this.id = id;
-                this.target = new AnchorVisTest()
+                IdPair<AnchorId, AnchorVisTest> ret = new IdPair<AnchorId, AnchorVisTest>()
                 {
-                    id = id
+                    id = id,
+                    target = new AnchorVisTest()
+                    {
+                        id = id
+                    }
                 };
+                return ret;
             }
 
-            public AnchorIdVisTestPair(int id) : this((AnchorId)id) { }
+            public static IdPair<AnchorId, AnchorVisTest> Make(int id)
+            {
+                return Make((AnchorId)id);
+            }
 
             public static IdPair<AnchorId, AnchorVisTest> Create(IdPair<AnchorId, AnchorDummy> source)
             {
-                return new AnchorIdVisTestPair(source.id);
+                return Make(source.id);
             }
 
             public static void Update(IdPair<AnchorId, AnchorDummy> source, IdPair<AnchorId, AnchorVisTest> target)
@@ -76,7 +83,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             List<IdPair<AnchorId, AnchorVisTest>> existing = new List<IdPair<AnchorId, AnchorVisTest>>();
             for (int i = 2; i < 6; ++i)
             {
-                existing.Add(new AnchorIdVisTestPair(i));
+                existing.Add(AnchorIdVisTestCreator.Make(i));
             }
             existing.Sort(IdPair<AnchorId, AnchorVisTest>.CompareById);
 
@@ -95,8 +102,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
                 current,
                 existing,
                 (item, res) => item.id.CompareTo(res.id),
-                AnchorIdVisTestPair.Create,
-                AnchorIdVisTestPair.Update,
+                AnchorIdVisTestCreator.Create,
+                AnchorIdVisTestCreator.Update,
                 x => { Debug.LogError("Not expecting to be deleting here, only adding."); }
                 );
             CheckSynced(existing, current);
@@ -110,9 +117,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
                 current,
                 existing,
                 comparisonById,
-                x => { Debug.LogError("Not expecting to be creating resources here, only deleting."); return null; },
-                AnchorIdVisTestPair.Update,
-                AnchorIdVisTestPair.Destroy
+                x => { Debug.LogError("Not expecting to be creating resources here, only deleting."); return new IdPair<AnchorId, AnchorVisTest>(); },
+                AnchorIdVisTestCreator.Update,
+                AnchorIdVisTestCreator.Destroy
                 );
             CheckSynced(existing, current);
 
@@ -123,9 +130,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
                 current,
                 existing,
                 comparisonById, // reused from above
-                AnchorIdVisTestPair.Create,
-                AnchorIdVisTestPair.Update,
-                AnchorIdVisTestPair.Destroy
+                AnchorIdVisTestCreator.Create,
+                AnchorIdVisTestCreator.Update,
+                AnchorIdVisTestCreator.Destroy
                 );
             CheckSynced(existing, current);
 
@@ -134,9 +141,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
                 current,
                 existing,
                 comparisonById,
-                AnchorIdVisTestPair.Create,
-                AnchorIdVisTestPair.Update,
-                AnchorIdVisTestPair.Destroy
+                AnchorIdVisTestCreator.Create,
+                AnchorIdVisTestCreator.Update,
+                AnchorIdVisTestCreator.Destroy
                 );
             CheckSynced(existing, current);
 
@@ -148,23 +155,29 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
         }
 
-        private class AnchorEdgeVisTestPair : IdPair<AnchorEdge, AnchorEdgeVisTest>
+        private class AnchorEdgeVisTestPair 
         {
 
-            public AnchorEdgeVisTestPair(AnchorEdge id)
+            public static IdPair<AnchorEdge, AnchorEdgeVisTest> Make(AnchorEdge id)
             {
-                this.id = id;
-                this.target = new AnchorEdgeVisTest()
+                return new IdPair<AnchorEdge, AnchorEdgeVisTest>()
                 {
-                    id = id
+                    id = id,
+                    target = new AnchorEdgeVisTest()
+                    {
+                        id = id
+                    }
                 };
             }
 
-            public AnchorEdgeVisTestPair(int id1, int id2) : this(new AnchorEdge() { anchorId1 = (AnchorId)id1, anchorId2 = (AnchorId)id2 }) { }
+            public static IdPair<AnchorEdge, AnchorEdgeVisTest> Make(int id1, int id2)
+            {
+                return Make(new AnchorEdge() { anchorId1 = (AnchorId)id1, anchorId2 = (AnchorId)id2 });
+            }
 
             public static IdPair<AnchorEdge, AnchorEdgeVisTest> Create(AnchorEdge source)
             {
-                return new AnchorEdgeVisTestPair(source);
+                return Make(source);
             }
 
             public static void Update(AnchorEdge source, IdPair<AnchorEdge, AnchorEdgeVisTest> target)
@@ -448,7 +461,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
             /// spongy resources anchorids are generally a subset of frozen ids. First test checks that scenario.
             /// frozen = [1..8], spongy is [2,4,6], expect displacements for [2,4,6]
-            IdPair<AnchorId, PositionDummy> ape = new IdPair<AnchorId, PositionDummy>();
             for(int i = 1; i < 9; ++i)
             {
                 frozenResources.Add(PositionDummy.MakePair(i, i, 0));
