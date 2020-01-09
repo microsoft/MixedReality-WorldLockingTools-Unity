@@ -288,7 +288,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             {
                 Pose localPose = source.target.pose;
                 localPose = frozenFromLocked.Multiply(localPose);
-                localPose.position.y += 0.25f;
+                // The following line introduces an artificial displacement between corresponding frozen and
+                // spongy anchors, to make sure the connecting line visualization is working.
+                //localPose.position.y += 0.25f;
                 target.transform.SetLocalPose(localPose);
             }
 

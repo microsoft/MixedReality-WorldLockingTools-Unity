@@ -503,6 +503,19 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
             CheckDisplacements(displacementCreator, frozenResources, spongyResources, displacementResources);
 
+            frozenResources.Clear();
+            spongyResources.Clear();
+            for(int i = 1; i < 10; ++i)
+            {
+                frozenResources.Add(PositionDummy.MakePair(i, i, 0));
+                spongyResources.Add(PositionDummy.MakePair(i, i, 0));
+            }
+
+            RunDisplacementTestCopy(displacementCreator, frozenResources, spongyResources, displacementResources);
+
+            Assert.IsTrue(displacementResources.Count == 0);
+            CheckDisplacements(displacementCreator, frozenResources, spongyResources, displacementResources);
+
         }
 
         private void CheckSorted<T>(List<T> list, System.Comparison<T> comp)
