@@ -98,50 +98,34 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             CheckSpongyRoot(manager);
 
-            var spongyCurrentSource = anchorManager.SpongyAnchors;
-            List<IdPair<AnchorId, SpongyAnchor>> spongyCurrent = new List<IdPair<AnchorId, SpongyAnchor>>();
-            foreach (var item in spongyCurrentSource)
-            {
-                spongyCurrent.Add(new IdPair<AnchorId, SpongyAnchor>() { id = item.anchorId, target = item.spongyAnchor });
-            }
-            spongyCurrent.Sort(IdPair<AnchorId, SpongyAnchor>.CompareById);
+            var spongyCurrent = anchorManager.SpongyAnchors;
+            spongyCurrent.Sort((x,y) => x.anchorId.CompareTo(y.anchorId));
 
             SpongyVisualCreator spongyCreator = new SpongyVisualCreator(Prefab_SpongyAnchorViz, spongyWorldViz);
             ResourceMirror.Sync(
                 spongyCurrent,
                 spongyResources,
-                (item, res) => item.id.CompareTo(res.id),
+                (item, res) => item.anchorId.CompareTo(res.id),
                 spongyCreator.CreateSpongyVisual,
                 spongyCreator.UpdateSpongyVisual,
                 spongyCreator.DestroySpongyVisual);
 
             // Visualize the support relevances.
-            var supportRelevancesSource = manager.Plugin.GetSupportRelevances();
-            List<IdPair<AnchorId, float>> supportRelevances = new List<IdPair<AnchorId, float>>();
-            foreach (var support in supportRelevancesSource)
-            {
-                supportRelevances.Add(
-                    new IdPair<AnchorId, float>()
-                    {
-                        id = support.anchorId,
-                        target = support.relevance
-                    }
-                );
-            }
-            supportRelevances.Sort((x, y) => x.id.CompareTo(y.id));
+            var supportRelevances = manager.Plugin.GetSupportRelevances();
+            Array.Sort(supportRelevances, (x, y) => x.anchorId.CompareTo(y.anchorId));
 
             int iSupport = 0;
             for (int iSpongy = 0; iSpongy < spongyResources.Count; ++iSpongy)
             {
                 // Skip any supports with a lower id, these have no corresponding spongy resource.
-                while (iSupport < supportRelevances.Count && supportRelevances[iSupport].id < spongyResources[iSpongy].id)
+                while (iSupport < supportRelevances.Length && supportRelevances[iSupport].anchorId < spongyResources[iSpongy].id)
                 {
                     ++iSupport;
                 }
 
-                if (iSupport < supportRelevances.Count && supportRelevances[iSupport].id == spongyResources[iSpongy].id)
+                if (iSupport < supportRelevances.Length && supportRelevances[iSupport].anchorId == spongyResources[iSpongy].id)
                 {
-                    spongyResources[iSpongy].target.SetSupportRelevance(supportRelevances[iSupport++].target);
+                    spongyResources[iSpongy].target.SetSupportRelevance(supportRelevances[iSupport++].relevance);
                 }
                 else
                 {
@@ -220,20 +204,20 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 this.spongyWorldVisual = spongyWorldVisual;
             }
 
-            public IdPair<AnchorId, SpongyAnchorVisual> CreateSpongyVisual(IdPair<AnchorId, SpongyAnchor> source)
+            public IdPair<AnchorId, SpongyAnchorVisual> CreateSpongyVisual(AnchorManager.SpongyAnchorWithId source)
             {
                 var spongyAnchorVisual = Prefab_SpongyAnchorVisual.Instantiate(
                     spongyWorldVisual,
-                    source.target.GetComponent<WorldAnchor>());
+                    source.spongyAnchor.GetComponent<WorldAnchor>());
 
                 return new IdPair<AnchorId, SpongyAnchorVisual>()
                 {
-                    id = source.id,
+                    id = source.anchorId,
                     target = spongyAnchorVisual
                 };
             }
 
-            public void UpdateSpongyVisual(IdPair<AnchorId, SpongyAnchor> source, IdPair<AnchorId, SpongyAnchorVisual> target)
+            public void UpdateSpongyVisual(AnchorManager.SpongyAnchorWithId source, IdPair<AnchorId, SpongyAnchorVisual> target)
             {
 
             }
@@ -260,12 +244,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 this.frozenFromLocked = frozenFromLocked;
             }
 
-            public IdPair<AnchorId, FrozenAnchorVisual> CreateFrozenVisual(IdPair<AnchorId, FragmentPose> source)
+            public IdPair<AnchorId, FrozenAnchorVisual> CreateFrozenVisual(AnchorFragmentPose source)
             {
                 // Already ensured this fragment exists.
-                FragmentId fragmentId = source.target.fragmentId;
+                FragmentId fragmentId = source.fragmentPose.fragmentId;
 
-                AnchorId anchorId = source.id;
+                AnchorId anchorId = source.anchorId;
 
                 FrameVisual frozenFragmentViz = frozenFragmentVisuals[fragmentId];
 
@@ -279,14 +263,14 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
                 return new IdPair<AnchorId, FrozenAnchorVisual>()
                 {
-                    id = source.id,
+                    id = source.anchorId,
                     target = frozenAnchorVisual
                 };
             }
 
-            private void SetPose(IdPair<AnchorId, FragmentPose> source, FrozenAnchorVisual target)
+            private void SetPose(AnchorFragmentPose source, FrozenAnchorVisual target)
             {
-                Pose localPose = source.target.pose;
+                Pose localPose = source.fragmentPose.pose;
                 localPose = frozenFromLocked.Multiply(localPose);
                 // The following line introduces an artificial displacement between corresponding frozen and
                 // spongy anchors, to make sure the connecting line visualization is working.
@@ -294,7 +278,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 target.transform.SetLocalPose(localPose);
             }
 
-            public void UpdateFrozenVisual(IdPair<AnchorId, FragmentPose> source, IdPair<AnchorId, FrozenAnchorVisual> target)
+            public void UpdateFrozenVisual(AnchorFragmentPose source, IdPair<AnchorId, FrozenAnchorVisual> target)
             {
                 SetPose(source, target.target);
             }
@@ -420,19 +404,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             Debug.Assert(manager != null, "This should not be called without a valid manager");
             var plugin = manager.Plugin;
 
-            var frozenAnchorSource = plugin.GetFrozenAnchors();
-            List<IdPair<AnchorId, FragmentPose>> frozenItems = new List<IdPair<AnchorId, FragmentPose>>();
-            foreach (var item in frozenAnchorSource)
-            {
-                frozenItems.Add(
-                    new IdPair<AnchorId, FragmentPose>()
-                    {
-                        id = item.anchorId,
-                        target = item.fragmentPose
-                    }
-                );
-            }
-            frozenItems.Sort((x, y) => x.id.CompareTo(y.id));
+            AnchorFragmentPose[] frozenItems = plugin.GetFrozenAnchors();
+            Array.Sort(frozenItems, (x, y) => x.anchorId.CompareTo(y.anchorId));
 
             UpdateFragmentVisuals();
 
@@ -443,7 +416,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             ResourceMirror.Sync(
                 frozenItems,
                 frozenResources, 
-                (item, res) => item.id.CompareTo(res.id),
+                (item, res) => item.anchorId.CompareTo(res.id),
                 frozenCreator.CreateFrozenVisual,
                 frozenCreator.UpdateFrozenVisual,
                 frozenCreator.DestroyFrozenVisual);
@@ -455,13 +428,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 spongyResources,
                 displacementResources);
 
-            var edgesSource = plugin.GetFrozenEdges();
-            List<AnchorEdge> edgeItems = new List<AnchorEdge>();
-            foreach (var edge in edgesSource)
+            var edgeItems = plugin.GetFrozenEdges();
+            for (int i = 0; i < edgeItems.Length; ++i)
             {
-                edgeItems.Add(RegularizeEdge(edge));
+                edgeItems[i] = RegularizeEdge(edgeItems[i]);
             }
-            edgeItems.Sort(anchorEdgeComparer);
+            Array.Sort(edgeItems, anchorEdgeComparer);
 
             var frozenEdgeCreator = new FrozenEdgeVisualCreator(this, frozenResources);
             ResourceMirror.Sync(
@@ -475,8 +447,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         private void SyncDisplacements(
             DisplacementCreator displacementCreator,
-            List<IdPair<AnchorId, FrozenAnchorVisual>> frozenResources,
-            List<IdPair<AnchorId, SpongyAnchorVisual>> spongyResources,
+            IReadOnlyList<IdPair<AnchorId, FrozenAnchorVisual>> frozenResources,
+            IReadOnlyList<IdPair<AnchorId, SpongyAnchorVisual>> spongyResources,
             List<IdPair<AnchorId, ConnectingLine>> displacementResources)
         {
             int iFrozen = 0;

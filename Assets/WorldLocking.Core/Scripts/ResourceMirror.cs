@@ -30,7 +30,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public delegate int CompareToResource<ItemType, ResourceType>(ItemType item, ResourceType resource);
 
         public static void Sync<ItemType, ResourceType>(
-            List<ItemType> currentItems,
+            IReadOnlyList<ItemType> currentItems,
             List<ResourceType> resources,
             CompareToResource<ItemType, ResourceType> compareIds,
             CreateResource<ItemType, ResourceType> creator,
