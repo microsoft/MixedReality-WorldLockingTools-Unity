@@ -44,9 +44,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
                 return Make((AnchorId)id);
             }
 
-            public static IdPair<AnchorId, AnchorVisTest> Create(IdPair<AnchorId, AnchorDummy> source)
+            public static bool Create(IdPair<AnchorId, AnchorDummy> source, out IdPair<AnchorId, AnchorVisTest> resource)
             {
-                return Make(source.id);
+                resource = Make(source.id);
+                return true;
             }
 
             public static void Update(IdPair<AnchorId, AnchorDummy> source, IdPair<AnchorId, AnchorVisTest> target)
@@ -117,7 +118,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
                 current,
                 existing,
                 comparisonById,
-                x => { Debug.LogError("Not expecting to be creating resources here, only deleting."); return new IdPair<AnchorId, AnchorVisTest>(); },
+                (IdPair<AnchorId, AnchorDummy> x, out IdPair<AnchorId, AnchorVisTest> y) => { Debug.LogError("Not expecting to be creating resources here, only deleting."); y = new IdPair<AnchorId, AnchorVisTest>(); return false; },
                 AnchorIdVisTestCreator.Update,
                 AnchorIdVisTestCreator.Destroy
                 );
@@ -175,9 +176,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
                 return Make(new AnchorEdge() { anchorId1 = (AnchorId)id1, anchorId2 = (AnchorId)id2 });
             }
 
-            public static IdPair<AnchorEdge, AnchorEdgeVisTest> Create(AnchorEdge source)
+            public static bool Create(AnchorEdge source, out IdPair<AnchorEdge, AnchorEdgeVisTest> resource)
             {
-                return Make(source);
+                resource = Make(source);
+                return true;
             }
 
             public static void Update(AnchorEdge source, IdPair<AnchorEdge, AnchorEdgeVisTest> target)

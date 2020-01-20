@@ -479,7 +479,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             Fragment targetFragment = EnsureFragment(targetFragmentId);
             Debug.Assert(targetFragment != null, "Valid fragmentId but null target fragment from Merge");
-            Debug.Assert(plugin.GetMostSignificantFragmentId() == targetFragment.FragmentId, "Merging into fragment other than most significant is unexpected");
 
             int numAbsorbed = mergeAdjustments.Length;
             for (int i = 0; i < numAbsorbed; ++i)
@@ -523,7 +522,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             Fragment targetFragment = EnsureFragment(targetFragmentId);
             Debug.Assert(targetFragment != null, "Valid fragmentId but no fragment found");
-            Debug.Assert(plugin.GetMostSignificantFragmentId() == targetFragment.FragmentId, "Merging into fragment other than most significant is unexpected");
 
             for (int i = 0; i < absorbedIds.Length; ++i)
             {
