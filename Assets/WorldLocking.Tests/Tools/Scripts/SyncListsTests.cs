@@ -597,5 +597,84 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             }
         }
 
+        private class AnchorIdOddOnlyCreator
+        {
+
+            public static AnchorVisTest Make(AnchorId id)
+            {
+                AnchorVisTest ret = new AnchorVisTest()
+                {
+                    id = id
+                };
+                return ret;
+            }
+
+            public static AnchorVisTest Make(int id)
+            {
+                return Make((AnchorId)id);
+            }
+
+            public bool Create(AnchorId source, out AnchorVisTest resource)
+            {
+                int idAsInt = (int)source;
+                if (0 == (idAsInt & 1))
+                {
+                    resource = new AnchorVisTest()
+                    {
+                        id = source
+                    };
+                    return false;
+                }
+                resource = Make(source);
+                return true;
+            }
+
+            public void Update(AnchorId source, AnchorVisTest target)
+            {
+                Assert.AreEqual(source, target.id);
+            }
+
+            public void Destroy(AnchorVisTest target)
+            {
+
+            }
+        }
+            [Test]
+        public void CreateFailTest()
+        {
+            List<AnchorId> anchorIds = new List<AnchorId>();
+            for (int i = (int)AnchorId.FirstValid; i < 10; ++i)
+            {
+                anchorIds.Add((AnchorId)i);
+            }
+
+            List<AnchorVisTest> resources = new List<AnchorVisTest>();
+
+            AnchorIdOddOnlyCreator creator = new AnchorIdOddOnlyCreator();
+            ResourceMirror.Sync(anchorIds, resources,
+                (x, y) => x.CompareTo(y.id),
+                creator.Create,
+                creator.Update,
+                creator.Destroy);
+
+            Assert.IsTrue(resources.Count == (anchorIds.Count + 1) / 2);
+            for (int i = 0; i < resources.Count; ++i)
+            {
+                Assert.IsTrue(1 == (((int)resources[i].id) & 1));
+            }
+
+            ResourceMirror.Sync(resources, anchorIds,
+                /* Compare */ (x, y) => x.id.CompareTo(y),
+                /* Create  */ (AnchorVisTest x, out AnchorId y) => { y = x.id; return true; },
+                /* Update  */ (x, y) => { },
+                /* Destroy */ (x) => { }
+                );
+
+            Assert.IsTrue(resources.Count == anchorIds.Count);
+            for (int i = 0; i < resources.Count; ++i)
+            {
+                Assert.AreEqual(anchorIds[i], resources[i].id);
+            }
+        }
     }
 }
