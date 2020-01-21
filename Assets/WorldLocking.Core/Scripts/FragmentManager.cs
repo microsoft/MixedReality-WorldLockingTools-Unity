@@ -122,17 +122,17 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// graph to bind the new attachment point.
         /// See <see cref="IAttachmentPointManager.CreateAttachmentPoint"/>.
         /// </remarks>
-        /// <param name="globalPosition">The position in the global space at which to start the attachment point</param>
+        /// <param name="frozenPosition">The position in the frozen space at which to start the attachment point</param>
         /// <param name="context">The optional context into which to create the attachment point (may be null)</param>
         /// <param name="locationHandler">Delegate to handle WorldLocking system adjustments to position</param>
         /// <param name="stateHandler">Delegate to handle WorldLocking connectivity changes</param>
         /// <returns>The new attachment point interface.</returns>
-        public IAttachmentPoint CreateAttachmentPoint(Vector3 globalPosition, IAttachmentPoint context,
+        public IAttachmentPoint CreateAttachmentPoint(Vector3 frozenPosition, IAttachmentPoint context,
             AdjustLocationDelegate locationHandler, AdjustStateDelegate stateHandler)
         {
             FragmentId fragmentId = GetTargetFragmentId(context);
             AttachmentPoint attachPoint = new AttachmentPoint(locationHandler, stateHandler);
-            attachPoint.ObjectPosition = globalPosition;
+            attachPoint.ObjectPosition = frozenPosition;
             if (fragmentId.IsKnown())
             {
                 SetupAttachmentPoint(plugin, attachPoint, context);
@@ -200,31 +200,31 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         /// <summary>
         /// Move (as opposed to Teleport) means that the object is meant to have traversed 
-        /// global space from its old position to the given new position on some continuous path.
+        /// flozen space from its old position to the given new position on some continuous path.
         /// </summary>
         /// <remarks>
         /// Not to be used for automatic (i.e. FrozenWorld Engine instigated) moves.
         /// See <see cref="WorldLockingManager.MoveAttachmentPoint"/>
         /// </remarks>
         /// <param name="attachPoint">Attachment point to move</param>
-        /// <param name="newGlobalPosition">The new position in global space</param>
-        public void MoveAttachmentPoint(IAttachmentPoint attachPointIface, Vector3 newGlobalPosition)
+        /// <param name="newFrozenPosition">The new position in frozen space</param>
+        public void MoveAttachmentPoint(IAttachmentPoint attachPointIface, Vector3 newFrozenPosition)
         {
             AttachmentPoint attachPoint = attachPointIface as AttachmentPoint;
             if (attachPoint != null)
             {
-                attachPoint.ObjectPosition = newGlobalPosition;
+                attachPoint.ObjectPosition = newFrozenPosition;
 
                 // If it's not in a valid fragment, it is still pending and will get processed when the system is ready.
                 if (attachPoint.FragmentId.IsKnown())
                 {
                     float minDistToUpdateSq = 0.5f * 0.5f;
 
-                    float moveDistanceSq = (newGlobalPosition - attachPoint.CachedPosition).sqrMagnitude;
+                    float moveDistanceSq = (newFrozenPosition - attachPoint.CachedPosition).sqrMagnitude;
                     if (moveDistanceSq > minDistToUpdateSq)
                     {
-                        attachPoint.LocationFromAnchor = plugin.MoveAttachmentPoint(newGlobalPosition, attachPoint.AnchorId, attachPoint.LocationFromAnchor);
-                        attachPoint.CachedPosition = newGlobalPosition;
+                        attachPoint.LocationFromAnchor = plugin.MoveAttachmentPoint(newFrozenPosition, attachPoint.AnchorId, attachPoint.LocationFromAnchor);
+                        attachPoint.CachedPosition = newFrozenPosition;
                     }
                     // Else we haven't moved enough to bother doing anything.
                 }
@@ -233,7 +233,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         /// <summary>
         /// Teleport (as opposed to Move) means that the object is meant to have disappeared at its old position 
-        /// and instantaneously reappeared at its new position in world locked space without traversing the space in between.
+        /// and instantaneously reappeared at its new position in frozen space without traversing the space in between.
         /// </summary>
         /// <remarks>
         /// This is equivalent to releasing the existing attachment point and creating a new one,
@@ -241,14 +241,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// See <see cref="WorldLockingManager.TeleportAttachmentPoint"/>.
         /// </remarks>
         /// <param name="attachPointIface">The attachment point to teleport</param>
-        /// <param name="newGlobalPosition">The position to teleport to.</param>
+        /// <param name="newFrozenPosition">The position to teleport to.</param>
         /// <param name="context">The optional context.</param>
-        public void TeleportAttachmentPoint(IAttachmentPoint attachPointIface, Vector3 newGlobalPosition, IAttachmentPoint context)
+        public void TeleportAttachmentPoint(IAttachmentPoint attachPointIface, Vector3 newFrozenPosition, IAttachmentPoint context)
         {
             AttachmentPoint attachPoint = attachPointIface as AttachmentPoint;
             if (attachPoint != null)
             {
-                attachPoint.ObjectPosition = newGlobalPosition;
+                attachPoint.ObjectPosition = newFrozenPosition;
 
                 // Save the fragment it's currently in, in case it changes here.
                 FragmentId oldFragmentId = attachPoint.FragmentId;
@@ -317,7 +317,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 for (int i = 0; i < pendingCount; ++i)
                 {
                     AttachmentPoint target = pendingAttachments[i].target;
-                    Vector3 globalPosition = pendingAttachments[i].target.ObjectPosition;
+                    Vector3 frozenPosition = pendingAttachments[i].target.ObjectPosition;
                     IAttachmentPoint context = pendingAttachments[i].context;
 
                     SetupAttachmentPoint(plugin, target, context);
