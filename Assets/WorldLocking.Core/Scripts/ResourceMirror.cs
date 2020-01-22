@@ -14,7 +14,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         /// <remarks>
         /// The IdType is typically an AnchorId, but any type using the Comparer.Default.Compare is fine.
-        /// Note this is independent of the ResourceMirror, and currently only used to expedite tests.
+        /// Note this is independent of the ResourceMirror, and currently only used to internally
+        /// for resources identified by anchorId, and to expedite tests.
         /// </remarks>
         /// <typeparam name="IdType">Type of the identifier.</typeparam>
         /// <typeparam name="T">Type of the data associated with the identifier.</typeparam>
@@ -46,9 +47,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// <summary>
     /// Class to synchronize a list of resources with associated source data (items).
     /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
     public class ResourceMirror
     {
         /// <summary>
@@ -66,7 +64,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// the resource was not created. However, if the resource is not created, then in the 
         /// next call to Sync, it will be noted that the item doesn't have a matching resource
         /// and the create call will be made again. To prevent fruitless and possibly expensive
-        /// create calls, the offending item should be removed from the list passed into Sync.
+        /// create calls, the offending item should be removed from the items list passed into Sync.
         /// As noted below, all additions and removals from the items list must happen outside
         /// the Sync call.
         /// </remarks>
@@ -113,7 +111,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         /// <summary>
         /// Given a *sorted* list of source data items (currentItems),
-        /// and a *sorted* list of resources, for each source item:
+        /// and a *sorted* list of resources:
         ///    For each source item that doesn't have a matching resource, attempt to create a resource.
         ///    For each resource that doesn't have a matching source item, destroy that resource.
         ///    For each source item with a matching resource, update the resource.
@@ -121,9 +119,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <remarks>
         /// After this Sync, the list of resources will have exactly one resource for each item
         /// in currentItems, and currentItems and resources will be the same length. 
-        /// The exception is if the creator function returns false for any item, then that item
-        /// will not have a matching resource, and resources will be shorter than currentItems.
+        /// The exception is if the creator function returns false for any item(s), then those item(s)
+        /// will not have matching resources, and resources will be shorter than currentItems.
         /// In any case, resources will remain sorted.
+        /// Sync completes in a single pass over the data, so in O(max(currentItems.Count, resources.Count)) time.
         /// </remarks>
         /// <typeparam name="ItemType">Type of source items.</typeparam>
         /// <typeparam name="ResourceType">Type of resources.</typeparam>

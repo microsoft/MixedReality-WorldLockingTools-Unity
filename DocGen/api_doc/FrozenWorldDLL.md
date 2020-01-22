@@ -256,7 +256,6 @@ Anchor and edge data is organized in different snapshots. Each snapshot contains
 
   * The SPONGY snapshot must be populated (by you) frame-to-frame with input data to be used for [alignment](#alignment-frame-to-frame).
   * The FROZEN snapshot is maintained and kept up to date as a matter of course during alignment and will also be updated when the results of a [refit operation](#understanding-refit-operations-fragment-merge-and-refreeze) are applied.
-  * The PRESET snapshot can be populated by you and, if not empty, is only used during [refreeze](#initiating-and-executing-a-refreeze) in order to define a frozen coordinate origin.
 
 Use these enum constants to indicate which snapshot's information you want to access:
 
@@ -265,7 +264,6 @@ enum FrozenWorld_Snapshot
 {
     FrozenWorld_Snapshot_SPONGY = 0,
     FrozenWorld_Snapshot_FROZEN = 1,
-    FrozenWorld_Snapshot_PRESET = 2,
 };
 ```
 
@@ -707,24 +705,6 @@ You can only call `FrozenWorld_RefitMerge_Apply()` only once for a fragment merg
 Refreeze is due when anchor relations in the SPONGY snapshot have become so different from their Frozen World counterparts that the visual trade-offs made to align the Frozen World to the SPONGY snapshot are too significant to simply ignore. There is no clear-cut, objective threshold for this: Whether a refreeze is advisable depends on the quality trade-offs you are willing to make in your particular scenario. (Built-in Frozen World metrics use configurable thresholds and take only support anchors into consideration for the refitRefreezeIndicated flag.)
 
 If a refreeze is executed when there are multiple simultaneously trackable fragments in the SPONGY snapshot, it will implicitly merge all anchors in those fragments into a single fragment during the refreeze.
-
-
-### Using anchor presets to define the Frozen World's coordinate origin after refreeze
-
-Refreeze can also be used to place the Frozen World coordinate system exactly where you want it to be: Any frozen anchors (in the refrozen fragments) that have counterparts in the PRESET snapshot are going to end up with exactly the same poses as in the PRESET snapshot, and all other anchors in the refrozen fragments are moved along. With this, if you know exactly where some of the frozen anchors should be in the Frozen World coordinate system, you can simply make it so by giving those anchors a preset pose in the PRESET graph and performing a refreeze.
-
-Using the PRESET snapshot and the refreeze-to-preset feature assumes that you want to be sure that certain reference points in the real world (e.g. the corners of a room or certain fixtures) are represented at well-known places in the virtual Frozen World coordinate system – for example, you might have created a virtual model of a real room and would like to have the virtual model align with the real room in your scene as the user moves around. To achieve that, do this:
-
-1. Define some 'reference points' in the virtual model's coordinate space that correspond to easily visible real-world features in the real room.
-
-2. Allocate a dedicated `FrozenWorld_AnchorId` for each of those reference points.
-    
-3. Initialize the PRESET snapshot with one anchor per reference point and set the anchor's pose to the reference point's coordinates in the virtual model's coordinate space (and its anchorId to the one you allocated for that reference point).	
-
-4. Have the user interactively (or automatically, e.g. by scanning fiducial marks) place and align corresponding reference point anchors in the FROZEN snapshot. Those provisional FROZEN reference point anchors should be precisely aligned to the real-world features they represent, and they should be connected by at least one edge with a nearby significant real frozen anchor to connect it to the frozen graph. (You can simply connect the reference point anchor in the FROZEN snapshot to the current most significant anchor.)	
-
-5. When all reference point anchors have been created and aligned in the FROZEN snapshot (or even anytime along the way), perform a refreeze. After that, all currently trackable Frozen World fragments will have been adjusted so that the FROZEN snapshot reference point anchors coincide exactly with their PRESET snapshot counterparts.
-
 
 ### 1. Initialize the refreeze
 
