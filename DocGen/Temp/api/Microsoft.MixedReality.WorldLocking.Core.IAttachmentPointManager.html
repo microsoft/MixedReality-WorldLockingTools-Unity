@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface IAttachmentPointManager
    | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.48.0.0">
+    <meta name="generator" content="docfx 2.48.1.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -110,7 +110,7 @@ of attachment points must be conducted through the IAttachmentPointManager.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IAttachmentPoint CreateAttachmentPoint(Vector3 lockedPosition, IAttachmentPoint context, AdjustLocationDelegate locationHandler, AdjustStateDelegate stateHandler)</code></pre>
+    <pre><code class="lang-csharp hljs">IAttachmentPoint CreateAttachmentPoint(Vector3 frozenPosition, IAttachmentPoint context, AdjustLocationDelegate locationHandler, AdjustStateDelegate stateHandler)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -124,8 +124,8 @@ of attachment points must be conducted through the IAttachmentPointManager.</p>
     <tbody>
       <tr>
         <td><span class="xref">Vector3</span></td>
-        <td><span class="parametername">lockedPosition</span></td>
-        <td><p>The position in the world locked space at which to start the attachment point</p>
+        <td><span class="parametername">frozenPosition</span></td>
+        <td><p>The position in the frozen space at which to start the attachment point</p>
 </td>
       </tr>
       <tr>
@@ -181,7 +181,7 @@ Both handlers are optional and may be null.</p>
   <a id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_MoveAttachmentPoint_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.MoveAttachmentPoint*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_MoveAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_Vector3_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.MoveAttachmentPoint(Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint,Vector3)">MoveAttachmentPoint(IAttachmentPoint, Vector3)</h4>
   <div class="markdown level1 summary"><p>Move (as opposed to Teleport) means that the object is meant to have traversed
-world locked space from its old position to the given new position on some continuous path.</p>
+frozen space from its old position to the given new position on some continuous path.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -206,7 +206,7 @@ world locked space from its old position to the given new position on some conti
       <tr>
         <td><span class="xref">Vector3</span></td>
         <td><span class="parametername">newFrozenPosition</span></td>
-        <td><p>The new position in world locked space</p>
+        <td><p>The new position in frozen space</p>
 </td>
       </tr>
     </tbody>
@@ -256,7 +256,7 @@ finally processed, it will be as if it was created with a null context.</p>
   <a id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_TeleportAttachmentPoint_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.TeleportAttachmentPoint*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Core_IAttachmentPointManager_TeleportAttachmentPoint_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_Vector3_Microsoft_MixedReality_WorldLocking_Core_IAttachmentPoint_" data-uid="Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.TeleportAttachmentPoint(Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint,Vector3,Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint)">TeleportAttachmentPoint(IAttachmentPoint, Vector3, IAttachmentPoint)</h4>
   <div class="markdown level1 summary"><p>Teleport (as opposed to Move) means that the object is meant to have disappeared at its old position
-and instantaneously reappeared at its new position in world locked space without traversing the space in between.</p>
+and instantaneously reappeared at its new position in frozen space without traversing the space in between.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>

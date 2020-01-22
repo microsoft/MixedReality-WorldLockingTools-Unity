@@ -359,6 +359,24 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchors
   nameWithType: AnchorManager.SpongyAnchors
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId
+  name: AnchorManager.SpongyAnchorWithId
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId
+  nameWithType: AnchorManager.SpongyAnchorWithId
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.anchorId
+  name: anchorId
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SpongyAnchorWithId_anchorId
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.anchorId
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.anchorId
+  nameWithType: AnchorManager.SpongyAnchorWithId.anchorId
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.spongyAnchor
+  name: spongyAnchor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SpongyAnchorWithId_spongyAnchor
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.spongyAnchor
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.spongyAnchor
+  nameWithType: AnchorManager.SpongyAnchorWithId.spongyAnchor
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Update
   name: Update()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_Update
@@ -1880,6 +1898,113 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Core.RefitNotificationDelegate
   fullName: Microsoft.MixedReality.WorldLocking.Core.RefitNotificationDelegate
   nameWithType: RefitNotificationDelegate
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror
+  name: ResourceMirror
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.ResourceMirror
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror
+  nameWithType: ResourceMirror
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CompareToResource`2
+  name: ResourceMirror.CompareToResource<ItemType, ResourceType>
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CompareToResource-2.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CompareToResource`2
+  name.vb: ResourceMirror.CompareToResource(Of ItemType, ResourceType)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CompareToResource<ItemType, ResourceType>
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CompareToResource(Of ItemType, ResourceType)
+  nameWithType: ResourceMirror.CompareToResource<ItemType, ResourceType>
+  nameWithType.vb: ResourceMirror.CompareToResource(Of ItemType, ResourceType)
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource`2
+  name: ResourceMirror.CreateResource<ItemType, ResourceType>
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource-2.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource`2
+  name.vb: ResourceMirror.CreateResource(Of ItemType, ResourceType)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource<ItemType, ResourceType>
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource(Of ItemType, ResourceType)
+  nameWithType: ResourceMirror.CreateResource<ItemType, ResourceType>
+  nameWithType.vb: ResourceMirror.CreateResource(Of ItemType, ResourceType)
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.DestroyResource`1
+  name: ResourceMirror.DestroyResource<ResourceType>
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.DestroyResource-1.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.DestroyResource`1
+  name.vb: ResourceMirror.DestroyResource(Of ResourceType)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.DestroyResource<ResourceType>
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.DestroyResource(Of ResourceType)
+  nameWithType: ResourceMirror.DestroyResource<ResourceType>
+  nameWithType.vb: ResourceMirror.DestroyResource(Of ResourceType)
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.Sync*
+  name: Sync
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.html#Microsoft_MixedReality_WorldLocking_Core_ResourceMirror_Sync_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.Sync
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.Sync
+  nameWithType: ResourceMirror.Sync
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.Sync``2(System.Collections.Generic.IReadOnlyList{``0},System.Collections.Generic.List{``1},Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CompareToResource{``0,``1},Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource{``0,``1},Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.UpdateResource{``0,``1},Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.DestroyResource{``1})
+  name: Sync<ItemType, ResourceType>(IReadOnlyList<ItemType>, List<ResourceType>, ResourceMirror.CompareToResource<ItemType, ResourceType>, ResourceMirror.CreateResource<ItemType, ResourceType>, ResourceMirror.UpdateResource<ItemType, ResourceType>, ResourceMirror.DestroyResource<ResourceType>)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.html#Microsoft_MixedReality_WorldLocking_Core_ResourceMirror_Sync__2_System_Collections_Generic_IReadOnlyList___0__System_Collections_Generic_List___1__Microsoft_MixedReality_WorldLocking_Core_ResourceMirror_CompareToResource___0___1__Microsoft_MixedReality_WorldLocking_Core_ResourceMirror_CreateResource___0___1__Microsoft_MixedReality_WorldLocking_Core_ResourceMirror_UpdateResource___0___1__Microsoft_MixedReality_WorldLocking_Core_ResourceMirror_DestroyResource___1__
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.Sync``2(System.Collections.Generic.IReadOnlyList{``0},System.Collections.Generic.List{``1},Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CompareToResource{``0,``1},Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource{``0,``1},Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.UpdateResource{``0,``1},Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.DestroyResource{``1})
+  name.vb: Sync(Of ItemType, ResourceType)(IReadOnlyList(Of ItemType), List(Of ResourceType), ResourceMirror.CompareToResource(Of ItemType, ResourceType), ResourceMirror.CreateResource(Of ItemType, ResourceType), ResourceMirror.UpdateResource(Of ItemType, ResourceType), ResourceMirror.DestroyResource(Of ResourceType))
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.Sync<ItemType, ResourceType>(System.Collections.Generic.IReadOnlyList<ItemType>, System.Collections.Generic.List<ResourceType>, Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CompareToResource<ItemType, ResourceType>, Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource<ItemType, ResourceType>, Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.UpdateResource<ItemType, ResourceType>, Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.DestroyResource<ResourceType>)
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.Sync(Of ItemType, ResourceType)(System.Collections.Generic.IReadOnlyList(Of ItemType), System.Collections.Generic.List(Of ResourceType), Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CompareToResource(Of ItemType, ResourceType), Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource(Of ItemType, ResourceType), Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.UpdateResource(Of ItemType, ResourceType), Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.DestroyResource(Of ResourceType))
+  nameWithType: ResourceMirror.Sync<ItemType, ResourceType>(IReadOnlyList<ItemType>, List<ResourceType>, ResourceMirror.CompareToResource<ItemType, ResourceType>, ResourceMirror.CreateResource<ItemType, ResourceType>, ResourceMirror.UpdateResource<ItemType, ResourceType>, ResourceMirror.DestroyResource<ResourceType>)
+  nameWithType.vb: ResourceMirror.Sync(Of ItemType, ResourceType)(IReadOnlyList(Of ItemType), List(Of ResourceType), ResourceMirror.CompareToResource(Of ItemType, ResourceType), ResourceMirror.CreateResource(Of ItemType, ResourceType), ResourceMirror.UpdateResource(Of ItemType, ResourceType), ResourceMirror.DestroyResource(Of ResourceType))
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.UpdateResource`2
+  name: ResourceMirror.UpdateResource<ItemType, ResourceType>
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.UpdateResource-2.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.UpdateResource`2
+  name.vb: ResourceMirror.UpdateResource(Of ItemType, ResourceType)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.UpdateResource<ItemType, ResourceType>
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.UpdateResource(Of ItemType, ResourceType)
+  nameWithType: ResourceMirror.UpdateResource<ItemType, ResourceType>
+  nameWithType.vb: ResourceMirror.UpdateResource(Of ItemType, ResourceType)
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper
+  name: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.html
+  commentId: N:Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper
+  nameWithType: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2
+  name: IdPair<IdType, T>
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair-2.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2
+  name.vb: IdPair(Of IdType, T)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair<IdType, T>
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair(Of IdType, T)
+  nameWithType: IdPair<IdType, T>
+  nameWithType.vb: IdPair(Of IdType, T)
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2.CompareById(Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair{`0,`1},Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair{`0,`1})
+  name: CompareById(IdPair<IdType, T>, IdPair<IdType, T>)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair-2.html#Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair_2_CompareById_Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair__0__1__Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair__0__1__
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2.CompareById(Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair{`0,`1},Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair{`0,`1})
+  name.vb: CompareById(IdPair(Of IdType, T), IdPair(Of IdType, T))
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair<IdType, T>.CompareById(Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair<IdType, T>, Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair<IdType, T>)
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair(Of IdType, T).CompareById(Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair(Of IdType, T), Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair(Of IdType, T))
+  nameWithType: IdPair<IdType, T>.CompareById(IdPair<IdType, T>, IdPair<IdType, T>)
+  nameWithType.vb: IdPair(Of IdType, T).CompareById(IdPair(Of IdType, T), IdPair(Of IdType, T))
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2.CompareById*
+  name: CompareById
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair-2.html#Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair_2_CompareById_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2.CompareById
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair<IdType, T>.CompareById
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair(Of IdType, T).CompareById
+  nameWithType: IdPair<IdType, T>.CompareById
+  nameWithType.vb: IdPair(Of IdType, T).CompareById
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2.id
+  name: id
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair-2.html#Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair_2_id
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2.id
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair<IdType, T>.id
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair(Of IdType, T).id
+  nameWithType: IdPair<IdType, T>.id
+  nameWithType.vb: IdPair(Of IdType, T).id
+- uid: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2.target
+  name: target
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair-2.html#Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair_2_target
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2.target
+  fullName: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair<IdType, T>.target
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair(Of IdType, T).target
+  nameWithType: IdPair<IdType, T>.target
+  nameWithType.vb: IdPair(Of IdType, T).target
 - uid: Microsoft.MixedReality.WorldLocking.Core.SharedDiagnosticsSettings
   name: SharedDiagnosticsSettings
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SharedDiagnosticsSettings.html

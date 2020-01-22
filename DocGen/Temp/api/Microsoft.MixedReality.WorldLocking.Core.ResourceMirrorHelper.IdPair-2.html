@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class StatusToText
+    <title>Struct IdPair&lt;IdType, T&gt;
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class StatusToText
+    <meta name="title" content="Struct IdPair&lt;IdType, T&gt;
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.48.1.0">
     
@@ -81,39 +81,80 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Tools.StatusToText">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Tools_StatusToText" data-uid="Microsoft.MixedReality.WorldLocking.Tools.StatusToText" class="text-break">Class StatusToText
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair_2" data-uid="Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2" class="text-break">Struct IdPair&lt;IdType, T&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Helper to bind WorldLockingManager diagnostics to text meshes for display.</p>
+  <div class="markdown level0 summary"><p>Helper pair for keeping track of things by ID.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">StatusToText</span></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.equals#System_ValueType_Equals_System_Object_">ValueType.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.gethashcode#System_ValueType_GetHashCode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.tostring#System_ValueType_ToString">ValueType.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.html">Microsoft.MixedReality.WorldLocking.Tools</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.html">Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Tools_StatusToText_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StatusToText : MonoBehaviour</code></pre>
+    <pre><code class="lang-csharp hljs">public struct IdPair&lt;IdType, T&gt;</code></pre>
   </div>
-  <h3 id="properties">Properties
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">IdType</span></td>
+        <td><p>Type of the identifier.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type of the data associated with the identifier.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair_2_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>The IdType is typically an AnchorId, but any type using the Comparer.Default.Compare is fine.
+Note this is independent of the ResourceMirror, and currently only used to internally
+for resources identified by anchorId, and to expedite tests.</p>
+</div>
+  <h3 id="fields">Fields
   </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Tools_StatusToText_ErrorStatusEnabled_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.StatusToText.ErrorStatusEnabled*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_StatusToText_ErrorStatusEnabled" data-uid="Microsoft.MixedReality.WorldLocking.Tools.StatusToText.ErrorStatusEnabled">ErrorStatusEnabled</h4>
-  <div class="markdown level1 summary"><p>Text mesh for display of error status.</p>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair_2_id" data-uid="Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2.id">id</h4>
+  <div class="markdown level1 summary"><p>Identifier field.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ErrorStatusEnabled { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IdType id</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -123,23 +164,22 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">IdType</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Tools_StatusToText_InfoEnabled_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.StatusToText.InfoEnabled*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_StatusToText_InfoEnabled" data-uid="Microsoft.MixedReality.WorldLocking.Tools.StatusToText.InfoEnabled">InfoEnabled</h4>
-  <div class="markdown level1 summary"><p>Text mesh for display of summary info.</p>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair_2_target" data-uid="Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2.target">target</h4>
+  <div class="markdown level1 summary"><p>Data associated with identifier.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool InfoEnabled { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public T target</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -149,49 +189,49 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">T</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h3 id="methods">Methods
+  </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Tools_StatusToText_MetricsEnabled_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.StatusToText.MetricsEnabled*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_StatusToText_MetricsEnabled" data-uid="Microsoft.MixedReality.WorldLocking.Tools.StatusToText.MetricsEnabled">MetricsEnabled</h4>
-  <div class="markdown level1 summary"><p>Whether display of detailed metrics currently enabled.</p>
+  <a id="Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair_2_CompareById_" data-uid="Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2.CompareById*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair_2_CompareById_Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair__0__1__Microsoft_MixedReality_WorldLocking_Core_ResourceMirrorHelper_IdPair__0__1__" data-uid="Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair`2.CompareById(Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair{`0,`1},Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair{`0,`1})">CompareById(IdPair&lt;IdType, T&gt;, IdPair&lt;IdType, T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Convenience comparison function comparing by identifier (ignoring associated data).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool MetricsEnabled { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static int CompareById(IdPair&lt;IdType, T&gt; lhs, IdPair&lt;IdType, T&gt; rhs)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair-2.html">IdPair</a>&lt;IdType, T&gt;</td>
+        <td><span class="parametername">lhs</span></td>
+        <td><p>The left hand side.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair-2.html">IdPair</a>&lt;IdType, T&gt;</td>
+        <td><span class="parametername">rhs</span></td>
+        <td><p>The right hand side.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  
-  
-  <a id="Microsoft_MixedReality_WorldLocking_Tools_StatusToText_StateIndicatorEnabled_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.StatusToText.StateIndicatorEnabled*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_StatusToText_StateIndicatorEnabled" data-uid="Microsoft.MixedReality.WorldLocking.Tools.StatusToText.StateIndicatorEnabled">StateIndicatorEnabled</h4>
-  <div class="markdown level1 summary"><p>Text mesh for display of current state.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool StateIndicatorEnabled { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -201,34 +241,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Microsoft_MixedReality_WorldLocking_Tools_StatusToText_VersionTimestampEnabled_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.StatusToText.VersionTimestampEnabled*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_StatusToText_VersionTimestampEnabled" data-uid="Microsoft.MixedReality.WorldLocking.Tools.StatusToText.VersionTimestampEnabled">VersionTimestampEnabled</h4>
-  <div class="markdown level1 summary"><p>Text mesh to display version and timestamp.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool VersionTimestampEnabled { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>If lhs GT rhs then -1 else if lhs LT rhs then 1 else 0</p>
+</td>
       </tr>
     </tbody>
   </table>

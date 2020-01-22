@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace Microsoft.MixedReality.WorldLocking.Core
    | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.48.0.0">
+    <meta name="generator" content="docfx 2.48.1.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -116,6 +116,9 @@ another fragment.</p>
       <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.PoseExtensions.html">PoseExtensions</a></h4>
       <section><p>Extensions for Poses to enable basic transform math.</p>
 </section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.html">ResourceMirror</a></h4>
+      <section><p>Class to synchronize a list of resources with associated source data (items).</p>
+</section>
       <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SharedDiagnosticsSettings.html">SharedDiagnosticsSettings</a></h4>
       <section><p>The SharedSettings boxes the Settings into a sharable reference.</p>
 </section>
@@ -145,6 +148,8 @@ WorldLockingManager supplies access to the sub-managers, <a class="xref" href="M
 </section>
     <h3 id="structs">Structs
   </h3>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.html">AnchorManager.SpongyAnchorWithId</a></h4>
+      <section></section>
       <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record.html">Diagnostics.Record</a></h4>
       <section><p>One record (chunk) of data.</p>
 </section>
@@ -206,6 +211,25 @@ The client can take action to hide objects in disconnected space if desired.</p>
       <section></section>
       <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.RefitNotificationDelegate.html">RefitNotificationDelegate</a></h4>
       <section><p>Delegate type for notification of refit operations.</p>
+</section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CompareToResource-2.html">ResourceMirror.CompareToResource&lt;ItemType, ResourceType&gt;</a></h4>
+      <section><p>Function to compare a source item with a resource. It should return:
+-1 if resource is associated with a smaller item than item.
+1 if resource is associated with a larger item than item.
+0 if resource is associated with item.</p>
+</section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource-2.html">ResourceMirror.CreateResource&lt;ItemType, ResourceType&gt;</a></h4>
+      <section><p>Callback for creating a new instance of a resource matching a specific item. This
+will be called for each item in Sync's currentItems list which doesn't have a matching
+resource in Sync's resources list.</p>
+</section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.DestroyResource-1.html">ResourceMirror.DestroyResource&lt;ResourceType&gt;</a></h4>
+      <section><p>Callback to release resources. This will be called for each resource in Sync's
+resource list for which there is no corresponding source data in Sync's currentItems.</p>
+</section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.UpdateResource-2.html">ResourceMirror.UpdateResource&lt;ItemType, ResourceType&gt;</a></h4>
+      <section><p>Callback to update existing resources. This will be called for each item and its
+associated resource in the Sync's currentItems and resources lists.</p>
 </section>
 </article>
           </div>

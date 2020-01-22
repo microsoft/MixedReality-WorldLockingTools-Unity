@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class AdjusterMoving
+    <title>Delegate ResourceMirror.CreateResource&lt;ItemType, ResourceType&gt;
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class AdjusterMoving
+    <meta name="title" content="Delegate ResourceMirror.CreateResource&lt;ItemType, ResourceType&gt;
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.48.1.0">
     
@@ -81,44 +81,91 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource`2">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterMoving" data-uid="Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving" class="text-break">Class AdjusterMoving
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_ResourceMirror_CreateResource_2" data-uid="Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource`2" class="text-break">Delegate ResourceMirror.CreateResource&lt;ItemType, ResourceType&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Component to handle frozen world adjustments for dynamic (moving) objects.</p>
+  <div class="markdown level0 summary"><p>Callback for creating a new instance of a resource matching a specific item. This
+will be called for each item in Sync's currentItems list which doesn't have a matching
+resource in Sync's resources list.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterBase.html">AdjusterBase</a></div>
-    <div class="level2"><a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html">AdjusterFixed</a></div>
-    <div class="level3"><span class="xref">AdjusterMoving</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_Manager">AdjusterFixed.Manager</a>
-    </div>
-    <div>
-      <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_AttachmentPoint">AdjusterFixed.AttachmentPoint</a>
-    </div>
-    <div>
-      <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_HandleAdjustLocation_Pose_">AdjusterFixed.HandleAdjustLocation(Pose)</a>
-    </div>
-    <div>
-      <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_HandleAdjustState_AttachmentPointStateType_">AdjusterFixed.HandleAdjustState(AttachmentPointStateType)</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.html">Microsoft.MixedReality.WorldLocking.Tools</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterMoving_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_ResourceMirror_CreateResource_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AdjusterMoving : AdjusterFixed</code></pre>
+    <pre><code class="lang-csharp hljs">public delegate bool CreateResource&lt;ItemType, ResourceType&gt;(ItemType item, out ResourceType resource);</code></pre>
   </div>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterMoving_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>For stationary objects, use <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html">AdjusterFixed</a></p>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ItemType</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The source item to create a new resource for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ResourceType</span></td>
+        <td><span class="parametername">resource</span></td>
+        <td><p>out param for created resource.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Returns true if a resource was created successfully.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">ItemType</span></td>
+        <td><p>Type of the source data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">ResourceType</span></td>
+        <td><p>Type of the resources to be managed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_ResourceMirror_CreateResource_2_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Note that it is not an error to return false, it only means that for any reason
+the resource was not created. However, if the resource is not created, then in the
+next call to Sync, it will be noted that the item doesn't have a matching resource
+and the create call will be made again. To prevent fruitless and possibly expensive
+create calls, the offending item should be removed from the items list passed into Sync.
+As noted below, all additions and removals from the items list must happen outside
+the Sync call.</p>
 </div>
 </article>
           </div>

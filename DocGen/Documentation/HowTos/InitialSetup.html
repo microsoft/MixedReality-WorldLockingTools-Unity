@@ -8,7 +8,7 @@
     <title>Initial setup of World Locking Tools | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Initial setup of World Locking Tools | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.48.0.0">
+    <meta name="generator" content="docfx 2.48.1.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -171,7 +171,7 @@
 <p>The WorldAnchorAdapter transforms the raw position of a GameObject positioned by a WorldAnchor, into the world locked Unity global space, and then applies the transform to a target object. To use it, rather than adding a WorldAnchor directly to an object, the WorldAnchor should be applied to a proxy object (usually an otherwise empty GameObject), and then on Update() the WorldAnchorAdapter reads the pose of the WorldAnchor, transforms it correctly, and applies it to the target.</p>
 <h2 id="setup-complete">Setup complete</h2>
 <p>Having followed the above steps, the project deployed to device will run adjusted by World Locking Tools to maintain an optimally stable world-locked space. Any fixed objects placed in the scene will remain visually consistent both relative to each other and with the physical world.</p>
-<h2 id="running-a-more-complicated-sample">Running a more complicated sample</h2>
+<h2 id="available-example-applications">Available example applications</h2>
 <p><a href="SampleApplications.html">Sample scenes</a>, including both scripts and assets are provided to demonstrate more complex use of World Locking Tools' capabilities.</p>
 <p>For example, <a href="Samples/WorldLockedPhysicsSample.html">the WorldLockedPhysicsSample</a> provides a simple environment in which physically simulated objects can be created and removed, interacting with each other and with the environment (the spatial mapping).</p>
 <p>For a more focused look at the Space Pinning feature, <a href="Samples/SpacePin.html">the SpacePin</a> provides a much simplified example of aligning a large scale virtual object to real world features.</p>
