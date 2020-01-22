@@ -154,7 +154,7 @@ The WorldAnchorAdapter transforms the raw position of a GameObject positioned by
 
 Having followed the above steps, the project deployed to device will run adjusted by World Locking Tools to maintain an optimally stable world-locked space. Any fixed objects placed in the scene will remain visually consistent both relative to each other and with the physical world.
 
-## Running a more complicated sample
+## Available example applications
 
 [Sample scenes](SampleApplications.md), including both scripts and assets are provided to demonstrate more complex use of World Locking Tools' capabilities. 
 

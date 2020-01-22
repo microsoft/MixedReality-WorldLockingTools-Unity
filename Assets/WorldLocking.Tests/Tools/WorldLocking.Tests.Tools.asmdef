@@ -1,8 +1,9 @@
 {
-    "name": "WorldLocking.Tests.Core",
+    "name": "WorldLocking.Tests.Tools",
     "references": [
         "Microsoft.MixedReality.WorldLocking.Core",
-        "Microsoft.MixedReality.WorldLocking.Engine"
+        "Microsoft.MixedReality.WorldLocking.Engine",
+        "Microsoft.MixedReality.WorldLocking.Tools"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

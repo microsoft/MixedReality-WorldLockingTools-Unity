@@ -70,10 +70,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private SpongyAnchor newSpongyAnchor;
         private List<AnchorId> newAnchorNeighbors;
 
-        // mafinch - perf. This spongyAnchors is only used as a dictionary in AnchorGraphVisual. Should consider making it
-        // a List.
-        private Dictionary<AnchorId, SpongyAnchor> spongyAnchors = new Dictionary<AnchorId, SpongyAnchor>();
-        public Dictionary<AnchorId, SpongyAnchor> SpongyAnchors => spongyAnchors;
+        public struct SpongyAnchorWithId
+        {
+            public AnchorId anchorId;
+            public SpongyAnchor spongyAnchor;
+        }
+        private readonly List<SpongyAnchorWithId> spongyAnchors = new List<SpongyAnchorWithId>();
+        public List<SpongyAnchorWithId> SpongyAnchors => spongyAnchors;
 
         private float lastAnchorAddTime;
         private float lastTrackingInactiveTime;
@@ -132,9 +135,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public void Reset()
         {
-            foreach (var anchor in spongyAnchors.Values)
+            foreach (var anchor in spongyAnchors)
             {
-                UnityEngine.Object.Destroy(anchor.gameObject);
+                UnityEngine.Object.Destroy(anchor.spongyAnchor.gameObject);
             }
             spongyAnchors.Clear();
 
@@ -199,8 +202,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             foreach (var keyval in spongyAnchors)
             {
-                var id = keyval.Key;
-                var a = keyval.Value;
+                var id = keyval.anchorId;
+                var a = keyval.spongyAnchor;
                 if (a.isLocated)
                 {
                     float distSqr = (a.transform.position - newSpongyAnchorPose.position).sqrMagnitude;
@@ -312,7 +315,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 newEdges.Add(new AnchorEdge() { anchorId1 = id, anchorId2 = newId });
             }
-            spongyAnchors[newId] = newSpongyAnchor;
+            spongyAnchors.Add(new SpongyAnchorWithId()
+            {
+                anchorId = newId,
+                spongyAnchor = newSpongyAnchor
+            });
             newSpongyAnchor = null;
 
             return newId;
@@ -370,8 +377,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             var worldAnchorStore = await getWorldAnchorStoreAsync();
             foreach (var keyval in spongyAnchors)
             {
-                var id = keyval.Key;
-                var anchor = keyval.Value;
+                var id = keyval.anchorId;
+                var anchor = keyval.spongyAnchor;
                 Debug.Assert(anchor.name == id.FormatStr());
                 anchor.Save(worldAnchorStore);
             }
@@ -393,13 +400,23 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             var anchorIds = plugin.GetFrozenAnchorIds();
 
+            AnchorId maxId = newAnchorId;
+
             foreach (var id in anchorIds)
             {
                 var spongyAnchor = CreateAnchor(id);
                 bool success = spongyAnchor.Load(worldAnchorStore);
                 if (success)
                 {
-                    spongyAnchors[id] = spongyAnchor;
+                    spongyAnchors.Add(new SpongyAnchorWithId()
+                    {
+                        anchorId = id,
+                        spongyAnchor = spongyAnchor
+                    });
+                    if (maxId <= id)
+                    {
+                        maxId = id + 1;
+                    }
                 }
                 else
                 {
@@ -410,7 +427,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             if (spongyAnchors.Count > 0)
             {
-                newAnchorId = spongyAnchors.Keys.Max() + 1;
+                newAnchorId = maxId;
             }
         }
     }

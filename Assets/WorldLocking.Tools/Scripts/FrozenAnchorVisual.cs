@@ -35,7 +35,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             var res = Instantiate(this, parent.transform);
             res.parent = parent;
             res.name = name;
-            res.textObject.text = name;
+            if (res.textObject != null)
+            {
+                res.textObject.text = name;
+            }
             return res;
         }
 
@@ -43,8 +46,14 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         {
             var color = parent.color;
 
-            iconObject.material.color = color;
-            textObject.color = color;
+            if (iconObject != null)
+            {
+                iconObject.material.color = color;
+            }
+            if (textObject != null)
+            {
+                textObject.color = color;
+            }
         }
     }
 }

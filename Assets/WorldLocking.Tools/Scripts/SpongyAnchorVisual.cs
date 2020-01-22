@@ -61,7 +61,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         {
             var res = Instantiate(this, parent.transform);
             res.name = worldAnchor.name;
-            res.textObject.text = res.name;
+            if (res.textObject != null)
+            {
+                res.textObject.text = res.name;
+            }
             res.worldAnchor = worldAnchor;
             res.color = Color.gray;
             return res;
@@ -84,9 +87,14 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             if (!worldAnchor.isLocated)
                 color = Color.gray;
 
-            ringObject.material.color = color;
-            textObject.color = color;
-
+            if (ringObject != null)
+            {
+                ringObject.material.color = color;
+            }
+            if (textObject != null)
+            {
+                textObject.color = color;
+            }
         }
 
         /// <summary>
@@ -95,17 +103,23 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// <param name="relevance">The new relevance</param>
         public void SetSupportRelevance(float relevance)
         {
-            if(relevance > 0.0f)
+            if (relevance > 0.0f)
             {
                 color = Color.green;
                 var rad = (float)Math.Sqrt(relevance);
-                discObject.SetActive(true);
-                discObject.transform.localScale = new Vector3(rad, 1.0f, rad);
+                if (discObject != null)
+                {
+                    discObject.SetActive(true);
+                    discObject.transform.localScale = new Vector3(rad, 1.0f, rad);
+                }
             }
             else
             {
                 color = Color.red;
-                discObject.SetActive(false);
+                if (discObject != null)
+                {
+                    discObject.SetActive(false);
+                }
             }
         }
 
@@ -115,7 +129,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         public void SetNoSupport()
         {
             color = Color.yellow;
-            discObject.SetActive(false);
+            if (discObject != null)
+            {
+                discObject.SetActive(false);
+            }
         }
     }
 }

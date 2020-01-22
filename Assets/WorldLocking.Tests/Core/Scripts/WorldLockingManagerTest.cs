@@ -237,5 +237,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
                 dstPoses[i] = anchorPose;
             }
         }
+
     }
 }

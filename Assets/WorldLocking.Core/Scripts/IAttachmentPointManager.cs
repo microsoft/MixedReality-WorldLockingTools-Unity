@@ -29,12 +29,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// The stateHandler notifies whether this attachment point is "connected" with the current fragment.
         /// Both handlers are optional and may be null.
         /// </remarks>
-        /// <param name="lockedPosition">The position in the world locked space at which to start the attachment point</param>
+        /// <param name="frozenPosition">The position in the frozen space at which to start the attachment point</param>
         /// <param name="context">The optional context into which to create the attachment point (may be null)</param>
         /// <param name="locationHandler">Delegate to handle Frozen World engine system adjustments to position</param>
         /// <param name="stateHandler">Delegate to handle Frozen World engine connectivity changes</param>
         /// <returns>The new attachment point interface.</returns>
-        IAttachmentPoint CreateAttachmentPoint(Vector3 lockedPosition, IAttachmentPoint context,
+        IAttachmentPoint CreateAttachmentPoint(Vector3 frozenPosition, IAttachmentPoint context,
                 AdjustLocationDelegate locationHandler, AdjustStateDelegate stateHandler);
 
         /// <summary>
@@ -52,19 +52,19 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         /// <summary>
         /// Move (as opposed to Teleport) means that the object is meant to have traversed 
-        /// world locked space from its old position to the given new position on some continuous path.
+        /// frozen space from its old position to the given new position on some continuous path.
         /// </summary>
         /// <remarks>
         /// Not to be used for automatic (i.e. FrozenWorld Engine instigated) moves.
         /// Use this for continuous movement through space. For discontinuous movement (i.e. teleportation), use <see cref="TeleportAttachmentPoint"/>
         /// </remarks>
         /// <param name="attachPoint">Attachment point to move</param>
-        /// <param name="newFrozenPosition">The new position in world locked space</param>
+        /// <param name="newFrozenPosition">The new position in frozen space</param>
         void MoveAttachmentPoint(IAttachmentPoint attachPointIface, Vector3 newFrozenPosition);
 
         /// <summary>
         /// Teleport (as opposed to Move) means that the object is meant to have disappeared at its old position 
-        /// and instantaneously reappeared at its new position in world locked space without traversing the space in between.
+        /// and instantaneously reappeared at its new position in frozen space without traversing the space in between.
         /// </summary>
         /// <remarks>
         /// Use this for discontinuous movement through space (i.e. teleportation). For continuous movement, use <see cref="MoveAttachmentPoint"/>.

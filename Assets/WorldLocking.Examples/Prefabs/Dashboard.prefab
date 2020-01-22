@@ -118,7 +118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4478825229732142942}
   m_LocalRotation: {x: -0.2588191, y: -0, z: -0, w: 0.9659258}
-  m_LocalPosition: {x: -12.84, y: 24.26233, z: 3.543582}
+  m_LocalPosition: {x: -12.84, y: 25.26233, z: 3.543582}
   m_LocalScale: {x: 0.0686, y: 0.0732, z: 1.0281999}
   m_Children: []
   m_Father: {fileID: 4478825231606813937}
@@ -171,7 +171,11 @@ TextMesh:
   m_GameObject: {fileID: 4478825229732142942}
   m_Text: 'Version
 
-    Timestamp'
+    Version
+
+    Timestamp
+
+    Framerate'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -211,7 +215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4478825230108128821}
   m_LocalRotation: {x: -0.2588191, y: -0, z: -0, w: 0.9659258}
-  m_LocalPosition: {x: -12.96, y: 10.931758, z: 9.854355}
+  m_LocalPosition: {x: -12.96, y: 10.93176, z: 9.854355}
   m_LocalScale: {x: 0.068623096, y: 0.07326953, z: 1.0281998}
   m_Children: []
   m_Father: {fileID: 4478825231606813937}
@@ -424,7 +428,6 @@ MonoBehaviour:
   CheckBoxShowMetrics: {fileID: 3508951710993675159}
   CheckBoxShowSpatMap: {fileID: 9111207738747677492}
   CheckBoxManagerEnabled: {fileID: 2899871807173700127}
-  CheckBoxAlign2: {fileID: 0}
   CheckBoxAutoMerge: {fileID: 8990919894314380801}
   CheckBoxAutoSave: {fileID: 7807086831398572500}
   CheckBoxAutoRefreeze: {fileID: 5492320256569509820}
@@ -526,6 +529,7 @@ MonoBehaviour:
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   persistentKeywords: 0
+  speechConfirmationTooltipPrefab: {fileID: 0}
 --- !u!1 &4478825231255078249
 GameObject:
   m_ObjectHideFlags: 0
