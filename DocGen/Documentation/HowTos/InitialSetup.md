@@ -62,11 +62,11 @@ To begin, make sure NuGet for Unity is installed into the Unity project. It is a
 
 Make sure the nuget.org feed is in sources. Check this in Unity > Edit > Preferences > NuGet for Unity. If not, *either*:
 
-1) Or use the *Add New Source* GUI in Unity > Edit > Preferences > NuGet For Unity to add the same share.
+1) **Either** use the *Add New Source* GUI in Unity > Edit > Preferences > NuGet For Unity to add the same share.
   * Replace "New Source" with a name of your choosing (e.g. "NuGet").
   * Replace "source_path" with "http://www.nuget.org/api/v2/".
 
-2) Add a packagesource line to Assets/NuGet.config, e.g.
+2) **Or** use a text editor to add a packagesource line to Assets/NuGet.config, e.g.
 
 ```
   <packageSources>
@@ -93,13 +93,13 @@ Note that since some of the World Locking Tools Examples use features from MRTK,
 
 ## Adding World Locking Tools to a Unity scene
 
-Within a Unity project containing the FrozenWorld engine (from nuget.org), any desired World Locking Tools Assets layers (but at least WorldLocking.Core), and optionally MRTK, create a new scene (or open an existing scene).
+Within a Unity project containing the FrozenWorld engine (from nuget.org), import any desired World Locking Tools Assets layers (but at least WorldLocking.Core), and optionally MRTK. Then create a new scene (or open an existing scene).
 
-Add an extra node at the root of the camera hierarchy. This node will be used to adjust the head tracked camera into world locked space. (If using MRTK, this new GameObject would be the parent of the MixedRealityPlayspace.)
+Add an extra node at the root of the camera hierarchy. This node will be used to adjust the head tracked camera into world locked space. (If using MRTK, this new GameObject would be the *parent* of the MixedRealityPlayspace.)
 
 ### The core experience
 
-Drag a WorldLockingManager prefab from Assets/WorldLocking.Core/Prefabs into your scene. Its place in the scene doesn't matter, but it should **not** be in the camera tree.
+Drag a WorldLockingManager prefab from Assets/WorldLocking.Core/Prefabs into your scene. Its place in the scene doesn't matter, but it should **not** be in the camera tree. See a [sample scene](SampleApplications.md) for a suggested configuration.
 
 There are settings available on the WorldLockingManager prefab, but leaving them to their default values is recommended to get started.
 
@@ -111,7 +111,7 @@ World Locking Tools is complementary with but orthogonal to MRTK. The use of MRT
 
 That said, the World Locking Tools samples are built using MRTK, and MRTK is generally extremely valuable in developing the types of MR applications that benefit most from World Locking Tools.
 
-If using MRTK, add the latest versions of at least the following packages:
+If using MRTK, rather than using the snapshot included with the examples, it's recommended to add the latest versions of at least the following packages:
 
 * MixedReality.Toolkit
 * MixedReality.Toolkit.Providers
