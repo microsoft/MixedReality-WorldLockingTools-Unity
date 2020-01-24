@@ -1,6 +1,8 @@
 ﻿- name: World Locking Tools Concepts
   href: GettingStartedWithWorldLocking.md
   items:
+  - name: Introductory FAQ
+    href: IntroFAQ.md
   - name: The Basic Idea
     href: Concepts/BasicConcepts.md
   - name: Advanced Topics

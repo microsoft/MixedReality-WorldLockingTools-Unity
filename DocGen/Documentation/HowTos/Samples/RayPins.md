@@ -14,6 +14,10 @@ There are eight (8) Space Pin virtual marker objects in the RayPins scene. Four 
 
 Another four (4) pins are one meter up, suggesting they are points on walls six meters (6m) apart.
 
+## Building the sample
+
+Note that the sample requires the SpatialPerception capability. The Microphone capability is also required for voice commands.
+
 ## Running the sample
 
 ### Physical setup

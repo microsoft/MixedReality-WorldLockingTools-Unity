@@ -52,17 +52,21 @@ If the target Unity project is the World Locking Tools project (or a derivative 
 
 If not, then two packages must be added to the project.
 
+If adding World Locking Tools to an existing project, it is advisable to start with a project that has been verified to build and deploy to a HoloLens device. This will help separate issues with getting an app to run on HoloLens in the first place, which can be complicated, from issues with the World Locking Tools.
+
 ### NuGet setup
 
 World Locking Tools relies on NuGet for Unity for distribution. 
 
-To begin, make sure NuGet for Unity is installed into the Unity project. It is available from the Unity Asset Store.
+To begin, make sure NuGet for Unity is installed into the Unity project. It is available from the (NuGet for Unity github releases)[https://github.com/GlitchEnzo/NuGetForUnity/releases].
 
-Add a package source for FrozenWorld.Engine.
+Make sure the nuget.org feed is in sources. Check this in Unity > Edit > Preferences > NuGet for Unity. If not, *either*:
 
-Make sure the nuget.org feed is in sources. If not, either:
+1) Or use the *Add New Source* GUI in Unity > Edit > Preferences > NuGet For Unity to add the same share.
+  * Replace "New Source" with a name of your choosing (e.g. "NuGet").
+  * Replace "source_path" with "http://www.nuget.org/api/v2/".
 
-1) Add a packagesource line to Assets/NuGet.config, e.g.
+2) Add a packagesource line to Assets/NuGet.config, e.g.
 
 ```
   <packageSources>
@@ -70,11 +74,7 @@ Make sure the nuget.org feed is in sources. If not, either:
   </packageSources>
 ```
 
-2) Or use the *Add New Source* GUI in Unity > Edit > Preferences > NuGet For Unity to add the same share.
-  * Replace "New Source" with a name of your choosing (e.g. "NuGet").
-  * Replace "source_path" with "http://www.nuget.org/api/v2/".
- 
-In Unity > NuGet > Manage NuGet Packages, find and install the latest version of Microsoft.MixedReality.FrozenWorld.Engine. 
+After confirming the nuget.org feed, in Unity > NuGet > Manage NuGet Packages, find and install the latest version of Microsoft.MixedReality.FrozenWorld.Engine. (Search for "FrozenWorld".)
 
 ### World Locking Tools Assets
 

@@ -23,6 +23,8 @@
 
 Given inconsistencies between virtual and real world markers, World Locking Tools provides a stable coordinate system and camera adjustment that minimizes the visible inconsistencies.
 
+Put another way, it world-locks the entire scene with a shared pool of anchors, rather than locking each group of objects with the group's own individual anchor. 
+
 ## Why are the virtual and real world markers inconsistent?
 
 Among the many amazing technologies behind Microsoft Mixed Reality, the ability to track the headset's pose in the physical world in real time, without the aid of external devices, is especially amazing.

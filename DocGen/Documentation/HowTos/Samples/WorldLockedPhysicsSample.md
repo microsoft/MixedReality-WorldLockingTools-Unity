@@ -14,6 +14,14 @@ Unity's WorldAnchors react to changes in the underlying spatial anchor's pose by
 
 When the relationships between measured spatial anchors and the visible virtual objects locked to them becomes inconsistent, then rather than adjusting the virtual objects as Unity's WorldAnchors do, World Locking Tools adjusts the head transform to minimize perceived artifacts from those inconsistencies. This allows the virtual objects to appear consistent in a stable coordinate space, eliminating the above issues.
 
+## Building the sample
+
+Note that the sample requires the SpatialPerception capability. The Microphone capability is also required for voice commands.
+
+This sample requires that the following layers be added to the project's Tags & Layers:
+  * Pillared
+  * SpatialMapping
+
 ## Running the demo
 
 ### The diagnostic HUD

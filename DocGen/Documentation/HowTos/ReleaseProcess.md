@@ -48,6 +48,8 @@ Both channels are available on the [WLTU's GitHub releases page](https://github.
 
 ## Building the unity packages
 
+NOTE: The exact UI of the process described here is subject to frequent change. If what you see on your screen doesn't match the screenshots here, that's probably okay. Just look for the relevant keywords and follow through.
+
 1) First, go to the [build pipeline page](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_build?definitionId=50). Be sure that "wlt_ci" is selected.
 
 2) Select the build that matches the commit that will be the basis for the release.
@@ -76,7 +78,7 @@ Update the [WorldLockingManager.Version field](xref:Microsoft.MixedReality.World
 
 ### Create a release branch
 
-For example, create a branch named "release/v0.3.6-alpha". While somewhat redundant with the tag, this will allow for hot-fixes to the release which wouldn't be suitable for the main development branch "master".
+For example, create a branch named "release/v0.3.6-alpha". While somewhat redundant with the tag, this will facilitate hot-fixes to the release which wouldn't be suitable for the main development branch "master".
 
 ### Publish the release
 
