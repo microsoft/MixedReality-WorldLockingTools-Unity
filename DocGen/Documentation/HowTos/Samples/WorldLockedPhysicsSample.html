@@ -92,6 +92,13 @@
 <li>Because of implicit shifts of Unity's coordinate system as WorldAnchors adjust the coordinates of static Holograms to keep them fixed relative to the real world, physics computations such as routes and trajectories will be off. For example, a projectile perfectly aimed at a Hologram will still miss if the Hologram is repositioned by its WorldAnchor in between the trajectory computation and it reaching the target.</li>
 </ul>
 <p>When the relationships between measured spatial anchors and the visible virtual objects locked to them becomes inconsistent, then rather than adjusting the virtual objects as Unity's WorldAnchors do, World Locking Tools adjusts the head transform to minimize perceived artifacts from those inconsistencies. This allows the virtual objects to appear consistent in a stable coordinate space, eliminating the above issues.</p>
+<h2 id="building-the-sample">Building the sample</h2>
+<p>Note that the sample requires the SpatialPerception capability. The Microphone capability is also required for voice commands.</p>
+<p>This sample requires that the following layers be added to the project's Tags &amp; Layers:</p>
+<ul>
+<li>Pillared</li>
+<li>SpatialMapping</li>
+</ul>
 <h2 id="running-the-demo">Running the demo</h2>
 <h3 id="the-diagnostic-hud">The diagnostic HUD</h3>
 <p>This basic HUD is not specific to this Physics Beam Sample, but only allows runtime control of World Locking Tools' behavior to explore its capabilities. It is available as a drop-in for development on any application using World Locking Tools, as described in World Locking Tools' <a href="../InitialSetup.html">Initial Setup</a>.</p>

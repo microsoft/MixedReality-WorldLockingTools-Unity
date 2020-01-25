@@ -14,54 +14,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "Assets/MRTK/MixedRealityToolkit.Examples/Demos/Gltf/Models/Avocado/README.md",
-      "output": {
-        ".html": {
-          "relative_path": "Assets/MRTK/MixedRealityToolkit.Examples/Demos/Gltf/Models/Avocado/README.html",
-          "hash": "fAJglBLA5mruKgUCfWw1zQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "Assets/MRTK/MixedRealityToolkit.Examples/Demos/README.md",
-      "output": {
-        ".html": {
-          "relative_path": "Assets/MRTK/MixedRealityToolkit.Examples/Demos/README.html",
-          "hash": "u3Wg4it7HuOdaLbRxBfYQQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "Assets/MRTK/MixedRealityToolkit.Examples/Demos/StandardShader/README.md",
-      "output": {
-        ".html": {
-          "relative_path": "Assets/MRTK/MixedRealityToolkit.Examples/Demos/StandardShader/README.html",
-          "hash": "vmvHmkS1+6izhxctoanmdw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "Assets/MRTK/MixedRealityToolkit.Examples/StandardAssets/README.md",
-      "output": {
-        ".html": {
-          "relative_path": "Assets/MRTK/MixedRealityToolkit.Examples/StandardAssets/README.html",
-          "hash": "fSWBT5ZK9rhK2s58DK/OQg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "Assets/MRTK/MixedRealityToolkit.SDK/Features/README.md",
       "output": {
         ".html": {
@@ -462,7 +414,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/InitialSetup.html",
-          "hash": "X/4kEUzR98/px1S6SmS6Gw=="
+          "hash": "B7+83ob8CAd45F3NCj+r3A=="
         }
       },
       "is_incremental": false,
@@ -474,7 +426,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/ReleaseProcess.html",
-          "hash": "XJBOshxU9NLi58l4blhlnw=="
+          "hash": "GVE4qI67H5WzxdgsGtlrkw=="
         }
       },
       "is_incremental": false,
@@ -498,7 +450,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/Samples/RayPins.html",
-          "hash": "tse5LCTjaIEWltd2gScTRA=="
+          "hash": "dZt8DNmtygTnEfysEWNWJQ=="
         }
       },
       "is_incremental": false,
@@ -522,7 +474,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/Samples/WorldLockedPhysicsSample.html",
-          "hash": "9r0ekDhLF2q3u3y7XgGbYQ=="
+          "hash": "DxyYHoRBlY9WVTnipvzzrw=="
         }
       },
       "is_incremental": false,
@@ -546,7 +498,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/IntroFAQ.html",
-          "hash": "Zn4znEo7F6/iLlDCqp8eoA=="
+          "hash": "Utxw2X1mqw9KpTK7u4/IOA=="
         }
       },
       "is_incremental": false,
@@ -570,7 +522,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/toc.html",
-          "hash": "EDDaAGNYH7ut+FzPezX7sg=="
+          "hash": "0qJvbFd7JYBGQRTkTzpFcw=="
         }
       },
       "is_incremental": false,
@@ -1815,7 +1767,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 54,
+          "total_file_count": 50,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {

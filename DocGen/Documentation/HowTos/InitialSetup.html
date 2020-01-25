@@ -108,26 +108,26 @@
 <h2 id="adding-world-locking-tools-to-a-unity-project">Adding World Locking Tools to a Unity project</h2>
 <p>If the target Unity project is the World Locking Tools project (or a derivative of it), then all necessary and optional resources are already included.</p>
 <p>If not, then two packages must be added to the project.</p>
+<p>If adding World Locking Tools to an existing project, it is advisable to start with a project that has been verified to build and deploy to a HoloLens device. This will help separate issues with getting an app to run on HoloLens in the first place, which can be complicated, from issues with the World Locking Tools.</p>
 <h3 id="nuget-setup">NuGet setup</h3>
 <p>World Locking Tools relies on NuGet for Unity for distribution.</p>
-<p>To begin, make sure NuGet for Unity is installed into the Unity project. It is available from the Unity Asset Store.</p>
-<p>Add a package source for FrozenWorld.Engine.</p>
-<p>Make sure the nuget.org feed is in sources. If not, either:</p>
+<p>To begin, make sure NuGet for Unity is installed into the Unity project. It is available from the (NuGet for Unity github releases)[https://github.com/GlitchEnzo/NuGetForUnity/releases].</p>
+<p>Make sure the nuget.org feed is in sources. Check this in Unity &gt; Edit &gt; Preferences &gt; NuGet for Unity. If not, <em>either</em>:</p>
 <ol>
-<li>Add a packagesource line to Assets/NuGet.config, e.g.</li>
-</ol>
-<pre><code>  &lt;packageSources&gt;
-    &lt;add key=&quot;NuGet&quot; value=&quot;http://www.nuget.org/api/v2/&quot; /&gt;
-  &lt;/packageSources&gt;
-</code></pre>
-<ol start="2">
-<li>Or use the <em>Add New Source</em> GUI in Unity &gt; Edit &gt; Preferences &gt; NuGet For Unity to add the same share.</li>
+<li><strong>Either</strong> use the <em>Add New Source</em> GUI in Unity &gt; Edit &gt; Preferences &gt; NuGet For Unity to add the same share.</li>
 </ol>
 <ul>
 <li>Replace &quot;New Source&quot; with a name of your choosing (e.g. &quot;NuGet&quot;).</li>
 <li>Replace &quot;source_path&quot; with &quot;http://www.nuget.org/api/v2/&quot;.</li>
 </ul>
-<p>In Unity &gt; NuGet &gt; Manage NuGet Packages, find and install the latest version of Microsoft.MixedReality.FrozenWorld.Engine.</p>
+<ol start="2">
+<li><strong>Or</strong> use a text editor to add a packagesource line to Assets/NuGet.config, e.g.</li>
+</ol>
+<pre><code>  &lt;packageSources&gt;
+    &lt;add key=&quot;NuGet&quot; value=&quot;http://www.nuget.org/api/v2/&quot; /&gt;
+  &lt;/packageSources&gt;
+</code></pre>
+<p>After confirming the nuget.org feed, in Unity &gt; NuGet &gt; Manage NuGet Packages, find and install the latest version of Microsoft.MixedReality.FrozenWorld.Engine. (Search for &quot;FrozenWorld&quot;.)</p>
 <h3 id="world-locking-tools-assets">World Locking Tools Assets</h3>
 <p>Either import the required World Locking Tools .unitypackage files into the project (preferred method), or copy them in. They may be moved into a sub-folder within Assets to get them out of the way for application development.</p>
 <p>The latest stable .unitypackage files can be found in:</p>
@@ -137,16 +137,16 @@
 <p>To determine what other layers might be required, see the discussion of World Locking Tools layers and their dependencies above. Each layer is contained in a single Unity package.</p>
 <p>Note that since some of the World Locking Tools Examples use features from MRTK, a compatible MRTK snapshot is included with the Examples unitypackage. For the latest MRTK release, look <a href="https://github.com/Microsoft/MixedRealityToolkit-Unity/releases">here</a>.</p>
 <h2 id="adding-world-locking-tools-to-a-unity-scene">Adding World Locking Tools to a Unity scene</h2>
-<p>Within a Unity project containing the FrozenWorld engine (from nuget.org), any desired World Locking Tools Assets layers (but at least WorldLocking.Core), and optionally MRTK, create a new scene (or open an existing scene).</p>
-<p>Add an extra node at the root of the camera hierarchy. This node will be used to adjust the head tracked camera into world locked space. (If using MRTK, this new GameObject would be the parent of the MixedRealityPlayspace.)</p>
+<p>Within a Unity project containing the FrozenWorld engine (from nuget.org), import any desired World Locking Tools Assets layers (but at least WorldLocking.Core), and optionally MRTK. Then create a new scene (or open an existing scene).</p>
+<p>Add an extra node at the root of the camera hierarchy. This node will be used to adjust the head tracked camera into world locked space. (If using MRTK, this new GameObject would be the <em>parent</em> of the MixedRealityPlayspace.)</p>
 <h3 id="the-core-experience">The core experience</h3>
-<p>Drag a WorldLockingManager prefab from Assets/WorldLocking.Core/Prefabs into your scene. Its place in the scene doesn't matter, but it should <strong>not</strong> be in the camera tree.</p>
+<p>Drag a WorldLockingManager prefab from Assets/WorldLocking.Core/Prefabs into your scene. Its place in the scene doesn't matter, but it should <strong>not</strong> be in the camera tree. See a <a href="SampleApplications.html">sample scene</a> for a suggested configuration.</p>
 <p>There are settings available on the WorldLockingManager prefab, but leaving them to their default values is recommended to get started.</p>
 <p>See <a href="WorldLockingContext.html">World Locking Tools Context</a> for explanations of the options presented.</p>
 <h3 id="optional-mrtk">[Optional] MRTK</h3>
 <p>World Locking Tools is complementary with but orthogonal to MRTK. The use of MRTK along with World Locking Tools is entirely optional.</p>
 <p>That said, the World Locking Tools samples are built using MRTK, and MRTK is generally extremely valuable in developing the types of MR applications that benefit most from World Locking Tools.</p>
-<p>If using MRTK, add the latest versions of at least the following packages:</p>
+<p>If using MRTK, rather than using the snapshot included with the examples, it's recommended to add the latest versions of at least the following packages:</p>
 <ul>
 <li>MixedReality.Toolkit</li>
 <li>MixedReality.Toolkit.Providers</li>

@@ -108,6 +108,7 @@
 </ol>
 <p>Both channels are available on the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases">WLTU's GitHub releases page</a>.</p>
 <h2 id="building-the-unity-packages">Building the unity packages</h2>
+<p>NOTE: The exact UI of the process described here is subject to frequent change. If what you see on your screen doesn't match the screenshots here, that's probably okay. Just look for the relevant keywords and follow through.</p>
 <ol>
 <li><p>First, go to the <a href="https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_build?definitionId=50">build pipeline page</a>. Be sure that &quot;wlt_ci&quot; is selected.</p>
 </li>
@@ -134,7 +135,7 @@
 <h3 id="update-the-version-field-in-code">Update the Version field in code</h3>
 <p>Update the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Version">WorldLockingManager.Version field</a> to properly reflect the new version.</p>
 <h3 id="create-a-release-branch">Create a release branch</h3>
-<p>For example, create a branch named &quot;release/v0.3.6-alpha&quot;. While somewhat redundant with the tag, this will allow for hot-fixes to the release which wouldn't be suitable for the main development branch &quot;master&quot;.</p>
+<p>For example, create a branch named &quot;release/v0.3.6-alpha&quot;. While somewhat redundant with the tag, this will facilitate hot-fixes to the release which wouldn't be suitable for the main development branch &quot;master&quot;.</p>
 <h3 id="publish-the-release">Publish the release</h3>
 <p>Go to the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases">World Locking Tools for Unity releases page</a>.</p>
 <p>Click the &quot;Create a new release&quot; button.</p>
