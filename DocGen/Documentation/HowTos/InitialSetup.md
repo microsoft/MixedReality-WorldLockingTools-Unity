@@ -1,5 +1,11 @@
 # Initial setup of World Locking Tools
 
+## Supported environments
+
+The World Locking Tools continuous integration (CI) build validates with Unity2018.4.6f1 with Visual Studio 2017. However, extensive WLT development has also been done using the gamut of Unity2018 versions, as well as a range of Unity2019. Both Visual Studio 2017 and Visual Studio 2019 have been used in the development of the tools.
+
+If you experience any compatibility issues with other versions of Unity and/or Visual Studio, we would love to hear about it! The best way to report any problems is through the [issues portal](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues) on GitHub.
+
 ## The World Locking Tools layers
 
 World Locking Tools is broken into four layers. With the arrows pointing toward the layer depended on, the straightforward dependency graph looks like this:
