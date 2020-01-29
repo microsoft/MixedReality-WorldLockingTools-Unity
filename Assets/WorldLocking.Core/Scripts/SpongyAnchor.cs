@@ -2,8 +2,10 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using UnityEngine;
+#if UNITY_WSA
 using UnityEngine.XR.WSA;
 using UnityEngine.XR.WSA.Persistence;
+#endif // UNITY_WSA
 
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
@@ -30,32 +32,45 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remark>
         public static readonly float TrackingStartDelayTime = 0.3f;
 
-        private WorldAnchor worldAnchor;
+#if UNITY_WSA
         private float lastNotLocatedTime = float.NegativeInfinity;
+        private WorldAnchor worldAnchor;
         private bool isSaved = false;
+#endif // UNITY_WSA
 
         /// <summary>
         /// Returns true if the anchor is reliably located. False might mean loss of tracking or not fully initialized.
         /// </summary>
-        public bool isLocated => worldAnchor.isLocated && Time.unscaledTime > lastNotLocatedTime + TrackingStartDelayTime;
+        public bool isLocated =>
+#if UNITY_WSA
+            worldAnchor.isLocated && Time.unscaledTime > lastNotLocatedTime + TrackingStartDelayTime;
+#else // UNITY_WSA
+            false;
+#endif // UNITY_WSA
 
         // Start is called before the first frame update
         private void Start()
         {
+#if UNITY_WSA
             if (worldAnchor == null)
             {
-                worldAnchor = gameObject.AddComponent<WorldAnchor>();
+                worldAnchor = gameObject.AddComponent<UnityEngine.XR.WSA.WorldAnchor>();
             }
+#endif // UNITY_WSA
         }
 
         // Update is called once per frame
         private void Update()
         {
+#if UNITY_WSA
             if (!worldAnchor.isLocated)
             {
                 lastNotLocatedTime = Time.unscaledTime;
             }
+#endif // UNITY_WSA
         }
+
+#if UNITY_WSA
 
         /// <summary>
         /// Save to the anchor store, replacing any existing anchor (by name).
@@ -89,5 +104,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             isSaved = true;
             return worldAnchor != null;
         }
+#endif // UNITY_WSA
     }
 }
