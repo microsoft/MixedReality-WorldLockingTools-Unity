@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class SpongyAnchor
+    <title>Class SimpleSprite
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class SpongyAnchor
+    <meta name="title" content="Class SimpleSprite
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.48.1.0">
     
@@ -81,64 +81,37 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor" class="text-break">Class SpongyAnchor
+  <h1 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleSprite" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite" class="text-break">Class SimpleSprite
   </h1>
-  <div class="markdown level0 summary"><p>Wrapper class for Unity WorldAnchor, facilitating creation and persistence.</p>
+  <div class="markdown level0 summary"><p>Very simple class to rotate sprites to face the camera.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">SpongyAnchor</span></div>
+    <div class="level1"><span class="xref">SimpleSprite</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.html">Microsoft.MixedReality.WorldLocking.Tools</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleSprite_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SpongyAnchor : MonoBehaviour</code></pre>
+    <pre><code class="lang-csharp hljs">public class SimpleSprite : MonoBehaviour</code></pre>
   </div>
-  <h3 id="fields">Fields
-  </h3>
-  
-  
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_TrackingStartDelayTime" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.TrackingStartDelayTime">TrackingStartDelayTime</h4>
-  <div class="markdown level1 summary"><p>Timeout that protects against SpatialAnchor easing</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly float TrackingStartDelayTime</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="properties">Properties
   </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_isLocated_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.isLocated*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_isLocated" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.isLocated">isLocated</h4>
-  <div class="markdown level1 summary"><p>Returns true if the anchor is reliably located. False might mean loss of tracking or not fully initialized.</p>
+  <a id="Microsoft_MixedReality_WorldLocking_Tools_SimpleSprite_Swivel_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Swivel*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleSprite_Swivel" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Swivel">Swivel</h4>
+  <div class="markdown level1 summary"><p>Swivel means rotate about Y-axis, set to false to face directly at target.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool isLocated { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Swivel { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -151,6 +124,32 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Tools_SimpleSprite_Target_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Target*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleSprite_Target" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Target">Target</h4>
+  <div class="markdown level1 summary"><p>Object to face towards. Defaults to camera at time Start is called.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Transform Target { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
         <td></td>
       </tr>
     </tbody>

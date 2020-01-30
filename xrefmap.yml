@@ -2560,32 +2560,6 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.isLocated
   nameWithType: SpongyAnchor.isLocated
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Load(WorldAnchorStore)
-  name: Load(WorldAnchorStore)
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_Load_WorldAnchorStore_
-  commentId: M:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Load(WorldAnchorStore)
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Load(WorldAnchorStore)
-  nameWithType: SpongyAnchor.Load(WorldAnchorStore)
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Load*
-  name: Load
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_Load_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Load
-  isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Load
-  nameWithType: SpongyAnchor.Load
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Save(WorldAnchorStore)
-  name: Save(WorldAnchorStore)
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_Save_WorldAnchorStore_
-  commentId: M:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Save(WorldAnchorStore)
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Save(WorldAnchorStore)
-  nameWithType: SpongyAnchor.Save(WorldAnchorStore)
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Save*
-  name: Save
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_Save_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Save
-  isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Save
-  nameWithType: SpongyAnchor.Save
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.TrackingStartDelayTime
   name: TrackingStartDelayTime
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_TrackingStartDelayTime
@@ -4723,6 +4697,38 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Tools.FrozenTapToAdd.PrefabToPlace
   nameWithType: FrozenTapToAdd.PrefabToPlace
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite
+  name: SimpleSprite
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite
+  nameWithType: SimpleSprite
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Swivel
+  name: Swivel
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleSprite_Swivel
+  commentId: P:Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Swivel
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Swivel
+  nameWithType: SimpleSprite.Swivel
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Swivel*
+  name: Swivel
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleSprite_Swivel_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Swivel
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Swivel
+  nameWithType: SimpleSprite.Swivel
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Target
+  name: Target
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleSprite_Target
+  commentId: P:Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Target
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Target
+  nameWithType: SimpleSprite.Target
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Target*
+  name: Target
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleSprite_Target_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Target
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Target
+  nameWithType: SimpleSprite.Target
 - uid: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual
   name: SpongyAnchorVisual
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.html
