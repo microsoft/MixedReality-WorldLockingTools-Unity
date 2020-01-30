@@ -10,10 +10,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
     /// </summary>
     public class ConnectingLine : MonoBehaviour
     {
-        Transform TransformA;
-        Transform TransformB;
+        private Transform TransformA;
+        private Transform TransformB;
 
-        LineRenderer LineRenderer;
+        private LineRenderer LineRenderer;
 
         /// <summary>
         /// Create line segment connecting two transforms and attached to a third

@@ -7,8 +7,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.XR;
+#if UNITY_WSA
 using UnityEngine.XR.WSA;
 using UnityEngine.XR.WSA.Persistence;
+#endif // UNITY_WSA
 
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
@@ -154,7 +156,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             ErrorStatus = "";
 
-            if (WorldManager.state != PositionalLocatorState.Active)
+#if UNITY_WSA
+            if (UnityEngine.XR.WSA.WorldManager.state != UnityEngine.XR.WSA.PositionalLocatorState.Active)
             {
                 lastTrackingInactiveTime = Time.unscaledTime;
 
@@ -167,6 +170,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 ErrorStatus = "Lost Tracking";
                 return false;
             }
+#endif // UNITY_WSA
 
             // To communicate spongyHead and spongyAnchor poses to the FrozenWorld engine, they must all be expressed
             // in the same coordinate system. Here, we do not care where this coordinate
@@ -355,25 +359,29 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             newAnchorId = AnchorId.FirstValid;
         }
 
+#if UNITY_WSA
         /// <summary>
         /// Convert WorldAnchorStore.GetAsync call into a modern C# async call
         /// </summary>
         /// <returns>Result from WorldAnchorStore.GetAsync</returns>
-        private static async Task<WorldAnchorStore> getWorldAnchorStoreAsync()
+        private static async Task<UnityEngine.XR.WSA.Persistence.WorldAnchorStore> getWorldAnchorStoreAsync()
         {
-            var tcs = new TaskCompletionSource<WorldAnchorStore>();
-            WorldAnchorStore.GetAsync(store =>
+            var tcs = new TaskCompletionSource<UnityEngine.XR.WSA.Persistence.WorldAnchorStore>();
+            UnityEngine.XR.WSA.Persistence.WorldAnchorStore.GetAsync(store =>
             {
                 tcs.SetResult(store);
             });
             return await tcs.Task;
         }
+#endif // UNITY_WSA
 
         /// <summary>
         /// Save the spongy anchors to persistent storage
         /// </summary>
         public async Task SaveAnchors()
         {
+#if UNITY_WSA
+
             var worldAnchorStore = await getWorldAnchorStoreAsync();
             foreach (var keyval in spongyAnchors)
             {
@@ -382,6 +390,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 Debug.Assert(anchor.name == id.FormatStr());
                 anchor.Save(worldAnchorStore);
             }
+#else // UNITY_WSA
+            await Task.CompletedTask;
+#endif // UNITY_WSA
         }
 
         /// <summary>
@@ -396,6 +407,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         public async Task LoadAnchors()
         {
+#if UNITY_WSA
             var worldAnchorStore = await getWorldAnchorStoreAsync();
 
             var anchorIds = plugin.GetFrozenAnchorIds();
@@ -429,6 +441,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 newAnchorId = maxId;
             }
+#else // UNITY_WSA
+            await Task.CompletedTask;
+#endif // UNITY_WSA
         }
     }
 }

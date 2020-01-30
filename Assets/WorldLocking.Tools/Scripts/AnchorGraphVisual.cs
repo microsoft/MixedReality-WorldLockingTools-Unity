@@ -31,6 +31,15 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// </summary>
         public FrozenAnchorVisual Prefab_FrozenAnchorViz;
 
+        /// <summary>
+        /// Placeholder material to ensure the required shader is packaged. The shader used
+        /// for connecting lines is in ConnectingLine.cs:
+        /// "Legacy Shaders/Particles/Alpha Blended Premultiply"
+        /// </summary>
+        [Tooltip("Placeholder material to ensure the required shader is packaged.")]
+        [SerializeField]
+        private Material connectingLine;
+
         #endregion Public properties
 
         #region Internal properties

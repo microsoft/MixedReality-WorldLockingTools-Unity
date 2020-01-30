@@ -11,9 +11,6 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-using UnityEngine.XR.WSA;
-using UnityEngine.XR.WSA.Persistence;
-
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
     /// <summary>
@@ -34,7 +31,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// </remarks>
     public class AlignmentManager : IAlignmentManager
     {
-        #region Lifetime management
+#region Lifetime management
 
         /// <summary>
         /// When a level is unloaded, resend the reference poses. The unloaded scene
@@ -82,9 +79,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             SceneManager.sceneUnloaded -= OnSceneUnloaded;
         }
 
-        #endregion Lifetime management
+#endregion Lifetime management
 
-        #region Public methods
+#region Public methods
 
         /// <summary>
         /// The pose to insert into the camera's hierarchy above the WorldLocking Adjustment transform (if any).
@@ -270,16 +267,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             return refPose.anchorId;
         }
-        #endregion Public methods
+#endregion Public methods
 
-        #region Internal data structure definitions
+#region Internal data structure definitions
 
         /// <summary>
         /// Persistent database for reference poses.
         /// </summary>
         private class ReferencePoseDB
         {
-            #region Public API
+#region Public API
 
             /// <summary>
             /// True if the database has been successfully loaded from disk.
@@ -396,9 +393,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 data.Clear();
             }
 
-            #endregion Public API
+#endregion Public API
 
-            #region Serialization element
+#region Serialization element
 
             /// <summary>
             /// A data element containing minimal information to reconstruct its corresponding reference point.
@@ -515,9 +512,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
             }
 
-            #endregion Serialization element
+#endregion Serialization element
 
-            #region Internal Members
+#region Internal Members
 
             /// <summary>
             /// The current database version. 
@@ -529,9 +526,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// </summary>
             private readonly Dictionary<string, Element> data = new Dictionary<string, Element>();
 
-            #endregion Internal Members
+#endregion Internal Members
 
-            #region Internal Implementation 
+#region Internal Implementation 
 
             /// <summary>
             /// Path where to store data. 
@@ -611,7 +608,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
                 return loaded;
             }
-            #endregion Internal Implementation 
+#endregion Internal Implementation 
         }
 
         /// <summary>
@@ -625,7 +622,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         private class ReferencePose
         {
-            #region Public members
+#region Public members
             /// <summary>
             /// Unique identifier.
             /// </summary>
@@ -697,9 +694,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
             }
 
-            #endregion Public members
+#endregion Public members
 
-            #region Private members
+#region Private members
 
             private readonly WorldLockingManager manager = WorldLockingManager.GetInstance();
 
@@ -713,9 +710,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// </summary>
             private IAttachmentPoint attachmentPoint;
 
-            #endregion Private members
+#endregion Private members
 
-            #region Public APIs
+#region Public APIs
             /// <summary>
             /// Release any resources bound to this reference point.
             /// </summary>
@@ -728,9 +725,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
             }
 
-            #endregion Public APIs
+#endregion Public APIs
 
-            #region Internal implmentations
+#region Internal implmentations
 
             /// <summary>
             /// When the reference point position is initially set, create an attachment point if there isn't one,
@@ -764,7 +761,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 /// Do any adjustment pose dependent caching here.
             }
-            #endregion Internal implmentations
+#endregion Internal implmentations
         }
 
         /// <summary>
@@ -781,9 +778,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 
 
-        #endregion Internal data structure definitions
+#endregion Internal data structure definitions
 
-        #region Internal data declarations
+#region Internal data declarations
 
         /// <summary>
         /// The manager that owns this sub-manager.
@@ -851,9 +848,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private static uint nextAnchorId = (uint)AnchorId.FirstValid;
 
-        #endregion Internal data declarations
+#endregion Internal data declarations
 
-        #region Internal utilities
+#region Internal utilities
         /// <summary>
         /// Claim a unique anchor id.
         /// </summary>
@@ -908,9 +905,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             ActiveFragmentId = FragmentId.Unknown;
         }
 
-        #endregion Internal utilities
+#endregion Internal utilities
 
-        #region Peristence synchronizations
+#region Peristence synchronizations
 
         /// <summary>
         /// Add to queue for being saved to database next chance.
@@ -990,9 +987,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
-        #endregion Peristence synchronizations
+#endregion Peristence synchronizations
 
-        #region Pose transformation math
+#region Pose transformation math
 
         /// <summary>
         /// Collapse a list of weighted poses into a single equivalent pose.
@@ -1066,9 +1063,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return ret;
         }
 
-        #endregion Pose transformation math
+#endregion Pose transformation math
 
-        #region Weight computation
+#region Weight computation
 
         private readonly Triangulator.ITriangulator triangulator = new Triangulator.SimpleTriangulator();
 
@@ -1118,6 +1115,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             return weightedPoses;
         }
-        #endregion Weight computation
+#endregion Weight computation
     }
 }
