@@ -1,34 +1,14 @@
 fileFormatVersion: 2
-guid: d57ec665e0426f94fb2a96c9b79f6487
+guid: 4d8f5794256f0584fafffb9214e10f63
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Camera
-    100002: Directional Light
-    100004: //RootNode
-    100006: TeleportPadArrow
-    100008: TeleportPadBase
-    100010: TeleportPadMid
-    400000: Camera
-    400002: Directional Light
-    400004: //RootNode
-    400006: TeleportPadArrow
-    400008: TeleportPadBase
-    400010: TeleportPadMid
-    2000000: Camera
-    2100000: Default
-    2300000: TeleportPadArrow
-    2300002: TeleportPadBase
-    2300004: TeleportPadMid
-    3300000: TeleportPadArrow
-    3300002: TeleportPadBase
-    3300004: TeleportPadMid
-    4300000: TeleportPadBase
-    4300002: TeleportPadArrow
-    4300004: TeleportPadMid
-    7400000: Take 001
-    9500000: //RootNode
-    10800000: Directional Light
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Ring
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Ring
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -81,8 +61,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -109,7 +89,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
