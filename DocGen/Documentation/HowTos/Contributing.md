@@ -29,13 +29,13 @@ Log files from the device can be immeasurably helpful in investigating issues, e
 
 > #### The World Locking Tools diagnostics recording:
 >
-> The diagnostics file's name is auto-generated according to the following pattern:
+> The diagnostics file is located in the _LocalState_ sub-folder. The file's name is auto-generated according to the following pattern:
 >
 > `FrozenWorld-<device name>-<capture date and time>.hkfw`
 >
 > It is a binary file which needs specialized software to examine.
 > 
-> Note that to capture a diagnostics recording requires enabling Diagnostics Recording on the World Locking Tools Manager component in your scene.
+> Note that to capture a diagnostics recording requires enabling Diagnostics Recording on the World Locking Tools Manager component in your scene. See the [diagnostics](WorldLockingContext.md#diagnostics-settings) documentation for details.
 
 ### Repro steps
 
