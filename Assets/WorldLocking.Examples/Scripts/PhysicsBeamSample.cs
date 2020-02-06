@@ -345,15 +345,18 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         private List<IMixedRealityPointer> FindActivePointers()
         {
             List<IMixedRealityPointer> activePointers = new List<IMixedRealityPointer>();
-            var inputSystem = CoreServices.InputSystem;
-            var detectedInputSources = inputSystem.DetectedInputSources;
-            foreach (var inputSource in detectedInputSources)
+            var inputSystem = MixedRealityToolkit.Instance.GetService<IMixedRealityInputSystem>();
+            if (inputSystem != null)
             {
-                foreach (var pointer in inputSource.Pointers)
+                var detectedInputSources = inputSystem.DetectedInputSources;
+                foreach (var inputSource in detectedInputSources)
                 {
-                    if (pointer.IsActive && pointer.Result != null)
+                    foreach (var pointer in inputSource.Pointers)
                     {
-                        activePointers.Add(pointer);
+                        if (pointer.IsActive && pointer.Result != null)
+                        {
+                            activePointers.Add(pointer);
+                        }
                     }
                 }
             }
@@ -727,12 +730,12 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
 
         protected override void RegisterHandlers()
         {
-            InputSystem?.RegisterHandler<IMixedRealityPointerHandler>(this);
+            MixedRealityToolkit.Instance.GetService<IMixedRealityInputSystem>()?.RegisterHandler<IMixedRealityPointerHandler>(this);
         }
 
         protected override void UnregisterHandlers()
         {
-            InputSystem?.UnregisterHandler<IMixedRealityPointerHandler>(this);
+            MixedRealityToolkit.Instance.GetService<IMixedRealityInputSystem>()?.UnregisterHandler<IMixedRealityPointerHandler>(this);
         }
 
 #endregion InputSystemGlobalHandlerListener Implementation

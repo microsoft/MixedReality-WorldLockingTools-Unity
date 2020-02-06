@@ -184,13 +184,13 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// <inheritdocs />
         protected override void RegisterHandlers()
         {
-            InputSystem?.RegisterHandler<IMixedRealityPointerHandler>(this);
+            MixedRealityToolkit.Instance.GetService<IMixedRealityInputSystem>()?.RegisterHandler<IMixedRealityPointerHandler>(this);
         }
 
         /// <inheritdocs />
         protected override void UnregisterHandlers()
         {
-            InputSystem?.UnregisterHandler<IMixedRealityPointerHandler>(this);
+            MixedRealityToolkit.Instance.GetService<IMixedRealityInputSystem>()?.UnregisterHandler<IMixedRealityPointerHandler>(this);
         }
 
         #endregion InputSystemGlobalHandlerListener Implementation
