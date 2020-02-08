@@ -9,10 +9,10 @@
     This contains the WorldLocking.Core and WorldLocking.Engine
     content.
 
-    - Examples_wMRTKV2.1
+    - Examples_wMRTKV2.2
 
     This contains all of the content under WorldLocking.Examples
-    as well as MRTK v2.1 on which it depends.
+    as well as MRTK V2.2 on which it depends.
 
     - Tools
     
@@ -40,14 +40,14 @@
 
     This will generate packages that look like:
     artifacts\Microsoft.WorldLockingTools.Unity.CoreEngine.unitypackage
-    artifacts\Microsoft.WorldLockingTools.Unity.Examples_wMRTKV2.1.unitypackage
+    artifacts\Microsoft.WorldLockingTools.Unity.Examples_wMRTKV2.2.unitypackage
     artifacts\Microsoft.WorldLockingTools.Unity.Tools.unitypackage
 .EXAMPLE
     .\build.ps1 -OutputDirectory .\out -Clean
 
     This will generate packages that look like:
     out\Microsoft.WorldLockingTools.Unity.CoreEngine.unitypackage
-    out\Microsoft.WorldLockingTools.Unity.Examples_wMRTKV2.1.unitypackage
+    out\Microsoft.WorldLockingTools.Unity.Examples_wMRTKV2.2.unitypackage
     out\Microsoft.WorldLockingTools.Unity.Tools.unitypackage
 #>
 param(
@@ -76,7 +76,7 @@ $packages = @{
         "Assets\WorldLocking.Core",
         "Assets\WorldLocking.Engine"
     );
-    "Examples_wMRTKV2.1" = @(
+    "Examples_wMRTKV2.2" = @(
         "Assets\WorldLocking.Examples",
         "Assets\MRTK"
     );
