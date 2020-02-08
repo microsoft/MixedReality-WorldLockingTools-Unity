@@ -22,7 +22,7 @@
         "files": [ "DocGen/api_doc/**" ]
       },
       {
-        "files": [ "DocGen/Documentation/**/*.md", "*.md", "*.yml", "toc.yml", "DocGen/Documentation/**/*.yml", "DocGen/Documentation/Architecture/**", "Assets/**/*.md", "DocGen/External/Documentation/*.md", "DocGen/External/HowTo/*.md" ]
+        "files": [ "DocGen/Documentation/**/*.md", "*.md", "*.yml", "toc.yml", "DocGen/Documentation/**/*.yml", "DocGen/Documentation/Architecture/**", "DocGen/External/Documentation/*.md", "DocGen/External/HowTo/*.md" ]
       }
     ],
     "resource": [
@@ -48,7 +48,7 @@
       "_appFaviconPath": "DocGen/Images/Logos/favicon.ico",
       "_gitContribute": {
         "repo": "https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity.git",
-        "branch": "development"
+        "branch": "master"
       }
     },
     "markdownEngineName": "markdig",
