@@ -54,6 +54,25 @@ For advanced use, as well as experimentation of World Locking Tools' full capabi
 
 If access to the Plugin layer becomes necessary, it may point to a deficiency in the API surface offered in the Core layer. The World Locking Tools team is always looking to fill such gaps. Consider contributing such insights to the team. See [contributing](Contributing.md). 
 
+## *A warning note on installation path length*
+
+Some versions of MRTK have an issue with long installation paths. The full path length of deep subfolders in the MRTK installation can exceed the Windows path limit (260 characters). If a build error of the following form appears:
+
+```
+DirectoryNotFoundException: Could not find a part of the path "D:\MyOverTwentyEightCharacterLongLengthInstallPath\MixedReality-WorldLockingTools-Unity\Assets\MRTK\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\net46\Microsoft.Windows.MixedReality.DotNetWinRT\Editor\Microsoft.Windows.MixedReality.DotNetWinRT.Editor.asmdef"
+```
+
+but the file is actually there on the drive, then the issue is likely the path length. The MRTK team is aware of this and is working to improve on it. In the meantime, the workaround is to shorten the path prefix by a combination of the following:
+
+1) Install the Unity project into a shorter length path root, e.g. "D:\Proj"
+2) If cloning the repo, clone the root of the World Locking Tools into something shorter than the default "\MixedReality-WorldLockingTools-Unity", e.g. 
+
+```
+git clone https://github.com/microsoft/MixedReality-WorldLockingTools-Unity.git d:\MyGit\wlt
+```
+
+This is generally not an issue with the World Locking Tools themselves, as they don't utilize as deep a folder structure.
+
 ## Adding World Locking Tools to a Unity project
 
 If the target Unity project is the World Locking Tools project (or a derivative of it), then all necessary and optional resources are already included. 
