@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts.html",
-          "hash": "De74A89P4XJjxu+6tnVTgQ=="
+          "hash": "SoerWFU9zltZ74J8vrc+iA=="
         }
       },
       "is_incremental": false,
@@ -30,7 +30,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/Advanced/AttachmentPoints.html",
-          "hash": "hjxSpNzNDojyQihLpcgDQw=="
+          "hash": "EDAHTOjvnQ5t2LPVFraxVw=="
         }
       },
       "is_incremental": false,
@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/Advanced/Fragments.html",
-          "hash": "1DT/QkgO7bEcXSgYTdTvpw=="
+          "hash": "bfbMK71Z/5MoB7C0fiXJAg=="
         }
       },
       "is_incremental": false,
@@ -54,7 +54,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/Advanced/Persistence.html",
-          "hash": "VibCLM0L4mgSEcyxI1Zuiw=="
+          "hash": "Gxi4547MM456g2KPlh9SYw=="
         }
       },
       "is_incremental": false,
@@ -66,7 +66,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/Advanced/RefitOperations.html",
-          "hash": "SGwp3SMAbgeUDtYpGZRRyw=="
+          "hash": "KbELPYPHaznTNuH3Sfs21Q=="
         }
       },
       "is_incremental": false,
@@ -78,7 +78,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/Advanced/SpacePins.html",
-          "hash": "hXP2MSJO6PWU2jXZnXpHOw=="
+          "hash": "GZtV+47vsVCoJcFe6IQCxA=="
         }
       },
       "is_incremental": false,
@@ -90,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/AdvancedConcepts.html",
-          "hash": "mZpGrKWmlg78B5Mt5CuTFQ=="
+          "hash": "XPpDVYqe9M/eeWAe+PTGIg=="
         }
       },
       "is_incremental": false,
@@ -102,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/BasicConcepts.html",
-          "hash": "2q+0ach+yAHi8hRt1zKJTg=="
+          "hash": "0YPqF8F9vCklhb+CgsBZiA=="
         }
       },
       "is_incremental": false,
@@ -114,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/GettingStartedWithWorldLocking.html",
-          "hash": "7L9RFBUGMgSqooR+cul9pA=="
+          "hash": "yb0KUmSWUmwS2sh9fyrDbA=="
         }
       },
       "is_incremental": false,
@@ -126,7 +126,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos.html",
-          "hash": "zFcirXr+HluDaE+AbiSo9w=="
+          "hash": "MSwIstELsdcbNeUgyxdqXw=="
         }
       },
       "is_incremental": false,
@@ -138,7 +138,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/CodingConventions.html",
-          "hash": "MC9nHjnI66h2eyhVBVjL/Q=="
+          "hash": "lhiZu0lT2eetGTdREJF51Q=="
         }
       },
       "is_incremental": false,
@@ -150,7 +150,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/Contributing.html",
-          "hash": "48maKyrun9DWa3eIJyE3XA=="
+          "hash": "OvYnAJIfqFdLKwBneAEaCg=="
         }
       },
       "is_incremental": false,
@@ -162,7 +162,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/InitialSetup.html",
-          "hash": "OLh5j9WwKMLCpuRTGHRH6Q=="
+          "hash": "FoOstjEqh/BdFmJ7I6GciQ=="
         }
       },
       "is_incremental": false,
@@ -174,7 +174,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/ReleaseProcess.html",
-          "hash": "kshB60Mpag+NU/6OC1dEBA=="
+          "hash": "Gu9bbuNFvPHEzynwcGBqww=="
         }
       },
       "is_incremental": false,
@@ -186,7 +186,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/SampleApplications.html",
-          "hash": "XAzWKmB5jPS8jIuVbJa0ZQ=="
+          "hash": "j2d6mS2CIPSn+GtUYygmpA=="
         }
       },
       "is_incremental": false,
@@ -198,7 +198,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/Samples/RayPins.html",
-          "hash": "szu4ETOu5zFiRXBsKjP4Sg=="
+          "hash": "Dt/QyIzLlIt/SUnl+wKBRA=="
         }
       },
       "is_incremental": false,
@@ -210,7 +210,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/Samples/SpacePin.html",
-          "hash": "bwTThoJv/kiSfdue83Fi5A=="
+          "hash": "ax5DhJQqq2zmBP1w4OTrGg=="
         }
       },
       "is_incremental": false,
@@ -222,7 +222,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/Samples/WorldLockedPhysicsSample.html",
-          "hash": "X8ttj3M7xoIrWPBuAv0Qgg=="
+          "hash": "/KxwD2jIgx/F2TonSNpIpQ=="
         }
       },
       "is_incremental": false,
@@ -234,7 +234,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/WorldLockingContext.html",
-          "hash": "9gcIoafTkVQ3yHNhyOWU8Q=="
+          "hash": "rOg98B2DykAY8Z0n8aa70A=="
         }
       },
       "is_incremental": false,
@@ -246,7 +246,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/IntroFAQ.html",
-          "hash": "ISjqh1wi35L7gFI2t+PTfg=="
+          "hash": "3WGZ/pN5bhEVIqoHfGqmLQ=="
         }
       },
       "is_incremental": false,
@@ -258,7 +258,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/NOTICE.html",
-          "hash": "5r3ngntpwCQ5694Ea0lb7A=="
+          "hash": "gaJJUOjlIQUsHanHvsH5Cg=="
         }
       },
       "is_incremental": false,
@@ -513,7 +513,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AdjustLocationDelegate.html",
-          "hash": "PGJPMdIJErVCpZFBd1xhxg=="
+          "hash": "LrlHgOqA7nS9pcD46KwJYQ=="
         }
       },
       "is_incremental": false,
@@ -525,7 +525,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AdjustStateDelegate.html",
-          "hash": "azGWSr+5ci9VCcLvW10kmA=="
+          "hash": "AcnkmGq3y/PUjUCuti+GCA=="
         }
       },
       "is_incremental": false,
@@ -537,7 +537,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html",
-          "hash": "PvLbrcJL5VXm64n1OyMeBA=="
+          "hash": "rrrE9g3m/9g4d9sPREyrqQ=="
         }
       },
       "is_incremental": false,
@@ -549,7 +549,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.html",
-          "hash": "KDhBrLBn+tbJVgARjZ4Sjg=="
+          "hash": "bzYiKmzOjSp/PkSB4lfLwA=="
         }
       },
       "is_incremental": false,
@@ -561,7 +561,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html",
-          "hash": "U9AFZXa/2q3Y38OFAOLQ0w=="
+          "hash": "P60BXb9J38MHb9SSfoTE9Q=="
         }
       },
       "is_incremental": false,
@@ -573,7 +573,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AttachmentPoint.html",
-          "hash": "W/CNwMnqdDD+gmK3cYD5iA=="
+          "hash": "3EXLKEZ+AXhih2EWlX//4Q=="
         }
       },
       "is_incremental": false,
@@ -585,7 +585,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AttachmentPointStateType.html",
-          "hash": "yFA6hmTOmk+5cSPAwaRSOg=="
+          "hash": "X3iJz008Z4cKNyijJgRlGw=="
         }
       },
       "is_incremental": false,
@@ -597,7 +597,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record.html",
-          "hash": "2puXyWRlgqLRRuycYxz2Gg=="
+          "hash": "T0keyzHNUaapW3CXfjfd9A=="
         }
       },
       "is_incremental": false,
@@ -609,7 +609,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Diagnostics.html",
-          "hash": "Brqpu71ZMpCk6SyGfTqtCA=="
+          "hash": "zdqrhH5zNoCvHN89F6jCBg=="
         }
       },
       "is_incremental": false,
@@ -621,7 +621,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.DiagnosticsSettings.html",
-          "hash": "0awkG1u/Z/Ejgcvy4nMQQg=="
+          "hash": "+pKzS4FLtfRuJbdWWGgBsQ=="
         }
       },
       "is_incremental": false,
@@ -633,7 +633,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Fragment.html",
-          "hash": "ck+x5faYTkn/EdL6kv17aA=="
+          "hash": "jY9a0Vax00l6iTn73zeccA=="
         }
       },
       "is_incremental": false,
@@ -645,7 +645,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html",
-          "hash": "vj6U8CTYu2X8DI+7l7UXbA=="
+          "hash": "BfrAvRjiJNBYiBSmYT3fvA=="
         }
       },
       "is_incremental": false,
@@ -657,7 +657,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html",
-          "hash": "ibP6wYIG1gY6BNAU4DOk7Q=="
+          "hash": "ZnyYwziyWtLvRx3M07RJJg=="
         }
       },
       "is_incremental": false,
@@ -669,7 +669,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAttachmentPoint.html",
-          "hash": "ZA3X9Pp1y9QmsLOcmZFU/Q=="
+          "hash": "M4l7xNbjr+EMYmvnnrqOfA=="
         }
       },
       "is_incremental": false,
@@ -681,7 +681,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html",
-          "hash": "W5Zy2iEiy7EiXWRKQQEobA=="
+          "hash": "HyZvZYyOoMn4mKo6AKPq5A=="
         }
       },
       "is_incremental": false,
@@ -693,7 +693,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.html",
-          "hash": "Rp0bQv6Ynvg8uuJTWylhRw=="
+          "hash": "qyu2e7785MKfE3oNYUncyw=="
         }
       },
       "is_incremental": false,
@@ -705,7 +705,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrientable.html",
-          "hash": "h98Z3zKiRJyARLSEwyl9Tg=="
+          "hash": "mAB6kxCyeRvaijoz/Sj59g=="
         }
       },
       "is_incremental": false,
@@ -717,7 +717,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrienter.html",
-          "hash": "VM+csNzPG+nvUwQ8sjrb6Q=="
+          "hash": "wvYeBdwPk2bxjiKea3OCiw=="
         }
       },
       "is_incremental": false,
@@ -729,7 +729,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.html",
-          "hash": "R1QWVeDNa3ilE/ME9DtVSA=="
+          "hash": "5wtr5mDXa0mU8PdauG1q6Q=="
         }
       },
       "is_incremental": false,
@@ -741,7 +741,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ManagerSettings.html",
-          "hash": "FwR2CyySHcfz5sdY9lGR3A=="
+          "hash": "KBzXpJJU6/k+DuoLu5hvxg=="
         }
       },
       "is_incremental": false,
@@ -753,7 +753,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.html",
-          "hash": "g5N+8zbGCiPBHA4XHG1EKw=="
+          "hash": "kIyBEmopvXNp5DgwiuV2Aw=="
         }
       },
       "is_incremental": false,
@@ -765,7 +765,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.PoseExtensions.html",
-          "hash": "GmKh2o0lDihLMNN+HGEuXw=="
+          "hash": "NeQEZGTqRCjy9ClKWU2I4w=="
         }
       },
       "is_incremental": false,
@@ -777,7 +777,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.PostAlignmentLoadedDelegate.html",
-          "hash": "c3GMeGRRPqUkEanWwLEKWw=="
+          "hash": "AG5Twa7MZmOLbTolPM/Ghw=="
         }
       },
       "is_incremental": false,
@@ -789,7 +789,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.RefitNotificationDelegate.html",
-          "hash": "jtduj/So5Vyok5fLfw1xlQ=="
+          "hash": "OADwrSMIsRKq7STUIu9hyQ=="
         }
       },
       "is_incremental": false,
@@ -801,7 +801,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CompareToResource-2.html",
-          "hash": "xwRwI8rPU8WWK1FfYKw6tg=="
+          "hash": "vNrC01vSnCO9vT5g04FKXA=="
         }
       },
       "is_incremental": false,
@@ -813,7 +813,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.CreateResource-2.html",
-          "hash": "5bdlqD+Wniu48f21cBYGKQ=="
+          "hash": "qlm+rJE+wqL2uyCjz067Rg=="
         }
       },
       "is_incremental": false,
@@ -825,7 +825,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.DestroyResource-1.html",
-          "hash": "zjNUu3doW3IGR0+54Zuz6w=="
+          "hash": "djU/8PaUeTMK0M2nehn1Xg=="
         }
       },
       "is_incremental": false,
@@ -837,7 +837,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.UpdateResource-2.html",
-          "hash": "QKsiFw+LML03EQHRL3W3Ag=="
+          "hash": "W6YeoOFn5hrbXNCmdz+0mg=="
         }
       },
       "is_incremental": false,
@@ -849,7 +849,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirror.html",
-          "hash": "O60ncQk4C2+tSMscMiRS2A=="
+          "hash": "oyrJtMy+4NhfFzar+FHSOQ=="
         }
       },
       "is_incremental": false,
@@ -861,7 +861,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.IdPair-2.html",
-          "hash": "NEuVkVUsZHuXbvFJoJAbvw=="
+          "hash": "0j3kI2MjqNNgmfnzsp4mlw=="
         }
       },
       "is_incremental": false,
@@ -873,7 +873,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.ResourceMirrorHelper.html",
-          "hash": "rjiehM14EV+QGDX4CwQqsA=="
+          "hash": "PNXes6y1DKEXovMBZkU4zg=="
         }
       },
       "is_incremental": false,
@@ -885,7 +885,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SharedDiagnosticsSettings.html",
-          "hash": "f/uuQE4hzcZavHqKzWP0Yw=="
+          "hash": "3+Noko3Z+uz5fifH1UKJYQ=="
         }
       },
       "is_incremental": false,
@@ -897,7 +897,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.html",
-          "hash": "aWqitO+V8D18NialPf6kUQ=="
+          "hash": "sTWJKTJm7Up0Bcb7/3UBEQ=="
         }
       },
       "is_incremental": false,
@@ -909,7 +909,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html",
-          "hash": "MX8eJoBrb7OukJAYhEZuUQ=="
+          "hash": "x8LGOxT5KfQxqTvDbu3iAg=="
         }
       },
       "is_incremental": false,
@@ -921,7 +921,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html",
-          "hash": "VxbsXO6MNIRRNCvF+Yu1NQ=="
+          "hash": "fb6E5W+6HJAhyjYAuV4TOg=="
         }
       },
       "is_incremental": false,
@@ -933,7 +933,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html",
-          "hash": "F8K6CBMNqP6CVKqSo/bkCg=="
+          "hash": "qXqo4QDTjWbT6zmcImrhQA=="
         }
       },
       "is_incremental": false,
@@ -945,7 +945,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.TransformExtensions.html",
-          "hash": "OC5DOm7VI0cuCtpWOScy1A=="
+          "hash": "+08UJdq518vngvCIceGLwA=="
         }
       },
       "is_incremental": false,
@@ -957,7 +957,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Triangulator.ITriangulator.html",
-          "hash": "euG5SOZ5J9c5vDPcVofkFw=="
+          "hash": "4crmhPFU2ix7OhNu3nXt4Q=="
         }
       },
       "is_incremental": false,
@@ -969,7 +969,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Triangulator.Interpolant.html",
-          "hash": "0d2jiZSfuGKM05LzqG/zdQ=="
+          "hash": "2TKzdA6vPUrAlocr3juM4w=="
         }
       },
       "is_incremental": false,
@@ -981,7 +981,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.html",
-          "hash": "vXU9h5KoK8OUHi3OBG9giA=="
+          "hash": "DRO3Seb/M+MkTrxMI6ttbg=="
         }
       },
       "is_incremental": false,
@@ -993,7 +993,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Triangulator.html",
-          "hash": "ergfBbwr+2EA1rDeyk33BA=="
+          "hash": "TMZi6w6GoElEeprhYsG5Dw=="
         }
       },
       "is_incremental": false,
@@ -1005,7 +1005,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.html",
-          "hash": "bDwLCjygC0dUOqlJhw5nVA=="
+          "hash": "3er/QpFU3oDZ9RD0Vl+XNw=="
         }
       },
       "is_incremental": false,
@@ -1017,7 +1017,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html",
-          "hash": "BPMjwSJXsPg4+e67atYXzw=="
+          "hash": "LOLUI0IsrHHq7Meroqr/gg=="
         }
       },
       "is_incremental": false,
@@ -1029,7 +1029,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.html",
-          "hash": "+nIz8HdMMWbJuxDWB9hK1Q=="
+          "hash": "PH9VNAsYeaUiPlkln98ekQ=="
         }
       },
       "is_incremental": false,
@@ -1041,7 +1041,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.AlignmentControl.html",
-          "hash": "riEOQQMOK4roT9BW0u1gzQ=="
+          "hash": "k6+OUUgWdxiugk9vSxcsew=="
         }
       },
       "is_incremental": false,
@@ -1053,7 +1053,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.DashboardCommand.html",
-          "hash": "vEhMhXa8QTWjSrh4rbGhCg=="
+          "hash": "ZAjZpM4MJ7e7/iful3bSMg=="
         }
       },
       "is_incremental": false,
@@ -1065,7 +1065,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.DashboardUI.html",
-          "hash": "pcn5AObJ7Z5n8J9CkY/Y+A=="
+          "hash": "lQhG4OsjVpC60GRtlBpPLw=="
         }
       },
       "is_incremental": false,
@@ -1077,7 +1077,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.FallOut.html",
-          "hash": "B9/PrMErsIetHeahb9jIBg=="
+          "hash": "xNPoAnO3Z7Bkovg7HITWgw=="
         }
       },
       "is_incremental": false,
@@ -1089,7 +1089,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.ManipulationEndedDelegate.html",
-          "hash": "ZmglGT/9GH9PUVqQo+RDsw=="
+          "hash": "Iamy9ks7bFd0Eqci4AuJng=="
         }
       },
       "is_incremental": false,
@@ -1101,7 +1101,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.html",
-          "hash": "IorGzQj0vqxFzyU7E/QmGA=="
+          "hash": "iCUqApXznd2KnOXQChzAYA=="
         }
       },
       "is_incremental": false,
@@ -1113,7 +1113,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.PinManipulator.html",
-          "hash": "TK8HpVukrEuc52ZqBYEC8Q=="
+          "hash": "36rvWzJcSbovE6nPoVez4w=="
         }
       },
       "is_incremental": false,
@@ -1125,7 +1125,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.RayPins.html",
-          "hash": "5jK2/2/Zjlh0L3UvDrtaMg=="
+          "hash": "RImLtUj7iVtaAfaGRvxgKQ=="
         }
       },
       "is_incremental": false,
@@ -1137,7 +1137,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.html",
-          "hash": "GGYfZTtDmoiA7hI6SvXJQg=="
+          "hash": "R5J98H/dgmCVGzMOHMurTg=="
         }
       },
       "is_incremental": false,
@@ -1149,7 +1149,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.html",
-          "hash": "l9SsY7JhUcnocfnGRX09wQ=="
+          "hash": "h5XoYi3maaadPIXyw5Mkug=="
         }
       },
       "is_incremental": false,
@@ -1161,7 +1161,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.html",
-          "hash": "jkFcKcFWWSxY5EK2lLWk7A=="
+          "hash": "sue2RuDDHtiieZCQ+jl1bg=="
         }
       },
       "is_incremental": false,
@@ -1173,7 +1173,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterBase.html",
-          "hash": "es5UmenF4G83OtuRHxbYDw=="
+          "hash": "tgS4ocvzdAzXm235vvadGQ=="
         }
       },
       "is_incremental": false,
@@ -1185,7 +1185,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html",
-          "hash": "734QluYKgjD15uFbHOUXIw=="
+          "hash": "36jxw1uI4nvCQWYOsYQ5wA=="
         }
       },
       "is_incremental": false,
@@ -1197,7 +1197,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving.html",
-          "hash": "fpznzLuQT3tE+UyNHryRlA=="
+          "hash": "2HQirhw1g01xXKYIcnamNA=="
         }
       },
       "is_incremental": false,
@@ -1209,7 +1209,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AnchorGraphVisual.html",
-          "hash": "numUWO4+fFqISgAV0Pjhmw=="
+          "hash": "DvqXe9DiNLkSSmq/P2DLcA=="
         }
       },
       "is_incremental": false,
@@ -1221,7 +1221,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.ConnectingLine.html",
-          "hash": "bjRDMUD52w70cXYiAcVkYw=="
+          "hash": "NtHnZGcmsr5x1VS1h5XcOg=="
         }
       },
       "is_incremental": false,
@@ -1233,7 +1233,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrameVisual.html",
-          "hash": "Q1BNxxeuxQ8yVTCheSmSeg=="
+          "hash": "kszoHqpAgwqWqV3b5iHSmw=="
         }
       },
       "is_incremental": false,
@@ -1245,7 +1245,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenAnchorVisual.html",
-          "hash": "Bnc6931U5TcKa67MpMe3rw=="
+          "hash": "p3xwdGz4EpRHhNKeRvJHcg=="
         }
       },
       "is_incremental": false,
@@ -1257,7 +1257,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenSpatialMapping.QualityType.html",
-          "hash": "JGl4dnuD6xTLIknDpAzDNQ=="
+          "hash": "aZRjcwNGHCJs8esYDCxhsw=="
         }
       },
       "is_incremental": false,
@@ -1269,7 +1269,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenSpatialMapping.html",
-          "hash": "Wj2bL1o+py7A2NTD5P053w=="
+          "hash": "oUGXWd2MdfmvZqi3H/awlg=="
         }
       },
       "is_incremental": false,
@@ -1281,7 +1281,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenTapToAdd.html",
-          "hash": "j02dB3a3iq8cYinfYXUGig=="
+          "hash": "ZcYmjgOsBBqkc6Rkts9LvA=="
         }
       },
       "is_incremental": false,
@@ -1293,7 +1293,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.html",
-          "hash": "J74gxLf5SiABT8A/njTbPw=="
+          "hash": "TyeXssDnwCJH5AzTfyEv5Q=="
         }
       },
       "is_incremental": false,
@@ -1305,7 +1305,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.html",
-          "hash": "ONzHqAVJcgGcMptrZ4NnZg=="
+          "hash": "rO2c4yn9t7ofyZEb1RSu0g=="
         }
       },
       "is_incremental": false,
@@ -1317,7 +1317,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.StatusToText.html",
-          "hash": "npRRdArE5APywPSCZb0xIw=="
+          "hash": "Hr//c76laAD3Ij20rlkFog=="
         }
       },
       "is_incremental": false,
@@ -1329,7 +1329,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.ToggleWorldAnchor.html",
-          "hash": "5XMCs5PrqTv23FAzMkU8zw=="
+          "hash": "rR+HXD9XRdMRHqQ2bPxbEQ=="
         }
       },
       "is_incremental": false,
@@ -1341,7 +1341,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.WorldAnchorAdapter.html",
-          "hash": "1s3rqNSOZWuVxaMc0pRkig=="
+          "hash": "F5NOR2N/6Akloy6gF7ySSw=="
         }
       },
       "is_incremental": false,
@@ -1353,7 +1353,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.html",
-          "hash": "jiuOmGNGGQl2rKOO8IHqyQ=="
+          "hash": "Z4c4aAE4G1QKo3njMDyxNQ=="
         }
       },
       "is_incremental": false,
@@ -1365,7 +1365,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/api_doc/Architecture.html",
-          "hash": "TBavjBbjqLMTmjPvNkrSpQ=="
+          "hash": "guaZD9z9OQFLuzCG29AyFQ=="
         }
       },
       "is_incremental": false,
@@ -1377,7 +1377,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/api_doc/FrozenWorldDLL.html",
-          "hash": "571QsC+caHVzb4J7VT1KTg=="
+          "hash": "uHCYP5bKtGnRuPStUxoksg=="
         }
       },
       "is_incremental": false,
@@ -1389,7 +1389,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/api_doc/Managers/IAlignmentManager.html",
-          "hash": "BGLidqivUMBOECdlbFwxiQ=="
+          "hash": "hlFc8BvhYNAqCE4cauCFbg=="
         }
       },
       "is_incremental": false,
@@ -1401,7 +1401,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/api_doc/Managers/IAnchorManager.html",
-          "hash": "my5z9kjRc5AQk/lj1XHiQg=="
+          "hash": "lhW2LKO6dfg+erJfI2+BzQ=="
         }
       },
       "is_incremental": false,
@@ -1413,7 +1413,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/api_doc/Managers/IAttachmentPointManager.html",
-          "hash": "5fnv/JAQYMQr6LKaYWYWRw=="
+          "hash": "Zjox+sNZ6cIyEaEu2FAktA=="
         }
       },
       "is_incremental": false,
@@ -1425,7 +1425,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/api_doc/Managers/IFragmentManager.html",
-          "hash": "T7pb4AUP2qlOApcrWrv49g=="
+          "hash": "/ojS/7FlDMVvUyIP90hYng=="
         }
       },
       "is_incremental": false,
@@ -1437,7 +1437,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/api_doc/Managers/WorldLockingManager.html",
-          "hash": "UGbuhSvSLjKDjCb5jUF/8w=="
+          "hash": "AUrg/wwXQBIRbLNjSLeGmQ=="
         }
       },
       "is_incremental": false,
@@ -1483,7 +1483,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "0zgxTXoaPK0DqYKxu3kM6w=="
+          "hash": "gdEHCCz8lPi0o7ZWdio2HA=="
         }
       },
       "is_incremental": false,
@@ -1524,13 +1524,6 @@
         "full_build_reason_code": "ForceRebuild"
       },
       "processors": {
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
-        },
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
@@ -1546,6 +1539,13 @@
         "ResourceDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
           "skipped_file_count": 0
