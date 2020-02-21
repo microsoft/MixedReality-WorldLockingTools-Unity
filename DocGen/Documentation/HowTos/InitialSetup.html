@@ -122,12 +122,11 @@
 </code></pre>
 <p>This is generally not an issue with the World Locking Tools themselves, as they don't utilize as deep a folder structure.</p>
 <h2 id="adding-world-locking-tools-to-a-unity-project">Adding World Locking Tools to a Unity project</h2>
-<p>If the target Unity project is the World Locking Tools project (or a derivative of it), then all necessary and optional resources are already included.</p>
-<p>If not, then two packages must be added to the project.</p>
-<p>If adding World Locking Tools to an existing project, it is advisable to start with a project that has been verified to build and deploy to a HoloLens device. This will help separate issues with getting an app to run on HoloLens in the first place, which can be complicated, from issues with the World Locking Tools.</p>
-<h3 id="nuget-setup">NuGet setup</h3>
 <p>World Locking Tools relies on NuGet for Unity for distribution.</p>
 <p>To begin, make sure NuGet for Unity is installed into the Unity project. It is available from the (NuGet for Unity github releases)[https://github.com/GlitchEnzo/NuGetForUnity/releases].</p>
+<p>If the target Unity project is the World Locking Tools project (or a derivative of it), then all necessary and optional resources are already included.</p>
+<p>If adding World Locking Tools to an existing project, it is advisable to start with a project that has been verified to build and deploy to a HoloLens device. This will help separate issues with getting an app to run on HoloLens in the first place, which can be complicated, from issues with the World Locking Tools. Then proceed to the <em>NuGet setup</em> and <em>World Locking Tools Assets</em> sections below.</p>
+<h3 id="nuget-setup">NuGet setup</h3>
 <p>Make sure the nuget.org feed is in sources. Check this in Unity &gt; Edit &gt; Preferences &gt; NuGet for Unity. If not, <em>either</em>:</p>
 <ol>
 <li><strong>Either</strong> use the <em>Add New Source</em> GUI in Unity &gt; Edit &gt; Preferences &gt; NuGet For Unity to add the same share.</li>
