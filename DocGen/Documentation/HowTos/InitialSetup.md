@@ -75,17 +75,15 @@ This is generally not an issue with the World Locking Tools themselves, as they 
 
 ## Adding World Locking Tools to a Unity project
 
-If the target Unity project is the World Locking Tools project (or a derivative of it), then all necessary and optional resources are already included. 
-
-If not, then two packages must be added to the project.
-
-If adding World Locking Tools to an existing project, it is advisable to start with a project that has been verified to build and deploy to a HoloLens device. This will help separate issues with getting an app to run on HoloLens in the first place, which can be complicated, from issues with the World Locking Tools.
-
-### NuGet setup
-
 World Locking Tools relies on NuGet for Unity for distribution. 
 
 To begin, make sure NuGet for Unity is installed into the Unity project. It is available from the (NuGet for Unity github releases)[https://github.com/GlitchEnzo/NuGetForUnity/releases].
+
+If the target Unity project is the World Locking Tools project (or a derivative of it), then all necessary and optional resources are already included. 
+
+If adding World Locking Tools to an existing project, it is advisable to start with a project that has been verified to build and deploy to a HoloLens device. This will help separate issues with getting an app to run on HoloLens in the first place, which can be complicated, from issues with the World Locking Tools. Then proceed to the *NuGet setup* and *World Locking Tools Assets* sections below.
+
+### NuGet setup
 
 Make sure the nuget.org feed is in sources. Check this in Unity > Edit > Preferences > NuGet for Unity. If not, *either*:
 
