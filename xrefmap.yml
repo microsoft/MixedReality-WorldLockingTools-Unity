@@ -281,6 +281,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Finalize
   nameWithType: AnchorManager.Finalize
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.GetHeadPose
+  name: GetHeadPose()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_GetHeadPose
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.GetHeadPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.GetHeadPose()
+  nameWithType: AnchorManager.GetHeadPose()
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.GetHeadPose*
+  name: GetHeadPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_GetHeadPose_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.GetHeadPose
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.GetHeadPose
+  nameWithType: AnchorManager.GetHeadPose
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.LoadAnchors
   name: LoadAnchors()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_LoadAnchors
