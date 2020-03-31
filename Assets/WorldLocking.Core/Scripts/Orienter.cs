@@ -153,12 +153,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 for (int j = i + 1; j < actives.Count; ++j)
                 {
                     WeightedRotation wrotNew = ComputeRotation(actives[i].orientable, actives[j].orientable);
-                    WeightedRotation wrot = actives[i];
-                    wrot = AverageRotation(wrot, wrotNew);
-                    actives[i] = wrot;
-                    wrot = actives[j];
-                    wrot = AverageRotation(wrot, wrotNew);
-                    actives[j] = wrot;
+                    if (wrotNew.weight > 0)
+                    {
+                        WeightedRotation wrot = actives[i];
+                        wrot = AverageRotation(wrot, wrotNew);
+                        actives[i] = wrot;
+                        wrot = actives[j];
+                        wrot = AverageRotation(wrot, wrotNew);
+                        actives[j] = wrot;
+                    }
                 }
             }
             return true;
