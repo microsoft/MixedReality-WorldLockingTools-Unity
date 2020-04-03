@@ -1822,6 +1822,51 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Core.Orienter
   fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter
   nameWithType: Orienter
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.actives
+  name: actives
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_actives
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.Orienter.actives
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.actives
+  nameWithType: Orienter.actives
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.AverageRotation(Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation,Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation)
+  name: AverageRotation(Orienter.WeightedRotation, Orienter.WeightedRotation)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_AverageRotation_Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.Orienter.AverageRotation(Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation,Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.AverageRotation(Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation, Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation)
+  nameWithType: Orienter.AverageRotation(Orienter.WeightedRotation, Orienter.WeightedRotation)
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.AverageRotation*
+  name: AverageRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_AverageRotation_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.Orienter.AverageRotation
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.AverageRotation
+  nameWithType: Orienter.AverageRotation
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotation(Microsoft.MixedReality.WorldLocking.Core.IOrientable,Microsoft.MixedReality.WorldLocking.Core.IOrientable)
+  name: ComputeRotation(IOrientable, IOrientable)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_ComputeRotation_Microsoft_MixedReality_WorldLocking_Core_IOrientable_Microsoft_MixedReality_WorldLocking_Core_IOrientable_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotation(Microsoft.MixedReality.WorldLocking.Core.IOrientable,Microsoft.MixedReality.WorldLocking.Core.IOrientable)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotation(Microsoft.MixedReality.WorldLocking.Core.IOrientable, Microsoft.MixedReality.WorldLocking.Core.IOrientable)
+  nameWithType: Orienter.ComputeRotation(IOrientable, IOrientable)
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotation*
+  name: ComputeRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_ComputeRotation_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotation
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotation
+  nameWithType: Orienter.ComputeRotation
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotations
+  name: ComputeRotations()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_ComputeRotations
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotations
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotations()
+  nameWithType: Orienter.ComputeRotations()
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotations*
+  name: ComputeRotations
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_ComputeRotations_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotations
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotations
+  nameWithType: Orienter.ComputeRotations
 - uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.Register(Microsoft.MixedReality.WorldLocking.Core.IOrientable)
   name: Register(IOrientable)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_Register_Microsoft_MixedReality_WorldLocking_Core_IOrientable_
@@ -1861,6 +1906,75 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.Unregister
   nameWithType: Orienter.Unregister
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation
+  name: Orienter.WeightedRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation
+  nameWithType: Orienter.WeightedRotation
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.FragmentId
+  name: FragmentId
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_FragmentId
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.FragmentId
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.FragmentId
+  nameWithType: Orienter.WeightedRotation.FragmentId
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.FragmentId*
+  name: FragmentId
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_FragmentId_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.FragmentId
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.FragmentId
+  nameWithType: Orienter.WeightedRotation.FragmentId
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.orientable
+  name: orientable
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_orientable
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.orientable
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.orientable
+  nameWithType: Orienter.WeightedRotation.orientable
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.rotation
+  name: rotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_rotation
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.rotation
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.rotation
+  nameWithType: Orienter.WeightedRotation.rotation
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.weight
+  name: weight
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_weight
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.weight
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.weight
+  nameWithType: Orienter.WeightedRotation.weight
+- uid: Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody
+  name: OrienterThreeBody
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody
+  fullName: Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody
+  nameWithType: OrienterThreeBody
+- uid: Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.ComputeRotation(Microsoft.MixedReality.WorldLocking.Core.IOrientable,Microsoft.MixedReality.WorldLocking.Core.IOrientable)
+  name: ComputeRotation(IOrientable, IOrientable)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.html#Microsoft_MixedReality_WorldLocking_Core_OrienterThreeBody_ComputeRotation_Microsoft_MixedReality_WorldLocking_Core_IOrientable_Microsoft_MixedReality_WorldLocking_Core_IOrientable_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.ComputeRotation(Microsoft.MixedReality.WorldLocking.Core.IOrientable,Microsoft.MixedReality.WorldLocking.Core.IOrientable)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.ComputeRotation(Microsoft.MixedReality.WorldLocking.Core.IOrientable, Microsoft.MixedReality.WorldLocking.Core.IOrientable)
+  nameWithType: OrienterThreeBody.ComputeRotation(IOrientable, IOrientable)
+- uid: Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.ComputeRotation*
+  name: ComputeRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.html#Microsoft_MixedReality_WorldLocking_Core_OrienterThreeBody_ComputeRotation_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.ComputeRotation
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.ComputeRotation
+  nameWithType: OrienterThreeBody.ComputeRotation
+- uid: Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.ComputeRotations
+  name: ComputeRotations()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.html#Microsoft_MixedReality_WorldLocking_Core_OrienterThreeBody_ComputeRotations
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.ComputeRotations
+  fullName: Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.ComputeRotations()
+  nameWithType: OrienterThreeBody.ComputeRotations()
+- uid: Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.ComputeRotations*
+  name: ComputeRotations
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.html#Microsoft_MixedReality_WorldLocking_Core_OrienterThreeBody_ComputeRotations_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.ComputeRotations
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.ComputeRotations
+  nameWithType: OrienterThreeBody.ComputeRotations
 - uid: Microsoft.MixedReality.WorldLocking.Core.PoseExtensions
   name: PoseExtensions
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.PoseExtensions.html

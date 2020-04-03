@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Orienter
    | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.49.0.0">
+    <meta name="generator" content="docfx 2.51.0.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -93,6 +93,7 @@
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
     <div class="level1"><span class="xref">Orienter</span></div>
+      <div class="level2"><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.OrienterThreeBody.html">OrienterThreeBody</a></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -112,8 +113,160 @@ There are pros and cons in either direction. The MonoBehaviour assigned in inspe
 was chosen to make explicit the dependency, rather than a dependency hidden by a
 static get internally.</p>
 </div>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Orienter_actives" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.actives">actives</h4>
+  <div class="markdown level1 summary"><p>Orientables in the currently processing fragment.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly List&lt;Orienter.WeightedRotation&gt; actives</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.html">Orienter.WeightedRotation</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_Orienter_AverageRotation_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.AverageRotation*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Orienter_AverageRotation_Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.AverageRotation(Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation,Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation)">AverageRotation(Orienter.WeightedRotation, Orienter.WeightedRotation)</h4>
+  <div class="markdown level1 summary"><p>Compute a new weighted rotation representing the two input weighted rotations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Orienter.WeightedRotation AverageRotation(Orienter.WeightedRotation accum, Orienter.WeightedRotation add)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.html">Orienter.WeightedRotation</a></td>
+        <td><span class="parametername">accum</span></td>
+        <td><p>The accumulator rotation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.html">Orienter.WeightedRotation</a></td>
+        <td><span class="parametername">add</span></td>
+        <td><p>The rotation to add in.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.html">Orienter.WeightedRotation</a></td>
+        <td><p>A new aggregate weighted rotation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_Orienter_ComputeRotation_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotation*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Orienter_ComputeRotation_Microsoft_MixedReality_WorldLocking_Core_IOrientable_Microsoft_MixedReality_WorldLocking_Core_IOrientable_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotation(Microsoft.MixedReality.WorldLocking.Core.IOrientable,Microsoft.MixedReality.WorldLocking.Core.IOrientable)">ComputeRotation(IOrientable, IOrientable)</h4>
+  <div class="markdown level1 summary"><p>Compute the rotation that aligns a and b correctly in pinned space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Orienter.WeightedRotation ComputeRotation(IOrientable a, IOrientable b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IOrientable.html">IOrientable</a></td>
+        <td><span class="parametername">a</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IOrientable.html">IOrientable</a></td>
+        <td><span class="parametername">b</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.html">Orienter.WeightedRotation</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_Orienter_ComputeRotations_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotations*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Orienter_ComputeRotations" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.ComputeRotations">ComputeRotations()</h4>
+  <div class="markdown level1 summary"><p>Compute rotations by pairs, weighting by distance and averaging for each orientable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool ComputeRotations()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="Microsoft_MixedReality_WorldLocking_Core_Orienter_Register_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.Register*"></a>

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ConnectingLine
+    <title>Struct Orienter.WeightedRotation
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ConnectingLine
+    <meta name="title" content="Struct Orienter.WeightedRotation
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.51.0.0">
     
@@ -81,81 +81,77 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Tools.ConnectingLine">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Tools_ConnectingLine" data-uid="Microsoft.MixedReality.WorldLocking.Tools.ConnectingLine" class="text-break">Class ConnectingLine
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation" class="text-break">Struct Orienter.WeightedRotation
   </h1>
-  <div class="markdown level0 summary"><p>Helper class for visualizing a graph of connected transforms.</p>
+  <div class="markdown level0 summary"><p>An object whose rotation needs to be computed, and the weight of its rotation.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">ConnectingLine</span></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.equals#System_ValueType_Equals_System_Object_">ValueType.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.gethashcode#System_ValueType_GetHashCode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.tostring#System_ValueType_ToString">ValueType.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.html">Microsoft.MixedReality.WorldLocking.Tools</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Tools_ConnectingLine_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ConnectingLine : MonoBehaviour</code></pre>
+    <pre><code class="lang-csharp hljs">protected struct WeightedRotation</code></pre>
   </div>
-  <h3 id="methods">Methods
+  <h3 id="fields">Fields
   </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Tools_ConnectingLine_Create_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.ConnectingLine.Create*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_ConnectingLine_Create_Transform_Transform_Transform_System_Single_Color_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.ConnectingLine.Create(Transform,Transform,Transform,System.Single,Color)">Create(Transform, Transform, Transform, Single, Color)</h4>
-  <div class="markdown level1 summary"><p>Create line segment connecting two transforms and attached to a third</p>
-</div>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_orientable" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.orientable">orientable</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ConnectingLine Create(Transform parent, Transform transformA, Transform transformB, float width, Color color)</code></pre>
+    <pre><code class="lang-csharp hljs">public IOrientable orientable</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Transform</span></td>
-        <td><span class="parametername">parent</span></td>
-        <td><p>Parent to hang the line segment off of</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">Transform</span></td>
-        <td><span class="parametername">transformA</span></td>
-        <td><p>Beginning endpoint of line segment</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">Transform</span></td>
-        <td><span class="parametername">transformB</span></td>
-        <td><p>Enging endpoint of line segment</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
-        <td><span class="parametername">width</span></td>
-        <td><p>Width of the Unity LineRenderer</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">Color</span></td>
-        <td><span class="parametername">color</span></td>
-        <td><p>Color of the line segment</p>
-</td>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IOrientable.html">IOrientable</a></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 class="returns">Returns</h5>
+  
+  
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_rotation" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.rotation">rotation</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Quaternion rotation</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -165,7 +161,58 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.ConnectingLine.html">ConnectingLine</a></td>
+        <td><span class="xref">Quaternion</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_weight" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.weight">weight</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float weight</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_FragmentId_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.FragmentId*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_FragmentId" data-uid="Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation.FragmentId">FragmentId</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FragmentId FragmentId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FragmentId</span></td>
         <td></td>
       </tr>
     </tbody>
