@@ -21,7 +21,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// An object whose rotation needs to be computed, and the weight of its rotation.
         /// </summary>
-        private struct WeightedRotation
+        protected struct WeightedRotation
         {
             public IOrientable orientable;
             public float weight;
@@ -38,7 +38,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// Orientables in the currently processing fragment.
         /// </summary>
-        private readonly List<WeightedRotation> actives = new List<WeightedRotation>();
+        protected readonly List<WeightedRotation> actives = new List<WeightedRotation>();
 
         #endregion Private members
 
@@ -146,19 +146,22 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// Compute rotations by pairs, weighting by distance and averaging for each orientable.
         /// </summary>
         /// <returns></returns>
-        private bool ComputeRotations()
+        protected virtual bool ComputeRotations()
         {
             for (int i = 0; i < actives.Count; ++i)
             {
                 for (int j = i + 1; j < actives.Count; ++j)
                 {
                     WeightedRotation wrotNew = ComputeRotation(actives[i].orientable, actives[j].orientable);
-                    WeightedRotation wrot = actives[i];
-                    wrot = AverageRotation(wrot, wrotNew);
-                    actives[i] = wrot;
-                    wrot = actives[j];
-                    wrot = AverageRotation(wrot, wrotNew);
-                    actives[j] = wrot;
+                    if (wrotNew.weight > 0)
+                    {
+                        WeightedRotation wrot = actives[i];
+                        wrot = AverageRotation(wrot, wrotNew);
+                        actives[i] = wrot;
+                        wrot = actives[j];
+                        wrot = AverageRotation(wrot, wrotNew);
+                        actives[j] = wrot;
+                    }
                 }
             }
             return true;
@@ -170,7 +173,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        private WeightedRotation ComputeRotation(IOrientable a, IOrientable b)
+        protected virtual WeightedRotation ComputeRotation(IOrientable a, IOrientable b)
         {
             Vector3 lockedAtoB = b.LockedPosition - a.LockedPosition;
             lockedAtoB.y = 0.0f;
@@ -201,7 +204,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <param name="accum">The accumulator rotation.</param>
         /// <param name="add">The rotation to add in.</param>
         /// <returns>A new aggregate weighted rotation.</returns>
-        private WeightedRotation AverageRotation(WeightedRotation accum, WeightedRotation add)
+        protected WeightedRotation AverageRotation(WeightedRotation accum, WeightedRotation add)
         {
             float interp = add.weight / (accum.weight + add.weight);
 
