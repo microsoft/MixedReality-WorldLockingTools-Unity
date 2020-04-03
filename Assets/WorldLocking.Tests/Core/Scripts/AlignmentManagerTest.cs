@@ -28,6 +28,59 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             // Use the Assert class to test conditions
         }
 
+        [Test]
+        public void ThreeBodyOrientTest()
+        {
+            Vector3[] modelPositions = 
+            { 
+                new Vector3(1, 0, 0), 
+                new Vector3(0, 0, 1),
+                new Vector3(0.3f, 0.4f, 0.5f),
+                new Vector3(-8, 7, 10)
+            };
+            Vector3[] frozenPositions = new Vector3[modelPositions.Length];
+
+            Quaternion initFrozenFromModel = Quaternion.Euler(45.0f, 45.0f, 0.0f);
+
+            for(int i = 0; i < modelPositions.Length; ++i)
+            {
+                frozenPositions[i] = initFrozenFromModel * modelPositions[i];
+            }
+
+            float errorLength = 0;
+            for (int i = 1; i < modelPositions.Length; ++i)
+            {
+                Quaternion frozenFromModelFirst = Quaternion.FromToRotation(modelPositions[i - 1], frozenPositions[i - 1]);
+
+                Vector3 firstAlignedSecond = frozenFromModelFirst * modelPositions[i];
+
+                Vector3 dir = frozenPositions[i - 1];
+                dir.Normalize();
+                Vector3 up = Vector3.Cross(frozenPositions[i], dir);
+                up.Normalize();
+                Vector3 right = Vector3.Cross(dir, up);
+
+                float sinRads = Vector3.Dot(firstAlignedSecond, up);
+                float cosRads = Vector3.Dot(firstAlignedSecond, right);
+
+                float rotRads = Mathf.Atan2(sinRads, cosRads);
+
+                Quaternion frozenFromModelSecond = Quaternion.AngleAxis(Mathf.Rad2Deg * rotRads, dir);
+
+                Quaternion frozenFromModel = frozenFromModelSecond * frozenFromModelFirst;
+
+                Vector3[] checkFrozen = new Vector3[modelPositions.Length];
+                for (int j = 0; j < modelPositions.Length; ++j)
+                {
+                    checkFrozen[j] = frozenFromModel * modelPositions[j];
+                    Vector3 delErr = checkFrozen[j] - frozenPositions[j];
+                    float errLen = delErr.magnitude;
+                    errorLength += errLen;
+                }
+            }
+            UnityEngine.Debug.Log($"Total error {errorLength}");
+        }
+
         private TestLoadHelpers loadHelper = new TestLoadHelpers();
 
         [SetUp]
