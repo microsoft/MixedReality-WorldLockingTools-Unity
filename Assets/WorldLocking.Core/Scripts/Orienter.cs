@@ -134,7 +134,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                         {
                             orientable = orientables[i],
                             weight = 0.0f,
-                            rotation = Quaternion.identity
+                            rotation = orientables[i].LockedRotation * Quaternion.Inverse(orientables[i].ModelRotation)
                         }
                     );
                 }
