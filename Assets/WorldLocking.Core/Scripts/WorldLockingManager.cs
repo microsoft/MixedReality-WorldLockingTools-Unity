@@ -497,8 +497,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
                 SpongyFromCamera = Plugin.GetSpongyHead();
 
-                Pose playspaceFromSpongy = CameraParent.GetLocalPose();
-                Pose lockedHeadPose = LockedFromPlayspace.Multiply(playspaceFromSpongy.Multiply(SpongyFromCamera));
+                Pose lockedHeadPose = LockedFromPlayspace.Multiply(PlayspaceFromSpongy.Multiply(SpongyFromCamera));
                 alignmentManager.ComputePinnedPose(lockedHeadPose);
                 PinnedFromLocked = alignmentManager.PinnedFromLocked;
             }

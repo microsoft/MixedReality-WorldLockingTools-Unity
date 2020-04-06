@@ -87,7 +87,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// First of the pair of poses submitted to alignment manager for alignment.
         /// </summary>
-        public virtual Pose ModelingPose
+        public Pose ModelingPose
         {
             get { return initialPose; }
         }

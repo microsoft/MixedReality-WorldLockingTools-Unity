@@ -24,6 +24,20 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// Proxy renderable to show axis alignment during manipulations.
         /// </summary>
         public GameObject Prefab_FeelerRay { get { return prefab_FeelerRay; } set { prefab_FeelerRay = value; } }
+
+        [SerializeField]
+        [Tooltip("Whether to show the MRTK rotation gizmos.")]
+        private bool allowRotation = true;
+
+        /// <summary>
+        /// Whether to show the MRTK rotation gizmos.
+        /// </summary>
+        /// <remarks>
+        /// Rotating the SpacePinOrientableManipulation object only has any effect when the first
+        /// pin is manipulated. Once the second object is manipulated, and ever after, the orientation
+        /// is implied by the alignment of the pin objects, and actual orientation of the objects is ignored.
+        /// </remarks>
+        public bool AllowRotation { get { return allowRotation; } set { allowRotation = value; } }
         #endregion Inspector fields
 
         #region Internal fields
@@ -45,7 +59,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             base.Start();
 
             pinManipulator = new PinManipulator(transform, Prefab_FeelerRay, OnFinishManipulation);
-            pinManipulator.UserOriented = false;
+            pinManipulator.UserOriented = AllowRotation;
             pinManipulator.Startup();
         }
 
@@ -73,7 +87,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// </summary>
         private void OnFinishManipulation()
         {
-            SetFrozenPosition(transform.GetGlobalPose().position);
+            SetFrozenPose(transform.GetGlobalPose());
         }
     }
 }

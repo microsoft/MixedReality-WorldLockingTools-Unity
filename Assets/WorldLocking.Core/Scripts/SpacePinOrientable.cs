@@ -63,15 +63,17 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
-        /// <summary>
-        /// The position in modeling space.
-        /// </summary>
+        /// <inheritdocs />
         public Vector3 ModelPosition { get { return ModelingPose.position; } }
 
-        /// <summary>
-        /// The position in locked space.
-        /// </summary>
+        /// <inheritdocs />
+        public Quaternion ModelRotation { get { return ModelingPose.rotation; } }
+
+        /// <inheritdocs />
         public Vector3 LockedPosition { get { return LockedPose.position; } }
+
+        /// <inheritdocs />
+        public Quaternion LockedRotation { get { return LockedPose.rotation; } }
 
         /// <summary>
         /// Accept the rotation as computed by the IOrienter.
@@ -80,7 +82,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <param name="lockedRotation">The new world locked rotation to adopt.</param>
         public void PushRotation(IAlignmentManager mgr, Quaternion lockedRotation)
         {
-            LockedPose = new Pose(LockedPose.position, lockedRotation);
+            /// Append the modeling pose rotation. This will cancel out when computing the 
+            /// pinnedFromLocked transform, so that the computed rotation gets applied as is.
+            LockedPose = new Pose(LockedPose.position, lockedRotation * ModelingPose.rotation);
             PushAlignmentData(mgr);
         }
 
@@ -93,7 +97,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <param name="frozenPosition">Position in frozen space.</param>
         public void SetFrozenPosition(Vector3 frozenPosition)
         {
-            SetFrozenPose(new Pose(frozenPosition, Quaternion.identity));
+            WorldLockingManager wltMgr = WorldLockingManager.GetInstance();
+            Vector3 lockedPosition = wltMgr.LockedFromFrozen.Multiply(frozenPosition);
+            SetLockedPose(new Pose(lockedPosition, LockedRotation));
         }
 
         /// <summary>
@@ -102,7 +108,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <param name="spongyPosition">Position in spongyt space.</param>
         public void SetSpongyPosition(Vector3 spongyPosition)
         {
-            SetSpongyPose(new Pose(spongyPosition, Quaternion.identity));
+            WorldLockingManager wltMgr = WorldLockingManager.GetInstance();
+            Vector3 lockedPosition = wltMgr.LockedFromSpongy.Multiply(spongyPosition);
+            SetLockedPose(new Pose(lockedPosition, LockedRotation));
         }
 
         /// <summary>
@@ -111,26 +119,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <param name="lockedPosition">Position in locked space.</param>
         public void SetLockedPosition(Vector3 lockedPosition)
         {
-            SetLockedPose(new Pose(lockedPosition, Quaternion.identity));
+            SetLockedPose(new Pose(lockedPosition, LockedRotation));
         }
 
         #endregion Public APIs added
 
         #region SpacePin overrides
-
-        /// <summary>
-        /// The modeling (virtual) space pose for this pin.
-        /// </summary>
-        /// <remarks>
-        /// The rotation here is nulled because an explicit target rotation is computed which includes the initial rotation.
-        /// Also having the initial rotation input as part of the modeling pose would apply that rotation twice.
-        /// It would also be possible to leave this rotation as is and factor it out of the computed rotation with
-        /// some additional math.
-        /// </remarks>
-        public override Pose ModelingPose
-        {
-            get { return new Pose(InitialPose.position, Quaternion.identity); }
-        }
 
         /// <summary>
         /// Adopt the Inspector set Orienter as the interface iorienter.

@@ -22,9 +22,19 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         Vector3 ModelPosition { get; }
 
         /// <summary>
+        /// The orientation of the object in Modeling space.
+        /// </summary>
+        Quaternion ModelRotation { get; }
+
+        /// <summary>
         /// The desired position of the object in world locked space.
         /// </summary>
         Vector3 LockedPosition { get; }
+
+        /// <summary>
+        /// The desired rotation of the object in world locked space.
+        /// </summary>
+        Quaternion LockedRotation { get; }
 
         /// <summary>
         /// Accept a rotation computed externally (by an <see cref="IOrienter"/>).
