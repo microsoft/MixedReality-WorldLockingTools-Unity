@@ -119,6 +119,9 @@ based on the relative positions of all active <a class="xref" href="Microsoft.Mi
       <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_InitialPose">SpacePin.InitialPose</a>
     </div>
     <div>
+      <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPose">SpacePin.ModelingPose</a>
+    </div>
+    <div>
       <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_LockedPose">SpacePin.LockedPose</a>
     </div>
     <div>
@@ -192,8 +195,7 @@ the relationship between coordinates of elements of differing fragments are unde
   
   <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_LockedPosition_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.LockedPosition*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_LockedPosition" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.LockedPosition">LockedPosition</h4>
-  <div class="markdown level1 summary"><p>The position in locked space.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -216,14 +218,13 @@ the relationship between coordinates of elements of differing fragments are unde
   </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_ModelingPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelingPose*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_ModelingPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelingPose">ModelingPose</h4>
-  <div class="markdown level1 summary"><p>The modeling (virtual) space pose for this pin.</p>
-</div>
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_LockedRotation_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.LockedRotation*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_LockedRotation" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.LockedRotation">LockedRotation</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override Pose ModelingPose { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Quaternion LockedRotation { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -235,25 +236,16 @@ the relationship between coordinates of elements of differing fragments are unde
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Pose</span></td>
+        <td><span class="xref">Quaternion</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPose">SpacePin.ModelingPose</a></div>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_ModelingPose_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The rotation here is nulled because an explicit target rotation is computed which includes the initial rotation.
-Also having the initial rotation input as part of the modeling pose would apply that rotation twice.
-It would also be possible to leave this rotation as is and factor it out of the computed rotation with
-some additional math.</p>
-</div>
   
   
   <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_ModelPosition_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelPosition*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_ModelPosition" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelPosition">ModelPosition</h4>
-  <div class="markdown level1 summary"><p>The position in modeling space.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -270,6 +262,31 @@ some additional math.</p>
     <tbody>
       <tr>
         <td><span class="xref">Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_ModelRotation_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelRotation*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_ModelRotation" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelRotation">ModelRotation</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Quaternion ModelRotation { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Quaternion</span></td>
         <td></td>
       </tr>
     </tbody>

@@ -705,7 +705,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrientable.html",
-          "hash": "+kKFgTEtgpRyxF3fEnnq9A=="
+          "hash": "MsDL5xll7SzqsWCavYiAfg=="
         }
       },
       "is_incremental": false,
@@ -933,7 +933,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html",
-          "hash": "+FmcWF4hBInJZWqFMBiKVg=="
+          "hash": "GIkXIEIXuWZ5kGZ0gXznsA=="
         }
       },
       "is_incremental": false,
@@ -945,7 +945,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html",
-          "hash": "5SDX29R/EQT/VhzStBifww=="
+          "hash": "fPUW+Pj1J1pe+CbcsFbaxg=="
         }
       },
       "is_incremental": false,
@@ -1173,7 +1173,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.html",
-          "hash": "2ItB/OWjQJNYzsPRty7clA=="
+          "hash": "LbYAKEs82Pgjd+gqUXsdiw=="
         }
       },
       "is_incremental": false,

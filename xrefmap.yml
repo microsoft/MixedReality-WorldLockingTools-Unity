@@ -1639,6 +1639,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.IOrientable.LockedPosition
   nameWithType: IOrientable.LockedPosition
+- uid: Microsoft.MixedReality.WorldLocking.Core.IOrientable.LockedRotation
+  name: LockedRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrientable.html#Microsoft_MixedReality_WorldLocking_Core_IOrientable_LockedRotation
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.IOrientable.LockedRotation
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IOrientable.LockedRotation
+  nameWithType: IOrientable.LockedRotation
+- uid: Microsoft.MixedReality.WorldLocking.Core.IOrientable.LockedRotation*
+  name: LockedRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrientable.html#Microsoft_MixedReality_WorldLocking_Core_IOrientable_LockedRotation_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.IOrientable.LockedRotation
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IOrientable.LockedRotation
+  nameWithType: IOrientable.LockedRotation
 - uid: Microsoft.MixedReality.WorldLocking.Core.IOrientable.ModelPosition
   name: ModelPosition
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrientable.html#Microsoft_MixedReality_WorldLocking_Core_IOrientable_ModelPosition
@@ -1652,6 +1665,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.IOrientable.ModelPosition
   nameWithType: IOrientable.ModelPosition
+- uid: Microsoft.MixedReality.WorldLocking.Core.IOrientable.ModelRotation
+  name: ModelRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrientable.html#Microsoft_MixedReality_WorldLocking_Core_IOrientable_ModelRotation
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.IOrientable.ModelRotation
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IOrientable.ModelRotation
+  nameWithType: IOrientable.ModelRotation
+- uid: Microsoft.MixedReality.WorldLocking.Core.IOrientable.ModelRotation*
+  name: ModelRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrientable.html#Microsoft_MixedReality_WorldLocking_Core_IOrientable_ModelRotation_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.IOrientable.ModelRotation
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IOrientable.ModelRotation
+  nameWithType: IOrientable.ModelRotation
 - uid: Microsoft.MixedReality.WorldLocking.Core.IOrientable.PushRotation(Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager,Quaternion)
   name: PushRotation(IAlignmentManager, Quaternion)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrientable.html#Microsoft_MixedReality_WorldLocking_Core_IOrientable_PushRotation_Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_Quaternion_
@@ -2499,19 +2525,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.LockedPosition
   nameWithType: SpacePinOrientable.LockedPosition
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelingPose
-  name: ModelingPose
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_ModelingPose
-  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelingPose
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelingPose
-  nameWithType: SpacePinOrientable.ModelingPose
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelingPose*
-  name: ModelingPose
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_ModelingPose_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelingPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.LockedRotation
+  name: LockedRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_LockedRotation
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.LockedRotation
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.LockedRotation
+  nameWithType: SpacePinOrientable.LockedRotation
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.LockedRotation*
+  name: LockedRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_LockedRotation_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.LockedRotation
   isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelingPose
-  nameWithType: SpacePinOrientable.ModelingPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.LockedRotation
+  nameWithType: SpacePinOrientable.LockedRotation
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelPosition
   name: ModelPosition
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_ModelPosition
@@ -2525,6 +2551,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelPosition
   nameWithType: SpacePinOrientable.ModelPosition
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelRotation
+  name: ModelRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_ModelRotation
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelRotation
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelRotation
+  nameWithType: SpacePinOrientable.ModelRotation
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelRotation*
+  name: ModelRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_ModelRotation_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelRotation
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.ModelRotation
+  nameWithType: SpacePinOrientable.ModelRotation
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.OnLocationUpdate(Pose)
   name: OnLocationUpdate(Pose)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePinOrientable.html#Microsoft_MixedReality_WorldLocking_Core_SpacePinOrientable_OnLocationUpdate_Pose_
@@ -4449,6 +4488,19 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation
   fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation
   nameWithType: SpacePinOrientableManipulation
+- uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.AllowRotation
+  name: AllowRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinOrientableManipulation_AllowRotation
+  commentId: P:Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.AllowRotation
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.AllowRotation
+  nameWithType: SpacePinOrientableManipulation.AllowRotation
+- uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.AllowRotation*
+  name: AllowRotation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinOrientableManipulation_AllowRotation_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.AllowRotation
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.AllowRotation
+  nameWithType: SpacePinOrientableManipulation.AllowRotation
 - uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnDestroy
   name: OnDestroy()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinOrientableManipulation_OnDestroy
