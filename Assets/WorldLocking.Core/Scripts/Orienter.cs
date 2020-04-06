@@ -134,6 +134,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                         {
                             orientable = orientables[i],
                             weight = 0.0f,
+                            /// Default rotation is current rotation. The inverse of the model rotation will
+                            /// cancel out the model rotation when the coordinate system rotation is computed, 
+                            /// using the unmodified locked rotation.
                             rotation = orientables[i].LockedRotation * Quaternion.Inverse(orientables[i].ModelRotation)
                         }
                     );
