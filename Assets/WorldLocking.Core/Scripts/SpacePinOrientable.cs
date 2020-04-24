@@ -64,10 +64,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 
         /// <inheritdocs />
-        public Vector3 ModelPosition { get { return ModelingPose.position; } }
+        public Vector3 ModelPosition { get { return ModelingPoseGlobal.position; } }
 
         /// <inheritdocs />
-        public Quaternion ModelRotation { get { return ModelingPose.rotation; } }
+        public Quaternion ModelRotation { get { return ModelingPoseGlobal.rotation; } }
 
         /// <inheritdocs />
         public Vector3 LockedPosition { get { return LockedPose.position; } }
@@ -84,7 +84,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             /// Append the modeling pose rotation. This will cancel out when computing the 
             /// pinnedFromLocked transform, so that the computed rotation gets applied as is.
-            LockedPose = new Pose(LockedPose.position, lockedRotation * ModelingPose.rotation);
+            LockedPose = new Pose(LockedPose.position, lockedRotation * ModelingPoseGlobal.rotation);
             PushAlignmentData(mgr);
         }
 
@@ -158,7 +158,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// okay because the locked pose will be world locked then too.
             if (EnsureRegistered())
             {
-                IAlignmentManager mgr = Manager.AlignmentManager;
+                IAlignmentManager mgr = AlignmentManager;
 
                 Debug.Assert(Orienter != null, "Registration with orienter should not succeed with null orienter.");
                 Orienter.Reorient(FragmentId, mgr);
