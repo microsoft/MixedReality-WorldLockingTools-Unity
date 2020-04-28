@@ -22,4 +22,4 @@ try { Stop-ProcessesWithHandle -Path $CheckoutPath } catch {}
 
 Write-Host "Running git clean"
 Push-Location $CheckoutPath
-& git clean --xxfd
+& git clean -xxfd
