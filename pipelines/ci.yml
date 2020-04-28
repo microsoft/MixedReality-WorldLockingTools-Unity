@@ -10,6 +10,14 @@ jobs:
     - Unity2018.4.6f1
     - SDK_18362 -equals TRUE
   steps:
+  - task: PowerShell@2
+    inputs:
+      targetType: 'filePath'
+      filePath: $(Build.SourcesDirectory)\tools\forceclean.ps1
+      arguments: $(Build.SourcesDirectory)
+      errorActionPreference: 'stop'
+      failOnStderr: false
+      workingDirectory: $(Agent.WorkFolder)
   - template: build.yml
   - template: test.yml
   - template: package.yml
