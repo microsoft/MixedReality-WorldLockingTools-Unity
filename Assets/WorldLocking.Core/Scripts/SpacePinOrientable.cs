@@ -246,6 +246,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public void SetOrienter(IOrienter iorienter)
         {
             this.iorienter = iorienter;
+            // If of an appropriate type, assign to the serialized orienter field as well.
+            if (iorienter is Orienter)
+            {
+                orienter = iorienter as Orienter;
+            }
         }
         #endregion IOrienter access
     }
