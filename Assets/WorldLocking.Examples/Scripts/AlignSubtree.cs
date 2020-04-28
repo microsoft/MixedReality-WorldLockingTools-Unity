@@ -1,6 +1,7 @@
 ﻿using Microsoft.MixedReality.WorldLocking.Core;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements.StyleEnums;
 
@@ -15,6 +16,55 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
     /// </remarks>
     public class AlignSubtree : MonoBehaviour
     {
+        #region Inspector fields
+        [SerializeField]
+        [Tooltip("File name for saving to and loading from. Defaults to gameObject's name. Use forward slash '/' for subfolders.")]
+        private string saveFileName = "";
+
+        /// <summary>
+        /// File name for saving to and loading from. Defaults to gameObject's name. Use forward slash '/' for subfolders.
+        /// </summary>
+        public string SaveFileName 
+        { 
+            get 
+            {
+                string name = saveFileName;
+                if (string.IsNullOrEmpty(name))
+                {
+                    name = gameObject.name;
+                }
+                if (Path.GetExtension(name) != "fwb")
+                {
+                    name = Path.ChangeExtension(name, "fwb");
+                }
+                return name; 
+            } 
+            set 
+            { 
+                saveFileName = value; 
+                if (alignmentManager != null)
+                {
+                    alignmentManager.SaveFileName = saveFileName;
+                }
+            } 
+        }
+
+        [SerializeField]
+        [Tooltip("Whether to perform saves automatically and load at startup.")]
+        private bool autoSave = false;
+
+        /// <summary>
+        /// Whether to perform saves automatically and load at startup.
+        /// </summary>
+        public bool AutoSave { get { return autoSave; } set { autoSave = value; } }
+
+        /// <summary>
+        /// The transform to align. If unset, will align this.transform.
+        /// </summary>
+        public Transform subTree = null;
+
+        #endregion Inspector fields
+
         #region Internal members
 
         /// <summary>
@@ -22,13 +72,30 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// </summary>
         private AlignmentManager alignmentManager = null;
 
-        /// <summary>
-        /// The transform to align. Defaults to this.gameObject.
-        /// </summary>
-        public Transform subTree = null;
-
         #endregion Internal members
 
+        #region Public APIs
+
+        public bool Save()
+        {
+            if (alignmentManager != null)
+            {
+                return alignmentManager.Save();
+            }
+            return false;
+        }
+
+        public bool Load()
+        {
+            if (alignmentManager != null)
+            {
+                return alignmentManager.Load();
+            }
+            return false;
+        }
+        #endregion Public APIs
+
+        #region Internal AlignmentManager management
         /// <summary>
         /// Create the alignmentManager if needed.
         /// </summary>
@@ -43,6 +110,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             if (alignmentManager == null)
             {
                 alignmentManager = new AlignmentManager(WorldLockingManager.GetInstance());
+                alignmentManager.SaveFileName = SaveFileName;
             }
             if (subTree == null)
             {
@@ -56,6 +124,10 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         void Start()
         {
             CheckInternalWiring();
+            if (AutoSave && !WorldLockingManager.GetInstance().AutoSave)
+            {
+                Debug.LogError("AutoSaving alignment requires WorldLockingManager.AutoSave to work as expected.");
+            }
         }
 
         /// <summary>
@@ -79,6 +151,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// <summary>
         /// Check that all internal wiring is complete. Assign our independent alignmentManager
         /// to all space pins beneath us.
+        /// Load state from previous session if available and so configured.
         /// </summary>
         private void OnEnable()
         {
@@ -88,6 +161,23 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             {
                 pin.AlignmentManager = alignmentManager;
             }
+            if (AutoSave)
+            {
+                Load();
+            }
         }
+
+        /// <summary>
+        /// Force a save on the way out.
+        /// </summary>
+        private void OnDisable()
+        {
+            if (AutoSave)
+            {
+                Save();
+            }
+        }
+
+        #endregion Internal AlignmentManager management
     }
 }

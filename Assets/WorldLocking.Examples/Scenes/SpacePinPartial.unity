@@ -3874,6 +3874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e87834f548844468f74826f83b0853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveFileName: Persistence/Content.fwb
+  autoSave: 1
   subTree: {fileID: 802402000}
 --- !u!1 &860117963
 GameObject:
@@ -8807,12 +8809,12 @@ PrefabInstance:
     - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
         type: 3}
       propertyPath: shared.settings.AutoLoad
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
         type: 3}
       propertyPath: shared.settings.AutoSave
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4133740187393454, guid: f0777d53f35d4cb42827b5c3bdf227bd, type: 3}
       propertyPath: m_LocalPosition.x
