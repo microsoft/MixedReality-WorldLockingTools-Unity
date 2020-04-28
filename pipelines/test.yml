@@ -1,30 +1,31 @@
 # [Template] Steps to run WLT tests.
 
 steps:
-- powershell: |
-    $editor = Get-ChildItem ${env:$(UnityVersion)} -Filter 'Unity.exe' -Recurse | Select-Object -First 1 -ExpandProperty FullName
+# - powershell: |
+#     $editor = Get-ChildItem ${env:$(UnityVersion)} -Filter 'Unity.exe' -Recurse | Select-Object -First 1 -ExpandProperty FullName
     
-    Write-Host "======================= EditMode Tests ======================="
+#     Write-Host "======================= EditMode Tests ======================="
     
-    $logFile = New-Item -Path .\editmode-test-run.log -ItemType File -Force
+#     $logFile = New-Item -Path .\editmode-test-run.log -ItemType File -Force
     
-    $proc = Start-Process -FilePath "$editor" -ArgumentList "-projectPath $(Get-Location) -runTests -testPlatform editmode -batchmode -logFile $($logFile.Name) -editorTestsResultFile .\test-editmode-default.xml" -PassThru
-    $ljob = Start-Job -ScriptBlock { param($log) Get-Content "$log" -Wait } -ArgumentList $logFile.FullName
+#     $proc = Start-Process -FilePath "$editor" -ArgumentList "-projectPath $(Get-Location) -runTests -testPlatform editmode -batchmode -logFile $($logFile.Name) -editorTestsResultFile .\test-editmode-default.xml" -PassThru
+#     $ljob = Start-Job -ScriptBlock { param($log) Get-Content "$log" -Wait } -ArgumentList $logFile.FullName
     
-    while (-not $proc.HasExited -and $ljob.HasMoreData)
-    {
-        Receive-Job $ljob
-        Start-Sleep -Milliseconds 200
-    }
-    Receive-Job $ljob
+#     while (-not $proc.HasExited -and $ljob.HasMoreData)
+#     {
+#         Receive-Job $ljob
+#         Start-Sleep -Milliseconds 200
+#     }
+#     Receive-Job $ljob
     
-    Stop-Job $ljob
+#     Stop-Job $ljob
     
-    Remove-Job $ljob
-    Stop-Process $proc
-  displayName: 'Run EditMode tests'
+#     Remove-Job $ljob
+#     Stop-Process $proc
+#   displayName: 'Run EditMode tests'
 
 - powershell: |
+    Tree
     $editor = Get-ChildItem ${env:$(UnityVersion)} -Filter 'Unity.exe' -Recurse | Select-Object -First 1 -ExpandProperty FullName
     
     Write-Host "======================= PlayMode Tests ======================="
