@@ -56,13 +56,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             get { return alignmentManager; }
             set 
-            { 
-                if (alignmentManager != null)
+            {
+                if (alignmentManager != value)
                 {
-                    alignmentManager.UnregisterForLoad(RestoreOnLoad);
+                    if (alignmentManager != null)
+                    {
+                        alignmentManager.UnregisterForLoad(RestoreOnLoad);
+                    }
+                    alignmentManager = value;
+                    alignmentManager.RegisterForLoad(RestoreOnLoad);
                 }
-                alignmentManager = value;
-                alignmentManager.RegisterForLoad(RestoreOnLoad);
             }
         }
 
@@ -94,7 +97,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public bool PinActive { get { return AnchorId.IsKnown(); } }
 
         /// <summary>
-        /// initialLocalPose is the local Pose of the gameObject at startup.
+        /// modelingPoseLocal is the local Pose of the gameObject at startup.
         /// </summary>
         private Pose modelingPoseLocal = Pose.identity;
 
@@ -107,7 +110,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 
         /// <summary>
-        /// initialGlobalPose is the global pose of the gameObject at startup (or after explicit capture with <see cref="ResetModelingPose"/>
+        /// modelingPoseGLobal is the global pose of the gameObject at startup (or after explicit capture with <see cref="ResetModelingPose"/>
         /// </summary>
         private Pose modelingPoseGlobal = Pose.identity;
 

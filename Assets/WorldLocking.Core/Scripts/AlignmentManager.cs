@@ -574,6 +574,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// </summary>
             private readonly Dictionary<string, Element> data = new Dictionary<string, Element>();
 
+            /// <summary>
+            /// The cached file to which to save and from which to load. Defaults to Persistence/Alignment.fwb.
+            /// </summary>
             private string saveFileName = Path.Combine("Persistence", "Alignment.fwb");
 
 #endregion Internal Members
