@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class SpacePin
    | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.52.0.0">
+    <meta name="generator" content="docfx 2.53.1.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -124,6 +124,32 @@ twice is probably an error, since the Pose p would refer to different a location
   </h3>
   
   
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_AlignmentManager_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.AlignmentManager*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_AlignmentManager" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.AlignmentManager">AlignmentManager</h4>
+  <div class="markdown level1 summary"><p>Accessor for overriding the AlignmentManager from script.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IAlignmentManager AlignmentManager { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html">IAlignmentManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_AnchorId_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorId*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_AnchorId" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorId">AnchorId</h4>
   <div class="markdown level1 summary"><p>This wrapper for the anchorId is because the anchorId has to be stored
@@ -205,32 +231,6 @@ the ulong based AnchorId.</p>
   </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_InitialPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.InitialPose*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_InitialPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.InitialPose">InitialPose</h4>
-  <div class="markdown level1 summary"><p>Pose at startup.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Pose InitialPose { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Pose</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_LockedPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.LockedPose*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_LockedPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.LockedPose">LockedPose</h4>
   <div class="markdown level1 summary"><p>Accessor for world locked pose for derived classes.</p>
@@ -283,14 +283,40 @@ the ulong based AnchorId.</p>
   </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPose*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPose">ModelingPose</h4>
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPoseGlobal_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseGlobal*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPoseGlobal" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseGlobal">ModelingPoseGlobal</h4>
   <div class="markdown level1 summary"><p>First of the pair of poses submitted to alignment manager for alignment.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Pose ModelingPose { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Pose ModelingPoseGlobal { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPoseLocal_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPoseLocal" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal">ModelingPoseLocal</h4>
+  <div class="markdown level1 summary"><p>Local pose at startup.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Pose ModelingPoseLocal { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">

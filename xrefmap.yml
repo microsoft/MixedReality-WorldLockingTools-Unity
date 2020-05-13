@@ -119,6 +119,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.GetAlignmentPose
   nameWithType: AlignmentManager.GetAlignmentPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.IsValidSavePath(System.String)
+  name: IsValidSavePath(String)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_IsValidSavePath_System_String_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.IsValidSavePath(System.String)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.IsValidSavePath(System.String)
+  nameWithType: AlignmentManager.IsValidSavePath(String)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.IsValidSavePath*
+  name: IsValidSavePath
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_IsValidSavePath_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.IsValidSavePath
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.IsValidSavePath
+  nameWithType: AlignmentManager.IsValidSavePath
 - uid: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.Load
   name: Load()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_Load
@@ -197,6 +210,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.Save
   nameWithType: AlignmentManager.Save
+- uid: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.SaveFileName
+  name: SaveFileName
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_SaveFileName
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.SaveFileName
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.SaveFileName
+  nameWithType: AlignmentManager.SaveFileName
+- uid: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.SaveFileName*
+  name: SaveFileName
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_SaveFileName_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.SaveFileName
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.SaveFileName
+  nameWithType: AlignmentManager.SaveFileName
 - uid: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.SendAlignmentAnchors
   name: SendAlignmentAnchors()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_SendAlignmentAnchors
@@ -2220,6 +2246,19 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Core.SpacePin
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin
   nameWithType: SpacePin
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.AlignmentManager
+  name: AlignmentManager
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_AlignmentManager
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePin.AlignmentManager
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.AlignmentManager
+  nameWithType: SpacePin.AlignmentManager
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.AlignmentManager*
+  name: AlignmentManager
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_AlignmentManager_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.AlignmentManager
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.AlignmentManager
+  nameWithType: SpacePin.AlignmentManager
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorId
   name: AnchorId
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_AnchorId
@@ -2272,19 +2311,6 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.FragmentId
   nameWithType: SpacePin.FragmentId
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.InitialPose
-  name: InitialPose
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_InitialPose
-  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePin.InitialPose
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.InitialPose
-  nameWithType: SpacePin.InitialPose
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.InitialPose*
-  name: InitialPose
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_InitialPose_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.InitialPose
-  isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.InitialPose
-  nameWithType: SpacePin.InitialPose
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.LockedPose
   name: LockedPose
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_LockedPose
@@ -2311,19 +2337,32 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.Manager
   nameWithType: SpacePin.Manager
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPose
-  name: ModelingPose
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPose
-  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPose
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPose
-  nameWithType: SpacePin.ModelingPose
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPose*
-  name: ModelingPose
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPose_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseGlobal
+  name: ModelingPoseGlobal
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPoseGlobal
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseGlobal
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseGlobal
+  nameWithType: SpacePin.ModelingPoseGlobal
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseGlobal*
+  name: ModelingPoseGlobal
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPoseGlobal_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseGlobal
   isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPose
-  nameWithType: SpacePin.ModelingPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseGlobal
+  nameWithType: SpacePin.ModelingPoseGlobal
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal
+  name: ModelingPoseLocal
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPoseLocal
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal
+  nameWithType: SpacePin.ModelingPoseLocal
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal*
+  name: ModelingPoseLocal
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPoseLocal_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal
+  nameWithType: SpacePin.ModelingPoseLocal
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.OnDestroy
   name: OnDestroy()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_OnDestroy
@@ -3538,6 +3577,70 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Examples.AlignmentControl.Clear
   nameWithType: AlignmentControl.Clear
+- uid: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree
+  name: AlignSubtree
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree
+  nameWithType: AlignSubtree
+- uid: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.AutoSave
+  name: AutoSave
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_AutoSave
+  commentId: P:Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.AutoSave
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.AutoSave
+  nameWithType: AlignSubtree.AutoSave
+- uid: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.AutoSave*
+  name: AutoSave
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_AutoSave_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.AutoSave
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.AutoSave
+  nameWithType: AlignSubtree.AutoSave
+- uid: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Load
+  name: Load()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Load
+  commentId: M:Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Load
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Load()
+  nameWithType: AlignSubtree.Load()
+- uid: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Load*
+  name: Load
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Load_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Load
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Load
+  nameWithType: AlignSubtree.Load
+- uid: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Save
+  name: Save()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Save
+  commentId: M:Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Save
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Save()
+  nameWithType: AlignSubtree.Save()
+- uid: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Save*
+  name: Save
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Save_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Save
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Save
+  nameWithType: AlignSubtree.Save
+- uid: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.SaveFileName
+  name: SaveFileName
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_SaveFileName
+  commentId: P:Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.SaveFileName
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.SaveFileName
+  nameWithType: AlignSubtree.SaveFileName
+- uid: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.SaveFileName*
+  name: SaveFileName
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_SaveFileName_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.SaveFileName
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.SaveFileName
+  nameWithType: AlignSubtree.SaveFileName
+- uid: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.subTree
+  name: subTree
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_subTree
+  commentId: F:Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.subTree
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.subTree
+  nameWithType: AlignSubtree.subTree
 - uid: Microsoft.MixedReality.WorldLocking.Examples.DashboardCommand
   name: DashboardCommand
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.DashboardCommand.html

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class WorldLockingContext
+    <title>Class AlignSubtree
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class WorldLockingContext
+    <meta name="title" content="Class AlignSubtree
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.53.1.0">
     
@@ -81,42 +81,68 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingContext" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext" class="text-break">Class WorldLockingContext
+  <h1 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree" class="text-break">Class AlignSubtree
   </h1>
-  <div class="markdown level0 summary"><p>The central component for providing WorldLocking functionality to a scene</p>
+  <div class="markdown level0 summary"><p>Script to use an independent AlignmentManager to align a specific subtree, independent of the rest of the scene.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">WorldLockingContext</span></div>
+    <div class="level1"><span class="xref">AlignSubtree</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Examples.html">Microsoft.MixedReality.WorldLocking.Examples</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingContext_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class WorldLockingContext : MonoBehaviour</code></pre>
+    <pre><code class="lang-csharp hljs">public class AlignSubtree : MonoBehaviour</code></pre>
   </div>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingContext_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>This component must be placed on a single GameObject in the scene. Typically, this would be a dedicated root GameObject with
-identity transform.</p>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>The subtree aligned by this will remain world-locked by the independent global world-locking
+by the WorldLockingManager.</p>
 </div>
-  <h3 id="properties">Properties
+  <h3 id="fields">Fields
   </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingContext_DiagnosticsSettings_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.DiagnosticsSettings*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingContext_DiagnosticsSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.DiagnosticsSettings">DiagnosticsSettings</h4>
-  <div class="markdown level1 summary"><p>Diagnostics settings. These are shared with the manager when active. Changes from script
-should be made through the manager's interface, but will be visible here in inspector.</p>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_subTree" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.subTree">subTree</h4>
+  <div class="markdown level1 summary"><p>The transform to align. If unset, will align this.transform.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SharedDiagnosticsSettings DiagnosticsSettings { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Transform subTree</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_AutoSave_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.AutoSave*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_AutoSave" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.AutoSave">AutoSave</h4>
+  <div class="markdown level1 summary"><p>Whether to perform saves automatically and load at startup.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AutoSave { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -128,22 +154,21 @@ should be made through the manager's interface, but will be visible here in insp
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SharedDiagnosticsSettings.html">SharedDiagnosticsSettings</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingContext_SharedSettings_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.SharedSettings*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingContext_SharedSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.SharedSettings">SharedSettings</h4>
-  <div class="markdown level1 summary"><p>WorldLocking settings. These are shared with the manager when active. Changes from script
-should be made through the manager's interface, but will be visible here in inspector.</p>
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_SaveFileName_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.SaveFileName*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_SaveFileName" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.SaveFileName">SaveFileName</h4>
+  <div class="markdown level1 summary"><p>File name for saving to and loading from. Defaults to gameObject's name. Use forward slash '/' for subfolders.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SharedManagerSettings SharedSettings { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string SaveFileName { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -155,7 +180,59 @@ should be made through the manager's interface, but will be visible here in insp
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.html">SharedManagerSettings</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Load_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Load*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Load" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Load">Load()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Load()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Save_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Save*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Save" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Save">Save()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Save()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td></td>
       </tr>
     </tbody>

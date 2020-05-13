@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class AlignmentManager
    | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.52.0.0">
+    <meta name="generator" content="docfx 2.53.1.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -200,6 +200,39 @@ particularly with respect to scale compensation, will be less accurate.</p>
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_SaveFileName_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.SaveFileName*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_SaveFileName" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.SaveFileName">SaveFileName</h4>
+  <div class="markdown level1 summary"><p>File to save to and load from.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SaveFileName { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_SaveFileName_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>May optionally contain subpath. For optimal portability, use forward slashes, e.g.
+&quot;myPath/myFile.myExt&quot;.
+May NOT be an absolute path (e.g. &quot;/myPath.txt&quot; or &quot;c:/myPath.txt&quot; are NOT allowed and will be ignored.)
+Application can check validity of path using static AlignmentManager.IsValidSavePath(string).
+Defaults to &quot;Persistence/Alignment.fwb&quot;.</p>
+</div>
   <h3 id="methods">Methods
   </h3>
   
@@ -358,6 +391,51 @@ particularly with respect to scale compensation, will be less accurate.</p>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_IsValidSavePath_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.IsValidSavePath*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_IsValidSavePath_System_String_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.IsValidSavePath(System.String)">IsValidSavePath(String)</h4>
+  <div class="markdown level1 summary"><p>Check validity of a save/load path. Any path not passing this test will be ignored without error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsValidSavePath(string filePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">filePath</span></td>
+        <td><p>The path to test.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if a valid path.</p>
+</td>
       </tr>
     </tbody>
   </table>
