@@ -109,6 +109,36 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 
         /// <summary>
+        /// File to save to and load from.
+        /// </summary>
+        /// <remarks>
+        /// May optionally contain subpath. For optimal portability, use forward slashes, e.g.
+        /// "myPath/myFile.myExt".
+        /// May NOT be an absolute path (e.g. "/myPath.txt" or "c:/myPath.txt" are NOT allowed and will be ignored.)
+        /// Application can check validity of path using static AlignmentManager.IsValidSavePath(string).
+        /// Defaults to "Persistence/Alignment.fwb".
+        /// </remarks>
+        public string SaveFileName
+        {
+            get { return poseDB.SaveFileName; }
+            set { poseDB.SaveFileName = value; }
+        }
+
+        /// <summary>
+        /// Check validity of a save/load path. Any path not passing this test will be ignored without error.
+        /// </summary>
+        /// <param name="filePath">The path to test.</param>
+        /// <returns>True if a valid path.</returns>
+        public static bool IsValidSavePath(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath))
+                return false;
+            if (Path.IsPathRooted(filePath))
+                return false;
+            return true;
+        }
+
+        /// <summary>
         /// Load the database and issue notification if loaded.
         /// </summary>
         /// <returns>True if loaded.</returns>
@@ -279,6 +309,21 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 #region Public API
 
             /// <summary>
+            /// Set name of file to save to and load from. See notes in <see cref="AlignmentManager.SaveFileName"/>.
+            /// </summary>
+            public string SaveFileName
+            {
+                get { return saveFileName; }
+                set 
+                {
+                    if (IsValidSavePath(value))
+                    {
+                        saveFileName = value;
+                    }
+                }
+            }
+
+            /// <summary>
             /// True if the database has been successfully loaded from disk.
             /// </summary>
             public bool IsLoaded { get; private set; } = false;
@@ -294,7 +339,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 {
                     string path = GetPersistentPath();
 
-                    Directory.CreateDirectory(path);
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
 
                     string fileName = GetPersistentFileName();
 
@@ -526,6 +574,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// </summary>
             private readonly Dictionary<string, Element> data = new Dictionary<string, Element>();
 
+            /// <summary>
+            /// The cached file to which to save and from which to load. Defaults to Persistence/Alignment.fwb.
+            /// </summary>
+            private string saveFileName = Path.Combine("Persistence", "Alignment.fwb");
+
 #endregion Internal Members
 
 #region Internal Implementation 
@@ -539,10 +592,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// </remarks>
             private string GetPersistentPath()
             {
-                string path = Application.persistentDataPath;
-                string subPath = "Persistence";
+                string fullPath = GetPersistentFileName();
 
-                return Path.Combine(path, subPath);
+                return Path.GetDirectoryName(fullPath);
             }
 
             /// <summary>
@@ -551,9 +603,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// <returns>Filename and path as usable string.</returns>
             private string GetPersistentFileName()
             {
-                string fileName = "Alignment.fwb";
+                string path = Application.persistentDataPath;
 
-                return Path.Combine(GetPersistentPath(), fileName);
+                string fullPath = Path.Combine(path, saveFileName);
+                
+                return fullPath;
             }
 
             /// <summary>

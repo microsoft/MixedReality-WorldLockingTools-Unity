@@ -45,6 +45,31 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         protected WorldLockingManager Manager => manager;
 
         /// <summary>
+        /// Overridable alignment manager. Defaults to WorldLockingManager.GetInstance().AlignmentManager;
+        /// </summary>
+        private IAlignmentManager alignmentManager = null;
+
+        /// <summary>
+        /// Accessor for overriding the AlignmentManager from script.
+        /// </summary>
+        public IAlignmentManager AlignmentManager
+        {
+            get { return alignmentManager; }
+            set 
+            {
+                if (alignmentManager != value)
+                {
+                    if (alignmentManager != null)
+                    {
+                        alignmentManager.UnregisterForLoad(RestoreOnLoad);
+                    }
+                    alignmentManager = value;
+                    alignmentManager.RegisterForLoad(RestoreOnLoad);
+                }
+            }
+        }
+
+        /// <summary>
         /// Unique identifier for the alignment data from this instance.
         /// </summary>
         private ulong ulAnchorId = (ulong)AnchorId.Unknown;
@@ -72,24 +97,29 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public bool PinActive { get { return AnchorId.IsKnown(); } }
 
         /// <summary>
-        /// initialPose is Pose the gameObject is in at startup.
+        /// modelingPoseLocal is the local Pose of the gameObject at startup.
         /// </summary>
-        private Pose initialPose = Pose.identity;
+        private Pose modelingPoseLocal = Pose.identity;
 
         /// <summary>
-        /// Pose at startup.
+        /// Local pose at startup.
         /// </summary>
-        protected Pose InitialPose
+        protected Pose ModelingPoseLocal
         {
-            get { return initialPose; }
+            get { return modelingPoseLocal; }
         }
+
+        /// <summary>
+        /// modelingPoseGLobal is the global pose of the gameObject at startup (or after explicit capture with <see cref="ResetModelingPose"/>
+        /// </summary>
+        private Pose modelingPoseGlobal = Pose.identity;
 
         /// <summary>
         /// First of the pair of poses submitted to alignment manager for alignment.
         /// </summary>
-        public Pose ModelingPose
+        public Pose ModelingPoseGlobal
         {
-            get { return initialPose; }
+            get { return modelingPoseGlobal; }
         }
 
         /// <summary>
@@ -135,13 +165,18 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// Cache the WorldLockingManager as a dependency.
             manager = WorldLockingManager.GetInstance();
 
+            if (AlignmentManager == null)
+            {
+                AlignmentManager = manager.AlignmentManager;
+            }
+
             /// Cache the initial pose.
             ResetModelingPose();
 
             /// Register for post-loaded messages from the Alignment Manager.
             /// When these come in check for the loading of the reference point
             /// associated with this pin. Reference is by unique name.
-            manager.AlignmentManager.RegisterForLoad(RestoreOnLoad);
+            AlignmentManager.RegisterForLoad(RestoreOnLoad);
         }
 
         /// <summary>
@@ -149,7 +184,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         protected virtual void OnDestroy()
         {
-            manager.AlignmentManager.UnregisterForLoad(RestoreOnLoad);
+            AlignmentManager.UnregisterForLoad(RestoreOnLoad);
         }
 
         #endregion Unity members
@@ -182,11 +217,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             this.lockedPose = lockedPose;
 
-            IAlignmentManager mgr = manager.AlignmentManager;
+            PushAlignmentData(AlignmentManager);
 
-            PushAlignmentData(mgr);
-
-            SendAlignmentData(mgr);
+            SendAlignmentData(AlignmentManager);
         }
 
         /// <summary>
@@ -202,7 +235,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         public void ResetModelingPose()
         {
-            initialPose = transform.GetGlobalPose();
+            modelingPoseLocal = transform.GetLocalPose();
+            modelingPoseGlobal = transform.GetGlobalPose();
         }
 
         /// <summary>
@@ -212,7 +246,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (PinActive)
             {
-                manager.AlignmentManager.RemoveAlignmentAnchor(AnchorId);
+                AlignmentManager.RemoveAlignmentAnchor(AnchorId);
                 AnchorId = AnchorId.Unknown;
                 ReleaseAttachment();
                 Debug.Assert(!PinActive);
@@ -279,11 +313,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         protected virtual void RestoreOnLoad()
         {
-            AnchorId = manager.AlignmentManager.RestoreAlignmentAnchor(AnchorName, ModelingPose);
+            AnchorId = AlignmentManager.RestoreAlignmentAnchor(AnchorName, ModelingPoseGlobal);
             if (PinActive)
             {
                 Pose restorePose;
-                bool found = manager.AlignmentManager.GetAlignmentPose(AnchorId, out restorePose);
+                bool found = AlignmentManager.GetAlignmentPose(AnchorId, out restorePose);
                 Debug.Assert(found);
                 lockedPose = restorePose;
             }
@@ -300,7 +334,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 mgr.RemoveAlignmentAnchor(AnchorId);
             }
-            AnchorId = mgr.AddAlignmentAnchor(AnchorName, ModelingPose, lockedPose);
+            AnchorId = mgr.AddAlignmentAnchor(AnchorName, ModelingPoseGlobal, lockedPose);
         }
 
         /// <summary>
@@ -314,7 +348,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             CheckAttachment();
 
-            transform.SetGlobalPose(InitialPose);
+            transform.SetLocalPose(ModelingPoseLocal);
         }
 
         #endregion Alignment management

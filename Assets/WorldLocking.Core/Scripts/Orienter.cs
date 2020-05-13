@@ -40,6 +40,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         protected readonly List<WeightedRotation> actives = new List<WeightedRotation>();
 
+        /// <summary>
+        /// Cache the alignment manager in use, in case of a refit operation.
+        /// </summary>
+        private IAlignmentManager cachedAlignmentManager = null;
+
         #endregion Private members
 
         #region Unity overloads
@@ -87,6 +92,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 return;
             }
+            cachedAlignmentManager = mgr;
         }
 
         #endregion Public APIs
@@ -112,7 +118,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         private void OnRefit(FragmentId mainId, FragmentId[] absorbedIds)
         {
-            IAlignmentManager alignMgr = WorldLockingManager.GetInstance().AlignmentManager;
+            /// Use the last alignment manager used. If none, use the wlt manager's current alignment manager.
+            IAlignmentManager alignMgr = cachedAlignmentManager;
+            if (alignMgr == null)
+            {
+                alignMgr = WorldLockingManager.GetInstance().AlignmentManager;
+            }
             Reorient(mainId, alignMgr);
             alignMgr.SendAlignmentAnchors();
         }

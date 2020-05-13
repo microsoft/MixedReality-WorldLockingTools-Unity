@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/WorldLocking.Examples/Scenes/RayPins.unity
     guid: b3a4438e30b0b504793dc9c24fe033f3
+  - enabled: 0
+    path: Assets/WorldLocking.Examples/Scenes/SpacePinPartial.unity
+    guid: 35915962443f8ce4a89e03bb68b09f9a
   m_configObjects: {}
