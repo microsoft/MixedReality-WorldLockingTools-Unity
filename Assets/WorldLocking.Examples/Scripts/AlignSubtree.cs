@@ -15,6 +15,17 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
     /// <remarks>
     /// The subtree aligned by this will remain world-locked by the independent global world-locking
     /// by the WorldLockingManager.
+    /// This script illustrates how to create and manage an independent AlignmentManager, and
+    /// apply its alignment to a specific subtree within the scene (the Sub Tree).
+    /// The global AlignmentManager, owned and managed by the WorldLockingManager, applies its
+    /// alignment to the global Unity coordinate space (frozen space). The desire here is to
+    /// use the same Space Pin feature to pin parts of a virtual model (subtree) to the physical world,
+    /// without affecting global space. To do this requires several steps:
+    /// 1. Create a new locally owned AlignmentManager (distinct from the one owned by the WorldLockingManager). See <see cref="CheckInternalWiring"/>.
+    /// 2. Point the desired SpacePins to use the locally owned AlignmentManager (they default to use the global one). See <see cref="OnEnable"/>.
+    /// 3. Use the local AlignmentManager to compute a correction pose, and apply it to the subtree. See <see cref="Update"/>.
+    /// On point 2., there are a number of reasonable ways to harvest which SpacePins should use this local AlignmentManager, the
+    /// method used here, invoking GetComponentsInChildren<>, is just one such way.
     /// </remarks>
     public class AlignSubtree : MonoBehaviour
     {
