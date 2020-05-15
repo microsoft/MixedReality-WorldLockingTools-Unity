@@ -102,7 +102,20 @@
   </div>
   <h5 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>The subtree aligned by this will remain world-locked by the independent global world-locking
-by the WorldLockingManager.</p>
+by the WorldLockingManager.
+This script illustrates how to create and manage an independent AlignmentManager, and
+apply its alignment to a specific subtree within the scene (the Sub Tree).
+The global AlignmentManager, owned and managed by the WorldLockingManager, applies its
+alignment to the global Unity coordinate space (frozen space). The desire here is to
+use the same Space Pin feature to pin parts of a virtual model (subtree) to the physical world,
+without affecting global space. To do this requires several steps:</p>
+<ol>
+<li>Create a new locally owned AlignmentManager (distinct from the one owned by the WorldLockingManager). See <span class="xref">Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.CheckInternalWiring</span>.</li>
+<li>Point the desired SpacePins to use the locally owned AlignmentManager (they default to use the global one). See <span class="xref">Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.OnEnable</span>.</li>
+<li>Use the local AlignmentManager to compute a correction pose, and apply it to the subtree. See <span class="xref">Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Update</span>.
+On point 2., there are a number of reasonable ways to harvest which SpacePins should use this local AlignmentManager, the
+method used here, invoking GetComponentsInChildren, is just one such way.</li>
+</ol>
 </div>
   <h3 id="fields">Fields
   </h3>
@@ -191,7 +204,8 @@ by the WorldLockingManager.</p>
   
   <a id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Load_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Load*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Load" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Load">Load()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Explicit command to load the alignment manager from store.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -208,7 +222,8 @@ by the WorldLockingManager.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True on successful load.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -216,7 +231,8 @@ by the WorldLockingManager.</p>
   
   <a id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Save_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Save*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Save" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Save">Save()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Explicit command to save the alignment manager to store.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -233,7 +249,8 @@ by the WorldLockingManager.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True on successful save.</p>
+</td>
       </tr>
     </tbody>
   </table>
