@@ -126,7 +126,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// </summary>
         public virtual void Update()
         {
-            if (feelerRays.gameObject.activeSelf)
+            if (feelerRays != null && feelerRays.gameObject.activeSelf)
             {
                 feelerRays.transform.SetGlobalPose(owner.GetGlobalPose());
             }

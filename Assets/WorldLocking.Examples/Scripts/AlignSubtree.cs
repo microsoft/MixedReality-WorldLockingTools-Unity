@@ -15,6 +15,17 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
     /// <remarks>
     /// The subtree aligned by this will remain world-locked by the independent global world-locking
     /// by the WorldLockingManager.
+    /// This script illustrates how to create and manage an independent AlignmentManager, and
+    /// apply its alignment to a specific subtree within the scene (the Sub Tree).
+    /// The global AlignmentManager, owned and managed by the WorldLockingManager, applies its
+    /// alignment to the global Unity coordinate space (frozen space). The desire here is to
+    /// use the same Space Pin feature to pin parts of a virtual model (subtree) to the physical world,
+    /// without affecting global space. To do this requires several steps:
+    /// 1. Create a new locally owned AlignmentManager (distinct from the one owned by the WorldLockingManager). See <see cref="CheckInternalWiring"/>.
+    /// 2. Point the desired SpacePins to use the locally owned AlignmentManager (they default to use the global one). See <see cref="OnEnable"/>.
+    /// 3. Use the local AlignmentManager to compute a correction pose, and apply it to the subtree. See <see cref="Update"/>.
+    /// On point 2., there are a number of reasonable ways to harvest which SpacePins should use this local AlignmentManager, the
+    /// method used here, invoking GetComponentsInChildren, is just one such way.
     /// </remarks>
     public class AlignSubtree : MonoBehaviour
     {
@@ -26,9 +37,9 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// <summary>
         /// File name for saving to and loading from. Defaults to gameObject's name. Use forward slash '/' for subfolders.
         /// </summary>
-        public string SaveFileName 
-        { 
-            get 
+        public string SaveFileName
+        {
+            get
             {
                 string name = saveFileName;
                 if (string.IsNullOrEmpty(name))
@@ -39,16 +50,16 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
                 {
                     name = Path.ChangeExtension(name, "fwb");
                 }
-                return name; 
-            } 
-            set 
-            { 
-                saveFileName = value; 
+                return name;
+            }
+            set
+            {
+                saveFileName = value;
                 if (alignmentManager != null)
                 {
                     alignmentManager.SaveFileName = saveFileName;
                 }
-            } 
+            }
         }
 
         [SerializeField]
@@ -78,6 +89,10 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
 
         #region Public APIs
 
+        /// <summary>
+        /// Explicit command to save the alignment manager to store.
+        /// </summary>
+        /// <returns>True on successful save.</returns>
         public bool Save()
         {
             if (alignmentManager != null)
@@ -87,6 +102,10 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             return false;
         }
 
+        /// <summary>
+        /// Explicit command to load the alignment manager from store.
+        /// </summary>
+        /// <returns>True on successful load.</returns>
         public bool Load()
         {
             if (alignmentManager != null)
@@ -123,7 +142,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// <summary>
         /// Check that all internal wiring is complete.
         /// </summary>
-        void Start()
+        private void Start()
         {
             CheckInternalWiring();
             if (AutoSave && !WorldLockingManager.GetInstance().AutoSave)
@@ -135,7 +154,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// <summary>
         /// Prompt the AlignmentManager to compute a new alignment pose, then apply it to the target subtree.
         /// </summary>
-        void Update()
+        private void Update()
         {
             Debug.Assert(alignmentManager != null);
 
