@@ -34,7 +34,7 @@ The Core is an encapsulation of all steps necessary for gaining the benefits of 
 
 The Tools are largely diagnostic in nature. Visualizations of World Locking Tools processes are included in forms easy to add to any project which uses World Locking Tools.
 
-Other convenient utilities are included, but are expected to be helpful in getting started toward coding up custom solutions, rather than to be final solutions as the Core offers.
+Other [convenient utilities](Tools.md) are included, but are expected to be helpful in getting started toward coding up custom solutions, rather than to be final solutions as the Core offers.
 
 ### Examples
 

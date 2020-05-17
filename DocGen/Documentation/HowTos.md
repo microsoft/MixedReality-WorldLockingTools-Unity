@@ -5,5 +5,6 @@ To complement the [concept articles](Concepts.md) giving motivation and understa
 ## See also
 
 * [Initial Setup](HowTos/InitialSetup.md)
+* [Tools and visualizations](HowTos/Tools.md)
 * [World Locking Tools Contexts](HowTos/WorldLockingContext.md)
 * [Sample Applications](HowTos/SampleApplications.md)
