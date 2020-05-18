@@ -8,6 +8,10 @@ The World Locking Tools continuous integration (CI) build validates with Unity20
 
 If you experience any compatibility issues with other versions of Unity and/or Visual Studio, we would love to hear about it! The best way to report any problems is through the [issues portal](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues) on GitHub.
 
+## Assumed background
+
+It is assumed that people looking to integrate the World Locking Tools solution into their projects are already familiar with the basics of building and deploying applications for the HoloLens family of devices. If not, there are some [great references](#references-for-getting-started) at the end of this article.
+
 ## The World Locking Tools layers
 
 World Locking Tools is broken into four layers. With the arrows pointing toward the layer depended on, the straightforward dependency graph looks like this:
@@ -188,3 +192,19 @@ For example, [the WorldLockedPhysicsSample](Samples/WorldLockedPhysicsSample.md)
 For a more focused look at the Space Pinning feature, [the SpacePin](Samples/SpacePin.md) provides a much simplified example of aligning a large scale virtual object to real world features.
 
 The [RayPins](Samples/RayPins.md) expands on the capabilities introduced by the SpacePin example, allowing pinning of the virtual world to the physical world with ray tests against the spatial mesh.
+
+## References for getting started
+
+> [Unity Development Overview](https://docs.microsoft.com/en-us/windows/mixed-reality/unity-development-overview) - Unity for MR/AR development.
+> 
+> [MR Basics 100](https://docs.microsoft.com/en-us/windows/mixed-reality/holograms-100) - Walk through getting started developing for HoloLens
+>
+> [HoloLens 2 Tutorials](https://docs.microsoft.com/en-us/windows/mixed-reality/mrlearning-base) - Walk through getting started developing for HoloLens 2.  
+> 
+> [Coordinate Systems](https://docs.microsoft.com/en-us/windows/mixed-reality/coordinate-systems) Coordinate space implications in AR development.
+> - Note that World Locking Tools solve the issues discussed [here](https://docs.microsoft.com/en-us/windows/mixed-reality/coordinate-systems#why-a-single-rigid-coordinate-system-cannot-be-used-beyond-5-meters).
+
+
+## Having trouble?
+
+See [troubleshooting guide](Troubleshooting.md).

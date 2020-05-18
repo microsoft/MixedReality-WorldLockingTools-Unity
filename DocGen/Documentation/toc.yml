@@ -25,6 +25,8 @@
     href: HowTos/InitialSetup.md
   - name: Tools and Visualizers
     href: HowTos/Tools.md
+  - name: Trouble Shooting
+    href: HowTos/Troubleshooting.md
   - name: World Locking Tools Contexts
     href: HowTos/WorldLockingContext.md
   - name: Sample Applications
