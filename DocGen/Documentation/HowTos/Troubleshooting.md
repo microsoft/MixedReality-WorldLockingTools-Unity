@@ -1,7 +1,7 @@
 
 # Trouble shooting
 
-Any annoying gotchas will be noted here.
+Annoying issues will be noted here.
 
 ## World Locking issues
 
@@ -23,7 +23,7 @@ uninstall and re-install the latest FrozenWorld.Engine package.
 
 Check the Unity logs for errors and exceptions. 
 
-Check that your scene camera is attached to at least one other object. See the setup in WorldLocking.Examples.WorldLockingPhysicsSample for example. If you are doing dynamic camera manipulation, you may need to keep the WorldLockingManager informed of the current camera. See [WorldLockingManager.AdjustmentFrame](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AdjustmentFrame) and [WorldLockingManager.CameraParent](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.CameraParent].
+Check that your scene camera is attached to at least one other object. See the setup in WorldLocking.Examples.WorldLockingPhysicsSample for example. If you are doing dynamic camera manipulation, you may need to keep the WorldLockingManager informed of the current camera. See [WorldLockingManager.AdjustmentFrame](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AdjustmentFrame) and [WorldLockingManager.CameraParent](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.CameraParent).
 
 ## More general Unity/AR problems
 
@@ -51,4 +51,8 @@ You must have Virtual Reality Supported checked, and the Windows Mixed Reality i
 
 [Known issue](https://issuetracker.unity3d.com/issues/enabling-graphics-jobs-in-2019-dot-3-x-results-in-a-crash-or-nothing-rendering-on-hololens-2). 
 
-The fix is either disable Graphics Jobs under Project Settings->Player->Other Settings->Graphics Jobs, or just build for ARM64.
+The fix is either disable Graphics Jobs under 
+
+> `Project Settings > Player > Other Settings > Graphics Jobs`
+
+or just build for ARM64.
