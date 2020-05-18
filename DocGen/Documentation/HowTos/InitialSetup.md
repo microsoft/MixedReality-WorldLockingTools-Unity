@@ -195,6 +195,8 @@ The [RayPins](Samples/RayPins.md) expands on the capabilities introduced by the 
 
 ## References for getting started
 
+If unfamiliar with the basics of creating, building, and deploying AR apps to the HoloLens family of devices, here are some references that might help get your started.
+
 > [Unity Development Overview](https://docs.microsoft.com/en-us/windows/mixed-reality/unity-development-overview) - Unity for MR/AR development.
 > 
 > [MR Basics 100](https://docs.microsoft.com/en-us/windows/mixed-reality/holograms-100) - Walk through getting started developing for HoloLens

@@ -65,6 +65,6 @@ Enabling the display of the anchor graph that World Locking Tools generates as t
 
 ### Additional output
 
-The [World Locking Examples](xref:Microsoft.MixedReality.WorldLocking.Examples) includes text diagnostics. Most of these are relevant only to developers of the World Locking Tools, rather than clients of its abilities. However, they are available for read and, as shown in the [StatusToText](xref:Microsoft.MixedReality.WorldLocking.Examples.StatusToText) scrip, for realtime display.
+The [World Locking Examples](xref:Microsoft.MixedReality.WorldLocking.Examples) includes text diagnostics. Most of these are relevant only to developers of the World Locking Tools, rather than clients of its abilities. However, they are available for read and, as shown in the [StatusToText](xref:Microsoft.MixedReality.WorldLocking.Tools.StatusToText) scrip, for realtime display.
 
 For post mortem analysis, the [Diagnostics](xref:Microsoft.MixedReality.WorldLocking.Core.Diagnostics) section of the [WorldLockingContext](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext) can be very useful in reporting Frozen World Engine failures. See [Reporting a bug](Contributing.md#reporting-a-bug) for further information.
