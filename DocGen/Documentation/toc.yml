@@ -8,6 +8,8 @@
   - name: Advanced Topics
     href: Concepts/AdvancedConcepts.md
     items: 
+    - name: Coordinate Spaces
+      href: Concepts/Advanced/CoordinateSpaces.md
     - name: Persistence
       href: Concepts/Advanced/Persistence.md
     - name: Space Pins
