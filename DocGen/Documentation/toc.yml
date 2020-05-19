@@ -8,6 +8,8 @@
   - name: Advanced Topics
     href: Concepts/AdvancedConcepts.md
     items: 
+    - name: Coordinate Spaces
+      href: Concepts/Advanced/CoordinateSpaces.md
     - name: Persistence
       href: Concepts/Advanced/Persistence.md
     - name: Space Pins
@@ -23,14 +25,12 @@
   items:
   - name: Initial Setup
     href: HowTos/InitialSetup.md
+  - name: Tools and Visualizers
+    href: HowTos/Tools.md
+  - name: Trouble Shooting
+    href: HowTos/Troubleshooting.md
   - name: World Locking Tools Contexts
     href: HowTos/WorldLockingContext.md
-  - name: Contributing
-    href: HowTos/Contributing.md
-  - name: Coding Conventions
-    href: HowTos/CodingConventions.md
-  - name: Release Process
-    href: HowTos/ReleaseProcess.md
   - name: Sample Applications
     href: HowTos/SampleApplications.md
     items:
@@ -40,5 +40,11 @@
         href: HowTos/Samples/SpacePin.md
       - name: Ray Pin Example
         href: HowTos/Samples/RayPins.md
+  - name: Contributing
+    href: HowTos/Contributing.md
+  - name: Coding Conventions
+    href: HowTos/CodingConventions.md
+  - name: Release Process
+    href: HowTos/ReleaseProcess.md
 - name: Notice
   href: NOTICE.md

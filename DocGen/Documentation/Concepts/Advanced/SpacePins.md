@@ -121,6 +121,17 @@ An alternate strategy might be to add eight more points in addition to the corne
 
 ![](../../../Images/Simple4and12Pins.png)
 
+## Aligning a subset of the scene
+
+The discussion so far pertains to the global AlignmentManager, owned and managed by the WorldLockingManager.GetInstance(). As previously described, this pins the entire global Unity coordinate space to physical features at strategic reference points.
+
+However, there are times when applying the same concept to a subset of the scene.
+
+For example, consider a scenario in which annotations for two automobiles are to be loaded. The exact placement of the two physical automobiles can't be known ahead of time, as it might vary according to layout of different dealerships. However, once one of the physical vehicles has been deployed, the positions of all component parts relative to that deployment pose is known.
+
+In this scenario, then, Space Pins can be used to pin the virtual chassis and annotations for each of the vehicles independently. The entire virtual representation of each of the vehicles can be setup in Unity, and then mapped onto the physical vehicle at runtime. This alignment might be manual using MRTK UX or automated using QR codes or any other strategy. Regardless of how the data of the correspondence between virtual and physical reference points is determined, once fed to the WLT via the Space Pins API, WLT will keep the virtual and physical objects aligned in a perceptually optimized manner.
+
+Note that before the independent spaces are pinned, they will be dragged along as the global space is pinned. However, once an independent space is pinned, it is considered pinned to the physical world, and so subsequent modifications to the pinning of the global space to the physical world will not affect it.
 
 ### See also
 
