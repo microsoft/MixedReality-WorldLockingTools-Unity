@@ -22,3 +22,7 @@ As a convenience, the WorldLockingManager supplies transformations between all o
 Note that when using [MRTK](https://microsoft.github.io/MixedRealityToolkit-Unity/README.html), no such translations are needed. Its coordinate space is already Frozen Space.
 
 Other conversions between the various spaces are available on the [WorldLockingManager](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager), but are not generally needed.
+
+## See also
+
+* [A primer on Unity coordinate spaces (without WLT) as relates to AR/MR](https://docs.microsoft.com/en-us/windows/mixed-reality/coordinate-systems).
