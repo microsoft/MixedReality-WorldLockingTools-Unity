@@ -86,6 +86,8 @@
 <p>World Locking Tools for Unity currently targets UWP applications for the HoloLens family of devices. Both the original HoloLens (x86) and HoloLens 2 (ARM64) are supported.</p>
 <p>The World Locking Tools continuous integration (CI) build validates with Unity2018.4.6f1 with Visual Studio 2017. However, extensive WLT development has also been done using the gamut of Unity2018 versions, as well as a range of Unity2019. Both Visual Studio 2017 and Visual Studio 2019 have been used in the development of the tools.</p>
 <p>If you experience any compatibility issues with other versions of Unity and/or Visual Studio, we would love to hear about it! The best way to report any problems is through the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues">issues portal</a> on GitHub.</p>
+<h2 id="assumed-background">Assumed background</h2>
+<p>It is assumed that people looking to integrate the World Locking Tools solution into their projects are already familiar with the basics of building and deploying applications for the HoloLens family of devices. If not, there are some <a href="#references-for-getting-started">great references</a> at the end of this article.</p>
 <h2 id="the-world-locking-tools-layers">The World Locking Tools layers</h2>
 <p>World Locking Tools is broken into four layers. With the arrows pointing toward the layer depended on, the straightforward dependency graph looks like this:</p>
 <p><img src="../../Images/LayerDiagram.png" alt=""></p>
@@ -99,7 +101,7 @@
 <p>The Core is an encapsulation of all steps necessary for gaining the benefits of World Locking Tools' stable world-locked space, packaged into a declarative interface. A working application would be expected to ship using only functionality from the Core.</p>
 <h3 id="tools">Tools</h3>
 <p>The Tools are largely diagnostic in nature. Visualizations of World Locking Tools processes are included in forms easy to add to any project which uses World Locking Tools.</p>
-<p>Other convenient utilities are included, but are expected to be helpful in getting started toward coding up custom solutions, rather than to be final solutions as the Core offers.</p>
+<p>Other <a href="Tools.html">convenient utilities</a> are included, but are expected to be helpful in getting started toward coding up custom solutions, rather than to be final solutions as the Core offers.</p>
 <h3 id="examples">Examples</h3>
 <p>The Examples layer attempts to present samples of setting up common scenarios when using World Locking Tools, as well as best practices in World Locking Tools' integration into various scenarios.</p>
 <p>Any necessary MRTK dependencies for UX and object manipulation are restricted to the scripts and prefabs at the Examples layer. This leaves the lower layers free of any external dependencies.</p>
@@ -191,6 +193,19 @@
 <p>For example, <a href="Samples/WorldLockedPhysicsSample.html">the WorldLockedPhysicsSample</a> provides a simple environment in which physically simulated objects can be created and removed, interacting with each other and with the environment (the spatial mapping).</p>
 <p>For a more focused look at the Space Pinning feature, <a href="Samples/SpacePin.html">the SpacePin</a> provides a much simplified example of aligning a large scale virtual object to real world features.</p>
 <p>The <a href="Samples/RayPins.html">RayPins</a> expands on the capabilities introduced by the SpacePin example, allowing pinning of the virtual world to the physical world with ray tests against the spatial mesh.</p>
+<h2 id="references-for-getting-started">References for getting started</h2>
+<p>If unfamiliar with the basics of creating, building, and deploying AR apps to the HoloLens family of devices, here are some references that might help get your started.</p>
+<blockquote>
+<p><a href="https://docs.microsoft.com/en-us/windows/mixed-reality/unity-development-overview">Unity Development Overview</a> - Unity for MR/AR development.</p>
+<p><a href="https://docs.microsoft.com/en-us/windows/mixed-reality/holograms-100">MR Basics 100</a> - Walk through getting started developing for HoloLens</p>
+<p><a href="https://docs.microsoft.com/en-us/windows/mixed-reality/mrlearning-base">HoloLens 2 Tutorials</a> - Walk through getting started developing for HoloLens 2.</p>
+<p><a href="https://docs.microsoft.com/en-us/windows/mixed-reality/coordinate-systems">Coordinate Systems</a> Coordinate space implications in AR development.</p>
+<ul>
+<li>Note that World Locking Tools solve the issues discussed <a href="https://docs.microsoft.com/en-us/windows/mixed-reality/coordinate-systems#why-a-single-rigid-coordinate-system-cannot-be-used-beyond-5-meters">here</a>.</li>
+</ul>
+</blockquote>
+<h2 id="having-trouble">Having trouble?</h2>
+<p>See <a href="Troubleshooting.html">troubleshooting guide</a>.</p>
 </article>
           </div>
           

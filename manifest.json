@@ -38,6 +38,18 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "DocGen/Documentation/Concepts/Advanced/CoordinateSpaces.md",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Documentation/Concepts/Advanced/CoordinateSpaces.html",
+          "hash": "8GQ5fnm8UVWYp1L1CFE/5A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "DocGen/Documentation/Concepts/Advanced/Fragments.md",
       "output": {
         ".html": {
@@ -78,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/Advanced/SpacePins.html",
-          "hash": "90QxTBwa4Kv+BWHN7VJRmg=="
+          "hash": "LFbM3Cm/cBUDWmEGJyfqzg=="
         }
       },
       "is_incremental": false,
@@ -90,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/AdvancedConcepts.html",
-          "hash": "K5HV/icYHexWeYFO21CVlw=="
+          "hash": "Ojqeatc2q56kqTtirQy44w=="
         }
       },
       "is_incremental": false,
@@ -126,7 +138,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos.html",
-          "hash": "wTLlMpVUOG3Fqth4kOWzeQ=="
+          "hash": "cqbTY5AKUfGhXPlYctxfXA=="
         }
       },
       "is_incremental": false,
@@ -162,7 +174,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/InitialSetup.html",
-          "hash": "fO3VKBtFPRyQowXI2XU+Xg=="
+          "hash": "hG6/fSeefzSk6L+Btl61Pw=="
         }
       },
       "is_incremental": false,
@@ -186,7 +198,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/SampleApplications.html",
-          "hash": "ErhYmdilIEKxXYjXkxO6gg=="
+          "hash": "IcaWyGahYj5gG8uVxw4Nvg=="
         }
       },
       "is_incremental": false,
@@ -223,6 +235,30 @@
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/Samples/WorldLockedPhysicsSample.html",
           "hash": "R1fsXFQayqvtvd0p0A/J2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "DocGen/Documentation/HowTos/Tools.md",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Documentation/HowTos/Tools.html",
+          "hash": "b/DAD01k0z5o/1n97OBItw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "DocGen/Documentation/HowTos/Troubleshooting.md",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Documentation/HowTos/Troubleshooting.html",
+          "hash": "jZYRICUAgsQIgqwqg32QWA=="
         }
       },
       "is_incremental": false,
@@ -270,7 +306,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/toc.html",
-          "hash": "0qJvbFd7JYBGQRTkTzpFcw=="
+          "hash": "k8u22JtZBGgAYsmBwbybvA=="
         }
       },
       "is_incremental": false,
@@ -1563,7 +1599,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 29,
+          "total_file_count": 32,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {

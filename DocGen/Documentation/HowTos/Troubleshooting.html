@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Advanced capabilities of World Locking Tools | World Locking Tools for Unity Documentation </title>
+    <title>Trouble shooting | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Advanced capabilities of World Locking Tools | World Locking Tools for Unity Documentation ">
+    <meta name="title" content="Trouble shooting | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.53.1.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
@@ -80,36 +80,44 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="advanced-capabilities-of-world-locking-tools">Advanced capabilities of World Locking Tools</h1>
+<h1 id="trouble-shooting">Trouble shooting</h1>
 
-<p>Some definition of terms might be helpful before diving deeper into World Locking Tools' more advanced usage.</p>
-<p>These concepts are discussed more thoroughly in subsequent sections of this documentation, including actions necessary for a developer wanting to manually leverage these capabilities.</p>
-<ul>
-<li><p><strong>Persistence</strong> is the saving of World Locking Tools state from earlier sessions to enhance subsequent sessions, by leveraging the state collected and computed in the earlier sessions, rather than requiring it to be collected or computed again.</p>
-</li>
-<li><p><strong>Space Pins</strong> are a discrete and sparse set of points at which the World Locked Space may be mapped to modeling coordinates. In addition to allowing objects modeled in Unity's coordinate space to be aligned with the real world, they provide a solution to the tracker's &quot;scale problem&quot;.</p>
-</li>
-<li><p><strong>Attachment points</strong> are special markers in the world which remain optimally registered to the physical world through infrequent adjustment events.</p>
-</li>
-<li><p>A <strong>fragment</strong> is a collection of things which exist in known relation with each other in the same coordinate space. In contrast, there is generally no meaningful spatial relationship between different fragments. These are elsewhere referred to as &quot;tracker islands&quot;.</p>
-</li>
-<li><p><strong>Refit operations</strong> are infrequent adjustment events, at times when additional sensor data enables an improved registration of virtual objects with the physical world, but only at the cost of moving them within world locked space.</p>
-</li>
-</ul>
-<p>There are two types of refit operations.</p>
-<ul>
-<li><strong>Merge operations</strong> are the repositioning of the entire contents of a fragment uniformly into a common coordinate space with another fragment.</li>
-<li><strong>Refreeze operations</strong> are the repositioning of individual objects within a fragment to account for movement of the supporting anchors.</li>
-</ul>
-<h2 id="see-also">See also</h2>
-<ul>
-<li><a href="Advanced/CoordinateSpaces.html">Coordinate spaces</a></li>
-<li><a href="Advanced/Persistence.html">Persistence</a></li>
-<li><a href="Advanced/SpacePins.html">Space Pins</a></li>
-<li><a href="Advanced/AttachmentPoints.html">Attachment points</a></li>
-<li><a href="Advanced/Fragments.html">Fragments</a></li>
-<li><a href="Advanced/RefitOperations.html">Refit operations</a></li>
-</ul>
+<p>Annoying issues will be noted here.</p>
+<h2 id="world-locking-issues">World Locking issues</h2>
+<h3 id="low-frame-rate">Low frame rate</h3>
+<p>World Locking Tools should have no discernable impact on your framerate. (An exception is that the visualizations will eventually drag down your framerate after many anchors have been created, but the visualizers are just for diagnostics, not for shipping with your application.)</p>
+<p>If you see a framerate drop after adding World Locking Tools to your application, check your Unity logs. That usually means an exception is being repeatedly generated.</p>
+<h3 id="missing-dlls-etc">Missing dll's etc.</h3>
+<p>This has been seen from the Frozen World Engine dll. Go to NuGet for Unity:</p>
+<blockquote>
+<p><code>NuGet &gt; Manage NuGet Packages &gt; Installed</code></p>
+</blockquote>
+<p>uninstall and re-install the latest FrozenWorld.Engine package.</p>
+<h3 id="its-not-working">It's not working</h3>
+<p>Check the Unity logs for errors and exceptions.</p>
+<p>Check that your scene camera is attached to at least one other object. See the setup in WorldLocking.Examples.WorldLockingPhysicsSample for example. If you are doing dynamic camera manipulation, you may need to keep the WorldLockingManager informed of the current camera. See <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AdjustmentFrame">WorldLockingManager.AdjustmentFrame</a> and <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_CameraParent">WorldLockingManager.CameraParent</a>.</p>
+<h2 id="more-general-unityar-problems">More general Unity/AR problems</h2>
+<h3 id="a-remote-operation-is-taking-longer-than-expected-message-box-then-failure-to-deploy">&quot;A remote operation is taking longer than expected&quot; message box then failure to deploy.</h3>
+<p>Check your USB connection. A bad cable, a bad port, missing IPOverUSB, can all cause this. But it's probably somewhere on the communication path from your PC to your device.</p>
+<h3 id="missing-windows-sdk-components">Missing Windows SDK components.</h3>
+<p>Mismatch between Visual Studio version indicated in Unity versus Visual Studio version you're trying to build with. Check:</p>
+<blockquote>
+<p><code>Unity &gt; File &gt; Build Settings &gt; Visual Studio Version</code></p>
+</blockquote>
+<p>Especially dangerous is if that's set to <code>Latest Installed</code> and you have multiple versions of Visual Studio installed.</p>
+<h3 id="on-hololens-application-starts-up-as-a-slate-rather-than-an-ar-experience">On HoloLens, application starts up as a slate, rather than an AR experience.</h3>
+<p>For Unity version 2019.3 and earlier, not sure about later), check:</p>
+<blockquote>
+<p><code>Unity &gt; Project Settings &gt; Player &gt; XR Settings</code></p>
+</blockquote>
+<p>You must have Virtual Reality Supported checked, and the Windows Mixed Reality in Virtual Reality SDKs.</p>
+<h3 id="when-building-for-arm-on-hololens2-app-stops-at-startup-arm64-works-fine">When building for ARM on HoloLens2, app stops at startup. ARM64 works fine.</h3>
+<p><a href="https://issuetracker.unity3d.com/issues/enabling-graphics-jobs-in-2019-dot-3-x-results-in-a-crash-or-nothing-rendering-on-hololens-2">Known issue</a>.</p>
+<p>The fix is either disable Graphics Jobs under</p>
+<blockquote>
+<p><code>Project Settings &gt; Player &gt; Other Settings &gt; Graphics Jobs</code></p>
+</blockquote>
+<p>or just build for ARM64.</p>
 </article>
           </div>
           
@@ -118,7 +126,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/Concepts/AdvancedConcepts.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/HowTos/Troubleshooting.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

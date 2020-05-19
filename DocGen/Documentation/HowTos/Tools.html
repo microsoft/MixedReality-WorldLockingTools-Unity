@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Tools and visualizers | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Tools and visualizers | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.53.1.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/Images/Logos/WorldLock64.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="tools-and-visualizers">Tools and visualizers</h1>
+
+<p>The tools and visualizers in the Microsoft.MixedReality.WorldLocking.Tools namespace are intended to help during development. They may also be a starting point for advanced direct interaction with the World Locking Tools (WLT) system.</p>
+<p>While they aren't intended for direct usage as is within an application, the application developer is certainly free to choose to do so.</p>
+<p>But whereas the WorldLocking.Core is intended to work as-is in any appropriate application scenario, the Tools may make assumptions about the application which make them inappropriate in other applications.</p>
+<p>Before incorporating any of the tools directly within your shipping application, then, consider creating a version of that tool customized for your own requirements and resources.</p>
+<h2 id="tools">Tools</h2>
+<h3 id="adjusters">Adjusters</h3>
+<p>Adjusters are components which handle <a href="../Concepts/Advanced/RefitOperations.html">refit events</a>. In particular, they create <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.AttachmentPoint.html">Attachment Points</a>. In the event of a refit operation, the AttachmentPoint serves as a notification callback. The Adjuster handles that event appropriately.</p>
+<p>See further conceptual discussion of <a href="../Concepts/Advanced/AttachmentPoints.html">AttachmentPoints</a>.</p>
+<p>Note that the exact right reaction to a refit event will vary for different types of objects, and is very application specific. For example, if the object's <a href="../Concepts/Advanced/Fragments.html">Fragment</a> is currently inactive, then should the object be displayed? For some applications, since the proper placement of the object cannot be determined, it should be hidden. For other applications, it might be better to display the object in a temporarily incorrect pose than to suffer the confusion of its disappearance. And even for applications which should hide the object, there are various ways to perform the hiding (e.g. disabling versus moving far away).</p>
+<p>The <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html">AdjusterFixed</a> and <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving.html">AdjusterMoving</a> components handle two common scenarios minimally.</p>
+<p>The AdjusterFixed component assumes that its target is generally non-moving. If the World Locking Tools sends an adjustment pose due to a refit event, it is intended to keep the AdjusterFixed's object stationary in the world.</p>
+<p>In contrast, the AdjusterMoving component assumes that its target is mobile through the Unity coordinate space. It keeps the World Locking Tools system appraised of its target's location, so that in the event of a refit operation, the system can give the most accurate correction to keep the target's position relative to the physical world constant at that moment.</p>
+<h3 id="adapters">Adapters</h3>
+<p>The Adapter components are intended for illustration only. If you find yourself using one of the Adapters, you should probably rethink how you are trying to use World Locking Tools.</p>
+<p>In particular, <a href="https://microsoft.github.io/MixedRealityToolkit-Unity/README.html">MRTK</a> already has built-in adapters, so no further coordinate system transform is required on the part of the application.</p>
+<p>There may be times, especially if not using MRTK, when conversion from native resources, which will report in Spongy Space coordinates, to Frozen Space. In those cases, the application developer may find one of the Adapters included here to be a good reference.</p>
+<ul>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.WorldAnchorAdapter.html">WorldAnchorAdapter</a> - An WorldAnchor will adjust an object's pose in Spongy space to remain fixed in physical space. This is redundant with the world-locked space provided by World Locking Tools, and so the object will drift in Frozen Space. This adapter allows a WorldAnchor to maintain the pose of an object in Frozen Space. Note that this is unnecessary except for diagnostics. All objects in Unity's global coordinate space are world-locked by World Locking Tools.</p>
+</li>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.ToggleWorldAnchor.html">ToggleWorldAnchor</a> - Similar to the WorldAnchorAdapter, but can be toggled. Also automatically converts to regular WorldAnchor behavior when the WorldLockingManager is disabled. Useful only for diagnostics.</p>
+</li>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenSpatialMapping.html">FrozenSpatialMapping</a> - An adapter manage and correctly render the results from a <a href="https://docs.microsoft.com/en-us/windows/mixed-reality/spatial-mapping">SurfaceObserver</a>. Note that the <a href="https://microsoft.github.io/MixedRealityToolkit-Unity/Documentation/SpatialAwareness/SpatialAwarenessGettingStarted.html?q=spatial">MRTK Spatial Awareness</a> system provides all of this functionality and more, and requires no adapter to work with World Locking Tools.</p>
+</li>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenTapToAdd.html">FrozenTapToAdd</a> - Directly interfacing with Unity's Input system requires conversion of incoming coordinate data as shown here. Note that this is unnecessary with MRTK's input system.</p>
+</li>
+</ul>
+<h2 id="visualizers">Visualizers</h2>
+<h3 id="anchor-graph-visualization">Anchor Graph Visualization</h3>
+<p>The <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AnchorGraphVisual.html">AnchorGraphVisual</a> and its associated prefab are the core of the supplied visualizations. The component pieces are as follows:</p>
+<ol>
+<li><p>Axes - The current poses for the origins of Spongy Space (green) and Frozen Space (blue) are shown as standard 3 arrow axis identifiers.</p>
+</li>
+<li><p>Spongy Anchors - These are the native underlying anchors which have been created to feed the Frozen World Engine optimization. Each is represented by a ring, along with a text tag identifying it. Also, more information is conveyed by color and size.</p>
+</li>
+</ol>
+<ul>
+<li><p>An active tracked anchor will be green.</p>
+</li>
+<li><p>A tracked anchor with zero relevance will be red.</p>
+</li>
+<li><p>An unsupported anchor will be yellow.</p>
+</li>
+<li><p>The larger the ring, the greater the relevance for that anchor.</p>
+</li>
+</ul>
+<ol start="3">
+<li><p>Frozen Anchors - These are the corresponding reference points in Frozen Space. In the absence of tracker error, these will be exactly aligned with the Spongy Anchors.</p>
+</li>
+<li><p>Edges - These connect the Spongy Anchors to their corresponding Frozen Anchors. Since in the absence of tracker error, these would be coincident, not seeing these edges means everything is working perfectly. In any case, these edges should not be longer than a few centimeters. They are red on the frozen end, and fade to blue on the spongy end.</p>
+</li>
+</ol>
+<p>Enabling the display of the anchor graph that World Locking Tools generates as the user moves about the physical environment requires only dropping the WorldLockingTools &gt; Prefabs &gt; AnchorGraphVisual prefab into the scene. It is customarily added as a sibling to the WorldLockingContext, but its exact placement in the hierarchy is unimportant. However, it should not be placed in the camera hierarchy.</p>
+<h3 id="additional-output">Additional output</h3>
+<p>The <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Examples.html">World Locking Examples</a> includes text diagnostics. Most of these are relevant only to developers of the World Locking Tools, rather than clients of its abilities. However, they are available for read and, as shown in the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.StatusToText.html">StatusToText</a> scrip, for realtime display.</p>
+<p>For post mortem analysis, the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.Diagnostics.html">Diagnostics</a> section of the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.html">WorldLockingContext</a> can be very useful in reporting Frozen World Engine failures. See <a href="Contributing.html#reporting-a-bug">Reporting a bug</a> for further information.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/HowTos/Tools.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>
