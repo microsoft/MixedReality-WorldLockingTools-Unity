@@ -569,6 +569,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "DocGen/Temp/obj/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.yml",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html",
+          "hash": "iKDFGZTVzZUjbwjblOujGA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "DocGen/Temp/obj/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.yml",
       "output": {
         ".html": {
@@ -1089,19 +1101,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.html",
-          "hash": "klLUgDupldWZ1ha9OJ8R5w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "DocGen/Temp/obj/api/Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.yml",
-      "output": {
-        ".html": {
-          "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.html",
-          "hash": "U/h1tlsy+btmPUB5sy4LbQ=="
+          "hash": "WHZvm63QcQvjNavI5XNylw=="
         }
       },
       "is_incremental": false,
@@ -1233,7 +1233,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.html",
-          "hash": "RLDE8H3+AH3CpFZyiAp2Ww=="
+          "hash": "BANUNbV4gUjYeP5V2a1IqA=="
         }
       },
       "is_incremental": false,
@@ -1521,7 +1521,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/api_doc/toc.html",
-          "hash": "gztjp916spnVGnXrjeYbXQ=="
+          "hash": "BcIDiPmjgMygSi0aM7s96g=="
         }
       },
       "is_incremental": false,

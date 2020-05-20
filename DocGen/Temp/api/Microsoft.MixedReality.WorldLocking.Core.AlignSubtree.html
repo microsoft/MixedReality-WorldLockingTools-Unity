@@ -81,10 +81,10 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree" class="text-break">Class AlignSubtree
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree" class="text-break">Class AlignSubtree
   </h1>
   <div class="markdown level0 summary"><p>Script to use an independent AlignmentManager to align a specific subtree, independent of the rest of the scene.</p>
 </div>
@@ -94,13 +94,13 @@
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
     <div class="level1"><span class="xref">AlignSubtree</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Examples.html">Microsoft.MixedReality.WorldLocking.Examples</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class AlignSubtree : MonoBehaviour</code></pre>
   </div>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_remarks"><strong>Remarks</strong></h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>The subtree aligned by this will remain world-locked by the independent global world-locking
 by the WorldLockingManager.
 This script illustrates how to create and manage an independent AlignmentManager, and
@@ -110,9 +110,9 @@ alignment to the global Unity coordinate space (frozen space). The desire here i
 use the same Space Pin feature to pin parts of a virtual model (subtree) to the physical world,
 without affecting global space. To do this requires several steps:</p>
 <ol>
-<li>Create a new locally owned AlignmentManager (distinct from the one owned by the WorldLockingManager). See <span class="xref">Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.CheckInternalWiring</span>.</li>
-<li>Point the desired SpacePins to use the locally owned AlignmentManager (they default to use the global one). See <span class="xref">Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.OnEnable</span>.</li>
-<li>Use the local AlignmentManager to compute a correction pose, and apply it to the subtree. See <span class="xref">Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Update</span>.
+<li>Create a new locally owned AlignmentManager (distinct from the one owned by the WorldLockingManager). See <span class="xref">Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.CheckInternalWiring</span>.</li>
+<li>Point the desired SpacePins to use the locally owned AlignmentManager (they default to use the global one). See <span class="xref">Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.OnEnable</span>.</li>
+<li>Use the local AlignmentManager to compute a correction pose, and apply it to the subtree. See <span class="xref">Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.Update</span>.
 On point 2., there are a number of reasonable ways to harvest which SpacePins should use this local AlignmentManager, the
 method used here, invoking GetComponentsInChildren, is just one such way.</li>
 </ol>
@@ -121,7 +121,7 @@ method used here, invoking GetComponentsInChildren, is just one such way.</li>
   </h3>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_subTree" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.subTree">subTree</h4>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_subTree" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.subTree">subTree</h4>
   <div class="markdown level1 summary"><p>The transform to align. If unset, will align this.transform.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -148,8 +148,8 @@ method used here, invoking GetComponentsInChildren, is just one such way.</li>
   </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_AutoSave_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.AutoSave*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_AutoSave" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.AutoSave">AutoSave</h4>
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_AutoSave_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AutoSave*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_AutoSave" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AutoSave">AutoSave</h4>
   <div class="markdown level1 summary"><p>Whether to perform saves automatically and load at startup.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -174,8 +174,34 @@ method used here, invoking GetComponentsInChildren, is just one such way.</li>
   </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_SaveFileName_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.SaveFileName*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_SaveFileName" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.SaveFileName">SaveFileName</h4>
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_CollectFromTree_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.CollectFromTree*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_CollectFromTree" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.CollectFromTree">CollectFromTree</h4>
+  <div class="markdown level1 summary"><p>Collect all SpacePins from this subtree to manage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CollectFromTree { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_SaveFileName_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.SaveFileName*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_SaveFileName" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.SaveFileName">SaveFileName</h4>
   <div class="markdown level1 summary"><p>File name for saving to and loading from. Defaults to gameObject's name. Use forward slash '/' for subfolders.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -202,8 +228,83 @@ method used here, invoking GetComponentsInChildren, is just one such way.</li>
   </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Load_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Load*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Load" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Load">Load()</h4>
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_AddOwnedPin_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AddOwnedPin*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_AddOwnedPin_Microsoft_MixedReality_WorldLocking_Core_SpacePin_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AddOwnedPin(Microsoft.MixedReality.WorldLocking.Core.SpacePin)">AddOwnedPin(SpacePin)</h4>
+  <div class="markdown level1 summary"><p>Explicitly add a pin to the owned pins list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AddOwnedPin(SpacePin pin)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpacePin.html">SpacePin</a></td>
+        <td><span class="parametername">pin</span></td>
+        <td><p>THe pin to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if added, false if it was already there.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_ClaimPinOwnership_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.ClaimPinOwnership*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_ClaimPinOwnership" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.ClaimPinOwnership">ClaimPinOwnership()</h4>
+  <div class="markdown level1 summary"><p>This should be called whenever pins are added to the owned list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClaimPinOwnership()</code></pre>
+  </div>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_ClaimPinOwnership_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>It's only necessary to call this when adding pins to the owned list dynamically
+from script. It is called from OnEnable for all pins added in the inspector or
+collected from the scene graph subtree.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_ClearOwnedPins_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.ClearOwnedPins*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_ClearOwnedPins" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.ClearOwnedPins">ClearOwnedPins()</h4>
+  <div class="markdown level1 summary"><p>Clear the entire list of owned space pins.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearOwnedPins()</code></pre>
+  </div>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_ClearOwnedPins_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This removes all pins in the list, whether added dynamically or added in the inspector.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_Load_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.Load*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_Load" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.Load">Load()</h4>
   <div class="markdown level1 summary"><p>Explicit command to load the alignment manager from store.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -229,8 +330,53 @@ method used here, invoking GetComponentsInChildren, is just one such way.</li>
   </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Save_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Save*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_AlignSubtree_Save" data-uid="Microsoft.MixedReality.WorldLocking.Examples.AlignSubtree.Save">Save()</h4>
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_RemoveOwnedPin_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.RemoveOwnedPin*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_RemoveOwnedPin_Microsoft_MixedReality_WorldLocking_Core_SpacePin_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.RemoveOwnedPin(Microsoft.MixedReality.WorldLocking.Core.SpacePin)">RemoveOwnedPin(SpacePin)</h4>
+  <div class="markdown level1 summary"><p>Remove a specific pin from the owned pins list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveOwnedPin(SpacePin pin)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpacePin.html">SpacePin</a></td>
+        <td><span class="parametername">pin</span></td>
+        <td><p>The pin to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if removed, else false (probably not found).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_Save_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.Save*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_Save" data-uid="Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.Save">Save()</h4>
   <div class="markdown level1 summary"><p>Explicit command to save the alignment manager to store.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
