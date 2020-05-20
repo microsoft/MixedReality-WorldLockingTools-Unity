@@ -65,6 +65,112 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             };
 
         [UnityTest]
+        public IEnumerator SaveLoadIndieAlign()
+        {
+            GameObject rig = loadHelper.LoadGameObject("Prefabs/IndiePinsRoot.prefab");
+
+            var wltMgr = WorldLockingManager.GetInstance();
+
+            yield return null;
+
+            FindAndSetPin(rig, "GPin1", new Vector3(0, 1, 0));
+            FindAndSetPin(rig, "GPin2", new Vector3(0, 1, 0));
+            FindAndSetPin(rig, "GPin3", new Vector3(0, 1, 0));
+
+            FindAndSetPin(rig, "PS1Pin1", new Vector3(0, 1, 0));
+            FindAndSetPin(rig, "PS1Pin2", new Vector3(0, 1, 0));
+            FindAndSetPin(rig, "PS1Pin3", new Vector3(0, 1, 0));
+
+            FindAndSetPin(rig, "PS2Pin1", new Vector3(0, 1, 0));
+            FindAndSetPin(rig, "PS2Pin2", new Vector3(0, 1, 0));
+            FindAndSetPin(rig, "PS2Pin3", new Vector3(0, 1, 0));
+
+            /// Force a compute, which gives the global alinment manager a chance to update.
+            /// Because this is test (no active anchors), otherwise it won't get its cycles.
+            wltMgr.AlignmentManager.ComputePinnedPose(new Pose(Vector3.zero, Quaternion.identity));
+
+            yield return null;
+
+            wltMgr.Save();
+
+            GameObject.Destroy(rig);
+
+            yield return null;
+
+            rig = loadHelper.LoadGameObject("Prefabs/IndiePinsRoot.prefab");
+
+            yield return null;
+
+            FindAndCheckPin(rig, "GPin1");
+            FindAndCheckPin(rig, "GPin2");
+            FindAndCheckPin(rig, "GPin3");
+
+            FindAndCheckPin(rig, "PS1Pin1");
+            FindAndCheckPin(rig, "PS1Pin2");
+            FindAndCheckPin(rig, "PS1Pin3");
+
+            FindAndCheckPin(rig, "PS2Pin1");
+            FindAndCheckPin(rig, "PS2Pin2");
+            FindAndCheckPin(rig, "PS2Pin3");
+
+            yield return null;
+
+            wltMgr.Load();
+
+            yield return null;
+
+            FindAndCheckPin(rig, "GPin1");
+            FindAndCheckPin(rig, "GPin2");
+            FindAndCheckPin(rig, "GPin3");
+
+            FindAndCheckPin(rig, "PS1Pin1");
+            FindAndCheckPin(rig, "PS1Pin2");
+            FindAndCheckPin(rig, "PS1Pin3");
+
+            FindAndCheckPin(rig, "PS2Pin1");
+            FindAndCheckPin(rig, "PS2Pin2");
+            FindAndCheckPin(rig, "PS2Pin3");
+
+            GameObject.Destroy(rig);
+
+            wltMgr.AlignmentManager.ClearAlignmentAnchors();
+
+            yield return null;
+
+        }
+
+        private SpacePin FindPinByName(GameObject rig, string pinName)
+        {
+            GameObject pinObject = GameObject.Find(pinName);
+            Assert.IsNotNull(pinObject);
+            SpacePin spacePin = pinObject.GetComponent<SpacePin>();
+            return spacePin;
+        }
+
+        private void FindAndCheckPin(GameObject rig, string pinName)
+        {
+            SpacePin spacePin = FindPinByName(rig, pinName);
+
+            Pose virtualPose = spacePin.ModelingPoseGlobal;
+            Pose lockedPose = spacePin.LockedPose;
+            Pose frozenPose = WorldLockingManager.GetInstance().FrozenFromLocked.Multiply(lockedPose);
+            Vector3 offset = frozenPose.position - virtualPose.position;
+            float len = Mathf.Abs(offset.magnitude - 1.0f);
+            Assert.Less(len, 1.0e-4f);
+        }
+
+        private void FindAndSetPin(GameObject rig, string pinName, Vector3 offset)
+        {
+            SpacePin spacePin = FindPinByName(rig, pinName);
+
+            Assert.IsNotNull(spacePin);
+            Pose virtualPose = spacePin.ModelingPoseGlobal;
+            Pose frozenPose = virtualPose;
+            frozenPose.position += offset;
+            spacePin.SetFrozenPose(frozenPose);
+        }
+
+        [UnityTest]
         public IEnumerator SaveLoadTestSaveThenLoad()
         {
             GameObject rig = loadHelper.LoadBasicSceneRig();

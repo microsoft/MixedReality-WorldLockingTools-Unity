@@ -31,7 +31,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// </remarks>
     public class AlignmentManager : IAlignmentManager
     {
-#region Lifetime management
+        #region Lifetime management
 
         /// <summary>
         /// When a level is unloaded, resend the reference poses. The unloaded scene
@@ -79,9 +79,26 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             SceneManager.sceneUnloaded -= OnSceneUnloaded;
         }
 
-#endregion Lifetime management
+        /// <summary>
+        /// Actually perform the send of the pending new list of alignment anchors into the active state.
+        /// </summary>
+        /// <remarks>
+        /// This is deferred after request until update, to be sure all the pieces have been 
+        /// wired up during Start()/OnEnable().
+        /// </remarks>
+        private void PerformSendAlignmentAnchors()
+        {
+            sentPoses.Clear();
+            for (int i = 0; i < referencePoses.Count; ++i)
+            {
+                sentPoses.Add(referencePoses[i]);
+            }
+            ActivateCurrentFragment();
+        }
 
-#region Public methods
+        #endregion Lifetime management
+
+        #region Public methods
 
         /// <summary>
         /// The pose to insert into the camera's hierarchy above the WorldLocking Adjustment transform (if any).
@@ -269,12 +286,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <inheritdocs />
         public void SendAlignmentAnchors()
         {
-            sentPoses.Clear();
-            for (int i = 0; i < referencePoses.Count; ++i)
-            {
-                sentPoses.Add(referencePoses[i]);
-            }
-            ActivateCurrentFragment();
+            needSend = true;
         }
 
         /// <inheritdocs />
@@ -297,16 +309,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             return refPose.anchorId;
         }
-#endregion Public methods
+        #endregion Public methods
 
-#region Internal data structure definitions
+        #region Internal data structure definitions
 
         /// <summary>
         /// Persistent database for reference poses.
         /// </summary>
         private class ReferencePoseDB
         {
-#region Public API
+            #region Public API
 
             /// <summary>
             /// Set name of file to save to and load from. See notes in <see cref="AlignmentManager.SaveFileName"/>.
@@ -314,7 +326,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             public string SaveFileName
             {
                 get { return saveFileName; }
-                set 
+                set
                 {
                     if (IsValidSavePath(value))
                     {
@@ -441,9 +453,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 data.Clear();
             }
 
-#endregion Public API
+            #endregion Public API
 
-#region Serialization element
+            #region Serialization element
 
             /// <summary>
             /// A data element containing minimal information to reconstruct its corresponding reference point.
@@ -560,9 +572,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
             }
 
-#endregion Serialization element
+            #endregion Serialization element
 
-#region Internal Members
+            #region Internal Members
 
             /// <summary>
             /// The current database version. 
@@ -579,9 +591,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// </summary>
             private string saveFileName = Path.Combine("Persistence", "Alignment.fwb");
 
-#endregion Internal Members
+            #endregion Internal Members
 
-#region Internal Implementation 
+            #region Internal Implementation 
 
             /// <summary>
             /// Path where to store data. 
@@ -606,7 +618,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 string path = Application.persistentDataPath;
 
                 string fullPath = Path.Combine(path, saveFileName);
-                
+
                 return fullPath;
             }
 
@@ -662,7 +674,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
                 return loaded;
             }
-#endregion Internal Implementation 
+            #endregion Internal Implementation 
         }
 
         /// <summary>
@@ -676,7 +688,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         private class ReferencePose
         {
-#region Public members
+            #region Public members
             /// <summary>
             /// Unique identifier.
             /// </summary>
@@ -722,35 +734,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
             }
 
-            /// <summary>
-            /// Compute the current PinnedFromLocked transform for this pose.
-            /// </summary>
-            /// <remarks>
-            /// </remarks>
-            public Pose PinnedFromLocked
-            {
-                get
-                {
-                    Pose pinnedFromFrozen = Pose.identity;
-                    if (manager.AdjustmentFrame.parent != null)
-                    {
-                        pinnedFromFrozen = manager.AdjustmentFrame.parent.GetGlobalPose().Inverse();
-                    }
-                    Pose frozenFromObject = virtualPose;
-                    Pose objectFromLocked = LockedPose.Inverse();
+            #endregion Public members
 
-                    Pose pinnedFromLocked = pinnedFromFrozen
-                        .Multiply(frozenFromObject)
-                        .Multiply(objectFromLocked);
-
-                    // mafinc - obviously this could be cached when LockedPose is set (and changed).
-                    return pinnedFromLocked;
-                }
-            }
-
-#endregion Public members
-
-#region Private members
+            #region Private members
 
             private readonly WorldLockingManager manager = WorldLockingManager.GetInstance();
 
@@ -764,9 +750,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// </summary>
             private IAttachmentPoint attachmentPoint;
 
-#endregion Private members
+            #endregion Private members
 
-#region Public APIs
+            #region Public APIs
             /// <summary>
             /// Release any resources bound to this reference point.
             /// </summary>
@@ -779,9 +765,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
             }
 
-#endregion Public APIs
+            #endregion Public APIs
 
-#region Internal implmentations
+            #region Internal implmentations
 
             /// <summary>
             /// When the reference point position is initially set, create an attachment point if there isn't one,
@@ -815,7 +801,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 /// Do any adjustment pose dependent caching here.
             }
-#endregion Internal implmentations
+            #endregion Internal implmentations
         }
 
         /// <summary>
@@ -832,9 +818,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 
 
-#endregion Internal data structure definitions
+        #endregion Internal data structure definitions
 
-#region Internal data declarations
+        #region Internal data declarations
 
         /// <summary>
         /// The manager that owns this sub-manager.
@@ -902,9 +888,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private static uint nextAnchorId = (uint)AnchorId.FirstValid;
 
-#endregion Internal data declarations
+        #endregion Internal data declarations
 
-#region Internal utilities
+        #region Internal utilities
         /// <summary>
         /// Claim a unique anchor id.
         /// </summary>
@@ -912,6 +898,20 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private static AnchorId ClaimAnchorId()
         {
             return (AnchorId)nextAnchorId++;
+        }
+
+        /// <summary>
+        /// Return whether this is the global alignment manager owned and managed by the WorldLockingManager.
+        /// </summary>
+        /// <remarks>
+        /// If not the global, this is an independently owned, managed, and applied alignment manager.
+        /// </remarks>
+        private bool IsGlobal
+        {
+            get
+            {
+                return manager.AlignmentManager == this;
+            }
         }
 
         /// <summary>
@@ -959,9 +959,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             ActiveFragmentId = FragmentId.Unknown;
         }
 
-#endregion Internal utilities
+        #endregion Internal utilities
 
-#region Peristence synchronizations
+        #region Peristence synchronizations
 
         /// <summary>
         /// Add to queue for being saved to database next chance.
@@ -1010,7 +1010,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (needSend)
             {
-                SendAlignmentAnchors();
+                PerformSendAlignmentAnchors();
                 needSend = false;
             }
         }
@@ -1041,9 +1041,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
-#endregion Peristence synchronizations
+        #endregion Peristence synchronizations
 
-#region Pose transformation math
+        #region Pose transformation math
 
         /// <summary>
         /// Collapse a list of weighted poses into a single equivalent pose.
@@ -1117,9 +1117,49 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return ret;
         }
 
-#endregion Pose transformation math
+        /// <summary>
+        /// Compute the PinnedFromLocked pose for the given reference pose.
+        /// </summary>
+        /// <param name="refPose">The reference pose to evaluate.</param>
+        /// <returns>The computed PinnedFromLocked pose.</returns>
+        private Pose ComputePinnedFromLocked(ReferencePose refPose)
+        {
+            Pose pinnedFromLocked = Pose.identity;
+            if (IsGlobal)
+            {
+                /// Here we essentially solve for pose Z, where
+                /// refPose.virtualPose == FrozenFromPinned * Z * refPose.lockedPose.
+                Pose pinnedFromFrozen = Pose.identity;
+                if (manager.AdjustmentFrame.parent != null)
+                {
+                    pinnedFromFrozen = manager.AdjustmentFrame.parent.GetGlobalPose().Inverse();
+                }
+                Pose frozenFromObject = refPose.virtualPose;
+                Pose objectFromLocked = refPose.LockedPose.Inverse();
 
-#region Weight computation
+                pinnedFromLocked = pinnedFromFrozen
+                    .Multiply(frozenFromObject)
+                    .Multiply(objectFromLocked);
+            }
+            else
+            {
+                /// The math is slightly different for an alignment manager being applied to a subgraph of the scene.
+                /// Here we are essentially solving for pose Z, such that
+                /// Z * refPose.virtualPose == FrozenFromLocked * refPose.LockedPose.
+                Pose frozenFromVirtual = manager.FrozenFromLocked
+                    .Multiply(refPose.LockedPose)
+                    .Multiply(refPose.virtualPose.Inverse());
+
+                pinnedFromLocked = frozenFromVirtual.Inverse();
+            }
+
+            // mafinc - obviously this could be cached when refPose.LockedPose is set (and changed).
+            return pinnedFromLocked;
+        }
+
+        #endregion Pose transformation math
+
+        #region Weight computation
 
         private readonly Triangulator.ITriangulator triangulator = new Triangulator.SimpleTriangulator();
 
@@ -1158,7 +1198,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 {
                     weightedPoses.Add(new WeightedPose()
                     {
-                        pose = activePoses[bary.idx[i]].PinnedFromLocked,
+                        pose = ComputePinnedFromLocked(activePoses[bary.idx[i]]),
                         weight = bary.weights[i]
                     });
                 }
@@ -1169,6 +1209,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             return weightedPoses;
         }
-#endregion Weight computation
+        #endregion Weight computation
     }
 }
