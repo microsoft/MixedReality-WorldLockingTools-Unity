@@ -102,9 +102,6 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             {
                 spacePins[i].Reset();
             }
-            // Reset on the pins has removed them from the AlignmentManager, but it won't
-            // take effect until SendAlignmentAnchors() is called.
-            WorldLockingManager.GetInstance().AlignmentManager.SendAlignmentAnchors();
             // Could optionally also reset all existing WorldAnchors for a true reset.
             // If wanted, uncomment this line.
             WorldLockingManager.GetInstance().Reset();

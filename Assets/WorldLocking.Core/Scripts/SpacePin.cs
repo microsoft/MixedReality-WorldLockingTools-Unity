@@ -59,11 +59,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 if (alignmentManager != value)
                 {
+                    Reset();
                     if (alignmentManager != null)
                     {
                         alignmentManager.UnregisterForLoad(RestoreOnLoad);
                     }
                     alignmentManager = value;
+                    /// Register for post-loaded messages from the Alignment Manager.
+                    /// When these come in check for the loading of the reference point
+                    /// associated with this pin. Reference is by unique name.
                     alignmentManager.RegisterForLoad(RestoreOnLoad);
                 }
             }
@@ -155,12 +159,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
-        #endregion Private members
-
-        #region Unity members
-
-        // Start is called before the first frame update
-        protected virtual void Start()
+        private void CheckDependencies()
         {
             /// Cache the WorldLockingManager as a dependency.
             manager = WorldLockingManager.GetInstance();
@@ -169,14 +168,18 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 AlignmentManager = manager.AlignmentManager;
             }
+        }
+        #endregion Private members
 
+        #region Unity members
+
+        // Start is called before the first frame update
+        protected virtual void Start()
+        {
             /// Cache the initial pose.
             ResetModelingPose();
 
-            /// Register for post-loaded messages from the Alignment Manager.
-            /// When these come in check for the loading of the reference point
-            /// associated with this pin. Reference is by unique name.
-            AlignmentManager.RegisterForLoad(RestoreOnLoad);
+            CheckDependencies();
         }
 
         /// <summary>
@@ -250,6 +253,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 AnchorId = AnchorId.Unknown;
                 ReleaseAttachment();
                 Debug.Assert(!PinActive);
+                SendAlignmentData(AlignmentManager);
             }
         }
         #endregion Public APIs
@@ -313,6 +317,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         protected virtual void RestoreOnLoad()
         {
+            CheckDependencies();
+
             AnchorId = AlignmentManager.RestoreAlignmentAnchor(AnchorName, ModelingPoseGlobal);
             if (PinActive)
             {

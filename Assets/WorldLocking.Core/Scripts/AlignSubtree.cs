@@ -1,13 +1,12 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using Microsoft.MixedReality.WorldLocking.Core;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace Microsoft.MixedReality.WorldLocking.Examples
+namespace Microsoft.MixedReality.WorldLocking.Core
 {
     /// <summary>
     /// Script to use an independent AlignmentManager to align a specific subtree, independent of the rest of the scene.
@@ -30,6 +29,20 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
     public class AlignSubtree : MonoBehaviour
     {
         #region Inspector fields
+
+        [SerializeField]
+        [Tooltip("Collect all SpacePins from this subtree to manage.")]
+        private bool collectFromTree = true;
+
+        /// <summary>
+        /// Collect all SpacePins from this subtree to manage.
+        /// </summary>
+        public bool CollectFromTree { get { return collectFromTree; } set { collectFromTree = value; } }
+
+        [SerializeField]
+        [Tooltip("Explicit list of Space Pins to manage.")]
+        private List<SpacePin> ownedPins = new List<SpacePin>();
+
         [SerializeField]
         [Tooltip("File name for saving to and loading from. Defaults to gameObject's name. Use forward slash '/' for subfolders.")]
         private string saveFileName = "";
@@ -85,6 +98,8 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// </summary>
         private AlignmentManager alignmentManager = null;
 
+        private bool needLoad = true;
+
         #endregion Internal members
 
         #region Public APIs
@@ -113,6 +128,71 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
                 return alignmentManager.Load();
             }
             return false;
+        }
+
+        /// <summary>
+        /// Explicitly add a pin to the owned pins list.
+        /// </summary>
+        /// <param name="pin">THe pin to add.</param>
+        /// <returns>True if added, false if it was already there.</returns>
+        public bool AddOwnedPin(SpacePin pin)
+        {
+            if (!ownedPins.Contains(pin))
+            {
+                ownedPins.Add(pin);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Remove a specific pin from the owned pins list.
+        /// </summary>
+        /// <param name="pin">The pin to remove.</param>
+        /// <returns>True if removed, else false (probably not found).</returns>
+        public bool RemoveOwnedPin(SpacePin pin)
+        {
+            return ownedPins.Remove(pin);
+        }
+
+        /// <summary>
+        /// Clear the entire list of owned space pins.
+        /// </summary>
+        /// <remarks>
+        /// This removes all pins in the list, whether added dynamically or added in the inspector.
+        /// </remarks>
+        public void ClearOwnedPins()
+        {
+            ownedPins.Clear();
+        }
+
+        /// <summary>
+        /// This should be called whenever pins are added to the owned list.
+        /// </summary>
+        /// <remarks>
+        /// It's only necessary to call this when adding pins to the owned list dynamically
+        /// from script. It is called from OnEnable for all pins added in the inspector or
+        /// collected from the scene graph subtree.
+        /// </remarks>
+        public void ClaimPinOwnership()
+        {
+            CheckInternalWiring();
+            if (CollectFromTree)
+            {
+                var spacePins = GetComponentsInChildren<SpacePin>();
+                foreach (var pin in spacePins)
+                {
+                    AddOwnedPin(pin);
+                }
+            }
+            foreach (var pin in ownedPins)
+            {
+                pin.AlignmentManager = alignmentManager;
+            }
+            if (AutoSave)
+            {
+                needLoad = true;
+            }
         }
         #endregion Public APIs
 
@@ -158,6 +238,8 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         {
             Debug.Assert(alignmentManager != null);
 
+            CheckLoad();
+
             var wltMgr = WorldLockingManager.GetInstance();
             Debug.Assert(alignmentManager != wltMgr.AlignmentManager);
 
@@ -169,6 +251,15 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             subTree.SetGlobalPose(lockedFromPinned);
         }
 
+        private void CheckLoad()
+        {
+            if (needLoad)
+            {
+                needLoad = false;
+                Load();
+            }
+        }
+
         /// <summary>
         /// Check that all internal wiring is complete. Assign our independent alignmentManager
         /// to all space pins beneath us.
@@ -176,16 +267,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// </summary>
         private void OnEnable()
         {
-            CheckInternalWiring();
-            var spacePins = GetComponentsInChildren<SpacePin>();
-            foreach (var pin in spacePins)
-            {
-                pin.AlignmentManager = alignmentManager;
-            }
-            if (AutoSave)
-            {
-                Load();
-            }
+            ClaimPinOwnership();
         }
 
         /// <summary>

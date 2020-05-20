@@ -286,6 +286,12 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
                                     handMeshVertices[i] = WindowsMixedRealityUtilities.SystemVector3ToUnity(vertexAndNormals[i].Position);
                                     handMeshNormals[i] = WindowsMixedRealityUtilities.SystemVector3ToUnity(vertexAndNormals[i].Normal);
                                 }
+                            
+                                /// Hands should follow the Playspace to accommodate teleporting, so fold in the Playspace transform.
+                                Vector3 unityPosition = WindowsMixedRealityUtilities.SystemVector3ToUnity(translation);
+                                unityPosition = MixedRealityPlayspace.TransformPoint(unityPosition);
+                                Quaternion unityRotation = WindowsMixedRealityUtilities.SystemQuaternionToUnity(rotation);
+                                unityRotation = MixedRealityPlayspace.Rotation * unityRotation;
 
                                 HandMeshInfo handMeshInfo = new HandMeshInfo
                                 {
@@ -293,8 +299,8 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
                                     normals = handMeshNormals,
                                     triangles = handMeshTriangleIndices,
                                     uvs = handMeshUVs,
-                                    position = WindowsMixedRealityUtilities.SystemVector3ToUnity(translation),
-                                    rotation = WindowsMixedRealityUtilities.SystemQuaternionToUnity(rotation)
+                                    position = unityPosition,
+                                    rotation = unityRotation
                                 };
 
                                 CoreServices.InputSystem?.RaiseHandMeshUpdated(InputSource, ControllerHandedness, handMeshInfo);
