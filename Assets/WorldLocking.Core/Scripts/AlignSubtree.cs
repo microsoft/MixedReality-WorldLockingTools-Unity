@@ -75,15 +75,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
-        [SerializeField]
-        [Tooltip("Whether to perform saves automatically and load at startup.")]
-        private bool autoSave = false;
-
-        /// <summary>
-        /// Whether to perform saves automatically and load at startup.
-        /// </summary>
-        public bool AutoSave { get { return autoSave; } set { autoSave = value; } }
-
         /// <summary>
         /// The transform to align. If unset, will align this.transform.
         /// </summary>
@@ -98,7 +89,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private AlignmentManager alignmentManager = null;
 
-        private bool needLoad = true;
+        private bool needLoad = false;
 
         #endregion Internal members
 
@@ -189,10 +180,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 pin.AlignmentManager = alignmentManager;
             }
-            if (AutoSave)
-            {
-                needLoad = true;
-            }
         }
         #endregion Public APIs
 
@@ -225,10 +212,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private void Start()
         {
             CheckInternalWiring();
-            if (AutoSave && !WorldLockingManager.GetInstance().AutoSave)
-            {
-                Debug.LogError("AutoSaving alignment requires WorldLockingManager.AutoSave to work as expected.");
-            }
+            needLoad = WorldLockingManager.GetInstance().AutoLoad;
         }
 
         /// <summary>
@@ -268,17 +252,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private void OnEnable()
         {
             ClaimPinOwnership();
-        }
-
-        /// <summary>
-        /// Force a save on the way out.
-        /// </summary>
-        private void OnDisable()
-        {
-            if (AutoSave)
-            {
-                Save();
-            }
         }
 
         #endregion Internal AlignmentManager management
