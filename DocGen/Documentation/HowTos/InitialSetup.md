@@ -1,5 +1,9 @@
 # Initial setup of World Locking Tools
 
+## Slimmest possible setup
+
+This [tutorial](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html) steps through the minimal setup to get up and running with everything in your application world-locked, without any further action (e.g. WorldAnchors) required. Note that it is in the [Samples repo](https://github.com/microsoft/MixedReality-WorldLockingTools-Samples) sibling to this one.
+
 ## Supported environments
 
 World Locking Tools for Unity currently targets UWP applications for the HoloLens family of devices. Both the original HoloLens (x86) and HoloLens 2 (ARM64) are supported.
