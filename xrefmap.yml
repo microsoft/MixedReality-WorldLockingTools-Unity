@@ -268,19 +268,6 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AddOwnedPin
   nameWithType: AlignSubtree.AddOwnedPin
-- uid: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AutoSave
-  name: AutoSave
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_AutoSave
-  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AutoSave
-  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AutoSave
-  nameWithType: AlignSubtree.AutoSave
-- uid: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AutoSave*
-  name: AutoSave
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_AutoSave_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AutoSave
-  isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AutoSave
-  nameWithType: AlignSubtree.AutoSave
 - uid: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.ClaimPinOwnership
   name: ClaimPinOwnership()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_ClaimPinOwnership
