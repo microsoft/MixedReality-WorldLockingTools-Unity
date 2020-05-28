@@ -21,6 +21,8 @@ Or a quick overview of key concepts behind World Locking Tools is contained in t
 
 Or skip straight into introduction of key concepts, leading to further details of concepts and solutions, beginning in the [Concepts section](DocGen/Documentation/Concepts.md).
 
+A number of samples are contained in a sibling repo, [World Locking Tools Samples](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html). Be sure to have a look there for an instructive example. And if you don't find what you are looking for there, you are [encouraged to submit](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/CONTRIBUTING.html) a suggestion or even your own sample.
+
 ## Easy and efficient
 
 World Locking Tools is both powerful and easy to use. Furthermore, it strives to supply only as much as a specific application requires. Any World Locking Tools feature not required by an application will incur no cost in resources or performance.
