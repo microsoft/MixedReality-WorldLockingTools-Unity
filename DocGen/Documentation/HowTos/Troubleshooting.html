@@ -8,7 +8,7 @@
     <title>Trouble shooting | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Trouble shooting | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.53.1.0">
+    <meta name="generator" content="docfx 2.54.0.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -97,6 +97,8 @@
 <p>Check the Unity logs for errors and exceptions.</p>
 <p>Check that your scene camera is attached to at least one other object. See the setup in WorldLocking.Examples.WorldLockingPhysicsSample for example. If you are doing dynamic camera manipulation, you may need to keep the WorldLockingManager informed of the current camera. See <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AdjustmentFrame">WorldLockingManager.AdjustmentFrame</a> and <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_CameraParent">WorldLockingManager.CameraParent</a>.</p>
 <h2 id="more-general-unityar-problems">More general Unity/AR problems</h2>
+<h3 id="directorynotfoundexception-could-not-find-a-part-of-the-path">&quot;DirectoryNotFoundException: Could not find a part of the path&quot;</h3>
+<p>The path has grown too long. See fuller <a href="InitialSetup.html#a-warning-note-on-installation-path-length">explanation here</a>.</p>
 <h3 id="a-remote-operation-is-taking-longer-than-expected-message-box-then-failure-to-deploy">&quot;A remote operation is taking longer than expected&quot; message box then failure to deploy.</h3>
 <p>Check your USB connection. A bad cable, a bad port, missing IPOverUSB, can all cause this. But it's probably somewhere on the communication path from your PC to your device.</p>
 <h3 id="missing-windows-sdk-components">Missing Windows SDK components.</h3>

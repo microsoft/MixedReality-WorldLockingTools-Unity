@@ -8,7 +8,7 @@
     <title>Tools and visualizers | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Tools and visualizers | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.53.1.0">
+    <meta name="generator" content="docfx 2.54.0.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -133,9 +133,11 @@
 <li><p>Edges - These connect the Spongy Anchors to their corresponding Frozen Anchors. Since in the absence of tracker error, these would be coincident, not seeing these edges means everything is working perfectly. In any case, these edges should not be longer than a few centimeters. They are red on the frozen end, and fade to blue on the spongy end.</p>
 </li>
 </ol>
+<p><img src="../../Images/Screens/AnchorGraph.jpg" alt=""></p>
 <p>Enabling the display of the anchor graph that World Locking Tools generates as the user moves about the physical environment requires only dropping the WorldLockingTools &gt; Prefabs &gt; AnchorGraphVisual prefab into the scene. It is customarily added as a sibling to the WorldLockingContext, but its exact placement in the hierarchy is unimportant. However, it should not be placed in the camera hierarchy.</p>
 <h3 id="additional-output">Additional output</h3>
 <p>The <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Examples.html">World Locking Examples</a> includes text diagnostics. Most of these are relevant only to developers of the World Locking Tools, rather than clients of its abilities. However, they are available for read and, as shown in the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.StatusToText.html">StatusToText</a> scrip, for realtime display.</p>
+<p><img src="../../Images/Screens/DiagStats.jpg" alt=""></p>
 <p>For post mortem analysis, the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.Diagnostics.html">Diagnostics</a> section of the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.html">WorldLockingContext</a> can be very useful in reporting Frozen World Engine failures. See <a href="Contributing.html#reporting-a-bug">Reporting a bug</a> for further information.</p>
 </article>
           </div>

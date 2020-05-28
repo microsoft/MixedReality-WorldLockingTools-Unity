@@ -8,7 +8,7 @@
     <title>Initial setup of World Locking Tools | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Initial setup of World Locking Tools | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.53.1.0">
+    <meta name="generator" content="docfx 2.54.0.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -83,7 +83,7 @@
 <h1 id="initial-setup-of-world-locking-tools">Initial setup of World Locking Tools</h1>
 
 <h2 id="slimmest-possible-setup">Slimmest possible setup</h2>
-<p>This <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html">tutorial</a> steps through the minimal setup to get up and running with everything in your application world-locked, without any further action (e.g. WorldAnchors) required. Note that it is in the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Samples">Samples repo</a> sibling to this one.</p>
+<p>The <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html">tutorial here</a> steps through the minimal setup to get up and running with everything in your application world-locked, without any further action (e.g. WorldAnchors) required. Note that it is in the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Samples">Samples repo</a> sibling to this repo.</p>
 <h2 id="supported-environments">Supported environments</h2>
 <p>World Locking Tools for Unity currently targets UWP applications for the HoloLens family of devices. Both the original HoloLens (x86) and HoloLens 2 (ARM64) are supported.</p>
 <p>The World Locking Tools continuous integration (CI) build validates with Unity2018.4.6f1 with Visual Studio 2017. However, extensive WLT development has also been done using the gamut of Unity2018 versions, as well as a range of Unity2019. Both Visual Studio 2017 and Visual Studio 2019 have been used in the development of the tools.</p>
@@ -117,7 +117,7 @@
 <p>Some versions of MRTK have an issue with long installation paths. The full path length of deep subfolders in the MRTK installation can exceed the Windows path limit (260 characters). If a build error of the following form appears:</p>
 <pre><code>DirectoryNotFoundException: Could not find a part of the path &quot;D:\MyOverTwentyEightCharacterLongLengthInstallPath\MixedReality-WorldLockingTools-Unity\Assets\MRTK\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\net46\Microsoft.Windows.MixedReality.DotNetWinRT\Editor\Microsoft.Windows.MixedReality.DotNetWinRT.Editor.asmdef&quot;
 </code></pre>
-<p>but the file is actually there on the drive, then the issue is likely the path length. The MRTK team is aware of this and is working to improve on it. In the meantime, the workaround is to shorten the path prefix by a combination of the following:</p>
+<p>but the file is actually there on the drive, then the issue is likely the path length. The MRTK team is aware of this and is working to improve on it (note: I believe they have made great improvements here and it is no longer an issue). In the meantime, the workaround is to shorten the path prefix by a combination of the following:</p>
 <ol>
 <li>Install the Unity project into a shorter length path root, e.g. &quot;D:\Proj&quot;</li>
 <li>If cloning the repo, clone the root of the World Locking Tools into something shorter than the default &quot;\MixedReality-WorldLockingTools-Unity&quot;, e.g.</li>
