@@ -1,5 +1,9 @@
 # Ray Pins Example
 
+## Accompanying video
+
+See the application in action in this [accompanying video](https://channel9.msdn.com/Shows/Docs-Mixed-Reality/World-Locking-Tools-for-Unity) for a bit of context.
+
 ## Related samples
 
 The [Space Pins](SpacePin.md) sample demonstrates setting up Space Pins by manually manipulating marker objects into position using MRTK affordances. More abstract discussion about the [Space Pin feature](../../Concepts/Advanced/SpacePins.md) is also relevant background for this sample.

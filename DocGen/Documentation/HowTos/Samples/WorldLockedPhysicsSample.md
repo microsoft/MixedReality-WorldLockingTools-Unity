@@ -24,9 +24,13 @@ This sample requires that the following layers be added to the project's Tags & 
 
 ## Running the demo
 
-### The diagnostic HUD
+### The controls HUD
 
 This basic HUD is not specific to this Physics Beam Sample, but only allows runtime control of World Locking Tools' behavior to explore its capabilities. It is available as a drop-in for development on any application using World Locking Tools, as described in World Locking Tools' [Initial Setup](../InitialSetup.md).
+
+![](~/DocGen/Images/Screens/ControlsHud.jpg)
+
+Additional [diagnostic statistics](../Tools.md#additional-output) are displayed by default, but can be disabled from the Control HUD.
 
 ### The modes radio buttons
 

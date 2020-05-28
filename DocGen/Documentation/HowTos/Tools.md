@@ -61,10 +61,14 @@ The [AnchorGraphVisual](xref:Microsoft.MixedReality.WorldLocking.Tools.AnchorGra
 
 4. Edges - These connect the Spongy Anchors to their corresponding Frozen Anchors. Since in the absence of tracker error, these would be coincident, not seeing these edges means everything is working perfectly. In any case, these edges should not be longer than a few centimeters. They are red on the frozen end, and fade to blue on the spongy end.
 
+![](~/DocGen/Images/Screens/AnchorGraph.jpg)
+
 Enabling the display of the anchor graph that World Locking Tools generates as the user moves about the physical environment requires only dropping the WorldLockingTools > Prefabs > AnchorGraphVisual prefab into the scene. It is customarily added as a sibling to the WorldLockingContext, but its exact placement in the hierarchy is unimportant. However, it should not be placed in the camera hierarchy.
 
 ### Additional output
 
 The [World Locking Examples](xref:Microsoft.MixedReality.WorldLocking.Examples) includes text diagnostics. Most of these are relevant only to developers of the World Locking Tools, rather than clients of its abilities. However, they are available for read and, as shown in the [StatusToText](xref:Microsoft.MixedReality.WorldLocking.Tools.StatusToText) scrip, for realtime display.
+
+![](~/DocGen/Images/Screens/DiagStats.jpg)
 
 For post mortem analysis, the [Diagnostics](xref:Microsoft.MixedReality.WorldLocking.Core.Diagnostics) section of the [WorldLockingContext](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext) can be very useful in reporting Frozen World Engine failures. See [Reporting a bug](Contributing.md#reporting-a-bug) for further information.
