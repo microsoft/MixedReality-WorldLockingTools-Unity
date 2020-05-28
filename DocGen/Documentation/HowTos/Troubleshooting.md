@@ -27,6 +27,10 @@ Check that your scene camera is attached to at least one other object. See the s
 
 ## More general Unity/AR problems
 
+### "DirectoryNotFoundException: Could not find a part of the path"
+
+The path has grown too long. See fuller [explanation here](InitialSetup.md#a-warning-note-on-installation-path-length).
+
 ### "A remote operation is taking longer than expected" message box then failure to deploy.
 
 Check your USB connection. A bad cable, a bad port, missing IPOverUSB, can all cause this. But it's probably somewhere on the communication path from your PC to your device.

@@ -2,7 +2,7 @@
 
 ## Slimmest possible setup
 
-This [tutorial](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html) steps through the minimal setup to get up and running with everything in your application world-locked, without any further action (e.g. WorldAnchors) required. Note that it is in the [Samples repo](https://github.com/microsoft/MixedReality-WorldLockingTools-Samples) sibling to this one.
+The [tutorial here](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html) steps through the minimal setup to get up and running with everything in your application world-locked, without any further action (e.g. WorldAnchors) required. Note that it is in the [Samples repo](https://github.com/microsoft/MixedReality-WorldLockingTools-Samples) sibling to this repo.
 
 ## Supported environments
 
@@ -70,7 +70,7 @@ Some versions of MRTK have an issue with long installation paths. The full path 
 DirectoryNotFoundException: Could not find a part of the path "D:\MyOverTwentyEightCharacterLongLengthInstallPath\MixedReality-WorldLockingTools-Unity\Assets\MRTK\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\net46\Microsoft.Windows.MixedReality.DotNetWinRT\Editor\Microsoft.Windows.MixedReality.DotNetWinRT.Editor.asmdef"
 ```
 
-but the file is actually there on the drive, then the issue is likely the path length. The MRTK team is aware of this and is working to improve on it. In the meantime, the workaround is to shorten the path prefix by a combination of the following:
+but the file is actually there on the drive, then the issue is likely the path length. The MRTK team is aware of this and is working to improve on it (note: I believe they have made great improvements here and it is no longer an issue). In the meantime, the workaround is to shorten the path prefix by a combination of the following:
 
 1) Install the Unity project into a shorter length path root, e.g. "D:\Proj"
 2) If cloning the repo, clone the root of the World Locking Tools into something shorter than the default "\MixedReality-WorldLockingTools-Unity", e.g. 
