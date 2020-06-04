@@ -76,8 +76,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 
         /// <summary>
-        /// The transform to align. If unset, will align this.transform.
+        /// The transform to align. If unset, will align this.transform. 
         /// </summary>
+        /// <remarks>
+        /// This transform must be identity at startup, and must not be modified
+        /// by anything but this AlignSubtree component.
+        /// </remarks>
         public Transform subTree = null;
 
         #endregion Inspector fields
