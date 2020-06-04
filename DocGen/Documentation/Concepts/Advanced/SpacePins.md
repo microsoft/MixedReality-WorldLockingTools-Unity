@@ -131,6 +131,10 @@ For example, consider a scenario in which annotations for two automobiles are to
 
 In this scenario, then, Space Pins can be used to pin the virtual chassis and annotations for each of the vehicles independently. The entire virtual representation of each of the vehicles can be setup in Unity, and then mapped onto the physical vehicle at runtime. This alignment might be manual using MRTK UX or automated using QR codes or any other strategy. Regardless of how the data of the correspondence between virtual and physical reference points is determined, once fed to the WLT via the Space Pins API, WLT will keep the virtual and physical objects aligned in a perceptually optimized manner.
 
+In the case of aligning the global coordinate space, the alignment happens by manipulating the Adjustment node (generally the parent of the parent of the camera). That node should be considered reserved for the WLT's use. Any other tampering with that transform will result in undefined behavior.
+
+Likewise, when aligning a subtree, the alignment needs to own a transform, at the (sub)root of the subtree to be aligned. Any external tampering with that transform will result in undefined behavior.
+
 Note that before the independent spaces are pinned, they will be dragged along as the global space is pinned. However, once an independent space is pinned, it is considered pinned to the physical world, and so subsequent modifications to the pinning of the global space to the physical world will not affect it.
 
 ### See also
