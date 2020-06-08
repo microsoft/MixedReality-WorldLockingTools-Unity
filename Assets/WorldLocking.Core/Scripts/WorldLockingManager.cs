@@ -376,10 +376,26 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 
         /// <summary>
+        /// Push the current anchor maintenance settings to the AnchorManager.
+        /// </summary>
+        private void ApplyAnchorSettings()
+        {
+            if (!shared.anchorSettings.IsValid)
+            {
+                Debug.LogWarning("Invalid anchor management settings detected, resetting to default values.");
+                shared.anchorSettings.UseDefaults = true;
+            }
+            AnchorManager.MinNewAnchorDistance = shared.anchorSettings.MinNewAnchorDistance;
+            AnchorManager.MaxAnchorEdgeLength = shared.anchorSettings.MaxAnchorEdgeLength;
+        }
+
+        /// <summary>
         /// Make sure any new settings have a chance to be applied. 
         /// </summary>
         private void ApplyNewSettings()
         {
+            ApplyAnchorSettings();
+
             if (!shared.linkageSettings.UseExisting)
             {
                 CameraParent = shared.linkageSettings.CameraParent;

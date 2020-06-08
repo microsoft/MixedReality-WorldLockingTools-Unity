@@ -14,6 +14,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         [SerializeField]
         [Tooltip("Ignore set values and use default behavior. When set, will reset all values to defaults.")]
         private bool useDefaults;
+
         /// <summary>
         /// Ignore set values and use default behavior. When set, will reset all values to defaults.
         /// </summary>
@@ -94,12 +95,18 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public LinkageSettings linkageSettings;
 
         /// <summary>
+        /// Anchor management settings.
+        /// </summary>
+        public AnchorSettings anchorSettings;
+
+        /// <summary>
         /// Wrap a copy of settings initialized to default values.
         /// </summary>
         public SharedManagerSettings()
         {
             settings.InitToDefaults();
             linkageSettings.InitToDefaults();
+            anchorSettings.InitToDefaults();
         }
     }
 
