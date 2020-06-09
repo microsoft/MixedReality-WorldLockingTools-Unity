@@ -17,6 +17,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     {
         bool showWorld = true;
         bool showLinkage = true;
+        bool showAnchor = false;
         bool showDiagnostics = false;
 
         /// <summary>
@@ -39,6 +40,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 SerializedProperty mgrUseDefaultsProp = AddProperty(mgrPath, "useDefaults");
 
                 bool mgrUseDefault = mgrUseDefaultsProp.boolValue;
+                context.SharedSettings.settings.UseDefaults = mgrUseDefault;
 
                 using (new EditorGUI.DisabledScope(mgrUseDefault))
                 {
@@ -60,8 +62,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             EditorGUILayout.Space();
 
-            showLinkage = EditorGUILayout.Foldout(showWorld, "Camera Transform Links", true);
-            if (showWorld)
+            showLinkage = EditorGUILayout.Foldout(showLinkage, "Camera Transform Links", true);
+            if (showLinkage)
             {
                 string mgrPath = "shared.linkageSettings.";
 
@@ -76,6 +78,30 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                         AddProperty(mgrPath, "AdjustmentFrame");
 
                         AddProperty(mgrPath, "CameraParent");
+                    }
+                }
+
+            }
+
+            EditorGUILayout.Space();
+
+            showAnchor = EditorGUILayout.Foldout(showAnchor, "Anchor Management", true);
+            if (showAnchor)
+            {
+                string mgrPath = "shared.anchorSettings.";
+
+                SerializedProperty anchorUseDefaults = AddProperty(mgrPath, "useDefaults");
+
+                bool useDefaults = anchorUseDefaults.boolValue;
+                context.SharedSettings.anchorSettings.UseDefaults = useDefaults;
+
+                using (new EditorGUI.DisabledScope(useDefaults))
+                {
+                    using (new EditorGUI.IndentLevelScope())
+                    {
+                        AddProperty(mgrPath, "MinNewAnchorDistance");
+
+                        AddProperty(mgrPath, "MaxAnchorEdgeLength");
                     }
                 }
 

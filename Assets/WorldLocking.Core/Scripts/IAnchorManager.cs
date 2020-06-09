@@ -31,6 +31,20 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         string ErrorStatus { get; }
 
         /// <summary>
+        /// Minimum distance of head to nearest anchor to create a new anchor.
+        /// </summary>
+        float MinNewAnchorDistance { get; set; }
+
+        /// <summary>
+        /// Maximum distance between two anchors to create an edge between them.
+        /// </summary>
+        /// <remarks>
+        /// Note that the MaxAnchorEdgeLength should be longer than the MinAnchorDistance,
+        /// or else anchors will not be connected into a graph as they are created.
+        /// </remarks>
+        float MaxAnchorEdgeLength { get; set; }
+
+        /// <summary>
         /// Delete all spongy anchor objects and reset internal state
         /// </summary>
         void Reset();

@@ -35,11 +35,23 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// </remarks>
     public class AnchorManager : IAnchorManager
     {
-        // configurable parameter
-        private const float MinAnchorDistance = 1.0f; // minimum distance that can occur in regular anchor creation
-        private const float MaxAnchorDistance = 1.2f; // maximum distance to be considered for creating edges to new anchors
+        /// <summary>
+        /// minimum distance that can occur in regular anchor creation.
+        /// </summary>
+        private float minNewAnchorDistance = 1.0f;
 
-        private const float AnchorAddOutTime = 0.1f;
+        /// <inheritdoc/>
+        public float MinNewAnchorDistance { get { return minNewAnchorDistance; } set { minNewAnchorDistance = value; } }
+
+        /// <summary>
+        /// maximum distance to be considered for creating edges to new anchors
+        /// </summary>
+        private float maxAnchorEdgeLength = 1.2f;
+
+        /// <inheritdoc/>
+        public float MaxAnchorEdgeLength { get { return maxAnchorEdgeLength; } set { maxAnchorEdgeLength = value; } }
+
+        private static readonly float AnchorAddOutTime = 0.1f;
 
         // mafinc - this ErrorStatus would be well refactored.
         /// <summary>
@@ -56,9 +68,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private readonly Plugin plugin;
         private readonly Transform worldAnchorParent;
-
-        private readonly float innerSphereRadSqr;
-        private readonly float outerSphereRadSqr;
 
         // New anchor creation:
         // 
@@ -92,9 +101,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             this.plugin = plugin;
 
             worldAnchorParent = new GameObject("SpongyWorldAnchorRoot").transform;
-
-            innerSphereRadSqr = MinAnchorDistance * MinAnchorDistance;
-            outerSphereRadSqr = MaxAnchorDistance * MaxAnchorDistance;
 
             lastAnchorAddTime = float.NegativeInfinity;
             lastTrackingInactiveTime = float.NegativeInfinity;
@@ -203,6 +209,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             List<AnchorEdge> newEdges;
             AnchorId newId = FinalizeNewAnchor(out newEdges);
+
+            float innerSphereRadSqr = MinNewAnchorDistance * MinNewAnchorDistance;
+            float outerSphereRadSqr = MaxAnchorEdgeLength * MaxAnchorEdgeLength;
 
             foreach (var keyval in spongyAnchors)
             {

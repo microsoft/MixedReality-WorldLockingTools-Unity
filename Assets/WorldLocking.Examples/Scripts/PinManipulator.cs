@@ -251,10 +251,10 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
                 boundingBox.ScaleStopped.AddListener(FinishManipulation);
                 float maxScaleFactor = 8.0f;
                 float minScaleFactor = 0.2f;
-                TransformScaleHandler scaleHandler = owner.GetComponent<TransformScaleHandler>();
+                MinMaxScaleConstraint scaleHandler = owner.GetComponent<MinMaxScaleConstraint>();
                 if (scaleHandler == null)
                 {
-                    scaleHandler = owner.gameObject.AddComponent<TransformScaleHandler>();
+                    scaleHandler = owner.gameObject.AddComponent<MinMaxScaleConstraint>();
                 }
                 scaleHandler.RelativeToInitialState = true;
                 scaleHandler.ScaleMaximum = maxScaleFactor;
