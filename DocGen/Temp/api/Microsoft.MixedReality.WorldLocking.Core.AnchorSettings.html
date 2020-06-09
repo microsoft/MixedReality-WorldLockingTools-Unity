@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class SharedManagerSettings
+    <title>Struct AnchorSettings
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class SharedManagerSettings
+    <meta name="title" content="Struct AnchorSettings
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.54.0.0">
     
@@ -81,26 +81,24 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Core_SharedManagerSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings" class="text-break">Class SharedManagerSettings
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings" class="text-break">Struct AnchorSettings
   </h1>
-  <div class="markdown level0 summary"><p>Shareable (reference type) version of Settings (value struct).</p>
+  <div class="markdown level0 summary"><p>Settings related to management of the internal anchor graph.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">SharedManagerSettings</span></div>
-  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.equals#System_ValueType_Equals_System_Object_">ValueType.Equals(Object)</a>
     </div>
     <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.gethashcode#System_ValueType_GetHashCode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.tostring#System_ValueType_ToString">ValueType.ToString()</a>
     </div>
     <div>
       <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
@@ -109,46 +107,27 @@
       <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
     </div>
     <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
-    </div>
-    <div>
       <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SharedManagerSettings_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Serializable]
-public class SharedManagerSettings</code></pre>
-  </div>
-  <h3 id="constructors">Constructors
-  </h3>
-  
-  
-  <a id="Microsoft_MixedReality_WorldLocking_Core_SharedManagerSettings__ctor_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.#ctor*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SharedManagerSettings__ctor" data-uid="Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.#ctor">SharedManagerSettings()</h4>
-  <div class="markdown level1 summary"><p>Wrap a copy of settings initialized to default values.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SharedManagerSettings()</code></pre>
+public struct AnchorSettings</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SharedManagerSettings_anchorSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.anchorSettings">anchorSettings</h4>
-  <div class="markdown level1 summary"><p>Anchor management settings.</p>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_MaxAnchorEdgeLength" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.MaxAnchorEdgeLength">MaxAnchorEdgeLength</h4>
+  <div class="markdown level1 summary"><p>The maximum distance between two anchors to connect them with a graph edge.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AnchorSettings anchorSettings</code></pre>
+    <pre><code class="lang-csharp hljs">public float MaxAnchorEdgeLength</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -160,20 +139,23 @@ public class SharedManagerSettings</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html">AnchorSettings</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_MaxAnchorEdgeLength_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This must be greater than MinNewAnchorDistance to create a connected graph of anchors.</p>
+</div>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SharedManagerSettings_linkageSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.linkageSettings">linkageSettings</h4>
-  <div class="markdown level1 summary"><p>Transform links to be shared.</p>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_MinNewAnchorDistance" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.MinNewAnchorDistance">MinNewAnchorDistance</h4>
+  <div class="markdown level1 summary"><p>The minimum distance to the current closest anchor before creating a new anchor.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LinkageSettings linkageSettings</code></pre>
+    <pre><code class="lang-csharp hljs">public float MinNewAnchorDistance</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -185,22 +167,28 @@ public class SharedManagerSettings</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.html">LinkageSettings</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_MinNewAnchorDistance_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A greater value will result in a less dense anchor coverage.</p>
+</div>
+  <h3 id="properties">Properties
+  </h3>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SharedManagerSettings_settings" data-uid="Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.settings">settings</h4>
-  <div class="markdown level1 summary"><p>The manager settings to be shared.</p>
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_IsValid_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.IsValid*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_IsValid" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.IsValid">IsValid</h4>
+  <div class="markdown level1 summary"><p>Check the validity of the settings.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ManagerSettings settings</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsValid { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -210,11 +198,50 @@ public class SharedManagerSettings</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.ManagerSettings.html">ManagerSettings</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_UseDefaults_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.UseDefaults*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_UseDefaults" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.UseDefaults">UseDefaults</h4>
+  <div class="markdown level1 summary"><p>Ignore set values and use default behavior. When set, will reset all values to defaults.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UseDefaults { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_InitToDefaults_" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.InitToDefaults*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_InitToDefaults" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.InitToDefaults">InitToDefaults()</h4>
+  <div class="markdown level1 summary"><p>Init all fields to default values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InitToDefaults()</code></pre>
+  </div>
 </article>
           </div>
           

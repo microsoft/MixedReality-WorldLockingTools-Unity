@@ -449,6 +449,32 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.LoadAnchors
   nameWithType: AnchorManager.LoadAnchors
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.MaxAnchorEdgeLength
+  name: MaxAnchorEdgeLength
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_MaxAnchorEdgeLength
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.MaxAnchorEdgeLength
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.MaxAnchorEdgeLength
+  nameWithType: AnchorManager.MaxAnchorEdgeLength
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.MaxAnchorEdgeLength*
+  name: MaxAnchorEdgeLength
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_MaxAnchorEdgeLength_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.MaxAnchorEdgeLength
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.MaxAnchorEdgeLength
+  nameWithType: AnchorManager.MaxAnchorEdgeLength
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.MinNewAnchorDistance
+  name: MinNewAnchorDistance
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_MinNewAnchorDistance
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.MinNewAnchorDistance
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.MinNewAnchorDistance
+  nameWithType: AnchorManager.MinNewAnchorDistance
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.MinNewAnchorDistance*
+  name: MinNewAnchorDistance
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_MinNewAnchorDistance_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.MinNewAnchorDistance
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.MinNewAnchorDistance
+  nameWithType: AnchorManager.MinNewAnchorDistance
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.NumAnchors
   name: NumAnchors
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_NumAnchors
@@ -545,6 +571,63 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Update
   nameWithType: AnchorManager.Update
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings
+  name: AnchorSettings
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings
+  nameWithType: AnchorSettings
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.InitToDefaults
+  name: InitToDefaults()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_InitToDefaults
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.InitToDefaults
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.InitToDefaults()
+  nameWithType: AnchorSettings.InitToDefaults()
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.InitToDefaults*
+  name: InitToDefaults
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_InitToDefaults_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.InitToDefaults
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.InitToDefaults
+  nameWithType: AnchorSettings.InitToDefaults
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.IsValid
+  name: IsValid
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_IsValid
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.IsValid
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.IsValid
+  nameWithType: AnchorSettings.IsValid
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.IsValid*
+  name: IsValid
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_IsValid_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.IsValid
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.IsValid
+  nameWithType: AnchorSettings.IsValid
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.MaxAnchorEdgeLength
+  name: MaxAnchorEdgeLength
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_MaxAnchorEdgeLength
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.MaxAnchorEdgeLength
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.MaxAnchorEdgeLength
+  nameWithType: AnchorSettings.MaxAnchorEdgeLength
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.MinNewAnchorDistance
+  name: MinNewAnchorDistance
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_MinNewAnchorDistance
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.MinNewAnchorDistance
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.MinNewAnchorDistance
+  nameWithType: AnchorSettings.MinNewAnchorDistance
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.UseDefaults
+  name: UseDefaults
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_UseDefaults
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.UseDefaults
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.UseDefaults
+  nameWithType: AnchorSettings.UseDefaults
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.UseDefaults*
+  name: UseDefaults
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_UseDefaults_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.UseDefaults
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.UseDefaults
+  nameWithType: AnchorSettings.UseDefaults
 - uid: Microsoft.MixedReality.WorldLocking.Core.AttachmentPoint
   name: AttachmentPoint
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AttachmentPoint.html
@@ -1328,6 +1411,32 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.LoadAnchors
   nameWithType: IAnchorManager.LoadAnchors
+- uid: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.MaxAnchorEdgeLength
+  name: MaxAnchorEdgeLength
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_IAnchorManager_MaxAnchorEdgeLength
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.MaxAnchorEdgeLength
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.MaxAnchorEdgeLength
+  nameWithType: IAnchorManager.MaxAnchorEdgeLength
+- uid: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.MaxAnchorEdgeLength*
+  name: MaxAnchorEdgeLength
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_IAnchorManager_MaxAnchorEdgeLength_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.MaxAnchorEdgeLength
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.MaxAnchorEdgeLength
+  nameWithType: IAnchorManager.MaxAnchorEdgeLength
+- uid: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.MinNewAnchorDistance
+  name: MinNewAnchorDistance
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_IAnchorManager_MinNewAnchorDistance
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.MinNewAnchorDistance
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.MinNewAnchorDistance
+  nameWithType: IAnchorManager.MinNewAnchorDistance
+- uid: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.MinNewAnchorDistance*
+  name: MinNewAnchorDistance
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_IAnchorManager_MinNewAnchorDistance_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.MinNewAnchorDistance
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.MinNewAnchorDistance
+  nameWithType: IAnchorManager.MinNewAnchorDistance
 - uid: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.NumAnchors
   name: NumAnchors
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_IAnchorManager_NumAnchors
@@ -2344,6 +2453,12 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.SharedManagerSettings
   nameWithType: SharedManagerSettings.SharedManagerSettings
+- uid: Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.anchorSettings
+  name: anchorSettings
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.html#Microsoft_MixedReality_WorldLocking_Core_SharedManagerSettings_anchorSettings
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.anchorSettings
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.anchorSettings
+  nameWithType: SharedManagerSettings.anchorSettings
 - uid: Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.linkageSettings
   name: linkageSettings
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SharedManagerSettings.html#Microsoft_MixedReality_WorldLocking_Core_SharedManagerSettings_linkageSettings
