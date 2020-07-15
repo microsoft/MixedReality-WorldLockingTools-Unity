@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 10
+    serializedVersion: 12
     m_Resolution: 2
     m_BakeResolution: 40
     m_AtlasSize: 1024
@@ -62,6 +62,7 @@ LightmapSettings:
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
@@ -76,10 +77,16 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 2
+    m_PVRDenoiserTypeDirect: 0
+    m_PVRDenoiserTypeIndirect: 0
+    m_PVRDenoiserTypeAO: 0
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVRFilteringMode: 1
+    m_PVREnvironmentMIS: 0
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -87,7 +94,9 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -119,11 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1338632292}
     m_Modifications:
-    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Name
-      value: NEPuck
-      objectReference: {fileID: 0}
     - target: {fileID: 153216745292661217, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -184,6 +188,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Name
+      value: NEPuck
+      objectReference: {fileID: 0}
     - target: {fileID: 4433549108466666530, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -209,16 +218,6 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5091560195038823428, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_text
@@ -228,6 +227,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0adb18151d28245946cfcad9d4e49d, type: 3}
@@ -305,6 +314,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -316,6 +326,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -359,12 +370,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60920732}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -374,6 +387,24 @@ Light:
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
@@ -381,12 +412,15 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &60920734
@@ -502,8 +536,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -518,13 +550,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchUpdated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &96611970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,9 +625,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Events: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!65 &96611972
 BoxCollider:
@@ -655,11 +682,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1338632292}
     m_Modifications:
-    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Name
-      value: SEPuck
-      objectReference: {fileID: 0}
     - target: {fileID: 153216745292661217, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -720,6 +742,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Name
+      value: SEPuck
+      objectReference: {fileID: 0}
     - target: {fileID: 4433549108466666530, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -745,16 +772,6 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5091560195038823428, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_text
@@ -764,6 +781,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0adb18151d28245946cfcad9d4e49d, type: 3}
@@ -780,11 +807,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820074050}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: X-4
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -839,6 +861,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: X-4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
@@ -912,6 +939,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -923,6 +951,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1007,6 +1036,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1018,6 +1048,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1100,6 +1131,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1111,6 +1143,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1195,6 +1228,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1206,6 +1240,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1325,6 +1360,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1336,6 +1372,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1395,6 +1432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf98dd1206224111a38765365e98e207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockCursorWhenFocusLocked: 1
   setCursorInvisibleWhenFocusLocked: 0
   maxGazeCollisionDistance: 10
   raycastLayerMasks:
@@ -1405,7 +1443,6 @@ MonoBehaviour:
   gazeTransform: {fileID: 0}
   minHeadVelocityThreshold: 0.5
   maxHeadVelocityThreshold: 2
-  useEyeTracking: 1
 --- !u!114 &245211475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1434,7 +1471,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 245211472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
@@ -1457,12 +1494,13 @@ Camera:
   m_GameObject: {fileID: 245211472}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -1470,7 +1508,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -1564,6 +1602,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1575,6 +1614,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1602,11 +1642,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820074050}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: X-1
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1661,6 +1696,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: X-1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
@@ -1745,11 +1785,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2030276681}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: Z+5
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1804,6 +1839,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: Z+5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
@@ -1877,6 +1917,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1888,6 +1929,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1982,6 +2024,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1993,6 +2036,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2012,11 +2056,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820074050}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: X+1
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2071,6 +2110,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: X+1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
@@ -2142,6 +2186,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2153,6 +2198,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2264,6 +2310,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2275,6 +2322,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2326,11 +2374,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2030276681}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: Z-5
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2386,6 +2429,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: Z-5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
 --- !u!1001 &788526821
@@ -2395,11 +2443,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820074050}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: X-3
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2455,6 +2498,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: X-3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
 --- !u!4 &788526822 stripped
@@ -2470,11 +2518,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2030276681}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: Z0
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2529,6 +2572,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: Z0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
@@ -2677,6 +2725,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2688,6 +2737,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2769,8 +2819,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -2785,13 +2833,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchUpdated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &843838890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2864,9 +2908,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Events: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!65 &843838892
 BoxCollider:
@@ -2943,6 +2986,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2954,6 +2998,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3002,6 +3047,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1470141260}
+  - {fileID: 1727885288}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3069,6 +3115,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3080,6 +3127,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3174,6 +3222,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3185,6 +3234,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3218,11 +3268,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2030276681}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: Z+4
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3277,6 +3322,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: Z+4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
@@ -3425,8 +3475,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -3441,13 +3489,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchUpdated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &1270526417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3520,9 +3564,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Events: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!65 &1270526419
 BoxCollider:
@@ -3544,11 +3587,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2030276681}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: Z-4
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3604,6 +3642,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: Z-4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
 --- !u!4 &1293593255 stripped
@@ -3619,11 +3662,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820074050}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: X0
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3679,6 +3717,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: X0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
 --- !u!1 &1338632291
@@ -3726,11 +3769,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820074050}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: X+2
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3786,6 +3824,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: X+2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
 --- !u!1001 &1436211307
@@ -3795,11 +3838,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820074050}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: X+5
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3854,6 +3892,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: X+5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
@@ -3931,6 +3974,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3942,6 +3986,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4126,6 +4171,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4137,6 +4183,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4219,6 +4266,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4230,6 +4278,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4311,8 +4360,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -4327,13 +4374,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchUpdated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &1558342330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4406,9 +4449,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Events: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!65 &1558342332
 BoxCollider:
@@ -4430,11 +4472,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1338632292}
     m_Modifications:
-    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Name
-      value: EWallPuck
-      objectReference: {fileID: 0}
     - target: {fileID: 153216745292661217, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4495,6 +4532,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Name
+      value: EWallPuck
+      objectReference: {fileID: 0}
     - target: {fileID: 4433549108466666530, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -4519,16 +4561,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5091560195038823428, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
@@ -4558,6 +4590,16 @@ PrefabInstance:
     - target: {fileID: 5091560195038823428, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4629,8 +4671,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -4645,13 +4685,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchUpdated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &1613705059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4724,9 +4760,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Events: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!65 &1613705061
 BoxCollider:
@@ -4809,6 +4844,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4820,6 +4856,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4896,6 +4933,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4907,6 +4945,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4968,11 +5007,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1338632292}
     m_Modifications:
-    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Name
-      value: NWPuck
-      objectReference: {fileID: 0}
     - target: {fileID: 153216745292661217, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5033,6 +5067,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Name
+      value: NWPuck
+      objectReference: {fileID: 0}
     - target: {fileID: 4433549108466666530, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -5058,16 +5097,6 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5091560195038823428, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_text
@@ -5077,6 +5106,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0adb18151d28245946cfcad9d4e49d, type: 3}
@@ -5144,6 +5183,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5155,6 +5195,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5182,11 +5223,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2030276681}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: Z+2
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5242,6 +5278,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: Z+2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
 --- !u!1001 &1714838746
@@ -5251,11 +5292,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2030276681}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: Z-2
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5310,6 +5346,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: Z-2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
@@ -5377,6 +5418,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5388,6 +5430,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5415,11 +5458,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1338632292}
     m_Modifications:
-    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Name
-      value: WWallPuck
-      objectReference: {fileID: 0}
     - target: {fileID: 153216745292661217, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5480,6 +5518,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Name
+      value: WWallPuck
+      objectReference: {fileID: 0}
     - target: {fileID: 4433549108466666530, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -5504,16 +5547,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5091560195038823428, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
@@ -5545,6 +5578,16 @@ PrefabInstance:
       propertyPath: m_textInfo.spaceCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0adb18151d28245946cfcad9d4e49d, type: 3}
 --- !u!4 &1727862552 stripped
@@ -5553,6 +5596,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1727862551}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1727885288 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4446902248589600293, guid: ee723aa1b485d394b8d6ca2153c6e517,
+    type: 3}
+  m_PrefabInstance: {fileID: 4446902247966427597}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1744628496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5560,11 +5609,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820074050}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: X+4
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5620,6 +5664,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: X+4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
 --- !u!4 &1744628497 stripped
@@ -5641,11 +5690,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2030276681}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: Z+3
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5701,6 +5745,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: Z+3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
 --- !u!1001 &1787920978
@@ -5710,11 +5759,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2030276681}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: Z+1
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5770,6 +5814,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: Z+1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
 --- !u!1001 &1802051322
@@ -5779,11 +5828,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2030276681}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: Z-3
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5839,6 +5883,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: Z-3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
 --- !u!4 &1802051323 stripped
@@ -5854,11 +5903,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820074050}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: X-2
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5913,6 +5957,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: X-2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
@@ -5978,6 +6027,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5989,6 +6039,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6016,11 +6067,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1338632292}
     m_Modifications:
-    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Name
-      value: SWallPuck
-      objectReference: {fileID: 0}
     - target: {fileID: 153216745292661217, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6081,6 +6127,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Name
+      value: SWallPuck
+      objectReference: {fileID: 0}
     - target: {fileID: 4433549108466666530, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -6105,16 +6156,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5091560195038823428, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
@@ -6146,6 +6187,16 @@ PrefabInstance:
       propertyPath: m_textInfo.spaceCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0adb18151d28245946cfcad9d4e49d, type: 3}
 --- !u!4 &1875890716 stripped
@@ -6161,11 +6212,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820074050}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: X+3
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6220,6 +6266,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: X+3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
@@ -6293,6 +6344,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6304,6 +6356,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6394,6 +6447,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6405,6 +6459,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6435,41 +6490,6 @@ PrefabInstance:
     - target: {fileID: 1141710421841518, guid: f0777d53f35d4cb42827b5c3bdf227bd, type: 3}
       propertyPath: m_Name
       value: WorldLockingManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
-        type: 3}
-      propertyPath: shared.settings.AdjustmentFrame
-      value: 
-      objectReference: {fileID: 188326911}
-    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
-        type: 3}
-      propertyPath: shared.settings.CameraParent
-      value: 
-      objectReference: {fileID: 666096264}
-    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
-        type: 3}
-      propertyPath: shared.settings.AutoLoad
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
-        type: 3}
-      propertyPath: shared.settings.AutoSave
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
-        type: 3}
-      propertyPath: shared.linkageSettings.AdjustmentFrame
-      value: 
-      objectReference: {fileID: 188326911}
-    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
-        type: 3}
-      propertyPath: shared.linkageSettings.CameraParent
-      value: 
-      objectReference: {fileID: 666096264}
-    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
-        type: 3}
-      propertyPath: shared.settings.useDefaults
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4133740187393454, guid: f0777d53f35d4cb42827b5c3bdf227bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6513,6 +6533,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4133740187393454, guid: f0777d53f35d4cb42827b5c3bdf227bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
+        type: 3}
+      propertyPath: shared.settings.AdjustmentFrame
+      value: 
+      objectReference: {fileID: 188326911}
+    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
+        type: 3}
+      propertyPath: shared.settings.CameraParent
+      value: 
+      objectReference: {fileID: 666096264}
+    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
+        type: 3}
+      propertyPath: shared.settings.AutoLoad
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
+        type: 3}
+      propertyPath: shared.settings.AutoSave
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
+        type: 3}
+      propertyPath: shared.linkageSettings.AdjustmentFrame
+      value: 
+      objectReference: {fileID: 188326911}
+    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
+        type: 3}
+      propertyPath: shared.linkageSettings.CameraParent
+      value: 
+      objectReference: {fileID: 666096264}
+    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
+        type: 3}
+      propertyPath: shared.settings.useDefaults
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
+        type: 3}
+      propertyPath: shared.settings.Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6621,8 +6681,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -6637,13 +6695,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchUpdated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &2014020895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6716,9 +6770,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Events: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!65 &2014020897
 BoxCollider:
@@ -6797,6 +6850,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6808,6 +6862,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6835,11 +6890,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2030276681}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: Z-1
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6895,6 +6945,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: Z-1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
 --- !u!1 &2030276680
@@ -6945,11 +7000,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1338632292}
     m_Modifications:
-    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Name
-      value: NWallPuck
-      objectReference: {fileID: 0}
     - target: {fileID: 153216745292661217, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7010,6 +7060,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Name
+      value: NWallPuck
+      objectReference: {fileID: 0}
     - target: {fileID: 4433549108466666530, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -7034,16 +7089,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5091560195038823428, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
@@ -7074,6 +7119,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.spaceCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0adb18151d28245946cfcad9d4e49d, type: 3}
@@ -7151,6 +7206,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7162,6 +7218,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7243,8 +7300,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -7259,13 +7314,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchUpdated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &2102803207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7338,9 +7389,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Events: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!65 &2102803209
 BoxCollider:
@@ -7419,6 +7469,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7430,6 +7481,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7476,8 +7528,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -7492,13 +7542,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchUpdated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &982810254184948271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7525,8 +7571,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -7541,13 +7585,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchUpdated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &1093523989109561404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7612,8 +7652,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -7628,13 +7666,78 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnTouchUpdated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Microsoft.MixedReality.Toolkit.UI.TouchEvent, Microsoft.MixedReality.Toolkit.SDK,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!1001 &4446902247966427597
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1012015080}
+    m_Modifications:
+    - target: {fileID: 4446902248589600293, guid: ee723aa1b485d394b8d6ca2153c6e517,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446902248589600293, guid: ee723aa1b485d394b8d6ca2153c6e517,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446902248589600293, guid: ee723aa1b485d394b8d6ca2153c6e517,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446902248589600293, guid: ee723aa1b485d394b8d6ca2153c6e517,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446902248589600293, guid: ee723aa1b485d394b8d6ca2153c6e517,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446902248589600293, guid: ee723aa1b485d394b8d6ca2153c6e517,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446902248589600293, guid: ee723aa1b485d394b8d6ca2153c6e517,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446902248589600293, guid: ee723aa1b485d394b8d6ca2153c6e517,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446902248589600293, guid: ee723aa1b485d394b8d6ca2153c6e517,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446902248589600293, guid: ee723aa1b485d394b8d6ca2153c6e517,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446902248589600293, guid: ee723aa1b485d394b8d6ca2153c6e517,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446902248589600298, guid: ee723aa1b485d394b8d6ca2153c6e517,
+        type: 3}
+      propertyPath: m_Name
+      value: TagalongConsole
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ee723aa1b485d394b8d6ca2153c6e517, type: 3}
 --- !u!1001 &5338632728170454931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7642,11 +7745,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 820074050}
     m_Modifications:
-    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
-        type: 3}
-      propertyPath: m_Name
-      value: X-5
-      objectReference: {fileID: 0}
     - target: {fileID: 4297805986876498505, guid: d47dd8246e2ce694b94bd15c805f3847,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7702,6 +7800,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882675982757954751, guid: d47dd8246e2ce694b94bd15c805f3847,
+        type: 3}
+      propertyPath: m_Name
+      value: X-5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47dd8246e2ce694b94bd15c805f3847, type: 3}
 --- !u!1001 &6054489275706919717
@@ -7711,11 +7814,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1338632292}
     m_Modifications:
-    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Name
-      value: SWPuck
-      objectReference: {fileID: 0}
     - target: {fileID: 153216745292661217, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7776,6 +7874,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3222519454548238483, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Name
+      value: SWPuck
+      objectReference: {fileID: 0}
     - target: {fileID: 4433549108466666530, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -7801,16 +7904,6 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5091560195038823428, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_text
@@ -7835,6 +7928,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571265050946899594, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539584155240799133, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0adb18151d28245946cfcad9d4e49d, type: 3}
@@ -7924,6 +8027,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7935,6 +8039,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7961,6 +8066,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7972,6 +8078,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7998,6 +8105,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8009,6 +8117,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8035,6 +8144,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8046,6 +8156,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8072,6 +8183,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8083,6 +8195,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8109,6 +8222,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8120,6 +8234,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8146,6 +8261,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8157,6 +8273,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8183,6 +8300,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8194,6 +8312,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8220,6 +8339,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8231,6 +8351,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8257,6 +8378,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8268,6 +8390,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8294,6 +8417,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8305,6 +8429,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8331,6 +8456,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8342,6 +8468,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -9129,7 +9256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8adeb8b21c6d120408d0aea984f6b26d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ToggleList:
+  toggleList:
   - {fileID: 6916200420236751994}
   - {fileID: 6916186285520514158}
   - {fileID: 6915702513227617070}
@@ -9140,12 +9267,10 @@ MonoBehaviour:
   - {fileID: 2102803208}
   - {fileID: 2014020896}
   - {fileID: 843838891}
-  CurrentIndex: 0
+  currentIndex: 0
   OnSelectionEvents:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &6915299316911197778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9280,9 +9405,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Events: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!114 &6916151113011268370
 MonoBehaviour:
@@ -9352,9 +9476,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Events: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!114 &6916200420236751994
 MonoBehaviour:
@@ -9409,9 +9532,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Events: []
+  resetOnDestroy: 0
   enabledOnStart: 1
 --- !u!114 &6916260978294379700
 MonoBehaviour:
