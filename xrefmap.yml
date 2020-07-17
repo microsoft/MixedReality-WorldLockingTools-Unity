@@ -5146,6 +5146,69 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Tools.FrozenTapToAdd.PrefabToPlace
   nameWithType: FrozenTapToAdd.PrefabToPlace
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole
+  name: SimpleConsole
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole
+  nameWithType: SimpleConsole
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.Active
+  name: Active
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_Active
+  commentId: P:Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.Active
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.Active
+  nameWithType: SimpleConsole.Active
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.Active*
+  name: Active
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_Active_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.Active
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.Active
+  nameWithType: SimpleConsole.Active
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.AddLine(System.Int32,System.String)
+  name: AddLine(Int32, String)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_AddLine_System_Int32_System_String_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.AddLine(System.Int32,System.String)
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.AddLine(System.Int32, System.String)
+  nameWithType: SimpleConsole.AddLine(Int32, String)
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.AddLine*
+  name: AddLine
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_AddLine_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.AddLine
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.AddLine
+  nameWithType: SimpleConsole.AddLine
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.console
+  name: console
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_console
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.console
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.console
+  nameWithType: SimpleConsole.console
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LineCount
+  name: LineCount
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_LineCount
+  commentId: P:Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LineCount
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LineCount
+  nameWithType: SimpleConsole.LineCount
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LineCount*
+  name: LineCount
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_LineCount_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LineCount
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LineCount
+  nameWithType: SimpleConsole.LineCount
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.logVerbosity
+  name: logVerbosity
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_logVerbosity
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.logVerbosity
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.logVerbosity
+  nameWithType: SimpleConsole.logVerbosity
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.screenVerbosity
+  name: screenVerbosity
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_screenVerbosity
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.screenVerbosity
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.screenVerbosity
+  nameWithType: SimpleConsole.screenVerbosity
 - uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite
   name: SimpleSprite
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.html
