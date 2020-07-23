@@ -17,7 +17,15 @@ This has been seen from the Frozen World Engine dll. Go to NuGet for Unity:
  
 >  `NuGet > Manage NuGet Packages > Installed`
  
-uninstall and re-install the latest FrozenWorld.Engine package.
+uninstall and re-install the latest FrozenWorld.Engine package. See [NuGet Setup](InitialSetup.md#nuget-setup).
+
+### Missing 'FrozenWorld' namespace
+
+Errors like the following (usually a lot):
+
+> Assets\WorldLocking.Engine\Plugin.cs(10,37): error CS0234: The type or namespace name 'FrozenWorld' does not exist in the namespace 'Microsoft.MixedReality' (are you missing an assembly reference?)
+
+It is missing the FrozenWorld.Engine DLL. See [NuGet Setup](InitialSetup.md#nuget-setup).
 
 ### It's not working
 
