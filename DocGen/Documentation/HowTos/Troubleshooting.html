@@ -92,7 +92,13 @@
 <blockquote>
 <p><code>NuGet &gt; Manage NuGet Packages &gt; Installed</code></p>
 </blockquote>
-<p>uninstall and re-install the latest FrozenWorld.Engine package.</p>
+<p>uninstall and re-install the latest FrozenWorld.Engine package. See <a href="InitialSetup.html#nuget-setup">NuGet Setup</a>.</p>
+<h3 id="missing-frozenworld-namespace">Missing 'FrozenWorld' namespace</h3>
+<p>Errors like the following (usually a lot):</p>
+<blockquote>
+<p>Assets\WorldLocking.Engine\Plugin.cs(10,37): error CS0234: The type or namespace name 'FrozenWorld' does not exist in the namespace 'Microsoft.MixedReality' (are you missing an assembly reference?)</p>
+</blockquote>
+<p>It is missing the FrozenWorld.Engine DLL. See <a href="InitialSetup.html#nuget-setup">NuGet Setup</a>.</p>
 <h3 id="its-not-working">It's not working</h3>
 <p>Check the Unity logs for errors and exceptions.</p>
 <p>Check that your scene camera is attached to at least one other object. See the setup in WorldLocking.Examples.WorldLockingPhysicsSample for example. If you are doing dynamic camera manipulation, you may need to keep the WorldLockingManager informed of the current camera. See <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AdjustmentFrame">WorldLockingManager.AdjustmentFrame</a> and <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_CameraParent">WorldLockingManager.CameraParent</a>.</p>
