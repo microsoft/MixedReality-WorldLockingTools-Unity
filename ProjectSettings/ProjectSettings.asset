@@ -140,7 +140,7 @@ PlayerSettings:
       minimumSupportedHeadTracking: 0
       maximumSupportedHeadTracking: 1
     hololens:
-      depthFormat: 1
+      depthFormat: 0
       depthBufferSharingEnabled: 1
     lumin:
       depthFormat: 0
@@ -597,7 +597,7 @@ PlayerSettings:
   metroCertificatePassword: 
   metroCertificateSubject: Microsoft
   metroCertificateIssuer: Microsoft
-  metroCertificateNotAfter: 00ab00c2a25cd701
+  metroCertificateNotAfter: 00c685f69a80d701
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: FrozenWorldDemo
@@ -624,6 +624,7 @@ PlayerSettings:
       CodeGeneration: False
       Contacts: False
       EnterpriseAuthentication: False
+      GazeInput: True
       HumanInterfaceDevice: False
       InputInjectionBrokered: False
       InternetClient: True
