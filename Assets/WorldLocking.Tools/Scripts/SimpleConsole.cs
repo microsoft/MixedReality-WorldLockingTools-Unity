@@ -26,7 +26,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
     /// Ideally, place the console TextMesh where it can be seen.
     /// If enabled, then every frame the last lineCount lines added are displayed on the console TextMesh,
     /// where lineCount is an inspector accessible property below.
-    /// Use if thread safe, and from threads besides the main thread.
+    /// Use is thread safe, and from threads besides the main thread.
     /// </remarks>
     public class SimpleConsole : MonoBehaviour
     {
