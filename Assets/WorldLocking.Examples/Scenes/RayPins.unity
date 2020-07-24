@@ -6573,7 +6573,7 @@ PrefabInstance:
     - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
         type: 3}
       propertyPath: shared.settings.Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0777d53f35d4cb42827b5c3bdf227bd, type: 3}
@@ -7814,6 +7814,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1338632292}
     m_Modifications:
+    - target: {fileID: 68076113863925062, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 68076113863925062, guid: bc0adb18151d28245946cfcad9d4e49d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 153216745292661217, guid: bc0adb18151d28245946cfcad9d4e49d,
         type: 3}
       propertyPath: m_LocalPosition.x
