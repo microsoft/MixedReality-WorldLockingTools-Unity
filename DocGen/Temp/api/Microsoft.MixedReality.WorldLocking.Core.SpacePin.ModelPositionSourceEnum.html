@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Delegate RefitNotificationDelegate
+    <title>Enum SpacePin.ModelPositionSourceEnum
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Delegate RefitNotificationDelegate
+    <meta name="title" content="Enum SpacePin.ModelPositionSourceEnum
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.56.2.0">
     
@@ -81,49 +81,54 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.RefitNotificationDelegate">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Core_RefitNotificationDelegate" data-uid="Microsoft.MixedReality.WorldLocking.Core.RefitNotificationDelegate" class="text-break">Delegate RefitNotificationDelegate
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSourceEnum" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum" class="text-break">Enum SpacePin.ModelPositionSourceEnum
   </h1>
-  <div class="markdown level0 summary"><p>Delegate type for notification of refit operations.</p>
+  <div class="markdown level0 summary"><p>Choice of what to use for modeling position.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_RefitNotificationDelegate_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSourceEnum_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate void RefitNotificationDelegate(FragmentId mergedId, FragmentId[] absorbedIds);</code></pre>
+    <pre><code class="lang-csharp hljs">public enum ModelPositionSourceEnum</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSourceEnum_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>In general, the transform's global position is the preferred source of the model position.
+However, there are times when that is not practical. Specifically, if the model's transform has been &quot;baked&quot;
+into the model's vertices, leaving an identity transform, then while the transform's position is no longer
+meaningful, the renderer's world-space bounds and/or the collider's world-space bounds may still have a
+useful reference position.
+Also, it is very easy to offset the collider's bounds, when it might be more cumbersome to modify either
+the transform position or the renderer's bounds.
+Note that orientation <strong>always</strong> comes from transform, as renderer and collider bounds have no orientation.</p>
+</div>
+  <h3 id="fields">Fields
+  </h3>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
-        <th>Type</th>
         <th>Name</th>
         <th>Description</th>
       </tr>
-    </thead>
+    <thead>
     <tbody>
       <tr>
-        <td><span class="xref">FragmentId</span></td>
-        <td><span class="parametername">mergedId</span></td>
-        <td><p>The fragment id of the target merged fragment.</p>
-</td>
+        <td id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSourceEnum_ColliderBounds">ColliderBounds</td>
+        <td></td>
       </tr>
       <tr>
-        <td><span class="xref">FragmentId</span>[]</td>
-        <td><span class="parametername">absorbedIds</span></td>
-        <td><p>Fragment ids of all affected fragments.</p>
-</td>
+        <td id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSourceEnum_RendererBounds">RendererBounds</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSourceEnum_Transform">Transform</td>
+        <td></td>
       </tr>
     </tbody>
-  </table>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_RefitNotificationDelegate_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>In the case of a merge operation, absorbedIds will contain all and only the ids of the fragments
-that were merged into mergedId, but not including mergedId.
-In the case of a refreeze operation, absorbedIds will also contain mergedId.</p>
-</div>
+  </thead></thead></table>
 </article>
           </div>
           

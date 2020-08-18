@@ -2516,6 +2516,58 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.AnchorName
   nameWithType: SpacePin.AnchorName
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPose
+  name: ExtractModelPose()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPose
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPose()
+  nameWithType: SpacePin.ExtractModelPose()
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPose*
+  name: ExtractModelPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPose_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPose
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPose
+  nameWithType: SpacePin.ExtractModelPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromCollider
+  name: ExtractModelPoseFromCollider()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPoseFromCollider
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromCollider
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromCollider()
+  nameWithType: SpacePin.ExtractModelPoseFromCollider()
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromCollider*
+  name: ExtractModelPoseFromCollider
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPoseFromCollider_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromCollider
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromCollider
+  nameWithType: SpacePin.ExtractModelPoseFromCollider
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromRenderer
+  name: ExtractModelPoseFromRenderer()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPoseFromRenderer
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromRenderer
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromRenderer()
+  nameWithType: SpacePin.ExtractModelPoseFromRenderer()
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromRenderer*
+  name: ExtractModelPoseFromRenderer
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPoseFromRenderer_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromRenderer
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromRenderer
+  nameWithType: SpacePin.ExtractModelPoseFromRenderer
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromTransform
+  name: ExtractModelPoseFromTransform()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPoseFromTransform
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromTransform
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromTransform()
+  nameWithType: SpacePin.ExtractModelPoseFromTransform()
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromTransform*
+  name: ExtractModelPoseFromTransform
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPoseFromTransform_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromTransform
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromTransform
+  nameWithType: SpacePin.ExtractModelPoseFromTransform
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ForceAttachment
   name: ForceAttachment()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ForceAttachment
@@ -2542,6 +2594,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.FragmentId
   nameWithType: SpacePin.FragmentId
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.GetModelPoseFromGlobalPosition(Vector3)
+  name: GetModelPoseFromGlobalPosition(Vector3)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_GetModelPoseFromGlobalPosition_Vector3_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.SpacePin.GetModelPoseFromGlobalPosition(Vector3)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.GetModelPoseFromGlobalPosition(Vector3)
+  nameWithType: SpacePin.GetModelPoseFromGlobalPosition(Vector3)
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.GetModelPoseFromGlobalPosition*
+  name: GetModelPoseFromGlobalPosition
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_GetModelPoseFromGlobalPosition_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.GetModelPoseFromGlobalPosition
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.GetModelPoseFromGlobalPosition
+  nameWithType: SpacePin.GetModelPoseFromGlobalPosition
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.LockedPose
   name: LockedPose
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_LockedPose
@@ -2581,19 +2646,43 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseGlobal
   nameWithType: SpacePin.ModelingPoseGlobal
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal
-  name: ModelingPoseLocal
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPoseLocal
-  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal
-  nameWithType: SpacePin.ModelingPoseLocal
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal*
-  name: ModelingPoseLocal
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPoseLocal_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSource
+  name: ModelPositionSource
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSource
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSource
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSource
+  nameWithType: SpacePin.ModelPositionSource
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSource*
+  name: ModelPositionSource
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSource_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSource
   isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal
-  nameWithType: SpacePin.ModelingPoseLocal
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSource
+  nameWithType: SpacePin.ModelPositionSource
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum
+  name: SpacePin.ModelPositionSourceEnum
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum
+  nameWithType: SpacePin.ModelPositionSourceEnum
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.ColliderBounds
+  name: ColliderBounds
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSourceEnum_ColliderBounds
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.ColliderBounds
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.ColliderBounds
+  nameWithType: SpacePin.ModelPositionSourceEnum.ColliderBounds
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.RendererBounds
+  name: RendererBounds
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSourceEnum_RendererBounds
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.RendererBounds
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.RendererBounds
+  nameWithType: SpacePin.ModelPositionSourceEnum.RendererBounds
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.Transform
+  name: Transform
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSourceEnum_Transform
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.Transform
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.Transform
+  nameWithType: SpacePin.ModelPositionSourceEnum.Transform
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.OnDestroy
   name: OnDestroy()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_OnDestroy
@@ -2698,6 +2787,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestoreOnLoad
   nameWithType: SpacePin.RestoreOnLoad
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestorePoseLocal
+  name: RestorePoseLocal
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_RestorePoseLocal
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestorePoseLocal
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestorePoseLocal
+  nameWithType: SpacePin.RestorePoseLocal
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestorePoseLocal*
+  name: RestorePoseLocal
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_RestorePoseLocal_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestorePoseLocal
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestorePoseLocal
+  nameWithType: SpacePin.RestorePoseLocal
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.SendAlignmentData(Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager)
   name: SendAlignmentData(IAlignmentManager)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_SendAlignmentData_Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_
@@ -4880,6 +4982,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.Manager
   nameWithType: AdjusterFixed.Manager
+- uid: Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.UpdatePosition
+  name: UpdatePosition()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_UpdatePosition
+  commentId: M:Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.UpdatePosition
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.UpdatePosition()
+  nameWithType: AdjusterFixed.UpdatePosition()
+- uid: Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.UpdatePosition*
+  name: UpdatePosition
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_UpdatePosition_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.UpdatePosition
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.UpdatePosition
+  nameWithType: AdjusterFixed.UpdatePosition
 - uid: Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving
   name: AdjusterMoving
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving.html

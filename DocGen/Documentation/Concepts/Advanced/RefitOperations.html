@@ -8,7 +8,7 @@
     <title>Refit operations | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Refit operations | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx 2.56.2.0">
     
     <link rel="shortcut icon" href="../../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
@@ -109,6 +109,7 @@
 <h1 id="reacting-to-refit-events">Reacting to refit events</h1>
 <p>In either merge or refreeze, the reaction to refit events is up to the application. More precisely, it is up to each of the attachment point handlers, as different object  types might react differently. Typically, the objects influenced by the attachment point will be moved by the adjustment transform via their GameObject.transform. Motion might instead be implemented by some other mechanism, such as manually moving vertices. It might even be advantageous for some applications to simply discard objects affected by a merge and begin a new cycle of creation.</p>
 <p>The point is that World Locking Tools has no dependence on how or whether the application reacts to refit operations. It is entirely up to the application developer's needs.</p>
+<p>The preferred mechanism for notification and reaction to refit operations is the <a href="AttachmentPoints.html">Attachment point</a>. More details and options are discussed there.</p>
 <h2 id="see-also">See also</h2>
 <ul>
 <li><a href="AttachmentPoints.html">Attachment points</a></li>

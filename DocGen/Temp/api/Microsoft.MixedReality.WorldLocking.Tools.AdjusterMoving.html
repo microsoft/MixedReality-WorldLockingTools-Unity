@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class AdjusterMoving
    | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx 2.56.2.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -105,6 +105,9 @@
       <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_AttachmentPoint">AdjusterFixed.AttachmentPoint</a>
     </div>
     <div>
+      <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_UpdatePosition">AdjusterFixed.UpdatePosition()</a>
+    </div>
+    <div>
       <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_HandleAdjustLocation_Pose_">AdjusterFixed.HandleAdjustLocation(Pose)</a>
     </div>
     <div>
@@ -118,7 +121,12 @@
     <pre><code class="lang-csharp hljs">public class AdjusterMoving : AdjusterFixed</code></pre>
   </div>
   <h5 id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterMoving_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>For stationary objects, use <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html">AdjusterFixed</a></p>
+  <div class="markdown level0 remarks"><p>For stationary objects, use <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html">AdjusterFixed</a>.</p>
+<p>This component uses the Unity Update pass to keep the World Locking Tools system
+apprised of the target object's position. While that operation is cheap, even
+just the cost of an additional Update() is best avoided for stationary objects.</p>
+<p>If the object moves very infrequently under script control, consider using an <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html">AdjusterFixed</a>,
+and notifying it after moves with <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_UpdatePosition">UpdatePosition()</a>.</p>
 </div>
 </article>
           </div>

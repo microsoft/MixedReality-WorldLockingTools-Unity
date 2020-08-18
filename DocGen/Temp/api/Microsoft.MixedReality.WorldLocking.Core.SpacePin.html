@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class SpacePin
    | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx 2.56.2.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -309,14 +309,14 @@ the ulong based AnchorId.</p>
   </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPoseLocal_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelingPoseLocal" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelingPoseLocal">ModelingPoseLocal</h4>
-  <div class="markdown level1 summary"><p>Local pose at startup.</p>
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSource_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSource*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSource" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSource">ModelPositionSource</h4>
+  <div class="markdown level1 summary"><p>Where to find model space position on target. Transform is preferable, but if transforms are baked in, renderer or collider may be more appropriate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Pose ModelingPoseLocal { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public SpacePin.ModelPositionSourceEnum ModelPositionSource { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -328,11 +328,14 @@ the ulong based AnchorId.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Pose</span></td>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ModelPositionSourceEnum.html">SpacePin.ModelPositionSourceEnum</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSource_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Note that orientation <strong>always</strong> comes from transform, as renderer and collider bounds have no orientation.</p>
+</div>
   
   
   <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_PinActive_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.PinActive*"></a>
@@ -359,8 +362,134 @@ the ulong based AnchorId.</p>
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_RestorePoseLocal_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestorePoseLocal*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_RestorePoseLocal" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.RestorePoseLocal">RestorePoseLocal</h4>
+  <div class="markdown level1 summary"><p>Pose to restore after manipulation (if any).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Pose RestorePoseLocal { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPose">ExtractModelPose()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Pose ExtractModelPose()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPoseFromCollider_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromCollider*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPoseFromCollider" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromCollider">ExtractModelPoseFromCollider()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Pose ExtractModelPoseFromCollider()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPoseFromRenderer_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromRenderer*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPoseFromRenderer" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromRenderer">ExtractModelPoseFromRenderer()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Pose ExtractModelPoseFromRenderer()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPoseFromTransform_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromTransform*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ExtractModelPoseFromTransform" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ExtractModelPoseFromTransform">ExtractModelPoseFromTransform()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Pose ExtractModelPoseFromTransform()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ForceAttachment_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ForceAttachment*"></a>
@@ -372,6 +501,48 @@ the ulong based AnchorId.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected void ForceAttachment()</code></pre>
   </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_GetModelPoseFromGlobalPosition_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.GetModelPoseFromGlobalPosition*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_GetModelPoseFromGlobalPosition_Vector3_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.GetModelPoseFromGlobalPosition(Vector3)">GetModelPoseFromGlobalPosition(Vector3)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Pose GetModelPoseFromGlobalPosition(Vector3 globalPosition)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">globalPosition</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_OnDestroy_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.OnDestroy*"></a>
@@ -471,7 +642,7 @@ the ulong based AnchorId.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ResetModelingPose()</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void ResetModelingPose()</code></pre>
   </div>
   <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ResetModelingPose_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>In normal usage, the modeling pose is the transform as set in Unity and as cached at start.

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class AdjusterFixed
    | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx 2.56.2.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -103,7 +103,11 @@
     <pre><code class="lang-csharp hljs">public class AdjusterFixed : AdjusterBase</code></pre>
   </div>
   <h5 id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>For dynamic objects, use <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving.html">AdjusterMoving</a></p>
+  <div class="markdown level0 remarks"><p>For dynamic objects, use <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving.html">AdjusterMoving</a>.</p>
+<p>This component is appropriate for inheriting from, to let it take care of
+lifetime management and book-keeping, then just override <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_HandleAdjustLocation_Pose_">HandleAdjustLocation(Pose)</a>
+and/or <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_HandleAdjustState_AttachmentPointStateType_">HandleAdjustState(AttachmentPointStateType)</a> with actions more suitable
+for your application.</p>
 </div>
   <h3 id="properties">Properties
   </h3>
@@ -111,7 +115,8 @@
   
   <a id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_AttachmentPoint_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.AttachmentPoint*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_AttachmentPoint" data-uid="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.AttachmentPoint">AttachmentPoint</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The attachment point which this component wraps.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -136,7 +141,8 @@
   
   <a id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_Manager_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.Manager*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_Manager" data-uid="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.Manager">Manager</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The attachment point manager interface which this component subscribes to.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -163,7 +169,8 @@
   
   <a id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_HandleAdjustLocation_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.HandleAdjustLocation*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_HandleAdjustLocation_Pose_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.HandleAdjustLocation(Pose)">HandleAdjustLocation(Pose)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Handle a pose adjustment due to a refit operation.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -182,15 +189,20 @@
       <tr>
         <td><span class="xref">Pose</span></td>
         <td><span class="parametername">adjustment</span></td>
-        <td></td>
+        <td><p>The pose adjustment to apply/</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_HandleAdjustLocation_Pose__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This simple implementation folds the adjustment into the current pose.</p>
+</div>
   
   
   <a id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_HandleAdjustState_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.HandleAdjustState*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_HandleAdjustState_AttachmentPointStateType_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.HandleAdjustState(AttachmentPointStateType)">HandleAdjustState(AttachmentPointStateType)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Handle a change in associated fragment state.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -209,10 +221,37 @@
       <tr>
         <td><span class="xref">AttachmentPointStateType</span></td>
         <td><span class="parametername">state</span></td>
-        <td></td>
+        <td><p>The new state.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_HandleAdjustState_AttachmentPointStateType__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The only state under which the visual location can be regarded as reliable
+is the Normal state.
+This simple implementation disables the object tree when its location is unreliable,
+and enables it when its location is reliable.
+Actual appropriate behavior is highly application dependent. Some questions to ask:</p>
+<ul>
+<li>Is there a more appropriate way to hide the object (e.g. move it far away)?</li>
+<li>Should the update pause, or just stop rendering? (Disabling pauses update <strong>and</strong> render).</li>
+<li>Is it better to hide the object, or to display it in alternate form?</li>
+<li>Etc.</li>
+</ul>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_UpdatePosition_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.UpdatePosition*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_UpdatePosition" data-uid="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.UpdatePosition">UpdatePosition()</h4>
+  <div class="markdown level1 summary"><p>For infrequent moves under script control, UpdatePosition notifies the system that the
+object has relocated. It should be called after any scripted movement of the object
+(but <strong>not</strong> after movement triggered by WLT, such as in <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_HandleAdjustLocation_Pose_">HandleAdjustLocation(Pose)</a>).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdatePosition()</code></pre>
+  </div>
 </article>
           </div>
           
