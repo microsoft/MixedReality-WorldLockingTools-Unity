@@ -10,16 +10,23 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
     /// Component to handle frozen world adjustments for dynamic (moving) objects.
     /// </summary>
     /// <remarks>
-    /// For stationary objects, use <see cref="AdjusterFixed"/>
+    /// For stationary objects, use <see cref="AdjusterFixed"/>.
+    /// 
+    /// This component uses the Unity Update pass to keep the World Locking Tools system
+    /// apprised of the target object's position. While that operation is cheap, even
+    /// just the cost of an additional Update() is best avoided for stationary objects.
+    /// 
+    /// If the object moves very infrequently under script control, consider using an <see cref="AdjusterFixed"/>,
+    /// and notifying it after moves with <see cref="AdjusterFixed.UpdatePosition"/>.
     /// </remarks>
     public class AdjusterMoving : AdjusterFixed
     {
+        /// <summary>
+        /// Notify the system each frame of current position.
+        /// </summary>
         private void Update()
         {
-            if (AttachmentPoint != null)
-            {
-                Manager.MoveAttachmentPoint(AttachmentPoint, gameObject.transform.position);
-            }
+            UpdatePosition();
         }
     }
 }

@@ -78,7 +78,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// </summary>
         private void OnFinishManipulation()
         {
-            SetFrozenPose(transform.GetGlobalPose());
+            SetFrozenPose(ExtractModelPose());
         }
 
         #endregion Manipulation callback

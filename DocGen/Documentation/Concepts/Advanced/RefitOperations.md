@@ -47,6 +47,8 @@ In either merge or refreeze, the reaction to refit events is up to the applicati
 
 The point is that World Locking Tools has no dependence on how or whether the application reacts to refit operations. It is entirely up to the application developer's needs.
 
+The preferred mechanism for notification and reaction to refit operations is the [Attachment point](AttachmentPoints.md). More details and options are discussed there.
+
 ## See also
 
 * [Attachment points](AttachmentPoints.md)
