@@ -35,6 +35,38 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         #region Private members
 
         /// <summary>
+        /// Choice of what to use for modeling position.
+        /// </summary>
+        /// <remarks>
+        /// In general, the transform's global position is the preferred source of the model position.
+        /// However, there are times when that is not practical. Specifically, if the model's transform has been "baked"
+        /// into the model's vertices, leaving an identity transform, then while the transform's position is no longer
+        /// meaningful, the renderer's world-space bounds and/or the collider's world-space bounds may still have a
+        /// useful reference position.
+        /// Also, it is very easy to offset the collider's bounds, when it might be more cumbersome to modify either
+        /// the transform position or the renderer's bounds.
+        /// Note that orientation **always** comes from transform, as renderer and collider bounds have no orientation.
+        /// </remarks>
+        public enum ModelPositionSourceEnum
+        {
+            Transform = 0,
+            RendererBounds = 1,
+            ColliderBounds = 2
+        }
+
+        [Tooltip("Where to find model space position on target. Transform is preferable, but if transforms are baked in, renderer or collider may be more appropriate.")]
+        [SerializeField]
+        private ModelPositionSourceEnum modelPositionSource = ModelPositionSourceEnum.Transform;
+
+        /// <summary>
+        /// Where to find model space position on target. Transform is preferable, but if transforms are baked in, renderer or collider may be more appropriate.
+        /// </summary>
+        /// <remarks>
+        /// Note that orientation **always** comes from transform, as renderer and collider bounds have no orientation.
+        /// </remarks>
+        public ModelPositionSourceEnum ModelPositionSource { get { return modelPositionSource; } set { modelPositionSource = value; } }
+
+        /// <summary>
         /// manager dependency is set exactly once in Start().
         /// </summary>
         private WorldLockingManager manager = null;
@@ -103,14 +135,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// modelingPoseLocal is the local Pose of the gameObject at startup.
         /// </summary>
-        private Pose modelingPoseLocal = Pose.identity;
+        private Pose restorePoseLocal = Pose.identity;
 
         /// <summary>
-        /// Local pose at startup.
+        /// Pose to restore after manipulation (if any).
         /// </summary>
-        protected Pose ModelingPoseLocal
+        protected Pose RestorePoseLocal
         {
-            get { return modelingPoseLocal; }
+            get { return restorePoseLocal; }
         }
 
         /// <summary>
@@ -236,10 +268,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// This must happen before the modeling pose is used implicitly by a call to set the 
         /// virtual pose, via SetFrozenPose, SetSpongyPose, or SetLockedPose.
         /// </remarks>
-        public void ResetModelingPose()
+        public virtual void ResetModelingPose()
         {
-            modelingPoseLocal = transform.GetLocalPose();
-            modelingPoseGlobal = transform.GetGlobalPose();
+            restorePoseLocal = transform.GetLocalPose();
+            modelingPoseGlobal = ExtractModelPose();
         }
 
         /// <summary>
@@ -260,7 +292,67 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         #region Internal
 
-        #region Alignment management
+        #region Extract modelling pose
+
+        protected Pose ExtractModelPose()
+        {
+            Pose modelPose = Pose.identity;
+            switch (modelPositionSource)
+            {
+                case ModelPositionSourceEnum.Transform:
+                    {
+                        modelPose = ExtractModelPoseFromTransform();
+                        Debug.Log($"Extracted pose from transform on {name}");
+                    }
+                    break;
+                case ModelPositionSourceEnum.RendererBounds:
+                    {
+                        modelPose = ExtractModelPoseFromRenderer();
+                        Debug.Log($"Extracted pose from renderer on {name}");
+                    }
+                    break;
+                case ModelPositionSourceEnum.ColliderBounds:
+                    {
+                        modelPose = ExtractModelPoseFromCollider();
+                        Debug.Log($"Extracted pose from collider on {name}");
+                    }
+                    break;
+                default:
+                    {
+                        Debug.Assert(false, $"Unhandled model position source on {name}.");
+                    }
+                    break;
+            }
+            return modelPose;
+        }
+        protected Pose ExtractModelPoseFromTransform()
+        {
+            return transform.GetGlobalPose();
+        }
+
+        protected Pose GetModelPoseFromGlobalPosition(Vector3 globalPosition)
+        {
+            Pose modelPose = new Pose(globalPosition, transform.GetGlobalPose().rotation);
+
+            return modelPose;
+        }
+
+        protected Pose ExtractModelPoseFromRenderer()
+        {
+            var rend = GetComponent<Renderer>();
+            Debug.Assert(rend != null, $"Looking for Modeling pose on {name} renderer, but found no renderer.");
+            return GetModelPoseFromGlobalPosition(rend.bounds.center);
+        }
+
+        protected Pose ExtractModelPoseFromCollider()
+        {
+            var collider = GetComponent<Collider>();
+            Debug.Assert(collider != null, $"Looking for Modeling pose on {name} collider, but found no collider.");
+            return GetModelPoseFromGlobalPosition(collider.bounds.center);
+        }
+#endregion Extract modelling pose
+
+#region Alignment management
 
         /// <summary>
         /// Check if an attachment point is needed, if so then setup and make current.
@@ -354,12 +446,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             CheckAttachment();
 
-            transform.SetLocalPose(ModelingPoseLocal);
+            transform.SetLocalPose(RestorePoseLocal);
         }
 
-        #endregion Alignment management
+#endregion Alignment management
 
-        #endregion Internal
+#endregion Internal
 
     }
 }

@@ -12,7 +12,11 @@ Using Unity's WorldAnchor system, the two anchors would just silently move into 
 
 But World Locking Tools guarantees that in world locked space, non-moving objects will "mostly" never move. And in fact, any motion is up to the owning application.
 
-Attachment points are the codification of that contract between World Locking Tools and the application. An application creates and positions attachment points using World Locking Tools APIs. When a correction in the position of an attachment point is determined by a refit operation, the application is notified via callback of the new position in world locked space that will keep the attachment point at its old position in physical space.
+Another common "abnormal" condition is **loss of tracking**. When tracking is lost in one environment (e.g. room) and regained in another environment, then at first there is no information linking the two spaces. The coordinates in one space are meaningless relative to coordinates in the other space. The attachment point paradigm allows the application to gracefully handle the initial phase when spatial information about the old space is unknown (e.g. by hiding the objects in that old space), as well as recovering when the spatial relationship between the two spaces does become known.
+
+More discussion can be found of these special conditions and the [refit operations](RefitOperations.md) which WLT performs to handle them. The discussion here is focused on the contract between WLT and the application on smoothly resolving such conditions.
+
+Attachment points are the codification of that contract between World Locking Tools and the application. An application creates and positions attachment points using World Locking Tools APIs. When a correction in the position of an attachment point is determined by a [refit operation](RefitOperations.md), the application is notified via callback of the new position in world locked space that will keep the attachment point at its old position in physical space.
 
 Some scenarios in which World Locking Tools attachment points might be the solution:
 
@@ -44,9 +48,13 @@ These notifications are broadcast through delegates which the application hands 
 
 How to best handle these notifications is left to the application, as each will have its own considerations. Sample handlers, which are used internally and may be either used as is or used as a starting point for custom implementations, are provided.
 
+## Sample implementations
+
 For an attachment point that is to remain fixed in the physical world, and which should hide its contents when its tracking is not valid, [AdjusterFixed](xref:Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed) implements the [AdjustStateDelegate](xref:Microsoft.MixedReality.WorldLocking.Core.AdjustStateDelegate) with its HandleAdjustState member,and the [AdjustLocationDelegate](xref:Microsoft.MixedReality.WorldLocking.Core.AdjustLocationDelegate) with its HandleAdjustLocation member. A similar component for moving objects is in [AdjusterMoving](xref:Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving).
 
 It is worth noting that supplying either or both these delegates is optional, and in fact reactions to state and location changes may be implemented based on polling rather than events. But unless their use is impossible due to specifics of the application, the event based system using delegates forms a much more efficient implementation.
+
+The recommendation is that you start with the AdjusterFixed component (or very similar AdjusterMoving), and modify the handlers [HandleAdjustLocation](xref:Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.HandleAdjustLocation*) and [HandleAdjustState](xref:Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.HandleAdjustState*) to suit your applications needs.
 
 ## See also
 
