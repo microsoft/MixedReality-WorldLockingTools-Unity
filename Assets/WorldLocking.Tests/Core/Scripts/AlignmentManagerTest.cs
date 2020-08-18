@@ -203,6 +203,41 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
         }
 
         [UnityTest]
+        public IEnumerator AlignmentManagerTestByBounds()
+        {
+            var rig = loadHelper.LoadBasicSceneRig();
+
+            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.transform.position = new Vector3(3.0f, 4.0f, 5.0f);
+
+            var spacePin = cube.AddComponent<SpacePin>();
+
+            yield return null;
+
+            Assert.AreEqual(cube.transform.position, spacePin.ModelingPoseGlobal.position);
+
+            spacePin.ModelPositionSource = SpacePin.ModelPositionSourceEnum.RendererBounds;
+            spacePin.ResetModelingPose();
+
+            var renderer = cube.GetComponent<Renderer>();
+            Assert.NotNull(renderer);
+            Assert.AreEqual(renderer.bounds.center, spacePin.ModelingPoseGlobal.position);
+
+            spacePin.ModelPositionSource = SpacePin.ModelPositionSourceEnum.ColliderBounds;
+            spacePin.ResetModelingPose();
+
+            var collider = cube.GetComponent<BoxCollider>();
+            Assert.NotNull(collider);
+            Assert.AreEqual(collider.bounds.center, spacePin.ModelingPoseGlobal.position);
+
+            collider.center = -cube.transform.position;
+            spacePin.ResetModelingPose();
+            Assert.AreEqual(Vector3.zero, spacePin.ModelingPoseGlobal.position);
+
+            yield return null;
+        }
+
+        [UnityTest]
         public IEnumerator AlignmentManagerTestBasic()
         {
             var rig = loadHelper.LoadBasicSceneRig();
