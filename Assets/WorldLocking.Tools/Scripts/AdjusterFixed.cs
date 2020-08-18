@@ -13,6 +13,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
     /// </summary>
     /// <remarks>
     /// For dynamic objects, use <see cref="AdjusterMoving"/>.
+    /// 
     /// This component is appropriate for inheriting from, to let it take care of
     /// lifetime management and book-keeping, then just override <see cref="HandleAdjustLocation(Pose)"/>
     /// and/or <see cref="HandleAdjustState(AttachmentPointStateType)"/> with actions more suitable
