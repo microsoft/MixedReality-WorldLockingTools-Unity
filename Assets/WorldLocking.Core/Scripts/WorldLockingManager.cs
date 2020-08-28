@@ -610,6 +610,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             FragmentManager.Reset();
 
             Plugin.ClearFrozenAnchors();
+            Plugin.ResetAlignment(Pose.identity);
         }
 
         /// <summary>

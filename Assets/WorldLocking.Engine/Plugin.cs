@@ -377,6 +377,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             checkError();
         }
 
+        unsafe public void ResetAlignment(Pose pose)
+        {
+            var alignment = UtoF(pose);
+            FrozenWorld_SetAlignment(&alignment);
+        }
+
         unsafe public void AddSpongyAnchors(List<AnchorPose> anchors)
         {
             if (anchors.Count == 0)
