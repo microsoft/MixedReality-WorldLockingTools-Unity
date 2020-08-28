@@ -128,7 +128,9 @@ Note that since some of the World Locking Tools Examples use features from MRTK,
 
 Within a Unity project containing the FrozenWorld engine (from nuget.org), import any desired World Locking Tools Assets layers (but at least WorldLocking.Core), and optionally MRTK. Then create a new scene (or open an existing scene).
 
-Add an extra node at the root of the camera hierarchy. This node will be used to adjust the head tracked camera into world locked space. (If using MRTK, this new GameObject would be the *parent* of the MixedRealityPlayspace.)
+> [!NOTE]
+>
+> Add an extra node at the root of the camera hierarchy. This node will be used to adjust the head tracked camera into world locked space. (If using MRTK, this new GameObject would be the *parent* of the MixedRealityPlayspace.)
 
 ### The core experience
 
