@@ -1,7 +1,13 @@
 
 # Quick start guide
 
-## See also
+This set of articles tries to plunge the developer new to World Locking Tools into typical workflows.
+
+There is a lot available in World Locking Tools for Unity, but a lot of value can be harnessed with very little developer work.
+
+These articles try to guide the developer toward getting the functionality the developer wants with minimal effort, and without getting side-tracked by other available features which might not be currently relevant.
+
+It is suggested that you proceed through these in the order presented here.
 
 * [Before you start](UsingWLT/BeforeGettingStarted.md) - A quick description of what to expect.
 * [Most basic setup](UsingWLT/JustWorldLock.md) - Minimal work to get 99% of WLT's value.

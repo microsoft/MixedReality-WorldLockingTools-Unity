@@ -23,6 +23,19 @@
 - name: How-tos
   href: HowTos.md
   items:
+  - name: Quick Start
+    href: HowTos/QuickStart.md
+    items:
+      - name: Before You Start
+        href: HowTos/UsingWLT/BeforeGettingStarted.md
+      - name: Most Basic Setup
+        href: HowTos/UsingWLT/JustWorldLock.md
+      - name: Loss of Tracking
+        href: HowTos/UsingWLT/LossOfTracking.md
+      - name: Across Sessions
+        href: HowTos/UsingWLT/PersistenceTricks.md
+      - name: Pinning It Down
+        href: HowTos/UsingWLT/AlignMyCoordinates.md
   - name: Initial Setup
     href: HowTos/InitialSetup.md
   - name: Tools and Visualizers

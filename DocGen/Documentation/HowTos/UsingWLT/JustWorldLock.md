@@ -15,7 +15,7 @@ Furthermore, if WLT's persistence feature is enabled, then that same point in Un
 
 Do you want to save where a hologram is in the physical world and have it appear there the next time you run your application? Just save its global pose, and restore it next run.
 
-There are a [number of advantages to using WLT](../../Concepts/BasicConcepts.md#world-locked-space) rather than anchors for world-locking your scene, in addition to the simplicity provided.
+In addition to the simplicity provided, there are a [number of advantages to using WLT](../../Concepts/BasicConcepts.md#world-locked-space) rather than anchors for world-locking your scene.
 
 ## How to set it up
 
@@ -25,6 +25,8 @@ Setup for gaining the advantages of baseline WLT behavior is very simple, and ca
 2. Import the [World Locking Tools unity package](../InitialSetup.md#world-locking-tools-assets) into your project.
 3. Drop the [WorldLockingManager prefab](../InitialSetup.md#the-core-experience) into your scene.
 4. Add an ["adjustment" game object](../InitialSetup.md#adding-world-locking-tools-to-a-unity-scene) to your camera hierarchy.
+
+![](~/DocGen/Images/Screens/Simplest.jpg)
 
 A [walk-through of this basic setup](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html) con be found in the [World Locking Tools Samples](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html), a sibling repository devoted to more specialized examples of WLT use.
 
