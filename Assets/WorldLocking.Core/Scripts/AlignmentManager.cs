@@ -299,7 +299,18 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 return AnchorId.Invalid;
             }
-            referencePoses.Add(refPose);
+            var index = referencePoses.FindIndex(x => x.name == uniqueName);
+            if (index >= 0)
+            {
+                /// The reference pose already exists. Update it by replacing it
+                /// with the new refpose using same anchor id.
+                refPose.anchorId = referencePoses[index].anchorId;
+                referencePoses[index] = refPose;
+            }
+            else
+            {
+                referencePoses.Add(refPose);
+            }
             /// If the referencePose has an invalid fragment id, it's only because there isn't a valid
             /// fragment right now. Flag the condition and set the proper fragment id when there is
             /// a valid one.
