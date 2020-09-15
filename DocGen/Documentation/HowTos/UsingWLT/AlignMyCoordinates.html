@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Align my coordinates | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Align my coordinates | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../../../../DocGen/Images/Logos/favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../DocGen/Images/Logos/WorldLock64.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="align-my-coordinates">Align my coordinates</h1>
+
+<p>A brief summary of World Locking Tools capabilities presented so far is in order.</p>
+<ol>
+<li>With <a href="JustWorldLock.html">drag and drop ease</a>, WLT will provide a coordinate space which is stationary relative to the physical world.</li>
+<li>That space can be made <a href="PersistenceTricks.html">optionally persistent</a>, so that physical features around a point in space in this session are the same as the physical features around the point in previous sessions.</li>
+<li>The application can opt in to callbacks allowing it to <a href="LossOfTracking.html">adjust to larger scale tracking corrections</a>. The <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html">Adjuster</a> scripts can be used as is or as examples for this.</li>
+</ol>
+<p>Having gotten all of those benefits, your application might have a further requirement, to align the coordinate system with physical space at a small number of discrete points.</p>
+<p>The usual reason for this is that there is a large virtual feature (or system of objects) in your application which needs to match up at physical features. Because of distortions in tracker space caused by tracker error, this is actually impossible. But an approximation can be made by matching virtual to physical points on a perceptually driven priority. In essence, the pin closest to you matches corresponding point in the physical world best.</p>
+<p>In order to do that, the system needs more information from your application. The SpacePin component is the managing object for AlignmentAnchors. The correspondences are made in the form of pairs of virtual and physical poses.</p>
+<p><a href="../../Concepts/Advanced/SpacePins.html">Motivation for SpacePins</a> and their usage are detailed elsewhere in this documentation. There are also samples of their usage both <a href="../Samples/SpacePin.html">in this repo</a> and in the sibling <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html">Samples repo</a>.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="BeforeGettingStarted.html">Before You Start</a></li>
+<li><a href="JustWorldLock.html">Most Basic Setup</a></li>
+<li><a href="LossOfTracking.html">Loss of Tracking</a></li>
+<li><a href="PersistenceTricks.html">Across Sessions</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/HowTos/UsingWLT/AlignMyCoordinates.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

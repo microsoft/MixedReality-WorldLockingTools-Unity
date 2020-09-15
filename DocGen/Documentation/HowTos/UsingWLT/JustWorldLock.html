@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Just world-lock everything | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Just world-lock everything | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../../../../DocGen/Images/Logos/favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../DocGen/Images/Logos/WorldLock64.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="just-world-lock-everything">Just world-lock everything</h1>
+
+<p>Achieving baseline world-locked behavior for your application requires no code and very little setup. Before getting to the setup, which is described below, let's look at that baseline behavior in more detail.</p>
+<h2 id="basic-locking-of-the-global-unity-coordinate-system-to-the-physical-world">Basic locking of the global Unity coordinate system to the physical world.</h2>
+<p>Integrating WLT into your application provides a number of features straight out of the box, with no additional code or interaction with your app.</p>
+<p>Simply put, with WLT, a point in Unity's global coordinate system will maintain its position relative to physical world features.</p>
+<p>That means that if you place a hologram in your global space, it will stay where it is in the physical world. No application use of anchors is needed.</p>
+<p>Furthermore, if WLT's persistence feature is enabled, then that same point in Unity's global coordinate space will have the same relationship to physical features in subsequent runs of the application.</p>
+<p>Do you want to save where a hologram is in the physical world and have it appear there the next time you run your application? Just save its global pose, and restore it next run.</p>
+<p>In addition to the simplicity provided, there are a <a href="../../Concepts/BasicConcepts.html#world-locked-space">number of advantages to using WLT</a> rather than anchors for world-locking your scene.</p>
+<h2 id="how-to-set-it-up">How to set it up</h2>
+<p>Setup for gaining the advantages of baseline WLT behavior is very simple, and can be broken into four (4) steps:</p>
+<ol>
+<li>Import the <a href="../InitialSetup.html#nuget-setup">Frozen World Engine NuGet package</a> into your project.</li>
+<li>Import the <a href="../InitialSetup.html#world-locking-tools-assets">World Locking Tools unity package</a> into your project.</li>
+<li>Drop the <a href="../InitialSetup.html#the-core-experience">WorldLockingManager prefab</a> into your scene.</li>
+<li>Add an <a href="../InitialSetup.html#adding-world-locking-tools-to-a-unity-scene">&quot;adjustment&quot; game object</a> to your camera hierarchy.</li>
+</ol>
+<p><img src="../../../Images/Screens/Simplest.jpg" alt=""></p>
+<p>A <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html">walk-through of this basic setup</a> con be found in the <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html">World Locking Tools Samples</a>, a sibling repository devoted to more specialized examples of WLT use.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="BeforeGettingStarted.html">Before You Start</a></li>
+<li><a href="LossOfTracking.html">Loss of Tracking</a></li>
+<li><a href="PersistenceTricks.html">Across Sessions</a></li>
+<li><a href="AlignMyCoordinates.html">Pinning It Down</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/HowTos/UsingWLT/JustWorldLock.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

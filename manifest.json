@@ -126,7 +126,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/GettingStartedWithWorldLocking.html",
-          "hash": "JIzBreFJeLl8VtnOJxsBLw=="
+          "hash": "eus/wAMXfe0oxakXVSe5Jg=="
         }
       },
       "is_incremental": false,
@@ -174,7 +174,19 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/InitialSetup.html",
-          "hash": "r3RQon/23FD8xG16aKfQTQ=="
+          "hash": "un30t9r+MguIOlcp93F3Yg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "DocGen/Documentation/HowTos/QuickStart.md",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Documentation/HowTos/QuickStart.html",
+          "hash": "jOaVCwOahHDw9wJDmKicRg=="
         }
       },
       "is_incremental": false,
@@ -266,6 +278,66 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "DocGen/Documentation/HowTos/UsingWLT/AlignMyCoordinates.md",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Documentation/HowTos/UsingWLT/AlignMyCoordinates.html",
+          "hash": "jTsUjOADvcVtpz1apDMG4A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "DocGen/Documentation/HowTos/UsingWLT/BeforeGettingStarted.md",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Documentation/HowTos/UsingWLT/BeforeGettingStarted.html",
+          "hash": "zNSccjVWFPau7gpu6qx9DA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "DocGen/Documentation/HowTos/UsingWLT/JustWorldLock.md",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Documentation/HowTos/UsingWLT/JustWorldLock.html",
+          "hash": "fO1H1TygTP6fFkaAHs79bA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "DocGen/Documentation/HowTos/UsingWLT/LossOfTracking.md",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Documentation/HowTos/UsingWLT/LossOfTracking.html",
+          "hash": "51nLoLDbFubRn7HmP7BdXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "DocGen/Documentation/HowTos/UsingWLT/PersistenceTricks.md",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Documentation/HowTos/UsingWLT/PersistenceTricks.html",
+          "hash": "he8YJFvgjSJiByBM+jtdUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "DocGen/Documentation/HowTos/WorldLockingContext.md",
       "output": {
         ".html": {
@@ -306,7 +378,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/toc.html",
-          "hash": "k8u22JtZBGgAYsmBwbybvA=="
+          "hash": "HH+uBwlgJfyxBBimyNFuEw=="
         }
       },
       "is_incremental": false,
@@ -413,6 +485,39 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "DocGen/Images/IntroDiags/S1_Empty.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/IntroDiags/S1_Empty.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/IntroDiags/S2_RoomA.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/IntroDiags/S2_RoomA.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/IntroDiags/S3_RoomB.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/IntroDiags/S3_RoomB.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "DocGen/Images/LayerDiagram.png",
       "output": {
         "resource": {
@@ -512,6 +617,17 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/BasicSetup.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/BasicSetup.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "DocGen/Images/Screens/ControlsHud.jpg",
       "output": {
         "resource": {
@@ -527,6 +643,61 @@
       "output": {
         "resource": {
           "relative_path": "DocGen/Images/Screens/DiagStats.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/PersistLoad.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/PersistLoad.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/PersistNone.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/PersistNone.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/PersistSave.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/PersistSave.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/PersistSaveLoad.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/PersistSaveLoad.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/Simplest.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/Simplest.jpg"
         }
       },
       "is_incremental": false,
@@ -606,7 +777,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html",
-          "hash": "QpUicwtYiu6RqCsJC3+LTA=="
+          "hash": "rEyd+Hew3icUEsMEGGh+ag=="
         }
       },
       "is_incremental": false,
@@ -1668,7 +1839,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 32,
+          "total_file_count": 38,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {

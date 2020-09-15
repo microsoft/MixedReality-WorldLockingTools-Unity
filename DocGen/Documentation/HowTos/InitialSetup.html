@@ -84,6 +84,8 @@
 
 <h2 id="slimmest-possible-setup">Slimmest possible setup</h2>
 <p>The <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html">tutorial here</a> steps through the minimal setup to get up and running with everything in your application world-locked, without any further action (e.g. WorldAnchors) required. Note that it is in the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Samples">Samples repo</a> sibling to this repo.</p>
+<h2 id="quick-start-guide">Quick start guide</h2>
+<p>A less conceptually detailed and more pragmatic approach to integrating WLT into a project can be found here. Where appropriate, it references back into these more thorough pages. While it's really a matter of personal preference which approach is more appropriate, a quick read of the <a href="UsingWLT/BeforeGettingStarted.html">Before getting started</a> page can be a time saver on where to devote energies in this documentation.</p>
 <h2 id="supported-environments">Supported environments</h2>
 <p>World Locking Tools for Unity currently targets UWP applications for the HoloLens family of devices. Both the original HoloLens (x86) and HoloLens 2 (ARM64) are supported.</p>
 <p>The World Locking Tools continuous integration (CI) build validates with Unity2018.4.6f1 with Visual Studio 2017. However, extensive WLT development has also been done using the gamut of Unity2018 versions, as well as a range of Unity2019. Both Visual Studio 2017 and Visual Studio 2019 have been used in the development of the tools.</p>
@@ -157,7 +159,10 @@
 <p>Note that since some of the World Locking Tools Examples use features from MRTK, a compatible MRTK snapshot is included with the Examples unitypackage. For the latest MRTK release, look <a href="https://github.com/Microsoft/MixedRealityToolkit-Unity/releases">here</a>.</p>
 <h2 id="adding-world-locking-tools-to-a-unity-scene">Adding World Locking Tools to a Unity scene</h2>
 <p>Within a Unity project containing the FrozenWorld engine (from nuget.org), import any desired World Locking Tools Assets layers (but at least WorldLocking.Core), and optionally MRTK. Then create a new scene (or open an existing scene).</p>
+<div class="NOTE">
+<h5>Note</h5>
 <p>Add an extra node at the root of the camera hierarchy. This node will be used to adjust the head tracked camera into world locked space. (If using MRTK, this new GameObject would be the <em>parent</em> of the MixedRealityPlayspace.)</p>
+</div>
 <h3 id="the-core-experience">The core experience</h3>
 <p>Drag a WorldLockingManager prefab from Assets/WorldLocking.Core/Prefabs into your scene. Its place in the scene doesn't matter, but it should <strong>not</strong> be in the camera tree. See a <a href="SampleApplications.html">sample scene</a> for a suggested configuration.</p>
 <p>There are settings available on the WorldLockingManager prefab, but leaving them to their default values is recommended to get started.</p>

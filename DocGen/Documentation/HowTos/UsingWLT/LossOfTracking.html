@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Handling exceptional conditions | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Handling exceptional conditions | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../../../../DocGen/Images/Logos/favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../DocGen/Images/Logos/WorldLock64.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="handling-exceptional-conditions">Handling exceptional conditions</h1>
+
+<p>For the most part, WLT can detect and fix tracking errors quietly without the application's involvement.</p>
+<p>But some exceptional conditions lead to errors which the application might want to adjust to.</p>
+<p>Loss of tracking is an example of such a condition.</p>
+<p>Tracking might be lost at any time, for any of a number of reasons. The sensors might be covered, the lighting might be inadequate, or there might not be any visible features around the camera for it to track.</p>
+<p>Fuller discussions of these <a href="../../Concepts/Advanced/RefitOperations.html">exceptional conditions on a conceptual level</a>, including <a href="../../Concepts/Advanced/AttachmentPoints.html">WLT's features aimed at mitigating them</a>, are contained elsewhere in this documentation.</p>
+<p>Here, we'll dig into how the application developer can (optionally) take advantage of those features to customize the application's behavior during these exceptional conditions.</p>
+<h2 id="attachmentpoints">AttachmentPoints</h2>
+<p>As discussed more fully <a href="../../Concepts/Advanced/AttachmentPoints.html">here</a>, an attachment point is the contract between WLT and the application, for notification that exceptional conditions have occurred, along with appropriate data which the application may use to respond.</p>
+<h2 id="adjuster-components">Adjuster components</h2>
+<p>An implementation of such application responses is available in the form of the &quot;adjuster&quot; components. The primary of those is the <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html">AdjusterFixed</a> component.</p>
+<p>The AdjusterFixed can be used as-is, but understanding what it does can be instructive, especially for a developer wanting to further customize the behavior.</p>
+<p>It is important to recognize that the Adjuster components serve two roles:</p>
+<ol>
+<li>They manage the underlying AttachmentPoint.</li>
+<li>They provide implementations of the application's responses to exceptional conditions.</li>
+</ol>
+<h3 id="attachmentpoint-management">AttachmentPoint management</h3>
+<p>Examining the <code>Start()</code> and <code>OnDestroy()</code> members captures most of the management of the AttachmentPoint required.</p>
+<p>On <code>Start()</code>, the underlying AttachmentPoint is created, giving the AdjusterFixed's member functions as callbacks (see below).</p>
+<p>In <code>OnDestroy()</code>, these callback connections are severed and the AttachmentPoint released.</p>
+<h3 id="condition-handling-callbacks">Condition handling callbacks</h3>
+<p>The two callbacks implement the application's desired behavior during these exceptional conditions.</p>
+<h4 id="handling-tracking-state">Handling tracking state</h4>
+<p>In <code>HandleStateAdjust()</code>, the AdjusterFixed component disables objects contained in a fragment which isn't currently being tracked.</p>
+<pre><code>        protected virtual void HandleAdjustState(AttachmentPointStateType state)
+        {
+            bool visible = state == AttachmentPointStateType.Normal;
+            if (visible != gameObject.activeSelf)
+            {
+                gameObject.SetActive(visible);
+            }
+        }
+</code></pre>
+<p>While this simple behavior is perfect for many applications, it is easy to imagine cases when it would not be sufficient.</p>
+<ol>
+<li>The object should be hidden, but not disabled (should continue updating).</li>
+<li>An alternate method of hiding the object is preferred (e.g. moving it beyond the far clipping plane).</li>
+<li>Rather than hiding the object, it should be rendered with a different material (e.g. X-ray material).</li>
+<li>Rather than hiding the object, an alternate object should be rendered.</li>
+<li>Etc.</li>
+</ol>
+<p>Fortunately, the application developer is free to implement any of these behaviors, or other behaviors only limited by imagination.</p>
+<p>The simplest means of specifying custom behavior is to implement a custom component deriving from AdjusterFixed. The AttachmentPoint management can then be inherited, and the handlers overridden to create the custom behavior.</p>
+<h4 id="handling-repositioning">Handling repositioning</h4>
+<p>As described in the <a href="../../Concepts/Advanced/RefitOperations.html">conceptual documentation</a>, the WLT system may decide that an object can be best held in its position in the physical world by repositioning it in frozen space. It will inform the application of that situation via the AttachmentPoint mechanism.</p>
+<p>The application is, of course, free to ignore such adjustments. However, the behavior provided by the AdjusterFixed (and AdjusterMoving) component is to apply that repositioning transform immediately.</p>
+<pre><code>        protected virtual void HandleAdjustLocation(Pose adjustment)
+        {
+            Pose pose = gameObject.transform.GetGlobalPose();
+            pose = adjustment.Multiply(pose);
+            gameObject.transform.SetGlobalPose(pose);
+        }
+</code></pre>
+<p>That is almost always what the application wants. The question might be asked, then, of why anyone would want to override the AdjusterFixed's <code>HandlePositionAdjust()</code> function.</p>
+<p>The answer, of course, is that the application might want to perform other actions in addition to correcting the position. A temporary material effect might help notify the user that a change has been made. The repositioning might be spread out over a few seconds. Or if a repositioning is too drastic, the application might prefer to discard the object, rather than moving it.</p>
+<h2 id="adjusterfixed-vs-adjustermoving">AdjusterFixed vs AdjusterMoving</h2>
+<p>A closer look at the <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving.html">AdjusterMoving</a> component shows it to be nearly identical to the <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html">AdjusterFixed</a> component it derives from.</p>
+<p>The difference between the two is that the AdjusterMoving assumes that its target is constantly being moved around the environment. Therefore, each update it notifies the WLT system of its new Pose.</p>
+<p>The cost of the AdjusterMoving comes mostly from the addition of an <a href="href:https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update()</a> function, rather than the work done within the function. However, for an object that is &quot;mostly&quot; stationary, and is only moved infrequently from script, it can be advantageous to use an AdjusterFixed component, and call <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_UpdatePosition">AdjusterFixed.UpdatePosition()</a> after each time the object is moved.</p>
+<h2 id="customize-the-behavior-but-only-if-you-want-to">Customize the behavior, but only if you want to.</h2>
+<p>Again, the pattern here is hopefully consistent throughout the World Locking Tools. WLT provides simple but generally useful baseline behavior. It is hoped that this implementation will either:</p>
+<ol>
+<li>Satisfy the needs of your application.</li>
+<li>Provide a baseline implementation for you to enhance.</li>
+<li>Give a sample implementation from which you can go wild.</li>
+</ol>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="BeforeGettingStarted.html">Before You Start</a></li>
+<li><a href="JustWorldLock.html">Most Basic Setup</a></li>
+<li><a href="PersistenceTricks.html">Across Sessions</a></li>
+<li><a href="AlignMyCoordinates.html">Pinning It Down</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/HowTos/UsingWLT/LossOfTracking.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

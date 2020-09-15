@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Persistence tricks | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Persistence tricks | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../../../../DocGen/Images/Logos/favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../DocGen/Images/Logos/WorldLock64.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="persistence-tricks">Persistence tricks</h1>
+
+<h2 id="basic-persistence">Basic persistence</h2>
+<p>Basic persistence for World Locking Tools comes enabled by default. This enabling comes in two parts.</p>
+<p><img src="../../../Images/Screens/PersistSaveLoad.jpg" alt=""></p>
+<p>The relevant checkboxes here are the &quot;Auto Load&quot; and &quot;Auto Save&quot;, which are checked. You might notice they are greyed out. That's because they are part of the &quot;Use Defaults&quot; choice. Disabling &quot;Use Defaults&quot; enables the selection of arbitrary combinations of the Automation options.</p>
+<p>Further reading is available on <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.ManagerSettings.html">these settings</a>, and on <a href="../WorldLockingContext.html">manipulating them from script</a>.</p>
+<h3 id="auto-save">Auto Save</h3>
+<p>The Auto Save option directs WLT to make frequent and regular state saves while running the application. At any time, the application may be terminated with minimal loss of state.</p>
+<h3 id="auto-load">Auto Load</h3>
+<p>The Auto Load option directs WLT to load any previously saved state at startup. This effectively allows the application to resume a new session where it left off (w.r.t. WLT) from the last session.</p>
+<h3 id="full-persistence">Full persistence</h3>
+<p>With both Auto Save and Auto Load enabled, WLT operates seamlessly across sessions. While the position and orientation of global space is essentially arbitrary on the first run (since there is no previous state saved, it uses the head pose at startup as the origin), subsequent runs will share that same coordinate frame.</p>
+<p>This leads to interesting behavior when the application starts a new session in a space disconnected from the previous session's space. See the <a href="#persistence-by-location">persistence by location</a> section below for details.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The Auto Save and Auto Load settings also apply to global SpacePins. See <a href="#persistence-of-spacepins">below</a> for details.</p>
+</div>
+<h2 id="application-control-over-persistence">Application control over persistence</h2>
+<p>The default full persistence is quite suitable for a broad range of applications.</p>
+<p>Some applications, however, might want finer control over the process.</p>
+<p>It may seem odd that enabling WLT automatic persistence is broken into two properties, the Auto Save and the Auto Load. Examining cases where the two are used independently might provide insights into the overall persistence system.</p>
+<h3 id="auto-save-but-not-auto-load">Auto Save but not Auto Load</h3>
+<p><img src="../../../Images/Screens/PersistSave.jpg" alt=""></p>
+<p>With this configuration, WLT is set to periodically save its state. However, it will not automatically load any persisted state at startup.</p>
+<p>Rather, the system will start in a fresh state, as if it is the first time being run on this device. Only after an explicit request to <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Load">Load()</a> will it restore the previous session's state.</p>
+<p>This allows the application to decide whether or not restoring previous session state would be appropriate, and even to modify the data being restored if necessary.</p>
+<p>The general WLT save state is in the file &quot;<em>LocalState</em>/frozenWorldState.hkfw&quot;. Once created by WLT, that file can be copied to another location and restored back at the application's discretion.</p>
+<p>The save file for alignment (SpacePin) data defaults to &quot;<em>LocalState</em>/Persistence/Alignment.fwb&quot;. However, that can be overridden by the application via the alignment manager's <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_SaveFileName">SaveFileName</a>.</p>
+<p>Note that the decision to load the previous session's state with this configuration needs to be made at startup. Once running the previous session's saved state will be overwritten with this session's state. For a more flexible setup, see <a href="#manual-save-and-load">Manual save and load</a> below.</p>
+<h3 id="manual-save-but-auto-load">Manual save but Auto Load</h3>
+<p><img src="../../../Images/Screens/PersistLoad.jpg" alt=""></p>
+<p>In this configuration, WLT will load any available state from a previous session at startup. It will not, however, automatically save state. This allows the application to decide if and when state is worth saving, with a call to <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Save">Save()</a>.</p>
+<p>Note that Auto Load only tells WLT to load any available state at startup. The application is free to restore any saved state at any time with an explicit call to Load().</p>
+<h3 id="manual-save-and-load">Manual save and load</h3>
+<p><img src="../../../Images/Screens/PersistNone.jpg" alt=""></p>
+<p>The application may choose to keep total control over the save and load process.</p>
+<p>State will then only be saved with an explicit call from the application to <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Save">Save()</a>, and only loaded with an explicit call to <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Load">Load()</a>.</p>
+<p>The state loaded by the call to Load() might have been saved earlier in this session, or in a previous session.</p>
+<h2 id="disabling-persistence">Disabling persistence</h2>
+<p>As explained above, persistence is always available to the application from script. Automated persistence may be enabled and disabled from script or through the WorldLockingContext in the Inspector. If automated persistence is disabled, WLT will make no attempt to save or load state without explicit requests from the application.</p>
+<p>Of course, since the Auto Load directive only affects whether to load or not at startup, changing the value from script after startup has no effect.</p>
+<h2 id="a-caution-during-development">A caution during development</h2>
+<p>As noted above, the location of the save files for global WLT and alignment are global to the application. In particular, the alignment nodes, aka SpacePins, are persisted by name (see <a href="#persistence-of-spacepins">below</a>). If an application saves state with a set of SpacePins from one scene, and then loads state with a set of SpacePins from another scene, and both sets of SpacePins share common names, then the behavior is undefined.</p>
+<p>There are multiple ways around this issue. If possible, the best is to simply avoid reusing SpacePin names within a project. If after re-deployment, you see unexpected scene sliding behavior, try deleting WLT save state. Likewise, when radically changing the application, the overly cautious might want to either delete their WLT save files from device, or simply uninstall the application before installing the new version.</p>
+<h2 id="persistence-by-location">Persistence by location</h2>
+<h3 id="the-scenario">The scenario</h3>
+<p>There is an interesting class of applications which are run in multiple physical locations. The application might be run in Room A, the device closed, relocated, and then the application restarted in Room B. Room B might be down the hall from Room A, or might be on another continent. The application and the device have no way of knowing.</p>
+<p>For simplicity, let's say that the application is configured for manual WLT persistence.</p>
+<h3 id="a-walkthrough">A walkthrough</h3>
+<p>Consider these unconnected rooms A and B.</p>
+<p><img src="../../../Images/IntroDiags/S1_Empty.jpg" alt=""></p>
+<p>The application is started in Room A. After establishing a contiguous frozen coordinate space within the room, the entire room maps to <a href="../../Concepts/Advanced/Fragments.html">fragment</a> 1. A persistent hologram Object X is placed in the room. Then the application saves state, and is quit.</p>
+<p><img src="../../../Images/IntroDiags/S2_RoomA.jpg" alt=""></p>
+<p>The device is powered off, taken to Room B, and started again.</p>
+<p>The device recognizes this to not be Room A, so WLT assigns a new fragment id to its contents, say id == 29. Why 29? Because it isn't 1. <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IFragmentManager_FragmentIds">Fragment ids</a> are arbitrary in value, other than one fragment's id will not be FragmentId.Invalid, or FragmentId.Unknown, or the same as any other known fragment.</p>
+<p><img src="../../../Images/IntroDiags/S3_RoomB.jpg" alt=""></p>
+<p>Now there are two fragments, and no way to merge them (since there is no information available on their relative locations).</p>
+<p>The interested application developer might ask: I placed a persistent Object X in Room A, what happens when Object X is loaded when the application starts in Room B?</p>
+<p>The answer is that the behavior is left to the application developer to determine. The <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IFragmentManager_CurrentFragmentId">current fragment id</a> when the Object X is placed in Room A is available, and can be persisted. The application can then decide at startup whether to show Object X or not based on whether the current fragment is the same as when it was created or not.</p>
+<p>Here, the developer decides (and implements) that Object X will only be loaded if the current fragment id is 1, and Object Y, from Room B, will only be loaded if the current fragment is 29.</p>
+<p>The persistence of the fragment id associated with a space is saved as part of the persistence of World Locking Tools. However, the persistence of the fragment id associated with an object, as well as actions to take based on it, are left to the application.</p>
+<p>Note that along with the object's associated fragment id, it's Pose in global space can be saved. Then if the fragment id matches, after the object is loaded its Pose can be restored, returning it to its position in the physical world during the last session. With World Locking Tools persistence, a Pose remains fixed across sessions relative to the physical world features around it.</p>
+<h2 id="persistence-of-spacepins">Persistence of SpacePins</h2>
+<p>SpacePins can be thought of as application-side wrappers for AlignmentAnchors. Whereas SpacePins (and derived classes) are Unity components, AlignmentAnchors are purely conceptual; there is no class or type corresponding to an AlignmentAnchor. Therefore, in this discussion, SpacePins and AlignmentAnchors will be used interchangeably, with a general preference for SpacePins.</p>
+<p>However, it might otherwise be confusing that an AlignmentManager can persist SpacePins, when it has no notion of SpacePins. That is because the AlignmentManager manages the conceptual AlignmentAnchor, which embodies the essence of a SpacePin, and from which a SpacePin can be reconstituted.</p>
+<p>There are more application level controls for the persistence of SpacePins then with the general WLT persistence system, because SpacePins are inherently more driven by application input than rest of the World Locking Tools.</p>
+<p>It is important to remember that SpacePins (and AlignmentAnchors) are persisted by name. This is a slightly stronger requirement than the general one that no two <em>active</em> SpacePins in the same IAlignmentManager have the same name. If persisting SpacePins, then no two SpacePins in the same database can have the same name, whether active or not.</p>
+<h3 id="alignment-manager-databases">Alignment manager databases</h3>
+<p>Each <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html">IAlignmentManager</a> has a database of SpacePins by name, as implied by its implementation of <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_RestoreAlignmentAnchor_">RestoreAlignmentAnchor(string uniqueName, Pose virtualPose)</a>.</p>
+<h3 id="the-global-alignment-database">The global alignment database</h3>
+<p>There is one global IAlignmentManager, owned by the WorldLockingManager.GetInstance(). As mentioned, its default save file location is determined by the property <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_SaveFileName">SaveFileName</a>. Notice that the SaveFileName is a property on class AlignmentManager, not the interface IAlignmentManager. An IAlignmentManager implementation might implement persistence without any concept of files or filenames. The SaveFileName is an artifact of the way AlignmentManager implements persistence, and so is restricted to the AlignmentManager.</p>
+<h3 id="local-alignment-databases">Local alignment databases</h3>
+<p>There can be any number of sub-space alignment managers, one for each <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html">AlignSubtree</a>, appearing as the field AlignSubtree.alignmentManager. Additionally, the application can create its own AlignmentManager instances, or even its own classes derived from IAlignmentManager.</p>
+<p>Each AlignSubtree component's AlignmentManager has its own save file location, which defaults to the GameObject's name, with the extension &quot;.fwb&quot;. For example, if the AlignSubtree component is on a GameObject named &quot;MyRoot&quot;, then the save file would be named &quot;MyRoot.fwb&quot;. A forward slash '/' can be used to place it in a sub-folder. It would probably be bad for two AlignSubtree components to use the same save file location.</p>
+<h3 id="but-really">But really</h3>
+<p>It is heavily recommended that, in the long run, it is simpler and more robust to give SpacePins/AlignmentAnchors globally unique names, than to try to manage the lighter locally unique requirement. But do what you like.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="BeforeGettingStarted.html">Before You Start</a></li>
+<li><a href="JustWorldLock.html">Most Basic Setup</a></li>
+<li><a href="LossOfTracking.html">Loss of Tracking</a></li>
+<li><a href="AlignMyCoordinates.html">Pinning It Down</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/HowTos/UsingWLT/PersistenceTricks.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>
