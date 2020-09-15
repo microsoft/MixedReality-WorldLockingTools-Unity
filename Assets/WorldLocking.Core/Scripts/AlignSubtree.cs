@@ -50,6 +50,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// File name for saving to and loading from. Defaults to gameObject's name. Use forward slash '/' for subfolders.
         /// </summary>
+        /// <remarks>
+        /// Any non-existent file and/or containing folders will be created if possible.
+        /// </remarks>
         public string SaveFileName
         {
             get
@@ -59,20 +62,26 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 {
                     name = gameObject.name;
                 }
-                if (Path.GetExtension(name) != "fwb")
-                {
-                    name = Path.ChangeExtension(name, "fwb");
-                }
-                return name;
+                saveFileName = FixExtension(name, "fwb");
+                return saveFileName;
             }
             set
             {
-                saveFileName = value;
+                saveFileName = FixExtension(value, "fwb");
                 if (alignmentManager != null)
                 {
                     alignmentManager.SaveFileName = saveFileName;
                 }
             }
+        }
+
+        private static string FixExtension(string name, string ext)
+        {
+            if (Path.GetExtension(name) != ext)
+            {
+                name = Path.ChangeExtension(name, ext);
+            }
+            return name;
         }
 
         /// <summary>
