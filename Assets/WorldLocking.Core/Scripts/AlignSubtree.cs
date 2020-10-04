@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -196,6 +197,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
         #endregion Public APIs
 
+        #region Public events
+
+        /// <summary>
+        /// Fired when a new AlignmentManager has been created throughout CheckInternalWiring
+        /// </summary>
+        public Action<AlignmentManager> OnAlignManagerCreated = delegate { };
+
+        #endregion Public events
+
         #region Internal AlignmentManager management
         /// <summary>
         /// Create the alignmentManager if needed.
@@ -212,6 +222,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 alignmentManager = new AlignmentManager(WorldLockingManager.GetInstance());
                 alignmentManager.SaveFileName = SaveFileName;
+
+                OnAlignManagerCreated(alignmentManager);
             }
             if (subTree == null)
             {

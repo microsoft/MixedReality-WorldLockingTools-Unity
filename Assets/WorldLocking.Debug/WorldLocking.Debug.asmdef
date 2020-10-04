@@ -1,0 +1,16 @@
+{
+    "name": "WorldLocking.Debug",
+    "references": [
+        "GUID:927e0a945b06c394fac9d2c48d3e0b29",
+        "GUID:19d8fc307d9d1c346a776d7cb7fd0ca9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
