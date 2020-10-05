@@ -5,9 +5,6 @@ using Microsoft.MixedReality.WorldLocking.Core;
 using UnityEngine;
 
 using Microsoft.MixedReality.WorldLocking.Core.Triangulator;
-using Unity.Jobs;
-using UnityEngine.UIElements;
-using UnityScript.Scripting.Pipeline;
 
 namespace WorldLocking.Debug
 {
@@ -44,7 +41,6 @@ namespace WorldLocking.Debug
 
         private Mesh currentTriangleMesh = null;
         private int currentBoundaryVertexIDx = -1;
-        private float boundaryVertexHeight = 0.0f;
         private Mesh[] triangleWeightMeshes = new Mesh[3];
 
         private int[] lastGeneratedTriangleIDs = new int[3] { -1, -1, -1 };
@@ -55,11 +51,19 @@ namespace WorldLocking.Debug
         private const string WeightVectorOffsetMaterialProperty = "_VectorOffset";
         private const string WeightMaterialProperty = "_Weight";
 
+        #region Public APIs
+        public bool GetVisibility()
+        {
+            return isVisible;
+        }
+
         public void SetVisibility(bool visible)
         {
             isVisible = visible;
             RefreshVisibility();
         }
+
+        #endregion
 
         void RefreshVisibility()
         {
@@ -109,13 +113,14 @@ namespace WorldLocking.Debug
 
             Vector3 firstPinPosition = Vector3.zero, secondPinPosition = Vector3.zero, thirdPinPosition = Vector3.zero;
 
-            boundaryVertexHeight = -0.1f;
             Vector3 lockedHeadPosition = GetLockedHeadPosition();
-            lockedHeadPosition.y = boundaryVertexHeight;
+            lockedHeadPosition.y = 0.0f;
 
             firstPinPosition = hasBoundaryVertex && currentBoundaryVertexIDx == 0 ? lockedHeadPosition : triangulator.Vertices[vertIDxs[0] + 4];
             secondPinPosition = hasBoundaryVertex && currentBoundaryVertexIDx == 1 ? lockedHeadPosition : triangulator.Vertices[vertIDxs[1] + 4];
             thirdPinPosition = hasBoundaryVertex && currentBoundaryVertexIDx == 2 ? lockedHeadPosition : triangulator.Vertices[vertIDxs[2] + 4];
+
+            firstPinPosition.y = secondPinPosition.y = thirdPinPosition.y = 0.0f;
 
             //DEBUG TRIANGLE
             //Vector3 firstPinPosition = new Vector3(5.0f, 0.0f, 0.0f);
@@ -227,7 +232,6 @@ namespace WorldLocking.Debug
 
             cube.triangles = triangles;
 
-            cube.Optimize();
             cube.RecalculateNormals();
             cube.RecalculateBounds();
 
@@ -249,7 +253,7 @@ namespace WorldLocking.Debug
                 meshFilter.mesh.GetVertices(vertices);
 
                 Vector3 lockedHeadPosition = GetLockedHeadPosition();
-                lockedHeadPosition.y = boundaryVertexHeight;
+                lockedHeadPosition.y = 0.0f;
 
                 vertices[currentBoundaryVertexIDx] = lockedHeadPosition;
 
