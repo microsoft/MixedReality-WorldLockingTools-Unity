@@ -6,7 +6,7 @@ using UnityEngine;
 
 using Microsoft.MixedReality.WorldLocking.Core.Triangulator;
 
-namespace WorldLocking.Debug
+namespace Microsoft.MixedReality.WorldLocking.Tools
 {
 
     public class SpacePinMeshVisualizer : MonoBehaviour

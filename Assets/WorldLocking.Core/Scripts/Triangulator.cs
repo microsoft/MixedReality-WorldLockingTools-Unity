@@ -3,7 +3,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 /// <summary>
@@ -193,7 +192,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Triangulator
             return bary;
         }
 
-        public List<Vector3> Vertices { get => vertices; }
+        public List<Vector3> Vertices => vertices;
 
         public List<(int, int, int)> Triangles
         {
