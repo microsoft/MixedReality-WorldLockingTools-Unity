@@ -103,7 +103,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// New triangulation was built based upon recent poses.
         /// </summary>
-        public Action<Triangulator.ITriangulator> OnTriangulationBuilt = delegate { };
+        public event EventHandler<Triangulator.ITriangulator> OnTriangulationBuilt;
 
         #endregion
 
@@ -1197,7 +1197,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 triangulator.Add(positions);
             }
 
-            OnTriangulationBuilt(triangulator);
+            OnTriangulationBuilt?.Invoke(this,triangulator);
         }
 
         private void InitTriangulator()

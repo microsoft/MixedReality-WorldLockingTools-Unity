@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.MixedReality.WorldLocking.Core;
 using UnityEngine;
@@ -65,11 +64,15 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         #endregion
 
-        void RefreshVisibility()
+        private void RefreshVisibility()
         {
             meshRenderer.enabled = isVisible;
         }
 
+        /// <summary>
+        /// Injecting the reference to the triangulation that was newly built.
+        /// </summary>
+        /// <param name="triangulator">Reference to the data on the triangle that was built.</param>
         public void Initialize(ITriangulator triangulator)
         {
             this.triangulator = (SimpleTriangulator)triangulator;
@@ -81,6 +84,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 meshFilter = gameObject.AddComponent<MeshFilter>();
 
                 Material[] materials = new Material[4];
+
                 materials[0] = new Material(meshMaterial);
                 materials[1] = new Material(weightsMaterial);
                 materials[2] = new Material(weightsMaterial);
@@ -92,7 +96,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             transform.position = new Vector3(transform.position.x, GetLockedHeadPosition().y - downwardsOffsetFromUser, transform.position.z);
         }
 
-        void GenerateMeshes()
+        /// <summary>
+        /// Generates and combines a triangle and cubes representing the three SpacePins and the area between them as sub meshes.
+        /// </summary>
+        private void GenerateMeshes()
         {
             currentTriangleMesh = new Mesh();
 
@@ -111,33 +118,31 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             currentBoundaryVertexIDx = hasBoundaryVertex ? currentBoundaryVertexIDx : -1;
 
-            Vector3 firstPinPosition = Vector3.zero, secondPinPosition = Vector3.zero, thirdPinPosition = Vector3.zero;
-
             Vector3 lockedHeadPosition = GetLockedHeadPosition();
             lockedHeadPosition.y = 0.0f;
 
-            firstPinPosition = hasBoundaryVertex && currentBoundaryVertexIDx == 0 ? lockedHeadPosition : triangulator.Vertices[vertIDxs[0] + 4];
-            secondPinPosition = hasBoundaryVertex && currentBoundaryVertexIDx == 1 ? lockedHeadPosition : triangulator.Vertices[vertIDxs[1] + 4];
-            thirdPinPosition = hasBoundaryVertex && currentBoundaryVertexIDx == 2 ? lockedHeadPosition : triangulator.Vertices[vertIDxs[2] + 4];
+            Vector3 firstPinPosition = hasBoundaryVertex && currentBoundaryVertexIDx == 0 ? lockedHeadPosition : triangulator.Vertices[vertIDxs[0] + 4];
+            Vector3 secondPinPosition = hasBoundaryVertex && currentBoundaryVertexIDx == 1 ? lockedHeadPosition : triangulator.Vertices[vertIDxs[1] + 4];
+            Vector3 thirdPinPosition = hasBoundaryVertex && currentBoundaryVertexIDx == 2 ? lockedHeadPosition : triangulator.Vertices[vertIDxs[2] + 4];
 
             firstPinPosition.y = secondPinPosition.y = thirdPinPosition.y = 0.0f;
 
-            //DEBUG TRIANGLE
+            //    DEBUG TRIANGLE    //
             //Vector3 firstPinPosition = new Vector3(5.0f, 0.0f, 0.0f);
             //Vector3 secondPinPosition = new Vector3(1.0f, 0.0f, 1.0f);
             //Vector3 thirdPinPosition = new Vector3(-1.0f,0.0f,-1.0f);
 
             Vector3[] vertices = new Vector3[3]
             {
-            firstPinPosition,
-            secondPinPosition,
-            thirdPinPosition
+                firstPinPosition,
+                secondPinPosition,
+                thirdPinPosition
             };
             currentTriangleMesh.vertices = vertices;
 
             int[] tris = new int[3]
             {
-            2, 1, 0
+                2, 1, 0
             };
 
             currentTriangleMesh.triangles = tris;
@@ -191,22 +196,22 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             meshFilter.mesh.CombineMeshes(combine, false, false);
         }
 
-        Mesh CreateCube(Vector3 offset)
+        private Mesh CreateCube(Vector3 offset)
         {
             Mesh cube = new Mesh();
 
             float s = weightCubeMaxSize;
 
             Vector3[] vertices = {
-            new Vector3 (0, 0, 0),
-            new Vector3 (s, 0, 0),
-            new Vector3 (s, s, 0),
-            new Vector3 (0, s, 0),
-            new Vector3 (0, s, s),
-            new Vector3 (s, s, s),
-            new Vector3 (s, 0, s),
-            new Vector3 (0, 0, s),
-        };
+                new Vector3 (0, 0, 0),
+                new Vector3 (s, 0, 0),
+                new Vector3 (s, s, 0),
+                new Vector3 (0, s, 0),
+                new Vector3 (0, s, s),
+                new Vector3 (s, s, s),
+                new Vector3 (s, 0, s),
+                new Vector3 (0, 0, s),
+            };
 
             for (int i = 0; i < vertices.Length; i++)
             {
@@ -216,19 +221,19 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             cube.vertices = vertices;
 
             int[] triangles = {
-            0, 2, 1, //face front
-            0, 3, 2,
-            2, 3, 4, //face top
-            2, 4, 5,
-            1, 2, 5, //face right
-            1, 5, 6,
-            0, 7, 4, //face left
-            0, 4, 3,
-            5, 4, 7, //face back
-            5, 7, 6,
-            0, 6, 7, //face bottom
-            0, 1, 6
-        };
+                0, 2, 1, //face front
+                0, 3, 2,
+                2, 3, 4, //face top
+                2, 4, 5,
+                1, 2, 5, //face right
+                1, 5, 6,
+                0, 7, 4, //face left
+                0, 4, 3,
+                5, 4, 7, //face back
+                5, 7, 6,
+                0, 6, 7, //face bottom
+                0, 1, 6
+            };
 
             cube.triangles = triangles;
 
@@ -238,14 +243,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             return cube;
         }
 
-        void UpdateCubeWeights()
+        private void UpdateCubeWeights()
         {
             meshRenderer.materials[1].SetFloat(WeightMaterialProperty, currentInterpolant.weights[0]);
             meshRenderer.materials[2].SetFloat(WeightMaterialProperty, currentInterpolant.weights[1]);
             meshRenderer.materials[3].SetFloat(WeightMaterialProperty, currentInterpolant.weights[2]);
         }
 
-        void UpdateBoundaryVertexPositionsIfNeeded()
+        /// <summary>
+        /// If third point has 0 weight, we are assuming its a boundary pin, and replace its position with headset position.
+        /// </summary>
+        private void UpdateBoundaryVertexPositionsIfNeeded()
         {
             if (currentBoundaryVertexIDx != -1)
             {
@@ -263,41 +271,45 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             }
         }
 
-        Vector3 GetLockedHeadPosition()
+        private Vector3 GetLockedHeadPosition()
         {
             WorldLockingManager wltMgr = WorldLockingManager.GetInstance();
             Pose lockedHeadPose = wltMgr.LockedFromPlayspace.Multiply(wltMgr.PlayspaceFromSpongy.Multiply(wltMgr.SpongyFromCamera));
             return lockedHeadPose.position;
         }
 
-        void Awake()
+        private void Awake()
         {
             AlignSubtree subTree = FindObjectOfType<AlignSubtree>();
 
             if (subTree != null)
             {
-                subTree.OnAlignManagerCreated += manager =>
+                subTree.OnAlignManagerCreated += (sender,manager) =>
                 {
                     this.alignmentManager = manager;
-                    alignmentManager.OnTriangulationBuilt += Initialize;
+                    alignmentManager.OnTriangulationBuilt += (sender, triangulation) => { Initialize(triangulation); };
                 };
             }
         }
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             if (alignmentManager != null)
                 alignmentManager.OnTriangulationBuilt -= Initialize;
         }
 
-        void Update()
+        private void Update()
         {
             if (triangulator != null && isVisible)
             {
+                // Find the three closest SpacePins this frame
+
                 Interpolant interpolantThisFrame = triangulator.Find(GetLockedHeadPosition());
                 if (interpolantThisFrame != null)
                 {
                     currentInterpolant = interpolantThisFrame;
+
+                    // Only generate new mesh if SpacePins are different
 
                     if (!Enumerable.SequenceEqual(interpolantThisFrame.idx, lastGeneratedTriangleIDs))
                     {

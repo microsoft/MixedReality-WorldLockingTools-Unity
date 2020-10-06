@@ -195,16 +195,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 pin.AlignmentManager = alignmentManager;
             }
         }
-        #endregion Public APIs
-
-        #region Public events
 
         /// <summary>
         /// Fired when a new AlignmentManager has been created throughout CheckInternalWiring
         /// </summary>
-        public Action<AlignmentManager> OnAlignManagerCreated = delegate { };
+        public event EventHandler<AlignmentManager> OnAlignManagerCreated;
 
-        #endregion Public events
+        #endregion Public APIs
 
         #region Internal AlignmentManager management
         /// <summary>
@@ -223,7 +220,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 alignmentManager = new AlignmentManager(WorldLockingManager.GetInstance());
                 alignmentManager.SaveFileName = SaveFileName;
 
-                OnAlignManagerCreated(alignmentManager);
+                OnAlignManagerCreated?.Invoke(this,alignmentManager);
             }
             if (subTree == null)
             {

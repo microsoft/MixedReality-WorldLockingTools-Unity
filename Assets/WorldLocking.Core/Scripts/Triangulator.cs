@@ -192,20 +192,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Triangulator
             return bary;
         }
 
+        /// <summary>
+        /// SpacePinMeshVisualizer uses this dto as reference.
+        /// </summary>
         public List<Vector3> Vertices => vertices;
 
-        public List<(int, int, int)> Triangles
-        {
-            get
-            {
-                List<(int, int, int)> tris = new List<(int, int, int)>();
-                foreach (var t in triangles)
-                {
-                    tris.Add((t.idx0,t.idx1,t.idx2));
-                }
-                return tris;
-            }
-        }   
         #endregion Public APIs
 
         #region Internal query helpers
