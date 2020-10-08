@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.MixedReality.WorldLocking.Core;
 using UnityEngine;
@@ -40,6 +41,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         private Mesh currentTriangleMesh = null;
         private int currentBoundaryVertexIDx = -1;
+        private Vector3 firstPinPosition, secondPinPosition, thirdPinPosition;
+        private Vector3 firstCubePosition, secondCubePosition, thirdCubePosition;
         private Mesh[] triangleWeightMeshes = new Mesh[3];
 
         private int[] lastGeneratedTriangleIDs = new int[3] { -1, -1, -1 };
@@ -103,6 +106,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         {
             currentTriangleMesh = new Mesh();
 
+            if (currentInterpolant == null)
+                return;
+
             bool hasBoundaryVertex = false;
 
             int[] vertIDxs = currentInterpolant.idx;
@@ -118,19 +124,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             currentBoundaryVertexIDx = hasBoundaryVertex ? currentBoundaryVertexIDx : -1;
 
-            Vector3 lockedHeadPosition = GetLockedHeadPosition();
-            lockedHeadPosition.y = 0.0f;
-
-            Vector3 firstPinPosition = hasBoundaryVertex && currentBoundaryVertexIDx == 0 ? lockedHeadPosition : triangulator.Vertices[vertIDxs[0] + 4];
-            Vector3 secondPinPosition = hasBoundaryVertex && currentBoundaryVertexIDx == 1 ? lockedHeadPosition : triangulator.Vertices[vertIDxs[1] + 4];
-            Vector3 thirdPinPosition = hasBoundaryVertex && currentBoundaryVertexIDx == 2 ? lockedHeadPosition : triangulator.Vertices[vertIDxs[2] + 4];
-
-            firstPinPosition.y = secondPinPosition.y = thirdPinPosition.y = 0.0f;
-
-            //    DEBUG TRIANGLE    //
-            //Vector3 firstPinPosition = new Vector3(5.0f, 0.0f, 0.0f);
-            //Vector3 secondPinPosition = new Vector3(1.0f, 0.0f, 1.0f);
-            //Vector3 thirdPinPosition = new Vector3(-1.0f,0.0f,-1.0f);
+            CalculatePinPositionsFromCurrentInterpolant();
 
             Vector3[] vertices = new Vector3[3]
             {
@@ -171,7 +165,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 Destroy(meshRenderer.materials[0]);
 
             Material[] materials = meshRenderer.materials;
-            materials[0] = hasBoundaryVertex ? new Material(extrapolatedMeshMaterial) : new Material(meshMaterial);
+            materials[0] = currentBoundaryVertexIDx != -1 ? new Material(extrapolatedMeshMaterial) : new Material(meshMaterial);
             meshRenderer.materials = materials;
 
             CombineInstance[] combine = new CombineInstance[4];
@@ -180,14 +174,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             combine[0].transform = Matrix4x4.zero;
             meshRenderer.materials[0].SetVector(WeightVectorOffsetMaterialProperty, (firstPinPosition + secondPinPosition + thirdPinPosition) / 3);
 
+            firstCubePosition = firstPinPosition;
             combine[1].mesh = triangleWeightMeshes[0] = CreateCube(firstPinPosition);
             combine[1].transform = Matrix4x4.zero;
             meshRenderer.materials[1].SetVector(WeightVectorOffsetMaterialProperty, firstPinPosition);
 
+            secondCubePosition = secondPinPosition;
             combine[2].mesh = triangleWeightMeshes[1] = CreateCube(secondPinPosition);
             combine[2].transform = Matrix4x4.zero;
             meshRenderer.materials[2].SetVector(WeightVectorOffsetMaterialProperty, secondPinPosition);
 
+            thirdCubePosition = thirdPinPosition;
             combine[3].mesh = triangleWeightMeshes[2] = CreateCube(thirdPinPosition);
             combine[3].transform = Matrix4x4.zero;
             meshRenderer.materials[3].SetVector(WeightVectorOffsetMaterialProperty, thirdPinPosition);
@@ -250,25 +247,98 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             meshRenderer.materials[3].SetFloat(WeightMaterialProperty, currentInterpolant.weights[2]);
         }
 
-        /// <summary>
-        /// If third point has 0 weight, we are assuming its a boundary pin, and replace its position with headset position.
-        /// </summary>
-        private void UpdateBoundaryVertexPositionsIfNeeded()
+        private void CalculatePinPositionsFromCurrentInterpolant()
         {
-            if (currentBoundaryVertexIDx != -1)
+            Vector3 lockedHeadPosition = GetLockedHeadPosition();
+            lockedHeadPosition.y = 0.0f;
+
+            firstPinPosition = currentBoundaryVertexIDx == 0 ? lockedHeadPosition : triangulator.Vertices[currentInterpolant.idx[0] + 4];
+            secondPinPosition = currentBoundaryVertexIDx == 1 ? lockedHeadPosition : triangulator.Vertices[currentInterpolant.idx[1] + 4];
+            thirdPinPosition = currentBoundaryVertexIDx == 2 ? lockedHeadPosition : triangulator.Vertices[currentInterpolant.idx[2] + 4];
+
+            //    DEBUG TRIANGLE    //
+            //firstPinPosition = new Vector3(5.0f, 0.0f, 0.0f);
+            //secondPinPosition = new Vector3(1.0f, 0.0f, 1.0f);
+            //thirdPinPosition = new Vector3(-1.0f,0.0f,-1.0f);
+
+            firstPinPosition.y = secondPinPosition.y = thirdPinPosition.y = 0.0f;
+        }
+
+        /// <summary>
+        /// Updates the three vertex's position that make the currently interpolated triangle
+        /// </summary>
+        private void UpdateVertexPositions()
+        {
+            CalculatePinPositionsFromCurrentInterpolant();
+
+            List<Vector3> vertices = new List<Vector3>();
+            meshFilter.mesh.GetVertices(vertices);
+
+            bool anyPositionChanged = false;
+
+            if (currentBoundaryVertexIDx != 0 && vertices[0] != firstPinPosition)
             {
-                List<Vector3> vertices = new List<Vector3>();
-                meshFilter.mesh.GetVertices(vertices);
-
-                Vector3 lockedHeadPosition = GetLockedHeadPosition();
-                lockedHeadPosition.y = 0.0f;
-
-                vertices[currentBoundaryVertexIDx] = lockedHeadPosition;
-
-                meshFilter.mesh.SetVertices(vertices);
-
-                meshRenderer.materials[0].SetVector(WeightVectorOffsetMaterialProperty, (vertices[0] + vertices[1] + vertices[2]) / 3);
+                vertices[0] = firstPinPosition;
+                anyPositionChanged = true;
             }
+            if (currentBoundaryVertexIDx != 1 && vertices[1] != secondPinPosition)
+            {
+                vertices[1] = secondPinPosition;
+                anyPositionChanged = true;
+            }
+            if (currentBoundaryVertexIDx != 2 && vertices[2] != thirdPinPosition)
+            {
+                vertices[2] = thirdPinPosition;
+                anyPositionChanged = true;
+            }
+
+            Vector3[] pinPositions = new Vector3[3] { firstPinPosition, secondPinPosition, thirdPinPosition };
+            if (currentBoundaryVertexIDx != -1 && vertices[currentBoundaryVertexIDx] != pinPositions[currentBoundaryVertexIDx])
+            {
+                vertices[currentBoundaryVertexIDx] = pinPositions[currentBoundaryVertexIDx];
+                anyPositionChanged = true;
+            }
+
+            if (anyPositionChanged)
+            {
+                meshFilter.mesh.SetVertices(vertices);
+                UpdateCubeVertexPositions();
+            }
+
+            meshRenderer.materials[0].SetVector(WeightVectorOffsetMaterialProperty, (vertices[0] + vertices[1] + vertices[2]) / 3);
+        }
+
+
+        /// <summary>
+        /// Snap the 3 cube meshes to the pin positions by changing local vertex data.
+        /// </summary>
+        private void UpdateCubeVertexPositions()
+        {
+            List<Vector3> vertices = new List<Vector3>();
+            meshFilter.mesh.GetVertices(vertices);
+
+            Vector3[] oldPositions = new Vector3[3] { firstCubePosition,secondCubePosition,thirdCubePosition };
+            Vector3[] newPositions = new Vector3[3] { firstPinPosition,secondPinPosition,thirdPinPosition };
+
+            int index = 0;
+            for (int i = 3; i < vertices.Count; i += 8)
+            {
+                for (int j = i; j < i+8; j++)
+                {
+                    vertices[j] -= oldPositions[index];
+                    vertices[j] += newPositions[index];
+                }
+
+                meshRenderer.materials[index+1].SetVector(WeightVectorOffsetMaterialProperty, newPositions[index]);
+
+                index++;
+            }
+
+            firstCubePosition = firstPinPosition;
+            secondCubePosition = secondPinPosition;
+            thirdCubePosition = thirdPinPosition;
+
+            meshFilter.mesh.SetVertices(vertices);
         }
 
         private Vector3 GetLockedHeadPosition()
@@ -308,22 +378,26 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             if (triangulator != null && isVisible)
             {
                 // Find the three closest SpacePins this frame
-
                 Interpolant interpolantThisFrame = triangulator.Find(GetLockedHeadPosition());
+
                 if (interpolantThisFrame != null)
                 {
                     currentInterpolant = interpolantThisFrame;
 
-                    // Only generate new mesh if SpacePins are different
-
+                    // Only generate new mesh if SpacePins are different from the currently generated ones
                     if (!Enumerable.SequenceEqual(interpolantThisFrame.idx, lastGeneratedTriangleIDs))
                     {
                         GenerateMeshes();
                         lastGeneratedTriangleIDs = interpolantThisFrame.idx;
                     }
+                    // if SpacePins are same update the vertices in case the current SpacePins moved somehow,
+                    // or there is a boundary vertex that needs to be snapped to the headset position every frame.
+                    else
+                    {
+                        UpdateVertexPositions();
+                    }
 
                     UpdateCubeWeights();
-                    UpdateBoundaryVertexPositionsIfNeeded();
                 }
             }
         }
