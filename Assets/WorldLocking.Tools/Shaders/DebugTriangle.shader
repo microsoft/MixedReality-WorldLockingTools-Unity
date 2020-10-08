@@ -9,14 +9,12 @@
     }
         SubShader
     {
-       Tags { "RenderType" = "Opaque" }
-
+       Tags { "RenderType" = "Opaque" "Queue" = "Geometry" }
        Cull Off
        ZWrite Off
 
        Pass
        {
-
            CGPROGRAM
            #pragma vertex vert
            #pragma fragment frag
@@ -67,6 +65,7 @@
            }
            ENDCG
         }
+
 
         Pass
         {

@@ -9,7 +9,7 @@
     }
         SubShader
     {
-       Tags { "RenderType" = "Opaque" }
+       Tags { "RenderType" = "Opaque" "Queue" = "Geometry+1" }
        ZWrite Off
 
        Pass
@@ -65,6 +65,7 @@
            }
            ENDCG
         }
+
 
         Pass
         {
