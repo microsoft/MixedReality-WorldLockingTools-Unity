@@ -26,30 +26,43 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         [Range(0.1f, 2.0f)]
         public float weightCubeMaxSize = 1.0f;
 
-        public float downwardsOffsetFromUser = 1.65f;
+        public float verticalOffset = -1.65f;
+        public float textVerticalOffset = -1.45f;
 
+        public Material wireFrameMaterial = null;
         public Material meshMaterial = null;
         public Material extrapolatedMeshMaterial = null;
         public Material weightsMaterial = null;
+
+        public GameObject percentageWorldSpaceCanvasPrefab;
 
         private AlignmentManager alignmentManager = null;
         private SimpleTriangulator triangulator = null;
         private Interpolant currentInterpolant = null;
 
+        // Texts visualising the percentage in actual numbers.
+        private SpacePinPercentageVisualizer[] percentageVisualizers = new SpacePinPercentageVisualizer[3];
+
+        // For rendering the cubeweights and the currently active triangle
         private MeshRenderer meshRenderer = null;
         private MeshFilter meshFilter = null;
 
-        private Mesh currentTriangleMesh = null;
+        private bool triangleIsDirty = false;
         private int currentBoundaryVertexIDx = -1;
+
+        private Mesh wireFrameMesh = null;
+        private Mesh currentTriangleMesh = null;
+        private Mesh[] triangleWeightMeshes = new Mesh[3];
+
         private Vector3 firstPinPosition, secondPinPosition, thirdPinPosition;
         private Vector3 firstCubePosition, secondCubePosition, thirdCubePosition;
-        private Mesh[] triangleWeightMeshes = new Mesh[3];
 
         private int[] lastGeneratedTriangleIDs = new int[3] { -1, -1, -1 };
 
         [SerializeField]
         private bool isVisible = true;
 
+        private const string HeadsetPositionMaterialProperty = "_HeadSetWorldPosition";
         private const string WeightVectorOffsetMaterialProperty = "_VectorOffset";
         private const string WeightMaterialProperty = "_Weight";
 
@@ -69,7 +82,16 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         private void RefreshVisibility()
         {
-            meshRenderer.enabled = isVisible;
+            if (meshRenderer != null)
+                meshRenderer.enabled = isVisible;
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (percentageVisualizers[i] != null)
+                {
+                    percentageVisualizers[i].SetVisibility(isVisible);
+                }
+            }
         }
 
         /// <summary>
@@ -83,24 +105,91 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             if (meshRenderer == null && meshFilter == null)
             {
                 meshRenderer = gameObject.AddComponent<MeshRenderer>();
-
                 meshFilter = gameObject.AddComponent<MeshFilter>();
 
-                Material[] materials = new Material[4];
+                Material[] materials = new Material[5];
 
                 materials[0] = new Material(meshMaterial);
                 materials[1] = new Material(weightsMaterial);
                 materials[2] = new Material(weightsMaterial);
                 materials[3] = new Material(weightsMaterial);
+                materials[4] = new Material(wireFrameMaterial);
 
                 meshRenderer.materials = materials;
+
+                for (int i = 0; i < 3; i++)
+                {
+                    GameObject instantiatedGameObject = Instantiate(percentageWorldSpaceCanvasPrefab, transform);
+                    SpacePinPercentageVisualizer percentageVisualizer = instantiatedGameObject.GetComponent<SpacePinPercentageVisualizer>();
+                    percentageVisualizers[i] = percentageVisualizer;
+                }
             }
 
-            transform.position = new Vector3(transform.position.x, GetLockedHeadPosition().y - downwardsOffsetFromUser, transform.position.z);
+            transform.position = new Vector3(transform.position.x, GetLockedHeadPosition().y + verticalOffset, transform.position.z);
+            triangleIsDirty = true;
         }
 
         /// <summary>
-        /// Generates and combines a triangle and cubes representing the three SpacePins and the area between them as sub meshes.
+        /// Generates the whole mesh inside the triangulation data, except for the boundry triangles/vertices.
+        /// </summary>
+        /// <returns></returns>
+        Mesh GenerateTriangulationWireFrameMesh()
+        {
+            Mesh wholeMesh = new Mesh();
+
+            Vector3[] originalVertices = triangulator.Vertices.ToArray();
+            Vector3[] vertices = new Vector3[triangulator.Vertices.Count - 4];
+
+            Array.Copy(originalVertices, 4, vertices, 0, originalVertices.Length - 4);
+
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                vertices[i].y = 0.0f;
+            }
+
+            wholeMesh.vertices = vertices;
+
+            List<(int, int, int)> trimmedTriangles = new List<(int, int, int)>();
+
+            for (int i = 0; i < triangulator.Triangles.Length; i += 3)
+            {
+                if (triangulator.Triangles[i] <= 3 || triangulator.Triangles[i + 1] <= 3 || triangulator.Triangles[i + 2] <= 3)
+                    continue;
+
+                //Don't render currently selected triangle
+                if (currentInterpolant != null && triangulator.Triangles[i] - 4 == currentInterpolant.idx[0] && triangulator.Triangles[i + 1] - 4 == currentInterpolant.idx[1] && triangulator.Triangles[i + 2] - 4 == currentInterpolant.idx[2])
+                    continue;
+
+                trimmedTriangles.Add((triangulator.Triangles[i] - 4, triangulator.Triangles[i + 1] - 4, triangulator.Triangles[i + 2] - 4));
+            }
+
+            int[] tris = new int[trimmedTriangles.Count * 3];
+
+            int triIndex = 0;
+            for (int i = 0; i < trimmedTriangles.Count; i++)
+            {
+                tris[triIndex] = trimmedTriangles[i].Item1;
+                tris[triIndex + 1] = trimmedTriangles[i].Item2;
+                tris[triIndex + 2] = trimmedTriangles[i].Item3;
+                triIndex += 3;
+            }
+
+            wholeMesh.triangles = tris;
+
+            Vector3[] normals = new Vector3[vertices.Length];
+
+            for (int i = 0; i < normals.Length; i++)
+            {
+                normals[i] = Vector3.up;
+            }
+
+            wholeMesh.normals = normals;
+
+            return wholeMesh;
+        }
+
+        /// <summary>
+        /// Generates and combines the whole triangulation mesh, the triangle we are currently in, and the cubes representing the three SpacePins weights as sub meshes.
         /// </summary>
         private void GenerateMeshes()
         {
@@ -115,7 +204,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             for (int i = 0; i < vertIDxs.Length; i++)
             {
-                if (currentInterpolant.weights[i] <= 0)
+                if (currentInterpolant.weights[i] <= 0.001f && currentInterpolant.idx[i] == 0)
                 {
                     hasBoundaryVertex = true;
                     currentBoundaryVertexIDx = i;
@@ -168,7 +257,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             materials[0] = currentBoundaryVertexIDx != -1 ? new Material(extrapolatedMeshMaterial) : new Material(meshMaterial);
             meshRenderer.materials = materials;
 
-            CombineInstance[] combine = new CombineInstance[4];
+            CombineInstance[] combine = new CombineInstance[5];
 
             combine[0].mesh = currentTriangleMesh;
             combine[0].transform = Matrix4x4.zero;
@@ -189,8 +278,13 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             combine[3].transform = Matrix4x4.zero;
             meshRenderer.materials[3].SetVector(WeightVectorOffsetMaterialProperty, thirdPinPosition);
 
+            combine[4].mesh = wireFrameMesh = GenerateTriangulationWireFrameMesh();
+            combine[4].transform = Matrix4x4.zero;
+
             meshFilter.mesh = new Mesh();
             meshFilter.mesh.CombineMeshes(combine, false, false);
+
+            triangleIsDirty = false;
         }
 
         private Mesh CreateCube(Vector3 offset)
@@ -240,11 +334,31 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             return cube;
         }
 
-        private void UpdateCubeWeights()
+        private void UpdateMaterialProperties()
         {
             meshRenderer.materials[1].SetFloat(WeightMaterialProperty, currentInterpolant.weights[0]);
             meshRenderer.materials[2].SetFloat(WeightMaterialProperty, currentInterpolant.weights[1]);
             meshRenderer.materials[3].SetFloat(WeightMaterialProperty, currentInterpolant.weights[2]);
+
+            meshRenderer.materials[0].SetVector(HeadsetPositionMaterialProperty, GetLockedHeadPosition());
+        }
+
+        private void UpdatePercentageTexts()
+        {
+            if (currentInterpolant == null || triangulator == null)
+                return;
+
+            percentageVisualizers[0].transform.localPosition = new Vector3(firstPinPosition.x, -(verticalOffset - textVerticalOffset), firstPinPosition.z); ;
+            percentageVisualizers[0].UpdatePercentage(currentInterpolant.weights[0] * 100.0f);
+            percentageVisualizers[0].SetVisibility(triangulator.Vertices.Count >= 6 && currentBoundaryVertexIDx != 0);
+
+            percentageVisualizers[1].transform.localPosition = new Vector3(secondPinPosition.x, -(verticalOffset - textVerticalOffset), secondPinPosition.z); ;
+            percentageVisualizers[1].UpdatePercentage(currentInterpolant.weights[1] * 100.0f);
+            percentageVisualizers[1].SetVisibility(triangulator.Vertices.Count >= 6 && currentBoundaryVertexIDx != 1);
+
+            percentageVisualizers[2].transform.localPosition = new Vector3(thirdPinPosition.x, -(verticalOffset - textVerticalOffset), thirdPinPosition.z); ;
+            percentageVisualizers[2].UpdatePercentage(currentInterpolant.weights[2] * 100.0f);
+            percentageVisualizers[2].SetVisibility(triangulator.Vertices.Count >= 6 && currentBoundaryVertexIDx != 2);
         }
 
         private void CalculatePinPositionsFromCurrentInterpolant()
@@ -317,19 +431,19 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             List<Vector3> vertices = new List<Vector3>();
             meshFilter.mesh.GetVertices(vertices);
 
-            Vector3[] oldPositions = new Vector3[3] { firstCubePosition,secondCubePosition,thirdCubePosition };
-            Vector3[] newPositions = new Vector3[3] { firstPinPosition,secondPinPosition,thirdPinPosition };
+            Vector3[] oldPositions = new Vector3[3] { firstCubePosition, secondCubePosition, thirdCubePosition };
+            Vector3[] newPositions = new Vector3[3] { firstPinPosition, secondPinPosition, thirdPinPosition };
 
             int index = 0;
-            for (int i = 3; i < vertices.Count; i += 8)
+            for (int i = 3; i < vertices.Count - wireFrameMesh.vertexCount; i += 8)
             {
-                for (int j = i; j < i+8; j++)
+                for (int j = i; j < i + 8; j++)
                 {
                     vertices[j] -= oldPositions[index];
                     vertices[j] += newPositions[index];
                 }
 
-                meshRenderer.materials[index+1].SetVector(WeightVectorOffsetMaterialProperty, newPositions[index]);
+                meshRenderer.materials[index + 1].SetVector(WeightVectorOffsetMaterialProperty, newPositions[index]);
 
                 index++;
             }
@@ -354,7 +468,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             if (subTree != null)
             {
-                subTree.OnAlignManagerCreated += (sender,manager) =>
+                subTree.OnAlignManagerCreated += (sender, manager) =>
                 {
                     this.alignmentManager = manager;
                     alignmentManager.OnTriangulationBuilt += OnNewTriangulationWasBuilt;
@@ -385,7 +499,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                     currentInterpolant = interpolantThisFrame;
 
                     // Only generate new mesh if SpacePins are different from the currently generated ones
-                    if (!Enumerable.SequenceEqual(interpolantThisFrame.idx, lastGeneratedTriangleIDs))
+                    if (!Enumerable.SequenceEqual(interpolantThisFrame.idx, lastGeneratedTriangleIDs) || triangleIsDirty)
                     {
                         GenerateMeshes();
                         lastGeneratedTriangleIDs = interpolantThisFrame.idx;
@@ -397,7 +511,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                         UpdateVertexPositions();
                     }
 
-                    UpdateCubeWeights();
+                    UpdateMaterialProperties();
+                    UpdatePercentageTexts();
                 }
             }
         }

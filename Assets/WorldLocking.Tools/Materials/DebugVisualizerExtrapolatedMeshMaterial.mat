@@ -70,13 +70,14 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineWidth: 0.056
+    - _OutlineWidth: 0.64
     - _Parallax: 0.02
     - _RenderQueueOverride: -1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _UsePositionMarker: 0
     - _Weight: 0.732
     - _WireThickness: 765
     - _ZOffsetFactor: 0
@@ -87,7 +88,8 @@ Material:
     - _BaseColor: {r: 0.035716623, g: 0.019001435, b: 0.5754717, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 1, g: 0.4444936, b: 0, a: 1}
+    - _HeadSetWorldPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _MainColor: {r: 1, g: 0.6153064, b: 0, a: 0.15686275}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _VectorOffset: {r: 0, g: 0, b: 0, a: 0}
     - _WireColor: {r: 1, g: 1, b: 1, a: 1}

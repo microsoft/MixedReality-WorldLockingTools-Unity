@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 656164348478012889}
   - component: {fileID: 656164348478012890}
   m_Layer: 0
-  m_Name: Visualizer
+  m_Name: SpacePinVisualizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weightCubeMaxSize: 0.19
+  downwardsOffsetFromUser: 1.65
+  wireFrameMaterial: {fileID: 2100000, guid: 30a725532743f544d8873fd08a9040bb, type: 2}
   meshMaterial: {fileID: 2100000, guid: e7629c5005d65c94ba769b3e2f1fe247, type: 2}
   extrapolatedMeshMaterial: {fileID: 2100000, guid: 3cb6998e3870cb345a31ad89410518c1,
     type: 2}
   weightsMaterial: {fileID: 2100000, guid: 1e46624c9f6c5374da2204cd8c11e698, type: 2}
+  percentageWorldSpaceCanvasPrefab: {fileID: 3335127461111217805, guid: 20ac37323fee4694891b0de09cb74933,
+    type: 3}
+  isVisible: 1
