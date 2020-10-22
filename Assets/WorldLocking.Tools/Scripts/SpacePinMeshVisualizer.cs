@@ -5,6 +5,7 @@ using Microsoft.MixedReality.WorldLocking.Core;
 using UnityEngine;
 
 using Microsoft.MixedReality.WorldLocking.Core.Triangulator;
+using UnityEngine.Assertions.Must;
 
 namespace Microsoft.MixedReality.WorldLocking.Tools
 {
@@ -157,7 +158,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                     continue;
 
                 //Don't render currently selected triangle
-                if (currentInterpolant != null && triangulator.Triangles[i] - 4 == currentInterpolant.idx[0] && triangulator.Triangles[i + 1] - 4 == currentInterpolant.idx[1] && triangulator.Triangles[i + 2] - 4 == currentInterpolant.idx[2])
+                bool triangleDataSameAsClosestTriangle =
+                    triangulator.Triangles[i] - 4 == currentInterpolant.idx[0] &&
+                    triangulator.Triangles[i + 1] - 4 == currentInterpolant.idx[1] &&
+                    triangulator.Triangles[i + 2] - 4 == currentInterpolant.idx[2];
+
+                if (currentInterpolant != null && (triangleDataSameAsClosestTriangle && !AnyWeightInTriangleZero()))
                     continue;
 
                 trimmedTriangles.Add((triangulator.Triangles[i] - 4, triangulator.Triangles[i + 1] - 4, triangulator.Triangles[i + 2] - 4));
@@ -197,21 +203,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             if (currentInterpolant == null)
                 return;
-
-            bool hasBoundaryVertex = false;
-
-            int[] vertIDxs = currentInterpolant.idx;
-
-            for (int i = 0; i < vertIDxs.Length; i++)
-            {
-                if (currentInterpolant.weights[i] <= 0.001f && currentInterpolant.idx[i] == 0)
-                {
-                    hasBoundaryVertex = true;
-                    currentBoundaryVertexIDx = i;
-                }
-            }
-
-            currentBoundaryVertexIDx = hasBoundaryVertex ? currentBoundaryVertexIDx : -1;
 
             CalculatePinPositionsFromCurrentInterpolant();
 
@@ -363,6 +354,22 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         private void CalculatePinPositionsFromCurrentInterpolant()
         {
+            if (currentInterpolant == null)
+                return;
+
+            bool hasBoundaryVertex = false;
+
+            for (int i = 0; i < currentInterpolant.idx.Length; i++)
+            {
+                if (currentInterpolant.weights[i] <= 0.001f && currentInterpolant.idx[i] == 0)
+                {
+                    hasBoundaryVertex = true;
+                    currentBoundaryVertexIDx = i;
+                }
+            }
+
+            currentBoundaryVertexIDx = hasBoundaryVertex ? currentBoundaryVertexIDx : -1;
+
             Vector3 lockedHeadPosition = GetLockedHeadPosition();
             lockedHeadPosition.y = 0.0f;
 
@@ -481,6 +488,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             Initialize(triangulation);
         }
 
+        private bool AnyWeightInTriangleZero()
+        {
+            float tolerance = 0.0001f; 
+            return currentInterpolant.weights[0] < tolerance || currentInterpolant.weights[1] < tolerance || currentInterpolant.weights[2] < tolerance;
+        }
+
         private void OnDestroy()
         {
             if (alignmentManager != null)
@@ -499,7 +512,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                     currentInterpolant = interpolantThisFrame;
 
                     // Only generate new mesh if SpacePins are different from the currently generated ones
-                    if (!Enumerable.SequenceEqual(interpolantThisFrame.idx, lastGeneratedTriangleIDs) || triangleIsDirty)
+                    if (!Enumerable.SequenceEqual(interpolantThisFrame.idx, lastGeneratedTriangleIDs) || triangleIsDirty || (AnyWeightInTriangleZero() && currentBoundaryVertexIDx == -1) || (!AnyWeightInTriangleZero() && currentBoundaryVertexIDx != -1))
                     {
                         GenerateMeshes();
                         lastGeneratedTriangleIDs = interpolantThisFrame.idx;

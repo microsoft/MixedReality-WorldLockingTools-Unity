@@ -8,6 +8,10 @@
         _VectorOffset("Offset",Vector) = (0,0,0,0)
         [Toggle]
         _UsePositionMarker("Should use little circle to mark headset position?", Int) = 0
+        [Toggle]
+        _UseOutlineAnimation("Pulsing animation to the outline", Int) = 0
+        [Toggle]
+        _UseCircularVignette("Pulsing circular color darkening on the mesh", Int) = 0
         _HeadSetWorldPosition("HeadsetWorldPosition", Vector) = (0,0,0,0)
     }
         SubShader
@@ -54,6 +58,8 @@
            fixed4 _MainColor;
            float4 _MainTex_ST;
            int _UsePositionMarker;
+           int _UseOutlineAnimation;
+           int _UseCircularVignette;
 
            v2f vert(appdata v)
            {
@@ -91,22 +97,22 @@
                stream.Append(g3);
            }
 
+           float2 rotateVector(float2 vec, float angle) {
+               float2x2 rotMat = float2x2(
+                   cos(angle), -sin(angle),
+                   sin(angle), cos(angle)
+               );
+               return mul(rotMat, vec);
+           }
+
            fixed4 frag(InterpolatorsGeometry i) : SV_Target
            {
                fixed4 mainCol = _MainColor;
 
-               float headSetDst = distance(float3(i.data.vertexNoMod.x,0, i.data.vertexNoMod.z), float3(_HeadSetWorldPosition.x,0, _HeadSetWorldPosition.z));
-
-               // Darken mesh around headset position
-
-               float exponent = 1 - saturate(headSetDst * 2);
-               exponent = smoothstep(0, 0.85, exponent);
-               mainCol.rgb -= exponent * .5 * _UsePositionMarker;
-
-               // Darken mesh around headset position
-
                // Add circle around headset position
-               
+
+               float headSetDst = distance(float3(i.data.vertexNoMod.x, 0, i.data.vertexNoMod.z), float3(_HeadSetWorldPosition.x, 0, _HeadSetWorldPosition.z));
+
                float circleSize = .21;
                float animation = (sin(_Time.y * 5) + 1) / 2;
                circleSize += animation * .04;
@@ -124,18 +130,33 @@
                 
                // Add circle around headset position
 
-               fixed4 outlineCol = _OutlineColor;
+               // For outline
 
                float minBary = min(i.bary.r, i.bary.g);
                minBary = min(minBary, i.bary.b);
 
-               float maxBary = max(i.bary.r, i.bary.g);
-               maxBary = max(maxBary, i.bary.b);
+               // For outline
 
-               float vignette = 1 - dot(normalize(i.bary), normalize(float3(.33, .33, .33)));
-               mainCol.rgb -= vignette;
+               // Some outline animation, and radial vignette
 
-               return lerp(mainCol, outlineCol, smoothstep(0.02 * _OutlineWidth, 0.02 * _OutlineWidth - 0.001, minBary));
+               float2 rotatedVector = rotateVector(float2(0, 1), _Time.y);
+               float2 vector1 = (float2(i.data.vertexNoMod.x, i.data.vertexNoMod.z) - _VectorOffset.xz);
+               float circularVignette = dot(normalize(rotatedVector), normalize(vector1));
+               circularVignette = acos(circularVignette) / radians(180);
+               float3 c = cross(float3(rotatedVector.x, 0, rotatedVector.y), float3(vector1.x, 0, vector1.y));
+               circularVignette = lerp(circularVignette, (1 - circularVignette) + 1, step(c.y, 0)) / 2;
+               circularVignette = (sin(circularVignette * radians(360) * 6) + 1) / 2;
+
+               float outlineAnimation = 1 + ((sin(_Time.y * 2.5) + 1) / 2);
+               float outlineAnimationAmount = 0.25 * _UseOutlineAnimation * (circularVignette * 1);
+               float outlineScaleConstant = .02;
+
+               fixed4 outlineCol = _OutlineColor;
+               outlineCol.rgb -= circularVignette * .45 * _UseCircularVignette;
+
+               // Some outline animation, and radial vignette
+
+               return lerp(mainCol, outlineCol, smoothstep((outlineScaleConstant + outlineAnimation * outlineScaleConstant * outlineAnimationAmount) * _OutlineWidth, (outlineScaleConstant + outlineAnimation * outlineScaleConstant * outlineAnimationAmount) * _OutlineWidth - antiAliasing, minBary));
            }
            ENDCG
        }
