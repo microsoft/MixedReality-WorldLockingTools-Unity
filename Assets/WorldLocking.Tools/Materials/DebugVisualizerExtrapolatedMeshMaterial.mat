@@ -77,7 +77,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _UseCircularVignette: 1
+    - _UseCircularVignette: 0
     - _UseOutlineAnimation: 0
     - _UsePositionMarker: 0
     - _Weight: 0.732
