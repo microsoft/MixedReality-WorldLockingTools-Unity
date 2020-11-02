@@ -3,7 +3,6 @@
 
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.WSA.Input;
 
 using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.Input;
@@ -109,7 +108,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             // Also go back to idle mode.
             activePin = -1;
         }
-        #region Convenience wrapper for ray hit information
+#region Convenience wrapper for ray hit information
 
         private struct RayHit
         {
@@ -135,9 +134,9 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             }
         };
 
-        #endregion Convenience wrapper for ray hit information
+#endregion Convenience wrapper for ray hit information
 
-        #region Handle hits
+#region Handle hits
 
         private void HandleHit(RayHit rayHit)
         {
@@ -148,35 +147,10 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             }
         }
 
-        private void HandleTapped(TappedEventArgs eventArgs)
-        {
-            // The tap event happens in Spongy space, so any arguments
-            // from it are in spongy space and need to be converted to frozen space,
-            // because the ray tests are done in frozen space.
-            var spongyHeadPose = eventArgs.headPose;
-            var manager = WorldLockingManager.GetInstance();
-            var frozenHeadPose = manager.FrozenFromSpongy.Multiply(spongyHeadPose);
-
-            var rayStart = frozenHeadPose.position;
-            var rayDir = frozenHeadPose.forward;
-
-            int ignoreRaycastLayer = Physics.IgnoreRaycastLayer;
-            int hitLayers = ~(ignoreRaycastLayer);
-            RaycastHit hitInfo;
-            if (Physics.Raycast(rayStart, rayDir, out hitInfo, Mathf.Infinity, hitLayers))
-            {
-                int uiLayer = LayerMask.GetMask("UI");
-                if (hitInfo.collider == null || ((1 << hitInfo.collider.gameObject.layer) & uiLayer) == 0)
-                {
-                    HandleHit(new RayHit(rayStart, hitInfo));
-                }
-            }
-        }
-
-        #endregion Handle hits
+#endregion Handle hits
 
 
-        #region InputSystemGlobalHandlerListener Implementation
+#region InputSystemGlobalHandlerListener Implementation
 
         /// <inheritdocs />
         protected override void RegisterHandlers()
@@ -190,9 +164,9 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             MixedRealityToolkit.Instance.GetService<IMixedRealityInputSystem>()?.UnregisterHandler<IMixedRealityPointerHandler>(this);
         }
 
-        #endregion InputSystemGlobalHandlerListener Implementation
+#endregion InputSystemGlobalHandlerListener Implementation
 
-        #region IMixedRealityPointerHandler
+#region IMixedRealityPointerHandler
 
         /// <summary>
         /// Process pointer clicked event if ray cast has result.
@@ -235,7 +209,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
 
         }
 
-        #endregion IMixedRealityPointerHandler
+#endregion IMixedRealityPointerHandler
 
     }
 }

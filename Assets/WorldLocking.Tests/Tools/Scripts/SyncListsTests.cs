@@ -639,7 +639,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
 
             }
         }
-            [Test]
+            
+        [Test]
         public void CreateFailTest()
         {
             List<AnchorId> anchorIds = new List<AnchorId>();
@@ -675,6 +676,130 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Tools
             {
                 Assert.AreEqual(anchorIds[i], resources[i].id);
             }
+        }
+        [Test]
+        public void WorldLockingManagerTestEdgeMerge()
+        {
+            List<AnchorEdge> frozenEdges = new List<AnchorEdge>();
+
+            List<AnchorEdge> spongyEdges = new List<AnchorEdge>();
+
+            int preCount = frozenEdges.Count;
+            Assert.AreEqual(preCount, 0);
+
+            // Add 3 new edges.
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)2, anchorId2 = (AnchorId)1 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)2, anchorId2 = (AnchorId)3 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)4, anchorId2 = (AnchorId)3 });
+
+            preCount = frozenEdges.Count;
+            AddSpongyEdges(spongyEdges, frozenEdges);
+            Assert.AreEqual(preCount + 3, frozenEdges.Count);
+            spongyEdges.Clear();
+
+            // No changes, redudant add.
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)2, anchorId2 = (AnchorId)1 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)2, anchorId2 = (AnchorId)3 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)4, anchorId2 = (AnchorId)3 });
+
+            preCount = frozenEdges.Count;
+            AddSpongyEdges(spongyEdges, frozenEdges);
+            Assert.AreEqual(preCount + 0, frozenEdges.Count);
+            spongyEdges.Clear();
+
+            // Add 4 more new ones is random order.
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)5, anchorId2 = (AnchorId)1 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)6, anchorId2 = (AnchorId)3 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)3, anchorId2 = (AnchorId)8 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)7, anchorId2 = (AnchorId)3 });
+
+            preCount = frozenEdges.Count;
+            AddSpongyEdges(spongyEdges, frozenEdges);
+            Assert.AreEqual(preCount + 4, frozenEdges.Count);
+            spongyEdges.Clear();
+
+            // No change, redundant adds.
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)2, anchorId2 = (AnchorId)1 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)2, anchorId2 = (AnchorId)3 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)4, anchorId2 = (AnchorId)3 });
+
+            preCount = frozenEdges.Count;
+            AddSpongyEdges(spongyEdges, frozenEdges);
+            Assert.AreEqual(preCount + 0, frozenEdges.Count);
+            spongyEdges.Clear();
+
+            // No change, redundant adds in reverse order.
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)7, anchorId2 = (AnchorId)3 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)8, anchorId2 = (AnchorId)3 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)6, anchorId2 = (AnchorId)3 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)5, anchorId2 = (AnchorId)1 });
+
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)4, anchorId2 = (AnchorId)3 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)2, anchorId2 = (AnchorId)3 });
+            spongyEdges.Add(new AnchorEdge() { anchorId1 = (AnchorId)2, anchorId2 = (AnchorId)1 });
+
+            preCount = frozenEdges.Count;
+            AddSpongyEdges(spongyEdges, frozenEdges);
+            Assert.AreEqual(preCount + 0, frozenEdges.Count);
+            spongyEdges.Clear();
+        }
+
+        public static void AddSpongyEdges(ICollection<AnchorEdge> spongyEdges, List<AnchorEdge> frozenEdges)
+        {
+            AnchorEdge[] regularEdges = new AnchorEdge[spongyEdges.Count];
+            int idx = 0;
+            foreach (var edge in spongyEdges)
+            {
+                regularEdges[idx++] = RegularEdge(edge.anchorId1, edge.anchorId2);
+            }
+            System.Comparison<AnchorEdge> alphabeticCompare = (x, y) =>
+            {
+                int cmp1 = x.anchorId1.CompareTo(y.anchorId1);
+                if (cmp1 < 0)
+                {
+                    return -1;
+                }
+                if (cmp1 > 0)
+                {
+                    return 1;
+                }
+                int cmp2 = x.anchorId2.CompareTo(y.anchorId2);
+                return cmp2;
+            };
+            System.Array.Sort(regularEdges, alphabeticCompare);
+
+            int spongyIdx = 0;
+            for (int frozenIdx = 0; frozenIdx < frozenEdges.Count; ++frozenIdx)
+            {
+                if (spongyIdx >= regularEdges.Length)
+                {
+                    break;
+                }
+                int frozenToSpongy = alphabeticCompare(frozenEdges[frozenIdx], regularEdges[spongyIdx]);
+                if (frozenToSpongy >= 0)
+                {
+                    if (frozenToSpongy > 0)
+                    {
+                        // insert edge here
+                        frozenEdges.Insert(frozenIdx, regularEdges[spongyIdx]);
+                    }
+                    // If existing frozen is greater, we just inserted (above) spongy, so advance. 
+                    // If they are equal, we want to skip spongy, so advance.
+                    // If existing is lesser, we haven't reached insertion point yet, 
+                    // so don't advance spongyIdx (stay out of this conditional branch if frozenToSpongy < 0).
+                    ++spongyIdx;
+                }
+            }
+            while (spongyIdx < regularEdges.Length)
+            {
+                frozenEdges.Add(regularEdges[spongyIdx++]);
+            }
+        }
+        private static AnchorEdge RegularEdge(AnchorId idx1, AnchorId idx2)
+        {
+            return idx1 < idx2
+                ? new AnchorEdge() { anchorId1 = idx1, anchorId2 = idx2 }
+                : new AnchorEdge() { anchorId1 = idx2, anchorId2 = idx1 };
         }
     }
 }

@@ -126,7 +126,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         private void setEnabled(TextMesh textMesh, bool enabled)
         {
-            if (textMesh != null)
+            if (textMesh != null && (textMesh.gameObject.activeSelf != enabled))
             {
                 textMesh.gameObject.SetActive(enabled);
             }

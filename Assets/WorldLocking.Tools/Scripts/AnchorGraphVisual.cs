@@ -468,7 +468,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             {
                 var spongyAnchorVisual = Prefab_SpongyAnchorVisual.Instantiate(
                     spongyWorldVisual,
-                    source.spongyAnchor.GetComponent<WorldAnchor>());
+                    source.spongyAnchor);
 
                 resource = new IdPair<AnchorId, SpongyAnchorVisual>()
                 {

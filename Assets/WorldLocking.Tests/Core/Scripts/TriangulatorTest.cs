@@ -243,59 +243,35 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
                 }
             }
 
-            int reduction = 4;
+            int reduction = 3;
             List<long> buildTimes = new List<long>();
             List<long> findTimes = new List<long>();
             int maxMsPerVertBuild = 4;
 
+            Stopwatch stopwatch = new Stopwatch();
             Interpolant triIter;
-            ITriangulator triangulator = CreateDefaultTriangulator();
+            int minVertices = reduction * 2;
             Vector3[] vertArray = vertices.ToArray();
-            var stopwatch = Stopwatch.StartNew();
-            triangulator.Add(vertArray);
-            stopwatch.Stop();
-            UnityEngine.Debug.Log($"Processed {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
-            buildTimes.Add(stopwatch.ElapsedMilliseconds);
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * maxMsPerVertBuild);
-            stopwatch.Restart();
-            triIter = triangulator.Find(new Vector3(maxX * 0.33f, 0, maxZ * 0.33f));
-            stopwatch.Stop();
-            UnityEngine.Debug.Log($"Searched {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
-            findTimes.Add(stopwatch.ElapsedMilliseconds);
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds <= 1);
 
-            triangulator = CreateDefaultTriangulator();
-            vertices.RemoveRange(vertices.Count / reduction, vertices.Count - vertices.Count / reduction);
-            vertArray = vertices.ToArray();
-            stopwatch.Restart();
-            triangulator.Add(vertArray);
-            stopwatch.Stop();
-            UnityEngine.Debug.Log($"Processed {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
-            buildTimes.Add(stopwatch.ElapsedMilliseconds);
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * maxMsPerVertBuild);
-            stopwatch.Restart();
-            triIter = triangulator.Find(new Vector3(maxX * 0.33f, 0, maxZ * 0.33f));
-            stopwatch.Stop();
-            UnityEngine.Debug.Log($"Searched {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
-            findTimes.Add(stopwatch.ElapsedMilliseconds);
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds <= 1);
+            while (vertArray.Length >= minVertices)
+            {
+                ITriangulator triangulator = CreateDefaultTriangulator();
+                vertArray = vertices.ToArray();
+                stopwatch.Restart();
+                triangulator.Add(vertArray);
+                stopwatch.Stop();
+                UnityEngine.Debug.Log($"Processed {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
+                buildTimes.Add(stopwatch.ElapsedMilliseconds);
+                Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * maxMsPerVertBuild);
+                stopwatch.Restart();
+                triIter = triangulator.Find(new Vector3(maxX * 0.33f, 0, maxZ * 0.33f));
+                stopwatch.Stop();
+                UnityEngine.Debug.Log($"Searched {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
+                findTimes.Add(stopwatch.ElapsedMilliseconds);
+                Assert.IsTrue(stopwatch.ElapsedMilliseconds <= 1);
 
-            triangulator = CreateDefaultTriangulator();
-            vertices.RemoveRange(vertices.Count / reduction, vertices.Count - vertices.Count / reduction);
-            vertArray = vertices.ToArray();
-            stopwatch.Restart();
-            triangulator.Add(vertArray);
-            stopwatch.Stop();
-            UnityEngine.Debug.Log($"Processed {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
-            buildTimes.Add(stopwatch.ElapsedMilliseconds);
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * maxMsPerVertBuild);
-            stopwatch.Restart();
-            triIter = triangulator.Find(new Vector3(maxX * 0.33f, 0, maxZ * 0.33f));
-            stopwatch.Stop();
-            UnityEngine.Debug.Log($"Searched {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
-            findTimes.Add(stopwatch.ElapsedMilliseconds);
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds <= 1);
-
+                vertices.RemoveRange(vertices.Count / reduction, vertices.Count - vertices.Count / reduction);
+            }
         }
     }
 }

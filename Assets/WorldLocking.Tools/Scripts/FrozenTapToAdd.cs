@@ -2,7 +2,9 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using UnityEngine;
+#if UNITY_WSA
 using UnityEngine.XR.WSA.Input;
+#endif // UNITY_WSA
 
 using Microsoft.MixedReality.WorldLocking.Core;
 
@@ -28,21 +30,26 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// </summary>
         public bool Active { get; set; }
 
+#if UNITY_WSA
         private GestureRecognizer gestureRecognizer;
+#endif // UNITY_WSA
 
         private WorldLockingManager manager {  get { return WorldLockingManager.GetInstance(); } }
 
         // Start is called before the first frame update
         private void Start()
         {
+#if UNITY_WSA
             gestureRecognizer = new GestureRecognizer();
             gestureRecognizer.SetRecognizableGestures(GestureSettings.Tap);
 
             gestureRecognizer.Tapped += HandleTapped;
 
             gestureRecognizer.StartCapturingGestures();
+#endif // UNITY_WSA
         }
 
+#if UNITY_WSA
         private void HandleTapped(TappedEventArgs eventArgs)
         {
             
@@ -78,5 +85,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 }
             }
         }
+#endif // UNITY_WSA
     }
 }

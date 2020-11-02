@@ -99,6 +99,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 {
                     using (new EditorGUI.IndentLevelScope())
                     {
+                        AddProperty(mgrPath, "ARSessionSource");
+
+                        AddProperty(mgrPath, "ARSessionOriginSource");
+
                         AddProperty(mgrPath, "MinNewAnchorDistance");
 
                         AddProperty(mgrPath, "MaxAnchorEdgeLength");

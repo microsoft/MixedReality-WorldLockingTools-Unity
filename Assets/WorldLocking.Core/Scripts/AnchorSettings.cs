@@ -36,8 +36,40 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public bool IsValid
         {
-            get { return MinNewAnchorDistance > 0 && MaxAnchorEdgeLength > MinNewAnchorDistance; }
+            get 
+            {
+                if (MinNewAnchorDistance <= 0)
+                {
+                    return false;
+                }
+                if (MaxAnchorEdgeLength <= MinNewAnchorDistance)
+                {
+                    return false;
+                }
+                // Either both of these should be set, or neither.
+                if ((ARSessionSource == null) != (ARSessionOriginSource == null))
+                {
+                    return false;
+                }
+                return true; 
+            }
         }
+
+        /// <summary>
+        /// GameObject which has (or will have) the ARSession component, required when using the AR Foundation.
+        /// </summary>
+        /// <remarks>
+        /// Can leave null for legacy XR.
+        /// </remarks>
+        public GameObject ARSessionSource;
+
+        /// <summary>
+        /// GameObject which has (or will have) the ARSessionOrigin component, required when using AR Foundation.
+        /// </summary>
+        /// <remarks>
+        /// Can leave null for legacy XR.
+        /// </remarks>
+        public GameObject ARSessionOriginSource;
 
         /// <summary>
         /// The minimum distance to the current closest anchor before creating a new anchor.
@@ -63,6 +95,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public void InitToDefaults()
         {
             useDefaults = true;
+            ARSessionSource = null;
+            ARSessionOriginSource = null;
             MinNewAnchorDistance = 1.0f;
             MaxAnchorEdgeLength = 1.2f;
         }

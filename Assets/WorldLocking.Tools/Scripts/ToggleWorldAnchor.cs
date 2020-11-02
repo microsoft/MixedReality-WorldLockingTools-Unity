@@ -5,7 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_WSA
 using UnityEngine.XR.WSA;
+#endif // UNITY_WSA
 
 using Microsoft.MixedReality.WorldLocking.Core;
 
@@ -15,7 +17,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
     {
         protected IAttachmentPoint AttachmentPoint { get; private set; }
 
+#if UNITY_WSA
         private WorldAnchor worldAnchor = null;
+#endif // UNITY_WSA
 
         private bool frozenPoseIsSpongy = false;
         private Pose frozenPose = Pose.identity;
@@ -32,20 +36,30 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         void Start()
         {
             Debug.Assert(WorldLockingManager.GetInstance() != null, "Unexpected null WorldLockingManager");
+            // dummy use of variables to silence unused variable warning in non-WSA build.
+            if (frozenPoseIsSpongy)
+            {
+                frozenPose = Pose.identity;
+            }
         }
 
         private void OnEnable()
         {
+#if UNITY_WSA
             /// Setup world anchor helper.
             CreateWorldAnchorHelper();
+#endif // UNITY_WSA
         }
 
         private void OnDisable()
         {
+#if UNITY_WSA
             /// Tear down world anchor helper.
             DestroyWorldAnchorHelper();
+#endif // UNITY_WSA
         }
 
+#if UNITY_WSA
         // Update is called once per frame
         void Update()
         {
@@ -114,6 +128,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 AttachmentPoint = null;
             }
         }
+#endif // UNITY_WSA
 
     }
 }

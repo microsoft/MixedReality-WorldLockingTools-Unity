@@ -149,7 +149,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <remarks>
         /// This must be called between plugin.Refreeze() and plugin.RefreezeFinish().
         /// </remarks>
-        public void AdjustAll(Plugin plugin)
+        public void AdjustAll(IPlugin plugin)
         {
             int count = attachmentList.Count;
             for (int i = 0; i < count; ++i)
