@@ -513,7 +513,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             // into the FrozenWorld engine
             bool hasSpongyAnchors = AnchorManager.Update();
 
-#if UNITY_WSA
+//#if UNITY_WSA
             if (!hasSpongyAnchors)
             {
                 // IFragmentManager.Pause() will set all fragments to disconnected.
@@ -521,7 +521,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 FragmentManager.Pause();
                 return;
             }
-#endif // UNITY_WSA
+//#endif // UNITY_WSA
 
             try
             {
