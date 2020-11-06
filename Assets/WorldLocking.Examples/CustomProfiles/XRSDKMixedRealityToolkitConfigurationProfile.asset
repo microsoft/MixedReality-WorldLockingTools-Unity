@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7612acbc1a4a4ed0afa5f4ccbe42bee4, type: 3}
-  m_Name: XRSDKConfigurationProfileDiagsOff
+  m_Name: XRSDKMixedRealityToolkitConfigurationProfile
   m_EditorClassIdentifier: 
   isCustomProfile: 1
   targetExperienceScale: 3
@@ -40,7 +40,7 @@ MonoBehaviour:
     type: 2}
   diagnosticsSystemProfile: {fileID: 11400000, guid: 478436bd1083882479a52d067e98e537,
     type: 2}
-  enableDiagnosticsSystem: 0
+  enableDiagnosticsSystem: 1
   diagnosticsSystemType:
     reference: Microsoft.MixedReality.Toolkit.Diagnostics.MixedRealityDiagnosticsSystem,
       Microsoft.MixedReality.Toolkit.Services.DiagnosticsSystem
