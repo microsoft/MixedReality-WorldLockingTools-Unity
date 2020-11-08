@@ -2,9 +2,7 @@
     "name": "Microsoft.MixedReality.Toolkit.Providers.UnityAR",
     "references": [
         "Microsoft.MixedReality.Toolkit",
-        "Microsoft.MixedReality.Toolkit.Async",
-        "Unity.XR.ARFoundation",
-        "UnityEngine.SpatialTracking"
+        "Microsoft.MixedReality.Toolkit.Async"
     ],
     "includePlatforms": [
         "Android",

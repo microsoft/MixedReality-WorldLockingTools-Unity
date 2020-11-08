@@ -29,7 +29,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
         /// </summary>
-        public static string Version => "0.8.7";
+        public static string Version => "1.1.0";
 
         /// <summary>
         /// The configuration settings may only be set as a block.
@@ -51,7 +51,20 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 shared.settings = value;
                 ApplyNewSettings();
             }
-        } 
+        }
+
+        /// <summary>
+        /// Readonly access to linkage settings. These must be set from a context.
+        /// </summary>
+        public LinkageSettings LinkageSettings => shared.linkageSettings;
+
+        /// <summary>
+        /// Readonly access to anchor management settings. These must be set from a context.
+        /// </summary>
+        /// <remarks>
+        /// Note that anchor manager type cannot be changed after initial startup.
+        /// </remarks>
+        public AnchorSettings AnchorSettings => shared.anchorSettings;
 
         /// <summary>
         /// Get a copy of the shared diagnostics configuration settings, or set the
@@ -365,6 +378,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private void OneTimeStartUp()
         {
+            anchorManager = SelectAnchorManager(Plugin, headPoseTracker);
+
             if (AutoLoad)
             {
                 Load();
@@ -379,6 +394,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private IAnchorManager SelectAnchorManager(IPlugin plugin, IHeadPoseTracker headTracker)
         {
+            Debug.Log($"Select {shared.anchorSettings.anchorSubsystem} anchor manager.");
             if (AnchorManager != null)
             {
                 Debug.Log("Creating new anchormanager, but have old one. Reseting it before replacing.");
@@ -386,7 +402,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             var anchorSettings = shared.anchorSettings;
 #if WLT_ARFOUNDATION_PRESENT
-            if (anchorSettings.ARSessionSource != null)
+            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.ARF)
             {
                 Debug.Log($"Trying to create ARF anchor manager on {anchorSettings.ARSessionSource.name} and {anchorSettings.ARSessionOriginSource.name}");
                 AnchorManagerARF arfAnchorManager = AnchorManagerARF.TryCreate(plugin, headTracker,
@@ -396,10 +412,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.Log("Success creating ARF anchor manager");
                     return arfAnchorManager;
                 }
-                Debug.LogWarning("Failed to create requested AR Foundation anchor manager, will try Legacy XR.WSA");
+                Debug.LogWarning("Failed to create requested AR Foundation anchor manager!");
+                throw new Exception("Failed to create requested AR Foundation anchor manager. Check AR Foundation etc. installation.");
             }
 #endif // WLT_ARFOUNDATION_PRESENT
 #if WLT_ARSUBSYSTEMS_PRESENT
+            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.XRSDK)
             {
                 Debug.Log($"Trying to create XR anchor manager");
                 AnchorManagerXR xrAnchorManager = AnchorManagerXR.TryCreate(plugin, headTracker);
@@ -408,10 +426,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.Log("Success creating XR anchor manager");
                     return xrAnchorManager;
                 }
-                Debug.LogWarning("Failed to create requested XR SDK anchor manager, will try Legacy XR.WSA");
+                Debug.LogWarning("Failed to create requested XR SDK anchor manager!");
+                throw new Exception("Failed to create requested XR SDK anchor manager. Check XR Plugin installation, and legacy disabled.");
             }
 #endif // WLT_ARSUBSYSTEMS_PRESENT
-#if WLT_LEGACY_WMR_XR_PRESENT
+#if UNITY_WSA
+            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.WSA)
             {
                 AnchorManagerWSA wsaAnchorManager = AnchorManagerWSA.TryCreate(plugin, headTracker);
                 if (wsaAnchorManager != null)
@@ -419,9 +439,17 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.Log("Success creating WSA anchor manager");
                     return wsaAnchorManager;
                 }
+                Debug.LogWarning("Failed to create requested WSA anchor manager!");
+                throw new Exception("Failed to create requested WSA anchor manager. Check that legacy XR enabled in Player settings.");
             }
-#endif // WLT_LEGACY_WMR_XR_PRESENT
-            Debug.Log("Failure creating useful anchor manager of any type. Creating null manager");
+#endif // UNITY_WSA
+            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.Null)
+            {
+                AnchorManagerNull nullAnchorManager = AnchorManagerNull.TryCreate(plugin, headTracker);
+                Debug.Assert(nullAnchorManager != null, "Creation of Null anchor manager should never fail.");
+                return nullAnchorManager;
+            }
+            Debug.Assert(false, "Failure creating useful anchor manager of any type. Creating null manager");
             return AnchorManagerNull.TryCreate(plugin, headTracker);
         }
 
@@ -437,7 +465,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             AnchorManager.MinNewAnchorDistance = shared.anchorSettings.MinNewAnchorDistance;
             AnchorManager.MaxAnchorEdgeLength = shared.anchorSettings.MaxAnchorEdgeLength;
-            anchorManager = SelectAnchorManager(Plugin, headPoseTracker);
         }
 
         /// <summary>

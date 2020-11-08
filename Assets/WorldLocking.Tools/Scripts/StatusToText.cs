@@ -220,7 +220,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             + string.Format("Anchors          : {0}\n", manager.AnchorManager.NumAnchors)
             + string.Format("Edges            : {0}\n", manager.AnchorManager.NumEdges)
             + string.Format("Fragments        : {0}\n", manager.FragmentManager.NumFragments)
-            + string.Format("Current Fragment : {0}\n", manager.FragmentManager.CurrentFragmentId);
+            + string.Format("Current Fragment : {0}\n", manager.FragmentManager.CurrentFragmentId)
+            + string.Format("Anchor Subsystem : {0}\n", manager.AnchorSettings.anchorSubsystem);
             
             return infoText;
         }

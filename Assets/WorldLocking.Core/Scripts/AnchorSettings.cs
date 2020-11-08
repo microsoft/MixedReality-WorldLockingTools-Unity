@@ -15,6 +15,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         [Tooltip("Ignore set values and use default behavior. When set, will reset all values to defaults.")]
         private bool useDefaults;
 
+        public enum AnchorSubsystem
+        {
+            Null,
+            WSA,
+            XRSDK,
+            ARF
+        };
+
         /// <summary>
         /// Ignore set values and use default behavior. When set, will reset all values to defaults.
         /// </summary>
@@ -46,20 +54,43 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 {
                     return false;
                 }
-                // Either both of these should be set, or neither.
-                if ((ARSessionSource == null) != (ARSessionOriginSource == null))
+                if (anchorSubsystem == AnchorSubsystem.ARF)
                 {
+                    /// These must be supplied for ARF. Ignored otherwise.
+                    if ((ARSessionSource == null) || (ARSessionOriginSource == null))
+                    {
+                        return false;
+                    }
+#if !WLT_ARFOUNDATION_PRESENT
                     return false;
+#endif // WLT_ARFOUNDATION_PRESENT
+                }
+                if (anchorSubsystem == AnchorSubsystem.XRSDK)
+                {
+#if !WLT_ARSUBSYSTEMS_PRESENT
+                    return false;
+#endif // WLT_ARSUBSYSTEMS_PRESENT
+                }
+                if (anchorSubsystem == AnchorSubsystem.WSA)
+                {
+#if !UNITY_WSA
+                    return false;
+#endif // UNITY_WSA
                 }
                 return true; 
             }
         }
 
         /// <summary>
+        /// Choice of subsystem that supplies anchors.
+        /// </summary>
+        public AnchorSubsystem anchorSubsystem;
+
+        /// <summary>
         /// GameObject which has (or will have) the ARSession component, required when using the AR Foundation.
         /// </summary>
         /// <remarks>
-        /// Can leave null for legacy XR.
+        /// Ignored except when anchorSubsystem == ARF.
         /// </remarks>
         public GameObject ARSessionSource;
 
@@ -67,7 +98,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// GameObject which has (or will have) the ARSessionOrigin component, required when using AR Foundation.
         /// </summary>
         /// <remarks>
-        /// Can leave null for legacy XR.
+        /// Ignored except when anchorSubsystem == ARF.
         /// </remarks>
         public GameObject ARSessionOriginSource;
 
@@ -95,6 +126,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public void InitToDefaults()
         {
             useDefaults = true;
+            anchorSubsystem = AnchorSubsystem.WSA;
             ARSessionSource = null;
             ARSessionOriginSource = null;
             MinNewAnchorDistance = 1.0f;
