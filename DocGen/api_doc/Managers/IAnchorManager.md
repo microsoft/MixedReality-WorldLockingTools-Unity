@@ -18,7 +18,7 @@ The above algorithm grows the graph of anchors in the space traversed by the use
 
 The anchor manager may also persist the anchor graph across multiple sessions. 
 
-AnchorManager has options to automatically save its anchor graph during the session, load the previously saved graph at startup, or save and load on demand.
+AnchorManager has options to automatically save its anchor graph during the session, load the previously saved graph at startup, or save and load on demand. Persistence availability is dependent on platform support.
 
 ## See also
 

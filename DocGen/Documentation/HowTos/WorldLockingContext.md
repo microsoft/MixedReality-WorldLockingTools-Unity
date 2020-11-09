@@ -70,6 +70,12 @@ When creating and managing the camera hierarchy from script, the "Use Existing" 
 
 When the required transforms are not supplied, either left null or all Contexts have "Use Existing", then the system issues a warning and tries to infer good choices. It is recommended, but not required, to explicitly set the appropriate transforms, rather than having the system guess.
 
+### Anchor Management settings
+
+The Anchor Management settings all the explicit selection of the anchor tracking system. This selection is currently done only at startup, and once selected cannot be changed.
+
+Other settings here allow for control over the density of the underlying internal anchor graph.
+
 ### Diagnostics settings
 
 The Diagnostics settings control the gather of diagnostics for analysis of behavior and debugging. They should normally be left with "Use Defaults" set, which, among other things, disables the collection of diagnostics. The diagnostics collection is a great performance drag, so should be avoided unless needed.
