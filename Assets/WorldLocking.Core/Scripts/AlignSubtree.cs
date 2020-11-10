@@ -103,6 +103,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private AlignmentManager alignmentManager = null;
 
+        /// <summary>
+        /// Owned independent AlignmentManager.
+        /// </summary>
+        public AlignmentManager AlignmentManager => alignmentManager;
+
         private bool needLoad = false;
 
         #endregion Internal members

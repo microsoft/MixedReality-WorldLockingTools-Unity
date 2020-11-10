@@ -475,11 +475,19 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             if (subTree != null)
             {
-                subTree.OnAlignManagerCreated += (sender, manager) =>
+                if (subTree.AlignmentManager == null)
                 {
-                    this.alignmentManager = manager;
+                    subTree.OnAlignManagerCreated += (sender, manager) =>
+                    {
+                        this.alignmentManager = manager;
+                        alignmentManager.OnTriangulationBuilt += OnNewTriangulationWasBuilt;
+                    };
+                }
+                else
+                {
+                    this.alignmentManager = subTree.AlignmentManager;
                     alignmentManager.OnTriangulationBuilt += OnNewTriangulationWasBuilt;
-                };
+                }
             }
         }
 
