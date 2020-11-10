@@ -191,6 +191,30 @@ namespace Microsoft.MixedReality.WorldLocking.Core.Triangulator
             AdjustForBoundingIndices(bary);
             return bary;
         }
+
+        /// <summary>
+        /// SpacePinMeshVisualizer uses this dto as reference.
+        /// </summary>
+        public List<Vector3> Vertices => vertices;
+
+        /// <summary>
+        /// SpacePinMeshVisualizer uses this dto as reference.
+        /// </summary>
+        public int[] Triangles
+        {
+            get
+            {
+                int[] tris = new int[triangles.Count * 3];
+                for (int i = 0; i < triangles.Count; i++)
+                {
+                    tris[i * 3] = triangles[i].idx0; 
+                    tris[i * 3 + 1] = triangles[i].idx1; 
+                    tris[i * 3 + 2] = triangles[i].idx2;
+                }
+                return tris;
+            }
+        }
+
         #endregion Public APIs
 
         #region Internal query helpers
