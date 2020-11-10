@@ -38,6 +38,7 @@ steps:
 - task: MSBuild@1
   displayName: Build UWP x86
   inputs:
+    logFileVerbosity: detailed
     solution: $(Build.ArtifactStagingDirectory)\build\WorldLockingTools.sln
     platform: x86
     configuration: release
