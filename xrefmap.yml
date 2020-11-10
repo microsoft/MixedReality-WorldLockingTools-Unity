@@ -145,6 +145,12 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.Load
   nameWithType: AlignmentManager.Load
+- uid: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.OnTriangulationBuilt
+  name: OnTriangulationBuilt
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_OnTriangulationBuilt
+  commentId: E:Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.OnTriangulationBuilt
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.OnTriangulationBuilt
+  nameWithType: AlignmentManager.OnTriangulationBuilt
 - uid: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.PinnedFromLocked
   name: PinnedFromLocked
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_PinnedFromLocked
@@ -268,6 +274,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AddOwnedPin
   nameWithType: AlignSubtree.AddOwnedPin
+- uid: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AlignmentManager
+  name: AlignmentManager
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_AlignmentManager
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AlignmentManager
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AlignmentManager
+  nameWithType: AlignSubtree.AlignmentManager
+- uid: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AlignmentManager*
+  name: AlignmentManager
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_AlignmentManager_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AlignmentManager
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.AlignmentManager
+  nameWithType: AlignSubtree.AlignmentManager
 - uid: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.ClaimPinOwnership
   name: ClaimPinOwnership()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_ClaimPinOwnership
@@ -320,6 +339,12 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.Load
   nameWithType: AlignSubtree.Load
+- uid: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.OnAlignManagerCreated
+  name: OnAlignManagerCreated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_OnAlignManagerCreated
+  commentId: E:Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.OnAlignManagerCreated
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.OnAlignManagerCreated
+  nameWithType: AlignSubtree.OnAlignManagerCreated
 - uid: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.RemoveOwnedPin(Microsoft.MixedReality.WorldLocking.Core.SpacePin)
   name: RemoveOwnedPin(SpacePin)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_RemoveOwnedPin_Microsoft_MixedReality_WorldLocking_Core_SpacePin_
@@ -3321,6 +3346,32 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.SetBounds
   nameWithType: SimpleTriangulator.SetBounds
+- uid: Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.Triangles
+  name: Triangles
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.html#Microsoft_MixedReality_WorldLocking_Core_Triangulator_SimpleTriangulator_Triangles
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.Triangles
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.Triangles
+  nameWithType: SimpleTriangulator.Triangles
+- uid: Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.Triangles*
+  name: Triangles
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.html#Microsoft_MixedReality_WorldLocking_Core_Triangulator_SimpleTriangulator_Triangles_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.Triangles
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.Triangles
+  nameWithType: SimpleTriangulator.Triangles
+- uid: Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.Vertices
+  name: Vertices
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.html#Microsoft_MixedReality_WorldLocking_Core_Triangulator_SimpleTriangulator_Vertices
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.Vertices
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.Vertices
+  nameWithType: SimpleTriangulator.Vertices
+- uid: Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.Vertices*
+  name: Vertices
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.html#Microsoft_MixedReality_WorldLocking_Core_Triangulator_SimpleTriangulator_Vertices_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.Vertices
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Triangulator.SimpleTriangulator.Vertices
+  nameWithType: SimpleTriangulator.Vertices
 - uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext
   name: WorldLockingContext
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.html
@@ -5356,6 +5407,192 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleSprite.Target
   nameWithType: SimpleSprite.Target
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer
+  name: SpacePinMeshVisualizer
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer
+  nameWithType: SpacePinMeshVisualizer
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.extrapolatedMeshMaterial
+  name: extrapolatedMeshMaterial
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_extrapolatedMeshMaterial
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.extrapolatedMeshMaterial
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.extrapolatedMeshMaterial
+  nameWithType: SpacePinMeshVisualizer.extrapolatedMeshMaterial
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.GetVisibility
+  name: GetVisibility()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_GetVisibility
+  commentId: M:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.GetVisibility
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.GetVisibility()
+  nameWithType: SpacePinMeshVisualizer.GetVisibility()
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.GetVisibility*
+  name: GetVisibility
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_GetVisibility_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.GetVisibility
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.GetVisibility
+  nameWithType: SpacePinMeshVisualizer.GetVisibility
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Initialize(ITriangulator)
+  name: Initialize(ITriangulator)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_Initialize_ITriangulator_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Initialize(ITriangulator)
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Initialize(ITriangulator)
+  nameWithType: SpacePinMeshVisualizer.Initialize(ITriangulator)
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Initialize*
+  name: Initialize
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_Initialize_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Initialize
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Initialize
+  nameWithType: SpacePinMeshVisualizer.Initialize
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Instance
+  name: Instance
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_Instance
+  commentId: P:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Instance
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Instance
+  nameWithType: SpacePinMeshVisualizer.Instance
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Instance*
+  name: Instance
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_Instance_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Instance
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Instance
+  nameWithType: SpacePinMeshVisualizer.Instance
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.meshMaterial
+  name: meshMaterial
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_meshMaterial
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.meshMaterial
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.meshMaterial
+  nameWithType: SpacePinMeshVisualizer.meshMaterial
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.percentageWorldSpaceCanvasPrefab
+  name: percentageWorldSpaceCanvasPrefab
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_percentageWorldSpaceCanvasPrefab
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.percentageWorldSpaceCanvasPrefab
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.percentageWorldSpaceCanvasPrefab
+  nameWithType: SpacePinMeshVisualizer.percentageWorldSpaceCanvasPrefab
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.SetVisibility(System.Boolean)
+  name: SetVisibility(Boolean)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_SetVisibility_System_Boolean_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.SetVisibility(System.Boolean)
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.SetVisibility(System.Boolean)
+  nameWithType: SpacePinMeshVisualizer.SetVisibility(Boolean)
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.SetVisibility*
+  name: SetVisibility
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_SetVisibility_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.SetVisibility
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.SetVisibility
+  nameWithType: SpacePinMeshVisualizer.SetVisibility
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.textVerticalOffset
+  name: textVerticalOffset
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_textVerticalOffset
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.textVerticalOffset
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.textVerticalOffset
+  nameWithType: SpacePinMeshVisualizer.textVerticalOffset
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.verticalOffset
+  name: verticalOffset
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_verticalOffset
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.verticalOffset
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.verticalOffset
+  nameWithType: SpacePinMeshVisualizer.verticalOffset
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.weightCubeMaxSize
+  name: weightCubeMaxSize
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_weightCubeMaxSize
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.weightCubeMaxSize
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.weightCubeMaxSize
+  nameWithType: SpacePinMeshVisualizer.weightCubeMaxSize
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.weightsMaterial
+  name: weightsMaterial
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_weightsMaterial
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.weightsMaterial
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.weightsMaterial
+  nameWithType: SpacePinMeshVisualizer.weightsMaterial
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.wireFrameMaterial
+  name: wireFrameMaterial
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_wireFrameMaterial
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.wireFrameMaterial
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.wireFrameMaterial
+  nameWithType: SpacePinMeshVisualizer.wireFrameMaterial
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer
+  name: SpacePinPercentageVisualizer
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer
+  nameWithType: SpacePinPercentageVisualizer
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.highPercentageColor
+  name: highPercentageColor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_highPercentageColor
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.highPercentageColor
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.highPercentageColor
+  nameWithType: SpacePinPercentageVisualizer.highPercentageColor
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.highPercentageOutlineColor
+  name: highPercentageOutlineColor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_highPercentageOutlineColor
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.highPercentageOutlineColor
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.highPercentageOutlineColor
+  nameWithType: SpacePinPercentageVisualizer.highPercentageOutlineColor
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.lowPercentageColor
+  name: lowPercentageColor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_lowPercentageColor
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.lowPercentageColor
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.lowPercentageColor
+  nameWithType: SpacePinPercentageVisualizer.lowPercentageColor
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.lowPercentageOutlineColor
+  name: lowPercentageOutlineColor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_lowPercentageOutlineColor
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.lowPercentageOutlineColor
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.lowPercentageOutlineColor
+  nameWithType: SpacePinPercentageVisualizer.lowPercentageOutlineColor
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.middlePercentageColor
+  name: middlePercentageColor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_middlePercentageColor
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.middlePercentageColor
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.middlePercentageColor
+  nameWithType: SpacePinPercentageVisualizer.middlePercentageColor
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.middlePercentageOutlineColor
+  name: middlePercentageOutlineColor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_middlePercentageOutlineColor
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.middlePercentageOutlineColor
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.middlePercentageOutlineColor
+  nameWithType: SpacePinPercentageVisualizer.middlePercentageOutlineColor
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.percentageNumberText
+  name: percentageNumberText
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_percentageNumberText
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.percentageNumberText
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.percentageNumberText
+  nameWithType: SpacePinPercentageVisualizer.percentageNumberText
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.percentageNumberTextOutline
+  name: percentageNumberTextOutline
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_percentageNumberTextOutline
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.percentageNumberTextOutline
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.percentageNumberTextOutline
+  nameWithType: SpacePinPercentageVisualizer.percentageNumberTextOutline
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.SetVisibility(System.Boolean)
+  name: SetVisibility(Boolean)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_SetVisibility_System_Boolean_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.SetVisibility(System.Boolean)
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.SetVisibility(System.Boolean)
+  nameWithType: SpacePinPercentageVisualizer.SetVisibility(Boolean)
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.SetVisibility*
+  name: SetVisibility
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_SetVisibility_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.SetVisibility
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.SetVisibility
+  nameWithType: SpacePinPercentageVisualizer.SetVisibility
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.UpdatePercentage(System.Single)
+  name: UpdatePercentage(Single)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_UpdatePercentage_System_Single_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.UpdatePercentage(System.Single)
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.UpdatePercentage(System.Single)
+  nameWithType: SpacePinPercentageVisualizer.UpdatePercentage(Single)
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.UpdatePercentage*
+  name: UpdatePercentage
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_UpdatePercentage_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.UpdatePercentage
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.UpdatePercentage
+  nameWithType: SpacePinPercentageVisualizer.UpdatePercentage
 - uid: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual
   name: SpongyAnchorVisual
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.html

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class SimpleConsole
+    <title>Class SpacePinPercentageVisualizer
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class SimpleConsole
+    <meta name="title" content="Class SpacePinPercentageVisualizer
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.56.5.0">
     
@@ -81,55 +81,34 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole" class="text-break">Class SimpleConsole
+  <h1 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer" class="text-break">Class SpacePinPercentageVisualizer
   </h1>
-  <div class="markdown level0 summary"><p>A simple runtime console to help in debugging on device.</p>
-</div>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">SimpleConsole</span></div>
+    <div class="level1"><span class="xref">SpacePinPercentageVisualizer</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.html">Microsoft.MixedReality.WorldLocking.Tools</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SimpleConsole : MonoBehaviour</code></pre>
+    <pre><code class="lang-csharp hljs">public class SpacePinPercentageVisualizer : MonoBehaviour</code></pre>
   </div>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>The system accepts a verbosity level along with each line of text.
-If the system is enabled,
-If the verbosity level is &gt;= the logVerbosity
-the line is written to the Unity log file via Debug.Log().
-If the verbosity level is &gt;= the screenVerbosity
-the line will be displayed on screen.
-If the system is NOT enabled
-If the verbosity level is &gt;= 5
-the line is written to the Unity log file.
-To enable the system:</p>
-<ol>
-<li>Add a SimpleConsole component to any game object in the scene.</li>
-<li>Fill in the SimpleConsole's TextMesh console field with a valid TextMesh.
-Ideally, place the console TextMesh where it can be seen.
-If enabled, then every frame the last lineCount lines added are displayed on the console TextMesh,
-where lineCount is an inspector accessible property below.
-Use is thread safe, and from threads besides the main thread.</li>
-</ol>
-</div>
   <h3 id="fields">Fields
   </h3>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_console" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.console">console</h4>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_highPercentageColor" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.highPercentageColor">highPercentageColor</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TextMesh console</code></pre>
+    <pre><code class="lang-csharp hljs">public Color highPercentageColor</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -141,19 +120,19 @@ Use is thread safe, and from threads besides the main thread.</li>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TextMesh</span></td>
+        <td><span class="xref">Color</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_logVerbosity" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.logVerbosity">logVerbosity</h4>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_highPercentageOutlineColor" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.highPercentageOutlineColor">highPercentageOutlineColor</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int logVerbosity</code></pre>
+    <pre><code class="lang-csharp hljs">public Color highPercentageOutlineColor</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -165,19 +144,19 @@ Use is thread safe, and from threads besides the main thread.</li>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">Color</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_screenVerbosity" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.screenVerbosity">screenVerbosity</h4>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_lowPercentageColor" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.lowPercentageColor">lowPercentageColor</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int screenVerbosity</code></pre>
+    <pre><code class="lang-csharp hljs">public Color lowPercentageColor</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -189,25 +168,21 @@ Use is thread safe, and from threads besides the main thread.</li>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">Color</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="properties">Properties
-  </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_Active_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.Active*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_Active" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.Active">Active</h4>
-  <div class="markdown level1 summary"><p>Whether the onscreen component is active.</p>
-</div>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_lowPercentageOutlineColor" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.lowPercentageOutlineColor">lowPercentageOutlineColor</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool Active { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Color lowPercentageOutlineColor</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -217,23 +192,21 @@ Use is thread safe, and from threads besides the main thread.</li>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">Color</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_LineCount_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LineCount*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_LineCount" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LineCount">LineCount</h4>
-  <div class="markdown level1 summary"><p>The maximum number of lines to display.</p>
-</div>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_middlePercentageColor" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.middlePercentageColor">middlePercentageColor</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int LineCount { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Color middlePercentageColor</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -243,7 +216,79 @@ Use is thread safe, and from threads besides the main thread.</li>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_middlePercentageOutlineColor" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.middlePercentageOutlineColor">middlePercentageOutlineColor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color middlePercentageOutlineColor</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_percentageNumberText" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.percentageNumberText">percentageNumberText</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Text percentageNumberText</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Text</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_percentageNumberTextOutline" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.percentageNumberTextOutline">percentageNumberTextOutline</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Outline percentageNumberTextOutline</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Outline</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -252,14 +297,13 @@ Use is thread safe, and from threads besides the main thread.</li>
   </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_AddLine_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.AddLine*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_AddLine_System_Int32_System_String_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.AddLine(System.Int32,System.String)">AddLine(Int32, String)</h4>
-  <div class="markdown level1 summary"><p>Static helper for adding a line of text for output.</p>
-</div>
+  <a id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_SetVisibility_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.SetVisibility*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_SetVisibility_System_Boolean_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.SetVisibility(System.Boolean)">SetVisibility(Boolean)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int AddLine(int level, string line)</code></pre>
+    <pre><code class="lang-csharp hljs">public void SetVisibility(bool visibility)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -272,32 +316,36 @@ Use is thread safe, and from threads besides the main thread.</li>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">level</span></td>
-        <td><p>The verbosity level of this line.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">line</span></td>
-        <td><p>The text to display and/or write.</p>
-</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">visibility</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 class="returns">Returns</h5>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_UpdatePercentage_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.UpdatePercentage*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinPercentageVisualizer_UpdatePercentage_System_Single_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinPercentageVisualizer.UpdatePercentage(System.Single)">UpdatePercentage(Single)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdatePercentage(float percentage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><p>The number of lines added.</p>
-</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">percentage</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
