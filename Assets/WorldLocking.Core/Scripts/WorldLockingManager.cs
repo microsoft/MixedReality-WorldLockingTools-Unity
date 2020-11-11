@@ -449,7 +449,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 Debug.Assert(nullAnchorManager != null, "Creation of Null anchor manager should never fail.");
                 return nullAnchorManager;
             }
-            Debug.Assert(false, "Failure creating useful anchor manager of any type. Creating null manager");
+            Debug.Log("Failure creating useful anchor manager of any type. Creating null manager");
             return AnchorManagerNull.TryCreate(plugin, headTracker);
         }
 
