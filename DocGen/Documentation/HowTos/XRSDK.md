@@ -38,13 +38,16 @@ If working in the WLT project, I suggest using the WLT provided “XRSDKMixedRea
 
 To get an Android XR Plugin driving an MRTK AR application, follow the instructions at [How to configure MRTK for iOS and Android](href:https://microsoft.github.io/MixedRealityToolkit-Unity/version/releases/2.5.1/Documentation/CrossPlatform/UsingARFoundation.html?q=2020)
 
-NOTE: You need ALL of:
-* XR Plugin Management
-* AR Core XR Plugin
-* AR Subsystems
-* AR Foundation (this one is easy to forget).
+> NOTE: You need ALL of:
+> * XR Plugin Management
+> * AR Core XR Plugin
+> * AR Subsystems
+> * AR Foundation (this one is easy to forget).
 
 I suggest using the WLT provided “AR MixedRealityToolkitConfigurationProfile” to start.
+
+> NOTE: If you hit a build error about **manifest-merger failed**, then follow the appropriate instructions here:
+https://developers.google.com/ar/develop/unity/android-11-build
 
 ### Setup for other XR Plugins (ARKit, Oculus, etc.)
 
