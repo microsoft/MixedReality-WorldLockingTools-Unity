@@ -412,8 +412,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.Log("Success creating ARF anchor manager");
                     return arfAnchorManager;
                 }
-                Debug.LogWarning("Failed to create requested AR Foundation anchor manager!");
-                throw new Exception("Failed to create requested AR Foundation anchor manager. Check AR Foundation etc. installation.");
+                Debug.Log("Failed to create requested AR Foundation anchor manager!");
             }
 #endif // WLT_ARFOUNDATION_PRESENT
 #if WLT_ARSUBSYSTEMS_PRESENT
@@ -426,8 +425,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.Log("Success creating XR anchor manager");
                     return xrAnchorManager;
                 }
-                Debug.LogWarning("Failed to create requested XR SDK anchor manager!");
-                throw new Exception("Failed to create requested XR SDK anchor manager. Check XR Plugin installation, and legacy disabled.");
+                Debug.Log("Failed to create requested XR SDK anchor manager!");
             }
 #endif // WLT_ARSUBSYSTEMS_PRESENT
 #if UNITY_WSA
@@ -439,8 +437,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.Log("Success creating WSA anchor manager");
                     return wsaAnchorManager;
                 }
-                Debug.LogWarning("Failed to create requested WSA anchor manager!");
-                throw new Exception("Failed to create requested WSA anchor manager. Check that legacy XR enabled in Player settings.");
+                Debug.Log("Failed to create requested WSA anchor manager!");
             }
 #endif // UNITY_WSA
             if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.Null)
