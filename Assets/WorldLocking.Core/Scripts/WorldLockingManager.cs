@@ -457,8 +457,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (!shared.anchorSettings.IsValid)
             {
-                Debug.LogWarning("Invalid anchor management settings detected, resetting to default values.");
-                shared.anchorSettings.UseDefaults = true;
+                Debug.Log("Invalid anchor management settings detected!");
             }
             AnchorManager.MinNewAnchorDistance = shared.anchorSettings.MinNewAnchorDistance;
             AnchorManager.MaxAnchorEdgeLength = shared.anchorSettings.MaxAnchorEdgeLength;
