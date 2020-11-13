@@ -75,12 +75,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7623848835645628491}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -90,6 +92,24 @@ Light:
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
@@ -97,12 +117,15 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &7623848835662037334
@@ -148,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc82eeae7a27d4d4eb86e0e5036744b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelPositionSource: 0
   orienter: {fileID: 7623848836589104242}
 --- !u!1 &7623848835666928372
 GameObject:
@@ -223,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc82eeae7a27d4d4eb86e0e5036744b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelPositionSource: 0
   orienter: {fileID: 7623848836189341870}
 --- !u!1 &7623848836111077005
 GameObject:
@@ -267,6 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc82eeae7a27d4d4eb86e0e5036744b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelPositionSource: 0
   orienter: {fileID: 7623848836589104242}
 --- !u!1 &7623848836136794100
 GameObject:
@@ -423,7 +449,6 @@ MonoBehaviour:
   collectFromTree: 1
   ownedPins: []
   saveFileName: 
-  autoSave: 0
   subTree: {fileID: 0}
 --- !u!1 &7623848836359673083
 GameObject:
@@ -503,7 +528,6 @@ MonoBehaviour:
   collectFromTree: 1
   ownedPins: []
   saveFileName: 
-  autoSave: 1
   subTree: {fileID: 0}
 --- !u!1 &7623848836589104252
 GameObject:
@@ -594,6 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc82eeae7a27d4d4eb86e0e5036744b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelPositionSource: 0
   orienter: {fileID: 7623848837089932100}
 --- !u!1 &7623848836870117353
 GameObject:
@@ -638,6 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc82eeae7a27d4d4eb86e0e5036744b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelPositionSource: 0
   orienter: {fileID: 7623848837089932100}
 --- !u!1 &7623848837089932102
 GameObject:
@@ -728,6 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc82eeae7a27d4d4eb86e0e5036744b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelPositionSource: 0
   orienter: {fileID: 7623848836189341870}
 --- !u!1 &7623848837168175461
 GameObject:
@@ -776,9 +803,10 @@ Camera:
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -823,7 +851,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7623848837168175461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
@@ -860,6 +888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf98dd1206224111a38765365e98e207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockCursorWhenFocusLocked: 1
   setCursorInvisibleWhenFocusLocked: 0
   maxGazeCollisionDistance: 10
   raycastLayerMasks:
@@ -870,7 +899,6 @@ MonoBehaviour:
   gazeTransform: {fileID: 0}
   minHeadVelocityThreshold: 0.5
   maxHeadVelocityThreshold: 2
-  useEyeTracking: 1
 --- !u!1 &7623848837333453509
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,6 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc82eeae7a27d4d4eb86e0e5036744b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelPositionSource: 0
   orienter: {fileID: 7623848837089932100}
 --- !u!1 &7623848837428586127
 GameObject:
@@ -958,6 +987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc82eeae7a27d4d4eb86e0e5036744b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelPositionSource: 0
   orienter: {fileID: 7623848836189341870}
 --- !u!1 &7623848837645744739
 GameObject:
@@ -1002,6 +1032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc82eeae7a27d4d4eb86e0e5036744b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelPositionSource: 0
   orienter: {fileID: 7623848836589104242}
 --- !u!1001 &7623848836333607993
 PrefabInstance:
@@ -1058,6 +1089,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
+        type: 3}
+      propertyPath: shared.linkageSettings.AdjustmentFrame
+      value: 
+      objectReference: {fileID: 7623848835666928363}
+    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
+        type: 3}
+      propertyPath: shared.linkageSettings.CameraParent
+      value: 
+      objectReference: {fileID: 7623848836136794091}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0777d53f35d4cb42827b5c3bdf227bd, type: 3}
 --- !u!4 &7621204936583676311 stripped
