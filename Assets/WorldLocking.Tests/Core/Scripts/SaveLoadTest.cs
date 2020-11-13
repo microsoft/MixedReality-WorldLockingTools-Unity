@@ -100,6 +100,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             rig = loadHelper.LoadGameObject("Prefabs/IndiePinsRoot.prefab");
 
             yield return null;
+            yield return null;
 
             FindAndCheckPin(rig, "GPin1");
             FindAndCheckPin(rig, "GPin2");
