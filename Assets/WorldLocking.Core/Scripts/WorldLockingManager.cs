@@ -534,6 +534,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             if (AdjustmentFrame == null)
             {
+                Debug.Log("No WLM update because no adjustment frame set");
                 ErrorStatus = "no adjustment frame";
                 return;
             }
