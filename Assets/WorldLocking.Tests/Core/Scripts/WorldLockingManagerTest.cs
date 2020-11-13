@@ -222,7 +222,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
                 plugin.Step_Finish();
 
                 var adjustment = plugin.GetAlignment();
-                Assert.IsTrue(adjustment == movement);
+                Assert.IsTrue(adjustment == movement, $"k={k} adjustment={adjustment}, movement={movement}");
 
             }
         }
