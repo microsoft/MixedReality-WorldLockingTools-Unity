@@ -7,6 +7,8 @@ using UnityEngine.XR.WSA;
 using UnityEngine.XR.WSA.Persistence;
 #endif // UNITY_WSA
 
+#pragma warning disable CS0618
+
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
     /// <summary>

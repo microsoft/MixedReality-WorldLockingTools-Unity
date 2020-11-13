@@ -532,6 +532,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 return;
             }
 
+            if (AdjustmentFrame == null)
+            {
+                ErrorStatus = "no adjustment frame";
+                return;
+            }
+
             // AnchorManager.Update takes care of creating anchors&edges and feeding the up-to-date state
             // into the FrozenWorld engine
             bool hasSpongyAnchors = AnchorManager.Update();
