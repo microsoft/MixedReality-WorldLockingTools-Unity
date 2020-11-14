@@ -1043,7 +1043,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1141710421841518, guid: f0777d53f35d4cb42827b5c3bdf227bd, type: 3}
       propertyPath: m_Name
-      value: WorldLockingManager
+      value: IPR_WorldLockingManager
       objectReference: {fileID: 0}
     - target: {fileID: 4133740187393454, guid: f0777d53f35d4cb42827b5c3bdf227bd, type: 3}
       propertyPath: m_LocalPosition.x

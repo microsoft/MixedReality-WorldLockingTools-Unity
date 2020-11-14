@@ -67,6 +67,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
         [UnityTest]
         public IEnumerator SaveLoadIndieAlign()
         {
+            Debug.Log("Enter IndieAlign");
             GameObject rig = loadHelper.LoadGameObject("Prefabs/IndiePinsRoot.prefab");
 
             var wltMgr = WorldLockingManager.GetInstance();

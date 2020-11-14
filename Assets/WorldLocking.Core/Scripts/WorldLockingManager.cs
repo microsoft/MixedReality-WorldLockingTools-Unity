@@ -370,6 +370,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
 
             ApplyNewSettings();
+
+            Debug.Log($"Context {context.name} set, Adjustment={(AdjustmentFrame == null ? "Null" : AdjustmentFrame.name)}");
         }
 
         /// <summary>
