@@ -40,6 +40,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         public PluginNoop()
         {
+            Debug.Log("Creating PluginNoop");
             checkError();
             metrics = new MetricsAccessor();
         }

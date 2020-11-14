@@ -135,6 +135,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             WorldLockingManager wlMgr = WorldLockingManager.GetInstance();
             IPlugin plugin = wlMgr.Plugin;
             UnityEngine.Assertions.Assert.IsNotNull(plugin); /// This should work whether or not object overrides == null.
+            plugin.ClearFrozenAnchors();
 
             Pose[] poses =
             {
