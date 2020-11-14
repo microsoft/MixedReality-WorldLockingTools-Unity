@@ -86,7 +86,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             FindAndSetPin(rig, "PS2Pin2", new Vector3(0, 1, 0));
             FindAndSetPin(rig, "PS2Pin3", new Vector3(0, 1, 0));
 
-            /// Force a compute, which gives the global alinment manager a chance to update.
+            /// Force a compute, which gives the global alignment manager a chance to update.
             /// Because this is test (no active anchors), otherwise it won't get its cycles.
             wltMgr.AlignmentManager.ComputePinnedPose(new Pose(Vector3.zero, Quaternion.identity));
 
@@ -155,6 +155,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 
             Pose virtualPose = spacePin.ModelingPoseGlobal;
             Pose lockedPose = spacePin.LockedPose;
+            Debug.Log($"FFL:{WorldLockingManager.GetInstance().FrozenFromLocked}");
             Pose frozenPose = WorldLockingManager.GetInstance().FrozenFromLocked.Multiply(lockedPose);
             Vector3 offset = frozenPose.position - virtualPose.position;
             float len = Mathf.Abs(offset.magnitude - 1.0f);
