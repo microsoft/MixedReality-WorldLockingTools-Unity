@@ -38,6 +38,8 @@
         href: HowTos/UsingWLT/AlignMyCoordinates.md
   - name: Initial Setup
     href: HowTos/InitialSetup.md
+  - name: Cross Platform with XR SDK
+    href: HowTos/XRSDK.md
   - name: Tools and Visualizers
     href: HowTos/Tools.md
   - name: Trouble Shooting

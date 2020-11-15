@@ -12,148 +12,6 @@ using static Microsoft.MixedReality.FrozenWorld.Engine.Engine;
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
     /// <summary>
-    /// Numerical identifier for individual anchors within the FrozenWorld.
-    /// Assigned by the client when defining new spongy anchors.
-    /// Unique within a running session.
-    /// Persistent as part of serialized state.
-    /// </summary>
-    public enum AnchorId : ulong
-    {
-        Invalid = INVALID_ANCHOR_ID,
-        FirstValid = INVALID_ANCHOR_ID + 1,
-        Unknown = UNKNOWN_ANCHOR_ID,
-    };
-
-    /// <summary>
-    /// Numerical identifier for frozen fragments.
-    /// Assigned by engine. Persistent as part of serialized state.
-    /// </summary>
-    public enum FragmentId : ulong
-    {
-        Invalid = INVALID_ANCHOR_ID,
-        Unknown = UNKNOWN_ANCHOR_ID,
-    }
-
-    /// <summary>
-    /// Simple struct for passing id,pose tuples, to avoid C# version dependency (e.g. ValueTuple)
-    /// </summary>
-    public struct AnchorPose
-    {
-        public AnchorId anchorId;
-        public Pose pose;
-    }
-
-    /// <summary>
-    /// Simple struct for passing id,pose tuples, to avoid C# version dependency (e.g. ValueTuple)
-    /// </summary>
-    public struct FragmentPose
-    {
-        public FragmentId fragmentId;
-        public Pose pose;
-    }
-
-    /// <summary>
-    /// Simple struct associating a FragmentPose with an AnchorId.
-    /// </summary>
-    public struct AnchorFragmentPose
-    {
-        public AnchorId anchorId;
-        public FragmentPose fragmentPose;
-    }
-
-    /// <summary>
-    /// Simple struct representing a non-directional edge between two anchors.
-    /// </summary>
-    public struct AnchorEdge
-    {
-        public AnchorId anchorId1;
-        public AnchorId anchorId2;
-    };
-
-    /// <summary>
-    /// Simple struct for relevance by anchor id.
-    /// </summary>
-    public struct AnchorRelevance
-    {
-        public AnchorId anchorId;
-        public float relevance;
-    }
-
-
-    /// <summary>
-    /// Provide string formatting for id types.
-    /// </summary>
-    public static class ConversionExt
-    {
-        /// <summary>
-        /// Format AnchorId as string (used for visualization and persistence)
-        /// </summary>
-        /// <param name="id">Anchor Id to be formatted</param>
-        /// <returns>Formatted string</returns>
-        public static string FormatStr(this AnchorId id)
-        {
-            switch (id)
-            {
-                case AnchorId.Invalid:
-                    return "A#INV";
-                case AnchorId.Unknown:
-                    return "A#UNK";
-                default:
-                    return String.Format("A{0}", (int)id);
-            }
-        }
-
-        /// <summary>
-        /// Check that an id is valid and refers to a known anchor.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public static bool IsKnown(this AnchorId id)
-        {
-            return id != AnchorId.Invalid && id != AnchorId.Unknown;
-        }
-
-        /// <summary>
-        /// Format FragmentId as string (used for visualization)
-        /// </summary>
-        /// <param name="id">Fragment Id to be formatted</param>
-        /// <returns>Formatted string</returns>
-        public static string FormatStr(this FragmentId id)
-        {
-            switch (id)
-            {
-                case FragmentId.Invalid:
-                    return "F#INV";
-                case FragmentId.Unknown:
-                    return "F#UNK";
-                default:
-                    return String.Format("F{0}", (int)id);
-            }
-        }
-
-        /// <summary>
-        /// Check that an id is valid and refers to a known fragment.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public static bool IsKnown(this FragmentId id)
-        {
-            return id != FragmentId.Invalid && id != FragmentId.Unknown;
-        }
-    }
-
-    /// <summary>
-    /// Thin layer on exceptions for engine generated exceptions.
-    /// </summary>
-    public class EngineException : Exception
-    {
-        public EngineException(string message)
-        : base(String.Format("Error in call to FrozenWorld.Engine: \"{0}\"", message))
-        {
-        }
-    }
-
-    /// <summary>
     /// Encapsulate FrozenWorldPlugin.dll with a Unity-friendly interface
     /// 
     /// This class contains no significant logic, only translation between the low-level C-style interface of the library
@@ -167,7 +25,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// intentionally implemented as regular methods to ensure that the constructor has been called before any other
     /// interaction with the library.
     /// </summary>
-    public sealed class Plugin : IDisposable
+    public class Plugin : IPlugin
     {
         private FrozenWorld_Vector UtoF(Vector3 v) => new FrozenWorld_Vector { x = v.x, y = v.y, z = v.z };
         private FrozenWorld_Quaternion UtoF(Quaternion q) => new FrozenWorld_Quaternion { x = q.x, y = q.y, z = q.z, w = q.w };
@@ -220,6 +78,22 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             Dispose(false);
         }
 
+        public static unsafe bool HasEngine()
+        {
+            bool haveEngine = false;
+            try
+            {
+                int versionBufferSize = 256;
+                byte* versionBuffer = stackalloc byte[versionBufferSize];
+                int versionSize = FrozenWorld_GetVersion(false, versionBufferSize, versionBuffer);
+                haveEngine = true;
+            }
+            catch (Exception)
+            {
+            }
+            return haveEngine;
+        }
+
         private string cachedCompact;
         public string VersionCompact => cachedCompact ?? (cachedCompact = getVersion(false));
 
@@ -234,7 +108,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return System.Text.Encoding.UTF8.GetString(versionBuffer, versionSize);
         }
 
-        public struct MetricsAccessor
+        public class MetricsAccessor : IMetricsAccessor
         {
             internal FrozenWorld_Metrics fw_metrics;
 
@@ -260,8 +134,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             public float MaxAngularDeviationInFrustum { get { return fw_metrics.maxAngularDeviationInFrustum; } }
         }
 
-        private MetricsAccessor metrics;
-        public MetricsAccessor Metrics { get { return metrics; } }
+        private MetricsAccessor metrics = new MetricsAccessor();
+        public IMetricsAccessor Metrics { get { return metrics; } }
 
         unsafe public void Step_Init(Pose spongyHeadPose)
         {
@@ -698,12 +572,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         /// <param name="startTime"></param>
         /// <returns></returns>
-        public Serializer CreateSerializer(float startTime = 0.0f) => new Serializer(this, startTime);
+        public IPluginSerializer CreateSerializer(float startTime = 0.0f) => new Serializer(this, startTime);
 
         /// <summary>
         /// Class to capture and serialize frozen world state to storage.
         /// </summary>
-        public class Serializer: IDisposable
+        public class Serializer: IPluginSerializer
         {
             private FrozenWorld_Serialize_Stream stream;
             private float lastWriteStreamTime;
@@ -738,7 +612,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// </summary>
             /// <param name="plugin">Unused dummy argument to ensure proper initialization order</param>
             /// <param name="startTime">Relative time stamp initialized into the stream</param>
-            public Serializer(Plugin plugin, float startTime = 0.0f)
+            public Serializer(IPlugin plugin, float startTime = 0.0f)
             {
                 stream.time = startTime;
                 stream.includePersistent = true;
@@ -891,12 +765,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// Create a frozen world state deserializer.
         /// </summary>
         /// <returns>The deserializer</returns>
-        public Deserializer CreateDeserializer() => new Deserializer(this);
+        public IPluginDeserializer CreateDeserializer() => new Deserializer(this);
 
         /// <summary>
         /// Class to handle deserialization of frozen world state
         /// </summary>
-        public class Deserializer: IDisposable
+        public class Deserializer: IPluginDeserializer
         {
             private FrozenWorld_Deserialize_Stream stream;
 
@@ -922,7 +796,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// Open deserialization stream for reading FrozenWorld state
             /// </summary>
             /// <param name="plugin">Unused dummy argument to ensure proper initialization order</param>
-            public Deserializer(Plugin plugin)
+            public Deserializer(IPlugin plugin)
             {
                 stream.time = 0.0f;
                 stream.includePersistent = true;

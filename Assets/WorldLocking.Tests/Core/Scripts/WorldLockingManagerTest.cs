@@ -37,7 +37,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
         public void WorldLockingManagerTestSetup()
         {
             Assert.IsTrue(loadHelper.Setup());
-            
+
         }
 
         [TearDown]
@@ -51,7 +51,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
         public IEnumerator WorldLockingManagerTestContextSwitch()
         {
             GameObject rig = loadHelper.LoadBasicSceneRig();
-            
+
             Assert.IsTrue(WorldLockingManager.GetInstance().AutoLoad);
             var context = loadHelper.LoadComponentOnGameObject<WorldLockingContext>("Prefabs/CoreTestContext_AllDisabled.prefab");
             Assert.IsFalse(WorldLockingManager.GetInstance().AutoLoad);
@@ -133,8 +133,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
         public IEnumerator WorldLockingManagerTestPlugin()
         {
             WorldLockingManager wlMgr = WorldLockingManager.GetInstance();
-            Plugin plugin = wlMgr.Plugin;
+            IPlugin plugin = wlMgr.Plugin;
             UnityEngine.Assertions.Assert.IsNotNull(plugin); /// This should work whether or not object overrides == null.
+            plugin.ClearFrozenAnchors();
 
             Pose[] poses =
             {
@@ -154,7 +155,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             List<AnchorEdge> anchorEdges = new List<AnchorEdge>();
             for (int i = 0; i < anchorPoses.Count; ++i)
             {
-                for (int j = i+1; j < anchorPoses.Count; ++j)
+                for (int j = i + 1; j < anchorPoses.Count; ++j)
                 {
                     anchorEdges.Add(new AnchorEdge() { anchorId1 = anchorPoses[i].anchorId, anchorId2 = anchorPoses[j].anchorId });
                 }
@@ -177,7 +178,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             }
             /// Now walk back to start.
             Pose furthest = movement;
-            for (int i = 0; i< numRandomSteps; ++i)
+            for (int i = 0; i < numRandomSteps; ++i)
             {
                 movement.position = Vector3.Lerp(furthest.position, Vector3.zero, (float)i / (float)(numRandomSteps - 1));
                 PreMultiplyPoses(displacedPoses, anchorPoses, movement);
@@ -210,7 +211,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
         private void CheckAlignment(List<AnchorPose> anchorPoses, List<AnchorEdge> anchorEdges, Pose movement)
         {
             Pose spongyHead;
-            Plugin plugin = WorldLockingManager.GetInstance().Plugin;
+            IPlugin plugin = WorldLockingManager.GetInstance().Plugin;
             for (int k = 0; k < anchorPoses.Count; ++k)
             {
                 spongyHead = anchorPoses[k].pose;
@@ -222,7 +223,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
                 plugin.Step_Finish();
 
                 var adjustment = plugin.GetAlignment();
-                Assert.IsTrue(adjustment == movement);
+                Assert.IsTrue(adjustment == movement, $"k={k} adjustment={adjustment}, movement={movement}");
 
             }
         }

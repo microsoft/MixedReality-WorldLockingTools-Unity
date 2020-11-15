@@ -2,8 +2,6 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using UnityEngine;
-using UnityEngine.XR;
-using UnityEngine.XR.WSA.Input;
 
 using System.Collections.Generic;
 
@@ -165,7 +163,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
 
         private LineRenderer lineRenderer;
 
-        #endregion Private Fields
+#endregion Private Fields
 
 #region Unity Methods
 
@@ -247,31 +245,6 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
                 this.gameObject = pointerResult.CurrentPointerTarget;
             }
         };
-
-        private void HandleTapped(TappedEventArgs eventArgs)
-        {
-            // The tap event happens in Spongy space, so any arguments
-            // from it are in spongy space and need to be converted to frozen space,
-            // because the ray tests are done in frozen space.
-            var spongyHeadPose = eventArgs.headPose;
-            var manager = WorldLockingManager.GetInstance();
-            var frozenHeadPose = manager.FrozenFromSpongy.Multiply(spongyHeadPose);
-
-            var rayStart = frozenHeadPose.position;
-            var rayDir = frozenHeadPose.forward;
-
-            int ignoreRaycastLayer = Physics.IgnoreRaycastLayer;
-            int hitLayers = ~(ignoreRaycastLayer);
-            RaycastHit hitInfo;
-            if (Physics.Raycast(rayStart, rayDir, out hitInfo, Mathf.Infinity, hitLayers))
-            {
-                int uiLayer = LayerMask.GetMask("UI");
-                if (hitInfo.collider == null || ((1 << hitInfo.collider.gameObject.layer) & uiLayer) == 0)
-                {
-                    HandleHit(new RayHit(rayStart, hitInfo));
-                }
-            }
-        }
 
         private void HandleHit(RayHit rayHit)
         {

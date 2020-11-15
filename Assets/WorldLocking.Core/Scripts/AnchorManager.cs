@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+//#define WLT_EXTRA_LOGGING
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +35,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// * the MAX radius is 20cm larger than MIN radius which would require 12 m/s beyond world record sprinting speed to cover in one frame
     /// * whenever MIN contains more than one anchor, the anchor closest to current position is connected to all others within MIN 
     /// </remarks>
-    public class AnchorManager : IAnchorManager
+    public abstract class AnchorManager : IAnchorManager
     {
         /// <summary>
         /// minimum distance that can occur in regular anchor creation.
@@ -51,7 +53,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <inheritdoc/>
         public float MaxAnchorEdgeLength { get { return maxAnchorEdgeLength; } set { maxAnchorEdgeLength = value; } }
 
-        private static readonly float AnchorAddOutTime = 0.1f;
+        private static readonly float AnchorAddOutTime = 0.4f;
+
+        protected abstract float TrackingStartDelayTime { get; }
+
+        // UNITY_WSA - abstract?
+        protected abstract bool IsTracking();
 
         // mafinc - this ErrorStatus would be well refactored.
         /// <summary>
@@ -66,7 +73,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         public int NumEdges => plugin.GetNumFrozenEdges();
 
-        private readonly Plugin plugin;
+        private readonly IPlugin plugin;
+        private readonly IHeadPoseTracker headTracker = null;
         private readonly Transform worldAnchorParent;
 
         // New anchor creation:
@@ -77,7 +85,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         // To avoid bogus fragments from being created and then hang around indefinitely, whenever the Update routine creates
         // a new anchor, its data is only stored temporarily in the following fields. Then in the following time step, it is finalized
         // only if the isLocated is still true.
-        private AnchorId newAnchorId;
+        // 
+        // newAnchorId is static, and never reset, so that even if a new AnchorManager is created, a new anchor is
+        // never reusing the id from an old anchor (from the same session).
+        private static AnchorId newAnchorId = AnchorId.FirstValid;
         private SpongyAnchor newSpongyAnchor;
         private List<AnchorId> newAnchorNeighbors;
 
@@ -96,9 +107,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// Set up an anchor manager.
         /// </summary>
         /// <param name="plugin">The engine interface to update with the current anchor graph.</param>
-        public AnchorManager(Plugin plugin)
+        public AnchorManager(IPlugin plugin, IHeadPoseTracker headTracker)
         {
             this.plugin = plugin;
+            this.headTracker = headTracker;
 
             worldAnchorParent = new GameObject("SpongyWorldAnchorRoot").transform;
 
@@ -145,55 +157,33 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             foreach (var anchor in spongyAnchors)
             {
-                UnityEngine.Object.Destroy(anchor.spongyAnchor.gameObject);
+                DestroyAnchor(AnchorId.Invalid, anchor.spongyAnchor);
             }
             spongyAnchors.Clear();
 
-            ResetAnchorIds();
-            UnityEngine.Object.Destroy(newSpongyAnchor);
-            newSpongyAnchor = null;
+            newSpongyAnchor = DestroyAnchor(AnchorId.Invalid, newSpongyAnchor);
+            headTracker.Reset();
         }
 
         /// <summary>
         /// Create missing spongy anchors/edges and feed plugin with up-to-date input
         /// </summary>
         /// <returns>Boolean: Has the plugin received input to provide an adjustment?</returns>
-        public bool Update()
+        public virtual bool Update()
         {
             ErrorStatus = "";
 
-#if UNITY_WSA
-            if (UnityEngine.XR.WSA.WorldManager.state != UnityEngine.XR.WSA.PositionalLocatorState.Active)
+            if (!IsTracking())
             {
-                lastTrackingInactiveTime = Time.unscaledTime;
-
-                if (newSpongyAnchor)
-                {
-                    UnityEngine.Object.Destroy(newSpongyAnchor.gameObject);
-                    newSpongyAnchor = null;
-                }
-
-                ErrorStatus = "Lost Tracking";
-                return false;
+                return LostTrackingCleanup("Lost Tracking");
             }
-#endif // UNITY_WSA
 
             // To communicate spongyHead and spongyAnchor poses to the FrozenWorld engine, they must all be expressed
             // in the same coordinate system. Here, we do not care where this coordinate
             // system is defined and how it fluctuates over time, as long as it can be used to express the
             // relative poses of all the spongy objects within each time step.
             // 
-            // Note:
-            // The low-level input obtained via InputTracking.GetLocal???(XRNode.Head) is automatically kept in sync with
-            // Camera.main.transform.local??? (unless XRDevice.DisableAutoXRCameraTracking(Camera.main, true) is used to deactivate
-            // this mechanism). In theory, both could be used interchangeably, potentially allowing to avoid the dependency
-            // on low-level code at this point. It is not clear though, whether both values follow exactly the same timing or which
-            // one is more correct to be used at this point. More research might be necessary.
-            // 
-            // The decision between low-level access via InputTracking and high-level access via Camera.main.transform should
-            // be coordinated with the decision between high-level access to WorldAnchor and low-level access to
-            // Windows.Perception.Spatial.SpatialAnchor -- see comment at top of SpongyAnchor.cs
-            Pose spongyHead = GetHeadPose();
+            Pose spongyHead = headTracker.GetHeadPose();
 
             // place new anchors 1m below head
             Pose newSpongyAnchorPose = spongyHead;
@@ -217,10 +207,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 var id = keyval.anchorId;
                 var a = keyval.spongyAnchor;
-                if (a.isLocated)
+                if (a.IsLocated)
                 {
-                    float distSqr = (a.transform.position - newSpongyAnchorPose.position).sqrMagnitude;
-                    var anchorPose = new AnchorPose() { anchorId = id, pose = a.transform.GetGlobalPose() };
+                    Pose aSpongyPose = a.SpongyPose;
+                    float distSqr = (aSpongyPose.position - newSpongyAnchorPose.position).sqrMagnitude;
+                    var anchorPose = new AnchorPose() { anchorId = id, pose = aSpongyPose };
                     activeAnchors.Add(anchorPose);
                     if (distSqr < minDistSqr)
                     {
@@ -240,15 +231,23 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             if (newId == 0 && innerSphereAnchorIds.Count == 0)
             {
-                if (Time.unscaledTime <= lastTrackingInactiveTime + SpongyAnchor.TrackingStartDelayTime)
+                if (Time.unscaledTime <= lastTrackingInactiveTime + TrackingStartDelayTime)
                 {
+#if WLT_EXTRA_LOGGING
                     // Tracking has become active only recently. We suppress creation of new anchors while
                     // new anchors may still be in transition due to SpatialAnchor easing.
+                    Debug.Log($"Skip new anchor creation because only recently gained tracking {Time.unscaledTime - lastTrackingInactiveTime}");
+#endif // WLT_EXTRA_LOGGING
                 }
                 else if (Time.unscaledTime < lastAnchorAddTime + AnchorAddOutTime)
                 {
+#if WLT_EXTRA_LOGGING
                     // short timeout after creating one anchor to prevent bursts of new, unlocatable anchors
                     // in case of problems in the anchor generation
+                    Debug.Log($"Skip new anchor creation because waiting on recently made anchor "
+                        + $"{Time.unscaledTime - lastAnchorAddTime} "
+                        + $"- {(newSpongyAnchor != null ? newSpongyAnchor.name : "null")}");
+#endif // WLT_EXTRA_LOGGING
                 }
                 else
                 {
@@ -285,49 +284,41 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return true;
         }
 
-        private readonly List<XRNodeState> nodeStates = new List<XRNodeState>();
-
-        private Pose headPose = Pose.identity;
-
-        public Pose GetHeadPose()
+        private bool LostTrackingCleanup(string message)
         {
-            // Note:
-            // The low-level input obtained via InputTracking.GetLocal???(XRNode.Head) is automatically kept in sync with
-            // Camera.main.transform.local??? (unless XRDevice.DisableAutoXRCameraTracking(Camera.main, true) is used to deactivate
-            // this mechanism). In theory, both could be used interchangeably, potentially allowing to avoid the dependency
-            // on low-level code at this point. It is not clear though, whether both values follow exactly the same timing or which
-            // one is more correct to be used at this point. More research might be necessary.
-            // 
-            // The decision between low-level access via InputTracking and high-level access via Camera.main.transform should
-            // be coordinated with the decision between high-level access to WorldAnchor and low-level access to
-            // Windows.Perception.Spatial.SpatialAnchor -- see comment at top of SpongyAnchor.cs
-            nodeStates.Clear();
-            InputTracking.GetNodeStates(nodeStates);
-            for (int i = 0; i < nodeStates.Count; ++i)
+            Debug.Log($"Lost Tracking Frame {Time.frameCount}");
+            lastTrackingInactiveTime = Time.unscaledTime;
+
+            if (newSpongyAnchor)
             {
-                if (nodeStates[i].nodeType == XRNode.Head)
-                {
-                    Vector3 position;
-                    Quaternion rotation;
-                    if (nodeStates[i].tracked && nodeStates[i].TryGetPosition(out position) && nodeStates[i].TryGetRotation(out rotation))
-                    {
-                        headPose = new Pose(position, rotation);
-                    }
-                }
+                newSpongyAnchor = DestroyAnchor(AnchorId.Invalid, newSpongyAnchor);
             }
-            return headPose;
+
+            ErrorStatus = message;
+            return false;
         }
 
-        private SpongyAnchor CreateAnchor(AnchorId id)
+        // UNITY_WSA - abstract?
+        protected abstract SpongyAnchor CreateAnchor(AnchorId id, Transform parent, Pose initialPose);
+
+        protected abstract SpongyAnchor DestroyAnchor(AnchorId id, SpongyAnchor spongyAnchor);
+
+        protected void RemoveSpongyAnchorById(AnchorId id)
         {
-            var newAnchorObject = new GameObject(id.FormatStr());
-            newAnchorObject.transform.parent = worldAnchorParent;
-            return newAnchorObject.AddComponent<SpongyAnchor>();
+            if (id != AnchorId.Invalid)
+            {
+                int index = SpongyAnchors.FindIndex(anchorWithId => anchorWithId.anchorId == id);
+                if (index >= 0)
+                {
+                    Debug.Assert(index < SpongyAnchors.Count);
+                    SpongyAnchors.RemoveAt(index);
+                }
+            }
         }
 
         /// <summary>
         /// prepare potential new anchor, which will only be finalized in a later time step
-        /// when isLocalized is actually found to be true (see code before)
+        /// when isLocated is actually found to be true (see code before)
         /// </summary>
         /// <param name="pose"></param>
         /// <param name="neighbors"></param>
@@ -335,11 +326,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (newSpongyAnchor)
             {
-                UnityEngine.Object.Destroy(newSpongyAnchor.gameObject);
+                Debug.Log($"Discarding {newSpongyAnchor.name} (located={newSpongyAnchor.IsLocated}) because still not located");
+                newSpongyAnchor = DestroyAnchor(AnchorId.Invalid, newSpongyAnchor);
             }
 
-            newSpongyAnchor = CreateAnchor(NextAnchorId());
-            newSpongyAnchor.transform.SetGlobalPose(pose);
+            newSpongyAnchor = CreateAnchor(NextAnchorId(), worldAnchorParent, pose);
             newAnchorNeighbors = neighbors;
         }
 
@@ -353,8 +344,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             newEdges = new List<AnchorEdge>();
 
-            if (!newSpongyAnchor || !newSpongyAnchor.isLocated)
+            if ((newSpongyAnchor == null) || !newSpongyAnchor.IsLocated)
+            {
+#if WLT_EXTRA_LOGGING
+                if (newSpongyAnchor != null)
+                {
+                    Debug.Log($"Can't finalize {newSpongyAnchor.name} because it's still not located.");
+                }
+#endif // WLT_EXTRA_LOGGING
                 return AnchorId.Invalid;
+            }
 
             AnchorId newId = ClaimAnchorId();
             foreach (var id in newAnchorNeighbors)
@@ -394,47 +393,17 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 
         /// <summary>
-        /// Free up all claimed anchor ids.
-        /// </summary>
-        private void ResetAnchorIds()
-        {
-            newAnchorId = AnchorId.FirstValid;
-        }
-
-#if UNITY_WSA
-        /// <summary>
-        /// Convert WorldAnchorStore.GetAsync call into a modern C# async call
-        /// </summary>
-        /// <returns>Result from WorldAnchorStore.GetAsync</returns>
-        private static async Task<UnityEngine.XR.WSA.Persistence.WorldAnchorStore> getWorldAnchorStoreAsync()
-        {
-            var tcs = new TaskCompletionSource<UnityEngine.XR.WSA.Persistence.WorldAnchorStore>();
-            UnityEngine.XR.WSA.Persistence.WorldAnchorStore.GetAsync(store =>
-            {
-                tcs.SetResult(store);
-            });
-            return await tcs.Task;
-        }
-#endif // UNITY_WSA
-
-        /// <summary>
         /// Save the spongy anchors to persistent storage
         /// </summary>
         public async Task SaveAnchors()
         {
-#if UNITY_WSA
+            await SaveAnchors(spongyAnchors);
+        }
 
-            var worldAnchorStore = await getWorldAnchorStoreAsync();
-            foreach (var keyval in spongyAnchors)
-            {
-                var id = keyval.anchorId;
-                var anchor = keyval.spongyAnchor;
-                Debug.Assert(anchor.name == id.FormatStr());
-                anchor.Save(worldAnchorStore);
-            }
-#else // UNITY_WSA
+        // UNITY_WSA - abstract?
+        protected virtual async Task SaveAnchors(List<SpongyAnchorWithId> spongyAnchors)
+        {
             await Task.CompletedTask;
-#endif // UNITY_WSA
         }
 
         /// <summary>
@@ -447,45 +416,24 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// Likewise, when a spongy anchor fails to load, this routine will delete its frozen
         /// counterpart from the plugin.
         /// </remarks>
+        /// UNITY_WSA
         public async Task LoadAnchors()
         {
-#if UNITY_WSA
-            var worldAnchorStore = await getWorldAnchorStoreAsync();
+            await LoadAnchors(plugin, newAnchorId, worldAnchorParent, spongyAnchors);
 
-            var anchorIds = plugin.GetFrozenAnchorIds();
-
-            AnchorId maxId = newAnchorId;
-
-            foreach (var id in anchorIds)
+            foreach (var spongyAnchor in spongyAnchors)
             {
-                var spongyAnchor = CreateAnchor(id);
-                bool success = spongyAnchor.Load(worldAnchorStore);
-                if (success)
+                if (newAnchorId <= spongyAnchor.anchorId)
                 {
-                    spongyAnchors.Add(new SpongyAnchorWithId()
-                    {
-                        anchorId = id,
-                        spongyAnchor = spongyAnchor
-                    });
-                    if (maxId <= id)
-                    {
-                        maxId = id + 1;
-                    }
-                }
-                else
-                {
-                    UnityEngine.Object.Destroy(spongyAnchor.gameObject);
-                    plugin.RemoveFrozenAnchor(id);
+                    newAnchorId = spongyAnchor.anchorId + 1;
                 }
             }
+        }
 
-            if (spongyAnchors.Count > 0)
-            {
-                newAnchorId = maxId;
-            }
-#else // UNITY_WSA
+        // UNITY_WSA - abstract?
+        protected virtual async Task LoadAnchors(IPlugin plugin, AnchorId firstId, Transform parent, List<SpongyAnchorWithId> spongyAnchors)
+        {
             await Task.CompletedTask;
-#endif // UNITY_WSA
         }
     }
 }

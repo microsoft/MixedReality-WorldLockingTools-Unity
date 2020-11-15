@@ -1,6 +1,8 @@
 
 # Persistence tricks
 
+Persistence is available where supported by the underlying platform. Currently, this is limited to the HoloLens family of devices, using Unity's built-in VR support (Legacy XR).
+
 ## Basic persistence
 
 Basic persistence for World Locking Tools comes enabled by default. This enabling comes in two parts.

@@ -4,7 +4,6 @@
         "Microsoft.MixedReality.Toolkit",
         "Microsoft.MixedReality.Toolkit.Async"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [
         "Android",
         "Editor",
@@ -15,5 +14,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": []
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

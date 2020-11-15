@@ -1,9 +1,13 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+#pragma warning disable CS0618
+
 using UnityEngine;
+#if UNITY_WSA
 using UnityEngine.XR;
 using UnityEngine.XR.WSA;
+#endif // UNITY_WSA
 using UnityEngine.Rendering;
 using UnityEngine.Assertions;
 using System;
@@ -42,10 +46,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             public BakedState currentState = BakedState.NeverBaked;
         }
 
+#if UNITY_WSA
         /// <summary>
         /// Interface to spatial mapping
         /// </summary>
         private SurfaceObserver observer;
+#endif // UNITY_WSA
 
         /// <summary>
         /// Store known surfaces by handle.
@@ -88,7 +94,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 display = value;
                 if (Display != oldDisplay)
                 {
+#if UNITY_WSA
                     ChangeDisplayState();
+#endif // UNITY_WSA 
                 }
             }
         }
@@ -192,17 +200,25 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         private void Start()
         {
             spatialMappingLayer = LayerMask.NameToLayer("SpatialMapping");
+            // dummy use of variables to silence unused variable warning in non-WSA build.
+            if (updateCountdown > 0 && waitingForBake)
+            {
+                updateCountdown = 0;
+            }
         }
 
         private void Setup()
         {
+#if UNITY_WSA
             Debug.Assert(observer == null, "Setting up an already setup FrozenSpatialMapping");
             observer = new SurfaceObserver();
             observer.SetVolumeAsSphere(Vector3.zero, Radius);
+#endif // UNITY_WSA
         }
 
         private void Teardown()
         {
+#if UNITY_WSA
             Debug.Assert(observer != null, "Tearing down FrozenSpatialMapping that isn't set up.");
             foreach (var surface in surfaces.Values)
             {
@@ -211,17 +227,21 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             surfaces.Clear();
             observer.Dispose();
             observer = null;
+#endif // UNITY_WSA
         }
 
         private void Update()
         {
+#if UNITY_WSA
             if (CheckState())
             {
                 UpdateObserver();
                 UpdateSurfaces();
             }
+#endif // UNITY_WSA
         }
 
+#if UNITY_WSA
         private bool CheckState()
         {
             if (Active)
@@ -443,5 +463,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 Assert.IsTrue(false);
             }
         }
+#endif // UNITY_WSA
     }
 }

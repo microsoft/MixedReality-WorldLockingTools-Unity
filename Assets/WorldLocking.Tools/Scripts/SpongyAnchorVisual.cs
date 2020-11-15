@@ -3,7 +3,6 @@
 
 using System;
 using UnityEngine;
-using UnityEngine.XR.WSA;
 
 using Microsoft.MixedReality.WorldLocking.Core;
 
@@ -35,7 +34,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// <summary>
         /// The WorldAnchor on a separate GameObject for syncing this GameObject's localPose")]
         /// </summary>
-        private WorldAnchor worldAnchor = null;
+        private SpongyAnchor spongyAnchor = null;
 
         [SerializeField]
         [Tooltip("The child object that will have its color controlled")]
@@ -55,17 +54,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// Create a visualizer for a spongy anchor.
         /// </summary>
         /// <param name="parent">Coordinate space to create the visualizer in</param>
-        /// <param name="worldAnchor">The worldanchor component assigned to some other object that this object is supposed to sync with</param>
+        /// <param name="spongyAnchor">The spongyAnchor component assigned to some other object that this object is supposed to sync with</param>
         /// <returns></returns>
-        public SpongyAnchorVisual Instantiate(FrameVisual parent, WorldAnchor worldAnchor)
+        public SpongyAnchorVisual Instantiate(FrameVisual parent, SpongyAnchor spongyAnchor)
         {
             var res = Instantiate(this, parent.transform);
-            res.name = worldAnchor.name;
+            res.name = spongyAnchor.name;
             if (res.textObject != null)
             {
                 res.textObject.text = res.name;
             }
-            res.worldAnchor = worldAnchor;
+            res.spongyAnchor = spongyAnchor;
             res.color = Color.gray;
             return res;
         }
@@ -82,9 +81,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             // The SpongyFrame is adjusted by FrozeWorld every frame. This means that giving a transform M relative to the SpongyFrame,
             // as done here, will put the object _relative to the camera_ in the same place as setting M as the world transform
             // if SpongyFrame wasn't there, i.e. Unity World Space.
-            transform.SetLocalPose(worldAnchor.transform.GetGlobalPose());
+            transform.SetLocalPose(spongyAnchor.SpongyPose);
 
-            if (!worldAnchor.isLocated)
+            if (!spongyAnchor.IsLocated)
                 color = Color.gray;
 
             if (ringObject != null)

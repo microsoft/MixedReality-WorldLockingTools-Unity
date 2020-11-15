@@ -21,7 +21,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         };
         private List<PendingAttachmentPoint> pendingAttachments = new List<PendingAttachmentPoint>();
 
-        private readonly Plugin plugin;
+        private readonly IPlugin plugin;
 
         /// <summary>
         /// Current number of fragments.
@@ -69,7 +69,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
-        public FragmentManager(Plugin plugin)
+        public FragmentManager(IPlugin plugin)
         {
             this.plugin = plugin;
         }
@@ -376,7 +376,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <param name="plugin">The global plugin</param>
         /// <param name="target">The attachment point to setup</param>
         /// <param name="context">The optional context <see cref="CreateAttachmentPoint"/></param>
-        public static void SetupAttachmentPoint(Plugin plugin, AttachmentPoint target, IAttachmentPoint context)
+        public static void SetupAttachmentPoint(IPlugin plugin, AttachmentPoint target, IAttachmentPoint context)
         {
             if (context != null)
             {

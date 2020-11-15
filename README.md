@@ -3,7 +3,7 @@
 # Welcome!
 World Locking Tools for Unity provides a stable and reliable world-locked coordinate system, binding the virtual/holographic world to the physical world.
 
-World Locking Tools take the burden of world-locking holograms off of the developer, as well as enabling scenarios that were previously unreachable. It currently supports the **HoloLens family of devices**.
+World Locking Tools take the burden of world-locking holograms off of the developer, as well as enabling scenarios that were previously unreachable. It currently supports the **HoloLens family of devices** via Unity's built-in VR support. Initial support for **other platforms [via Unity's new XR SDK plugin system](~/DocGen/Documentation/HowTos/XRSDK.md)** is also available.
 
 World Locking Tools locks the entire holograph space of your application to the physical world. A hologram put in position relative to physical world features will stay fixed relative to those features, as well as remaining fixed relative to other holograms.
 

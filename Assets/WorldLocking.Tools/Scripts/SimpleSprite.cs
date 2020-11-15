@@ -48,10 +48,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             {
                 targetUp = target.up;
             }
+            if (fromTarget.sqrMagnitude > 0)
+            {
+                Quaternion rotation = Quaternion.LookRotation(fromTarget, targetUp);
 
-            Quaternion rotation = Quaternion.LookRotation(fromTarget, targetUp);
-
-            transform.rotation = rotation;
+                transform.rotation = rotation;
+            }
         }
     }
 }

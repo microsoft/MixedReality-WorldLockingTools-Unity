@@ -38,9 +38,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private int MaxNumberOfFiles => shared.settings.MaxNumberOfFiles;
         #endregion Internal properties as shortcuts
 
-        private Plugin plugin;
+        private IPlugin plugin;
 
-        protected Plugin.Serializer serializer;
+        protected IPluginSerializer serializer;
 
         /// <summary>
         /// One record (chunk) of data.
@@ -65,7 +65,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// Get set up.
         /// </summary>
         /// <param name="plugin">The plugin providing necessary resources</param>
-        public void Start(Plugin plugin)
+        public void Start(IPlugin plugin)
         {
             this.plugin = plugin;
         }

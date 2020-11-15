@@ -15,6 +15,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         [Tooltip("Ignore set values and use default behavior. When set, will reset all values to defaults.")]
         private bool useDefaults;
 
+        public enum AnchorSubsystem
+        {
+            Null,
+            WSA,
+            XRSDK,
+            ARF
+        };
+
         /// <summary>
         /// Ignore set values and use default behavior. When set, will reset all values to defaults.
         /// </summary>
@@ -36,8 +44,69 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public bool IsValid
         {
-            get { return MinNewAnchorDistance > 0 && MaxAnchorEdgeLength > MinNewAnchorDistance; }
+            get 
+            {
+                if (MinNewAnchorDistance <= 0)
+                {
+                    Debug.Log($"Setting Invalid: MinNewAnchorDistance = {MinNewAnchorDistance}");
+                    return false;
+                }
+                if (MaxAnchorEdgeLength <= MinNewAnchorDistance)
+                {
+                    Debug.Log($"Setting Invalid: MinNewAnchorDistance = {MinNewAnchorDistance} - MaxNewAnchorEdgeLength = {MaxAnchorEdgeLength}");
+                    return false;
+                }
+                if (anchorSubsystem == AnchorSubsystem.ARF)
+                {
+                    /// These must be supplied for ARF. Ignored otherwise.
+                    if ((ARSessionSource == null) || (ARSessionOriginSource == null))
+                    {
+                        Debug.Log($"Setting Invalid: ARSessionSource and ARSessionOriginSource must be set.");
+                        return false;
+                    }
+#if !WLT_ARFOUNDATION_PRESENT
+                    Debug.Log($"Setting Invalid: ARF selected, but no ARFOUNDATION_PRESENT");
+                    return false;
+#endif // WLT_ARFOUNDATION_PRESENT
+                }
+                if (anchorSubsystem == AnchorSubsystem.XRSDK)
+                {
+#if !WLT_ARSUBSYSTEMS_PRESENT
+                    Debug.Log($"Setting Invalid: XRSDK selected, but no ARSUBSYSTEMS_PRESENT");
+                    return false;
+#endif // WLT_ARSUBSYSTEMS_PRESENT
+                }
+                if (anchorSubsystem == AnchorSubsystem.WSA)
+                {
+#if !UNITY_WSA
+                    Debug.Log($"Setting Invalid: WSA selected but no UNITY_WSA");
+                    return false;
+#endif // UNITY_WSA
+                }
+                return true; 
+            }
         }
+
+        /// <summary>
+        /// Choice of subsystem that supplies anchors.
+        /// </summary>
+        public AnchorSubsystem anchorSubsystem;
+
+        /// <summary>
+        /// GameObject which has (or will have) the ARSession component, required when using the AR Foundation.
+        /// </summary>
+        /// <remarks>
+        /// Ignored except when anchorSubsystem == ARF.
+        /// </remarks>
+        public GameObject ARSessionSource;
+
+        /// <summary>
+        /// GameObject which has (or will have) the ARSessionOrigin component, required when using AR Foundation.
+        /// </summary>
+        /// <remarks>
+        /// Ignored except when anchorSubsystem == ARF.
+        /// </remarks>
+        public GameObject ARSessionOriginSource;
 
         /// <summary>
         /// The minimum distance to the current closest anchor before creating a new anchor.
@@ -63,6 +132,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public void InitToDefaults()
         {
             useDefaults = true;
+            anchorSubsystem = AnchorSubsystem.WSA;
+            ARSessionSource = null;
+            ARSessionOriginSource = null;
             MinNewAnchorDistance = 1.0f;
             MaxAnchorEdgeLength = 1.2f;
         }

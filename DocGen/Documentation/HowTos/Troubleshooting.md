@@ -53,11 +53,13 @@ Especially dangerous is if that's set to `Latest Installed` and you have multipl
 
 ### On HoloLens, application starts up as a slate, rather than an AR experience.
 
-For Unity version 2019.3 and earlier, not sure about later), check: 
+If targeting the Unity's built-in VR support, also known as Legacy XR, then check: 
 
 > `Unity > Project Settings > Player > XR Settings`  
 
 You must have Virtual Reality Supported checked, and the Windows Mixed Reality in Virtual Reality SDKs.
+
+If using Unity's AR Subsystems / XR SDK, then check that you've followed all the steps [here](XRSDK.md). Likely culprits are missing one of the required packages, or if using MRTK, that the appropriate profile has not been setup on the MixedRealityToolkit object.
 
 ### When building for ARM on HoloLens2, app stops at startup. ARM64 works fine.
 
