@@ -251,9 +251,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
                 alignMgr.ComputePinnedPose(new Pose(pinData[i].lockedPose.position, Quaternion.identity));
                 Pose pinnedFromLocked = alignMgr.PinnedFromLocked;
                 bool isIdentityPosition = pinnedFromLocked.position == Vector3.zero;
-                Assert.IsTrue(isIdentityPosition);
+                Assert.IsTrue(isIdentityPosition, $"pp={pinnedFromLocked.position.ToString("F3")}");
                 bool isIdentityRotation = pinnedFromLocked.rotation == Quaternion.identity;
-                Assert.IsTrue(isIdentityRotation);
+                Assert.IsTrue(isIdentityRotation, $"pr={pinnedFromLocked.rotation.ToString("F3")}");
             }
         }
 
@@ -274,9 +274,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             Pose lockedFromFrozen = frozenFromLocked.Inverse();
             Pose computedLocked = lockedFromFrozen.Multiply(virtualPose);
             bool areEqualPositions = computedLocked.position == lockedPose.position;
-            Assert.IsTrue(areEqualPositions);
+            Assert.IsTrue(areEqualPositions, $"clp={computedLocked.position.ToString("F3")} lpp={lockedPose.position.ToString("F3")}");
             bool areEqualRotatons = computedLocked.rotation == lockedPose.rotation;
-            Assert.IsTrue(areEqualRotatons);
+            Assert.IsTrue(areEqualRotatons, $"clr={computedLocked.rotation.ToString("F3")} lpr={lockedPose.rotation.ToString("F3")}");
         }
 
         [UnityTest]
