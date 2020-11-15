@@ -155,12 +155,13 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 
             Pose virtualPose = spacePin.ModelingPoseGlobal;
             Pose lockedPose = spacePin.LockedPose;
-            Debug.Log($"FFL:{WorldLockingManager.GetInstance().FrozenFromLocked}");
+            Debug.Log($"FFL:{WorldLockingManager.GetInstance().FrozenFromLocked.position.ToString("F3")}"
+                + $"/ {WorldLockingManager.GetInstance().FrozenFromLocked.rotation.ToString("F3")}");
             Pose frozenPose = WorldLockingManager.GetInstance().FrozenFromLocked.Multiply(lockedPose);
             Vector3 offset = frozenPose.position - virtualPose.position;
             float len = Mathf.Abs(offset.magnitude - 1.0f);
-            //Assert.Less(len, 1.0e-4f, $"pin={spacePin.name} fr={frozenPose.position} vi={virtualPose.position}");
-            Debug.Log($"pin={spacePin.name} fr={frozenPose.position} vi={virtualPose.position}");
+            //Assert.Less(len, 1.0e-4f, $"pin={spacePin.name} fr={frozenPose.position.ToString("F3")} vi={virtualPose.position.ToString("F3")}");
+            Debug.Log($"pin={spacePin.name} fr={frozenPose.position.ToString("F3")} vi={virtualPose.position.ToString("F3")}");
         }
 
         private void FindAndSetPin(GameObject rig, string pinName, Vector3 offset)

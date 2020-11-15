@@ -285,7 +285,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             Pose lockedFromFrozen = frozenFromLocked.Inverse();
             Vector3 computedLocked = lockedFromFrozen.Multiply(virtualPos);
             bool areEqual = computedLocked == lockedPos;
-            Assert.IsTrue(areEqual);
+            Assert.IsTrue(areEqual, $"c={computedLocked.ToString("F3")} l={lockedPos.ToString("F3")}");
         }
 
         // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
