@@ -310,13 +310,13 @@ rather than an interface to avoid an unnecessary downcast.</p>
   
   
   <a id="Microsoft_MixedReality_WorldLocking_Core_Fragment_AdjustAll_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Fragment.AdjustAll*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Fragment_AdjustAll_Plugin_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Fragment.AdjustAll(Plugin)">AdjustAll(Plugin)</h4>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Fragment_AdjustAll_IPlugin_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Fragment.AdjustAll(IPlugin)">AdjustAll(IPlugin)</h4>
   <div class="markdown level1 summary"><p>Run through all attachment points, get their adjustments from the plugin and apply them.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AdjustAll(Plugin plugin)</code></pre>
+    <pre><code class="lang-csharp hljs">public void AdjustAll(IPlugin plugin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -329,13 +329,13 @@ rather than an interface to avoid an unnecessary downcast.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Plugin</span></td>
+        <td><span class="xref">IPlugin</span></td>
         <td><span class="parametername">plugin</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_Fragment_AdjustAll_Plugin__remarks">Remarks</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_Fragment_AdjustAll_IPlugin__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This must be called between plugin.Refreeze() and plugin.RefreezeFinish().</p>
 </div>
   

@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cross Platform using Unity's XR SDK Plugin system | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Cross Platform using Unity's XR SDK Plugin system | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.56.5.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/Images/Logos/WorldLock64.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="cross-platform-using-unitys-xr-sdk-plugin-system">Cross Platform using Unity's XR SDK Plugin system</h1>
+
+<p>Initial development of the World Locking Tools targeted the HoloLens family of devices via Unity's XR.WSA (VR/AR Windows Store App) APIs. This is part of what has become commonly known as Unity's Legacy XR interface, or Unity's built-in VR support.</p>
+<p>Unity has since introduced its <a href="href:https://docs.unity3d.com/Manual/XRPluginArchitecture.html">XR Plugin architecture</a>, whose goal is to provide cross platform abstractions giving developers access to common features across available VR and AR devices.</p>
+<p>During this transition phase, WLT supports both the Legacy XR interface for HoloLens, and the AR Subsystems for cross-platform. It should be noted that the Legacy XR interface is deprecated since Unity 2019, and will no longer be supported as of Unity 2020.</p>
+<p>WLT currently supports AR Subsystems versioned 2.<em>.</em> for Unity 2019.4 (LTS). Further version support will be rolled out in subsequent releases.</p>
+<h2 id="switching-wlt-to-target-xr-sdk">Switching WLT to target XR SDK</h2>
+<p>Retargeting WLT for XR SDK is exceedingly simple. First, configure your project to use the <a href="href:https://docs.unity3d.com/Manual/configuring-project-for-xr.html">XR Plugin system</a>, or AR Foundation which sits on top of the XR Plugin system. Once the necessary resources have been installed, change the Anchor Subsystem type in the World Locking Context in you</p>
+<ol>
+<li>Go to the WorldLockingManager GameObject in your initial (or global) scene.</li>
+<li>In the inspector, find the <a href="WorldLockingContext.html">WorldLockingContext</a>.</li>
+<li>Open Anchor Management settings.</li>
+<li>Make sure the &quot;Use Defaults&quot; checkbox is unchecked.</li>
+<li>Change the Anchor Subsystem type to XRSDK.</li>
+<li>NOTE: Do not use the ARF Anchor Subsystem type. If using AR Foundation for your app, still select XRSDK subsystem.</li>
+</ol>
+<p><img src="../../Images/Screens/AnchorSubsystemXRSDK.JPG" alt=""></p>
+<h2 id="using-mrtk-with-wlt-on-xr-sdk">Using MRTK with WLT on XR SDK</h2>
+<p><a href="href:https://microsoft.github.io/MixedRealityToolkit-Unity/README.html">MRTK</a>, in addition to the incredible value it provides for abstracting user interactions in VR and AR, simplifies targeting devices via the XR SDK greatly. The following are notes that might prove helpful when setting up MRTK to target specific devices.</p>
+<p>These all assume that the WLT Anchor Management Anchor Subsystem has been set appropriately as described in the previous section.</p>
+<h3 id="setup-for-windows-xr-plugin-hololens">Setup for Windows XR Plugin (HoloLens)</h3>
+<p>See full instructions at <a href="href:https://microsoft.github.io/MixedRealityToolkit-Unity/version/releases/2.5.1/Documentation/GettingStartedWithMRTKAndXRSDK.html?q=2020">Getting started with MRTK and XR SDK</a>.</p>
+<p>If working in the WLT project, I suggest using the WLT provided “XRSDKMixedRealityToolkitConfigurationProfile” to start.</p>
+<h3 id="setup-for-arcore-xr-plugin-android">Setup for ARCore XR Plugin (Android)</h3>
+<p>To get an Android XR Plugin driving an MRTK AR application, follow the instructions at <a href="href:https://microsoft.github.io/MixedRealityToolkit-Unity/version/releases/2.5.1/Documentation/CrossPlatform/UsingARFoundation.html?q=2020">How to configure MRTK for iOS and Android</a></p>
+<blockquote>
+<p>NOTE: You need ALL of:</p>
+<ul>
+<li>XR Plugin Management</li>
+<li>AR Core XR Plugin</li>
+<li>AR Subsystems</li>
+<li>AR Foundation (this one is easy to forget).</li>
+</ul>
+</blockquote>
+<p>I suggest using the WLT provided “AR MixedRealityToolkitConfigurationProfile” to start.</p>
+<blockquote>
+<p>NOTE: If you hit a build error about <strong>manifest-merger failed</strong>, then follow the appropriate instructions here:
+<a href="https://developers.google.com/ar/develop/unity/android-11-build">https://developers.google.com/ar/develop/unity/android-11-build</a></p>
+</blockquote>
+<h3 id="setup-for-other-xr-plugins-arkit-oculus-etc">Setup for other XR Plugins (ARKit, Oculus, etc.)</h3>
+<p>Setup for other platforms should be analogous to setup for ARCore, but have not been tested. If you have access to such devices and a chance to try them, any <a href="Contributing.html">feedback</a> would help the community and be greatly appreciated.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/HowTos/XRSDK.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

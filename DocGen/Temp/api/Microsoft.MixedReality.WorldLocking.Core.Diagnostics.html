@@ -162,7 +162,7 @@ public class Diagnostics : IDisposable</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Plugin.Serializer serializer</code></pre>
+    <pre><code class="lang-csharp hljs">protected IPluginSerializer serializer</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -174,7 +174,7 @@ public class Diagnostics : IDisposable</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Plugin.Serializer</span></td>
+        <td><span class="xref">IPluginSerializer</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -334,13 +334,13 @@ is through <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.WorldL
   
   
   <a id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Start_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Start*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Start_Plugin_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Start(Plugin)">Start(Plugin)</h4>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Start_IPlugin_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Start(IPlugin)">Start(IPlugin)</h4>
   <div class="markdown level1 summary"><p>Get set up.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Start(Plugin plugin)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Start(IPlugin plugin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -353,7 +353,7 @@ is through <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.WorldL
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Plugin</span></td>
+        <td><span class="xref">IPlugin</span></td>
         <td><span class="parametername">plugin</span></td>
         <td><p>The plugin providing necessary resources</p>
 </td>

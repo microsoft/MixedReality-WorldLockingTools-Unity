@@ -137,7 +137,7 @@ of some plugin inputs, outputs, or controls.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly Plugin Plugin</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly IPlugin Plugin</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -149,7 +149,7 @@ of some plugin inputs, outputs, or controls.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Plugin</span></td>
+        <td><span class="xref">IPlugin</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -235,6 +235,35 @@ descendant of this node.</p>
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AnchorSettings_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorSettings*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AnchorSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorSettings">AnchorSettings</h4>
+  <div class="markdown level1 summary"><p>Readonly access to anchor management settings. These must be set from a context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AnchorSettings AnchorSettings { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html">AnchorSettings</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AnchorSettings_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Note that anchor manager type cannot be changed after initial startup.</p>
+</div>
   
   
   <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AttachmentPointManager_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AttachmentPointManager*"></a>
@@ -602,6 +631,32 @@ well as any other transforms applied to the camera (e.g. teleport).</p>
     <tbody>
       <tr>
         <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LinkageSettings_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LinkageSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings">LinkageSettings</h4>
+  <div class="markdown level1 summary"><p>Readonly access to linkage settings. These must be set from a context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LinkageSettings LinkageSettings { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.html">LinkageSettings</a></td>
         <td></td>
       </tr>
     </tbody>

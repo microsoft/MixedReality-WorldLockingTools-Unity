@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class SpongyAnchor
+    <title>Class HeadPoseTrackerCamera
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class SpongyAnchor
+    <meta name="title" content="Class HeadPoseTrackerCamera
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.56.5.0">
     
@@ -81,69 +81,92 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor" class="text-break">Class SpongyAnchor
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera" data-uid="Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera" class="text-break">Class HeadPoseTrackerCamera
   </h1>
-  <div class="markdown level0 summary"><p>Wrapper class for Unity WorldAnchor, facilitating creation and persistence.</p>
-</div>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">SpongyAnchor</span></div>
-      <div class="level2"><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html">SpongyAnchorARF</a></div>
-      <div class="level2"><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.html">SpongyAnchorNull</a></div>
-      <div class="level2"><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.html">SpongyAnchorWSA</a></div>
-      <div class="level2"><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.html">SpongyAnchorXR</a></div>
+    <div class="level1"><span class="xref">HeadPoseTrackerCamera</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.html">IHeadPoseTracker</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class SpongyAnchor : MonoBehaviour</code></pre>
+    <pre><code class="lang-csharp hljs">public class HeadPoseTrackerCamera : IHeadPoseTracker</code></pre>
   </div>
-  <h3 id="properties">Properties
+  <h3 id="methods">Methods
   </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_IsLocated_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsLocated*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_IsLocated" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsLocated">IsLocated</h4>
-  <div class="markdown level1 summary"><p>Returns true if the anchor is reliably located. False might mean loss of tracking or not fully initialized.</p>
-</div>
+  <a id="Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_BindToCamera_" data-uid="Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.BindToCamera*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_BindToCamera_Camera_" data-uid="Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.BindToCamera(Camera)">BindToCamera(Camera)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract bool IsLocated { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public void BindToCamera(Camera c)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">Camera</span></td>
+        <td><span class="parametername">c</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_SpongyPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.SpongyPose*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_SpongyPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.SpongyPose">SpongyPose</h4>
-  <div class="markdown level1 summary"><p>Return the anchor's pose in spongy space.</p>
-</div>
+  <a id="Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_GetHeadPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.GetHeadPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_GetHeadPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.GetHeadPose">GetHeadPose()</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract Pose SpongyPose { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual Pose GetHeadPose()</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -158,6 +181,20 @@
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_Reset_" data-uid="Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.Reset*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_Reset" data-uid="Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.Reset">Reset()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Reset()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.html">IHeadPoseTracker</a>
+  </div>
 </article>
           </div>
           

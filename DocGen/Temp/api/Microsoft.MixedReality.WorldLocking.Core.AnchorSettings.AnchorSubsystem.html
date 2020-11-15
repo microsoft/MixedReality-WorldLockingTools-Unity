@@ -5,9 +5,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>IAnchorManager | World Locking Tools for Unity Documentation </title>
+    <title>Enum AnchorSettings.AnchorSubsystem
+   | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="IAnchorManager | World Locking Tools for Unity Documentation ">
+    <meta name="title" content="Enum AnchorSettings.AnchorSubsystem
+   | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.56.5.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
@@ -15,7 +17,7 @@
     <link rel="stylesheet" href="../../../styles/docfx.css">
     <link rel="stylesheet" href="../../../styles/main.css">
     <meta property="docfx:navrel" content="../../../toc.html">
-    <meta property="docfx:tocrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="../../api_doc/toc.html">
     
     <meta property="docfx:rel" content="../../../">
     
@@ -79,38 +81,47 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="">
-<h1 id="ianchormanager">IAnchorManager</h1>
-
-<p>The Frozen World engine relies on a network of spatial anchors surrounding the user, from which to calculate the ideal world locked space.</p>
-<p>The IAnchorManager maintains that network, and supplies it to the engine for processing each frame.</p>
-<p>The current implementation of IAnchorManager is in Assets/WorldLocking.Core/Scripts/AnchorManager.cs. AnchorManager is built on Unity's WorldAnchor spatial anchors. The Frozen World engine itself is agnostic to the type of anchors used.</p>
-<p>As the user moves around the environment, AnchorManager grows the graph of anchors according to the following simple but effective algorithm:</p>
-<ul>
-<li>If the nearest existing anchor is more than X meters from the user then:
-<ul>
-<li>Add a new anchor.</li>
-<li>Add edges from the new anchor to all existing anchors less than Y meters from the new anchor.</li>
-</ul>
-</li>
-</ul>
-<p>The values of 'X' and 'Y' above are constants in the AnchorManager, as MinAnchorDistance and MaxAnchorDistance respectively. These could be converted to properties, giving more flexibility at the cost of complexity in the WorldLockingContext API surface. However, the current values of 1 meter and 1.2 meters, respectively, have been satisfactory to date.</p>
-<p>The above algorithm grows the graph of anchors in the space traversed by the user during the initial exploration, eventually settling into a static network.</p>
-<p>The anchor manager may also persist the anchor graph across multiple sessions.</p>
-<p>AnchorManager has options to automatically save its anchor graph during the session, load the previously saved graph at startup, or save and load on demand. Persistence availability is dependent on platform support.</p>
-<h2 id="see-also">See also</h2>
-<ul>
-<li><a href="WorldLockingManager.html">WorldLockingManager</a></li>
-<li><a href="IFragmentManager.html">IFragmentManager</a></li>
-<li><a href="IAttachmentPointManager.html">IAttachmentPointManager</a></li>
-</ul>
-<p>And in API reference:</p>
-<ul>
-<li><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html">WorldLockingManager</a></li>
-<li><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html">IAnchorManager</a></li>
-<li><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.html">IFragmentManager</a></li>
-<li><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html">IAttachmentPointManager</a></li>
-</ul>
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem">
+  
+  
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem" class="text-break">Enum AnchorSettings.AnchorSubsystem
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public enum AnchorSubsystem</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr>
+        <td id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_ARF">ARF</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_Null">Null</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_WSA">WSA</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_XRSDK">XRSDK</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </thead></thead></table>
 </article>
           </div>
           
@@ -118,9 +129,6 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/api_doc/Managers/IAnchorManager.md/#L1" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

@@ -396,12 +396,12 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Core.AnchorManager
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager
   nameWithType: AnchorManager
-- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.#ctor(Plugin)
-  name: AnchorManager(Plugin)
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager__ctor_Plugin_
-  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.#ctor(Plugin)
-  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.AnchorManager(Plugin)
-  nameWithType: AnchorManager.AnchorManager(Plugin)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.#ctor(IPlugin,Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker)
+  name: AnchorManager(IPlugin, IHeadPoseTracker)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager__ctor_IPlugin_Microsoft_MixedReality_WorldLocking_Core_IHeadPoseTracker_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.#ctor(IPlugin,Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.AnchorManager(IPlugin, Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker)
+  nameWithType: AnchorManager.AnchorManager(IPlugin, IHeadPoseTracker)
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.#ctor*
   name: AnchorManager
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager__ctor_
@@ -409,6 +409,32 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.AnchorManager
   nameWithType: AnchorManager.AnchorManager
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.CreateAnchor(AnchorId,Transform,Pose)
+  name: CreateAnchor(AnchorId, Transform, Pose)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_CreateAnchor_AnchorId_Transform_Pose_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.CreateAnchor(AnchorId,Transform,Pose)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.CreateAnchor(AnchorId, Transform, Pose)
+  nameWithType: AnchorManager.CreateAnchor(AnchorId, Transform, Pose)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.CreateAnchor*
+  name: CreateAnchor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_CreateAnchor_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.CreateAnchor
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.CreateAnchor
+  nameWithType: AnchorManager.CreateAnchor
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DestroyAnchor(AnchorId,Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor)
+  name: DestroyAnchor(AnchorId, SpongyAnchor)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_DestroyAnchor_AnchorId_Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DestroyAnchor(AnchorId,Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DestroyAnchor(AnchorId, Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor)
+  nameWithType: AnchorManager.DestroyAnchor(AnchorId, SpongyAnchor)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DestroyAnchor*
+  name: DestroyAnchor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_DestroyAnchor_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DestroyAnchor
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DestroyAnchor
+  nameWithType: AnchorManager.DestroyAnchor
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Dispose
   name: Dispose()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_Dispose
@@ -448,25 +474,34 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Finalize
   nameWithType: AnchorManager.Finalize
-- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.GetHeadPose
-  name: GetHeadPose()
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_GetHeadPose
-  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.GetHeadPose
-  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.GetHeadPose()
-  nameWithType: AnchorManager.GetHeadPose()
-- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.GetHeadPose*
-  name: GetHeadPose
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_GetHeadPose_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.GetHeadPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.IsTracking
+  name: IsTracking()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_IsTracking
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.IsTracking
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.IsTracking()
+  nameWithType: AnchorManager.IsTracking()
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.IsTracking*
+  name: IsTracking
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_IsTracking_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.IsTracking
   isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.GetHeadPose
-  nameWithType: AnchorManager.GetHeadPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.IsTracking
+  nameWithType: AnchorManager.IsTracking
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.LoadAnchors
   name: LoadAnchors()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_LoadAnchors
   commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.LoadAnchors
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.LoadAnchors()
   nameWithType: AnchorManager.LoadAnchors()
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.LoadAnchors(IPlugin,AnchorId,Transform,System.Collections.Generic.List{Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId})
+  name: LoadAnchors(IPlugin, AnchorId, Transform, List<AnchorManager.SpongyAnchorWithId>)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_LoadAnchors_IPlugin_AnchorId_Transform_System_Collections_Generic_List_Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SpongyAnchorWithId__
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.LoadAnchors(IPlugin,AnchorId,Transform,System.Collections.Generic.List{Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId})
+  name.vb: LoadAnchors(IPlugin, AnchorId, Transform, List(Of AnchorManager.SpongyAnchorWithId))
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.LoadAnchors(IPlugin, AnchorId, Transform, System.Collections.Generic.List<Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId>)
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.LoadAnchors(IPlugin, AnchorId, Transform, System.Collections.Generic.List(Of Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId))
+  nameWithType: AnchorManager.LoadAnchors(IPlugin, AnchorId, Transform, List<AnchorManager.SpongyAnchorWithId>)
+  nameWithType.vb: AnchorManager.LoadAnchors(IPlugin, AnchorId, Transform, List(Of AnchorManager.SpongyAnchorWithId))
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.LoadAnchors*
   name: LoadAnchors
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_LoadAnchors_
@@ -526,6 +561,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.NumEdges
   nameWithType: AnchorManager.NumEdges
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.RemoveSpongyAnchorById(AnchorId)
+  name: RemoveSpongyAnchorById(AnchorId)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_RemoveSpongyAnchorById_AnchorId_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.RemoveSpongyAnchorById(AnchorId)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.RemoveSpongyAnchorById(AnchorId)
+  nameWithType: AnchorManager.RemoveSpongyAnchorById(AnchorId)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.RemoveSpongyAnchorById*
+  name: RemoveSpongyAnchorById
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_RemoveSpongyAnchorById_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.RemoveSpongyAnchorById
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.RemoveSpongyAnchorById
+  nameWithType: AnchorManager.RemoveSpongyAnchorById
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Reset
   name: Reset()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_Reset
@@ -545,6 +593,15 @@ references:
   commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SaveAnchors
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SaveAnchors()
   nameWithType: AnchorManager.SaveAnchors()
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SaveAnchors(System.Collections.Generic.List{Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId})
+  name: SaveAnchors(List<AnchorManager.SpongyAnchorWithId>)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SaveAnchors_System_Collections_Generic_List_Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SpongyAnchorWithId__
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SaveAnchors(System.Collections.Generic.List{Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId})
+  name.vb: SaveAnchors(List(Of AnchorManager.SpongyAnchorWithId))
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SaveAnchors(System.Collections.Generic.List<Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId>)
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SaveAnchors(System.Collections.Generic.List(Of Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId))
+  nameWithType: AnchorManager.SaveAnchors(List<AnchorManager.SpongyAnchorWithId>)
+  nameWithType.vb: AnchorManager.SaveAnchors(List(Of AnchorManager.SpongyAnchorWithId))
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SaveAnchors*
   name: SaveAnchors
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SaveAnchors_
@@ -583,6 +640,19 @@ references:
   commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.spongyAnchor
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.spongyAnchor
   nameWithType: AnchorManager.SpongyAnchorWithId.spongyAnchor
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.TrackingStartDelayTime
+  name: TrackingStartDelayTime
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_TrackingStartDelayTime
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.TrackingStartDelayTime
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.TrackingStartDelayTime
+  nameWithType: AnchorManager.TrackingStartDelayTime
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.TrackingStartDelayTime*
+  name: TrackingStartDelayTime
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_TrackingStartDelayTime_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.TrackingStartDelayTime
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.TrackingStartDelayTime
+  nameWithType: AnchorManager.TrackingStartDelayTime
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Update
   name: Update()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_Update
@@ -596,12 +666,266 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.Update
   nameWithType: AnchorManager.Update
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull
+  name: AnchorManagerNull
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull
+  nameWithType: AnchorManagerNull
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.CreateAnchor(AnchorId,Transform,Pose)
+  name: CreateAnchor(AnchorId, Transform, Pose)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_CreateAnchor_AnchorId_Transform_Pose_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.CreateAnchor(AnchorId,Transform,Pose)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.CreateAnchor(AnchorId, Transform, Pose)
+  nameWithType: AnchorManagerNull.CreateAnchor(AnchorId, Transform, Pose)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.CreateAnchor*
+  name: CreateAnchor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_CreateAnchor_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.CreateAnchor
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.CreateAnchor
+  nameWithType: AnchorManagerNull.CreateAnchor
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.DestroyAnchor(AnchorId,Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor)
+  name: DestroyAnchor(AnchorId, SpongyAnchor)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_DestroyAnchor_AnchorId_Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.DestroyAnchor(AnchorId,Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.DestroyAnchor(AnchorId, Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor)
+  nameWithType: AnchorManagerNull.DestroyAnchor(AnchorId, SpongyAnchor)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.DestroyAnchor*
+  name: DestroyAnchor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_DestroyAnchor_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.DestroyAnchor
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.DestroyAnchor
+  nameWithType: AnchorManagerNull.DestroyAnchor
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.IsTracking
+  name: IsTracking()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_IsTracking
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.IsTracking
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.IsTracking()
+  nameWithType: AnchorManagerNull.IsTracking()
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.IsTracking*
+  name: IsTracking
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_IsTracking_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.IsTracking
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.IsTracking
+  nameWithType: AnchorManagerNull.IsTracking
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.LoadAnchors(IPlugin,AnchorId,Transform,System.Collections.Generic.List{Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId})
+  name: LoadAnchors(IPlugin, AnchorId, Transform, List<AnchorManager.SpongyAnchorWithId>)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_LoadAnchors_IPlugin_AnchorId_Transform_System_Collections_Generic_List_Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SpongyAnchorWithId__
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.LoadAnchors(IPlugin,AnchorId,Transform,System.Collections.Generic.List{Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId})
+  name.vb: LoadAnchors(IPlugin, AnchorId, Transform, List(Of AnchorManager.SpongyAnchorWithId))
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.LoadAnchors(IPlugin, AnchorId, Transform, System.Collections.Generic.List<Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId>)
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.LoadAnchors(IPlugin, AnchorId, Transform, System.Collections.Generic.List(Of Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId))
+  nameWithType: AnchorManagerNull.LoadAnchors(IPlugin, AnchorId, Transform, List<AnchorManager.SpongyAnchorWithId>)
+  nameWithType.vb: AnchorManagerNull.LoadAnchors(IPlugin, AnchorId, Transform, List(Of AnchorManager.SpongyAnchorWithId))
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.LoadAnchors*
+  name: LoadAnchors
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_LoadAnchors_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.LoadAnchors
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.LoadAnchors
+  nameWithType: AnchorManagerNull.LoadAnchors
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SaveAnchors(System.Collections.Generic.List{Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId})
+  name: SaveAnchors(List<AnchorManager.SpongyAnchorWithId>)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_SaveAnchors_System_Collections_Generic_List_Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SpongyAnchorWithId__
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SaveAnchors(System.Collections.Generic.List{Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId})
+  name.vb: SaveAnchors(List(Of AnchorManager.SpongyAnchorWithId))
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SaveAnchors(System.Collections.Generic.List<Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId>)
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SaveAnchors(System.Collections.Generic.List(Of Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId))
+  nameWithType: AnchorManagerNull.SaveAnchors(List<AnchorManager.SpongyAnchorWithId>)
+  nameWithType.vb: AnchorManagerNull.SaveAnchors(List(Of AnchorManager.SpongyAnchorWithId))
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SaveAnchors*
+  name: SaveAnchors
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_SaveAnchors_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SaveAnchors
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SaveAnchors
+  nameWithType: AnchorManagerNull.SaveAnchors
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TrackingStartDelayTime
+  name: TrackingStartDelayTime
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_TrackingStartDelayTime
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TrackingStartDelayTime
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TrackingStartDelayTime
+  nameWithType: AnchorManagerNull.TrackingStartDelayTime
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TrackingStartDelayTime*
+  name: TrackingStartDelayTime
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_TrackingStartDelayTime_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TrackingStartDelayTime
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TrackingStartDelayTime
+  nameWithType: AnchorManagerNull.TrackingStartDelayTime
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TryCreate(IPlugin,Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker)
+  name: TryCreate(IPlugin, IHeadPoseTracker)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_TryCreate_IPlugin_Microsoft_MixedReality_WorldLocking_Core_IHeadPoseTracker_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TryCreate(IPlugin,Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TryCreate(IPlugin, Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker)
+  nameWithType: AnchorManagerNull.TryCreate(IPlugin, IHeadPoseTracker)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TryCreate*
+  name: TryCreate
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_TryCreate_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TryCreate
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TryCreate
+  nameWithType: AnchorManagerNull.TryCreate
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA
+  name: AnchorManagerWSA
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA
+  nameWithType: AnchorManagerWSA
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.CreateAnchor(AnchorId,Transform,Pose)
+  name: CreateAnchor(AnchorId, Transform, Pose)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_CreateAnchor_AnchorId_Transform_Pose_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.CreateAnchor(AnchorId,Transform,Pose)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.CreateAnchor(AnchorId, Transform, Pose)
+  nameWithType: AnchorManagerWSA.CreateAnchor(AnchorId, Transform, Pose)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.CreateAnchor*
+  name: CreateAnchor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_CreateAnchor_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.CreateAnchor
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.CreateAnchor
+  nameWithType: AnchorManagerWSA.CreateAnchor
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.DestroyAnchor(AnchorId,Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor)
+  name: DestroyAnchor(AnchorId, SpongyAnchor)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_DestroyAnchor_AnchorId_Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.DestroyAnchor(AnchorId,Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.DestroyAnchor(AnchorId, Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor)
+  nameWithType: AnchorManagerWSA.DestroyAnchor(AnchorId, SpongyAnchor)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.DestroyAnchor*
+  name: DestroyAnchor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_DestroyAnchor_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.DestroyAnchor
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.DestroyAnchor
+  nameWithType: AnchorManagerWSA.DestroyAnchor
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.IsTracking
+  name: IsTracking()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_IsTracking
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.IsTracking
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.IsTracking()
+  nameWithType: AnchorManagerWSA.IsTracking()
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.IsTracking*
+  name: IsTracking
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_IsTracking_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.IsTracking
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.IsTracking
+  nameWithType: AnchorManagerWSA.IsTracking
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.LoadAnchors(IPlugin,AnchorId,Transform,System.Collections.Generic.List{Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId})
+  name: LoadAnchors(IPlugin, AnchorId, Transform, List<AnchorManager.SpongyAnchorWithId>)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_LoadAnchors_IPlugin_AnchorId_Transform_System_Collections_Generic_List_Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SpongyAnchorWithId__
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.LoadAnchors(IPlugin,AnchorId,Transform,System.Collections.Generic.List{Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId})
+  name.vb: LoadAnchors(IPlugin, AnchorId, Transform, List(Of AnchorManager.SpongyAnchorWithId))
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.LoadAnchors(IPlugin, AnchorId, Transform, System.Collections.Generic.List<Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId>)
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.LoadAnchors(IPlugin, AnchorId, Transform, System.Collections.Generic.List(Of Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId))
+  nameWithType: AnchorManagerWSA.LoadAnchors(IPlugin, AnchorId, Transform, List<AnchorManager.SpongyAnchorWithId>)
+  nameWithType.vb: AnchorManagerWSA.LoadAnchors(IPlugin, AnchorId, Transform, List(Of AnchorManager.SpongyAnchorWithId))
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.LoadAnchors*
+  name: LoadAnchors
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_LoadAnchors_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.LoadAnchors
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.LoadAnchors
+  nameWithType: AnchorManagerWSA.LoadAnchors
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SaveAnchors(System.Collections.Generic.List{Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId})
+  name: SaveAnchors(List<AnchorManager.SpongyAnchorWithId>)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_SaveAnchors_System_Collections_Generic_List_Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SpongyAnchorWithId__
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SaveAnchors(System.Collections.Generic.List{Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId})
+  name.vb: SaveAnchors(List(Of AnchorManager.SpongyAnchorWithId))
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SaveAnchors(System.Collections.Generic.List<Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId>)
+  fullName.vb: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SaveAnchors(System.Collections.Generic.List(Of Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId))
+  nameWithType: AnchorManagerWSA.SaveAnchors(List<AnchorManager.SpongyAnchorWithId>)
+  nameWithType.vb: AnchorManagerWSA.SaveAnchors(List(Of AnchorManager.SpongyAnchorWithId))
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SaveAnchors*
+  name: SaveAnchors
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_SaveAnchors_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SaveAnchors
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SaveAnchors
+  nameWithType: AnchorManagerWSA.SaveAnchors
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TrackingStartDelayTime
+  name: TrackingStartDelayTime
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_TrackingStartDelayTime
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TrackingStartDelayTime
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TrackingStartDelayTime
+  nameWithType: AnchorManagerWSA.TrackingStartDelayTime
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TrackingStartDelayTime*
+  name: TrackingStartDelayTime
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_TrackingStartDelayTime_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TrackingStartDelayTime
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TrackingStartDelayTime
+  nameWithType: AnchorManagerWSA.TrackingStartDelayTime
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TryCreate(IPlugin,Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker)
+  name: TryCreate(IPlugin, IHeadPoseTracker)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_TryCreate_IPlugin_Microsoft_MixedReality_WorldLocking_Core_IHeadPoseTracker_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TryCreate(IPlugin,Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TryCreate(IPlugin, Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker)
+  nameWithType: AnchorManagerWSA.TryCreate(IPlugin, IHeadPoseTracker)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TryCreate*
+  name: TryCreate
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_TryCreate_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TryCreate
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TryCreate
+  nameWithType: AnchorManagerWSA.TryCreate
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings
   name: AnchorSettings
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html
   commentId: T:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings
   nameWithType: AnchorSettings
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.anchorSubsystem
+  name: anchorSubsystem
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_anchorSubsystem
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.anchorSubsystem
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.anchorSubsystem
+  nameWithType: AnchorSettings.anchorSubsystem
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem
+  name: AnchorSettings.AnchorSubsystem
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem
+  nameWithType: AnchorSettings.AnchorSubsystem
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.ARF
+  name: ARF
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_ARF
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.ARF
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.ARF
+  nameWithType: AnchorSettings.AnchorSubsystem.ARF
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.Null
+  name: "Null"
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_Null
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.Null
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.Null
+  nameWithType: AnchorSettings.AnchorSubsystem.Null
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.WSA
+  name: WSA
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_WSA
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.WSA
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.WSA
+  nameWithType: AnchorSettings.AnchorSubsystem.WSA
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.XRSDK
+  name: XRSDK
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_XRSDK
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.XRSDK
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.XRSDK
+  nameWithType: AnchorSettings.AnchorSubsystem.XRSDK
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.ARSessionOriginSource
+  name: ARSessionOriginSource
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_ARSessionOriginSource
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.ARSessionOriginSource
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.ARSessionOriginSource
+  nameWithType: AnchorSettings.ARSessionOriginSource
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.ARSessionSource
+  name: ARSessionSource
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_ARSessionSource
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.ARSessionSource
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.ARSessionSource
+  nameWithType: AnchorSettings.ARSessionSource
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.InitToDefaults
   name: InitToDefaults()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_InitToDefaults
@@ -1010,12 +1334,12 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.Diagnostics.SharedSettings
   nameWithType: Diagnostics.SharedSettings
-- uid: Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Start(Plugin)
-  name: Start(Plugin)
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Diagnostics.html#Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Start_Plugin_
-  commentId: M:Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Start(Plugin)
-  fullName: Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Start(Plugin)
-  nameWithType: Diagnostics.Start(Plugin)
+- uid: Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Start(IPlugin)
+  name: Start(IPlugin)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Diagnostics.html#Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Start_IPlugin_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Start(IPlugin)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Start(IPlugin)
+  nameWithType: Diagnostics.Start(IPlugin)
 - uid: Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Start*
   name: Start
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Diagnostics.html#Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Start_
@@ -1161,12 +1485,12 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.Fragment.AddAttachmentPoint
   nameWithType: Fragment.AddAttachmentPoint
-- uid: Microsoft.MixedReality.WorldLocking.Core.Fragment.AdjustAll(Plugin)
-  name: AdjustAll(Plugin)
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Fragment.html#Microsoft_MixedReality_WorldLocking_Core_Fragment_AdjustAll_Plugin_
-  commentId: M:Microsoft.MixedReality.WorldLocking.Core.Fragment.AdjustAll(Plugin)
-  fullName: Microsoft.MixedReality.WorldLocking.Core.Fragment.AdjustAll(Plugin)
-  nameWithType: Fragment.AdjustAll(Plugin)
+- uid: Microsoft.MixedReality.WorldLocking.Core.Fragment.AdjustAll(IPlugin)
+  name: AdjustAll(IPlugin)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Fragment.html#Microsoft_MixedReality_WorldLocking_Core_Fragment_AdjustAll_IPlugin_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.Fragment.AdjustAll(IPlugin)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Fragment.AdjustAll(IPlugin)
+  nameWithType: Fragment.AdjustAll(IPlugin)
 - uid: Microsoft.MixedReality.WorldLocking.Core.Fragment.AdjustAll*
   name: AdjustAll
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Fragment.html#Microsoft_MixedReality_WorldLocking_Core_Fragment_AdjustAll_
@@ -1239,6 +1563,83 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.Fragment.UpdateState
   nameWithType: Fragment.UpdateState
+- uid: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera
+  name: HeadPoseTrackerCamera
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera
+  fullName: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera
+  nameWithType: HeadPoseTrackerCamera
+- uid: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.BindToCamera(Camera)
+  name: BindToCamera(Camera)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.html#Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_BindToCamera_Camera_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.BindToCamera(Camera)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.BindToCamera(Camera)
+  nameWithType: HeadPoseTrackerCamera.BindToCamera(Camera)
+- uid: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.BindToCamera*
+  name: BindToCamera
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.html#Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_BindToCamera_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.BindToCamera
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.BindToCamera
+  nameWithType: HeadPoseTrackerCamera.BindToCamera
+- uid: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.GetHeadPose
+  name: GetHeadPose()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.html#Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_GetHeadPose
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.GetHeadPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.GetHeadPose()
+  nameWithType: HeadPoseTrackerCamera.GetHeadPose()
+- uid: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.GetHeadPose*
+  name: GetHeadPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.html#Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_GetHeadPose_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.GetHeadPose
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.GetHeadPose
+  nameWithType: HeadPoseTrackerCamera.GetHeadPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.Reset
+  name: Reset()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.html#Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_Reset
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.Reset
+  fullName: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.Reset()
+  nameWithType: HeadPoseTrackerCamera.Reset()
+- uid: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.Reset*
+  name: Reset
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.html#Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerCamera_Reset_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.Reset
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerCamera.Reset
+  nameWithType: HeadPoseTrackerCamera.Reset
+- uid: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR
+  name: HeadPoseTrackerXR
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR
+  fullName: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR
+  nameWithType: HeadPoseTrackerXR
+- uid: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.GetHeadPose
+  name: GetHeadPose()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.html#Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerXR_GetHeadPose
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.GetHeadPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.GetHeadPose()
+  nameWithType: HeadPoseTrackerXR.GetHeadPose()
+- uid: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.GetHeadPose*
+  name: GetHeadPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.html#Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerXR_GetHeadPose_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.GetHeadPose
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.GetHeadPose
+  nameWithType: HeadPoseTrackerXR.GetHeadPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.Reset
+  name: Reset()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.html#Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerXR_Reset
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.Reset
+  fullName: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.Reset()
+  nameWithType: HeadPoseTrackerXR.Reset()
+- uid: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.Reset*
+  name: Reset
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.html#Microsoft_MixedReality_WorldLocking_Core_HeadPoseTrackerXR_Reset_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.Reset
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.HeadPoseTrackerXR.Reset
+  nameWithType: HeadPoseTrackerXR.Reset
 - uid: Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager
   name: IAlignmentManager
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html
@@ -1883,6 +2284,38 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.Update
   nameWithType: IFragmentManager.Update
+- uid: Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker
+  name: IHeadPoseTracker
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker
+  nameWithType: IHeadPoseTracker
+- uid: Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.GetHeadPose
+  name: GetHeadPose()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.html#Microsoft_MixedReality_WorldLocking_Core_IHeadPoseTracker_GetHeadPose
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.GetHeadPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.GetHeadPose()
+  nameWithType: IHeadPoseTracker.GetHeadPose()
+- uid: Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.GetHeadPose*
+  name: GetHeadPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.html#Microsoft_MixedReality_WorldLocking_Core_IHeadPoseTracker_GetHeadPose_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.GetHeadPose
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.GetHeadPose
+  nameWithType: IHeadPoseTracker.GetHeadPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.Reset
+  name: Reset()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.html#Microsoft_MixedReality_WorldLocking_Core_IHeadPoseTracker_Reset
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.Reset
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.Reset()
+  nameWithType: IHeadPoseTracker.Reset()
+- uid: Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.Reset*
+  name: Reset
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.html#Microsoft_MixedReality_WorldLocking_Core_IHeadPoseTracker_Reset_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.Reset
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IHeadPoseTracker.Reset
+  nameWithType: IHeadPoseTracker.Reset
 - uid: Microsoft.MixedReality.WorldLocking.Core.IOrientable
   name: IOrientable
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrientable.html
@@ -3110,25 +3543,197 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor
   nameWithType: SpongyAnchor
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.isLocated
-  name: isLocated
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_isLocated
-  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.isLocated
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.isLocated
-  nameWithType: SpongyAnchor.isLocated
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.isLocated*
-  name: isLocated
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_isLocated_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.isLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsLocated
+  name: IsLocated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_IsLocated
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsLocated
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsLocated
+  nameWithType: SpongyAnchor.IsLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsLocated*
+  name: IsLocated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_IsLocated_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsLocated
   isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.isLocated
-  nameWithType: SpongyAnchor.isLocated
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.TrackingStartDelayTime
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsLocated
+  nameWithType: SpongyAnchor.IsLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.SpongyPose
+  name: SpongyPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_SpongyPose
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.SpongyPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.SpongyPose
+  nameWithType: SpongyAnchor.SpongyPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.SpongyPose*
+  name: SpongyPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_SpongyPose_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.SpongyPose
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.SpongyPose
+  nameWithType: SpongyAnchor.SpongyPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF
+  name: SpongyAnchorARF
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF
+  nameWithType: SpongyAnchorARF
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.IsLocated
+  name: IsLocated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARF_IsLocated
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.IsLocated
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.IsLocated
+  nameWithType: SpongyAnchorARF.IsLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.IsLocated*
+  name: IsLocated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARF_IsLocated_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.IsLocated
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.IsLocated
+  nameWithType: SpongyAnchorARF.IsLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.SpongyPose
+  name: SpongyPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARF_SpongyPose
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.SpongyPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.SpongyPose
+  nameWithType: SpongyAnchorARF.SpongyPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.SpongyPose*
+  name: SpongyPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARF_SpongyPose_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.SpongyPose
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.SpongyPose
+  nameWithType: SpongyAnchorARF.SpongyPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.TrackingStartDelayTime
   name: TrackingStartDelayTime
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_TrackingStartDelayTime
-  commentId: F:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.TrackingStartDelayTime
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.TrackingStartDelayTime
-  nameWithType: SpongyAnchor.TrackingStartDelayTime
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARF_TrackingStartDelayTime
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.TrackingStartDelayTime
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.TrackingStartDelayTime
+  nameWithType: SpongyAnchorARF.TrackingStartDelayTime
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull
+  name: SpongyAnchorNull
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull
+  nameWithType: SpongyAnchorNull
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.IsLocated
+  name: IsLocated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorNull_IsLocated
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.IsLocated
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.IsLocated
+  nameWithType: SpongyAnchorNull.IsLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.IsLocated*
+  name: IsLocated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorNull_IsLocated_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.IsLocated
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.IsLocated
+  nameWithType: SpongyAnchorNull.IsLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.SpongyPose
+  name: SpongyPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorNull_SpongyPose
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.SpongyPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.SpongyPose
+  nameWithType: SpongyAnchorNull.SpongyPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.SpongyPose*
+  name: SpongyPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorNull_SpongyPose_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.SpongyPose
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.SpongyPose
+  nameWithType: SpongyAnchorNull.SpongyPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.TrackingStartDelayTime
+  name: TrackingStartDelayTime
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorNull_TrackingStartDelayTime
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.TrackingStartDelayTime
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.TrackingStartDelayTime
+  nameWithType: SpongyAnchorNull.TrackingStartDelayTime
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA
+  name: SpongyAnchorWSA
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA
+  nameWithType: SpongyAnchorWSA
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.IsLocated
+  name: IsLocated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorWSA_IsLocated
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.IsLocated
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.IsLocated
+  nameWithType: SpongyAnchorWSA.IsLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.IsLocated*
+  name: IsLocated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorWSA_IsLocated_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.IsLocated
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.IsLocated
+  nameWithType: SpongyAnchorWSA.IsLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.SpongyPose
+  name: SpongyPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorWSA_SpongyPose
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.SpongyPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.SpongyPose
+  nameWithType: SpongyAnchorWSA.SpongyPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.SpongyPose*
+  name: SpongyPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorWSA_SpongyPose_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.SpongyPose
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.SpongyPose
+  nameWithType: SpongyAnchorWSA.SpongyPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.TrackingStartDelayTime
+  name: TrackingStartDelayTime
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorWSA_TrackingStartDelayTime
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.TrackingStartDelayTime
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorWSA.TrackingStartDelayTime
+  nameWithType: SpongyAnchorWSA.TrackingStartDelayTime
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR
+  name: SpongyAnchorXR
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR
+  nameWithType: SpongyAnchorXR
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.IsLocated
+  name: IsLocated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorXR_IsLocated
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.IsLocated
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.IsLocated
+  nameWithType: SpongyAnchorXR.IsLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.IsLocated*
+  name: IsLocated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorXR_IsLocated_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.IsLocated
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.IsLocated
+  nameWithType: SpongyAnchorXR.IsLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.IsReliablyLocated
+  name: IsReliablyLocated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorXR_IsReliablyLocated
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.IsReliablyLocated
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.IsReliablyLocated
+  nameWithType: SpongyAnchorXR.IsReliablyLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.IsReliablyLocated*
+  name: IsReliablyLocated
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorXR_IsReliablyLocated_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.IsReliablyLocated
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.IsReliablyLocated
+  nameWithType: SpongyAnchorXR.IsReliablyLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.SpongyPose
+  name: SpongyPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorXR_SpongyPose
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.SpongyPose
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.SpongyPose
+  nameWithType: SpongyAnchorXR.SpongyPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.SpongyPose*
+  name: SpongyPose
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorXR_SpongyPose_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.SpongyPose
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.SpongyPose
+  nameWithType: SpongyAnchorXR.SpongyPose
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.TrackingStartDelayTime
+  name: TrackingStartDelayTime
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorXR_TrackingStartDelayTime
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.TrackingStartDelayTime
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorXR.TrackingStartDelayTime
+  nameWithType: SpongyAnchorXR.TrackingStartDelayTime
 - uid: Microsoft.MixedReality.WorldLocking.Core.TransformExtensions
   name: TransformExtensions
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.TransformExtensions.html
@@ -3449,6 +4054,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorManager
   nameWithType: WorldLockingManager.AnchorManager
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorSettings
+  name: AnchorSettings
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AnchorSettings
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorSettings
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorSettings
+  nameWithType: WorldLockingManager.AnchorSettings
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorSettings*
+  name: AnchorSettings
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AnchorSettings_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorSettings
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorSettings
+  nameWithType: WorldLockingManager.AnchorSettings
 - uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AttachmentPointManager
   name: AttachmentPointManager
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AttachmentPointManager
@@ -3670,6 +4288,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.GetInstance
   nameWithType: WorldLockingManager.GetInstance
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings
+  name: LinkageSettings
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LinkageSettings
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings
+  nameWithType: WorldLockingManager.LinkageSettings
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings*
+  name: LinkageSettings
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LinkageSettings_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings
+  nameWithType: WorldLockingManager.LinkageSettings
 - uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Load
   name: Load()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Load
@@ -5599,12 +6230,12 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual
   fullName: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual
   nameWithType: SpongyAnchorVisual
-- uid: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate(Microsoft.MixedReality.WorldLocking.Tools.FrameVisual,WorldAnchor)
-  name: Instantiate(FrameVisual, WorldAnchor)
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.html#Microsoft_MixedReality_WorldLocking_Tools_SpongyAnchorVisual_Instantiate_Microsoft_MixedReality_WorldLocking_Tools_FrameVisual_WorldAnchor_
-  commentId: M:Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate(Microsoft.MixedReality.WorldLocking.Tools.FrameVisual,WorldAnchor)
-  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate(Microsoft.MixedReality.WorldLocking.Tools.FrameVisual, WorldAnchor)
-  nameWithType: SpongyAnchorVisual.Instantiate(FrameVisual, WorldAnchor)
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate(Microsoft.MixedReality.WorldLocking.Tools.FrameVisual,SpongyAnchor)
+  name: Instantiate(FrameVisual, SpongyAnchor)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.html#Microsoft_MixedReality_WorldLocking_Tools_SpongyAnchorVisual_Instantiate_Microsoft_MixedReality_WorldLocking_Tools_FrameVisual_SpongyAnchor_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate(Microsoft.MixedReality.WorldLocking.Tools.FrameVisual,SpongyAnchor)
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate(Microsoft.MixedReality.WorldLocking.Tools.FrameVisual, SpongyAnchor)
+  nameWithType: SpongyAnchorVisual.Instantiate(FrameVisual, SpongyAnchor)
 - uid: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate*
   name: Instantiate
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.html#Microsoft_MixedReality_WorldLocking_Tools_SpongyAnchorVisual_Instantiate_
