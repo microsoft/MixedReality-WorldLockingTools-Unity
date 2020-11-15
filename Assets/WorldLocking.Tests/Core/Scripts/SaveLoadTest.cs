@@ -261,6 +261,11 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
         {
             for (int i = 0; i < pinData.Length; ++i)
             {
+                Debug.Log($"i={i}"
+                    + $" vp={pinData[i].virtualPose.position.ToString("F3")}"
+                    + $" lp={pinData[i].lockedPose.position.ToString("F3")}"
+                    );
+
                 CheckAlignment(alignMgr, pinData[i].virtualPose, pinData[i].lockedPose);
             }
         }
