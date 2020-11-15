@@ -274,9 +274,18 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             Pose lockedFromFrozen = frozenFromLocked.Inverse();
             Pose computedLocked = lockedFromFrozen.Multiply(virtualPose);
             bool areEqualPositions = computedLocked.position == lockedPose.position;
-            Assert.IsTrue(areEqualPositions, $"clp={computedLocked.position.ToString("F3")} lpp={lockedPose.position.ToString("F3")}");
+            Assert.IsTrue(areEqualPositions, $"clp={computedLocked.position.ToString("F3")}"
+                + $" lpp={lockedPose.position.ToString("F3")}"
+                + $" FfP={mgr.FrozenFromPinned.position.ToString("F3")}"
+                + $" PfL={pinnedFromLocked.position.ToString("F3")}"
+                );
             bool areEqualRotatons = computedLocked.rotation == lockedPose.rotation;
-            Assert.IsTrue(areEqualRotatons, $"clr={computedLocked.rotation.ToString("F3")} lpr={lockedPose.rotation.ToString("F3")}");
+            Assert.IsTrue(areEqualRotatons, $"clr={computedLocked.rotation.ToString("F3")}"
+                + $"lpr={lockedPose.rotation.ToString("F3")}"
+                + $" FfP={mgr.FrozenFromPinned.position.ToString("F3")}"
+                + $" PfL={pinnedFromLocked.position.ToString("F3")}"
+                );
+
         }
 
         [UnityTest]
