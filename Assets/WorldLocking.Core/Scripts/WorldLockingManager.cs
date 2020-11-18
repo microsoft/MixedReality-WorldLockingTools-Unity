@@ -442,14 +442,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 Debug.Log("Failed to create requested WSA anchor manager!");
             }
 #endif // UNITY_WSA
-            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.Null)
+            if (anchorSettings.anchorSubsystem != AnchorSettings.AnchorSubsystem.Null)
             {
-                AnchorManagerNull nullAnchorManager = AnchorManagerNull.TryCreate(plugin, headTracker);
-                Debug.Assert(nullAnchorManager != null, "Creation of Null anchor manager should never fail.");
-                return nullAnchorManager;
+                Debug.Log("Failure creating useful anchor manager of any type. Creating null manager");
+                anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.Null;
             }
-            Debug.Log("Failure creating useful anchor manager of any type. Creating null manager");
-            return AnchorManagerNull.TryCreate(plugin, headTracker);
+            AnchorManagerNull nullAnchorManager = AnchorManagerNull.TryCreate(plugin, headTracker);
+            Debug.Assert(nullAnchorManager != null, "Creation of Null anchor manager should never fail.");
+            return nullAnchorManager;
         }
 
         /// <summary>

@@ -159,12 +159,25 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 DestroyAnchor(AnchorId.Invalid, anchor.spongyAnchor);
             }
+            // mafinc - should this clear frozen anchors as well?
             spongyAnchors.Clear();
 
             newSpongyAnchor = DestroyAnchor(AnchorId.Invalid, newSpongyAnchor);
             headTracker.Reset();
         }
 
+        private void CheckForCull(AnchorId maxDistAnchorId, SpongyAnchor maxDistSpongyAnchor)
+        {
+            int maxSpongyAnchors = 5;
+            if (SpongyAnchors.Count > maxSpongyAnchors)
+            {
+                if (maxDistSpongyAnchor != null)
+                {
+                    DestroyAnchor(maxDistAnchorId, maxDistSpongyAnchor);
+                    plugin.RemoveFrozenAnchor(maxDistAnchorId);
+                }
+            }
+        }
         /// <summary>
         /// Create missing spongy anchors/edges and feed plugin with up-to-date input
         /// </summary>
@@ -197,6 +210,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             float minDistSqr = float.PositiveInfinity;
             AnchorId minDistAnchorId = 0;
 
+            float maxDistSq = 0;
+            AnchorId maxDistAnchorId = AnchorId.Invalid;
+            SpongyAnchor maxDistSpongyAnchor = null;
+
             List<AnchorEdge> newEdges;
             AnchorId newId = FinalizeNewAnchor(out newEdges);
 
@@ -225,6 +242,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                         {
                             innerSphereAnchorIds.Add(id);
                         }
+                    }
+                    if (distSqr > maxDistSq)
+                    {
+                        maxDistSq = distSqr;
+                        maxDistAnchorId = id;
+                        maxDistSpongyAnchor = a;
                     }
                 }
             }
@@ -273,6 +296,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     }
                 }
             }
+
+            CheckForCull(maxDistAnchorId, maxDistSpongyAnchor);
 
             plugin.ClearSpongyAnchors();
             plugin.Step_Init(spongyHead);
@@ -324,7 +349,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <param name="neighbors"></param>
         private void PrepareNewAnchor(Pose pose, List<AnchorId> neighbors)
         {
-            if (newSpongyAnchor)
+            if (newSpongyAnchor != null)
             {
                 Debug.Log($"Discarding {newSpongyAnchor.name} (located={newSpongyAnchor.IsLocated}) because still not located");
                 newSpongyAnchor = DestroyAnchor(AnchorId.Invalid, newSpongyAnchor);

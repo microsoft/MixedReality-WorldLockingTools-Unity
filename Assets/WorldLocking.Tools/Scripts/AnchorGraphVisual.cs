@@ -484,7 +484,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             /// <param name="target">The visual to destroy.</param>
             public void DestroySpongyVisual(IdPair<AnchorId, SpongyAnchorVisual> target)
             {
-                Destroy(target.target);
+                Destroy(target.target.gameObject);
             }
         }
 
@@ -580,7 +580,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             /// <param name="target"></param>
             public void DestroyFrozenVisual(IdPair<AnchorId, FrozenAnchorVisual> target)
             {
-                Destroy(target.target);
+                Destroy(target.target.gameObject);
             }
 
         }
@@ -660,7 +660,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             /// <param name="target">The resource to release.</param>
             public void DestroyFrozenEdge(IdPair<AnchorEdge, ConnectingLine> target)
             {
-                Destroy(target.target);
+                Destroy(target.target.gameObject);
             }
         }
 
@@ -704,7 +704,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             /// <param name="target">The resource to destroy.</param>
             public void DestroyDisplacement(IdPair<AnchorId, ConnectingLine> target)
             {
-                Destroy(target.target);
+                Destroy(target.target.gameObject);
             }
 
             /// <summary>
