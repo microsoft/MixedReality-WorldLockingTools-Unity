@@ -74,7 +74,15 @@ When the required transforms are not supplied, either left null or all Contexts 
 
 The Anchor Management settings all the explicit selection of the anchor tracking system. This selection is currently done only at startup, and once selected cannot be changed.
 
-Other settings here allow for control over the density of the underlying internal anchor graph.
+Other settings here allow for control over the density of the underlying internal anchor graph. These may be changed at any time, although their effect may take some time to propagate through the internal graph.
+
+When covering very large areas, one might want to lower the density of the internal anchor graph to sacrifice accuracy for performance. Increasing the MinNewAnchorDistance does just that. By increasing the minimum distance required before adding a new internal anchor, the spacing between the anchors increases, and so the density of anchors decreases.
+
+It should be noted that in order to pass the edge creation test, the MaxAnchorEdgeLength must be larger than the MinNewAnchorDistance. In practice, a MaxAnchorEdgeLength 10-20% larger then the MinNewAnchorDistance works well.
+
+The MaxLocalAnchors parameter, rather than modifying density, directly limits the number of internal anchors. Currently, when the anchor count is over the limit, anchors most distant from the camera are recycled to bring the number down. However, other algorithms are interesting and being investigated, so an application should not depend on this particular implementation.
+
+More details are documenting within the [AnchorSettings](xref:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings) struct.
 
 ### Diagnostics settings
 

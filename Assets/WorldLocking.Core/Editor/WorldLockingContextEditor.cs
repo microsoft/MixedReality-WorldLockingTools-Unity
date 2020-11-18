@@ -113,6 +113,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                         AddProperty(mgrPath, "MinNewAnchorDistance");
 
                         AddProperty(mgrPath, "MaxAnchorEdgeLength");
+
+                        AddProperty(mgrPath, "MaxLocalAnchors");
                     }
                 }
 

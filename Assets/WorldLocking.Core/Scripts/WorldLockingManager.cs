@@ -463,6 +463,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             AnchorManager.MinNewAnchorDistance = shared.anchorSettings.MinNewAnchorDistance;
             AnchorManager.MaxAnchorEdgeLength = shared.anchorSettings.MaxAnchorEdgeLength;
+            AnchorManager.MaxLocalAnchors = shared.anchorSettings.MaxLocalAnchors;
         }
 
         /// <summary>

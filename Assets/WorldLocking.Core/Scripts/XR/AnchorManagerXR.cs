@@ -280,14 +280,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         protected override async Task LoadAnchors(IPlugin plugin, AnchorId firstId, Transform parent, List<SpongyAnchorWithId> spongyAnchors)
         {
-            var anchorIds = plugin.GetFrozenAnchorIds();
-
-            /// Placeholder for consistency. Persistence not yet implemented for ARF, so
+            /// Placeholder for consistency. Persistence not implemented for XR, so
             /// to be consistent with this APIs contract, we must clear all frozen anchors from the plugin.
-            foreach (var id in anchorIds)
-            {
-                plugin.RemoveFrozenAnchor(id);
-            }
+            plugin.ClearFrozenAnchors();
 
             await Task.CompletedTask;
         }
