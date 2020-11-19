@@ -162,10 +162,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             }
 
             Pose movement = Pose.identity;
-            //List<AnchorPose> displacedPoses = new List<AnchorPose>(anchorPoses);
-            List<AnchorPose> displacedPoses = new List<AnchorPose>();
-            foreach(var ap in anchorPoses) { displacedPoses.Add(ap); }
-            CheckAlignment(displacedPoses, anchorEdges, movement);
+            List<AnchorPose> displacedPoses = new List<AnchorPose>(anchorPoses);
+            //CheckAlignment(displacedPoses, anchorEdges, movement);
 
             /// Take a random walk.
             Vector3 randomStep = new Vector3(1.0e-3f, 1.0e-3f, 1.0e-3f);
