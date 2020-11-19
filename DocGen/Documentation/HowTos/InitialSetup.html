@@ -133,23 +133,46 @@
 <p>To begin, make sure NuGet for Unity is installed into the Unity project. It is available from the (NuGet for Unity github releases)[https://github.com/GlitchEnzo/NuGetForUnity/releases].</p>
 <p>If the target Unity project is the World Locking Tools project (or a derivative of it), then all necessary and optional resources are already included.</p>
 <p>If adding World Locking Tools to an existing project, it is advisable to start with a project that has been verified to build and deploy to a HoloLens device. This will help separate issues with getting an app to run on HoloLens in the first place, which can be complicated, from issues with the World Locking Tools. Then proceed to the <em>NuGet setup</em> and <em>World Locking Tools Assets</em> sections below.</p>
-<h3 id="nuget-setup">NuGet setup</h3>
+<h3 id="frozenworld-engine-installation">FrozenWorld Engine installation</h3>
+<p>The Frozen World Engine DLL may be obtained from NuGet either using the excellent <em>NuGet For Unity</em> utility, or manually.</p>
+<h4 id="using-nuget-for-unity">Using NuGet For Unity</h4>
 <p>Make sure the nuget.org feed is in sources. Check this in Unity &gt; Edit &gt; Preferences &gt; NuGet for Unity. If not, <em>either</em>:</p>
-<ol>
-<li><strong>Either</strong> use the <em>Add New Source</em> GUI in Unity &gt; Edit &gt; Preferences &gt; NuGet For Unity to add the same share.</li>
-</ol>
+<p>Use the <em>Add New Source</em> GUI in Unity &gt; Edit &gt; Preferences &gt; NuGet For Unity to add the same share.</p>
 <ul>
 <li>Replace &quot;New Source&quot; with a name of your choosing (e.g. &quot;NuGet&quot;).</li>
 <li>Replace &quot;source_path&quot; with &quot;http://www.nuget.org/api/v2/&quot;.</li>
 </ul>
-<ol start="2">
-<li><strong>Or</strong> use a text editor to add a packagesource line to Assets/NuGet.config, e.g.</li>
-</ol>
+<p>After confirming the nuget.org feed, in Unity &gt; NuGet &gt; Manage NuGet Packages, find and install the latest version of Microsoft.MixedReality.FrozenWorld.Engine. (Search for &quot;FrozenWorld&quot;.)</p>
+<p>To update to a later version, open the Unity &gt; NuGet &gt; Manage NuGet Packages again, and find the FrozenWorld.Engine package and select Update. Note: You may have to the Updates tab to find the version you are looking for.</p>
+<h4 id="manual-frozen-world-engine-dll-installation">Manual Frozen World Engine DLL installation</h4>
+<p>Use a text editor to add a packagesource line to Assets/NuGet.config, e.g.</p>
 <pre><code>  &lt;packageSources&gt;
     &lt;add key=&quot;NuGet&quot; value=&quot;http://www.nuget.org/api/v2/&quot; /&gt;
   &lt;/packageSources&gt;
 </code></pre>
-<p>After confirming the nuget.org feed, in Unity &gt; NuGet &gt; Manage NuGet Packages, find and install the latest version of Microsoft.MixedReality.FrozenWorld.Engine. (Search for &quot;FrozenWorld&quot;.)</p>
+<p>If you don't already have a file Assets/NuGet.config, you can copy it from the World Locking Tools github repo.</p>
+<p>Using a text editor, add the Frozen World Engine DLL package to Assets/packages.config, e.g.</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;packages&gt;
+  &lt;package id=&quot;Microsoft.MixedReality.Unity.FrozenWorld.Engine&quot; version=&quot;1.0.0&quot; /&gt;
+&lt;/packages&gt;
+</code></pre>
+<p>Again, if you don't already have a file Assets/packages.config, you can get the file from the World Locking Tools github repo, or simply copy the above into a text file called &quot;Assets/packages.config&quot;.</p>
+<p>Having setup NuGet.config and packages.config, install by:</p>
+<ol>
+<li>Obtain the latest nuget.exe from <a href="https://www.nuget.org/downloads">NuGet downloads</a>.</li>
+<li>Make sure nuget.exe is in your path (here I'll assume it was copied into Assets).</li>
+<li>Open a powershell command window and change directory to the Assets folder.</li>
+<li>Run the following command:</li>
+</ol>
+<pre><code>.\nuget.exe restore
+</code></pre>
+<p>To upgrade to a later version:</p>
+<ol>
+<li>Update the FrozenWorld.Engine version number in the packages.config file above to the desired version (e.g. version=&quot;1.0.0&quot; becomes version=&quot;1.0.1&quot;).</li>
+<li>Delete anything in the Assets/Packages folder starting with &quot;Microsoft.MixedReality.Unity.FrozenWorld.Engine&quot;.</li>
+<li>Rerun nuget.exe as above.</li>
+</ol>
 <h3 id="world-locking-tools-assets">World Locking Tools Assets</h3>
 <p>Either import the required World Locking Tools .unitypackage files into the project (preferred method), or copy them in. They may be moved into a sub-folder within Assets to get them out of the way for application development.</p>
 <p>The latest stable .unitypackage files can be found in:</p>
