@@ -271,40 +271,6 @@ namespace Microsoft.MixedReality.Toolkit.XRSDK
             }
         }
 
-        /// <summary>
-        /// Internal component to monitor the WorldAnchor's transform, apply the MixedRealityPlayspace transform,
-        /// and apply it to its parent.
-        /// </summary>
-        private class PlayspaceAdapter : MonoBehaviour
-        {
-            /// <summary>
-            /// Compute concatenation of lhs * rhs such that lhs * (rhs * v) = Concat(lhs, rhs) * v
-            /// </summary>
-            /// <param name="lhs">Second transform to apply</param>
-            /// <param name="rhs">First transform to apply</param>
-            private static Pose Concatenate(Pose lhs, Pose rhs)
-            {
-                return rhs.GetTransformedBy(lhs);
-            }
-
-            private static readonly ProfilerMarker UpdatePerfMarker = new ProfilerMarker("[MRTK] GenericXRSDKSpatialMeshObserver+PlayspaceAdapter.Update");
-
-            /// <summary>
-            /// Compute and set the parent's transform.
-            /// </summary>
-            private void Update()
-            {
-                using (UpdatePerfMarker.Auto())
-                {
-                    Pose worldFromPlayspace = new Pose(MixedRealityPlayspace.Position, MixedRealityPlayspace.Rotation);
-                    Pose anchorPose = new Pose(transform.position, transform.rotation);
-                    Pose parentPose = Concatenate(worldFromPlayspace, anchorPose);
-                    transform.parent.position = parentPose.position;
-                    transform.parent.rotation = parentPose.rotation;
-                }
-            }
-        }
-
         private static readonly ProfilerMarker RequestMeshPerfMarker = new ProfilerMarker("[MRTK] GenericXRSDKSpatialMeshObserver+PlayspaceAdapter.RequestMesh");
 
         /// <summary>
@@ -326,11 +292,6 @@ namespace Microsoft.MixedReality.Toolkit.XRSDK
                         MeshPhysicsLayer,
                         meshName,
                         meshId.GetHashCode());
-
-                    GameObject anchorHolder = new GameObject(meshName + "_anchor");
-                    anchorHolder.AddComponent<PlayspaceAdapter>();
-                    // Right now, we don't add an anchor to the mesh. This may be resolved with the AnchorSubsystem.
-                    anchorHolder.transform.SetParent(newMesh.GameObject.transform, false);
                 }
                 else
                 {
