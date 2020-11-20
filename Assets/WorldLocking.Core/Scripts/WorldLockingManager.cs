@@ -442,14 +442,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 Debug.Log("Failed to create requested WSA anchor manager!");
             }
 #endif // UNITY_WSA
-            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.Null)
+            if (anchorSettings.anchorSubsystem != AnchorSettings.AnchorSubsystem.Null)
             {
-                AnchorManagerNull nullAnchorManager = AnchorManagerNull.TryCreate(plugin, headTracker);
-                Debug.Assert(nullAnchorManager != null, "Creation of Null anchor manager should never fail.");
-                return nullAnchorManager;
+                Debug.Log("Failure creating useful anchor manager of any type. Creating null manager");
+                anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.Null;
             }
-            Debug.Log("Failure creating useful anchor manager of any type. Creating null manager");
-            return AnchorManagerNull.TryCreate(plugin, headTracker);
+            AnchorManagerNull nullAnchorManager = AnchorManagerNull.TryCreate(plugin, headTracker);
+            Debug.Assert(nullAnchorManager != null, "Creation of Null anchor manager should never fail.");
+            return nullAnchorManager;
         }
 
         /// <summary>
@@ -463,6 +463,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             AnchorManager.MinNewAnchorDistance = shared.anchorSettings.MinNewAnchorDistance;
             AnchorManager.MaxAnchorEdgeLength = shared.anchorSettings.MaxAnchorEdgeLength;
+            AnchorManager.MaxLocalAnchors = shared.anchorSettings.MaxLocalAnchors;
         }
 
         /// <summary>
@@ -611,7 +612,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             AdjustmentFrame.SetLocalPose(PinnedFromLocked.Multiply(LockedFromPlayspace));
 
-#if WLT_ARSUBSYSTEMS_PRESENT
+#if false && WLT_ARSUBSYSTEMS_PRESENT
             if ((AdjustmentFrame.GetGlobalPose().position != Vector3.zero) || (AdjustmentFrame.GetGlobalPose().rotation != Quaternion.identity))
             {
                 Debug.Log($"WLT: Adj{AnchorManagerXR.DebugVector3("O=", AdjustmentFrame.GetGlobalPose().position)}, {AnchorManagerXR.DebugEuler("R=", AdjustmentFrame.GetGlobalPose().rotation.eulerAngles)}");

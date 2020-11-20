@@ -127,6 +127,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public float MaxAnchorEdgeLength;
 
         /// <summary>
+        /// The maximum number of local anchors in the internal anchor graph.
+        /// </summary>
+        /// <remarks>
+        /// Zero or any negative value is considered to be infinite (unlimited).
+        /// </remarks>
+        [Tooltip("The maximum number of local anchors in the internal anchor graph. Non-positive is infinity.")]
+        public int MaxLocalAnchors;
+
+        /// <summary>
         /// Init all fields to default values.
         /// </summary>
         public void InitToDefaults()
@@ -137,6 +146,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             ARSessionOriginSource = null;
             MinNewAnchorDistance = 1.0f;
             MaxAnchorEdgeLength = 1.2f;
+            MaxLocalAnchors = 0;
         }
     }
 }

@@ -45,6 +45,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         float MaxAnchorEdgeLength { get; set; }
 
         /// <summary>
+        /// Maximum number of local anchors in the internal anchor graph.
+        /// </summary>
+        /// <remarks>
+        /// Zero or negative means unlimited anchors.
+        /// </remarks>
+        int MaxLocalAnchors { get; set; }
+
+        /// <summary>
         /// Delete all spongy anchor objects and reset internal state
         /// </summary>
         void Reset();
