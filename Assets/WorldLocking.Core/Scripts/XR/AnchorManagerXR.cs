@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+//#define WLT_EXTRA_LOGGING
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -111,7 +113,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             TrackableChanges<XRReferencePoint> changes = xrReferencePointManager.GetChanges(Unity.Collections.Allocator.Temp);
             if (changes.isCreated && (changes.added.Length + changes.updated.Length + changes.removed.Length > 0))
             {
-                Debug.Log($"Changes Fr{Time.frameCount:0000}: isCreated={changes.isCreated} Added={changes.added.Length}, Updated={changes.updated.Length} Removed={changes.removed.Length}");
+                DebugLogExtra($"Changes Fr{Time.frameCount:0000}: isCreated={changes.isCreated} Added={changes.added.Length}, Updated={changes.updated.Length} Removed={changes.removed.Length}");
                 for (int i = 0; i < changes.added.Length; ++i)
                 {
                     UpdateTracker("Added::", changes.added[i], anchorsByTrackableId);
@@ -130,7 +132,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
         private static bool RemoveTracker(TrackableId trackableId, Dictionary<TrackableId, SpongyAnchorXR> anchors)
         {
-            Debug.Log($"Removed:: id={trackableId}");
+            DebugLogExtra($"Removed:: id={trackableId}");
 
             return anchors.Remove(trackableId);
         }
@@ -165,8 +167,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return $"{label}({p.x:0.000},{p.y:0.000},{p.z:0.000})";
         }
 
-        private static void DebugOut(string label, XRReferencePoint referencePoint, SpongyAnchorXR tracker)
+        private static void DebugOutExtra(string label, XRReferencePoint referencePoint, SpongyAnchorXR tracker)
         {
+#if WLT_EXTRA_LOGGING
             Debug.Assert(referencePoint.trackableId == tracker.TrackableId);
             Vector3 tP = tracker.transform.position;
             Vector3 tR = tracker.transform.rotation.eulerAngles;
@@ -174,6 +177,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             Vector3 rR = referencePoint.pose.rotation.eulerAngles;
             rR = new Vector3(1.0f, 2.0f, 3.0f);
             Debug.Log($"{label}{tracker.name}-{tracker.TrackableId}/{referencePoint.trackingState}: {DebugVector3("tP=", tP)}|{DebugEuler("tR=", tR)} <=> {DebugVector3("rP=", rP)}|{DebugEuler("rR=", rR)}");
+#endif // WLT_EXTRA_LOGGING
+        }
+
+        private static void DebugLogExtra(string msg)
+        {
+#if WLT_EXTRA_LOGGING
+            Debug.Log(msg);
+#endif // WLT_EXTRA_LOGGING
         }
 
         private static void UpdateTracker(string label, XRReferencePoint referencePoint, Dictionary<TrackableId, SpongyAnchorXR> anchors)
@@ -181,7 +192,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             SpongyAnchorXR tracker;
             if (anchors.TryGetValue(referencePoint.trackableId, out tracker))
             {
-                DebugOut(label, referencePoint, tracker);
+                DebugOutExtra(label, referencePoint, tracker);
 
                 /// mafinc - Would rather base this on the current TrackingState of the referencePoint, 
                 /// but that is not currently reliable.
@@ -226,13 +237,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             SpongyAnchorXR spongyAnchorXR = null;
             if (IsTracking())
             {
-                Debug.Log($"Creating refPt at initial ({initialPose.position.x:0.000}, {initialPose.position.y:0.000}, {initialPose.position.z:0.000})");
+                DebugLogExtra($"Creating refPt at initial ({initialPose.position.x:0.000}, {initialPose.position.y:0.000}, {initialPose.position.z:0.000})");
                 XRReferencePoint xrReferencePoint;
                 bool created = xrReferencePointManager.TryAddReferencePoint(initialPose, out xrReferencePoint);
                 if (created)
                 {
                     Pose xrPose = xrReferencePoint.pose;
-                    Debug.Log($"Created refPt {id} at ({xrPose.position.x:0.000}, {xrPose.position.y:0.000}, {xrPose.position.z:0.000}) is {xrReferencePoint.trackingState}");
+                    DebugLogExtra($"Created refPt {id} at ({xrPose.position.x:0.000}, {xrPose.position.y:0.000}, {xrPose.position.z:0.000}) is {xrReferencePoint.trackingState}");
                     var newAnchorObject = new GameObject(id.FormatStr());
                     newAnchorObject.transform.parent = parent;
                     newAnchorObject.transform.SetGlobalPose(initialPose);
@@ -240,7 +251,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     anchorsByTrackableId[xrReferencePoint.trackableId] = spongyAnchorXR;
                     spongyAnchorXR.TrackableId = xrReferencePoint.trackableId;
 
-                    Debug.Log($"{id} {DebugVector3("P=", initialPose.position)}, {DebugQuaternion("Q=", initialPose.rotation)}");
+                    DebugLogExtra($"{id} {DebugVector3("P=", initialPose.position)}, {DebugQuaternion("Q=", initialPose.rotation)}");
                 }
             }
             return spongyAnchorXR;
