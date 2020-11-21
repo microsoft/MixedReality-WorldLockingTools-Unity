@@ -52,15 +52,21 @@ Caution should be used when mixing World Locking Tools Manager settings from con
 
 ## Available settings
 
-The available settings for controlling World Locking Tools behavior are broken into three groups as follows.
+The available settings for controlling World Locking Tools behavior are broken into groups as follows.
 
-### Manager settings
+![](~/DocGen/Images/Screens/Context/WLTContext.JPG)
 
-Manager settings control the runtime behavior of the World Locking Tools Manager. The fields available for modification and their implications are documented within the [ManagerSettings](xref:Microsoft.MixedReality.WorldLocking.Core.ManagerSettings) class.
+### Automation settings
+
+Automation settings control the runtime behavior of the World Locking Tools Manager. The fields available for modification and their implications are documented within the [ManagerSettings](xref:Microsoft.MixedReality.WorldLocking.Core.ManagerSettings) class. They are focused on enabling or disabling automated periodic actions by the manager. Any disabled automated action can be performed manually instead. 
+
+![](~/DocGen/Images/Screens/Context/WLTContextAutomation.JPG)
 
 ### Linkage settings
 
 Linkage settings are used to explicitly define the scene GameObjects whose transforms will be used to apply World Locking Tools' corrections.
+
+![](~/DocGen/Images/Screens/Context/WLTContextLinkage.JPG)
 
 The "Use Existing" field allows the linked objects to be set once in the scene with the camera rig (with "Use Existing" false), and not overridden by loading subsequent content scenes (with "Use Existing" true).
 
@@ -82,11 +88,15 @@ It should be noted that in order to pass the edge creation test, the MaxAnchorEd
 
 The MaxLocalAnchors parameter, rather than modifying density, directly limits the number of internal anchors. Currently, when the anchor count is over the limit, anchors most distant from the camera are recycled to bring the number down. However, other algorithms are interesting and being investigated, so an application should not depend on this particular implementation.
 
+![](~/DocGen/Images/Screens/Context/WLTContextAnchor30.JPG)
+
 More details are documenting within the [AnchorSettings](xref:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings) struct.
 
 ### Diagnostics settings
 
 The Diagnostics settings control the gather of diagnostics for analysis of behavior and debugging. They should normally be left with "Use Defaults" set, which, among other things, disables the collection of diagnostics. The diagnostics collection is a great performance drag, so should be avoided unless needed.
+
+![](~/DocGen/Images/Screens/Context/WLTContextDiagnostics.JPG)
 
 During development, when unexpected and undesirable behavior is being seen, the diagnostics data collected by disabling [Use Defaults](xref:Microsoft.MixedReality.WorldLocking.Core.DiagnosticsSettings.UseDefaults) and enabling [DiagnosticsSettings.Enabled](xref:Microsoft.MixedReality.WorldLocking.Core.DiagnosticsSettings.Enabled) will enable the collection of data which can be instrumental in understanding and fixing that behavior.
 
@@ -105,11 +115,7 @@ It is suggested to leave the "Use Defaults" set to true, except during developme
 ## See also
 
 * [WorldLockingManager](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager)
-
 * [WorldLockingContext](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext)
-
 * [ManagerSettings](xref:Microsoft.MixedReality.WorldLocking.Core.ManagerSettings)
-
 * [LinkageSettings](xref:Microsoft.MixedReality.WorldLocking.Core.LinkageSettings)
-
 * [DiagnosticsSettings](xref:Microsoft.MixedReality.WorldLocking.Core.DiagnosticsSettings)

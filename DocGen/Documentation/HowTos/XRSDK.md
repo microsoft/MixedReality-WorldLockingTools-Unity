@@ -20,7 +20,7 @@ Retargeting WLT for XR SDK is exceedingly simple. First, configure your project 
 5. Change the Anchor Subsystem type to XRSDK.
 6. NOTE: Do not use the ARF Anchor Subsystem type. If using AR Foundation for your app, still select XRSDK subsystem.
 
-![](~/DocGen/Images/Screens/AnchorSubsystemXRSDK.jpg)
+![](~/DocGen/Images/Screens/Context/WLTContextAnchor.JPG)
 
 ## Using MRTK with WLT on XR SDK
 
