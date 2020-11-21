@@ -247,6 +247,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             List<long> buildTimes = new List<long>();
             List<long> findTimes = new List<long>();
             int maxMsPerVertBuild = 4;
+            float maxMsFind = 1.5f;
 
             Stopwatch stopwatch = new Stopwatch();
             Interpolant triIter;
@@ -262,13 +263,13 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
                 stopwatch.Stop();
                 UnityEngine.Debug.Log($"Processed {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
                 buildTimes.Add(stopwatch.ElapsedMilliseconds);
-                Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * maxMsPerVertBuild);
+                Assert.IsTrue(stopwatch.ElapsedMilliseconds < vertices.Count * maxMsPerVertBuild, $"Test proc {vertArray.Length} verts took {stopwatch.ElapsedMilliseconds} ms");
                 stopwatch.Restart();
                 triIter = triangulator.Find(new Vector3(maxX * 0.33f, 0, maxZ * 0.33f));
                 stopwatch.Stop();
                 UnityEngine.Debug.Log($"Searched {vertices.Count} vertices: {stopwatch.ElapsedMilliseconds}ms");
                 findTimes.Add(stopwatch.ElapsedMilliseconds);
-                Assert.IsTrue(stopwatch.ElapsedMilliseconds <= 1);
+                Assert.IsTrue(stopwatch.ElapsedMilliseconds <= maxMsFind, $"Test find {vertArray.Length} verts took {stopwatch.ElapsedMilliseconds} ms");
 
                 vertices.RemoveRange(vertices.Count / reduction, vertices.Count - vertices.Count / reduction);
             }
