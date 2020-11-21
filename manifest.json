@@ -342,7 +342,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/WorldLockingContext.html",
-          "hash": "/qnHaF3THN69nRO5sMvQ6g=="
+          "hash": "4kuiYcg2zzzMqtiJmpFtyQ=="
         }
       },
       "is_incremental": false,
@@ -354,7 +354,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/XRSDK.html",
-          "hash": "EoM3eAZ25PbTkHHybVEL0A=="
+          "hash": "yqI4EEbQnr+u3lqVXMeNfg=="
         }
       },
       "is_incremental": false,
@@ -644,6 +644,72 @@
       "output": {
         "resource": {
           "relative_path": "DocGen/Images/Screens/BasicSetup.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/Context/WLTContext.JPG",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/Context/WLTContext.JPG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/Context/WLTContextAnchor.JPG",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/Context/WLTContextAnchor.JPG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/Context/WLTContextAnchor30.JPG",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/Context/WLTContextAnchor30.JPG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/Context/WLTContextAutomation.JPG",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/Context/WLTContextAutomation.JPG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/Context/WLTContextDiagnostics.JPG",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/Context/WLTContextDiagnostics.JPG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/Context/WLTContextLinkage.JPG",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/Context/WLTContextLinkage.JPG"
         }
       },
       "is_incremental": false,
