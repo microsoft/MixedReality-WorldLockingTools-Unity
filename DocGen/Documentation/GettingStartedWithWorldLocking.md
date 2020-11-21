@@ -22,6 +22,7 @@ Finally, an understanding of World Locking Tools can be helpful when things go w
 
 These guides are arranged to both build an understanding of World Locking Tools at a conceptual level, and provide practical step-by-step instructions on putting World Locking Tools to use in real world MR applications.
 
+* [Before getting started](HowTos/UsingWLT/BeforeGettingStarted.md)
 * [Quick start](HowTos/QuickStart.md)
 * [Initial setup](HowTos/InitialSetup.md)
 * [Concepts](Concepts.md)
