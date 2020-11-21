@@ -66,5 +66,6 @@ These advanced mechanisms will be covered in later sections, but it is useful to
 
 ## See also
 
+* [FAQ](IntroFAQ.md)
 * [The basic system](Concepts/BasicConcepts.md)
 * [Advanced topics](Concepts/AdvancedConcepts.md)
