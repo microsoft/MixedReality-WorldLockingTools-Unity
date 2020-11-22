@@ -1,5 +1,7 @@
-﻿- name: World Locking Tools Concepts
+﻿- name: About this documentation
   href: GettingStartedWithWorldLocking.md
+- name: World Locking Tools Concepts
+  href: Concepts.md
   items:
   - name: Introductory FAQ
     href: IntroFAQ.md
