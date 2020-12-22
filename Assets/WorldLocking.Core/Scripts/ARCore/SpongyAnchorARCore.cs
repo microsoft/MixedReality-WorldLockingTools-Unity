@@ -1,10 +1,13 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using GoogleARCore;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+#if WLT_ARCORE_SDK_INCLUDED
+using GoogleARCore;
+#endif // WLT_ARCORE_SDK_INCLUDED
 
 namespace Microsoft.MixedReality.WorldLocking.Core
 {

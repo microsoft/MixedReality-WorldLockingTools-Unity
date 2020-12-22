@@ -5,7 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#if WLT_ARCORE_SDK_INCLUDED
 using GoogleARCore;
+#endif // WLT_ARCORE_SDK_INCLUDED
 
 // mafinc - installed Multiplayer HLAPI and Legacy Helpers for ARCore Examples, shouldn't need them when
 // ARCore Examples is pruned out. Actually, Legacy Helpers is still needed (for InstantPreview), but MHLAPI shouldn't be.
