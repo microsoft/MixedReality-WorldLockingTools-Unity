@@ -404,7 +404,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             var anchorSettings = shared.anchorSettings;
 #if WLT_ARFOUNDATION_PRESENT
-            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.ARF)
+            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.DONT_USE)
             {
                 Debug.Log($"Trying to create ARF anchor manager on {anchorSettings.ARSessionSource.name} and {anchorSettings.ARSessionOriginSource.name}");
                 AnchorManagerARF arfAnchorManager = AnchorManagerARF.TryCreate(plugin, headTracker,
