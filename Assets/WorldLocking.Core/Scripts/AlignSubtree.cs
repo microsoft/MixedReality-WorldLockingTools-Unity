@@ -204,7 +204,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// Fired when a new AlignmentManager has been created throughout CheckInternalWiring
         /// </summary>
-        public event EventHandler<AlignmentManager> OnAlignManagerCreated;
+        public event EventHandler<IAlignmentManager> OnAlignManagerCreated;
 
         #endregion Public APIs
 
