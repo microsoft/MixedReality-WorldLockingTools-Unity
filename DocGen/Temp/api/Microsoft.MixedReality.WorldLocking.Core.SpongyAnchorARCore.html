@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Enum AnchorSettings.AnchorSubsystem
+    <title>Class SpongyAnchorARCore
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Enum AnchorSettings.AnchorSubsystem
+    <meta name="title" content="Class SpongyAnchorARCore
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.56.6.0">
     
@@ -81,51 +81,108 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARCore">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem" data-uid="Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem" class="text-break">Enum AnchorSettings.AnchorSubsystem
+  <h1 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARCore" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARCore" class="text-break">Class SpongyAnchorARCore
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html">SpongyAnchor</a></div>
+    <div class="level2"><span class="xref">SpongyAnchorARCore</span></div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARCore_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum AnchorSubsystem</code></pre>
+    <pre><code class="lang-csharp hljs">public class SpongyAnchorARCore : SpongyAnchor</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
+  
+  
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARCore_TrackingStartDelayTime" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARCore.TrackingStartDelayTime">TrackingStartDelayTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float TrackingStartDelayTime</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
-        <th>Name</th>
+        <th>Type</th>
         <th>Description</th>
       </tr>
-    <thead>
+    </thead>
     <tbody>
       <tr>
-        <td id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_ARCore">ARCore</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_DONT_USE">DONT_USE</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_Null">Null</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_WSA">WSA</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_AnchorSubsystem_XRSDK">XRSDK</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
         <td></td>
       </tr>
     </tbody>
-  </thead></thead></table>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARCore_IsLocated_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARCore.IsLocated*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARCore_IsLocated" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARCore.IsLocated">IsLocated</h4>
+  <div class="markdown level1 summary"><p>Returns true if the anchor is reliably located. False might mean loss of tracking or not fully initialized.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool IsLocated { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_IsLocated">SpongyAnchor.IsLocated</a></div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARCore_SpongyPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARCore.SpongyPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARCore_SpongyPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARCore.SpongyPose">SpongyPose</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Pose SpongyPose { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_SpongyPose">SpongyAnchor.SpongyPose</a></div>
 </article>
           </div>
           
