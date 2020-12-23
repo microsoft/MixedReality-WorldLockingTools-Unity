@@ -20,7 +20,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             Null,
             WSA,
             XRSDK,
-            ARF
+            DONT_USE,
+            ARCore
         };
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.Log($"Setting Invalid: MinNewAnchorDistance = {MinNewAnchorDistance} - MaxNewAnchorEdgeLength = {MaxAnchorEdgeLength}");
                     return false;
                 }
-                if (anchorSubsystem == AnchorSubsystem.ARF)
+                if (anchorSubsystem == AnchorSubsystem.DONT_USE)
                 {
                     /// These must be supplied for ARF. Ignored otherwise.
                     if ((ARSessionSource == null) || (ARSessionOriginSource == null))
@@ -82,6 +83,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.Log($"Setting Invalid: WSA selected but no UNITY_WSA");
                     return false;
 #endif // UNITY_WSA
+                }
+                if (anchorSubsystem == AnchorSubsystem.ARCore)
+                {
+#if !WLT_ARCORE_SDK_INCLUDED
+                    Debug.Log($"Setting Invalid: ARCore selected but ARCore SDK not imported.");
+                    return false;
+#endif // WLT_ARCORE_SDK_INCLUDED
                 }
                 return true; 
             }

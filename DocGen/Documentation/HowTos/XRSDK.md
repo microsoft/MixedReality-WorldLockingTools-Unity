@@ -28,6 +28,8 @@ Retargeting WLT for XR SDK is exceedingly simple. First, configure your project 
 
 These all assume that the WLT Anchor Management Anchor Subsystem has been set appropriately as described in the previous section.
 
+Be sure to run the `Mixed Reality Toolkit => Utilities => UnityAR => Update Scripting Defines` when changing plugin targets.
+
 ### Setup for Windows XR Plugin (HoloLens)
 
 See full instructions at [Getting started with MRTK and XR SDK](https://microsoft.github.io/MixedRealityToolkit-Unity/version/releases/2.5.1/Documentation/GettingStartedWithMRTKAndXRSDK.html?q=2020).

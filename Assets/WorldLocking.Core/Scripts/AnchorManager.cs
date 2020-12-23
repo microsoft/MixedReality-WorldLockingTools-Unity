@@ -9,10 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.XR;
-#if UNITY_WSA
-using UnityEngine.XR.WSA;
-using UnityEngine.XR.WSA.Persistence;
-#endif // UNITY_WSA
+
 
 namespace Microsoft.MixedReality.WorldLocking.Core
 {

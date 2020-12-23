@@ -101,7 +101,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     using (new EditorGUI.IndentLevelScope())
                     {
                         SerializedProperty anchorSubsystem = AddProperty(mgrPath, "anchorSubsystem");
-                        bool isARF = anchorSubsystem.intValue == (int)(AnchorSettings.AnchorSubsystem.ARF);
+                        bool isARF = anchorSubsystem.intValue == (int)(AnchorSettings.AnchorSubsystem.DONT_USE);
 
                         if (isARF)
                         {
