@@ -32,8 +32,19 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// <summary>
         /// Subtree whose SpacePins should be visualized. Null for global AlignmentManager.
         /// </summary>
+        [SerializeField]
         [Tooltip("Subtree whose SpacePins should be visualized. Null for global AlignmentManager.")]
-        public AlignSubtree targetSubtree = null;
+        private AlignSubtree targetSubtree = null;
+
+        public AlignSubtree TargetSubtree
+        {
+            get { return targetSubtree; }
+            set
+            {
+                targetSubtree = value;
+                FindAlignmentManager();
+            }
+        }
 
         private IAlignmentManager alignmentManager = null;
         private SimpleTriangulator triangulator = null;
@@ -480,11 +491,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             return wltMgr.FrozenFromSpongy.Multiply(wltMgr.SpongyFromCamera).position;
         }
 
-        private void Awake()
-        {
-            FindAlignmentManager();
-        }
-
         private void FindAlignmentManager()
         {
             AlignSubtree subTree = targetSubtree;
@@ -500,19 +506,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         private void FindAlignmentManagerFromSubtree(AlignSubtree subTree)
         {
-            if (subTree != null)
+            Debug.Assert(subTree != null, "Trying to find alignment manager from null subTree.");
+            if (subTree.AlignmentManager == null)
             {
-                if (subTree.AlignmentManager == null)
+                subTree.OnAlignManagerCreated += (sender, manager) =>
                 {
-                    subTree.OnAlignManagerCreated += (sender, manager) =>
-                    {
-                        SetAlignmentManager(manager);
-                    };
-                }
-                else
-                {
-                    SetAlignmentManager(subTree.AlignmentManager);
-                }
+                    SetAlignmentManager(manager);
+                };
+            }
+            else
+            {
+                SetAlignmentManager(subTree.AlignmentManager);
             }
         }
 
@@ -550,6 +554,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         private void Update()
         {
+            if (alignmentManager == null)
+            {
+                FindAlignmentManager();
+            }
             if (triangulator != null && isVisible)
             {
                 // Find the three closest SpacePins this frame
