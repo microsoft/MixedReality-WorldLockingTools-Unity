@@ -29,6 +29,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         public GameObject percentageWorldSpaceCanvasPrefab;
 
+        /// <summary>
+        /// Subtree whose SpacePins should be visualized. Null for global AlignmentManager.
+        /// </summary>
+        [Tooltip("Subtree whose SpacePins should be visualized. Null for global AlignmentManager.")]
         public AlignSubtree targetSubtree = null;
 
         private IAlignmentManager alignmentManager = null;
@@ -484,10 +488,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         private void FindAlignmentManager()
         {
             AlignSubtree subTree = targetSubtree;
-            if (subTree == null)
-            {
-                subTree = GetComponent<AlignSubtree>();
-            }
             if (subTree != null)
             {
                 FindAlignmentManagerFromSubtree(subTree);
