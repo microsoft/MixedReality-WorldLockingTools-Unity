@@ -866,7 +866,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html",
-          "hash": "on3glgnGJcEp4bTz2mJmiA=="
+          "hash": "ixKUL2U00wsiR6FW5BXcLw=="
         }
       },
       "is_incremental": false,
@@ -878,7 +878,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html",
-          "hash": "+DxPjOd7ONFMEiW6WzsfbQ=="
+          "hash": "t4VrcCdw+QhQ9NoxtJq2Sw=="
         }
       },
       "is_incremental": false,
@@ -1070,7 +1070,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html",
-          "hash": "XS28j5IcXP3soxoQfaY8vg=="
+          "hash": "YfayDkRTaxV3L3kQJC7OyQ=="
         }
       },
       "is_incremental": false,
@@ -1850,7 +1850,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html",
-          "hash": "eMBD5TI92IKRk6ars83hJA=="
+          "hash": "QFbEvxS+D1tvE6+9T+zaVA=="
         }
       },
       "is_incremental": false,

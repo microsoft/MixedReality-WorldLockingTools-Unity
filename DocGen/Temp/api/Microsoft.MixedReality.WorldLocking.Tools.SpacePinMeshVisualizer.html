@@ -297,13 +297,14 @@
   </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_Instance_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Instance*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_Instance" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Instance">Instance</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_TargetSubtree_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.TargetSubtree*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_TargetSubtree" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.TargetSubtree">TargetSubtree</h4>
+  <div class="markdown level1 summary"><p>Subtree whose SpacePins should be visualized. Null for global AlignmentManager.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static SpacePinMeshVisualizer Instance { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public AlignSubtree TargetSubtree { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -315,7 +316,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html">SpacePinMeshVisualizer</a></td>
+        <td><span class="xref">AlignSubtree</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -344,35 +345,6 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_Initialize_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Initialize*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_Initialize_ITriangulator_" data-uid="Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.Initialize(ITriangulator)">Initialize(ITriangulator)</h4>
-  <div class="markdown level1 summary"><p>Injecting the reference to the triangulation that was newly built.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Initialize(ITriangulator triangulator)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">ITriangulator</span></td>
-        <td><span class="parametername">triangulator</span></td>
-        <td><p>Reference to the data on the triangle that was built.</p>
-</td>
       </tr>
     </tbody>
   </table>
