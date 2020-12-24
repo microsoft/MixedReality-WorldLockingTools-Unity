@@ -100,9 +100,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         #region Public events
 
-        /// <summary>
-        /// New triangulation was built based upon recent poses.
-        /// </summary>
+        /// <inheritdocs />
         public event EventHandler<Triangulator.ITriangulator> OnTriangulationBuilt;
 
         #endregion
