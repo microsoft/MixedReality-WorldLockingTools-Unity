@@ -29,13 +29,13 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         public GameObject percentageWorldSpaceCanvasPrefab;
 
-        /// <summary>
-        /// Subtree whose SpacePins should be visualized. Null for global AlignmentManager.
-        /// </summary>
         [SerializeField]
         [Tooltip("Subtree whose SpacePins should be visualized. Null for global AlignmentManager.")]
         private AlignSubtree targetSubtree = null;
 
+        /// <summary>
+        /// Subtree whose SpacePins should be visualized. Null for global AlignmentManager.
+        /// </summary>
         public AlignSubtree TargetSubtree
         {
             get { return targetSubtree; }
