@@ -125,7 +125,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             return (AnchorId)((int)AnchorId.FirstValid + idx);
         }
 
-#if false // Test failing inexplicably on build (but fine locally).
+        // Test failing inexplicably on build (but fine locally).
+#if false // MAFINC - DISABLE TESTS FOR BUILD MACHINE
         /// <summary>
         /// Construct and check a trivial graph and some trivial anchor movements.
         /// </summary>
@@ -197,7 +198,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 
             yield return null;
         }
-#endif
+#endif // MAFINC - DISABLE TESTS FOR BUILD MACHINE
 
         private void SetupAnchorsForAddDeleteTest(int first, int count, List<AnchorPose> anchorPoses, List<AnchorEdge> anchorEdges)
         {

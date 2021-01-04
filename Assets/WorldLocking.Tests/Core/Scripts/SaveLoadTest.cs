@@ -160,6 +160,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             Pose frozenPose = WorldLockingManager.GetInstance().FrozenFromLocked.Multiply(lockedPose);
             Vector3 offset = frozenPose.position - virtualPose.position;
             float len = Mathf.Abs(offset.magnitude - 1.0f);
+            // MAFINC - DISABLE TESTS FOR BUILD MACHINE
             //Assert.Less(len, 1.0e-4f, $"pin={spacePin.name} fr={frozenPose.position.ToString("F3")} vi={virtualPose.position.ToString("F3")}");
             Debug.Log($"pin={spacePin.name} fr={frozenPose.position.ToString("F3")} vi={virtualPose.position.ToString("F3")}");
         }
@@ -279,7 +280,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             Pose lockedFromFrozen = frozenFromLocked.Inverse();
             Pose computedLocked = lockedFromFrozen.Multiply(virtualPose);
             bool areEqualPositions = computedLocked.position == lockedPose.position;
-#if false
+#if false // MAFINC - DISABLE TESTS FOR BUILD MACHINE
             Assert.IsTrue(areEqualPositions, $"clp={computedLocked.position.ToString("F3")}"
                 + $" lpp={lockedPose.position.ToString("F3")}"
                 + $" vpp={virtualPose.position.ToString("F3")}"
@@ -292,7 +293,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
                 + $" FfP={mgr.FrozenFromPinned.position.ToString("F3")}"
                 + $" PfL={pinnedFromLocked.position.ToString("F3")}"
                 );
-#else
+#else // MAFINC - DISABLE TESTS FOR BUILD MACHINE
             Debug.Log($"clp={computedLocked.position.ToString("F3")}"
                 + $" lpp={lockedPose.position.ToString("F3")}"
                 + $" vpp={virtualPose.position.ToString("F3")}"
@@ -305,7 +306,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
                 + $" FfP={mgr.FrozenFromPinned.position.ToString("F3")}"
                 + $" PfL={pinnedFromLocked.position.ToString("F3")}"
                 );
-#endif
+#endif // MAFINC - DISABLE TESTS FOR BUILD MACHINE
         }
 
         [UnityTest]
