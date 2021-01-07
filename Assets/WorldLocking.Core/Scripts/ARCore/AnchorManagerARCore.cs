@@ -20,12 +20,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         public static AnchorManagerARCore TryCreate(IPlugin plugin, IHeadPoseTracker headTracker)
         {
-            if (!UnityEngine.XR.XRSettings.enabled)
-            {
-                return null;
-            }
 
-            AnchorManagerARCore anchorManagerARCore = new AnchorManagerARCore(plugin, headTracker);
+            AnchorManagerARCore anchorManagerARCore = null;
+
+#if WLT_ARCORE_SDK_INCLUDED
+            anchorManagerARCore = new AnchorManagerARCore(plugin, headTracker);
+#endif // WLT_ARCORE_SDK_INCLUDED
 
             return anchorManagerARCore;
         }

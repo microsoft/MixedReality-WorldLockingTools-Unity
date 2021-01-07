@@ -29,7 +29,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
         /// </summary>
-        public static string Version => "1.2.1";
+        public static string Version => "1.2.2";
 
         /// <summary>
         /// The configuration settings may only be set as a block.
@@ -442,6 +442,18 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 Debug.Log("Failed to create requested WSA anchor manager!");
             }
 #endif // UNITY_WSA
+#if WLT_ARCORE_SDK_INCLUDED
+            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.ARCore)
+            {
+                AnchorManagerARCore arCoreAnchorManager = AnchorManagerARCore.TryCreate(plugin, headTracker);
+                if (arCoreAnchorManager != null)
+                {
+                    Debug.Log("Success creating ARCore anchor manager");
+                    return arCoreAnchorManager;
+                }
+                Debug.Log("Failed to create requested ARCore anchor manager!");
+            }
+#endif // WLT_ARCORE_SDK_INCLUDED
             if (anchorSettings.anchorSubsystem != AnchorSettings.AnchorSubsystem.Null)
             {
                 Debug.Log("Failure creating useful anchor manager of any type. Creating null manager");
@@ -724,8 +736,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public void Save()
         {
+#if UNITY_WSA
+            /// Persistence currently only supported on HoloLens
             WrapErrors(saveAsync());
             alignmentManager.Save();
+#endif // UNITY_WSA
         }
 
         /// <summary>
@@ -733,13 +748,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public void Load()
         {
+#if UNITY_WSA
+            /// Persistence currently only supported on HoloLens
             WrapErrors(loadAsync());
             alignmentManager.Load();
+#endif // UNITY_WSA
         }
 
-#endregion
+        #endregion
 
-#region Load and Save
+        #region Load and Save
 
         private string stateFileNameBase => Application.persistentDataPath + "/frozenWorldState.hkfw";
 
@@ -846,10 +864,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private void AutoSaveTriggerHook()
         {
+#if UNITY_WSA
+            /// Persistence currently only supported on HoloLens
             if (AutoSave && Time.unscaledTime >= lastSavingTime + AutoSaveInterval)
             {
                 WrapErrors(saveAsync());
             }
+#endif // UNITY_WSA
         }
 
         /// <summary>
