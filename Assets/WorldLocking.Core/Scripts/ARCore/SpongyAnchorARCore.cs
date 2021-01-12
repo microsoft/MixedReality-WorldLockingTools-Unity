@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+#define WLT_ARCORE_EXTRA_DEBUGGING
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -54,6 +56,19 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 lastNotLocatedTime = Time.unscaledTime;
             }
+#if WLT_ARCORE_SDK_INCLUDED
+            else
+            {
+                Vector3 move = internalAnchor.transform.position - transform.position;
+#if WLT_ARCORE_EXTRA_DEBUGGING
+                if (move.magnitude > 0.001f)
+                {
+                    Debug.Log($"{name} Moving by {move.ToString("F3")}");
+                }
+#endif // WLT_ARCORE_EXTRA_DEBUGGING
+                transform.SetGlobalPose(internalAnchor.transform.GetGlobalPose());
+            }
+#endif // WLT_ARCORE_SDK_INCLUDED
         }
 
         // Start is called before the first frame update
