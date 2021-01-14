@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
 using UnityEngine;
 
 namespace Microsoft.MixedReality.WorldLocking.Core
@@ -38,6 +39,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         /// <param name="del">Delegate to remove from notifications.</param>
         void UnregisterForLoad(PostAlignmentLoadedDelegate del);
+
+        /// <summary>
+        /// New triangulation was built based upon recent poses.
+        /// </summary>
+        event EventHandler<Triangulator.ITriangulator> OnTriangulationBuilt;
 
         /// <summary>
         /// Add an anchor for aligning a virtual pose to a pose in real space. 

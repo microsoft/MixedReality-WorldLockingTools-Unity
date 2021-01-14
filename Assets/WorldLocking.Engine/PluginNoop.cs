@@ -11,8 +11,6 @@ using System.IO;
 using System.Threading.Tasks;
 
 using static Microsoft.MixedReality.FrozenWorld.Engine.Engine;
-using System.Runtime.Remoting.Messaging;
-using System.ComponentModel.Design.Serialization;
 
 namespace Microsoft.MixedReality.WorldLocking.Core
 {

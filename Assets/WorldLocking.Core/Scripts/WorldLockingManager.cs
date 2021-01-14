@@ -29,7 +29,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
         /// </summary>
-        public static string Version => "1.1.0";
+        public static string Version => "1.2.2";
 
         /// <summary>
         /// The configuration settings may only be set as a block.
@@ -404,7 +404,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             var anchorSettings = shared.anchorSettings;
 #if WLT_ARFOUNDATION_PRESENT
-            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.ARF)
+            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.DONT_USE)
             {
                 Debug.Log($"Trying to create ARF anchor manager on {anchorSettings.ARSessionSource.name} and {anchorSettings.ARSessionOriginSource.name}");
                 AnchorManagerARF arfAnchorManager = AnchorManagerARF.TryCreate(plugin, headTracker,
@@ -442,14 +442,26 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 Debug.Log("Failed to create requested WSA anchor manager!");
             }
 #endif // UNITY_WSA
-            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.Null)
+#if WLT_ARCORE_SDK_INCLUDED
+            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.ARCore)
             {
-                AnchorManagerNull nullAnchorManager = AnchorManagerNull.TryCreate(plugin, headTracker);
-                Debug.Assert(nullAnchorManager != null, "Creation of Null anchor manager should never fail.");
-                return nullAnchorManager;
+                AnchorManagerARCore arCoreAnchorManager = AnchorManagerARCore.TryCreate(plugin, headTracker);
+                if (arCoreAnchorManager != null)
+                {
+                    Debug.Log("Success creating ARCore anchor manager");
+                    return arCoreAnchorManager;
+                }
+                Debug.Log("Failed to create requested ARCore anchor manager!");
             }
-            Debug.Log("Failure creating useful anchor manager of any type. Creating null manager");
-            return AnchorManagerNull.TryCreate(plugin, headTracker);
+#endif // WLT_ARCORE_SDK_INCLUDED
+            if (anchorSettings.anchorSubsystem != AnchorSettings.AnchorSubsystem.Null)
+            {
+                Debug.Log("Failure creating useful anchor manager of any type. Creating null manager");
+                anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.Null;
+            }
+            AnchorManagerNull nullAnchorManager = AnchorManagerNull.TryCreate(plugin, headTracker);
+            Debug.Assert(nullAnchorManager != null, "Creation of Null anchor manager should never fail.");
+            return nullAnchorManager;
         }
 
         /// <summary>
@@ -463,6 +475,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             AnchorManager.MinNewAnchorDistance = shared.anchorSettings.MinNewAnchorDistance;
             AnchorManager.MaxAnchorEdgeLength = shared.anchorSettings.MaxAnchorEdgeLength;
+            AnchorManager.MaxLocalAnchors = shared.anchorSettings.MaxLocalAnchors;
         }
 
         /// <summary>
@@ -611,7 +624,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             AdjustmentFrame.SetLocalPose(PinnedFromLocked.Multiply(LockedFromPlayspace));
 
-#if WLT_ARSUBSYSTEMS_PRESENT
+#if false && WLT_ARSUBSYSTEMS_PRESENT
             if ((AdjustmentFrame.GetGlobalPose().position != Vector3.zero) || (AdjustmentFrame.GetGlobalPose().rotation != Quaternion.identity))
             {
                 Debug.Log($"WLT: Adj{AnchorManagerXR.DebugVector3("O=", AdjustmentFrame.GetGlobalPose().position)}, {AnchorManagerXR.DebugEuler("R=", AdjustmentFrame.GetGlobalPose().rotation.eulerAngles)}");
@@ -723,8 +736,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public void Save()
         {
+#if UNITY_WSA
+            /// Persistence currently only supported on HoloLens
             WrapErrors(saveAsync());
             alignmentManager.Save();
+#endif // UNITY_WSA
         }
 
         /// <summary>
@@ -732,13 +748,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public void Load()
         {
+#if UNITY_WSA
+            /// Persistence currently only supported on HoloLens
             WrapErrors(loadAsync());
             alignmentManager.Load();
+#endif // UNITY_WSA
         }
 
-#endregion
+        #endregion
 
-#region Load and Save
+        #region Load and Save
 
         private string stateFileNameBase => Application.persistentDataPath + "/frozenWorldState.hkfw";
 
@@ -845,10 +864,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private void AutoSaveTriggerHook()
         {
+#if UNITY_WSA
+            /// Persistence currently only supported on HoloLens
             if (AutoSave && Time.unscaledTime >= lastSavingTime + AutoSaveInterval)
             {
                 WrapErrors(saveAsync());
             }
+#endif // UNITY_WSA
         }
 
         /// <summary>

@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.MixedReality.WorldLocking.Core;
@@ -13,17 +16,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
     public class SpacePinMeshVisualizer : MonoBehaviour
     {
 
-        private static SpacePinMeshVisualizer instance = null;
-        public static SpacePinMeshVisualizer Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = FindObjectOfType<SpacePinMeshVisualizer>();
-                return instance;
-            }
-        }
-
         [Range(0.1f, 2.0f)]
         public float weightCubeMaxSize = 1.0f;
 
@@ -37,7 +29,24 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         public GameObject percentageWorldSpaceCanvasPrefab;
 
-        private AlignmentManager alignmentManager = null;
+        [SerializeField]
+        [Tooltip("Subtree whose SpacePins should be visualized. Null for global AlignmentManager.")]
+        private AlignSubtree targetSubtree = null;
+
+        /// <summary>
+        /// Subtree whose SpacePins should be visualized. Null for global AlignmentManager.
+        /// </summary>
+        public AlignSubtree TargetSubtree
+        {
+            get { return targetSubtree; }
+            set
+            {
+                targetSubtree = value;
+                FindAlignmentManager();
+            }
+        }
+
+        private IAlignmentManager alignmentManager = null;
         private SimpleTriangulator triangulator = null;
         private Interpolant currentInterpolant = null;
 
@@ -99,7 +108,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// Injecting the reference to the triangulation that was newly built.
         /// </summary>
         /// <param name="triangulator">Reference to the data on the triangle that was built.</param>
-        public void Initialize(ITriangulator triangulator)
+        private void Initialize(ITriangulator triangulator)
         {
             this.triangulator = (SimpleTriangulator)triangulator;
 
@@ -126,7 +135,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 }
             }
 
-            transform.position = new Vector3(transform.position.x, GetLockedHeadPosition().y + verticalOffset, transform.position.z);
+            transform.position = new Vector3(transform.position.x, GetFrozenHeadPosition().y + verticalOffset, transform.position.z);
             triangleIsDirty = true;
         }
 
@@ -134,7 +143,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// Generates the whole mesh inside the triangulation data, except for the boundry triangles/vertices.
         /// </summary>
         /// <returns></returns>
-        Mesh GenerateTriangulationWireFrameMesh()
+        private Mesh GenerateTriangulationWireFrameMesh()
         {
             Mesh wholeMesh = new Mesh();
 
@@ -143,8 +152,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             Array.Copy(originalVertices, 4, vertices, 0, originalVertices.Length - 4);
 
+            Pose frozenFromLocked = WorldLockingManager.GetInstance().FrozenFromLocked;
             for (int i = 0; i < vertices.Length; i++)
             {
+                vertices[i] = frozenFromLocked.Multiply(vertices[i]);
                 vertices[i].y = 0.0f;
             }
 
@@ -377,6 +388,11 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             secondPinPosition = currentBoundaryVertexIDx == 1 ? lockedHeadPosition : triangulator.Vertices[currentInterpolant.idx[1] + 4];
             thirdPinPosition = currentBoundaryVertexIDx == 2 ? lockedHeadPosition : triangulator.Vertices[currentInterpolant.idx[2] + 4];
 
+            Pose frozenFromLocked = WorldLockingManager.GetInstance().FrozenFromLocked;
+            firstPinPosition = frozenFromLocked.Multiply(firstPinPosition);
+            secondPinPosition = frozenFromLocked.Multiply(secondPinPosition);
+            thirdPinPosition = frozenFromLocked.Multiply(thirdPinPosition);
+
             //    DEBUG TRIANGLE    //
             //firstPinPosition = new Vector3(5.0f, 0.0f, 0.0f);
             //secondPinPosition = new Vector3(1.0f, 0.0f, 1.0f);
@@ -469,25 +485,51 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             return lockedHeadPose.position;
         }
 
-        private void Awake()
+        private Vector3 GetFrozenHeadPosition()
         {
-            AlignSubtree subTree = FindObjectOfType<AlignSubtree>();
+            WorldLockingManager wltMgr = WorldLockingManager.GetInstance();
+            return wltMgr.FrozenFromSpongy.Multiply(wltMgr.SpongyFromCamera).position;
+        }
 
+        private void FindAlignmentManager()
+        {
+            AlignSubtree subTree = targetSubtree;
             if (subTree != null)
             {
-                if (subTree.AlignmentManager == null)
+                FindAlignmentManagerFromSubtree(subTree);
+            }
+            else
+            {
+                SetAlignmentManager(WorldLockingManager.GetInstance().AlignmentManager);
+            }
+        }
+
+        private void FindAlignmentManagerFromSubtree(AlignSubtree subTree)
+        {
+            Debug.Assert(subTree != null, "Trying to find alignment manager from null subTree.");
+            if (subTree.AlignmentManager == null)
+            {
+                subTree.OnAlignManagerCreated += (sender, manager) =>
                 {
-                    subTree.OnAlignManagerCreated += (sender, manager) =>
-                    {
-                        this.alignmentManager = manager;
-                        alignmentManager.OnTriangulationBuilt += OnNewTriangulationWasBuilt;
-                    };
-                }
-                else
-                {
-                    this.alignmentManager = subTree.AlignmentManager;
-                    alignmentManager.OnTriangulationBuilt += OnNewTriangulationWasBuilt;
-                }
+                    SetAlignmentManager(manager);
+                };
+            }
+            else
+            {
+                SetAlignmentManager(subTree.AlignmentManager);
+            }
+        }
+
+        private void SetAlignmentManager(IAlignmentManager manager)
+        {
+            if (alignmentManager != null)
+            {
+                alignmentManager.OnTriangulationBuilt -= OnNewTriangulationWasBuilt;
+            }
+            alignmentManager = manager;
+            if (alignmentManager != null)
+            {
+                alignmentManager.OnTriangulationBuilt += OnNewTriangulationWasBuilt;
             }
         }
 
@@ -505,11 +547,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         private void OnDestroy()
         {
             if (alignmentManager != null)
+            {
                 alignmentManager.OnTriangulationBuilt -= OnNewTriangulationWasBuilt;
+            }
         }
 
         private void Update()
         {
+            if (alignmentManager == null)
+            {
+                FindAlignmentManager();
+            }
             if (triangulator != null && isVisible)
             {
                 // Find the three closest SpacePins this frame

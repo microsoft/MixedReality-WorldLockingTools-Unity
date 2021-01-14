@@ -21,7 +21,7 @@ In addition to the simplicity provided, there are a [number of advantages to usi
 
 Setup for gaining the advantages of baseline WLT behavior is very simple, and can be broken into four (4) steps:
 
-1. Import the [Frozen World Engine NuGet package](../InitialSetup.md#nuget-setup) into your project.
+1. Import the [Frozen World Engine NuGet package](../InitialSetup.md#frozenworld-engine-installation) into your project.
 2. Import the [World Locking Tools unity package](../InitialSetup.md#world-locking-tools-assets) into your project.
 3. Drop the [WorldLockingManager prefab](../InitialSetup.md#the-core-experience) into your scene.
 4. Add an ["adjustment" game object](../InitialSetup.md#adding-world-locking-tools-to-a-unity-scene) to your camera hierarchy.

@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+//#define WLT_EXTRA_LOGGING
+
 using UnityEngine;
 #if WLT_ARSUBSYSTEMS_PRESENT
 using UnityEngine.XR.ARSubsystems;
@@ -38,10 +40,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             get
             {
+#if WLT_EXTRA_LOGGING
                 if (IsReliablyLocated && !(Time.unscaledTime > lastNotLocatedTime + TrackingStartDelayTime))
                 {
                     Debug.Log($"Anchor {name} located but waiting TrackingStartDelayTime {Time.unscaledTime} > {lastNotLocatedTime} + {TrackingStartDelayTime}");
                 }
+#endif // WLT_EXTRA_LOGGING
                 return IsReliablyLocated && Time.unscaledTime > lastNotLocatedTime + TrackingStartDelayTime;
             }
         }
@@ -91,7 +95,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// Set lastNotLocatedTime if not located
             if (!IsReliablyLocated)
             {
+#if WLT_EXTRA_LOGGING
                 Debug.Log($"LastNotLocated {name} is {Time.unscaledTime}");
+#endif // WLT_EXTRA_LOGGING
                 lastNotLocatedTime = Time.unscaledTime;
             }
         }

@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Input;
 using Microsoft.MixedReality.Toolkit.Utilities;
@@ -74,10 +74,22 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
 #endif // (UNITY_WSA && DOTNETWINRT_PRESENT) || WINDOWS_UWP
         }
 
+        /// <inheritdoc />
         public bool SmoothEyeTracking { get; set; } = false;
 
+        /// <inheritdoc />
         public IMixedRealityEyeSaccadeProvider SaccadeProvider => this;
 
+        /// <inheritdoc />
+        public event Action OnSaccade;
+
+        /// <inheritdoc />
+        public event Action OnSaccadeX;
+
+        /// <inheritdoc />
+        public event Action OnSaccadeY;
+
+        private readonly bool eyesApiAvailable = false;
         private readonly float smoothFactorNormalized = 0.96f;
         private readonly float saccadeThreshInDegree = 2.5f; // In degrees (not radians)
 
@@ -86,11 +98,6 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
         private int confidenceOfSaccadeThreshold = 6; // TODO(https://github.com/Microsoft/MixedRealityToolkit-Unity/issues/3767): This value should be adjusted based on the FPS of the ET system
         private Ray saccade_initialGazePoint;
         private readonly List<Ray> saccade_newGazeCluster = new List<Ray>();
-
-        public event Action OnSaccade;
-        public event Action OnSaccadeX;
-        public event Action OnSaccadeY;
-        private readonly bool eyesApiAvailable = false;
 
 #if (UNITY_WSA && DOTNETWINRT_PRESENT) || WINDOWS_UWP
         private static bool askedForETAccessAlready = false; // To make sure that this is only triggered once.
@@ -117,9 +124,9 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
         public override void Initialize()
         {
 #if UNITY_EDITOR && UNITY_WSA && UNITY_2019_3_OR_NEWER
-            Toolkit.Utilities.Editor.UWPCapabilityUtility.RequireCapability(
+            Utilities.Editor.UWPCapabilityUtility.RequireCapability(
                     UnityEditor.PlayerSettings.WSACapability.GazeInput,
-                    this.GetType());
+                    GetType());
 #endif // UNITY_EDITOR && UNITY_WSA && UNITY_2019_3_OR_NEWER
 
             if (Application.isPlaying && eyesApiAvailable)
@@ -129,46 +136,6 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
 #endif // (UNITY_WSA && DOTNETWINRT_PRESENT) || WINDOWS_UWP
                 ReadProfile();
             }
-        }
-
-#if (UNITY_WSA && DOTNETWINRT_PRESENT) || WINDOWS_UWP
-        private static readonly ProfilerMarker UpdatePerfMarker = new ProfilerMarker("[MRTK] WindowsMixedRealityEyeGazeDataProvider.Update");
-#endif // (UNITY_WSA && DOTNETWINRT_PRESENT) || WINDOWS_UWP
-
-        /// <inheritdoc />
-        public override void Update()
-        {
-#if (UNITY_WSA && DOTNETWINRT_PRESENT) || WINDOWS_UWP
-            using (UpdatePerfMarker.Auto())
-            {
-                if (WindowsMixedRealityUtilities.SpatialCoordinateSystem == null || !eyesApiAvailable)
-                {
-                    return;
-                }
-
-                SpatialPointerPose pointerPose = SpatialPointerPose.TryGetAtTimestamp(WindowsMixedRealityUtilities.SpatialCoordinateSystem, PerceptionTimestampHelper.FromHistoricalTargetTime(DateTimeOffset.Now));
-                if (pointerPose != null)
-                {
-                    var eyes = pointerPose.Eyes;
-                    if (eyes != null)
-                    {
-                        Service?.EyeGazeProvider?.UpdateEyeTrackingStatus(this, eyes.IsCalibrationValid);
-
-                        if (eyes.Gaze.HasValue)
-                        {
-                            Ray newGaze = new Ray(eyes.Gaze.Value.Origin.ToUnityVector3(), eyes.Gaze.Value.Direction.ToUnityVector3());
-
-                            if (SmoothEyeTracking)
-                            {
-                                newGaze = SmoothGaze(newGaze);
-                            }
-
-                            Service?.EyeGazeProvider?.UpdateEyeGaze(this, newGaze, eyes.UpdateTimestamp.TargetTime.UtcDateTime);
-                        }
-                    }
-                }
-            }
-#endif // (UNITY_WSA && DOTNETWINRT_PRESENT) || WINDOWS_UWP
         }
 
         private void ReadProfile()
@@ -190,6 +157,45 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
         }
 
 #if (UNITY_WSA && DOTNETWINRT_PRESENT) || WINDOWS_UWP
+        private static readonly ProfilerMarker UpdatePerfMarker = new ProfilerMarker("[MRTK] WindowsMixedRealityEyeGazeDataProvider.Update");
+
+        /// <inheritdoc />
+        public override void Update()
+        {
+            using (UpdatePerfMarker.Auto())
+            {
+                if (WindowsMixedRealityUtilities.SpatialCoordinateSystem == null || !eyesApiAvailable)
+                {
+                    return;
+                }
+
+                SpatialPointerPose pointerPose = SpatialPointerPose.TryGetAtTimestamp(WindowsMixedRealityUtilities.SpatialCoordinateSystem, PerceptionTimestampHelper.FromHistoricalTargetTime(DateTimeOffset.Now));
+                if (pointerPose != null)
+                {
+                    var eyes = pointerPose.Eyes;
+                    if (eyes != null)
+                    {
+                        Service?.EyeGazeProvider?.UpdateEyeTrackingStatus(this, eyes.IsCalibrationValid);
+
+                        if (eyes.Gaze.HasValue)
+                        {
+                            Vector3 origin = MixedRealityPlayspace.TransformPoint(eyes.Gaze.Value.Origin.ToUnityVector3());
+                            Vector3 direction = MixedRealityPlayspace.TransformDirection(eyes.Gaze.Value.Direction.ToUnityVector3());
+
+                            Ray newGaze = new Ray(origin, direction);
+
+                            if (SmoothEyeTracking)
+                            {
+                                newGaze = SmoothGaze(newGaze);
+                            }
+
+                            Service?.EyeGazeProvider?.UpdateEyeGaze(this, newGaze, eyes.UpdateTimestamp.TargetTime.UtcDateTime);
+                        }
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Triggers a prompt to let the user decide whether to permit using eye tracking 
         /// </summary>
@@ -258,9 +264,6 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
                 {
                     isSaccading = true;
                 }
-
-                Vector3 v1 = oldGaze.Value.origin + oldGaze.Value.direction;
-                Vector3 v2 = newGaze.Value.origin + newGaze.Value.direction;
 
                 // Saccade-dependent local smoothing
                 if (isSaccading)

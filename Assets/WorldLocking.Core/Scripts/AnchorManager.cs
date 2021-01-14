@@ -9,10 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.XR;
-#if UNITY_WSA
-using UnityEngine.XR.WSA;
-using UnityEngine.XR.WSA.Persistence;
-#endif // UNITY_WSA
+
 
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
@@ -52,6 +49,17 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         /// <inheritdoc/>
         public float MaxAnchorEdgeLength { get { return maxAnchorEdgeLength; } set { maxAnchorEdgeLength = value; } }
+
+        /// <summary>
+        /// Maximum number of local anchors in the internal anchor graph.
+        /// </summary>
+        /// <remarks>
+        /// Zero or negative means unlimited anchors.
+        /// </remarks>
+        private int maxLocalAnchors = 0;
+
+        /// <inheritdoc/>
+        public int MaxLocalAnchors { get { return maxLocalAnchors; } set { maxLocalAnchors = value; } }
 
         private static readonly float AnchorAddOutTime = 0.4f;
 
@@ -157,14 +165,37 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             foreach (var anchor in spongyAnchors)
             {
+                /// Pass in AnchorId.Invalid, not because the anchors aren't in a list, but
+                /// because it's faster to clear the entire lists rather than pulling out each element.
                 DestroyAnchor(AnchorId.Invalid, anchor.spongyAnchor);
             }
+            // mafinc - should this clear frozen anchors as well?
             spongyAnchors.Clear();
+            plugin.ClearFrozenAnchors();
 
             newSpongyAnchor = DestroyAnchor(AnchorId.Invalid, newSpongyAnchor);
             headTracker.Reset();
         }
 
+        /// <summary>
+        /// If we have more local anchors than parameterized limit, destroy the furthest.
+        /// </summary>
+        /// <param name="maxDistAnchorId">Id of the furthest anchor.</param>
+        /// <param name="maxDistSpongyAnchor">Reference to the furthest anchor.</param>
+        private void CheckForCull(AnchorId maxDistAnchorId, SpongyAnchor maxDistSpongyAnchor)
+        {
+            /// Anchor limiting is only enabled with a positive limit value.
+            if (MaxLocalAnchors > 0)
+            {
+                if (SpongyAnchors.Count > MaxLocalAnchors)
+                {
+                    if (maxDistSpongyAnchor != null)
+                    {
+                        DestroyAnchor(maxDistAnchorId, maxDistSpongyAnchor);
+                    }
+                }
+            }
+        }
         /// <summary>
         /// Create missing spongy anchors/edges and feed plugin with up-to-date input
         /// </summary>
@@ -197,6 +228,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             float minDistSqr = float.PositiveInfinity;
             AnchorId minDistAnchorId = 0;
 
+            float maxDistSq = 0;
+            AnchorId maxDistAnchorId = AnchorId.Invalid;
+            SpongyAnchor maxDistSpongyAnchor = null;
+
             List<AnchorEdge> newEdges;
             AnchorId newId = FinalizeNewAnchor(out newEdges);
 
@@ -225,6 +260,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                         {
                             innerSphereAnchorIds.Add(id);
                         }
+                    }
+                    if (distSqr > maxDistSq)
+                    {
+                        maxDistSq = distSqr;
+                        maxDistAnchorId = id;
+                        maxDistSpongyAnchor = a;
                     }
                 }
             }
@@ -274,6 +315,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
             }
 
+            CheckForCull(maxDistAnchorId, maxDistSpongyAnchor);
+
             plugin.ClearSpongyAnchors();
             plugin.Step_Init(spongyHead);
             plugin.AddSpongyAnchors(activeAnchors);
@@ -298,15 +341,41 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return false;
         }
 
-        // UNITY_WSA - abstract?
+        /// <summary>
+        /// Platform dependent instantiation of a local anchor at given position.
+        /// </summary>
+        /// <param name="id">Anchor id to give new anchor.</param>
+        /// <param name="parent">Object to hang anchor off of.</param>
+        /// <param name="initialPose">Pose for the anchor.</param>
+        /// <returns>The new anchor</returns>
         protected abstract SpongyAnchor CreateAnchor(AnchorId id, Transform parent, Pose initialPose);
 
+        /// <summary>
+        /// Platform dependent disposal of local anchors.
+        /// </summary>
+        /// <param name="id">The id of the anchor to destroy.</param>
+        /// <param name="spongyAnchor">Reference to the anchor to destroy.</param>
+        /// <returns>Null</returns>
+        /// <remarks>
+        /// The id is used to delete from any stored lists. If the SpongyAnchor hasn't been
+        /// added to any lists (is still initializing), id can be AnchorId.Invalid.
+        /// </remarks>
         protected abstract SpongyAnchor DestroyAnchor(AnchorId id, SpongyAnchor spongyAnchor);
 
+        /// <summary>
+        /// Remove all internal references to the anchor identified.
+        /// </summary>
+        /// <param name="id">The anchor to forget.</param>
+        /// <remarks>
+        /// It is not an error to pass in AnchorId.Unknown or AnchorId.Invalid, although neither will have any effect.
+        /// It is an error to pass in a valid id which doesn't correspond to a valid anchor.
+        /// This function should be called as part of any IAnchorManager's implementation of DestroyAnchor().
+        /// </remarks>
         protected void RemoveSpongyAnchorById(AnchorId id)
         {
-            if (id != AnchorId.Invalid)
+            if (id.IsKnown())
             {
+                plugin.RemoveFrozenAnchor(id);
                 int index = SpongyAnchors.FindIndex(anchorWithId => anchorWithId.anchorId == id);
                 if (index >= 0)
                 {
@@ -324,7 +393,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <param name="neighbors"></param>
         private void PrepareNewAnchor(Pose pose, List<AnchorId> neighbors)
         {
-            if (newSpongyAnchor)
+            if (newSpongyAnchor != null)
             {
                 Debug.Log($"Discarding {newSpongyAnchor.name} (located={newSpongyAnchor.IsLocated}) because still not located");
                 newSpongyAnchor = DestroyAnchor(AnchorId.Invalid, newSpongyAnchor);

@@ -20,7 +20,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             Null,
             WSA,
             XRSDK,
-            ARF
+            DONT_USE,
+            ARCore
         };
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.Log($"Setting Invalid: MinNewAnchorDistance = {MinNewAnchorDistance} - MaxNewAnchorEdgeLength = {MaxAnchorEdgeLength}");
                     return false;
                 }
-                if (anchorSubsystem == AnchorSubsystem.ARF)
+                if (anchorSubsystem == AnchorSubsystem.DONT_USE)
                 {
                     /// These must be supplied for ARF. Ignored otherwise.
                     if ((ARSessionSource == null) || (ARSessionOriginSource == null))
@@ -82,6 +83,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.Log($"Setting Invalid: WSA selected but no UNITY_WSA");
                     return false;
 #endif // UNITY_WSA
+                }
+                if (anchorSubsystem == AnchorSubsystem.ARCore)
+                {
+#if !WLT_ARCORE_SDK_INCLUDED
+                    Debug.Log($"Setting Invalid: ARCore selected but ARCore SDK not imported.");
+                    return false;
+#endif // WLT_ARCORE_SDK_INCLUDED
                 }
                 return true; 
             }
@@ -127,6 +135,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public float MaxAnchorEdgeLength;
 
         /// <summary>
+        /// The maximum number of local anchors in the internal anchor graph.
+        /// </summary>
+        /// <remarks>
+        /// Zero or any negative value is considered to be infinite (unlimited).
+        /// </remarks>
+        [Tooltip("The maximum number of local anchors in the internal anchor graph. Non-positive is infinity.")]
+        public int MaxLocalAnchors;
+
+        /// <summary>
         /// Init all fields to default values.
         /// </summary>
         public void InitToDefaults()
@@ -137,6 +154,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             ARSessionOriginSource = null;
             MinNewAnchorDistance = 1.0f;
             MaxAnchorEdgeLength = 1.2f;
+            MaxLocalAnchors = 0;
         }
     }
 }

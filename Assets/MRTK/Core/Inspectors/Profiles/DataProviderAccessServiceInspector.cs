@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.﻿
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.﻿
 
 using Microsoft.MixedReality.Toolkit.Utilities.Editor;
 using System;
@@ -153,7 +153,7 @@ namespace Microsoft.MixedReality.Toolkit.Editor
 
         /// <summary>
         /// Renders properties of <see cref="IMixedRealityServiceConfiguration"/> instance at provided index in inspector.
-        /// Also renders inspector view of data provider's profile object and it's contents if applicable and foldout is expanded.
+        /// Also renders inspector view of data provider's profile object and its contents if applicable and foldout is expanded.
         /// </summary>
         protected bool RenderDataProviderEntry(int index, GUIContent removeContent, System.Type dataProviderProfileType = null)
         {
@@ -167,6 +167,7 @@ namespace Microsoft.MixedReality.Toolkit.Editor
             {
                 using (new EditorGUILayout.HorizontalScope())
                 {
+                    if (index < 0 || index >= providerFoldouts.Count) index = 0;
                     providerFoldouts[index] = EditorGUILayout.Foldout(providerFoldouts[index], providerProperties.componentName.stringValue, true);
 
                     if (GUILayout.Button(removeContent, EditorStyles.miniButtonRight, GUILayout.Width(24f)))
