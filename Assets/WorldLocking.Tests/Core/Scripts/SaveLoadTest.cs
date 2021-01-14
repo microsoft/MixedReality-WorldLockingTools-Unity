@@ -102,6 +102,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 
             yield return null;
             yield return null;
+            wltMgr.AlignmentManager.ComputePinnedPose(new Pose(Vector3.zero, Quaternion.identity));
 
             FindAndCheckPin(rig, "GPin1");
             FindAndCheckPin(rig, "GPin2");
