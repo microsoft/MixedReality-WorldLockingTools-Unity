@@ -317,6 +317,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
         {
             Pose spongyHead;
             IPlugin plugin = WorldLockingManager.GetInstance().Plugin;
+            plugin.ResetAlignment(Pose.identity);
             for (int k = 0; k < anchorPoses.Count; ++k)
             {
                 spongyHead = anchorPoses[k].pose;
