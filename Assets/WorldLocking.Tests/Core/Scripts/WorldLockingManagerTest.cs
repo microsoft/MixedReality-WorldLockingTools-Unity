@@ -126,7 +126,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
         }
 
         // Test failing inexplicably on build (but fine locally).
-#if false // MAFINC - DISABLE TESTS FOR BUILD MACHINE
+#if true // MAFINC - DISABLE TESTS FOR BUILD MACHINE
         /// <summary>
         /// Construct and check a trivial graph and some trivial anchor movements.
         /// </summary>

@@ -65,6 +65,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             };
 
         [UnityTest]
+        [UnityPlatform(include = new[] { RuntimePlatform.WSAPlayerARM, RuntimePlatform.WSAPlayerX64, RuntimePlatform.WSAPlayerX86 })]
         public IEnumerator SaveLoadIndieAlign()
         {
             Debug.Log("Enter IndieAlign");
