@@ -43,7 +43,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (!UnityEngine.XR.XRSettings.enabled)
             {
-                return null;
+                Debug.LogWarning($"Warning: Legacy WSA AnchorManager selected but legacy WSA not enabled. Check Player Settings/XR.");
             }
 
             AnchorManagerWSA anchorManagerWSA = new AnchorManagerWSA(plugin, headTracker);

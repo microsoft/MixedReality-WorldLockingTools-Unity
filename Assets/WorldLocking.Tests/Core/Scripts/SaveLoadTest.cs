@@ -11,6 +11,9 @@ using Microsoft.MixedReality.WorldLocking.Core;
 
 namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 {
+    /// <summary>
+    /// Note that persistence is (currently) only implemented for WSA (HoloLens) platform.
+    /// </summary>
     public class SaveLoadTest
     {
         private TestLoadHelpers loadHelper = new TestLoadHelpers();
@@ -64,6 +67,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
                 }
             };
 
+#if UNITY_WSA
         [UnityTest]
         public IEnumerator SaveLoadIndieAlign()
         {
@@ -102,6 +106,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 
             yield return null;
             yield return null;
+            wltMgr.AlignmentManager.ComputePinnedPose(new Pose(Vector3.zero, Quaternion.identity));
 
             FindAndCheckPin(rig, "GPin1");
             FindAndCheckPin(rig, "GPin2");
@@ -140,6 +145,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             yield return null;
 
         }
+#endif // UNITY_WSA
 
         private SpacePin FindPinByName(GameObject rig, string pinName)
         {
@@ -161,8 +167,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             Vector3 offset = frozenPose.position - virtualPose.position;
             float len = Mathf.Abs(offset.magnitude - 1.0f);
             // MAFINC - DISABLE TESTS FOR BUILD MACHINE
-            //Assert.Less(len, 1.0e-4f, $"pin={spacePin.name} fr={frozenPose.position.ToString("F3")} vi={virtualPose.position.ToString("F3")}");
-            Debug.Log($"pin={spacePin.name} fr={frozenPose.position.ToString("F3")} vi={virtualPose.position.ToString("F3")}");
+            Assert.Less(len, 1.0e-4f, $"pin={spacePin.name} fr={frozenPose.position.ToString("F3")} vi={virtualPose.position.ToString("F3")}");
+            //Debug.Log($"pin={spacePin.name} fr={frozenPose.position.ToString("F3")} vi={virtualPose.position.ToString("F3")}");
         }
 
         private void FindAndSetPin(GameObject rig, string pinName, Vector3 offset)
@@ -176,6 +182,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             spacePin.SetFrozenPose(frozenPose);
         }
 
+#if UNITY_WSA
         [UnityTest]
         public IEnumerator SaveLoadTestSaveThenLoad()
         {
@@ -244,6 +251,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 
             yield return null;
         }
+#endif // UNITY_WSA
 
         private void VerifyAlignmentIdentity(IAlignmentManager alignMgr, PinData[] pinData)
         {
@@ -280,7 +288,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             Pose lockedFromFrozen = frozenFromLocked.Inverse();
             Pose computedLocked = lockedFromFrozen.Multiply(virtualPose);
             bool areEqualPositions = computedLocked.position == lockedPose.position;
-#if false // MAFINC - DISABLE TESTS FOR BUILD MACHINE
+#if true // MAFINC - DISABLE TESTS FOR BUILD MACHINE
             Assert.IsTrue(areEqualPositions, $"clp={computedLocked.position.ToString("F3")}"
                 + $" lpp={lockedPose.position.ToString("F3")}"
                 + $" vpp={virtualPose.position.ToString("F3")}"
