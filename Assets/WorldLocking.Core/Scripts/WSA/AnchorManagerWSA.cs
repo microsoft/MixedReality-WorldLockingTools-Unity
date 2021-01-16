@@ -41,10 +41,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         public static AnchorManagerWSA TryCreate(IPlugin plugin, IHeadPoseTracker headTracker)
         {
-            //if (!UnityEngine.XR.XRSettings.enabled)
-            //{
-            //    return null;
-            //}
+            if (!UnityEngine.XR.XRSettings.enabled)
+            {
+                Debug.LogWarning($"Warning: Legacy WSA AnchorManager selected but legacy WSA not enabled. Check Player Settings/XR.");
+            }
 
             AnchorManagerWSA anchorManagerWSA = new AnchorManagerWSA(plugin, headTracker);
 
