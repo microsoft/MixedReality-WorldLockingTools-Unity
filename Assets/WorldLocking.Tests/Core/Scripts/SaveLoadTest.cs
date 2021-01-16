@@ -11,6 +11,9 @@ using Microsoft.MixedReality.WorldLocking.Core;
 
 namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 {
+    /// <summary>
+    /// Note that persistence is (currently) only implemented for WSA (HoloLens) platform.
+    /// </summary>
     public class SaveLoadTest
     {
         private TestLoadHelpers loadHelper = new TestLoadHelpers();
@@ -64,8 +67,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
                 }
             };
 
+#if UNITY_WSA
         [UnityTest]
-        [UnityPlatform(include = new[] { RuntimePlatform.WSAPlayerARM, RuntimePlatform.WSAPlayerX64, RuntimePlatform.WSAPlayerX86 })]
         public IEnumerator SaveLoadIndieAlign()
         {
             Debug.Log("Enter IndieAlign");
@@ -142,6 +145,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             yield return null;
 
         }
+#endif // UNITY_WSA
 
         private SpacePin FindPinByName(GameObject rig, string pinName)
         {
@@ -178,6 +182,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             spacePin.SetFrozenPose(frozenPose);
         }
 
+#if UNITY_WSA
         [UnityTest]
         public IEnumerator SaveLoadTestSaveThenLoad()
         {
@@ -246,6 +251,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 
             yield return null;
         }
+#endif // UNITY_WSA
 
         private void VerifyAlignmentIdentity(IAlignmentManager alignMgr, PinData[] pinData)
         {
