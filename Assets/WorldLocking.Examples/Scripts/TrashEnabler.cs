@@ -39,6 +39,13 @@ public class TrashEnabler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CaptureMaterials();
+        SetupColors();
+        SetColor("_Color", nofocColor);
+    }
+
+    private void CaptureMaterials()
+    {
         var renderers = GetComponentsInChildren<Renderer>();
         Debug.Log($"Got {renderers.Length} renderers from {name}");
         foreach (var rend in renderers)
