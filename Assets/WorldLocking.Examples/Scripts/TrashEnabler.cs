@@ -43,6 +43,7 @@ public class TrashEnabler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
         CaptureMaterials();
         SetupColors();
         SetColor("_Color", nofocColor);
