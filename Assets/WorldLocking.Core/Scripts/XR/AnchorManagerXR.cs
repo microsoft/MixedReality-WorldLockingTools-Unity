@@ -199,6 +199,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 tracker.IsReliablyLocated = true;
 
                 Pose repose = ExtractPose(referencePoint);
+                // mafinc android
+                Vector3 delta = repose.position - tracker.transform.position;
+                tracker.Delta = delta;
                 tracker.transform.position = repose.position;
                 tracker.transform.rotation = repose.rotation;
             }
@@ -213,6 +216,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             Pose repose = referencePoint.pose;
             if (referencePoint.trackingState == TrackingState.None)
             {
+                // mafinc android
+                Debug.Log($"{referencePoint.trackableId} Negating position because trackingState == None");
                 repose.position.z = -repose.position.z;
                 repose.rotation.x = -repose.rotation.x;
                 repose.rotation.y = -repose.rotation.y;

@@ -32,6 +32,10 @@ public class TrashEnabler : MonoBehaviour
         var settings = WorldLockingManager.GetInstance().Settings;
         settings.Enabled = !settings.Enabled;
         WorldLockingManager.GetInstance().Settings = settings;
+        if (!settings.Enabled)
+        {
+            WorldLockingManager.GetInstance().LockedFromPlayspace = Pose.identity;
+        }
 
         SetupColors();
     }
