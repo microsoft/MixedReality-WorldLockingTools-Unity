@@ -3,10 +3,14 @@
 
 #pragma warning disable CS0618
 
+#if UNITY_WSA && !UNITY_2020_1_OR_NEWER
+#define WLT_ENABLE_LEGACY_WSA
+#endif
+
 using UnityEngine;
-#if UNITY_WSA
+#if WLT_ENABLE_LEGACY_WSA
 using UnityEngine.XR.WSA.Input;
-#endif // UNITY_WSA
+#endif // WLT_ENABLE_LEGACY_WSA
 
 using Microsoft.MixedReality.WorldLocking.Core;
 
@@ -32,26 +36,26 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// </summary>
         public bool Active { get; set; }
 
-#if UNITY_WSA
+#if WLT_ENABLE_LEGACY_WSA
         private GestureRecognizer gestureRecognizer;
-#endif // UNITY_WSA
+#endif // WLT_ENABLE_LEGACY_WSA
 
         private WorldLockingManager manager {  get { return WorldLockingManager.GetInstance(); } }
 
         // Start is called before the first frame update
         private void Start()
         {
-#if UNITY_WSA
+#if WLT_ENABLE_LEGACY_WSA
             gestureRecognizer = new GestureRecognizer();
             gestureRecognizer.SetRecognizableGestures(GestureSettings.Tap);
 
             gestureRecognizer.Tapped += HandleTapped;
 
             gestureRecognizer.StartCapturingGestures();
-#endif // UNITY_WSA
+#endif // WLT_ENABLE_LEGACY_WSA
         }
 
-#if UNITY_WSA
+#if WLT_ENABLE_LEGACY_WSA
         private void HandleTapped(TappedEventArgs eventArgs)
         {
             
@@ -87,6 +91,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 }
             }
         }
-#endif // UNITY_WSA
+#endif // WLT_ENABLE_LEGACY_WSA
     }
 }

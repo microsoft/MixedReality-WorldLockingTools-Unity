@@ -1,11 +1,15 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+#if UNITY_WSA && !UNITY_2020_1_OR_NEWER
+#define WLT_ENABLE_LEGACY_WSA
+#endif
+
 using UnityEngine;
-#if UNITY_WSA
+#if WLT_ENABLE_LEGACY_WSA
 using UnityEngine.XR.WSA;
 using UnityEngine.XR.WSA.Persistence;
-#endif // UNITY_WSA
+#endif // WLT_ENABLE_LEGACY_WSA
 
 #pragma warning disable CS0618
 
@@ -36,11 +40,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private float lastNotLocatedTime = float.NegativeInfinity;
         private bool isSaved = false;
-#if UNITY_WSA
+#if WLT_ENABLE_LEGACY_WSA
         private WorldAnchor worldAnchor = null;
 #else
         private SpongyAnchor dummy = null;
-#endif // UNITY_WSA
+#endif // WLT_ENABLE_LEGACY_WSA
 
         /// <summary>
         /// Returns true if the anchor is reliably located. False might mean loss of tracking or not fully initialized.
@@ -52,11 +56,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             get
             {
-#if UNITY_WSA
+#if WLT_ENABLE_LEGACY_WSA
                 return worldAnchor != null && worldAnchor.isLocated;
-#else // UNITY_WSA
+#else // WLT_ENABLE_LEGACY_WSA
                 return false;
-#endif // UNITY_WSA
+#endif // WLT_ENABLE_LEGACY_WSA
             }
         }
 
@@ -71,7 +75,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         // Start is called before the first frame update
         private void Start ()
         {
-#if UNITY_WSA
+#if WLT_ENABLE_LEGACY_WSA
             if (worldAnchor == null)
             {
                 worldAnchor = gameObject.AddComponent<UnityEngine.XR.WSA.WorldAnchor>();
@@ -83,10 +87,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 isSaved = false;
                 lastNotLocatedTime = float.NegativeInfinity;
             }
-#endif // UNITY_WSA
+#endif // WLT_ENABLE_LEGACY_WSA
         }
 
-#if UNITY_WSA
+#if WLT_ENABLE_LEGACY_WSA
         // Update is called once per frame
         private void Update ()
         {
@@ -95,9 +99,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 lastNotLocatedTime = Time.unscaledTime;
             }
         }
-#endif // UNITY_WSA
+#endif // WLT_ENABLE_LEGACY_WSA
 
-#if UNITY_WSA
+#if WLT_ENABLE_LEGACY_WSA
 
         /// <summary>
         /// Save to the anchor store, replacing any existing anchor (by name).
@@ -135,6 +139,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             isSaved = true;
             return worldAnchor != null;
         }
-#endif // UNITY_WSA
+#endif // WLT_ENABLE_LEGACY_WSA
     }
 }

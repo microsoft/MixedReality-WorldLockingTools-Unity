@@ -2,10 +2,6 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using UnityEngine;
-#if UNITY_WSA
-using UnityEngine.XR.WSA;
-using UnityEngine.XR.WSA.Persistence;
-#endif // UNITY_WSA
 
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
