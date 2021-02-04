@@ -1,6 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+#if UNITY_WSA && !UNITY_2020_1_OR_NEWER
+#define WLT_ENABLE_SAVE_LOAD_TESTS
+#endif
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,7 +71,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
                 }
             };
 
-#if UNITY_WSA
+#if WLT_ENABLE_SAVE_LOAD_TESTS
         [UnityTest]
         public IEnumerator SaveLoadIndieAlign()
         {
@@ -145,7 +149,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             yield return null;
 
         }
-#endif // UNITY_WSA
+#endif // WLT_ENABLE_SAVE_LOAD_TESTS
 
         private SpacePin FindPinByName(GameObject rig, string pinName)
         {
@@ -182,7 +186,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             spacePin.SetFrozenPose(frozenPose);
         }
 
-#if UNITY_WSA
+#if WLT_ENABLE_SAVE_LOAD_TESTS
         [UnityTest]
         public IEnumerator SaveLoadTestSaveThenLoad()
         {
@@ -251,7 +255,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 
             yield return null;
         }
-#endif // UNITY_WSA
+#endif // WLT_ENABLE_SAVE_LOAD_TESTS
 
         private void VerifyAlignmentIdentity(IAlignmentManager alignMgr, PinData[] pinData)
         {
