@@ -69,7 +69,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected abstract float TrackingStartDelayTime { get; }
 
-        // UNITY_WSA - abstract?
         protected abstract bool IsTracking();
 
         // mafinc - this ErrorStatus would be well refactored.
@@ -515,7 +514,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             await SaveAnchors(spongyAnchors);
         }
 
-        // UNITY_WSA - abstract?
         protected virtual async Task SaveAnchors(List<SpongyAnchorWithId> spongyAnchors)
         {
             await Task.CompletedTask;
@@ -531,7 +529,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// Likewise, when a spongy anchor fails to load, this routine will delete its frozen
         /// counterpart from the plugin.
         /// </remarks>
-        /// UNITY_WSA
         public async Task LoadAnchors()
         {
             await LoadAnchors(plugin, newAnchorId, worldAnchorParent, spongyAnchors);
@@ -545,7 +542,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
-        // UNITY_WSA - abstract?
         protected virtual async Task LoadAnchors(IPlugin plugin, AnchorId firstId, Transform parent, List<SpongyAnchorWithId> spongyAnchors)
         {
             await Task.CompletedTask;
