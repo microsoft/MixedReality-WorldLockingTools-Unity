@@ -331,7 +331,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                     frozenFragmentViz = Instantiate(Prefab_FrameViz, worldLockingRoot.transform);
                     frozenFragmentViz.name = fragmentId.ToString();
                     frozenFragmentVizs[fragmentId] = frozenFragmentViz;
-                    frozenFragmentViz.gameObject.AddComponent<AdjusterMoving>();
+//                    frozenFragmentViz.gameObject.AddComponent<AdjusterMoving>();
                 }
                 Color fragmentColor = Color.gray;
                 if (fragmentId == fragmentManager.CurrentFragmentId)
@@ -535,7 +535,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 // If there isn't a visualization for this anchor, add one.
                 FrozenAnchorVisual frozenAnchorVisual;
                 frozenAnchorVisual = Prefab_FrozenAnchorViz.Instantiate(anchorId.FormatStr(), frozenFragmentViz);
-                frozenAnchorVisual.gameObject.AddComponent<AdjusterMoving>();
+                //frozenAnchorVisual.gameObject.AddComponent<AdjusterMoving>();
 
                 // Put the frozen anchor vis at the world locked transform of the anchor
                 SetPose(source, frozenAnchorVisual);
