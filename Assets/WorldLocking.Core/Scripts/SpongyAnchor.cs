@@ -20,5 +20,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// Return the anchor's pose in spongy space.
         /// </summary>
         public abstract Pose SpongyPose { get; }
+
+        // mafinc android
+        public virtual Vector3 Delta { get; set; }
     }
 }

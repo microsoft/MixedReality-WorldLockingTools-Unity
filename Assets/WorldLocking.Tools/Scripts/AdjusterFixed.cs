@@ -1,9 +1,15 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+//#define WLT_EXTRA_DEBUG_ADJUSTER
+
 using UnityEngine;
 
 using Microsoft.MixedReality.WorldLocking.Core;
+
+#if WLT_EXTRA_DEBUG_ADJUSTER
+using System.IO;
+#endif // WLT_EXTRA_DEBUG_ADJUSTER
 
 namespace Microsoft.MixedReality.WorldLocking.Tools
 {
@@ -74,10 +80,46 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// </remarks>
         protected virtual void HandleAdjustLocation(Pose adjustment)
         {
+#if WLT_EXTRA_DEBUG_ADJUSTER
+            string msg = $"{name}:\n";
+            msg += DebugPose("adj", adjustment);
+            msg += DebugPose("from", transform.GetGlobalPose());
+#endif // WLT_EXTRA_DEBUG_ADJUSTER
+
             Pose pose = gameObject.transform.GetGlobalPose();
             pose = adjustment.Multiply(pose);
             gameObject.transform.SetGlobalPose(pose);
+
+#if WLT_EXTRA_DEBUG_ADJUSTER
+            msg += DebugPose("to", transform.GetGlobalPose());
+            msg += DebugAttachmentPoint("att", AttachmentPoint);
+            msg += $"End {name}\n";
+            DebugMessage(msg);
+#endif // WLT_EXTRA_DEBUG_ADJUSTER
         }
+
+#if WLT_EXTRA_DEBUG_ADJUSTER
+        private string DebugPose(string label, Pose pose)
+        {
+            return $"--- {label} {pose.position.ToString("F3")} {pose.rotation.ToString("F3")}\n";
+        }
+
+        private string DebugAttachmentPoint(string label, IAttachmentPoint att)
+        {
+            return $"aaa {label} A:{att.AnchorId} F:{att.FragmentId} {att.State} {att.LocationFromAnchor.ToString("F3")}\n";
+        }
+
+        private void DebugMessage(string msg)
+        {
+            string fileName = "refit.txt";
+            fileName = Path.Combine(Application.persistentDataPath, fileName);
+            using (StreamWriter writer = File.AppendText(fileName))
+            {
+                writer.WriteLine(msg);
+                writer.Flush();
+            }
+        }
+#endif // WLT_EXTRA_DEBUG_ADJUSTER
 
         /// <summary>
         /// Handle a change in associated fragment state.
@@ -96,6 +138,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// </remarks>
         protected virtual void HandleAdjustState(AttachmentPointStateType state)
         {
+#if WLT_EXTRA_DEBUG_ADJUSTER
+            DebugMessage($"{name} to state {state}");
+#endif // WLT_EXTRA_DEBUG_ADJUSTER
             bool visible = state == AttachmentPointStateType.Normal;
             if (visible != gameObject.activeSelf)
             {
