@@ -87,6 +87,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 byte* versionBuffer = stackalloc byte[versionBufferSize];
                 int versionSize = FrozenWorld_GetVersion(false, versionBufferSize, versionBuffer);
                 haveEngine = true;
+                Debug.Log($"Plugin Found engine size {versionSize}");
             }
             catch (Exception)
             {

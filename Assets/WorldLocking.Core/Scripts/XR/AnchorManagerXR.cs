@@ -196,7 +196,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
                 /// mafinc - Would rather base this on the current TrackingState of the referencePoint, 
                 /// but that is not currently reliable.
-                tracker.IsReliablyLocated = true;
+                //tracker.IsReliablyLocated = true;
+                tracker.IsReliablyLocated = referencePoint.trackingState != TrackingState.None;
 
                 Pose repose = ExtractPose(referencePoint);
                 // mafinc android
@@ -213,16 +214,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private static Pose ExtractPose(XRReferencePoint referencePoint)
         {
-            Pose repose = referencePoint.pose;
-            if (referencePoint.trackingState == TrackingState.None)
-            {
-                // mafinc android
-                Debug.Log($"{referencePoint.trackableId} Negating position because trackingState == None");
-                repose.position.z = -repose.position.z;
-                repose.rotation.x = -repose.rotation.x;
-                repose.rotation.y = -repose.rotation.y;
-            }
-            return repose;
+            return referencePoint.pose;
         }
 
         private static bool CheckTracking(XRReferencePoint referencePoint)
