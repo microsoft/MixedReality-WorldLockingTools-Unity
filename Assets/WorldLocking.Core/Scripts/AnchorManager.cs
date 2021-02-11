@@ -11,8 +11,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.XR;
 
+#if WLT_DUMP_SPONGY
 //mafinc android
 using System.IO;
+#endif // WLT_DUMP_SPONGY
 
 
 namespace Microsoft.MixedReality.WorldLocking.Core
