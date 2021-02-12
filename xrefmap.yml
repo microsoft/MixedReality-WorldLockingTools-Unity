@@ -3658,6 +3658,19 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor
   nameWithType: SpongyAnchor
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Delta
+  name: Delta
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_Delta
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Delta
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Delta
+  nameWithType: SpongyAnchor.Delta
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Delta*
+  name: Delta
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_Delta_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Delta
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.Delta
+  nameWithType: SpongyAnchor.Delta
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsLocated
   name: IsLocated
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_IsLocated
