@@ -194,13 +194,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 DebugOutExtra(label, referencePoint, tracker);
 
-                /// mafinc - Would rather base this on the current TrackingState of the referencePoint, 
-                /// but that is not currently reliable.
-                //tracker.IsReliablyLocated = true;
                 tracker.IsReliablyLocated = referencePoint.trackingState != TrackingState.None;
 
                 Pose repose = ExtractPose(referencePoint);
-                // mafinc android
                 Vector3 delta = repose.position - tracker.transform.position;
                 tracker.Delta = delta;
                 tracker.transform.position = repose.position;
