@@ -21,7 +21,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public abstract Pose SpongyPose { get; }
 
-        // mafinc android
+        /// <summary>
+        /// Diagnostic only - to be removed.
+        /// </summary>
         public virtual Vector3 Delta { get; set; }
     }
 }
