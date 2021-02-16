@@ -1,0 +1,53 @@
+{
+  "name": "com.microsoft.mixedreality.worldlockingtools",
+  "displayName": "Mixed Reality World Locking Tools for Unity",
+  "version": "1.2.3",
+  "unity": "2019.4",
+  "description": "Lock AR virtual space to physical space in an intuitive hands-free way.",
+  "keywords": [
+    "mrtk",
+    "reality",
+    "mr",
+    "mixed",
+    "ar",
+    "augmented",
+    "vr",
+    "virtual",
+    "xr",
+    "hololens",
+    "android",
+    "ios",
+    "xrsdk"
+  ],
+  "author": "Microsoft",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microsoft/MixedReality-WorldLockingTools-Unity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues"
+  },
+  "dependencies": {
+  },
+  "files": [
+    "WorldLocking.Core*",
+    "WorldLocking.Engine*",
+    "WorldLocking.Tools*",
+    "Packages\\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.0.0*",
+    "Packages.meta",
+    "package.json.meta",
+    "LICENSE*",
+    "NOTICE*",
+    "CHANGELOG*",
+    "Documentation~*",
+    "Samples~*"
+  ],
+  "samples": [
+    {
+      "displayName": "World Locking Examples",
+      "description": "Basic examples on using World Locking Tools for Unity",
+      "path": "Samples~/WorldLocking.Examples"
+    }
+  ]
+}
