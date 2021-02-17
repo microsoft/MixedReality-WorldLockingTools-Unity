@@ -1,0 +1,51 @@
+{
+  "name": "com.microsoft.mixedreality.worldlockingsamples",
+  "displayName": "World Locking Samples",
+  "version": "1.2.4",
+  "unity": "2019.4",
+  "description": "Examples of basic usage for World Locking Tools. Further samples available at https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html",
+  "keywords": [
+    "mrtk",
+    "reality",
+    "mr",
+    "mixed",
+    "ar",
+    "augmented",
+    "vr",
+    "virtual",
+    "xr",
+    "anchor",
+    "hololens",
+    "android",
+    "ios",
+    "xrsdk"
+  ],
+  "author": "Microsoft",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microsoft/MixedReality-WorldLockingTools-Unity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues"
+  },
+  "dependencies": {
+    "com.microsoft.mixedreality.toolkit.foundation": "2.5.4",
+    "com.microsoft.mixedreality.worldlockingtools": "1.2.4"
+  },
+  "files": [
+    "package.json.meta",
+    "LICENSE*",
+    "NOTICE*",
+    "CHANGELOG*",
+    "Documentation~*",
+    "Samples~*"
+  ],
+  "samples": [
+    {
+      "displayName": "World Locking Examples",
+      "description": "Basic examples on using World Locking Tools for Unity",
+      "path": "Samples~/WorldLocking.Examples"
+    }
+  ]
+}
