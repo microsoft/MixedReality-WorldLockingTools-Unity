@@ -174,7 +174,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/InitialSetup.html",
-          "hash": "nRucjTRvEfzC6ixamWW5GQ=="
+          "hash": "gZC6A54oDx7RL90mi0/enw=="
         }
       },
       "is_incremental": false,
@@ -270,7 +270,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/Troubleshooting.html",
-          "hash": "n5Q3+m+UXUk2PBiS87I9oA=="
+          "hash": "EnhmIxIPYdoUasWgneZ9pA=="
         }
       },
       "is_incremental": false,
@@ -306,7 +306,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/UsingWLT/JustWorldLock.html",
-          "hash": "28EL4iAI5GSGGU2UsNiNCA=="
+          "hash": "/IZew6B2mf0m+p7UC3eeAg=="
         }
       },
       "is_incremental": false,
@@ -331,6 +331,18 @@
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/UsingWLT/PersistenceTricks.html",
           "hash": "MDkGEeu1j95gWIU+gV9zNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "DocGen/Documentation/HowTos/WLTviaMRFeatureTool.md",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Documentation/HowTos/WLTviaMRFeatureTool.html",
+          "hash": "hNA7FMtw0AAfk6pqKE1YCA=="
         }
       },
       "is_incremental": false,
@@ -390,7 +402,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/toc.html",
-          "hash": "No1RxS1qSeB7v6AwhDlNNg=="
+          "hash": "+Mp2Xgmz/mwi5Eg248GbUA=="
         }
       },
       "is_incremental": false,
@@ -787,6 +799,50 @@
       "output": {
         "resource": {
           "relative_path": "DocGen/Images/Screens/Simplest.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/UPMSamples/ImportIntoProject.JPG",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/UPMSamples/ImportIntoProject.JPG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/UPMSamples/InProject.JPG",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/UPMSamples/InProject.JPG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/UPMSamples/MRFeatureTool.JPG",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/UPMSamples/MRFeatureTool.JPG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/UPMSamples/Samples.JPG",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/UPMSamples/Samples.JPG"
         }
       },
       "is_incremental": false,
@@ -2096,7 +2152,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 39,
+          "total_file_count": 40,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
