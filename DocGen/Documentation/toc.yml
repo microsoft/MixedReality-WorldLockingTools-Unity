@@ -40,6 +40,8 @@
         href: HowTos/UsingWLT/AlignMyCoordinates.md
   - name: Initial Setup
     href: HowTos/InitialSetup.md
+  - name: Install from MR Feature Tool
+    href: HowTos/WLTviaMRFeatureTool.md
   - name: Cross Platform with XR SDK
     href: HowTos/XRSDK.md
   - name: Tools and Visualizers
