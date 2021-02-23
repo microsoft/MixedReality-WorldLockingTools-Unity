@@ -29,7 +29,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
         /// </summary>
-        public static string Version => "1.2.4";
+        public static string Version => "1.2.5";
 
         /// <summary>
         /// The configuration settings may only be set as a block.
