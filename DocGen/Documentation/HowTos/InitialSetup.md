@@ -89,6 +89,10 @@ This is generally not an issue with the World Locking Tools themselves, as they 
 
 ## Adding World Locking Tools to a Unity project
 
+> [!NOTE]
+> 
+> The following describes manual installation of World Locking Tools and dependencies. A much more streamlined installation process is available via the [Mixed Reality Feature Tool](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool). Installation via the Feature Tool is described [here](WLTviaMRFeatureTool.md). If the Feature Tool installs WLT, you can skip the following and proceed to [adding WLT to your scene](#adding-world-locking-tools-to-a-unity-scene)
+
 World Locking Tools relies on NuGet for Unity for distribution. 
 
 To begin, make sure NuGet for Unity is installed into the Unity project. It is available from the (NuGet for Unity github releases)[https://github.com/GlitchEnzo/NuGetForUnity/releases].
