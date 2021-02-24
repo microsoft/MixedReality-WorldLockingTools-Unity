@@ -65,7 +65,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private static XRReferencePointSubsystem FindReferencePointManager()
         {
-            List<XRAnchorSubsystem> anchorSubsystems = new List<XRAnchorSubsystem>();
+            List<XRReferencePointSubsystem> anchorSubsystems = new List<XRAnchorSubsystem>();
             SubsystemManager.GetInstances(anchorSubsystems);
             Debug.Log($"Found {anchorSubsystems.Count} anchor subsystems.");
             XRAnchorSubsystem activeSubsystem = null;
