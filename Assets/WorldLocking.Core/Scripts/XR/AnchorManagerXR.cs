@@ -65,23 +65,23 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private static XRReferencePointSubsystem FindReferencePointManager()
         {
-            List<XRReferencePointSubsystemDescriptor> descriptors = new List<XRReferencePointSubsystemDescriptor>();
-            SubsystemManager.GetSubsystemDescriptors(descriptors);
-            Debug.Log($"Found {descriptors.Count} XRReferencePointSubsystemDescriptors");
-            if (descriptors.Count < 1)
+            List<XRAnchorSubsystem> anchorSubsystems = new List<XRAnchorSubsystem>();
+            SubsystemManager.GetInstances(anchorSubsystems);
+            Debug.Log($"Found {anchorSubsystems.Count} anchor subsystems.");
+            XRAnchorSubsystem activeSubsystem = null;
+            foreach (var sub in anchorSubsystems)
             {
-                Debug.Log("No XRReferencePointSubsystem descriptors found, failing");
-                return null;
+                if (sub.running)
+                {
+                    Debug.Log($"Found active anchor subsystem.");
+                    activeSubsystem = sub;
+                }
             }
-            string descriptorList = "Descriptor List:\n";
-            for (int i = 0; i < descriptors.Count; ++i)
+            if (activeSubsystem == null)
             {
-                descriptorList += descriptors[i].ToString() + "\n";
+                Debug.LogError($"No active anchor subsystem found.");
             }
-            Debug.Log(descriptorList);
-            var referencePointManager = descriptors[0].Create();
-            Debug.Assert(referencePointManager != null, "Failure creating ReferencePoint manager from descriptor");
-            return referencePointManager;
+            return activeSubsystem;
         }
 
         /// <summary>
