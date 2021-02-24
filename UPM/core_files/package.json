@@ -1,8 +1,9 @@
 {
   "name": "com.microsoft.mixedreality.worldlockingtools",
-  "displayName": "World Locking Tools",
-  "version": "1.2.4",
+  "displayName": "WLT Core",
+  "version": "1.2.5",
   "unity": "2019.4",
+  "msftFeatureCategory" : "World Locking Tools (WLT)",
   "description": "World Locking Tools for Unity (WLT)\n\nLock AR virtual space to physical space automatically and intuitively, without requiring application management of anchors anchors.\nPreserve object relative layout, while remaining perceptually stationary in the physical world.",
   "keywords": [
     "mrtk",
