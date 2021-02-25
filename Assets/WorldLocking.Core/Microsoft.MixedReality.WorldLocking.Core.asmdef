@@ -5,7 +5,8 @@
         "Unity.XR.ARSubsystems",
         "Microsoft.MixedReality.WorldLocking.Engine",
         "UnityEngine.SpatialTracking",
-        "GoogleARCore"
+        "GoogleARCore",
+        "Microsoft.MixedReality.OpenXR"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
