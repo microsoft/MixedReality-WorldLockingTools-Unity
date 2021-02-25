@@ -48,18 +48,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     public class AnchorManagerXR : AnchorManager
     {
         /// <inheritdoc/>
-        public override bool SupportsPersistence 
-        { 
-            get 
-            {
-#if WLT_XR_PERSISTENCE
-                return true;
-#else // WLT_XR_PERSISTENCE
-                return false; 
-#endif // WLT_XR_PERSISTENCE
-            }
-        }
+        public override bool SupportsPersistence { get { return supportsPersistence; } }
 
+#if WLT_XR_PERSISTENCE
+        private bool supportsPersistence = true;
+#else // WLT_XR_PERSISTENCE
+        private bool supportsPersistence = false;
+#endif // WLT_XR_PERSISTENCE
 
         protected override float TrackingStartDelayTime { get { return SpongyAnchorXR.TrackingStartDelayTime; } }
 
@@ -301,6 +296,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 #if WLT_XR_PERSISTENCE
 
             var anchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
+            if (anchorStore == null)
+            {
+                supportsPersistence = false;
+                return;
+            }
+
 
             foreach (var keyval in spongyAnchors)
             {
@@ -317,7 +318,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 #endif // WLT_XR_PERSISTENCE
         }
 
-
         /// <summary>
         /// Load the spongy anchors from persistent storage
         /// </summary>
@@ -333,6 +333,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 #if WLT_XR_PERSISTENCE
 
             var anchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
+            if (anchorStore == null)
+            {
+                supportsPersistence = false;
+                plugin.ClearFrozenAnchors();
+                return;
+            }
 
             var anchorIds = plugin.GetFrozenAnchorIds();
 
