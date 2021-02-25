@@ -16,6 +16,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 {
     public class AnchorManagerARCore : AnchorManager
     {
+        /// <inheritdoc/>
+        public override bool SupportsPersistence { get { return false; } }
+
         protected override float TrackingStartDelayTime { get { return SpongyAnchorARCore.TrackingStartDelayTime; } }
 
         public static AnchorManagerARCore TryCreate(IPlugin plugin, IHeadPoseTracker headTracker)

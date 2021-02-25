@@ -734,7 +734,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public void Save()
         {
-            if (shared.anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.WSA)
+            if (AnchorManager.SupportsPersistence)
             {
                 /// Persistence currently only supported on HoloLens Legacy
                 WrapErrors(saveAsync());
@@ -747,7 +747,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public void Load()
         {
-            if (shared.anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.WSA)
+            if (AnchorManager.SupportsPersistence)
             {
                 /// Persistence currently only supported on HoloLens Legacy
                 WrapErrors(loadAsync());
@@ -864,7 +864,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private void AutoSaveTriggerHook()
         {
-            if (shared.anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.WSA)
+            if (AnchorManager.SupportsPersistence)
             {
                 /// Persistence currently only supported on HoloLens
                 if (AutoSave && Time.unscaledTime >= lastSavingTime + AutoSaveInterval)
