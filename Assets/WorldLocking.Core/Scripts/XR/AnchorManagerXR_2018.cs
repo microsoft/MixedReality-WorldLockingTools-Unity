@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-#if !UNITY_2019_1_OR_NEWER
+#if !UNITY_2020_1_OR_NEWER
 
 //#define WLT_EXTRA_LOGGING
 
@@ -38,6 +38,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// </remarks>
     public class AnchorManagerXR : AnchorManager
     {
+        /// <inheritdoc/>
+        public override bool SupportsPersistence { get { return false; } }
 
         protected override float TrackingStartDelayTime { get { return SpongyAnchorXR.TrackingStartDelayTime; } }
 
@@ -296,4 +298,4 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 }
 #endif // WLT_ARSUBSYSTEMS_PRESENT
 
-#endif // !UNITY_2019_1_OR_NEWER
+#endif // !UNITY_2020_1_OR_NEWER
