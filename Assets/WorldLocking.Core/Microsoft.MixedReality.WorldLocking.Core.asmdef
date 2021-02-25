@@ -29,6 +29,11 @@
             "name": "com.unity.xr.windowsmr.metro",
             "expression": "",
             "define": "WLT_LEGACY_WMR_XR_PRESENT"
+        },
+        {
+            "name": "com.microsoft.mixedreality.openxr",
+            "expression": "",
+            "define": "WLT_MICROSOFT_OPENXR_PRESENT"
         }
     ],
     "noEngineReferences": false
