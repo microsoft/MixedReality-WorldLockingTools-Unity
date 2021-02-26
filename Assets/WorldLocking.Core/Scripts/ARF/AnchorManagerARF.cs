@@ -33,6 +33,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// </remarks>
     public class AnchorManagerARF : AnchorManager
     {
+        /// <inheritdoc/>
+        public override bool SupportsPersistence { get { return false; } }
+
         private readonly ARSession arSession;
         private readonly ARSessionOrigin arSessionOrigin;
 
