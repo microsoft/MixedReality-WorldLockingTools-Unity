@@ -653,6 +653,19 @@ references:
   commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.spongyAnchor
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SpongyAnchorWithId.spongyAnchor
   nameWithType: AnchorManager.SpongyAnchorWithId.spongyAnchor
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SupportsPersistence
+  name: SupportsPersistence
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SupportsPersistence
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SupportsPersistence
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SupportsPersistence
+  nameWithType: AnchorManager.SupportsPersistence
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SupportsPersistence*
+  name: SupportsPersistence
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_SupportsPersistence_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SupportsPersistence
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.SupportsPersistence
+  nameWithType: AnchorManager.SupportsPersistence
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.TrackingStartDelayTime
   name: TrackingStartDelayTime
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_TrackingStartDelayTime
@@ -724,6 +737,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerARCore.IsTracking
   nameWithType: AnchorManagerARCore.IsTracking
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerARCore.SupportsPersistence
+  name: SupportsPersistence
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerARCore.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerARCore_SupportsPersistence
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerARCore.SupportsPersistence
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerARCore.SupportsPersistence
+  nameWithType: AnchorManagerARCore.SupportsPersistence
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerARCore.SupportsPersistence*
+  name: SupportsPersistence
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerARCore.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerARCore_SupportsPersistence_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerARCore.SupportsPersistence
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerARCore.SupportsPersistence
+  nameWithType: AnchorManagerARCore.SupportsPersistence
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerARCore.TrackingStartDelayTime
   name: TrackingStartDelayTime
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerARCore.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerARCore_TrackingStartDelayTime
@@ -827,6 +853,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SaveAnchors
   nameWithType: AnchorManagerNull.SaveAnchors
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SupportsPersistence
+  name: SupportsPersistence
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_SupportsPersistence
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SupportsPersistence
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SupportsPersistence
+  nameWithType: AnchorManagerNull.SupportsPersistence
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SupportsPersistence*
+  name: SupportsPersistence
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_SupportsPersistence_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SupportsPersistence
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.SupportsPersistence
+  nameWithType: AnchorManagerNull.SupportsPersistence
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.TrackingStartDelayTime
   name: TrackingStartDelayTime
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerNull_TrackingStartDelayTime
@@ -930,6 +969,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SaveAnchors
   nameWithType: AnchorManagerWSA.SaveAnchors
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SupportsPersistence
+  name: SupportsPersistence
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_SupportsPersistence
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SupportsPersistence
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SupportsPersistence
+  nameWithType: AnchorManagerWSA.SupportsPersistence
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SupportsPersistence*
+  name: SupportsPersistence
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_SupportsPersistence_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SupportsPersistence
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.SupportsPersistence
+  nameWithType: AnchorManagerWSA.SupportsPersistence
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.TrackingStartDelayTime
   name: TrackingStartDelayTime
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManagerWSA_TrackingStartDelayTime
@@ -2030,6 +2082,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.SaveAnchors
   nameWithType: IAnchorManager.SaveAnchors
+- uid: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.SupportsPersistence
+  name: SupportsPersistence
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_IAnchorManager_SupportsPersistence
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.SupportsPersistence
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.SupportsPersistence
+  nameWithType: IAnchorManager.SupportsPersistence
+- uid: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.SupportsPersistence*
+  name: SupportsPersistence
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_IAnchorManager_SupportsPersistence_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.SupportsPersistence
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.SupportsPersistence
+  nameWithType: IAnchorManager.SupportsPersistence
 - uid: Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.Update
   name: Update()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_IAnchorManager_Update
