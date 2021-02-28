@@ -29,7 +29,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
         /// </summary>
-        public static string Version => "1.2.5";
+        public static string Version => "1.2.6";
 
         /// <summary>
         /// The configuration settings may only be set as a block.
@@ -139,7 +139,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// Interface to the fragment manager.
         /// </summary>
-        public  IFragmentManager FragmentManager => fragmentManager;
+        public IFragmentManager FragmentManager => fragmentManager;
 
         private readonly IAttachmentPointManager attachmentPointManager;
 
@@ -305,7 +305,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private static GameObject updateProxyNode = null;
 
-#endregion
+        #endregion
 
         #region Update proxy
 
@@ -697,9 +697,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
-#endregion
+        #endregion
 
-#region Public APIs
+        #region Public APIs
 
         /// <summary>
         /// Get the WorldLockingManager instance. This may be called at any time in program execution, 
@@ -884,7 +884,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             await task;
         }
 
-#endregion Load and Save
+        #endregion Load and Save
 
     }
 }
