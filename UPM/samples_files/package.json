@@ -1,9 +1,9 @@
 {
   "name": "com.microsoft.mixedreality.worldlockingsamples",
   "displayName": "WLT Samples",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "unity": "2019.4",
-  "msftFeatureCategory" : "World Locking Tools (WLT)",
+  "msftFeatureCategory" : "World Locking Tools",
   "description": "Basic examples for World Locking Tools.\n\nFurther samples available at\nhttps://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html",
   "keywords": [
     "mrtk",
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "com.microsoft.mixedreality.toolkit.foundation": "2.5.4",
-    "com.microsoft.mixedreality.worldlockingtools": "1.2.5"
+    "com.microsoft.mixedreality.worldlockingtools": "1.2.6"
   },
   "files": [
     "package.json.meta",
