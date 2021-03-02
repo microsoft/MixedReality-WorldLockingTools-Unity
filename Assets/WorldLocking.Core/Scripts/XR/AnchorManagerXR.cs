@@ -3,7 +3,7 @@
 
 #if UNITY_2020_1_OR_NEWER
 
-#if WLT_MICROSOFT_OPENXR_PRESENT
+#if WLT_MICROSOFT_OPENXR_PRESENT || WLT_MICROSOFT_WMR_XR_4_3_PRESENT
 #define WLT_XR_PERSISTENCE
 #endif // WLT_XR_PERSISTENCE
 
@@ -17,9 +17,12 @@ using UnityEngine.XR;
 
 #if WLT_ARSUBSYSTEMS_PRESENT
 
-#if WLT_XR_PERSISTENCE
+#if WLT_MICROSOFT_OPENXR_PRESENT
 using Microsoft.MixedReality.ARSubsystems;
 #endif // WLT_XR_PERSISTENCE
+#if WLT_MICROSOFT_WMR_XR_4_3_PRESENT
+using UnityEngine.XR.WindowsMR;
+#endif // WLT_MICROSOFT_WMR_XR_4_3_PRESENT
 
 using UnityEngine.SpatialTracking;
 using UnityEngine.XR.ARSubsystems;
@@ -295,7 +298,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
 #if WLT_XR_PERSISTENCE
 
-            var anchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
+            XRAnchorStore anchorStore = null;
+#if WLT_MICROSOFT_OPENXR_PRESENT
+            anchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
+#endif // WLT_MICROSOFT_OPENXR_PRESENT
+#if WLT_MICROSOFT_WMR_XR_4_3_PRESENT
+            anchorStore = await xrAnchorManager.TryGetAnchorStoreAsync();
+#endif // WLT_MICROSOFT_WMR_XR_4_3_PRESENT
             if (anchorStore == null)
             {
                 supportsPersistence = false;
@@ -310,11 +319,17 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 Debug.Assert(anchor.name == id.FormatStr());
                 var anchorXR = anchor as SpongyAnchorXR;
                 Debug.Assert(anchorXR != null);
+#if WLT_MICROSOFT_OPENXR_PRESENT
                 anchorStore.TryPersistAnchor(anchor.name, anchorXR.TrackableId);
+#endif // WLT_MICROSOFT_OPENXR_PRESENT
+#if WLT_MICROSOFT_WMR_XR_4_3_PRESENT
+                anchorStore.TryPersistAnchor(anchorXR.TrackableId, anchor.name);
+#endif // WLT_MICROSOFT_WMR_XR_4_3_PRESENT
+
             }
 
 #else // WLT_XR_PERSISTENCE
-            await Task.CompletedTask;
+                await Task.CompletedTask;
 #endif // WLT_XR_PERSISTENCE
         }
 
@@ -332,7 +347,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
 #if WLT_XR_PERSISTENCE
 
-            var anchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
+            XRAnchorStore anchorStore = null;
+#if WLT_MICROSOFT_OPENXR_PRESENT
+            anchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
+#endif // WLT_MICROSOFT_OPENXR_PRESENT
+#if WLT_MICROSOFT_WMR_XR_4_3_PRESENT
+            anchorStore = await xrAnchorManager.TryGetAnchorStoreAsync();
+#endif // WLT_MICROSOFT_WMR_XR_4_3_PRESENT
             if (anchorStore == null)
             {
                 supportsPersistence = false;
