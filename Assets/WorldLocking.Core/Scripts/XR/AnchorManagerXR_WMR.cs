@@ -17,7 +17,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.XR;
 
+#if WLT_XR_PERSISTENCE
 using UnityEngine.XR.WindowsMR;
+#endif // WLT_XR_PERSISTENCE
 
 using UnityEngine.SpatialTracking;
 using UnityEngine.XR.ARSubsystems;
@@ -44,6 +46,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (wmrAnchorStore == null)
             {
+                Debug.Log($"Getting new WMR XRAnchorStore.");
                 wmrAnchorStore = await xrAnchorManager.TryGetAnchorStoreAsync();
             }
             wmrPersistence = wmrAnchorStore != null;
@@ -60,7 +63,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 return;
             }
-            Debug.Log($"Got WMR anchorStore");
+            Debug.Log($"Got WMR anchorStore for Save");
 
             foreach (var keyval in spongyAnchors)
             {
@@ -92,13 +95,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             Debug.Assert(wmrPersistence, "Trying to save WMR anchors when unsupported.");
 #if WLT_XR_PERSISTENCE
+            Debug.Log($"Load enter: AnchorSubsystem is {xrAnchorManager.running}");
 
             var anchorStore = await EnsureWMRAnchorStore();
             if (anchorStore == null)
             {
                 return;
             }
-            Debug.Log($"Got WMR anchorStore");
+            Debug.Log($"Got WMR anchorStore for Load");
 
             var anchorIds = plugin.GetFrozenAnchorIds();
 
@@ -123,6 +127,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     plugin.RemoveFrozenAnchor(id);
                 }
             }
+
+            Debug.Log($"Load exit: AnchorSubsystem is {xrAnchorManager.running}");
 
 #else // WLT_XR_PERSISTENCE
             await Task.CompletedTask;

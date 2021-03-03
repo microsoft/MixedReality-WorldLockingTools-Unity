@@ -89,7 +89,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 if (sub.running)
                 {
-                    Debug.Log($"Found active anchor subsystem.");
+                    Debug.Log($"Found active anchor subsystem {sub.subsystemDescriptor.id}.");
                     activeSubsystem = sub;
                 }
             }
@@ -126,6 +126,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 return false;
             }
+            Debug.Log($"UpdateTrackables {Time.frameCount} XRAnchorSubsystem is {xrAnchorManager.running}");
             TrackableChanges<XRAnchor> changes = xrAnchorManager.GetChanges(Unity.Collections.Allocator.Temp);
             if (changes.isCreated && (changes.added.Length + changes.updated.Length + changes.removed.Length > 0))
             {
@@ -290,15 +291,21 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected override async Task SaveAnchors(List<SpongyAnchorWithId> spongyAnchors)
         {
+            Debug.Log($"SaveAnchors enter: persistence wmr={wmrPersistence} openXR={openXRPersistence} nAnchors={spongyAnchors.Count}");
             if (wmrPersistence)
             {
                 await SaveAnchorsWMR(spongyAnchors);
             }
             // wmrPersistence might have turned false, if in trying to save it realized it couldn't.
-            if (!wmrPersistence && openXRPersistence)
+            if (wmrPersistence)
+            {
+                openXRPersistence = false; // can only have one.
+            }
+            if (openXRPersistence)
             {
                 await SaveAnchorsOpenXR(spongyAnchors);
             }
+            Debug.Log($"SaveAnchors exit: persistence wmr={wmrPersistence} openXR={openXRPersistence}");
         }
 
         /// <summary>
@@ -313,13 +320,17 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         protected override async Task LoadAnchors(IPlugin plugin, AnchorId firstId, Transform parent, List<SpongyAnchorWithId> spongyAnchors)
         {
-            Debug.Log($"LoadAnchors: persistence wmr={wmrPersistence} openXR={openXRPersistence}");
+            Debug.Log($"LoadAnchors enter: persistence wmr={wmrPersistence} openXR={openXRPersistence}");
             if (wmrPersistence)
             {
                 await LoadAnchorsWMR(plugin, firstId, parent, spongyAnchors);
             }
             // wmrPersistence might have turned false, if in trying to save it realized it couldn't.
-            if (!wmrPersistence && openXRPersistence)
+            if (wmrPersistence)
+            {
+                openXRPersistence = false; // can only have one.
+            }
+            if (openXRPersistence)
             {
                 await LoadAnchorsOpenXR(plugin, firstId, parent, spongyAnchors);
             }
@@ -330,6 +341,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 /// to be consistent with this APIs contract, we must clear all frozen anchors from the plugin.
                 plugin.ClearFrozenAnchors();
             }
+            Debug.Log($"LoadAnchors exit: persistence wmr={wmrPersistence} openXR={openXRPersistence} nAnchors={spongyAnchors.Count}");
         }
     }
 }

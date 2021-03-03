@@ -45,6 +45,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (openXRAnchorStore == null)
             {
+                Debug.Log($"Getting new OpenXR XRAnchorStore.");
                 openXRAnchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
             }
             openXRPersistence = openXRAnchorStore != null;
@@ -62,7 +63,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 return;
             }
-            Debug.Log($"Got OpenXR anchorStore");
+            Debug.Log($"Got OpenXR anchorStore for Save");
 
             foreach (var keyval in spongyAnchors)
             {
@@ -94,13 +95,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             Debug.Assert(openXRPersistence, "Attempting to save via OpenXR when unsupported.");
 #if WLT_XR_PERSISTENCE
+            Debug.Log($"Load enter: AnchorSubsystem is {xrAnchorManager.running}");
 
             var anchorStore = await EnsureOpenXRAnchorStore();
             if (anchorStore == null)
             {
                 return;
             }
-            Debug.Log($"Got OpenXR anchorStore");
+            Debug.Log($"Got OpenXR anchorStore for Load");
 
             var anchorIds = plugin.GetFrozenAnchorIds();
 
@@ -125,6 +127,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     plugin.RemoveFrozenAnchor(id);
                 }
             }
+
+            Debug.Log($"Load exit: AnchorSubsystem is {xrAnchorManager.running}");
 
 #else // WLT_XR_PERSISTENCE
             await Task.CompletedTask;
