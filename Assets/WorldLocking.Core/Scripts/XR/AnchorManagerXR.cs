@@ -48,16 +48,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// * the MAX radius is 20cm larger than MIN radius which would require 12 m/s beyond world record sprinting speed to cover in one frame
     /// * whenever MIN contains more than one anchor, the anchor closest to current position is connected to all others within MIN 
     /// </remarks>
-    public class AnchorManagerXR : AnchorManager
+    public partial class AnchorManagerXR : AnchorManager
     {
         /// <inheritdoc/>
-        public override bool SupportsPersistence { get { return supportsPersistence; } }
-
-#if WLT_XR_PERSISTENCE
-        private bool supportsPersistence = true;
-#else // WLT_XR_PERSISTENCE
-        private bool supportsPersistence = false;
-#endif // WLT_XR_PERSISTENCE
+        public override bool SupportsPersistence { get { return wmrPersistence || openXRPersistence; } }
 
         protected override float TrackingStartDelayTime { get { return SpongyAnchorXR.TrackingStartDelayTime; } }
 
@@ -296,41 +290,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected override async Task SaveAnchors(List<SpongyAnchorWithId> spongyAnchors)
         {
-#if WLT_XR_PERSISTENCE
-
-            XRAnchorStore anchorStore = null;
-#if WLT_MICROSOFT_OPENXR_PRESENT
-            anchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
-#endif // WLT_MICROSOFT_OPENXR_PRESENT
-#if WLT_MICROSOFT_WMR_XR_4_3_PRESENT
-            anchorStore = await xrAnchorManager.TryGetAnchorStoreAsync();
-#endif // WLT_MICROSOFT_WMR_XR_4_3_PRESENT
-            if (anchorStore == null)
+            if (wmrPersistence)
             {
-                supportsPersistence = false;
-                return;
+                await SaveAnchorsWMR(spongyAnchors);
             }
-
-
-            foreach (var keyval in spongyAnchors)
+            // wmrPersistence might have turned false, if in trying to save it realized it couldn't.
+            if (!wmrPersistence && openXRPersistence)
             {
-                var id = keyval.anchorId;
-                var anchor = keyval.spongyAnchor;
-                Debug.Assert(anchor.name == id.FormatStr());
-                var anchorXR = anchor as SpongyAnchorXR;
-                Debug.Assert(anchorXR != null);
-#if WLT_MICROSOFT_OPENXR_PRESENT
-                anchorStore.TryPersistAnchor(anchor.name, anchorXR.TrackableId);
-#endif // WLT_MICROSOFT_OPENXR_PRESENT
-#if WLT_MICROSOFT_WMR_XR_4_3_PRESENT
-                anchorStore.TryPersistAnchor(anchorXR.TrackableId, anchor.name);
-#endif // WLT_MICROSOFT_WMR_XR_4_3_PRESENT
-
+                await SaveAnchorsOpenXR(spongyAnchors);
             }
-
-#else // WLT_XR_PERSISTENCE
-                await Task.CompletedTask;
-#endif // WLT_XR_PERSISTENCE
         }
 
         /// <summary>
@@ -345,53 +313,23 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         protected override async Task LoadAnchors(IPlugin plugin, AnchorId firstId, Transform parent, List<SpongyAnchorWithId> spongyAnchors)
         {
-#if WLT_XR_PERSISTENCE
-
-            XRAnchorStore anchorStore = null;
-#if WLT_MICROSOFT_OPENXR_PRESENT
-            anchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
-#endif // WLT_MICROSOFT_OPENXR_PRESENT
-#if WLT_MICROSOFT_WMR_XR_4_3_PRESENT
-            anchorStore = await xrAnchorManager.TryGetAnchorStoreAsync();
-#endif // WLT_MICROSOFT_WMR_XR_4_3_PRESENT
-            if (anchorStore == null)
+            Debug.Log($"LoadAnchors: persistence wmr={wmrPersistence} openXR={openXRPersistence}");
+            if (wmrPersistence)
             {
-                supportsPersistence = false;
+                await LoadAnchorsWMR(plugin, firstId, parent, spongyAnchors);
+            }
+            // wmrPersistence might have turned false, if in trying to save it realized it couldn't.
+            if (!wmrPersistence && openXRPersistence)
+            {
+                await LoadAnchorsOpenXR(plugin, firstId, parent, spongyAnchors);
+            }
+            // THey might both be false, if we failed on both APIs.
+            if (!wmrPersistence && !openXRPersistence)
+            {
+                /// Placeholder for consistency. If persistence is not supported, then 
+                /// to be consistent with this APIs contract, we must clear all frozen anchors from the plugin.
                 plugin.ClearFrozenAnchors();
-                return;
             }
-
-            var anchorIds = plugin.GetFrozenAnchorIds();
-
-            AnchorId maxId = firstId;
-
-            foreach (var id in anchorIds)
-            {
-                var trackableId = anchorStore.LoadAnchor(id.FormatStr());
-                if (trackableId != TrackableId.invalidId)
-                {
-                    DebugLogExtra($"LoadAnchor returns {trackableId}");
-                    // We create the anchor here, but don't have a xrAnchor (XRAnchor) for it yet
-                    var spongyAnchorXR = PrepAnchor(id, parent, trackableId, Pose.identity);
-                    spongyAnchors.Add(new SpongyAnchorWithId()
-                    {
-                        anchorId = id,
-                        spongyAnchor = spongyAnchorXR
-                    });
-                }
-                else
-                {
-                    plugin.RemoveFrozenAnchor(id);
-                }
-            }
-
-#else // WLT_XR_PERSISTENCE
-            /// Placeholder for consistency. Persistence not implemented for XR, so
-            /// to be consistent with this APIs contract, we must clear all frozen anchors from the plugin.
-            plugin.ClearFrozenAnchors();
-
-            await Task.CompletedTask;
-#endif // WLT_XR_PERSISTENCE
         }
     }
 }

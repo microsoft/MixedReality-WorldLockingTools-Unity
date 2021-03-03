@@ -734,12 +734,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public void Save()
         {
-            if (AnchorManager.SupportsPersistence)
-            {
-                /// Persistence currently only supported on HoloLens Legacy
-                WrapErrors(saveAsync());
-                alignmentManager.Save();
-            }
+            WrapErrors(saveAsync());
         }
 
         /// <summary>
@@ -747,12 +742,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public void Load()
         {
-            if (AnchorManager.SupportsPersistence)
-            {
-                /// Persistence currently only supported on HoloLens Legacy
-                WrapErrors(loadAsync());
-                alignmentManager.Load();
-            }
+            WrapErrors(loadAsync());
         }
 
         #endregion
@@ -784,30 +774,35 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     File.Delete(stateFileNameBase + ".new");
                 }
 
-                using (var file = File.Create(stateFileNameBase + ".new"))
-                {
-                    await AnchorManager.SaveAnchors();
+                await AnchorManager.SaveAnchors();
 
-                    using (var ps = Plugin.CreateSerializer())
+                if (AnchorManager.SupportsPersistence)
+                {
+                    alignmentManager.Save();
+
+                    using (var file = File.Create(stateFileNameBase + ".new"))
                     {
-                        ps.IncludePersistent = true;
-                        ps.IncludeTransient = false;
-                        ps.GatherRecord();
-                        await ps.WriteRecordToAsync(file);
+                        using (var ps = Plugin.CreateSerializer())
+                        {
+                            ps.IncludePersistent = true;
+                            ps.IncludeTransient = false;
+                            ps.GatherRecord();
+                            await ps.WriteRecordToAsync(file);
+                        }
                     }
-                }
 
-                if (File.Exists(stateFileNameBase + ".old"))
-                {
-                    File.Delete(stateFileNameBase + ".old");
-                }
-                if (File.Exists(stateFileNameBase))
-                {
-                    File.Move(stateFileNameBase, stateFileNameBase + ".old");
-                }
-                File.Move(stateFileNameBase + ".new", stateFileNameBase);
+                    if (File.Exists(stateFileNameBase + ".old"))
+                    {
+                        File.Delete(stateFileNameBase + ".old");
+                    }
+                    if (File.Exists(stateFileNameBase))
+                    {
+                        File.Move(stateFileNameBase, stateFileNameBase + ".old");
+                    }
+                    File.Move(stateFileNameBase + ".new", stateFileNameBase);
 
-                lastSavingTime = Time.unscaledTime;
+                    lastSavingTime = Time.unscaledTime;
+                }
             }
             finally
             {
@@ -845,7 +840,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                                 await pds.ReadRecordFromAsync(file);
                                 pds.ApplyRecord();
                             }
-                            await AnchorManager.LoadAnchors();
+                        }
+                        await AnchorManager.LoadAnchors();
+                        if (AnchorManager.SupportsPersistence)
+                        {
+                            AlignmentManager.Load();
                         }
 
                         // finish when reading was successful
