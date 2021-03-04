@@ -678,8 +678,11 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// </summary>
         public void EnterBeamMode()
         {
-            FinishCurrentAction();
-            mode = BuildMode.StartBeam;
+            if (mode != BuildMode.StartBeam && mode != BuildMode.EndBeam)
+            {
+                FinishCurrentAction();
+                mode = BuildMode.StartBeam;
+            }
         }
 
         /// <summary>
