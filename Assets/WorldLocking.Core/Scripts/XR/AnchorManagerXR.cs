@@ -17,12 +17,10 @@ using UnityEngine.XR;
 
 #if WLT_ARSUBSYSTEMS_PRESENT
 
-#if WLT_MICROSOFT_OPENXR_PRESENT
-using Microsoft.MixedReality.ARSubsystems;
-#endif // WLT_XR_PERSISTENCE
-#if WLT_MICROSOFT_WMR_XR_4_3_PRESENT
-using UnityEngine.XR.WindowsMR;
-#endif // WLT_MICROSOFT_WMR_XR_4_3_PRESENT
+#if WLT_XR_MANAGEMENT_PRESENT
+using UnityEngine.XR.Management;
+#endif // WLT_XR_MANAGEMENT_PRESENT
+
 
 using UnityEngine.SpatialTracking;
 using UnityEngine.XR.ARSubsystems;
@@ -109,6 +107,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             this.xrAnchorManager = xrAnchorManager;
             Debug.Log($"XR: Created AnchorManager XR, xrMgr={(this.xrAnchorManager != null ? "good" : "null")}");
+
+            Debug.Log($"ActiveLoader name:[{XRGeneralSettings.Instance.Manager.activeLoader.name}] type:[{XRGeneralSettings.Instance.Manager.activeLoader.GetType().FullName}]");
+
+#if WLT_XR_MANAGEMENT_PRESENT
+            wmrPersistence = XRGeneralSettings.Instance.Manager.activeLoader.name.StartsWith("Windows MR");
+            openXRPersistence = XRGeneralSettings.Instance.Manager.activeLoader.name.StartsWith("Open XR");
+#endif // WLT_XR_MANAGEMENT_PRESENT
+            Debug.Log($"XRSDK Persistence: WMR={wmrPersistence} OpenXR={openXRPersistence}");
         }
 
         public override bool Update()

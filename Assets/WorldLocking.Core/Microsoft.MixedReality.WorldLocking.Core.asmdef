@@ -8,7 +8,9 @@
         "UnityEngine.SpatialTracking",
         "GoogleARCore",
         "Microsoft.MixedReality.OpenXR",
-        "Unity.XR.WindowsMixedReality"
+        "Unity.XR.WindowsMixedReality",
+        "Unity.XR.Management",
+        "Unity.XR.OpenXR"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -42,6 +44,16 @@
             "name": "com.unity.xr.windowsmr",
             "expression": "4.3",
             "define": "WLT_MICROSOFT_WMR_XR_4_3_PRESENT"
+        },
+        {
+            "name": "com.unity.xr.management",
+            "expression": "",
+            "define": "WLT_XR_MANAGEMENT_PRESENT"
+        },
+        {
+            "name": "com.unity.xr.openxr",
+            "expression": "",
+            "define": "WLT_XR_OPENXR_PRESENT"
         }
     ],
     "noEngineReferences": false

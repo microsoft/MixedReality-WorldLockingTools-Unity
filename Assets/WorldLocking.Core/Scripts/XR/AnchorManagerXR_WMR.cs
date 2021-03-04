@@ -33,11 +33,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     public partial class AnchorManagerXR : AnchorManager
     {
 
-#if WLT_XR_PERSISTENCE
-        private bool wmrPersistence = true;
-#else // WLT_XR_PERSISTENCE
         private bool wmrPersistence = false;
-#endif // WLT_XR_PERSISTENCE
 
 #if WLT_XR_PERSISTENCE
         private XRAnchorStore wmrAnchorStore = null;
