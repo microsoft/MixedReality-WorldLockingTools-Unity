@@ -5,7 +5,7 @@
 
 #if WLT_ARSUBSYSTEMS_PRESENT
 
-#if WLT_MICROSOFT_OPENXR_PRESENT
+#if WLT_MICROSOFT_OPENXR_PRESENT && UNITY_WSA
 #define WLT_XR_PERSISTENCE
 #endif // WLT_XR_PERSISTENCE
 
@@ -17,9 +17,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.XR;
 
-#if WLT_MICROSOFT_OPENXR_PRESENT
+#if WLT_XR_PERSISTENCE
 using Microsoft.MixedReality.ARSubsystems;
-#endif // WLT_MICROSOFT_OPENXR_PRESENT
+#endif // WLT_XR_PERSISTENCE
 
 using UnityEngine.SpatialTracking;
 using UnityEngine.XR.ARSubsystems;
