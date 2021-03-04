@@ -979,7 +979,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         #endregion Internal utilities
 
-        #region Peristence synchronizations
+        #region Persistence synchronizations
 
         /// <summary>
         /// Add to queue for being saved to database next chance.
@@ -1059,7 +1059,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
-        #endregion Peristence synchronizations
+        #endregion Persistence synchronizations
 
         #region Pose transformation math
 
