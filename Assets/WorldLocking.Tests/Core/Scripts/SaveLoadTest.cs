@@ -216,7 +216,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             VerifyAlignment(alignMgr, pinData);
 
             // Save
-            wltMgr.Save();
+            alignMgr.Save();
 
             yield return null;
 
@@ -234,7 +234,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             VerifyAlignmentIdentity(alignMgr, pinData);
 
             // Load
-            wltMgr.Load();
+            alignMgr.Load();
 
             yield return null;
 
