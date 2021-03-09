@@ -29,7 +29,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
         /// </summary>
-        public static string Version => "1.2.2";
+        public static string Version => "1.3.0";
 
         /// <summary>
         /// The configuration settings may only be set as a block.
@@ -139,7 +139,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// Interface to the fragment manager.
         /// </summary>
-        public  IFragmentManager FragmentManager => fragmentManager;
+        public IFragmentManager FragmentManager => fragmentManager;
 
         private readonly IAttachmentPointManager attachmentPointManager;
 
@@ -305,7 +305,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private static GameObject updateProxyNode = null;
 
-#endregion
+        #endregion
 
         #region Update proxy
 
@@ -697,9 +697,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
-#endregion
+        #endregion
 
-#region Public APIs
+        #region Public APIs
 
         /// <summary>
         /// Get the WorldLockingManager instance. This may be called at any time in program execution, 
@@ -734,12 +734,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public void Save()
         {
-            if (shared.anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.WSA)
-            {
-                /// Persistence currently only supported on HoloLens Legacy
-                WrapErrors(saveAsync());
-                alignmentManager.Save();
-            }
+            WrapErrors(saveAsync());
         }
 
         /// <summary>
@@ -747,12 +742,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public void Load()
         {
-            if (shared.anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.WSA)
-            {
-                /// Persistence currently only supported on HoloLens Legacy
-                WrapErrors(loadAsync());
-                alignmentManager.Load();
-            }
+            WrapErrors(loadAsync());
         }
 
         #endregion
@@ -784,30 +774,35 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     File.Delete(stateFileNameBase + ".new");
                 }
 
-                using (var file = File.Create(stateFileNameBase + ".new"))
-                {
-                    await AnchorManager.SaveAnchors();
+                await AnchorManager.SaveAnchors();
 
-                    using (var ps = Plugin.CreateSerializer())
+                if (AnchorManager.SupportsPersistence)
+                {
+                    alignmentManager.Save();
+
+                    using (var file = File.Create(stateFileNameBase + ".new"))
                     {
-                        ps.IncludePersistent = true;
-                        ps.IncludeTransient = false;
-                        ps.GatherRecord();
-                        await ps.WriteRecordToAsync(file);
+                        using (var ps = Plugin.CreateSerializer())
+                        {
+                            ps.IncludePersistent = true;
+                            ps.IncludeTransient = false;
+                            ps.GatherRecord();
+                            await ps.WriteRecordToAsync(file);
+                        }
                     }
-                }
 
-                if (File.Exists(stateFileNameBase + ".old"))
-                {
-                    File.Delete(stateFileNameBase + ".old");
-                }
-                if (File.Exists(stateFileNameBase))
-                {
-                    File.Move(stateFileNameBase, stateFileNameBase + ".old");
-                }
-                File.Move(stateFileNameBase + ".new", stateFileNameBase);
+                    if (File.Exists(stateFileNameBase + ".old"))
+                    {
+                        File.Delete(stateFileNameBase + ".old");
+                    }
+                    if (File.Exists(stateFileNameBase))
+                    {
+                        File.Move(stateFileNameBase, stateFileNameBase + ".old");
+                    }
+                    File.Move(stateFileNameBase + ".new", stateFileNameBase);
 
-                lastSavingTime = Time.unscaledTime;
+                    lastSavingTime = Time.unscaledTime;
+                }
             }
             finally
             {
@@ -845,7 +840,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                                 await pds.ReadRecordFromAsync(file);
                                 pds.ApplyRecord();
                             }
-                            await AnchorManager.LoadAnchors();
+                        }
+                        await AnchorManager.LoadAnchors();
+                        if (AnchorManager.SupportsPersistence)
+                        {
+                            AlignmentManager.Load();
                         }
 
                         // finish when reading was successful
@@ -864,7 +863,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private void AutoSaveTriggerHook()
         {
-            if (shared.anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.WSA)
+            if (AnchorManager.SupportsPersistence)
             {
                 /// Persistence currently only supported on HoloLens
                 if (AutoSave && Time.unscaledTime >= lastSavingTime + AutoSaveInterval)
@@ -884,7 +883,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             await task;
         }
 
-#endregion Load and Save
+        #endregion Load and Save
 
     }
 }

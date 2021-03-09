@@ -1,6 +1,12 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+#if UNITY_2020_1_OR_NEWER
+
+#if WLT_MICROSOFT_OPENXR_PRESENT || WLT_MICROSOFT_WMR_XR_4_3_PRESENT
+#define WLT_XR_PERSISTENCE
+#endif // WLT_XR_PERSISTENCE
+
 //#define WLT_EXTRA_LOGGING
 
 using System;
@@ -10,6 +16,12 @@ using UnityEngine;
 using UnityEngine.XR;
 
 #if WLT_ARSUBSYSTEMS_PRESENT
+
+#if WLT_XR_MANAGEMENT_PRESENT
+using UnityEngine.XR.Management;
+#endif // WLT_XR_MANAGEMENT_PRESENT
+
+
 using UnityEngine.SpatialTracking;
 using UnityEngine.XR.ARSubsystems;
 
@@ -34,65 +46,75 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// * the MAX radius is 20cm larger than MIN radius which would require 12 m/s beyond world record sprinting speed to cover in one frame
     /// * whenever MIN contains more than one anchor, the anchor closest to current position is connected to all others within MIN 
     /// </remarks>
-    public class AnchorManagerXR : AnchorManager
+    public partial class AnchorManagerXR : AnchorManager
     {
+        /// <inheritdoc/>
+        public override bool SupportsPersistence { get { return wmrPersistence || openXRPersistence; } }
 
         protected override float TrackingStartDelayTime { get { return SpongyAnchorXR.TrackingStartDelayTime; } }
 
-        private readonly XRReferencePointSubsystem xrReferencePointManager;
+        private readonly XRAnchorSubsystem xrAnchorManager;
 
         private readonly Dictionary<TrackableId, SpongyAnchorXR> anchorsByTrackableId = new Dictionary<TrackableId, SpongyAnchorXR>();
 
         public static AnchorManagerXR TryCreate(IPlugin plugin, IHeadPoseTracker headTracker)
         {
-            /// Try to find an XRReferencePointManager (to be XRAnchorManager) here. 
+            /// Try to find an XRAnchorManager (to be XRAnchorManager) here. 
             /// If we fail that,
             ///     give up. 
             /// Else 
             ///     pass the manager into AnchorManagerXR for its use.
-            XRReferencePointSubsystem xrReferencePointManager = FindReferencePointManager();
+            XRAnchorSubsystem xrAnchorManager = FindAnchorManager();
 
-            if (xrReferencePointManager == null)
+            if (xrAnchorManager == null)
             {
                 return null;
             }
-            xrReferencePointManager.Start();
+            xrAnchorManager.Start();
 
-            AnchorManagerXR anchorManager = new AnchorManagerXR(plugin, headTracker, xrReferencePointManager);
+            AnchorManagerXR anchorManager = new AnchorManagerXR(plugin, headTracker, xrAnchorManager);
 
             return anchorManager;
         }
 
-        private static XRReferencePointSubsystem FindReferencePointManager()
+        private static XRAnchorSubsystem FindAnchorManager()
         {
-            List<XRReferencePointSubsystemDescriptor> descriptors = new List<XRReferencePointSubsystemDescriptor>();
-            SubsystemManager.GetSubsystemDescriptors(descriptors);
-            Debug.Log($"Found {descriptors.Count} XRReferencePointSubsystemDescriptors");
-            if (descriptors.Count < 1)
+            List<XRAnchorSubsystem> anchorSubsystems = new List<XRAnchorSubsystem>();
+            SubsystemManager.GetInstances(anchorSubsystems);
+            Debug.Log($"Found {anchorSubsystems.Count} anchor subsystems.");
+            XRAnchorSubsystem activeSubsystem = null;
+            foreach (var sub in anchorSubsystems)
             {
-                Debug.Log("No XRReferencePointSubsystem descriptors found, failing");
-                return null;
+                if (sub.running)
+                {
+                    Debug.Log($"Found active anchor subsystem {sub.subsystemDescriptor.id}.");
+                    activeSubsystem = sub;
+                }
             }
-            string descriptorList = "Descriptor List:\n";
-            for (int i = 0; i < descriptors.Count; ++i)
+            if (activeSubsystem == null)
             {
-                descriptorList += descriptors[i].ToString() + "\n";
+                Debug.LogError($"No active anchor subsystem found.");
             }
-            Debug.Log(descriptorList);
-            var referencePointManager = descriptors[0].Create();
-            Debug.Assert(referencePointManager != null, "Failure creating ReferencePoint manager from descriptor");
-            return referencePointManager;
+            return activeSubsystem;
         }
 
         /// <summary>
         /// Set up an anchor manager.
         /// </summary>
         /// <param name="plugin">The engine interface to update with the current anchor graph.</param>
-        private AnchorManagerXR(IPlugin plugin, IHeadPoseTracker headTracker, XRReferencePointSubsystem xrReferencePointManager)
+        private AnchorManagerXR(IPlugin plugin, IHeadPoseTracker headTracker, XRAnchorSubsystem xrAnchorManager)
             : base(plugin, headTracker)
         {
-            this.xrReferencePointManager = xrReferencePointManager;
-            Debug.Log($"XR: Created AnchorManager XR, xrMgr={(this.xrReferencePointManager != null ? "good" : "null")}");
+            this.xrAnchorManager = xrAnchorManager;
+            Debug.Log($"XR: Created AnchorManager XR, xrMgr={(this.xrAnchorManager != null ? "good" : "null")}");
+
+            Debug.Log($"ActiveLoader name:[{XRGeneralSettings.Instance.Manager.activeLoader.name}] type:[{XRGeneralSettings.Instance.Manager.activeLoader.GetType().FullName}]");
+
+#if WLT_XR_MANAGEMENT_PRESENT
+            wmrPersistence = XRGeneralSettings.Instance.Manager.activeLoader.name.StartsWith("Windows MR");
+            openXRPersistence = XRGeneralSettings.Instance.Manager.activeLoader.name.StartsWith("Open XR");
+#endif // WLT_XR_MANAGEMENT_PRESENT
+            Debug.Log($"XRSDK Persistence: WMR={wmrPersistence} OpenXR={openXRPersistence}");
         }
 
         public override bool Update()
@@ -106,11 +128,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private bool UpdateTrackables()
         {
-            if (xrReferencePointManager == null)
+            if (xrAnchorManager == null)
             {
                 return false;
             }
-            TrackableChanges<XRReferencePoint> changes = xrReferencePointManager.GetChanges(Unity.Collections.Allocator.Temp);
+            DebugLogExtra($"UpdateTrackables {Time.frameCount} XRAnchorSubsystem is {xrAnchorManager.running}");
+            TrackableChanges<XRAnchor> changes = xrAnchorManager.GetChanges(Unity.Collections.Allocator.Temp);
             if (changes.isCreated && (changes.added.Length + changes.updated.Length + changes.removed.Length > 0))
             {
                 DebugLogExtra($"Changes Fr{Time.frameCount:0000}: isCreated={changes.isCreated} Added={changes.added.Length}, Updated={changes.updated.Length} Removed={changes.removed.Length}");
@@ -167,16 +190,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return $"{label}({p.x:0.000},{p.y:0.000},{p.z:0.000})";
         }
 
-        private static void DebugOutExtra(string label, XRReferencePoint referencePoint, SpongyAnchorXR tracker)
+        private static void DebugOutExtra(string label, XRAnchor xrAnchor, SpongyAnchorXR tracker)
         {
 #if WLT_EXTRA_LOGGING
-            Debug.Assert(referencePoint.trackableId == tracker.TrackableId);
+            Debug.Assert(xrAnchor.trackableId == tracker.TrackableId);
             Vector3 tP = tracker.transform.position;
             Vector3 tR = tracker.transform.rotation.eulerAngles;
-            Vector3 rP = referencePoint.pose.position;
-            Vector3 rR = referencePoint.pose.rotation.eulerAngles;
+            Vector3 rP = xrAnchor.pose.position;
+            Vector3 rR = xrAnchor.pose.rotation.eulerAngles;
             rR = new Vector3(1.0f, 2.0f, 3.0f);
-            Debug.Log($"{label}{tracker.name}-{tracker.TrackableId}/{referencePoint.trackingState}: {DebugVector3("tP=", tP)}|{DebugEuler("tR=", tR)} <=> {DebugVector3("rP=", rP)}|{DebugEuler("rR=", rR)}");
+            Debug.Log($"{label}{tracker.name}-{tracker.TrackableId}/{xrAnchor.trackingState}: {DebugVector3("tP=", tP)}|{DebugEuler("tR=", tR)} <=> {DebugVector3("rP=", rP)}|{DebugEuler("rR=", rR)}");
 #endif // WLT_EXTRA_LOGGING
         }
 
@@ -187,20 +210,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 #endif // WLT_EXTRA_LOGGING
         }
 
-        private static void UpdateTracker(string label, XRReferencePoint referencePoint, Dictionary<TrackableId, SpongyAnchorXR> anchors)
+        private static void UpdateTracker(string label, XRAnchor xrAnchor, Dictionary<TrackableId, SpongyAnchorXR> anchors)
         {
             SpongyAnchorXR tracker;
-            if (anchors.TryGetValue(referencePoint.trackableId, out tracker))
+            if (anchors.TryGetValue(xrAnchor.trackableId, out tracker))
             {
-                DebugOutExtra(label, referencePoint, tracker);
+                DebugOutExtra(label, xrAnchor, tracker);
 
-                /// mafinc - Would rather base this on the current TrackingState of the referencePoint, 
-                /// but that is not currently reliable.
-                //tracker.IsReliablyLocated = true;
-                tracker.IsReliablyLocated = referencePoint.trackingState != TrackingState.None;
+                tracker.IsReliablyLocated = xrAnchor.trackingState != TrackingState.None;
 
-                Pose repose = ExtractPose(referencePoint);
-                // mafinc android
+                Pose repose = ExtractPose(xrAnchor);
                 Vector3 delta = repose.position - tracker.transform.position;
                 tracker.Delta = delta;
                 tracker.transform.position = repose.position;
@@ -208,25 +227,25 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             else
             {
-                Debug.LogError($"Missing trackableId {referencePoint.trackableId} from DB.");
+                Debug.LogError($"Missing trackableId {xrAnchor.trackableId} from DB, adding now.");
             }
         }
 
-        private static Pose ExtractPose(XRReferencePoint referencePoint)
+        private static Pose ExtractPose(XRAnchor xrAnchor)
         {
-            return referencePoint.pose;
+            return xrAnchor.pose;
         }
 
-        private static bool CheckTracking(XRReferencePoint referencePoint)
+        private static bool CheckTracking(XRAnchor xrAnchor)
         {
-            return referencePoint.trackingState != TrackingState.None;
+            return xrAnchor.trackingState != TrackingState.None;
         }
 
 
         protected override bool IsTracking()
         {
-            //Debug.Log($"AnchorManagerXR F{Time.frameCount}: xrMgr is {(xrReferencePointManager != null && xrReferencePointManager.running ? "running" : "null")}");
-            return xrReferencePointManager != null && xrReferencePointManager.running;
+            //Debug.Log($"AnchorManagerXR F{Time.frameCount}: xrMgr is {(xrAnchorManager != null && xrAnchorManager.running ? "running" : "null")}");
+            return xrAnchorManager != null && xrAnchorManager.running;
         }
 
         protected override SpongyAnchor CreateAnchor(AnchorId id, Transform parent, Pose initialPose)
@@ -234,23 +253,29 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             SpongyAnchorXR spongyAnchorXR = null;
             if (IsTracking())
             {
-                DebugLogExtra($"Creating refPt at initial ({initialPose.position.x:0.000}, {initialPose.position.y:0.000}, {initialPose.position.z:0.000})");
-                XRReferencePoint xrReferencePoint;
-                bool created = xrReferencePointManager.TryAddReferencePoint(initialPose, out xrReferencePoint);
+                DebugLogExtra($"Creating anchor at initial ({initialPose.position.x:0.000}, {initialPose.position.y:0.000}, {initialPose.position.z:0.000})");
+                XRAnchor xrAnchor;
+                bool created = xrAnchorManager.TryAddAnchor(initialPose, out xrAnchor);
                 if (created)
                 {
-                    Pose xrPose = xrReferencePoint.pose;
-                    DebugLogExtra($"Created refPt {id} at ({xrPose.position.x:0.000}, {xrPose.position.y:0.000}, {xrPose.position.z:0.000}) is {xrReferencePoint.trackingState}");
-                    var newAnchorObject = new GameObject(id.FormatStr());
-                    newAnchorObject.transform.parent = parent;
-                    newAnchorObject.transform.SetGlobalPose(initialPose);
-                    spongyAnchorXR = newAnchorObject.AddComponent<SpongyAnchorXR>();
-                    anchorsByTrackableId[xrReferencePoint.trackableId] = spongyAnchorXR;
-                    spongyAnchorXR.TrackableId = xrReferencePoint.trackableId;
-
-                    DebugLogExtra($"{id} {DebugVector3("P=", initialPose.position)}, {DebugQuaternion("Q=", initialPose.rotation)}");
+                    spongyAnchorXR = PrepAnchor(id, parent, xrAnchor.trackableId, xrAnchor.pose);
                 }
             }
+            return spongyAnchorXR;
+        }
+
+        private SpongyAnchorXR PrepAnchor(AnchorId anchorId, Transform parent, TrackableId trackableId, Pose xrPose)
+        {
+            var newAnchorObject = new GameObject(anchorId.FormatStr());
+            newAnchorObject.transform.parent = parent;
+            newAnchorObject.transform.SetGlobalPose(xrPose);
+            SpongyAnchorXR spongyAnchorXR = newAnchorObject.AddComponent<SpongyAnchorXR>();
+            anchorsByTrackableId[trackableId] = spongyAnchorXR;
+            spongyAnchorXR.TrackableId = trackableId;
+            spongyAnchorXR.IsReliablyLocated = false;
+
+            DebugLogExtra($"{anchorId} {DebugVector3("P=", xrPose.position)}, {DebugQuaternion("Q=", xrPose.rotation)}");
+
             return spongyAnchorXR;
         }
 
@@ -261,7 +286,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 Debug.Assert(anchorsByTrackableId[spongyAnchorXR.TrackableId] == spongyAnchorXR);
                 anchorsByTrackableId.Remove(spongyAnchorXR.TrackableId);
-                xrReferencePointManager.TryRemoveReferencePoint(spongyAnchorXR.TrackableId);
+                xrAnchorManager.TryRemoveAnchor(spongyAnchorXR.TrackableId);
                 GameObject.Destroy(spongyAnchorXR.gameObject);
             }
             RemoveSpongyAnchorById(id);
@@ -272,9 +297,22 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected override async Task SaveAnchors(List<SpongyAnchorWithId> spongyAnchors)
         {
-            await Task.CompletedTask;
+            DebugLogExtra($"SaveAnchors enter: persistence wmr={wmrPersistence} openXR={openXRPersistence} nAnchors={spongyAnchors.Count}");
+            if (wmrPersistence)
+            {
+                await SaveAnchorsWMR(spongyAnchors);
+            }
+            // wmrPersistence might have turned false, if in trying to save it realized it couldn't.
+            if (wmrPersistence)
+            {
+                openXRPersistence = false; // can only have one.
+            }
+            if (openXRPersistence)
+            {
+                await SaveAnchorsOpenXR(spongyAnchors);
+            }
+            DebugLogExtra($"SaveAnchors exit: persistence wmr={wmrPersistence} openXR={openXRPersistence}");
         }
-
 
         /// <summary>
         /// Load the spongy anchors from persistent storage
@@ -288,12 +326,31 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         protected override async Task LoadAnchors(IPlugin plugin, AnchorId firstId, Transform parent, List<SpongyAnchorWithId> spongyAnchors)
         {
-            /// Placeholder for consistency. Persistence not implemented for XR, so
-            /// to be consistent with this APIs contract, we must clear all frozen anchors from the plugin.
-            plugin.ClearFrozenAnchors();
-
-            await Task.CompletedTask;
+            DebugLogExtra($"LoadAnchors enter: persistence wmr={wmrPersistence} openXR={openXRPersistence}");
+            if (wmrPersistence)
+            {
+                await LoadAnchorsWMR(plugin, firstId, parent, spongyAnchors);
+            }
+            // wmrPersistence might have turned false, if in trying to save it realized it couldn't.
+            if (wmrPersistence)
+            {
+                openXRPersistence = false; // can only have one.
+            }
+            if (openXRPersistence)
+            {
+                await LoadAnchorsOpenXR(plugin, firstId, parent, spongyAnchors);
+            }
+            // THey might both be false, if we failed on both APIs.
+            if (!wmrPersistence && !openXRPersistence)
+            {
+                /// Placeholder for consistency. If persistence is not supported, then 
+                /// to be consistent with this APIs contract, we must clear all frozen anchors from the plugin.
+                plugin.ClearFrozenAnchors();
+            }
+            DebugLogExtra($"LoadAnchors exit: persistence wmr={wmrPersistence} openXR={openXRPersistence} nAnchors={spongyAnchors.Count}");
         }
     }
 }
 #endif // WLT_ARSUBSYSTEMS_PRESENT
+
+#endif // UNITY_2020_1_OR_NEWER

@@ -19,7 +19,7 @@ In addition to the simplicity provided, there are a [number of advantages to usi
 
 ## How to set it up
 
-Setup for gaining the advantages of baseline WLT behavior is very simple, and can be broken into four (4) steps:
+Setup for gaining the advantages of baseline WLT behavior is very simple, and can be broken into four (4) steps. The first two steps can be skipped if [installing from the MR Feature Tool](../WLTviaMRFeatureTool.md).
 
 1. Import the [Frozen World Engine NuGet package](../InitialSetup.md#frozenworld-engine-installation) into your project.
 2. Import the [World Locking Tools unity package](../InitialSetup.md#world-locking-tools-assets) into your project.

@@ -1,11 +1,16 @@
 {
     "name": "Microsoft.MixedReality.WorldLocking.Core",
+    "rootNamespace": "",
     "references": [
         "Unity.XR.ARFoundation",
         "Unity.XR.ARSubsystems",
         "Microsoft.MixedReality.WorldLocking.Engine",
         "UnityEngine.SpatialTracking",
-        "GoogleARCore"
+        "GoogleARCore",
+        "Microsoft.MixedReality.OpenXR",
+        "Unity.XR.WindowsMixedReality",
+        "Unity.XR.Management",
+        "Unity.XR.OpenXR"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -29,6 +34,26 @@
             "name": "com.unity.xr.windowsmr.metro",
             "expression": "",
             "define": "WLT_LEGACY_WMR_XR_PRESENT"
+        },
+        {
+            "name": "com.microsoft.mixedreality.openxr",
+            "expression": "",
+            "define": "WLT_MICROSOFT_OPENXR_PRESENT"
+        },
+        {
+            "name": "com.unity.xr.windowsmr",
+            "expression": "4.3",
+            "define": "WLT_MICROSOFT_WMR_XR_4_3_PRESENT"
+        },
+        {
+            "name": "com.unity.xr.management",
+            "expression": "",
+            "define": "WLT_XR_MANAGEMENT_PRESENT"
+        },
+        {
+            "name": "com.unity.xr.openxr",
+            "expression": "",
+            "define": "WLT_XR_OPENXR_PRESENT"
         }
     ],
     "noEngineReferences": false

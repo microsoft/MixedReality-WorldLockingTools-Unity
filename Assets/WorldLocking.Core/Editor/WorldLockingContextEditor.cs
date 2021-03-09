@@ -17,7 +17,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     {
         bool showWorld = true;
         bool showLinkage = true;
-        bool showAnchor = false;
+        bool showAnchor = true;
         bool showDiagnostics = false;
 
         /// <summary>

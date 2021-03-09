@@ -12,7 +12,6 @@ using UnityEngine;
 using UnityEngine.XR;
 
 #if WLT_DUMP_SPONGY
-//mafinc android
 using System.IO;
 #endif // WLT_DUMP_SPONGY
 
@@ -40,6 +39,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// </remarks>
     public abstract class AnchorManager : IAnchorManager
     {
+        /// <inheritdoc/>
+        public abstract bool SupportsPersistence { get; }
+
         /// <summary>
         /// minimum distance that can occur in regular anchor creation.
         /// </summary>

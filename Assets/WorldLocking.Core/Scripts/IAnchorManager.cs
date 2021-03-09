@@ -12,6 +12,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     public interface IAnchorManager : System.IDisposable
     {
         /// <summary>
+        /// Whether the underlying anchors can be locally persisted and reloaded.
+        /// </summary>
+        bool SupportsPersistence { get; }
+
+        /// <summary>
         /// Return the current number of spongy anchors.
         /// </summary>
         /// <remarks>
