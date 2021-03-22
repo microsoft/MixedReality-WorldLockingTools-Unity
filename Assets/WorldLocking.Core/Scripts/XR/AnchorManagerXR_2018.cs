@@ -45,6 +45,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private readonly XRReferencePointSubsystem xrReferencePointManager;
 
+        private readonly XRSessionSubsystem sessionSubsystem;
+
         private readonly Dictionary<TrackableId, SpongyAnchorXR> anchorsByTrackableId = new Dictionary<TrackableId, SpongyAnchorXR>();
 
         public static AnchorManagerXR TryCreate(IPlugin plugin, IHeadPoseTracker headTracker)
@@ -60,9 +62,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 return null;
             }
-            xrReferencePointManager.Start();
+            if (!xrReferencePointManager.running)
+            {
+                xrReferencePointManager.Start();
+            }
 
-            AnchorManagerXR anchorManager = new AnchorManagerXR(plugin, headTracker, xrReferencePointManager);
+            var session = FindSessionSubsystem();
+
+            AnchorManagerXR anchorManager = new AnchorManagerXR(plugin, headTracker, xrReferencePointManager, session);
 
             return anchorManager;
         }
@@ -73,30 +80,70 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             SubsystemManager.GetInstances(anchorSubsystems);
             Debug.Log($"Found {anchorSubsystems.Count} anchor subsystems.");
             XRReferencePointSubsystem activeSubsystem = null;
+            int numFound = 0;
             foreach (var sub in anchorSubsystems)
             {
                 if (sub.running)
                 {
                     Debug.Log($"Found active anchor subsystem.");
                     activeSubsystem = sub;
+                    ++numFound;
                 }
             }
             if (activeSubsystem == null)
             {
-                Debug.LogError($"No active anchor subsystem found.");
+                Debug.Log($"Found no anchor subsystem running, will try starting one.");
+                foreach (var sub in anchorSubsystems)
+                {
+                    sub.Start();
+                    if (sub.running)
+                    {
+                        activeSubsystem = sub;
+                        ++numFound;
+                        Debug.Log($"Start changed a subsystem to running.");
+                    }
+                }
+            }
+            if (numFound != 1)
+            {
+                Debug.LogError($"Found {numFound} active anchor subsystem, expected exactly one.");
             }
             return activeSubsystem;
+        }
+
+        private static XRSessionSubsystem FindSessionSubsystem()
+        {
+            List<XRSessionSubsystem> sessionSubsystems = new List<XRSessionSubsystem>();
+            SubsystemManager.GetInstances(sessionSubsystems);
+            Debug.Log($"Found {sessionSubsystems.Count} session subsystems");
+            XRSessionSubsystem activeSession = null;
+            int numFound = 0;
+            foreach (var session in sessionSubsystems)
+            {
+                if (session.running)
+                {
+                    Debug.Log($"Found active session subsystem");
+                    activeSession = session;
+                    ++numFound;
+                }
+            }
+            if (numFound != 1)
+            {
+                Debug.LogError($"Found {numFound} active session subsystems, expected exactly one.");
+            }    
+            return activeSession;
         }
 
         /// <summary>
         /// Set up an anchor manager.
         /// </summary>
         /// <param name="plugin">The engine interface to update with the current anchor graph.</param>
-        private AnchorManagerXR(IPlugin plugin, IHeadPoseTracker headTracker, XRReferencePointSubsystem xrReferencePointManager)
+        private AnchorManagerXR(IPlugin plugin, IHeadPoseTracker headTracker, XRReferencePointSubsystem xrReferencePointManager, XRSessionSubsystem session)
             : base(plugin, headTracker)
         {
             this.xrReferencePointManager = xrReferencePointManager;
             Debug.Log($"XR: Created AnchorManager XR, xrMgr={(this.xrReferencePointManager != null ? "good" : "null")}");
+            this.sessionSubsystem = session;
         }
 
         public override bool Update()
@@ -225,8 +272,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected override bool IsTracking()
         {
-            //Debug.Log($"AnchorManagerXR F{Time.frameCount}: xrMgr is {(xrReferencePointManager != null && xrReferencePointManager.running ? "running" : "null")}");
-            return xrReferencePointManager != null && xrReferencePointManager.running;
+            return sessionSubsystem != null
+                && sessionSubsystem.running
+                && sessionSubsystem.trackingState != TrackingState.None;
         }
 
         protected override SpongyAnchor CreateAnchor(AnchorId id, Transform parent, Pose initialPose)

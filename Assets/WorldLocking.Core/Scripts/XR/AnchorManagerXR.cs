@@ -244,8 +244,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected override bool IsTracking()
         {
-            //Debug.Log($"AnchorManagerXR F{Time.frameCount}: xrMgr is {(xrAnchorManager != null && xrAnchorManager.running ? "running" : "null")}");
-            return xrAnchorManager != null && xrAnchorManager.running;
+            //Debug.Log($"AnchorManagerXR F{Time.frameCount}: session is {(sessionSubsystem != null && sessionSubsystem.running ? "running" : "null")} and {(sessionSubsystem != null && sessionSubsystem.trackingState != TrackingState.None ? "tracking" : "not-tracking")}");
+            return sessionSubsystem != null
+                && sessionSubsystem.running
+                && sessionSubsystem.trackingState != TrackingState.None;
         }
 
         protected override SpongyAnchor CreateAnchor(AnchorId id, Transform parent, Pose initialPose)
