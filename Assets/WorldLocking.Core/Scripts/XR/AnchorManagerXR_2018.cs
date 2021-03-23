@@ -68,12 +68,30 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
 
             var session = FindSessionSubsystem();
+            if (session == null)
+            {
+                return null;
+            }
 
             AnchorManagerXR anchorManager = new AnchorManagerXR(plugin, headTracker, xrReferencePointManager, session);
 
             return anchorManager;
         }
 
+        /// <summary>
+        /// Find the correct ReferencePointManager for this session.
+        /// </summary>
+        /// <returns>Reference point manager for this session.</returns>
+        /// <remarks>
+        /// For HoloLens, we are looking for the _active_ anchor subsystem. There may be multiple
+        /// anchor subsystems (e.g. OpenXR Plugin and WMR XR Plugin), but only one will be active.
+        /// However, on Android, no anchor subsystem is active until we make it active by calling Start() on it.
+        /// So if we still don't have an active subsystem, try calling start on any that are available and 
+        /// if that makes them active (running), then take that one. 
+        /// Note that this would be bad on HoloLens, as it would start up a subsystem that is installed but not currently selected.
+        /// I believe that iOS works as HoloLens does, but I don't want to rely on undocumented behavior. The algorithm here
+        /// should work on either.
+        /// </remarks>
         private static XRReferencePointSubsystem FindReferencePointManager()
         {
             List<XRReferencePointSubsystem> anchorSubsystems = new List<XRReferencePointSubsystem>();
@@ -100,17 +118,24 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     {
                         activeSubsystem = sub;
                         ++numFound;
-                        Debug.Log($"Start changed a subsystem to running.");
+                        Debug.Log($"Start changed an anchor subsystem to running.");
                     }
                 }
             }
             if (numFound != 1)
             {
-                Debug.LogError($"Found {numFound} active anchor subsystem, expected exactly one.");
+                Debug.LogError($"Found {numFound} active anchor subsystems, expected exactly one.");
             }
             return activeSubsystem;
         }
 
+        /// <summary>
+        /// Find and return the correct XRSessionSubsystem.
+        /// </summary>
+        /// <returns>The XRSessionSubsystem.</returns>
+        /// <remarks>
+        /// See remarks in <see cref="FindReferencePointManager"/> above.
+        /// </remarks>
         private static XRSessionSubsystem FindSessionSubsystem()
         {
             List<XRSessionSubsystem> sessionSubsystems = new List<XRSessionSubsystem>();
@@ -125,6 +150,20 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.Log($"Found active session subsystem");
                     activeSession = session;
                     ++numFound;
+                }
+            }
+            if (activeSession == null)
+            {
+                Debug.Log($"Found no active session subsystem, will try starting one.");
+                foreach (var session in sessionSubsystems)
+                {
+                    session.Start();
+                    if (session.running)
+                    {
+                        activeSession = session;
+                        ++numFound;
+                        Debug.Log($"Start changed a session to running.");
+                    }
                 }
             }
             if (numFound != 1)
