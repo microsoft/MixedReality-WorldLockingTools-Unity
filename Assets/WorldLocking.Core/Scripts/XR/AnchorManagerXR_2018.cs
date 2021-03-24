@@ -284,7 +284,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 DebugOutExtra(label, referencePoint, tracker);
 
-                tracker.IsReliablyLocated = referencePoint.trackingState != TrackingState.None;
+                //tracker.IsReliablyLocated = referencePoint.trackingState != TrackingState.None;
+                tracker.IsReliablyLocated = referencePoint.trackingState == TrackingState.Tracking;
 
                 Pose repose = ExtractPose(referencePoint);
                 Vector3 delta = repose.position - tracker.transform.position;
