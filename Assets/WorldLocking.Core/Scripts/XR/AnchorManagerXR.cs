@@ -55,6 +55,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private readonly XRAnchorSubsystem xrAnchorManager;
 
+        private readonly XRSessionSubsystem sessionSubsystem;
+
         private readonly Dictionary<TrackableId, SpongyAnchorXR> anchorsByTrackableId = new Dictionary<TrackableId, SpongyAnchorXR>();
 
         public static AnchorManagerXR TryCreate(IPlugin plugin, IHeadPoseTracker headTracker)
@@ -70,42 +72,126 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 return null;
             }
-            xrAnchorManager.Start();
+            if (!xrAnchorManager.running)
+            {
+                xrAnchorManager.Start();
+            }
 
-            AnchorManagerXR anchorManager = new AnchorManagerXR(plugin, headTracker, xrAnchorManager);
+            var session = FindSessionSubsystem();
+            if (session == null)
+            {
+                return null;
+            }
+
+            AnchorManagerXR anchorManager = new AnchorManagerXR(plugin, headTracker, xrAnchorManager, session);
 
             return anchorManager;
         }
 
+        /// <summary>
+        /// Find the correct AnchorManager for this session.
+        /// </summary>
+        /// <returns>Anchor manager for this session.</returns>
+        /// <remarks>
+        /// For HoloLens, we are looking for the _active_ anchor subsystem. There may be multiple
+        /// anchor subsystems (e.g. OpenXR Plugin and WMR XR Plugin), but only one will be active.
+        /// However, on Android, no anchor subsystem is active until we make it active by calling Start() on it.
+        /// So if we still don't have an active subsystem, try calling start on any that are available and 
+        /// if that makes them active (running), then take that one. 
+        /// Note that this would be bad on HoloLens, as it would start up a subsystem that is installed but not currently selected.
+        /// I believe that iOS works as HoloLens does, but I don't want to rely on undocumented behavior. The algorithm here
+        /// should work on either.
+        /// </remarks>
         private static XRAnchorSubsystem FindAnchorManager()
         {
             List<XRAnchorSubsystem> anchorSubsystems = new List<XRAnchorSubsystem>();
             SubsystemManager.GetInstances(anchorSubsystems);
             Debug.Log($"Found {anchorSubsystems.Count} anchor subsystems.");
             XRAnchorSubsystem activeSubsystem = null;
+            int numFound = 0;
             foreach (var sub in anchorSubsystems)
             {
                 if (sub.running)
                 {
                     Debug.Log($"Found active anchor subsystem {sub.subsystemDescriptor.id}.");
                     activeSubsystem = sub;
+                    ++numFound;
                 }
             }
             if (activeSubsystem == null)
             {
-                Debug.LogError($"No active anchor subsystem found.");
+                Debug.Log($"Found no anchor subsystem running, will try starting one.");
+                foreach (var sub in anchorSubsystems)
+                {
+                    sub.Start();
+                    if (sub.running)
+                    {
+                        activeSubsystem = sub;
+                        ++numFound;
+                        Debug.Log($"Start changed an anchor subsystem to running.");
+                    }
+                }
+            }
+            if (numFound != 1)
+            {
+                Debug.LogError($"Found {numFound} active anchor subsystems, expected exactly one.");
             }
             return activeSubsystem;
+        }
+
+        /// <summary>
+        /// Find the session subsystem for this session.
+        /// </summary>
+        /// <returns>Session subsystem for this session in an active running state.</returns>
+        /// <remarks>
+        /// See remarks in <see cref="FindAnchorManager"/> above.
+        /// </remarks>
+        private static XRSessionSubsystem FindSessionSubsystem()
+        {
+            List<XRSessionSubsystem> sessionSubsystems = new List<XRSessionSubsystem>();
+            SubsystemManager.GetInstances(sessionSubsystems);
+            Debug.Log($"Found {sessionSubsystems.Count} session subsystems");
+            XRSessionSubsystem activeSession = null;
+            int numFound = 0;
+            foreach (var session in sessionSubsystems)
+            {
+                if (session.running)
+                {
+                    Debug.Log($"Found active session subsystem");
+                    activeSession = session;
+                    ++numFound;
+                }
+            }
+            if (activeSession == null)
+            {
+                Debug.Log($"Found no active session subsystem, will try starting one.");
+                foreach (var session in sessionSubsystems)
+                {
+                    session.Start();
+                    if (session.running)
+                    {
+                        activeSession = session;
+                        ++numFound;
+                        Debug.Log($"Start changed a session to running.");
+                    }
+                }
+            }
+            if (numFound != 1)
+            {
+                Debug.LogError($"Found {numFound} active session subsystems, expected exactly one.");
+            }    
+            return activeSession;
         }
 
         /// <summary>
         /// Set up an anchor manager.
         /// </summary>
         /// <param name="plugin">The engine interface to update with the current anchor graph.</param>
-        private AnchorManagerXR(IPlugin plugin, IHeadPoseTracker headTracker, XRAnchorSubsystem xrAnchorManager)
+        private AnchorManagerXR(IPlugin plugin, IHeadPoseTracker headTracker, XRAnchorSubsystem xrAnchorManager, XRSessionSubsystem session)
             : base(plugin, headTracker)
         {
             this.xrAnchorManager = xrAnchorManager;
+            this.sessionSubsystem = session;
             Debug.Log($"XR: Created AnchorManager XR, xrMgr={(this.xrAnchorManager != null ? "good" : "null")}");
 
             Debug.Log($"ActiveLoader name:[{XRGeneralSettings.Instance.Manager.activeLoader.name}] type:[{XRGeneralSettings.Instance.Manager.activeLoader.GetType().FullName}]");
@@ -244,8 +330,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected override bool IsTracking()
         {
-            //Debug.Log($"AnchorManagerXR F{Time.frameCount}: xrMgr is {(xrAnchorManager != null && xrAnchorManager.running ? "running" : "null")}");
-            return xrAnchorManager != null && xrAnchorManager.running;
+            //Debug.Log($"AnchorManagerXR F{Time.frameCount}: session is {(sessionSubsystem != null && sessionSubsystem.running ? "running" : "null")} and {(sessionSubsystem != null && sessionSubsystem.trackingState != TrackingState.None ? "tracking" : "not-tracking")}");
+            return sessionSubsystem != null
+                && sessionSubsystem.running
+                && sessionSubsystem.trackingState != TrackingState.None;
         }
 
         protected override SpongyAnchor CreateAnchor(AnchorId id, Transform parent, Pose initialPose)

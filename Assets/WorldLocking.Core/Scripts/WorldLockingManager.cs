@@ -29,7 +29,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
         /// </summary>
-        public static string Version => "1.3.0";
+        public static string Version => "1.3.2";
 
         /// <summary>
         /// The configuration settings may only be set as a block.
@@ -458,6 +458,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 Debug.Log("Failure creating useful anchor manager of any type. Creating null manager");
                 anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.Null;
+                shared.anchorSettings = anchorSettings;
             }
             AnchorManagerNull nullAnchorManager = AnchorManagerNull.TryCreate(plugin, headTracker);
             Debug.Assert(nullAnchorManager != null, "Creation of Null anchor manager should never fail.");
