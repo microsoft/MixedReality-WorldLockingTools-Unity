@@ -7,6 +7,13 @@ rem
 rem A new window will be spawned for each package created.
 rem After each packaging, inspect the results in the spawned window. 
 rem If results look good, close the window (enter "exit") to proceed to next package.
+rem
+rem After creating and verifying both packages, from command prompt go to Assets folder,
+rem and run 
+rem    'npm publish com.microsoft.mixedreality.worldlockingtools-1.2.3.tgz'
+rem and 
+rem    'npm publish com.microsoft.mixedreality.worldlockingsamples-1.2.3.tgz'
+rem replacing '-1.2.3' with whatever the current version is.
 pushd ..\Assets
 
 xcopy ..\UPM\core_files . /QY
