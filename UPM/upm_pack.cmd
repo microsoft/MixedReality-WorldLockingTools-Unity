@@ -1,6 +1,8 @@
 @echo off
 rem Simple script to create NPM packages suitable for Unity.
 rem Does NOT publish the packages, they will be left in Assets folder.
+rem NOTE: Unity must be run on the project at least once, to ensure all
+rem necessary .meta files are present.
 rem 
 rem Run this script from project's .\UPM folder (where it exists).
 rem 
