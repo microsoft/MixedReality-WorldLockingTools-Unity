@@ -1,1 +1,1 @@
-Microsoft Mixed Reality Toolkit 2.6.0
+Microsoft Mixed Reality Toolkit 2.6.1
