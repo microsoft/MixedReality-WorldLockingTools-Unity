@@ -78,10 +78,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
 
             var session = FindSessionSubsystem();
-            if (session == null)
-            {
-                return null;
-            }
+            /// mafinc - Currently a problem in OpenXR obtaining the session subsystem.
+            /// Everything can function without it, it is only used for detecting loss of tracking.
+            //if (session == null)
+            //{
+            //    return null;
+            //}
 
             AnchorManagerXR anchorManager = new AnchorManagerXR(plugin, headTracker, xrAnchorManager, session);
 
@@ -330,6 +332,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected override bool IsTracking()
         {
+            /// Currently a problem obtaining the sessionSubsystem in OpenXR. Until that is remediated,
+            /// we will assume that if we have no sessionSubsystem, then tracking is fine.
+            if (sessionSubsystem == null)
+                return true;
             //Debug.Log($"AnchorManagerXR F{Time.frameCount}: session is {(sessionSubsystem != null && sessionSubsystem.running ? "running" : "null")} and {(sessionSubsystem != null && sessionSubsystem.trackingState != TrackingState.None ? "tracking" : "not-tracking")}");
             return sessionSubsystem != null
                 && sessionSubsystem.running
