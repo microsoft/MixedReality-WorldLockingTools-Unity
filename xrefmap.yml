@@ -3800,44 +3800,6 @@ references:
   commentId: F:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARCore.TrackingStartDelayTime
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARCore.TrackingStartDelayTime
   nameWithType: SpongyAnchorARCore.TrackingStartDelayTime
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF
-  name: SpongyAnchorARF
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html
-  commentId: T:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF
-  nameWithType: SpongyAnchorARF
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.IsLocated
-  name: IsLocated
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARF_IsLocated
-  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.IsLocated
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.IsLocated
-  nameWithType: SpongyAnchorARF.IsLocated
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.IsLocated*
-  name: IsLocated
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARF_IsLocated_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.IsLocated
-  isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.IsLocated
-  nameWithType: SpongyAnchorARF.IsLocated
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.SpongyPose
-  name: SpongyPose
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARF_SpongyPose
-  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.SpongyPose
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.SpongyPose
-  nameWithType: SpongyAnchorARF.SpongyPose
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.SpongyPose*
-  name: SpongyPose
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARF_SpongyPose_
-  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.SpongyPose
-  isSpec: "True"
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.SpongyPose
-  nameWithType: SpongyAnchorARF.SpongyPose
-- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.TrackingStartDelayTime
-  name: TrackingStartDelayTime
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchorARF_TrackingStartDelayTime
-  commentId: F:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.TrackingStartDelayTime
-  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.TrackingStartDelayTime
-  nameWithType: SpongyAnchorARF.TrackingStartDelayTime
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull
   name: SpongyAnchorNull
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorNull.html

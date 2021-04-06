@@ -1462,7 +1462,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html",
-          "hash": "lh/DS8NnYAa/ObZcDO70Gw=="
+          "hash": "5dIi9GYLFMB6FKyFAThnJA=="
         }
       },
       "is_incremental": false,
@@ -1475,18 +1475,6 @@
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARCore.html",
           "hash": "N5EB2DAZm2l/SWXtzZXgXA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "DocGen/Temp/obj/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.yml",
-      "output": {
-        ".html": {
-          "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html",
-          "hash": "rITDispTHL33nFH4lGouKA=="
         }
       },
       "is_incremental": false,
@@ -1618,7 +1606,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.html",
-          "hash": "MZP0V0/3Sl7JBsd3mFeraA=="
+          "hash": "EhJ4xuBNaIk+HERkEsJ/jA=="
         }
       },
       "is_incremental": false,
@@ -2074,7 +2062,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/api_doc/toc.html",
-          "hash": "wZIo6QZDajeWpMU2qN6bSA=="
+          "hash": "jYSev3UjfLRlOekGvZprJw=="
         }
       },
       "is_incremental": false,
@@ -2158,7 +2146,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 91,
+          "total_file_count": 90,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
