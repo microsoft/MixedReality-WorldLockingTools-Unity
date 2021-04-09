@@ -10,8 +10,22 @@ using Microsoft.MixedReality.WorldLocking.Core;
 
 namespace Microsoft.MixedReality.WorldLocking.Tools
 {
+    /// <summary>
+    /// Collection of menu driven Editor only functions to automate WLT configuration.
+    /// </summary>
     public class WorldLockingSetup 
     {
+        /// <summary>
+        /// Find the object to which all WLT related objects will be attached,
+        /// creating it if it doesn't already exist.
+        /// </summary>
+        /// <returns>The GameObject to attach WLT related objects</returns>
+        /// <remarks>
+        /// Search goes like this:
+        /// 1) If there is a WorldLockingContext, the parent is the WLT root.
+        /// 2) If there is an object called WorldLocking, that will be WLT root.
+        /// 3) Not found, so create a parent-less object named "WorldLocking".
+        /// </remarks>
         private static Transform CheckWorldLockingRoot()
         {
             Transform root = null;
@@ -35,6 +49,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             return root;
         }
 
+        /// <summary>
+        /// Search for a prefab with given name (no extension), which has "pathFilter" in its path.
+        /// </summary>
+        /// <param name="pathFilter">The path substring to filter on.</param>
+        /// <param name="name">The name of the object (no extension).</param>
+        /// <returns>The prefab, or null if not found.</returns>
         private static GameObject InstantiatePrefab(string pathFilter, string name)
         {
             string[] assetGuids = AssetDatabase.FindAssets(name);
@@ -56,6 +76,14 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             return null;
         }
 
+        /// <summary>
+        /// Find or create the WorldLockingContext for this scene.
+        /// </summary>
+        /// <param name="worldLockingRoot">Parent object to attach the context to.</param>
+        /// <returns>The found or created context.</returns>
+        /// <remarks>
+        /// If the context exists, but isn't a child of worldLockingRoot, its parent will still be set to worldLockingRoot.
+        /// </remarks>
         private static WorldLockingContext CheckWorldLockingManager(Transform worldLockingRoot)
         {
             // Look for a WorldLockingContext component in the scene. 
@@ -74,6 +102,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             return wltContext;
         }
 
+        /// <summary>
+        /// Check that the camera has proper hierarchy setup, and record it into the worldLockingContext.
+        /// </summary>
+        /// <param name="worldLockingContext">The context to setup with linkage information.</param>
         private static void CheckCamera(WorldLockingContext worldLockingContext)
         {
             // Find main camera. If not found, issue warning but we are done.
@@ -106,6 +138,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             sharedSettings.linkageSettings.AdjustmentFrame = wltAdjustment;
         }
 
+        /// <summary>
+        /// Setup the current scene with default basic world locking.
+        /// </summary>
         [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Add to scene")]
         private static void AddWorldLockingToScene()
         {
@@ -120,6 +155,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             Selection.activeObject = worldLockingContext.gameObject;
         }
 
+        /// <summary>
+        /// Add an anchor graph visualization to the scene if it doesn't already have one.
+        /// </summary>
+        /// <param name="wltRoot">The root object to attach the visualization to.</param>
         private static void AddAnchorVisualizer(Transform wltRoot)
         {
             AnchorGraphVisual anchorVisual = GameObject.FindObjectOfType<AnchorGraphVisual>();
@@ -132,6 +171,15 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             anchorVisual.transform.parent = wltRoot;
         }
 
+        /// <summary>
+        /// Add a global space pin visualizer to the scene, if it doesn't alreay have one.
+        /// </summary>
+        /// <param name="wltRoot">Parent object to attach visualizer to.</param>
+        /// <param name="visualizers">List of currently existing space pin visualizers.</param>
+        /// <remarks>
+        /// At the end of this, the scene should have exactly one global space pin visualizer.
+        /// Any extras will be deleted.
+        /// </remarks>
         private static void AddGlobalSpacePinVisualizer(Transform wltRoot, SpacePinMeshVisualizer[] visualizers)
         {
             List<SpacePinMeshVisualizer> globalVisualizers = new List<SpacePinMeshVisualizer>();
@@ -149,7 +197,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 for (int i = 1; i < globalVisualizers.Count; ++i)
                 {
                     Debug.Log($"Deleting global space pin visualizer {globalVisualizers[i].name}");
-                    GameObject.DestroyImmediate(globalVisualizers[i]);
+                    GameObject.DestroyImmediate(globalVisualizers[i].gameObject);
                 }
             }
             else if (globalVisualizers.Count == 0)
@@ -161,6 +209,11 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         }
 
+        /// <summary>
+        /// Add a space pin visualizer for each AlignSubtree in the scene.
+        /// </summary>
+        /// <param name="wltRoot">Parent object to attach any created visualizers to.</param>
+        /// <param name="visualizers">Currently existing visualizers.</param>
         private static void AddSubtreeSpacePinVisualizers(Transform wltRoot, SpacePinMeshVisualizer[] visualizers)
         {
             AlignSubtree[] subtrees = GameObject.FindObjectsOfType<AlignSubtree>();
@@ -170,7 +223,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 bool found = false;
                 foreach(var vis in visualizers)
                 {
-                    if (vis.TargetSubtree == subtree)
+                    if (vis != null && vis.TargetSubtree == subtree)
                     {
                         found = true;
                         break;
@@ -188,6 +241,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             }
         }
 
+        /// <summary>
+        /// Add global and subtree space pin visualizers to the scene.
+        /// </summary>
+        /// <param name="wltRoot">Parent object to attach any created visualizers to.</param>
         private static void AddSpacePinVisualizers(Transform wltRoot)
         {
             SpacePinMeshVisualizer[] visualizers = GameObject.FindObjectsOfType<SpacePinMeshVisualizer>();
@@ -197,6 +254,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             AddSubtreeSpacePinVisualizers(wltRoot, visualizers);
         }
 
+        /// <summary>
+        /// Add visualization helpers for WLT features to the scene.
+        /// </summary>
         [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Add visualizers")]
         private static void AddWorldLockingVisualizers()
         {
@@ -209,6 +269,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             Selection.activeObject = worldLockingRoot.gameObject;
         }
 
+        /// <summary>
+        /// Remove any WLT visualizers from the scene.
+        /// </summary>
+        /// <remarks>
+        /// This will remove all WLT visualizers from the scene, whether they were added by AddWorldLockingVisualizers() or by hand.
+        /// </remarks>
         [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Remove visualizers")]
         private static void RemoveWorldLockingVisualisers()
         {
