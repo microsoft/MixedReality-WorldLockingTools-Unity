@@ -15,6 +15,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
     /// </summary>
     public class WorldLockingSetup 
     {
+        private const int setupPriority = 1100;
         /// <summary>
         /// Find the object to which all WLT related objects will be attached,
         /// creating it if it doesn't already exist.
@@ -58,10 +59,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         private static GameObject InstantiatePrefab(string pathFilter, string name)
         {
             string[] assetGuids = AssetDatabase.FindAssets(name);
-            for (int i = 0; i < assetGuids.Length; ++i)
-            {
-                Debug.Log($"{i}: {AssetDatabase.GUIDToAssetPath(assetGuids[i])}");
-            }
             foreach (var guid in assetGuids)
             {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
@@ -138,10 +135,24 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             sharedSettings.linkageSettings.AdjustmentFrame = wltAdjustment;
         }
 
+        private static void CheckAnchorManagement(WorldLockingContext context)
+        {
+            var sharedSettings = context.SharedSettings;
+            sharedSettings.anchorSettings.UseDefaults = false;
+            sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.Null;
+#if WLT_ARSUBSYSTEMS_PRESENT
+            sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.XRSDK;
+#elif UNITY_WSA && !UNITY_2020_1_OR_NEWER
+            sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.WSA;
+#elif WLT_ARCORE_SDK_INCLUDED
+            sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.ARCore;
+#endif // WLT_ARCORE_SDK_INCLUDED
+        }
+
         /// <summary>
         /// Setup the current scene with default basic world locking.
         /// </summary>
-        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Add to scene")]
+        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Add to scene", priority = setupPriority)]
         private static void AddWorldLockingToScene()
         {
             // Look for WorldLocking root object in scene.
@@ -151,6 +162,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             WorldLockingContext worldLockingContext = CheckWorldLockingManager(worldLockingRoot);
 
             CheckCamera(worldLockingContext);
+
+            CheckAnchorManagement(worldLockingContext);
 
             Selection.activeObject = worldLockingContext.gameObject;
         }
@@ -257,7 +270,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// <summary>
         /// Add visualization helpers for WLT features to the scene.
         /// </summary>
-        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Add visualizers")]
+        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Add visualizers", priority = setupPriority)]
         private static void AddWorldLockingVisualizers()
         {
             Transform worldLockingRoot = CheckWorldLockingRoot();
@@ -275,7 +288,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// <remarks>
         /// This will remove all WLT visualizers from the scene, whether they were added by AddWorldLockingVisualizers() or by hand.
         /// </remarks>
-        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Remove visualizers")]
+        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Remove visualizers", priority = setupPriority)]
         private static void RemoveWorldLockingVisualisers()
         {
             AnchorGraphVisual[] anchorVisuals = GameObject.FindObjectsOfType<AnchorGraphVisual>();
