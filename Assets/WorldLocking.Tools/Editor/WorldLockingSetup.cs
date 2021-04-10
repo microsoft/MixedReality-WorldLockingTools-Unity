@@ -147,6 +147,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 #elif WLT_ARCORE_SDK_INCLUDED
             sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.ARCore;
 #endif // WLT_ARCORE_SDK_INCLUDED
+            if (sharedSettings.anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.Null)
+            {
+                Debug.LogError($"Unable to deduce proper anchor management system.\nTry again after installing and setting up XR provider.");
+            }
         }
 
         /// <summary>
