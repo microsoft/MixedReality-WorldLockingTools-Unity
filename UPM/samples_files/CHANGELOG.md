@@ -2,6 +2,8 @@
 
 [See release notes](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases)
 
+## 1.3.5 - Dependency on WLT v1.3.5 for automated setup tools.
+
 ## 1.3.4 - Dependency on WLT v1.3.4 for fix in SpacePin persistence timing issue.
 
 ## 1.3.3 - Dependency on WLT v1.3.3 for fix in packaging (missing .meta file).
