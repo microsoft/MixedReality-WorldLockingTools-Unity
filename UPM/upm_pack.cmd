@@ -1,4 +1,4 @@
-@echo off
+rem @echo off
 rem Simple script to create NPM packages suitable for Unity.
 rem Does NOT publish the packages, they will be left in Assets folder.
 rem NOTE: Unity must be run on the project at least once, to ensure all
@@ -16,7 +16,13 @@ rem    'npm publish com.microsoft.mixedreality.worldlockingtools-1.2.3.tgz'
 rem and 
 rem    'npm publish com.microsoft.mixedreality.worldlockingsamples-1.2.3.tgz'
 rem replacing '-1.2.3' with whatever the current version is.
+
 pushd ..\Assets
+
+rem Stash the .nupkg, it is redundant with the installation of the libs.
+mkdir stash
+move /Y Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.0\*.nupkg stash
+move /Y Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.0\*.nupkg.meta stash
 
 xcopy ..\UPM\core_files . /QY
 echo Exit npm window after checking results (enter "exit" on npm window's command line).
@@ -38,4 +44,8 @@ del CHANGELOG.*
 del LICENSE.*
 del NOTICE.*
 
+move /Y stash\* Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.0
+rd/s/q stash
+
 popd
+
