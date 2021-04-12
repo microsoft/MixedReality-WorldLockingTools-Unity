@@ -19,6 +19,16 @@ In addition to the simplicity provided, there are a [number of advantages to usi
 
 ## How to set it up
 
+### Automated setup
+
+For the most automated setup experience, [install the latest WLT Core from the MR Feature Tool](../WLTviaMRFeatureTool.md), then run the WLT Configure scene utility from the Mixed Reality Toolkit Utilities menu. 
+
+![](~/DocGen/Images/Screens/ConfigureScene.jpg)
+
+The Configure scene utility can be rerun at any time. For example, it should be rerun if the AR target has been changed from Legacy to XR SDK. If the scene is already properly configured, running the utility has no effect.
+
+### Manual setup
+
 Setup for gaining the advantages of baseline WLT behavior is very simple, and can be broken into four (4) steps. The first two steps can be skipped if [installing from the MR Feature Tool](../WLTviaMRFeatureTool.md).
 
 1. Import the [Frozen World Engine NuGet package](../InitialSetup.md#frozenworld-engine-installation) into your project.

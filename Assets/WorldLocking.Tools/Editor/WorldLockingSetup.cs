@@ -156,7 +156,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// <summary>
         /// Setup the current scene with default basic world locking.
         /// </summary>
-        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Add to scene", priority = setupPriority)]
+        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Configure scene", priority = setupPriority)]
         private static void AddWorldLockingToScene()
         {
             // Look for WorldLocking root object in scene.
@@ -274,7 +274,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// <summary>
         /// Add visualization helpers for WLT features to the scene.
         /// </summary>
-        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Add visualizers", priority = setupPriority)]
+        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Add development visualizers", priority = setupPriority)]
         private static void AddWorldLockingVisualizers()
         {
             Transform worldLockingRoot = CheckWorldLockingRoot();
@@ -292,7 +292,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// <remarks>
         /// This will remove all WLT visualizers from the scene, whether they were added by AddWorldLockingVisualizers() or by hand.
         /// </remarks>
-        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Remove visualizers", priority = setupPriority)]
+        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Remove development visualizers", priority = setupPriority)]
         private static void RemoveWorldLockingVisualisers()
         {
             AnchorGraphVisual[] anchorVisuals = GameObject.FindObjectsOfType<AnchorGraphVisual>();
