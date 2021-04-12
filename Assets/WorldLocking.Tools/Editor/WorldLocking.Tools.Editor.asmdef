@@ -1,0 +1,17 @@
+{
+    "name": "WorldLocking.Tools.Editor",
+    "references": [
+        "Microsoft.MixedReality.WorldLocking.Core",
+        "Microsoft.MixedReality.WorldLocking.Tools"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

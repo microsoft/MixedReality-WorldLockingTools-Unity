@@ -44,11 +44,6 @@ Further, reference materials for interfacing through script with World Locking T
 | `master` |[![CI Status](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_apis/build/status/wlt_ci?branchName=master)](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_build/latest?definitionId=50)|[![Docs Status](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_apis/build/status/wlt_docs?branchName=master)](https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_build/latest?definitionId=51)
 
 
-# Open source and related resources
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). 
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
 # Useful resources on Microsoft Windows Dev Center
 | ![Academy](DocGen/External/ReadMeImages/icon_academy.png) [Academy](https://developer.microsoft.com/en-us/windows/mixed-reality/academy)| ![Design](DocGen/External/ReadMeImages/icon_design.png) [Design](https://developer.microsoft.com/en-us/windows/mixed-reality/design)| ![Development](DocGen/External/ReadMeImages/icon_development.png) [Development](https://developer.microsoft.com/en-us/windows/mixed-reality/development)| ![Community)](DocGen/External/ReadMeImages/icon_community.png) [Community](https://developer.microsoft.com/en-us/windows/mixed-reality/community)|
 | :--------------------- | :----------------- | :------------------ | :------------------------ |
@@ -60,6 +55,14 @@ This project welcomes contributions and suggestions. Most contributions require 
 
 When you submit a pull request, a CLA-bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
 
-This project has adopted the Microsoft Open Source Code of Conduct. For more information see the Code of Conduct FAQ or contact opencode@microsoft.com with any additional questions or comments.
-
 View the [**How To Contribute**](DocGen/Documentation/HowTos/Contributing.md) page for the most up to date instructions on contributing to World Locking Tools for Unity.
+
+# Microsoft Open Source Code of Conduct
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+
+Resources:
+
+- [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/)
+- [Microsoft Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/)
+- Contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with questions or concerns

@@ -4,7 +4,7 @@ The Frozen World engine relies on a network of spatial anchors surrounding the u
 
 The IAnchorManager maintains that network, and supplies it to the engine for processing each frame.
 
-The current implementation of IAnchorManager is in Assets/WorldLocking.Core/Scripts/AnchorManager.cs. AnchorManager is built on Unity's WorldAnchor spatial anchors. The Frozen World engine itself is agnostic to the type of anchors used.
+There are currently a number of implementations of IAnchorManager, all of which derive from the base class AnchorManager in Assets/WorldLocking.Core/Scripts/AnchorManager.cs. AnchorManager manipulates abstract SpongyAnchors, performing common anchor graph maintenance operations. Specializations interact with platform specific APIs. For example, class AnchorManagerXR manages SpongyAnchors built atop XRAnchors. The Frozen World engine itself is agnostic to the type of anchors used.
 
 As the user moves around the environment, AnchorManager grows the graph of anchors according to the following simple but effective algorithm:
 

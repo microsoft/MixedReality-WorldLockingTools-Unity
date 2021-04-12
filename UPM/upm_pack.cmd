@@ -1,4 +1,4 @@
-rem @echo off
+@echo off
 rem Simple script to create NPM packages suitable for Unity.
 rem Does NOT publish the packages, they will be left in Assets folder.
 rem NOTE: Unity must be run on the project at least once, to ensure all
@@ -21,18 +21,18 @@ pushd ..\Assets
 
 rem Stash the .nupkg, it is redundant with the installation of the libs.
 mkdir stash
-move /Y Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.0\*.nupkg stash
-move /Y Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.0\*.nupkg.meta stash
+move /Y Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.0\*.nupkg stash >nul
+move /Y Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.0\*.nupkg.meta stash >nul
 
-xcopy ..\UPM\core_files . /QY
+xcopy ..\UPM\core_files . /QY >nul
 echo Exit npm window after checking results (enter "exit" on npm window's command line).
 start /WAIT npm pack
 
 if exist Samples~ (rd/s/q Samples~)
 mkdir Samples~
-xcopy WorldLocking.Examples Samples~\WorldLocking.Examples /QIS
+xcopy WorldLocking.Examples Samples~\WorldLocking.Examples /QIS >nul
 
-xcopy ..\UPM\samples_files . /QY
+xcopy ..\UPM\samples_files . /QY >nul
 echo Exit npm window after checking results (enter "exit" on npm window's command line).
 start /WAIT npm pack
 
@@ -44,7 +44,7 @@ del CHANGELOG.*
 del LICENSE.*
 del NOTICE.*
 
-move /Y stash\* Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.0
+move /Y stash\* Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.0 >nul
 rd/s/q stash
 
 popd

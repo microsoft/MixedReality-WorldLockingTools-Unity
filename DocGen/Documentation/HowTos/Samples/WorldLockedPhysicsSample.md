@@ -6,13 +6,13 @@ The Physics Beam Sample offers a few virtual physics experiences which are enabl
 
 On HoloLens, the relationship between a spatial anchor and the head or other spatial anchors may change at any time as a result of incoming sensor data or even re-processing of existing data. 
 
-Unity's WorldAnchors react to changes in the underlying spatial anchor's pose by dragging the attached GameObject along with it. This causes difficulties for physics simulation:
+Unity's spatial anchors react to changes in the underlying spatial anchor's pose by dragging the attached GameObject along with it. This causes difficulties for physics simulation:
 
-* Because the WorldAnchor'd GameObject's pose is explicitly set by the WorldAnchor each frame, it can't be set by simulation (e.g. momentum).
-* Because the WorldAnchor is frequently updating its GameObject's pose, it will not appear to be at rest relative to other still RigidBodies.
-* Because of implicit shifts of Unity's coordinate system as WorldAnchors adjust the coordinates of static Holograms to keep them fixed relative to the real world, physics computations such as routes and trajectories will be off. For example, a projectile perfectly aimed at a Hologram will still miss if the Hologram is repositioned by its WorldAnchor in between the trajectory computation and it reaching the target.
+* Because the spatial anchored GameObject's pose is explicitly set by the spatial anchor each frame, it can't be set by simulation (e.g. momentum).
+* Because the spatial anchor is frequently updating its GameObject's pose, it will not appear to be at rest relative to other still RigidBodies.
+* Because of implicit shifts of Unity's coordinate system as spatial anchors adjust the coordinates of static Holograms to keep them fixed relative to the real world, physics computations such as routes and trajectories will be off. For example, a projectile perfectly aimed at a Hologram will still miss if the Hologram is repositioned by its spatial anchor in between the trajectory computation and it reaching the target.
 
-When the relationships between measured spatial anchors and the visible virtual objects locked to them becomes inconsistent, then rather than adjusting the virtual objects as Unity's WorldAnchors do, World Locking Tools adjusts the head transform to minimize perceived artifacts from those inconsistencies. This allows the virtual objects to appear consistent in a stable coordinate space, eliminating the above issues.
+When the relationships between measured spatial anchors and the visible virtual objects locked to them becomes inconsistent, then rather than adjusting the virtual objects as Unity's spatial anchors do, World Locking Tools adjusts the head transform to minimize perceived artifacts from those inconsistencies. This allows the virtual objects to appear consistent in a stable coordinate space, eliminating the above issues.
 
 ## Building the sample
 

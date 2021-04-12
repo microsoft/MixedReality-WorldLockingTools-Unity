@@ -101,7 +101,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             {
                 spacePins[i].Reset();
             }
-            // Could optionally also reset all existing WorldAnchors for a true reset.
+            // Could optionally also reset all existing anchors for a true reset.
             // If wanted, uncomment this line.
             WorldLockingManager.GetInstance().Reset();
 

@@ -2,7 +2,7 @@
 
 ## Slimmest possible setup
 
-The [tutorial here](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html) steps through the minimal setup to get up and running with everything in your application world-locked, without any further action (e.g. WorldAnchors) required. Note that it is in the [Samples repo](https://github.com/microsoft/MixedReality-WorldLockingTools-Samples) sibling to this repo.
+The [tutorial here](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html) steps through the minimal setup to get up and running with everything in your application world-locked, without any further action (e.g. spatial anchors) required. Note that it is in the [Samples repo](https://github.com/microsoft/MixedReality-WorldLockingTools-Samples) sibling to this repo.
 
 ## Quick start guide
 
@@ -173,6 +173,11 @@ Note that since some of the World Locking Tools Examples use features from MRTK,
 
 ## Adding World Locking Tools to a Unity scene
 
+> [!NOTE]
+>
+> The steps listed below are all automated in the WLT Configure scene utility, which can be found in the menu Mixed Reality Toolkit > Utilities > World Locking Tools.
+> ![](~/DocGen/Images/Screens/ConfigureScene.jpg)
+
 Within a Unity project containing the FrozenWorld engine (from nuget.org), import any desired World Locking Tools Assets layers (but at least WorldLocking.Core), and optionally MRTK. Then create a new scene (or open an existing scene).
 
 > [!NOTE]
@@ -216,13 +221,13 @@ Drag in the WorldLocking.Examples/Prefabs/Dashboard prefab, and point its Anchor
 
 ## Migrating an existing scene to World Locking Tools
 
-The biggest change when moving to World Locking Tools is that there is no longer a requirement for using WorldAnchors to world-lock virtual objects.
+The biggest change when moving to World Locking Tools is that there is no longer a requirement for using spatial anchors to world-lock virtual objects.
 
-WorldAnchors have traditionally been the only tool available to world-lock individual objects. But when using World Locking Tools, the coordinate space those virtual objects exist in is already world-locked. No further locking is needed.
+Spatial anchors have traditionally been the only tool available to world-lock individual objects. But when using World Locking Tools, the coordinate space those virtual objects exist in is already world-locked. No further locking is needed.
 
-Not only are WorldAnchors unnecessary, they won't work correctly, as they fail to take into account additional transforms up the camera hierarchy (such as the MRTK Playspace transform).
+Not only are spatial anchors unnecessary, they won't work correctly, as they fail to take into account additional transforms up the camera hierarchy (such as the MRTK Playspace transform).
 
-Therefore, any and all WorldAnchors should be removed from the scene, and any scripts adding WorldAnchors should discontinue doing so. The WorldAnchors don't need to be replaced by anything; World Locking Tools will anchor their targets to the real world.
+Therefore, any and all spatial anchors should be removed from the scene, and any scripts adding spatial anchors should discontinue doing so. The spatial anchors don't need to be replaced by anything; World Locking Tools will anchor their targets to the real world.
 
 If it is desirable to compare world-locking with and without World Locking Tools, then instead of removing WorldAnchors, they may be replaced with the [ToggleWorldAnchor](xref:Microsoft.MixedReality.WorldLocking.Tools.ToggleWorldAnchor) supplied in WorldLocking.Tools. 
 

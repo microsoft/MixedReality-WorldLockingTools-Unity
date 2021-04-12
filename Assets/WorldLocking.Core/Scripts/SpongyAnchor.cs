@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
     /// <summary>
-    /// Wrapper class for Unity WorldAnchor, facilitating creation and persistence.
+    /// Wrapper class for Unity spatial anchors, facilitating creation and persistence.
     /// </summary>
     public abstract class SpongyAnchor : MonoBehaviour
     {

@@ -61,7 +61,7 @@ As with the Save, the Load is performed asynchronously. Any subsequent calls to 
 
 The data required to reconstruct the World Locking Tools mapping, that is the alignment of the virtual world to the real world, can be broken into three groups.
 
-* **WorldAnchors** - The underlying network of WorldAnchors created and maintained internally by World Locking Tools' [Anchor Manager](xref:Microsoft.MixedReality.WorldLocking.Core.IAnchorManager), supply the requisite binding to the real world. Those anchors are persisted via Unity's WorldAnchorStore.
+* **Spatial Anchors** - The underlying network of spatial anchors created and maintained internally by World Locking Tools' [Anchor Manager](xref:Microsoft.MixedReality.WorldLocking.Core.IAnchorManager), supply the requisite binding to the real world. Those anchors are persisted via the platforms underlying storage mechanism. 
 
 * **Engine State** - Additional state is persisted in to allow the engine to resume its current mapping. This removes such indeterminacies as the initial pose of the head in the previous session(s).
 
