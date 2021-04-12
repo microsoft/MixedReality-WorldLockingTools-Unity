@@ -4,7 +4,6 @@
         "Microsoft.MixedReality.WorldLocking.Core",
         "Microsoft.MixedReality.WorldLocking.Tools"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [
         "Editor"
     ],
@@ -13,5 +12,13 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": []
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.xr.arsubsystems",
+            "expression": "",
+            "define": "WLT_ARSUBSYSTEMS_PRESENT"
+        }
+    ],
+    "noEngineReferences": false
 }
