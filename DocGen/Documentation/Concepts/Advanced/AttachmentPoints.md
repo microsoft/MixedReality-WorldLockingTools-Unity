@@ -8,7 +8,7 @@ But while world locked space will remain optimally aligned with physical space, 
 
 For a trivial but illuminating example, suppose that the sensor maps one anchor to the position (3,0,0) and another to the position (-3,0,0). Later, as sensor refinements are processed, it is established that the two coordinates should have been (3,0,0) and (-2,0,0). There is clearly no rotation and offset that can be applied to the camera which will transform a 6 meter distance between the two anchors into a 5 meter offset.
 
-Using Unity's WorldAnchor system, the two anchors would just silently move into their newly scanned positions.
+Using Unity's spatial anchor system, the two anchors would just silently move into their newly scanned positions.
 
 But World Locking Tools guarantees that in world locked space, non-moving objects will "mostly" never move. And in fact, any motion is up to the owning application.
 

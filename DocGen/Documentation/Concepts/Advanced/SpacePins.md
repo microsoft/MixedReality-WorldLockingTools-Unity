@@ -4,15 +4,15 @@
 
 ### The scale error
 
-While the traditional WorldAnchor approach to aligning Holograms with real world features works great on a small scale, it struggles as the scale grows to encompass more than a meter or so.
+While the traditional spatial anchor approach to aligning Holograms with real world features works great on a small scale, it struggles as the scale grows to encompass more than a meter or so.
 
-Scale error in head tracking space means that even if a WorldAnchor keeps one end of a virtual object, sized only a few meters long, perfectly aligned with a real world feature, the other end is likely to be misaligned with a corresponding real world feature. This is because the distance traveled through head tracked space tends to differ from the distance traveled through physical space with an error bound of +-10%. The actual error is often less (it depends on a number of environment and device characteristics), but will generally be significant, and grow without bounds as the scale of the project grows.
+Scale error in head tracking space means that even if a spatial anchor keeps one end of a virtual object, sized only a few meters long, perfectly aligned with a real world feature, the other end is likely to be misaligned with a corresponding real world feature. This is because the distance traveled through head tracked space tends to differ from the distance traveled through physical space with an error bound of +-10%. The actual error is often less (it depends on a number of environment and device characteristics), but will generally be significant, and grow without bounds as the scale of the project grows.
 
 Put another way, if a user wearing a HoloLens walks ten meters in the real world, the distance travelled in virtual space, as reported by the head tracker, will be between 9 and 11 meters. If the user walks 50 meters, the error grows to +-5 meters. The farther the user walks, the greater the error grows.
 
 Thus, a 10 meter beam (in modeling space) with one end point perfectly aligned to the zero end of a tape measure in real space will have the other end registered to the tape measure at somewhere between 9 and 11 meters.
 
-For the same reasons, multiple objects, each world locked using WorldAnchors, will be different distances apart in virtual space than in real space.
+For the same reasons, multiple objects, each world locked using spatial anchors, will be different distances apart in virtual space than in real space.
 
 ### The arbitrary coordinate system
 
@@ -44,7 +44,7 @@ That constraint is that when "near" a Space Pin, the pose of that Space Pin in w
 
 Consider a cube in a Unity scene modeled at global coordinates of (0, 0, 1). When the scene is loaded into HoloLens, the cube will appear 1 meter in front of the initial head pose. Depending on the initial head pose, that might be anywhere in the physical room.
 
-The Space Pin allows that cube to be locked to a real world feature in the room, e.g. the corner of a specific desk. Unlike locking the cube with a WorldAnchor, the Space Pin moves the entirety of Unity space such that the cube is aligned with the desk corner. So, for example, other desktop items modeled relative to the cube in Unity will be dispersed properly across the real desktop.
+The Space Pin allows that cube to be locked to a real world feature in the room, e.g. the corner of a specific desk. Unlike locking the cube with a spatial anchor, the Space Pin moves the entirety of Unity space such that the cube is aligned with the desk corner. So, for example, other desktop items modeled relative to the cube in Unity will be dispersed properly across the real desktop.
 
 ### Addressing the scale error
 
