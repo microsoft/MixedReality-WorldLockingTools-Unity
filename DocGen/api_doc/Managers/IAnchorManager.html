@@ -8,7 +8,7 @@
     <title>IAnchorManager | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="IAnchorManager | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.57.0.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -84,7 +84,7 @@
 
 <p>The Frozen World engine relies on a network of spatial anchors surrounding the user, from which to calculate the ideal world locked space.</p>
 <p>The IAnchorManager maintains that network, and supplies it to the engine for processing each frame.</p>
-<p>The current implementation of IAnchorManager is in Assets/WorldLocking.Core/Scripts/AnchorManager.cs. AnchorManager is built on Unity's WorldAnchor spatial anchors. The Frozen World engine itself is agnostic to the type of anchors used.</p>
+<p>There are currently a number of implementations of IAnchorManager, all of which derive from the base class AnchorManager in Assets/WorldLocking.Core/Scripts/AnchorManager.cs. AnchorManager manipulates abstract SpongyAnchors, performing common anchor graph maintenance operations. Specializations interact with platform specific APIs. For example, class AnchorManagerXR manages SpongyAnchors built atop XRAnchors. The Frozen World engine itself is agnostic to the type of anchors used.</p>
 <p>As the user moves around the environment, AnchorManager grows the graph of anchors according to the following simple but effective algorithm:</p>
 <ul>
 <li>If the nearest existing anchor is more than X meters from the user then:

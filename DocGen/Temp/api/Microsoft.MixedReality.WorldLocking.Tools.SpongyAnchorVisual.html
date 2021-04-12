@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class SpongyAnchorVisual
    | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.57.0.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -101,18 +101,12 @@
     <pre><code class="lang-csharp hljs">public class SpongyAnchorVisual : MonoBehaviour</code></pre>
   </div>
   <h5 id="Microsoft_MixedReality_WorldLocking_Tools_SpongyAnchorVisual_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>Each spongy anchor is paired with a WorldAnchor component connected to a different GameObject.
-The WorldAnchor component has its globalPose controlled by Unity, which may not appear correct when
-the camera position is adjusted by FrozenWorld.
-Therefore this component allows connecting a separate visualization GameObject located in the camera's frame
-of reference while the WorldAnchor remains invisible in the top-level Unity frame of reference, keeping the
-localPose of both objects in sync.</p>
-<p>Spongy anchors are visualized by a concentric pair of an outer ring and an inner disc
-The outer ring of fixed size indicates the state of the WorldAnchor by its color:</p>
+  <div class="markdown level0 remarks"><p>Spongy anchors are visualized by a concentric pair of an outer ring and an inner disc
+The outer ring of fixed size indicates the state of the spatial anchor by its color:</p>
 <p>green: support(area of inner circle indicating relevance)
 red: support with zero relevance
 yellow: not a support
-gray: WorldAnchor not located(i.e.currently not part of spongy world)</p>
+gray: anchor not located(i.e.currently not part of spongy world)</p>
 <p>The inner disc indicates the relevance of the spongy anchor (0..100%) by its area.</p>
 </div>
   <h3 id="methods">Methods

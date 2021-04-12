@@ -8,7 +8,7 @@
     <title>Frequently asked questions | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Frequently asked questions | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.57.0.0">
     
     <link rel="shortcut icon" href="../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -101,13 +101,13 @@
 <p>Now the tracker system knows where these features and the head are relative to each other, but it doesn't know in absolute terms what the coordinates are for either head or features. As the physical world has no absolute coordinate system, there is no right answer. So the tracking system assigns coordinates that are consistent with recent history, but may be inconsistent over all history. That is, on returning to the exact same pose, the head may now have different coordinates than when it left. This is a form of sensor drift.</p>
 <p>But if the new head virtual pose coordinates have shifted toward positive X, for example, then all hologram objects that are stationary in that virtual coordinate system are now shifted toward negative X relative to the head. That means that to the observer wearing the head tracker, they will be shifted relative to the real world as compared with their placement previous to the walk.</p>
 <h2 id="can-unity-handle-this">Can Unity handle this?</h2>
-<p>Yes, with limitations. Unity provides an excellent mechanism for dealing with this, known as WorldAnchors. If the virtual space has shifted relative to physical space, by keeping track of underlying visible features, a WorldAnchor knows to shift itself in virtual space to remain locked in physical space. Anything attached to the WorldAnchor will likewise be dragged through Unity's virtual space to remain stationary in physical space.</p>
+<p>Yes, with limitations. Unity provides an excellent mechanism for dealing with this, known as spatial anchors. If the virtual space has shifted relative to physical space, by keeping track of underlying visible features, a spatial anchor knows to shift itself in virtual space to remain locked in physical space. Anything attached to the spatial anchor will likewise be dragged through Unity's virtual space to remain stationary in physical space.</p>
 <p>The limitations are related to the fact that visible features become unreliable when they are far from the head tracker's cameras. This is not surprising. Visible features that aren't visible make poor reference points.</p>
-<p>A WorldAnchor's useful range is therefore limited to 3 meters. Depending on the accuracy requirements of the application, the usable range might be less.</p>
+<p>A spatial anchor's useful range is therefore limited to 3 meters. Depending on the accuracy requirements of the application, the usable range might be less.</p>
 <h2 id="that-seems-pretty-good-whats-the-problem">That seems pretty good, what's the problem?</h2>
-<p>It's beyond good, it's simply amazing. But there are situations, important situations, where WorldAnchors do not provide a satisfactory solution.</p>
-<p>First, each WorldAnchor moves through Unity's virtual coordinate space independently attempting to remain stationary in the physical world. This means that objects anchored independently will move relative to each other as they try to remain in their physical positions. For an application trying to maintain a precise layout, this can be a large problem.</p>
-<p>Second, with its limited range, a single WorldAnchor will not provide good results for single objects which are larger than the usable range of that WorldAnchor. While the points on the object near the WorldAnchor will remain well world-locked, because of the lever arm effect, points farther and farther from the WorldAnchor will suffer ever increasing errors. This leaves an object, or a collection of objects, larger than a meter or so without a robust world-locking solution.</p>
+<p>It's beyond good, it's simply amazing. But there are situations, important situations, where spatial anchors do not provide a satisfactory solution.</p>
+<p>First, each spatial anchor moves through Unity's virtual coordinate space independently attempting to remain stationary in the physical world. This means that objects anchored independently will move relative to each other as they try to remain in their physical positions. For an application trying to maintain a precise layout, this can be a large problem.</p>
+<p>Second, with its limited range, a single spatial anchor will not provide good results for single objects which are larger than the usable range of that spatial anchor. While the points on the object near the spatial anchor will remain well world-locked, because of the lever arm effect, points farther and farther from the spatial anchor will suffer ever increasing errors. This leaves an object, or a collection of objects, larger than a meter or so without a robust world-locking solution.</p>
 <h2 id="what-else-can-go-wrong">What else can go wrong?</h2>
 <p>On returning to a previously occupied pose, World Locking Tools has enough information to restore the virtual coordinate system back where it was relative to the physical world. This keeps holograms that are stationary in the virtual world also stationary in the physical world.</p>
 <p>But drift may occur on a one way trip, as well as a round trip.</p>

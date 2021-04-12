@@ -8,7 +8,7 @@
     <title>Initial setup of World Locking Tools | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Initial setup of World Locking Tools | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.57.0.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -83,7 +83,7 @@
 <h1 id="initial-setup-of-world-locking-tools">Initial setup of World Locking Tools</h1>
 
 <h2 id="slimmest-possible-setup">Slimmest possible setup</h2>
-<p>The <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html">tutorial here</a> steps through the minimal setup to get up and running with everything in your application world-locked, without any further action (e.g. WorldAnchors) required. Note that it is in the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Samples">Samples repo</a> sibling to this repo.</p>
+<p>The <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html">tutorial here</a> steps through the minimal setup to get up and running with everything in your application world-locked, without any further action (e.g. spatial anchors) required. Note that it is in the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Samples">Samples repo</a> sibling to this repo.</p>
 <h2 id="quick-start-guide">Quick start guide</h2>
 <p>A less conceptually detailed and more pragmatic approach to integrating WLT into a project can be found here. Where appropriate, it references back into these more thorough pages. While it's really a matter of personal preference which approach is more appropriate, a quick read of the <a href="UsingWLT/BeforeGettingStarted.html">Before getting started</a> page can be a time saver on where to devote energies in this documentation.</p>
 <h2 id="supported-environments">Supported environments</h2>
@@ -186,6 +186,11 @@
 <p>To determine what other layers might be required, see the discussion of World Locking Tools layers and their dependencies above. Each layer is contained in a single Unity package.</p>
 <p>Note that since some of the World Locking Tools Examples use features from MRTK, a compatible MRTK snapshot is included with the Examples unitypackage. For the latest MRTK release, look <a href="https://github.com/Microsoft/MixedRealityToolkit-Unity/releases">here</a>.</p>
 <h2 id="adding-world-locking-tools-to-a-unity-scene">Adding World Locking Tools to a Unity scene</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The steps listed below are all automated in the WLT Configure scene utility, which can be found in the menu Mixed Reality Toolkit &gt; Utilities &gt; World Locking Tools.
+<img src="../../Images/Screens/ConfigureScene.jpg" alt=""></p>
+</div>
 <p>Within a Unity project containing the FrozenWorld engine (from nuget.org), import any desired World Locking Tools Assets layers (but at least WorldLocking.Core), and optionally MRTK. Then create a new scene (or open an existing scene).</p>
 <div class="NOTE">
 <h5>Note</h5>
@@ -213,10 +218,10 @@
 <p>A simple HUD is available, which may be used to control the WorldLockingManager at runtime from inside MR. These are supplied in the Examples package. While they may be used as is, they are intended as patterns when building similar features into an applications own display system and UX.</p>
 <p>Drag in the WorldLocking.Examples/Prefabs/Dashboard prefab, and point its Anchor Visualizer field to the Visualizer in the previous section.</p>
 <h2 id="migrating-an-existing-scene-to-world-locking-tools">Migrating an existing scene to World Locking Tools</h2>
-<p>The biggest change when moving to World Locking Tools is that there is no longer a requirement for using WorldAnchors to world-lock virtual objects.</p>
-<p>WorldAnchors have traditionally been the only tool available to world-lock individual objects. But when using World Locking Tools, the coordinate space those virtual objects exist in is already world-locked. No further locking is needed.</p>
-<p>Not only are WorldAnchors unnecessary, they won't work correctly, as they fail to take into account additional transforms up the camera hierarchy (such as the MRTK Playspace transform).</p>
-<p>Therefore, any and all WorldAnchors should be removed from the scene, and any scripts adding WorldAnchors should discontinue doing so. The WorldAnchors don't need to be replaced by anything; World Locking Tools will anchor their targets to the real world.</p>
+<p>The biggest change when moving to World Locking Tools is that there is no longer a requirement for using spatial anchors to world-lock virtual objects.</p>
+<p>Spatial anchors have traditionally been the only tool available to world-lock individual objects. But when using World Locking Tools, the coordinate space those virtual objects exist in is already world-locked. No further locking is needed.</p>
+<p>Not only are spatial anchors unnecessary, they won't work correctly, as they fail to take into account additional transforms up the camera hierarchy (such as the MRTK Playspace transform).</p>
+<p>Therefore, any and all spatial anchors should be removed from the scene, and any scripts adding spatial anchors should discontinue doing so. The spatial anchors don't need to be replaced by anything; World Locking Tools will anchor their targets to the real world.</p>
 <p>If it is desirable to compare world-locking with and without World Locking Tools, then instead of removing WorldAnchors, they may be replaced with the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.ToggleWorldAnchor.html">ToggleWorldAnchor</a> supplied in WorldLocking.Tools.</p>
 <p>ToggleWorldAnchor works exactly the same as a WorldAnchor, with the important difference that when the World Locking Tools Manager is active, it conveniently disables itself and gets out of the way. When the World Locking Tools Manager is disabled, it behaves as a normal WorldAnchor.</p>
 <p>If for some other reason WorldAnchors are still required in the scene (e.g. for network sharing), their can be used with an adapter, supplied as <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.WorldAnchorAdapter.html">WorldAnchorAdapter</a>.</p>

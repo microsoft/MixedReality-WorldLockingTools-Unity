@@ -6584,3 +6584,9 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Tools.WorldAnchorAdapter.WorldAnchorObject
   nameWithType: WorldAnchorAdapter.WorldAnchorObject
+- uid: Microsoft.MixedReality.WorldLocking.Tools.WorldLockingSetup
+  name: WorldLockingSetup
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.WorldLockingSetup.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Tools.WorldLockingSetup
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.WorldLockingSetup
+  nameWithType: WorldLockingSetup

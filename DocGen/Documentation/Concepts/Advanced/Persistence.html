@@ -8,7 +8,7 @@
     <title>Persistence | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Persistence | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.57.0.0">
     
     <link rel="shortcut icon" href="../../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
@@ -114,7 +114,7 @@ WorldLockingManager.GetInstance().Settings = settings;
 <h2 id="what-is-saved">What is saved?</h2>
 <p>The data required to reconstruct the World Locking Tools mapping, that is the alignment of the virtual world to the real world, can be broken into three groups.</p>
 <ul>
-<li><p><strong>WorldAnchors</strong> - The underlying network of WorldAnchors created and maintained internally by World Locking Tools' <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html">Anchor Manager</a>, supply the requisite binding to the real world. Those anchors are persisted via Unity's WorldAnchorStore.</p>
+<li><p><strong>Spatial Anchors</strong> - The underlying network of spatial anchors created and maintained internally by World Locking Tools' <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html">Anchor Manager</a>, supply the requisite binding to the real world. Those anchors are persisted via the platforms underlying storage mechanism.</p>
 </li>
 <li><p><strong>Engine State</strong> - Additional state is persisted in to allow the engine to resume its current mapping. This removes such indeterminacies as the initial pose of the head in the previous session(s).</p>
 </li>

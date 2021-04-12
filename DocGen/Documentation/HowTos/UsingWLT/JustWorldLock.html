@@ -8,7 +8,7 @@
     <title>Just world-lock everything | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Just world-lock everything | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.57.0.0">
     
     <link rel="shortcut icon" href="../../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
@@ -91,6 +91,12 @@
 <p>Do you want to save where a hologram is in the physical world and have it appear there the next time you run your application? Just save its global pose, and restore it next run.</p>
 <p>In addition to the simplicity provided, there are a <a href="../../Concepts/BasicConcepts.html#world-locked-space">number of advantages to using WLT</a> rather than anchors for world-locking your scene.</p>
 <h2 id="how-to-set-it-up">How to set it up</h2>
+<h3 id="automated-setup">Automated setup</h3>
+<p>For the most automated setup experience, <a href="../WLTviaMRFeatureTool.html">install the latest WLT Core from the MR Feature Tool</a>, then run the WLT Configure scene utility from the Mixed Reality Toolkit Utilities menu.</p>
+<p><img src="../../../Images/Screens/ConfigureScene.jpg" alt=""></p>
+<p>The Configure scene utility can be rerun at any time. For example, it should be rerun if the AR target has been changed from Legacy to XR SDK. If the scene is already properly configured, running the utility has no effect.</p>
+<p>During early development, adding the visualizers can be helpful to ensure WLT is setup and working properly. They can be removed for production performance, or if for any reason are no longer needed, using the Remove visualizers utility. More details on the visualizers can be found in the <a href="../Tools.html#visualizers">Tools documentation</a>.</p>
+<h3 id="manual-setup">Manual setup</h3>
 <p>Setup for gaining the advantages of baseline WLT behavior is very simple, and can be broken into four (4) steps. The first two steps can be skipped if <a href="../WLTviaMRFeatureTool.html">installing from the MR Feature Tool</a>.</p>
 <ol>
 <li>Import the <a href="../InitialSetup.html#frozenworld-engine-installation">Frozen World Engine NuGet package</a> into your project.</li>
