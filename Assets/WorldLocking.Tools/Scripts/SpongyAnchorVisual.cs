@@ -12,27 +12,20 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
     /// Component for controlling location, visual appearance and ID text of a spongy anchor visualization.
     /// </summary>
     /// <remarks>
-    /// Each spongy anchor is paired with a WorldAnchor component connected to a different GameObject.
-    /// The WorldAnchor component has its globalPose controlled by Unity, which may not appear correct when
-    /// the camera position is adjusted by FrozenWorld.
-    /// Therefore this component allows connecting a separate visualization GameObject located in the camera's frame
-    /// of reference while the WorldAnchor remains invisible in the top-level Unity frame of reference, keeping the
-    /// localPose of both objects in sync.
-    /// 
     /// Spongy anchors are visualized by a concentric pair of an outer ring and an inner disc
-    /// The outer ring of fixed size indicates the state of the WorldAnchor by its color:
+    /// The outer ring of fixed size indicates the state of the spatial anchor by its color:
     /// 
     /// green: support(area of inner circle indicating relevance)
     /// red: support with zero relevance
     /// yellow: not a support 
-    /// gray: WorldAnchor not located(i.e.currently not part of spongy world)
+    /// gray: anchor not located(i.e.currently not part of spongy world)
     /// 
     /// The inner disc indicates the relevance of the spongy anchor (0..100%) by its area.
     /// </remarks>
     public class SpongyAnchorVisual : MonoBehaviour
     {
         /// <summary>
-        /// The WorldAnchor on a separate GameObject for syncing this GameObject's localPose")]
+        /// The SpongyAnchor on a separate GameObject for syncing this GameObject's localPose")]
         /// </summary>
         private SpongyAnchor spongyAnchor = null;
 
@@ -73,9 +66,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         {
             var color = this.color;
 
-            // Unity's implementation of WorldAnchor adjusts its global transform to track the
+            // Unity's implementation of spatial anchor adjusts its global transform to track the
             // SpatialAnchor coordinate system. Here we want to keep the local transform of the visualization
-            // towards its parent to track the SpatialAnchor, so we copy the global pose of the worldanchor to the
+            // towards its parent to track the SpatialAnchor, so we copy the global pose of the anchor to the
             // local pose of the visualization object.
             // This is because the visualizations tree is rooted at the SpongyFrame, which also contains the camera (and MRTK Playspace).
             // The SpongyFrame is adjusted by FrozeWorld every frame. This means that giving a transform M relative to the SpongyFrame,
