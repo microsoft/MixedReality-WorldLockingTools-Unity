@@ -8,7 +8,8 @@
           "src": "Assets"
         }
       ],
-      "dest": "DocGen/Temp/obj/api"
+      "dest": "DocGen/Temp/obj/api",
+      "force" : true
     }
   ],
   "build": {
