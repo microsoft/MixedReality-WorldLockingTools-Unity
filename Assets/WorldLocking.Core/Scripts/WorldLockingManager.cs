@@ -403,6 +403,20 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 AnchorManager.Reset();
             }
             var anchorSettings = shared.anchorSettings;
+#if WLT_ARFOUNDATION_PRESENT
+            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.ARFoundation)
+            {
+                Debug.Log($"Trying to create ARF anchor manager on {anchorSettings.ARSessionSource.name} and {anchorSettings.ARSessionOriginSource.name}");
+                AnchorManagerARF arfAnchorManager = AnchorManagerARF.TryCreate(plugin, headTracker,
+                    anchorSettings.ARSessionSource, anchorSettings.ARSessionOriginSource);
+                if (arfAnchorManager != null)
+                {
+                    Debug.Log("Success creating ARF anchor manager");
+                    return arfAnchorManager;
+                }
+                Debug.Log("Failed to create requested AR Foundation anchor manager!");
+            }
+#endif // WLT_ARFOUNDATION_PRESENT
 #if WLT_ARSUBSYSTEMS_PRESENT
             if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.XRSDK)
             {
