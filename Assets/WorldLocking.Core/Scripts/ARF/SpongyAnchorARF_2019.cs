@@ -29,6 +29,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             get
             {
 #if WLT_ARFOUNDATION_PRESENT
+#if WLT_EXTRA_LOGGING
                 // mafinc - Rather than returning true if trackingState == Tracking, 
                 // should this return true if trackingState != None?
                 // I.e., do we consider Limited to be "reliable"?
@@ -43,6 +44,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                         Debug.Log($"Anchor {name} state is {(arReferencePoint == null ? "null" : arReferencePoint.trackingState.ToString())}");
                     }
                 }
+#endif // WLT_EXTRA_LOGGING
 #if false
                 return (arReferencePoint != null)
                     && !(arReferencePoint.pending)
@@ -65,10 +67,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             get
             {
+#if WLT_EXTRA_LOGGING
                 if (IsReliablyLocated && !(Time.unscaledTime > lastNotLocatedTime + TrackingStartDelayTime))
                 {
                     Debug.Log($"Anchor {name} located but waiting TrackingStartDelayTime {Time.unscaledTime} > {lastNotLocatedTime} + {TrackingStartDelayTime}");
                 }
+#endif // WLT_EXTRA_LOGGING
                 return IsReliablyLocated && Time.unscaledTime > lastNotLocatedTime + TrackingStartDelayTime;
             }
         }
@@ -133,10 +137,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// Set lastNotLocatedTime if not located
             if (!IsReliablyLocated)
             {
+#if WLT_EXTRA_LOGGING
                 Debug.Log($"LastNotLocated {name} is {Time.unscaledTime}");
+#endif // WLT_EXTRA_LOGGING
                 lastNotLocatedTime = Time.unscaledTime;
             }
+#if WLT_EXTRA_LOGGING
             Debug.Log($"{name} - {transform.GetGlobalPose().position} - {SpongyPose.position}");
+#endif // WLT_EXTRA_LOGGING
         }
 
     }

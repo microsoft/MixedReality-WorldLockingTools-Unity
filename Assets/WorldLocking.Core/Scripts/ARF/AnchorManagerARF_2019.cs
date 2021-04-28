@@ -114,10 +114,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected override SpongyAnchor CreateAnchor(AnchorId id, Transform parent, Pose initialPose)
         {
+#if WLT_EXTRA_LOGGING
             Debug.Log($"Creating anchor {id.FormatStr()}");
-            var referencePoint = arReferencePointManager.AddReferencePoint(initialPose);
-            referencePoint.gameObject.name = id.FormatStr();
-            SpongyAnchorARF newAnchor =  referencePoint.gameObject.AddComponent<SpongyAnchorARF>();
+#endif // WLT_EXTRA_LOGGING
+            var arAnchor = arAnchorManager.AddAnchor(initialPose);
+            arAnchor.gameObject.name = id.FormatStr();
+            SpongyAnchorARF newAnchor =  arAnchor.gameObject.AddComponent<SpongyAnchorARF>();
             return newAnchor;
         }
 
