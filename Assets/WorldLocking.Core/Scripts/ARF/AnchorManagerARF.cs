@@ -41,7 +41,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private readonly ARSession arSession;
         private readonly ARSessionOrigin arSessionOrigin;
 
-        private readonly ARReferencePointManager arReferencePointManager;
+        private readonly ARAnchorManager arAnchorManager;
 
         protected override float TrackingStartDelayTime { get { return SpongyAnchorARF.TrackingStartDelayTime; } }
 
@@ -96,11 +96,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             this.arSession = arSession;
             this.arSessionOrigin = arSessionOrigin;
 
-            this.arReferencePointManager = arSessionOrigin.gameObject.GetComponent<ARReferencePointManager>();
-            if (this.arReferencePointManager == null)
+            this.arAnchorManager = arSessionOrigin.gameObject.GetComponent<ARAnchorManager>();
+            if (this.arAnchorManager == null)
             {
                 Debug.Log($"Adding AR reference point manager to {arSessionOrigin.name}");
-                this.arReferencePointManager = arSessionOrigin.gameObject.AddComponent<ARReferencePointManager>();
+                this.arAnchorManager = arSessionOrigin.gameObject.AddComponent<ARAnchorManager>();
             }
             Debug.Log($"ARF: Created AnchorManager ARF");
         }
@@ -114,10 +114,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected override SpongyAnchor CreateAnchor(AnchorId id, Transform parent, Pose initialPose)
         {
+#if WLT_EXTRA_LOGGING
             Debug.Log($"Creating anchor {id.FormatStr()}");
-            var referencePoint = arReferencePointManager.AddReferencePoint(initialPose);
-            referencePoint.gameObject.name = id.FormatStr();
-            SpongyAnchorARF newAnchor =  referencePoint.gameObject.AddComponent<SpongyAnchorARF>();
+#endif // WLT_EXTRA_LOGGING
+            var arAnchor = arAnchorManager.AddAnchor(initialPose);
+            arAnchor.gameObject.name = id.FormatStr();
+            SpongyAnchorARF newAnchor =  arAnchor.gameObject.AddComponent<SpongyAnchorARF>();
             return newAnchor;
         }
 
@@ -125,7 +127,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (spongyAnchor is SpongyAnchorARF spongyARF)
             {
-                spongyARF.Cleanup(arReferencePointManager);
+                spongyARF.Cleanup(arAnchorManager);
             }
             RemoveSpongyAnchorById(id);
 
