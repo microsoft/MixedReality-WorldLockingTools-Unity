@@ -117,10 +117,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 #if WLT_EXTRA_LOGGING
             Debug.Log($"Creating anchor {id.FormatStr()}");
 #endif // WLT_EXTRA_LOGGING
-            var arAnchor = arAnchorManager.AddAnchor(initialPose);
+            var arAnchor = arReferencePointManager.AddReferencePoint(initialPose);
             if (arAnchor == null)
             {
-                Debug.Log($"ARAnchorManager failed to create ARAnchor {id}");
+                Debug.Log($"ARReferencePoinManager failed to create ARAnchor {id}");
                 return null;                
             }
             arAnchor.gameObject.name = id.FormatStr();
