@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 
 #if WLT_ARFOUNDATION_PRESENT
 using UnityEngine.XR.ARFoundation;
@@ -204,6 +205,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             CheckAnchorManagement(worldLockingContext);
 
             Selection.activeObject = worldLockingContext.gameObject;
+
+            EditorUtility.SetDirty(worldLockingContext);
+            EditorSceneManager.MarkAllScenesDirty();
         }
 
         /// <summary>
