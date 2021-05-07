@@ -38,6 +38,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <inheritdoc/>
         public override bool SupportsPersistence { get { return false; } }
 
+        /// <inheritdoc/>
+        public override Pose AnchorFromSpongy 
+        { 
+            get 
+            { 
+                return arSessionOrigin.transform.GetGlobalPose(); 
+            } 
+        }
+
         private readonly ARSession arSession;
         private readonly ARSessionOrigin arSessionOrigin;
 
@@ -117,6 +126,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 #if WLT_EXTRA_LOGGING
             Debug.Log($"Creating anchor {id.FormatStr()}");
 #endif // WLT_EXTRA_LOGGING
+            initialPose = AnchorFromSpongy.Multiply(initialPose);
             var arAnchor = arAnchorManager.AddAnchor(initialPose);
             if (arAnchor == null)
             {

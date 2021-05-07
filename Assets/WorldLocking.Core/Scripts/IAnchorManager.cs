@@ -58,6 +58,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         int MaxLocalAnchors { get; set; }
 
         /// <summary>
+        /// Get the transform from spongy space to the space anchors are located in.
+        /// </summary>
+        /// <remarks>
+        /// This varies according to the design of the underlying platform anchor subsystem.
+        /// It may also vary over time (so don't cache this).
+        /// </remarks>
+        UnityEngine.Pose AnchorFromSpongy { get; }
+
+        /// <summary>
         /// Delete all spongy anchor objects and reset internal state
         /// </summary>
         void Reset();
