@@ -170,6 +170,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             CheckAnchorManagement(worldLockingContext);
 
             Selection.activeObject = worldLockingContext.gameObject;
+
+            EditorUtility.SetDirty(worldLockingContext);
+            EditorSceneManager.MarkAllScenesDirty();
         }
 
         /// <summary>
