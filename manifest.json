@@ -969,7 +969,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html",
-          "hash": "HTtdeb/Z6974C5FdLal6jzqzH0lYbbEtKSR4kGv2jWI="
+          "hash": "qNtkALD6/QeWc2uPTzwFcNjODufP/sGNQBVS/g19i6g="
         }
       },
       "is_incremental": false,
@@ -981,7 +981,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerARCore.html",
-          "hash": "DCZWA7MKLvNwOZXghR6tQtUrFIpDTHn5dpXuLn9ReQY="
+          "hash": "b6nkdoVerPlQCtssFs+GNN1H60q0PEq7GRTTNth2a2M="
         }
       },
       "is_incremental": false,
@@ -993,7 +993,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerNull.html",
-          "hash": "ipY/xSKU7P9cc8/4j+HeOoTZuiRL4WRlxLeHLk6CS5o="
+          "hash": "N3LZH62+DWXxDREnCOwY0Wi8gQDt/3SzQCP0Rx8EZik="
         }
       },
       "is_incremental": false,
@@ -1005,7 +1005,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManagerWSA.html",
-          "hash": "DAWPZcrhuxE/LFyq1X8Jw7mhz79our2jeUwwy23VkuI="
+          "hash": "8pslvHDRH07J9mCMdHJa3+SNyte6cQtEb+dpRF4ZVrA="
         }
       },
       "is_incremental": false,
@@ -1017,7 +1017,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.AnchorSubsystem.html",
-          "hash": "xr6J0I7ZBf2l9RZgqnw4DCeScLLxj0NUrtbD5tIfZdA="
+          "hash": "b6D/fBy4MeWBX0s4/Mu3FII/HqytlJ62STsy9Q3200s="
         }
       },
       "is_incremental": false,
@@ -1149,7 +1149,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html",
-          "hash": "ntgVK/ZOCbKWIGV1LBDynS3S3gxhdbLlI+TDLt39fDA="
+          "hash": "Sxu58PphiLfLixag5erJFmy/y6ZRvr/FMALHSa0Jx7M="
         }
       },
       "is_incremental": false,
@@ -1473,7 +1473,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html",
-          "hash": "T87K7KgcwPd/wF7GUMtQWW748WHYR63JhlxWY4KNCO0="
+          "hash": "UIcNwhQgLd11hnu+UnKeYQZHvh7WgzG0M2eeWXfPtgw="
         }
       },
       "is_incremental": false,
@@ -1486,6 +1486,18 @@
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARCore.html",
           "hash": "oL2Ay7+o3BQHx1z8nMM8fx0J9RNqWkd6uzINx/r0ngo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "DocGen/Temp/obj/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.yml",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchorARF.html",
+          "hash": "XCAxo/hCN1WTmZbCSxc8F8i1+Nj9FZGTaLs6cTMpcaQ="
         }
       },
       "is_incremental": false,
@@ -1617,7 +1629,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.html",
-          "hash": "VosMBc8pFN/xKIAM0U7rxWQKMx0wA0VSkk4jqdML2TU="
+          "hash": "mBcno8NaCvYBC+vrZgblMWhz9uE24lFFb4ZX69sg6VM="
         }
       },
       "is_incremental": false,
@@ -2085,7 +2097,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/api_doc/toc.html",
-          "hash": "pCGzxsWYZNHYHKWMb7x4Yd/XSAnizTBYgkqT/LKMYtE="
+          "hash": "a0jyvLSWVqo4FXQ674HZQGqXsQ7/AaUO/dIqjpR2RAQ="
         }
       },
       "is_incremental": false,
@@ -2169,7 +2181,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 91,
+          "total_file_count": 92,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
