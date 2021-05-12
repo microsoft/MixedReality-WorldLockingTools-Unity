@@ -86,7 +86,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public int NumAnchors => spongyAnchors.Count;
 
+        /// <inheritdoc/>
         public int NumEdges => plugin.GetNumFrozenEdges();
+
+        /// <inheritdoc/>
+        public virtual Pose AnchorFromSpongy { get { return Pose.identity; } }
 
         private readonly IPlugin plugin;
         private readonly IHeadPoseTracker headTracker = null;

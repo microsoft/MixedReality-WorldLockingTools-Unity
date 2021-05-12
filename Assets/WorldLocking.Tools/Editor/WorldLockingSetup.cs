@@ -7,6 +7,10 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
+#if WLT_ARFOUNDATION_PRESENT
+using UnityEngine.XR.ARFoundation;
+#endif // WLT_ARFOUNDATION_PRESENT
+
 using Microsoft.MixedReality.WorldLocking.Core;
 
 namespace Microsoft.MixedReality.WorldLocking.Tools
@@ -136,18 +140,48 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             sharedSettings.linkageSettings.AdjustmentFrame = wltAdjustment;
         }
 
+        private static bool ConfiguredForARF(WorldLockingContext context)
+        {
+#if WLT_ARFOUNDATION_PRESENT
+            ARSession session = GameObject.FindObjectOfType<ARSession>();
+            ARSessionOrigin sessionOrigin = GameObject.FindObjectOfType<ARSessionOrigin>();
+
+            if (session != null && sessionOrigin == null)
+            {
+                Debug.LogError($"Found ARSession on {session.name}, but no ARSessionOrigin. Check ARFoundation configuration.");
+            }
+            if (session == null && sessionOrigin != null)
+            {
+                Debug.LogError($"Found ARSessionOrigin on {sessionOrigin.name}, but no ARSession. Check ARFoundation configuration.");
+            }
+            if (session != null && sessionOrigin != null)
+            {
+                var sharedSettings = context.SharedSettings;
+                sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.ARFoundation;
+                sharedSettings.anchorSettings.ARSessionSource = session.gameObject;
+                sharedSettings.anchorSettings.ARSessionOriginSource = sessionOrigin.gameObject;
+                return true;
+            }
+#endif // WLT_ARFOUNDATION_PRESENT
+            return false;
+        }
+
         private static void CheckAnchorManagement(WorldLockingContext context)
         {
             var sharedSettings = context.SharedSettings;
             sharedSettings.anchorSettings.UseDefaults = false;
             sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.Null;
+
+            if (!ConfiguredForARF(context))
+            {
 #if WLT_ARSUBSYSTEMS_PRESENT
-            sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.XRSDK;
+                sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.XRSDK;
 #elif UNITY_WSA && !UNITY_2020_1_OR_NEWER
-            sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.WSA;
+                sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.WSA;
 #elif WLT_ARCORE_SDK_INCLUDED
-            sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.ARCore;
+                sharedSettings.anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.ARCore;
 #endif // WLT_ARCORE_SDK_INCLUDED
+            }
             if (sharedSettings.anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.Null)
             {
                 Debug.LogError($"Unable to deduce proper anchor management system.\nTry again after installing and setting up XR provider.");
