@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eebbca41bb0b40d298ef201735d08616, type: 3}
-  m_Name: MixedRealityRegisteredServiceProvidersProfile
+  m_Name: Old MixedRealityRegisteredServiceProvidersProfile
   m_EditorClassIdentifier: 
   isCustomProfile: 1
   configurations:
