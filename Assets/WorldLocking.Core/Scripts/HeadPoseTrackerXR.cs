@@ -31,7 +31,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             // one is more correct to be used at this point. More research might be necessary.
             // 
             // The decision between low-level access via InputTracking and high-level access via Camera.main.transform should
-            // be coordinated with the decision between high-level access to WorldAnchor and low-level access to
+            // be coordinated with the decision between high-level access to anchors and low-level access to
             // Windows.Perception.Spatial.SpatialAnchor -- see comment at top of SpongyAnchor.cs
             nodeStates.Clear();
             InputTracking.GetNodeStates(nodeStates);

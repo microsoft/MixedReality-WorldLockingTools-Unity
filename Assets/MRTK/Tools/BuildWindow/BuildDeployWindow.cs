@@ -77,6 +77,8 @@ namespace Microsoft.MixedReality.Toolkit.Build.Editor
 
         private const string WINDOWS_10_KITS_PATH_REGISTRY_PATH = @"SOFTWARE\Microsoft\Windows Kits\Installed Roots";
 
+        private const string WINDOWS_10_KITS_PATH_ALTERNATE_REGISTRY_PATH = @"SOFTWARE\WOW6432Node\Microsoft\Windows Kits\Installed Roots";
+
         private const string WINDOWS_10_KITS_PATH_REGISTRY_KEY = "KitsRoot10";
 
         private const string WINDOWS_10_KITS_PATH_POSTFIX = "Lib";
@@ -138,6 +140,8 @@ namespace Microsoft.MixedReality.Toolkit.Build.Editor
         private readonly GUIContent LaunchAppLabel = new GUIContent("Launch App", "Launch listed app on either currently selected device or all devices.");
 
         private readonly GUIContent ViewPlayerLogLabel = new GUIContent("View Player Log", "Launch notepad with more recent player log for listed AppX on either currently selected device or from all devices.");
+
+        private readonly GUIContent NugetPathLabel = new GUIContent("Nuget Executable Path", "Only set this when restoring packages with nuget.exe (instead of msbuild) is desired.");
 
         #endregion Labels
 
@@ -271,7 +275,7 @@ namespace Microsoft.MixedReality.Toolkit.Build.Editor
 
         #region Methods
 
-        [MenuItem("Mixed Reality Toolkit/Utilities/Build Window", false, 0)]
+        [MenuItem("Mixed Reality/Toolkit/Utilities/Build Window", false, 0)]
         public static void OpenWindow()
         {
             // Dock it next to the Scene View.
@@ -563,6 +567,22 @@ namespace Microsoft.MixedReality.Toolkit.Build.Editor
                     // since there's a null texture issue when Unity reloads the assets during a build
                     MixedRealityBuildPreferences.DrawAppLauncherModelField(appxCancellationTokenSource == null);
 
+                    // Draw the section for nuget executable path
+                    EditorGUILayout.LabelField("Nuget Path (Optional)", EditorStyles.boldLabel);
+
+                    string nugetExecutablePath = EditorGUILayout.TextField(NugetPathLabel, UwpBuildDeployPreferences.NugetExecutablePath);
+                    using (new EditorGUILayout.HorizontalScope())
+                    {
+                        if (GUILayout.Button("Select Nuget Executable Path"))
+                        {
+                            nugetExecutablePath = EditorUtility.OpenFilePanel(
+                                "Select Nuget Executable Path", "", "exe");
+                        }
+                        if (GUILayout.Button("Use msbuild for Restore & Clear Path"))
+                        {
+                            nugetExecutablePath = "";
+                        }
+                    }
                     if (c.changed)
                     {
                         UwpBuildDeployPreferences.PlatformToolset = PLATFORM_TOOLSET_VALUES[newPlatformToolsetIndex];
@@ -571,6 +591,7 @@ namespace Microsoft.MixedReality.Toolkit.Build.Editor
                         UwpBuildDeployPreferences.ResearchModeCapabilityEnabled = researchModeEnabled;
                         UwpBuildDeployPreferences.ForceRebuild = forceRebuildAppx;
                         UwpBuildDeployPreferences.MulticoreAppxBuildEnabled = multicoreAppxBuildEnabled;
+                        UwpBuildDeployPreferences.NugetExecutablePath = nugetExecutablePath;
                     }
                 }
             }
@@ -1400,11 +1421,24 @@ namespace Microsoft.MixedReality.Toolkit.Build.Editor
             // Try to detect the installation path by checking the registry.
             try
             {
-                var registryKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(WINDOWS_10_KITS_PATH_REGISTRY_PATH);
+                var registryKey = Win32.Registry.LocalMachine.OpenSubKey(WINDOWS_10_KITS_PATH_REGISTRY_PATH);
                 var registryValue = registryKey.GetValue(WINDOWS_10_KITS_PATH_REGISTRY_KEY) as string;
                 win10KitsPath = Path.Combine(registryValue, WINDOWS_10_KITS_PATH_POSTFIX);
+
+                if (!Directory.Exists(win10KitsPath))
+                {
+                    registryKey = Win32.Registry.LocalMachine.OpenSubKey(WINDOWS_10_KITS_PATH_ALTERNATE_REGISTRY_PATH);
+                    registryValue = registryKey.GetValue(WINDOWS_10_KITS_PATH_REGISTRY_KEY) as string;
+                    win10KitsPath = Path.Combine(registryValue, WINDOWS_10_KITS_PATH_POSTFIX);
+
+                    if (!Directory.Exists(win10KitsPath))
+                    {
+                        Debug.LogWarning($"Could not find the Windows 10 SDK installation path via registry. Reverting to default path.");
+                        win10KitsPath = WINDOWS_10_KITS_DEFAULT_PATH;
+                    }
+                }
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 Debug.LogWarning($"Could not find the Windows 10 SDK installation path via registry. Reverting to default path. {e}");
                 win10KitsPath = WINDOWS_10_KITS_DEFAULT_PATH;

@@ -39,19 +39,19 @@ But if the new head virtual pose coordinates have shifted toward positive X, for
 
 ## Can Unity handle this?
 
-Yes, with limitations. Unity provides an excellent mechanism for dealing with this, known as WorldAnchors. If the virtual space has shifted relative to physical space, by keeping track of underlying visible features, a WorldAnchor knows to shift itself in virtual space to remain locked in physical space. Anything attached to the WorldAnchor will likewise be dragged through Unity's virtual space to remain stationary in physical space.
+Yes, with limitations. Unity provides an excellent mechanism for dealing with this, known as spatial anchors. If the virtual space has shifted relative to physical space, by keeping track of underlying visible features, a spatial anchor knows to shift itself in virtual space to remain locked in physical space. Anything attached to the spatial anchor will likewise be dragged through Unity's virtual space to remain stationary in physical space.
 
 The limitations are related to the fact that visible features become unreliable when they are far from the head tracker's cameras. This is not surprising. Visible features that aren't visible make poor reference points. 
 
-A WorldAnchor's useful range is therefore limited to 3 meters. Depending on the accuracy requirements of the application, the usable range might be less.
+A spatial anchor's useful range is therefore limited to 3 meters. Depending on the accuracy requirements of the application, the usable range might be less.
 
 ## That seems pretty good, what's the problem?
 
-It's beyond good, it's simply amazing. But there are situations, important situations, where WorldAnchors do not provide a satisfactory solution.
+It's beyond good, it's simply amazing. But there are situations, important situations, where spatial anchors do not provide a satisfactory solution.
 
-First, each WorldAnchor moves through Unity's virtual coordinate space independently attempting to remain stationary in the physical world. This means that objects anchored independently will move relative to each other as they try to remain in their physical positions. For an application trying to maintain a precise layout, this can be a large problem.
+First, each spatial anchor moves through Unity's virtual coordinate space independently attempting to remain stationary in the physical world. This means that objects anchored independently will move relative to each other as they try to remain in their physical positions. For an application trying to maintain a precise layout, this can be a large problem.
 
-Second, with its limited range, a single WorldAnchor will not provide good results for single objects which are larger than the usable range of that WorldAnchor. While the points on the object near the WorldAnchor will remain well world-locked, because of the lever arm effect, points farther and farther from the WorldAnchor will suffer ever increasing errors. This leaves an object, or a collection of objects, larger than a meter or so without a robust world-locking solution.
+Second, with its limited range, a single spatial anchor will not provide good results for single objects which are larger than the usable range of that spatial anchor. While the points on the object near the spatial anchor will remain well world-locked, because of the lever arm effect, points farther and farther from the spatial anchor will suffer ever increasing errors. This leaves an object, or a collection of objects, larger than a meter or so without a robust world-locking solution.
 
 ## What else can go wrong?
 

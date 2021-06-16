@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
     /// <summary>
-    /// Wrapper class for Unity WorldAnchor, facilitating creation and persistence.
+    /// Wrapper class for a no-op spatial, platform-free anchor.
     /// </summary>
     public class SpongyAnchorNull : SpongyAnchor
     {

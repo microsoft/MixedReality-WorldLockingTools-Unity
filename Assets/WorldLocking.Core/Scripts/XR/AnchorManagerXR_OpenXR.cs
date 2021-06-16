@@ -18,7 +18,8 @@ using UnityEngine;
 using UnityEngine.XR;
 
 #if WLT_XR_PERSISTENCE
-using Microsoft.MixedReality.ARSubsystems;
+//using Microsoft.MixedReality.ARSubsystems;
+using Microsoft.MixedReality.OpenXR;
 #endif // WLT_XR_PERSISTENCE
 
 using UnityEngine.SpatialTracking;
@@ -42,7 +43,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             if (openXRAnchorStore == null)
             {
                 DebugLogExtra($"Getting new OpenXR XRAnchorStore.");
-                openXRAnchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
+                //                openXRAnchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
+                openXRAnchorStore = await XRAnchorStore.LoadAsync(xrAnchorManager);
             }
             openXRPersistence = openXRAnchorStore != null;
             return openXRAnchorStore;
@@ -68,7 +70,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 Debug.Assert(anchor.name == id.FormatStr());
                 var anchorXR = anchor as SpongyAnchorXR;
                 Debug.Assert(anchorXR != null);
-                anchorStore.TryPersistAnchor(anchor.name, anchorXR.TrackableId);
+                anchorStore.TryPersistAnchor(anchorXR.TrackableId, anchor.name);
 
             }
 

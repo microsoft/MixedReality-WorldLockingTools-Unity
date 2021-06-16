@@ -29,7 +29,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
         /// </summary>
-        public static string Version => "1.3.2";
+        public static string Version => "1.3.8";
 
         /// <summary>
         /// The configuration settings may only be set as a block.
@@ -404,7 +404,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             var anchorSettings = shared.anchorSettings;
 #if WLT_ARFOUNDATION_PRESENT
-            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.DONT_USE)
+            if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.ARFoundation)
             {
                 Debug.Log($"Trying to create ARF anchor manager on {anchorSettings.ARSessionSource.name} and {anchorSettings.ARSessionOriginSource.name}");
                 AnchorManagerARF arfAnchorManager = AnchorManagerARF.TryCreate(plugin, headTracker,

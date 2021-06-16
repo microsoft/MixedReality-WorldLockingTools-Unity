@@ -20,7 +20,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             Null,
             WSA,
             XRSDK,
-            DONT_USE,
+            ARFoundation,
             ARCore
         };
 
@@ -57,7 +57,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.Log($"Setting Invalid: MinNewAnchorDistance = {MinNewAnchorDistance} - MaxNewAnchorEdgeLength = {MaxAnchorEdgeLength}");
                     return false;
                 }
-                if (anchorSubsystem == AnchorSubsystem.DONT_USE)
+                if (anchorSubsystem == AnchorSubsystem.ARFoundation)
                 {
                     /// These must be supplied for ARF. Ignored otherwise.
                     if ((ARSessionSource == null) || (ARSessionOriginSource == null))

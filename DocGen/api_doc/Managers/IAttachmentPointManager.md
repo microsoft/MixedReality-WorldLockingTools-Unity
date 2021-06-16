@@ -23,7 +23,7 @@ When the attachment point is no longer needed, the client application should not
 
 ### MoveAttachmentPoint
 
-Unlike most spatial anchors, and Unity's WorldAnchor's in particular, attachment points may move freely through the world, automatically binding to the most relevant anchors at their new positions.
+Unlike most spatial anchors, attachment points may move freely through the world, automatically binding to the most relevant anchors at their new positions.
 
 As an attachment point moves, its owner should notify the system of its new position. This movement might be from physics simulation, or any other animation technique.
 

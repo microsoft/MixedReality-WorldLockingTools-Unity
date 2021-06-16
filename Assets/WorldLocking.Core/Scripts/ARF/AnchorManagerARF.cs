@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+#if UNITY_2020_1_OR_NEWER
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -36,10 +38,19 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <inheritdoc/>
         public override bool SupportsPersistence { get { return false; } }
 
+        /// <inheritdoc/>
+        public override Pose AnchorFromSpongy 
+        { 
+            get 
+            { 
+                return arSessionOrigin.transform.GetGlobalPose(); 
+            } 
+        }
+
         private readonly ARSession arSession;
         private readonly ARSessionOrigin arSessionOrigin;
 
-        private readonly ARReferencePointManager arReferencePointManager;
+        private readonly ARAnchorManager arAnchorManager;
 
         protected override float TrackingStartDelayTime { get { return SpongyAnchorARF.TrackingStartDelayTime; } }
 
@@ -94,11 +105,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             this.arSession = arSession;
             this.arSessionOrigin = arSessionOrigin;
 
-            this.arReferencePointManager = arSessionOrigin.gameObject.GetComponent<ARReferencePointManager>();
-            if (this.arReferencePointManager == null)
+            this.arAnchorManager = arSessionOrigin.gameObject.GetComponent<ARAnchorManager>();
+            if (this.arAnchorManager == null)
             {
                 Debug.Log($"Adding AR reference point manager to {arSessionOrigin.name}");
-                this.arReferencePointManager = arSessionOrigin.gameObject.AddComponent<ARReferencePointManager>();
+                this.arAnchorManager = arSessionOrigin.gameObject.AddComponent<ARAnchorManager>();
             }
             Debug.Log($"ARF: Created AnchorManager ARF");
         }
@@ -112,10 +123,18 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected override SpongyAnchor CreateAnchor(AnchorId id, Transform parent, Pose initialPose)
         {
+#if WLT_EXTRA_LOGGING
             Debug.Log($"Creating anchor {id.FormatStr()}");
-            var referencePoint = arReferencePointManager.AddReferencePoint(initialPose);
-            referencePoint.gameObject.name = id.FormatStr();
-            SpongyAnchorARF newAnchor =  referencePoint.gameObject.AddComponent<SpongyAnchorARF>();
+#endif // WLT_EXTRA_LOGGING
+            initialPose = AnchorFromSpongy.Multiply(initialPose);
+            var arAnchor = arAnchorManager.AddAnchor(initialPose);
+            if (arAnchor == null)
+            {
+                Debug.Log($"ARAnchorManager failed to create ARAnchor {id}");
+                return null;
+            }
+            arAnchor.gameObject.name = id.FormatStr();
+            SpongyAnchorARF newAnchor =  arAnchor.gameObject.AddComponent<SpongyAnchorARF>();
             return newAnchor;
         }
 
@@ -123,7 +142,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (spongyAnchor is SpongyAnchorARF spongyARF)
             {
-                spongyARF.Cleanup(arReferencePointManager);
+                spongyARF.Cleanup(arAnchorManager);
             }
             RemoveSpongyAnchorById(id);
 
@@ -158,3 +177,5 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     }
 }
 #endif // WLT_ARFOUNDATION_PRESENT
+
+#endif // UNITY_2020_1_OR_NEWER
