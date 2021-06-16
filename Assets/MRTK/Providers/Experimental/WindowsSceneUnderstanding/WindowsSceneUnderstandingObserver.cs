@@ -4,23 +4,28 @@
 using Microsoft.MixedReality.Toolkit.Experimental.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.Utilities;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
-#if SCENE_UNDERSTANDING_PRESENT
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
+using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.MixedReality.SceneUnderstanding;
 #if WINDOWS_UWP
 using Windows.Perception.Spatial;
 using Windows.Perception.Spatial.Preview;
+#if MSFT_OPENXR
+using Microsoft.MixedReality.OpenXR;
+using Microsoft.MixedReality.Toolkit.XRSDK;
+using UnityEngine.XR.OpenXR;
+#endif // MSFT_OPENXR
 #endif // WINDOWS_UWP
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
 
 #if WINDOWS_UWP
 using Windows.Storage;
@@ -103,7 +108,7 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
 
         #region IMixedRealityService
 
-#if SCENE_UNDERSTANDING_PRESENT
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
 
         /// <inheritdoc />
         public override void Reset()
@@ -112,18 +117,25 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
             Initialize();
         }
 
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
 
         /// <inheritdoc />
         public override void Initialize()
         {
-#if !SCENE_UNDERSTANDING_PRESENT
+#if !(UNITY_WSA && SCENE_UNDERSTANDING_PRESENT)
             if (Application.isPlaying)
             {
                 Debug.LogWarning("The required package Microsoft.MixedReality.SceneUnderstanding is not installed or properly configured. Please visit https://docs.microsoft.com/windows/mixed-reality/mrtk-unity/features/spatial-awareness/scene-understanding for more information.");
             }
 #else
             base.Initialize();
+#if WINDOWS_UWP
+#if MSFT_OPENXR
+            isOpenXRLoaderActive = LoaderHelpers.IsLoaderActive<OpenXRLoaderBase>() ?? false;
+#else
+            isOpenXRLoaderActive = false;
+#endif // MSFT_OPENXR
+#endif // WINDOWS_UWP
             sceneEventData = new MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject>(EventSystem.current);
             CreateQuadFromExtents(normalizedQuadMesh, 1, 1);
 
@@ -143,13 +155,13 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
             {
                 observerState = ObserverState.GetScene;
             }
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // !(UNITY_WSA && SCENE_UNDERSTANDING_PRESENT)
         }
 
         /// <inheritdoc />
         public override void Enable()
         {
-#if SCENE_UNDERSTANDING_PRESENT
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
             base.Enable();
             // Terminate the background thread when we stop in editor.
             cancelToken = cancelTokenSource.Token;
@@ -157,10 +169,10 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
             task = Task.Run(() => RunObserverAsync(cancelToken));
 #else
             IsEnabled = false;
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
         }
 
-#if SCENE_UNDERSTANDING_PRESENT
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
 
         /// <inheritdoc />
         public override void Update()
@@ -188,11 +200,11 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
             CleanupObserver();
         }
 
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
 
         #endregion IMixedRealityService
 
-#if SCENE_UNDERSTANDING_PRESENT
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
 
         #region BaseService
 
@@ -218,27 +230,27 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
 
         #endregion BaseService
 
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
 
         #region IMixedRealitySpatialAwarenessObserver
 
         /// <inheritdoc/>
         public override void Resume()
         {
-#if SCENE_UNDERSTANDING_PRESENT
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
             updateTimer.Enabled = true;
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
         }
 
         /// <inheritdoc/>
         public override void Suspend()
         {
-#if SCENE_UNDERSTANDING_PRESENT
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
             if (updateTimer != null)
             {
                 updateTimer.Enabled = false;
             }
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
         }
 
         #endregion IMixedRealitySpatialAwarenessObserver
@@ -248,11 +260,11 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
         /// <inheritdoc/>
         public IReadOnlyDictionary<int, SpatialAwarenessSceneObject> SceneObjects
         {
-#if SCENE_UNDERSTANDING_PRESENT
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
             get => sceneObjects;
-#else // SCENE_UNDERSTANDING_PRESENT
+#else // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
             get => null;
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
         }
 
         /// <inheritdoc/>
@@ -302,9 +314,9 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
         {
 #if WINDOWS_UWP && SCENE_UNDERSTANDING_PRESENT
             Task.Run(() => SaveToFile(filenamePrefix));
-#else // WINDOWS_UWP
+#else // WINDOWS_UWP && SCENE_UNDERSTANDING_PRESENT
             Debug.LogWarning("SaveScene() only supported at runtime! Ignoring request.");
-#endif // WINDOWS_UWP
+#endif // WINDOWS_UWP && SCENE_UNDERSTANDING_PRESENT
         }
 
         #endregion IMixedRealitySpatialAwarenessSceneUnderstandingObserver
@@ -317,20 +329,20 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
         /// <inheritdoc/>
         public void UpdateOnDemand()
         {
-#if SCENE_UNDERSTANDING_PRESENT
-            if (!MixedRealityToolkit.Instance.ActiveProfile.IsSpatialAwarenessSystemEnabled || (SpatialAwarenessSystem == null))
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
+            if (!MixedRealityToolkit.Instance.ActiveProfile.IsSpatialAwarenessSystemEnabled || (Service == null))
             {
                 return;
             }
 
             observerState = ObserverState.GetScene;
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
         }
 
         /// <inheritdoc />
         public bool UpdateOnceInitialized { get; set; }
 
-#endregion IMixedRealityOnDemandObserver
+        #endregion IMixedRealityOnDemandObserver
 
         #region Public Profile
 
@@ -366,10 +378,10 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
 
         #endregion Profile
 
-#if SCENE_UNDERSTANDING_PRESENT
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
 
         #region Other Property
-        protected virtual GameObject ObservedObjectParent => observedObjectParent != null ? observedObjectParent : (observedObjectParent = SpatialAwarenessSystem?.CreateSpatialAwarenessObservationParent("WindowsMixedRealitySceneUnderstandingObserver"));
+        protected virtual GameObject ObservedObjectParent => observedObjectParent != null ? observedObjectParent : (observedObjectParent = Service?.CreateSpatialAwarenessObservationParent("WindowsMixedRealitySceneUnderstandingObserver"));
         #endregion Other Property
 
         #region Private Fields
@@ -401,10 +413,13 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
         private System.Numerics.Matrix4x4 sceneToWorldTransformMatrix;
         private List<SceneObject> filteredSelectedSurfaceTypesResult = new List<SceneObject>(128);
         private Texture defaultTexture;
+#if WINDOWS_UWP
+        private bool isOpenXRLoaderActive;
+#endif // WINDOWS_UWP
 
         #endregion Private Fields
 
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
 
         #region Public Methods
 
@@ -417,14 +432,14 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
         /// <param name="mask">Mask result</param>
         /// <returns>Returns false if fails to get the mask</returns>
         public bool TryGetOcclusionMask(
-            int quadId, 
-            ushort textureWidth, 
-            ushort textureHeight, 
+            int quadId,
+            ushort textureWidth,
+            ushort textureHeight,
             out byte[] mask)
         {
             mask = null;
 
-#if SCENE_UNDERSTANDING_PRESENT
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
            Tuple<SceneQuad, SceneObject> result;
 
             if (!cachedSceneQuads.TryGetValue(quadId, out result))
@@ -442,18 +457,18 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
             return true;
 #else
             return false;
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
         }
 
         /// <inheritdoc/>
         public bool TryFindCentermostPlacement(
-            int quadId, 
-            Vector2 objExtents, 
+            int quadId,
+            Vector2 objExtents,
             out Vector3 placementPosOnQuad)
         {
             placementPosOnQuad = Vector3.zero;
 
-#if SCENE_UNDERSTANDING_PRESENT
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
 
             Tuple<SceneQuad, SceneObject> result;
 
@@ -480,12 +495,12 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
             return true;
 #else
             return false;
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
         }
 
         #endregion Public Methods
 
-#if SCENE_UNDERSTANDING_PRESENT
+#if SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
 
         #region Private
 
@@ -520,7 +535,7 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
         protected virtual void SendSceneObjectAdded(SpatialAwarenessSceneObject sceneObj, int id)
         {
             sceneEventData.Initialize(this, id, sceneObj);
-            SpatialAwarenessSystem?.HandleEvent(sceneEventData, OnSceneObjectAdded);
+            Service?.HandleEvent(sceneEventData, OnSceneObjectAdded);
         }
 
         /// <summary>
@@ -531,7 +546,7 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
         protected virtual void SendSceneObjectUpdated(SpatialAwarenessSceneObject sceneObj, int id)
         {
             sceneEventData.Initialize(this, id, sceneObj);
-            SpatialAwarenessSystem?.HandleEvent(sceneEventData, OnSceneObjectUpdated);
+            Service?.HandleEvent(sceneEventData, OnSceneObjectUpdated);
         }
 
         /// <summary>
@@ -541,7 +556,7 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
         protected virtual void SendSceneObjectRemoved(int id)
         {
             sceneEventData.Initialize(this, id, null);
-            SpatialAwarenessSystem?.HandleEvent(sceneEventData, OnSceneObjectRemoved);
+            Service?.HandleEvent(sceneEventData, OnSceneObjectRemoved);
         }
 
         private async Task<SceneObserverAccessStatus> RequestAccess()
@@ -662,8 +677,18 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
                         }
                         await new WaitForUpdate();
 
-                        sceneToWorldTransformMatrix = GetSceneToWorldTransform();
-
+                        System.Numerics.Matrix4x4? transformResult = GetSceneToWorldTransform();
+                        if (transformResult.HasValue)
+                        {
+                            sceneToWorldTransformMatrix = transformResult.Value;
+                        }
+                        else
+                        {
+                            await new WaitForUpdate();
+                            observerState = ObserverState.GetScene;
+                            continue;
+                        }
+                        
                         if (!UsePersistentObjects)
                         {
                             ClearObservations();
@@ -734,12 +759,12 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
 
                         foreach (var id in removedSasoIds)
                         {
+                            SendSceneObjectRemoved(id);
                             if (CreateGameObjects)
                             {
                                 UpdateInstantiatedSceneObject(sceneObjects[id], null);
                             }
                             sceneObjects.Remove(id);
-                            SendSceneObjectRemoved(id);
                         }
 
                         if (observerState == ObserverState.Working)
@@ -760,20 +785,41 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
         /// Gets the matrix representing the transform from scene space to world space
         /// </summary>
         /// <returns>The transform matrix</returns>
-        private System.Numerics.Matrix4x4 GetSceneToWorldTransform()
+        private System.Numerics.Matrix4x4? GetSceneToWorldTransform()
         {
             var result = System.Numerics.Matrix4x4.Identity;
 #if WINDOWS_UWP
-            SpatialCoordinateSystem sceneOrigin = SpatialGraphInteropPreview.CreateCoordinateSystemForNode(sceneOriginId);
-            SpatialCoordinateSystem worldOrigin = WindowsMixedReality.WindowsMixedRealityUtilities.SpatialCoordinateSystem;
-
-            var sceneToWorld = sceneOrigin.TryGetTransformTo(worldOrigin);
-
-            if (sceneToWorld.HasValue)
+            if (isOpenXRLoaderActive)
             {
-                result = sceneToWorld.Value; // numerics
+#if MSFT_OPENXR
+                SpatialGraphNode node = SpatialGraphNode.FromStaticNodeId(sceneOriginId);
+                if (node.TryLocate(FrameTime.OnUpdate, out Pose pose))
+                {
+                    result = Matrix4x4.TRS(pose.position, pose.rotation, Vector3.one).ToSystemNumerics();
+                }
+                else
+                {
+                    return null;
+                }
+#endif // MSFT_OPENXR
             }
-#endif
+            else
+            {
+                SpatialCoordinateSystem sceneOrigin = SpatialGraphInteropPreview.CreateCoordinateSystemForNode(sceneOriginId);
+                SpatialCoordinateSystem worldOrigin = WindowsMixedReality.WindowsMixedRealityUtilities.SpatialCoordinateSystem;
+
+                var sceneToWorld = sceneOrigin.TryGetTransformTo(worldOrigin);
+
+                if (sceneToWorld.HasValue)
+                {
+                    result = sceneToWorld.Value; // numerics
+                }
+                else
+                {
+                    return null;
+                }
+            }
+#endif // WINDOWS_UWP
             return result;
         }
 
@@ -900,9 +946,8 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
 
             System.Numerics.Vector3 worldTranslationSystem;
             System.Numerics.Quaternion worldRotationSystem;
-            System.Numerics.Vector3 localScale;
 
-            System.Numerics.Matrix4x4.Decompose(worldTransformMatrix, out localScale, out worldRotationSystem, out worldTranslationSystem);
+            System.Numerics.Matrix4x4.Decompose(worldTransformMatrix, out _, out worldRotationSystem, out worldTranslationSystem);
 
             int hashedId = sceneObject.Id.GetHashCode();
             var result = SpatialAwarenessSceneObject.Create(
@@ -1584,6 +1629,6 @@ namespace Microsoft.MixedReality.Toolkit.WindowsSceneUnderstanding.Experimental
 
         #endregion Private
 
-#endif // SCENE_UNDERSTANDING_PRESENT
+#endif // SCENE_UNDERSTANDING_PRESENT && UNITY_WSA
     }
 }

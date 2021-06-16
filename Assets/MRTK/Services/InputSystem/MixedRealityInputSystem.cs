@@ -288,7 +288,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 for (int i = 0; i < profile.DataProviderConfigurations.Length; i++)
                 {
                     MixedRealityInputDataProviderConfiguration configuration = profile.DataProviderConfigurations[i];
-                    object[] args = { this, configuration.ComponentName, configuration.Priority, configuration.DeviceManagerProfile };
+                    object[] args = { this, configuration.ComponentName, configuration.Priority, configuration.Profile };
 
                     DebugUtilities.LogVerboseFormat(
                         "Attempting to register input system data provider {0}, {1}, {2}",
@@ -873,6 +873,14 @@ namespace Microsoft.MixedReality.Toolkit.Input
         {
             return new BaseGenericInputSource(name, pointers, sourceType);
         }
+
+        /// <inheritdoc />
+        public BaseGlobalInputSource RequestNewGlobalInputSource(string name, IMixedRealityFocusProvider focusProvider = null, InputSourceType sourceType = InputSourceType.Other)
+        {
+            var inputSourceFocusProvider = focusProvider.IsNull() ? FocusProvider : focusProvider;
+            return new BaseGlobalInputSource(name, inputSourceFocusProvider, sourceType);
+        }
+
 
         #region Input Source State Events
 

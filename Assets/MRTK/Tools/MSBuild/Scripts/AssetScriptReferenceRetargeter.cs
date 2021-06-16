@@ -85,7 +85,7 @@ namespace Microsoft.MixedReality.Toolkit.MSBuild
             }
         }
 
-        [MenuItem("Mixed Reality Toolkit/MSBuild/Retarget assets to scripts")]
+        [MenuItem("Mixed Reality/Toolkit/MSBuild/Retarget assets to scripts")]
         public static void RetargetAssetsToScript() => RunRetargetToScript();
 
         private static void RunRetargetToDLL()
@@ -264,7 +264,7 @@ namespace Microsoft.MixedReality.Toolkit.MSBuild
 
             for (int i = 0; i < allFilePathsCount; i++)
             {
-                EditorUtility.DisplayProgressBar("GUID Remapping", "Parsing assets...", (1 + (i / halfPathsCount))  / 4f);
+                EditorUtility.DisplayProgressBar("GUID Remapping", "Parsing assets...", (1 + (i / halfPathsCount)) / 4f);
 
                 string filePath = allFilePaths[i];
 

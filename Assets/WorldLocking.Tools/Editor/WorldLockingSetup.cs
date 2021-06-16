@@ -191,7 +191,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// <summary>
         /// Setup the current scene with default basic world locking.
         /// </summary>
-        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Configure scene", priority = setupPriority)]
+        [MenuItem("Mixed Reality/World Locking Tools/Configure scene", priority = setupPriority)]
         private static void AddWorldLockingToScene()
         {
             // Look for WorldLocking root object in scene.
@@ -312,7 +312,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// <summary>
         /// Add visualization helpers for WLT features to the scene.
         /// </summary>
-        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Add development visualizers", priority = setupPriority)]
+        [MenuItem("Mixed Reality/World Locking Tools/Add development visualizers", priority = setupPriority)]
         private static void AddWorldLockingVisualizers()
         {
             Transform worldLockingRoot = CheckWorldLockingRoot();
@@ -330,7 +330,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// <remarks>
         /// This will remove all WLT visualizers from the scene, whether they were added by AddWorldLockingVisualizers() or by hand.
         /// </remarks>
-        [MenuItem("Mixed Reality Toolkit/Utilities/World Locking Tools/Remove development visualizers", priority = setupPriority)]
+        [MenuItem("Mixed Reality/World Locking Tools/Remove development visualizers", priority = setupPriority)]
         private static void RemoveWorldLockingVisualisers()
         {
             AnchorGraphVisual[] anchorVisuals = GameObject.FindObjectsOfType<AnchorGraphVisual>();
@@ -344,6 +344,26 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             {
                 GameObject.DestroyImmediate(vis.gameObject);
             }
+        }
+
+        private static readonly string WLTIssuesUrl = "https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues";
+        private static readonly string WLTDocsUrl = "https://microsoft.github.io/MixedReality-WorldLockingTools-Unity/README.html";
+        private static readonly string WLTSamplesUrl = "https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html";
+
+        [MenuItem("Mixed Reality/World Locking Tools/Help/Show Documentation", false, priority = setupPriority)]
+        private static void ShowDocumentation()
+        {
+            Application.OpenURL(WLTDocsUrl);
+        }
+        [MenuItem("Mixed Reality/World Locking Tools/Help/Samples Documentation", false, priority = setupPriority)]
+        private static void ShowSamplesDocumentation()
+        {
+            Application.OpenURL(WLTSamplesUrl);
+        }
+        [MenuItem("Mixed Reality/World Locking Tools/Help/File an issue", false, priority = setupPriority)]
+        private static void FileIssue()
+        {
+            Application.OpenURL(WLTIssuesUrl);
         }
 
     }

@@ -37,7 +37,8 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
     [MixedRealityDataProvider(
         typeof(IMixedRealityInputSystem),
         SupportedPlatforms.WindowsUniversal,
-        "Windows Mixed Reality Device Manager")]
+        "Windows Mixed Reality Device Manager",
+        supportedUnityXRPipelines: SupportedUnityXRPipelines.LegacyXR)]
     public class WindowsMixedRealityDeviceManager : BaseInputDeviceManager, IMixedRealityCapabilityCheck
     {
         /// <summary>
@@ -437,21 +438,12 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
 
                 if (controller != null)
                 {
-                    if (controller is WindowsMixedRealityController mrtkController)
+                    if (raiseSourceDetected)
                     {
-                        mrtkController.EnsureControllerModel(interactionSourceState.source);
+                        Service?.RaiseSourceDetected(controller.InputSource, controller);
                     }
 
-                    // Does the controller still exist after we loaded the controller model?
-                    if (GetOrAddController(interactionSourceState.source, false) != null)
-                    {
-                        if (raiseSourceDetected)
-                        {
-                            Service?.RaiseSourceDetected(controller.InputSource, controller);
-                        }
-
-                        controller.UpdateController(interactionSourceState);
-                    }
+                    controller.UpdateController(interactionSourceState);
                 }
             }
         }
@@ -819,7 +811,7 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
 
             var visualizer = controller.Visualizer;
 
-            if (visualizer != null && !visualizer.Equals(null) &&
+            if (!visualizer.IsNull() &&
                 visualizer.GameObjectProxy != null)
             {
                 visualizer.GameObjectProxy.SetActive(false);
