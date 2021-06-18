@@ -3,6 +3,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace Microsoft.MixedReality.WorldLocking.Tools
@@ -54,6 +55,20 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         [SerializeField]
         public int logVerbosity = 5;
 
+        [Tooltip("Optional file to write log entries into.")]
+        [SerializeField]
+        private string logFile = "";
+
+        public string LogFile
+        {
+            get { return logFile; }
+            set
+            {
+                logFile = value;
+                OpenLogWriter();
+            }
+        }
+
         /// <summary>
         /// The most recent lineCount messages.
         /// </summary>
@@ -73,6 +88,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// The current message to display (up to lineCount lines of text).
         /// </summary>
         private string currentStatus = "";
+
+        private StreamWriter logWriter = null;
 
         /// <summary>
         /// Whether the onscreen component is active.
@@ -105,6 +122,32 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         {
             Debug.Assert(_consoleInstance == null, "More than one Status component in the scene?");
             _consoleInstance = this;
+            OpenLogWriter();
+        }
+
+        private void OpenLogWriter()
+        {
+            if (logWriter != null)
+            {
+                logWriter.Close();
+                logWriter = null;
+            }
+            if (!string.IsNullOrEmpty(LogFile))
+            {
+                string path = Application.persistentDataPath;
+                path = Path.Combine(path, LogFile);
+
+                logWriter = new StreamWriter(path);
+            }
+        }
+
+        private void WriteToLogFile(string line)
+        {
+            if (logWriter != null)
+            {
+                logWriter.WriteLine(line);
+                logWriter.Flush();
+            }
         }
 
         /// <summary>
@@ -132,6 +175,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             if (level >= logVerbosity)
             {
                 Debug.Log(line);
+                WriteToLogFile(line);
             }
 
             if (level < screenVerbosity)
