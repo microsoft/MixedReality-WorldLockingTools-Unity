@@ -6251,6 +6251,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LineCount
   nameWithType: SimpleConsole.LineCount
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LogFile
+  name: LogFile
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_LogFile
+  commentId: P:Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LogFile
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LogFile
+  nameWithType: SimpleConsole.LogFile
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LogFile*
+  name: LogFile
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_LogFile_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LogFile
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.LogFile
+  nameWithType: SimpleConsole.LogFile
 - uid: Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.logVerbosity
   name: logVerbosity
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SimpleConsole.html#Microsoft_MixedReality_WorldLocking_Tools_SimpleConsole_logVerbosity
