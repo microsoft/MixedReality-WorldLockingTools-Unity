@@ -4,7 +4,8 @@
         "Microsoft.MixedReality.WorldLocking.Core",
         "Microsoft.MixedReality.WorldLocking.Tools",
         "Microsoft.MixedReality.WorldLocking.ASA",
-        "Microsoft.MixedReality.Toolkit"
+        "Microsoft.MixedReality.Toolkit",
+        "Microsoft.MixedReality.WorldLocking.Examples"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
