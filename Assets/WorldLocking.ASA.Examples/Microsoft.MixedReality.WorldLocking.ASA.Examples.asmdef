@@ -3,7 +3,8 @@
     "references": [
         "Microsoft.MixedReality.WorldLocking.Core",
         "Microsoft.MixedReality.WorldLocking.Tools",
-        "Microsoft.MixedReality.WorldLocking.ASA"
+        "Microsoft.MixedReality.WorldLocking.ASA",
+        "Microsoft.MixedReality.Toolkit"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
