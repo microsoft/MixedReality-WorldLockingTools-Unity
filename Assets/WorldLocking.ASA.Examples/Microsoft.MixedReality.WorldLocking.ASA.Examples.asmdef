@@ -5,7 +5,8 @@
         "Microsoft.MixedReality.WorldLocking.Tools",
         "Microsoft.MixedReality.WorldLocking.ASA",
         "Microsoft.MixedReality.Toolkit",
-        "Microsoft.MixedReality.WorldLocking.Examples"
+        "Microsoft.MixedReality.WorldLocking.Examples",
+        "Unity.TextMeshPro"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
