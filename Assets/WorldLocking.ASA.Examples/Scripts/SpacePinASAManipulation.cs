@@ -9,6 +9,7 @@ using UnityEngine;
 
 using Microsoft.MixedReality.WorldLocking.Core;
 using Microsoft.MixedReality.WorldLocking.ASA;
+using Microsoft.MixedReality.WorldLocking.Examples;
 
 namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
 {
