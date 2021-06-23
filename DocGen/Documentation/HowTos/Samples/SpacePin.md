@@ -24,7 +24,7 @@ This sample contains 4 markers. To fully explore the sample, place physical mark
 
 The layout of the physical markers in the room should match the layout of the virtual markers in the Unity scene, as shown in this diagram:
 
-![](../../../Images/PinMarkerLayout.png)
+![Layout of space pin markers](../../../Images/PinMarkerLayout.png)
 
 ## Running the Sample
 

@@ -54,19 +54,19 @@ NOTE: The exact UI of the process described here is subject to frequent change. 
 
 2) Select the build that matches the commit that will be the basis for the release.
 
-  ![](../../Images/Release/SelectBuild.PNG)
+  ![Select the build](../../Images/Release/SelectBuild.PNG)
 
 3) That will lead to the following screen, from which the build artifacts may be accessed.*
 
-  ![](../../Images/Release/Artifacts.PNG)
+  ![Find build artifacts](../../Images/Release/Artifacts.PNG)
 
 4) Select the unity packages.
 
-![](../../Images/Release/ArtifactUnityPackages.png)
+![Select unity packages](../../Images/Release/ArtifactUnityPackages.png)
 
 5) Then download as zip.
 
-![](../../Images/Release/DownloadUnityPackages.png)
+![Download unity packages as a zip file](../../Images/Release/DownloadUnityPackages.png)
 
 6) After installing and testing the packages, they may be integrated into a new release.
 

@@ -96,20 +96,20 @@ If the application is satisfied with a constant error approximation, then it has
 
 We'll label the pins at the corners of the 4x4 square by their cardinal directions, NE, NW, SW, and SE. We'll also label the virtual positions at each point virtualNE etc, and the physical positions at each point physicalNE etc.
 
-![](../../../Images/Simple4Pins.png)
+![Four space pins](../../../Images/Simple4Pins.png)
 
 One strategy would be to add outer cardinal points creating a 12x12 meter square surrounding the inner square, by adding 4 more cardinal points, outerNE, outerNW, outerSW, and outerSE. The virtual and physical positions of each of these is simple to compute. Taking outerNE for example:
 
-```
+```lang-cs
 virtualOuterNE = virtualNE + (virtualNE - virtualSW);
 physicalOuterNE = physicalNE + (physicalNE - virtualSW);
 ```
 
-![](../../../Images/Simple4and4Pins.png)
+![Eight space pins](../../../Images/Simple4and4Pins.png)
 
 Note that creating an extrapolation space of 20x20 meters only changes the scale of the delta applied:
 
-```
+```lang-cs
 scale = (outerSize - innerSize) / innerSize / 2;
 virtualOuterNE = virtualNE + (virtualNE - virtualSW) * scale;
 physicalOuterNE = physicalNE + (physicalNE - virtualSW) * scale;
@@ -119,7 +119,7 @@ With an outerSize of 20m, and an innerSize of 4m, the scale would be 2.
 
 An alternate strategy might be to add eight more points in addition to the corners as shown below. Computing the new pin locations from the existing ones is exactly as above. Be cautioned that, while it is true that adding additional pins generally improves stability, it does not necessarily improve accuracy. 
 
-![](../../../Images/Simple4and12Pins.png)
+![Twelve space pins](../../../Images/Simple4and12Pins.png)
 
 ## Aligning a subset of the scene
 
