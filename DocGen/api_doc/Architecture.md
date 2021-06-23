@@ -2,7 +2,7 @@
 
 The World Locking Tools for Unity architecture may be summarized by the following diagram.
 
-![](../Images/Architecture.svg)
+![Architectural diagram](../Images/Architecture.svg)
 
 In general, the client application will make its intent known declaratively through settings on the World Locking Manager.
 

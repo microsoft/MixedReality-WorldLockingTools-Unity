@@ -12,6 +12,8 @@
     items: 
     - name: Coordinate Spaces
       href: Concepts/Advanced/CoordinateSpaces.md
+    - name: SessionOrigin
+      href: Concepts/Advanced/SessionOrigin.md
     - name: Persistence
       href: Concepts/Advanced/Persistence.md
     - name: Space Pins
