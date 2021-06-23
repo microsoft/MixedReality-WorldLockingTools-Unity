@@ -26,7 +26,7 @@ It is assumed that people looking to integrate the World Locking Tools solution 
 
 World Locking Tools is broken into four layers. With the arrows pointing toward the layer depended on, the straightforward dependency graph looks like this:
 
-![](../../Images/LayerDiagram.png)
+![Layer Diagram](../../Images/LayerDiagram.png)
 
 The dashed lines indicate optional dependencies.
 

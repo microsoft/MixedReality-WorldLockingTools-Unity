@@ -25,4 +25,5 @@ Other conversions between the various spaces are available on the [WorldLockingM
 
 ## See also
 
-* [A primer on Unity coordinate spaces (without WLT) as relates to AR/MR](https://docs.microsoft.com/en-us/windows/mixed-reality/coordinate-systems).
+* [A primer on Unity coordinate spaces (without WLT) as relates to AR/MR](https://docs.microsoft.com/windows/mixed-reality/coordinate-systems).
+* [Explanation of the SessionOrigin](SessionOrigin.md)

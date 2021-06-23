@@ -24,7 +24,7 @@ This sample contains 4 markers. To fully explore the sample, place physical mark
 
 The layout of the physical markers in the room should match the layout of the virtual markers in the Unity scene, as shown in this diagram:
 
-![](../../../Images/PinMarkerLayout.png)
+![Layout of space pin markers](../../../Images/PinMarkerLayout.png)
 
 ## Running the Sample
 
@@ -113,4 +113,3 @@ Automatic refit operations will most probably manifest as follows:
 5) After moving about the new section of space (possibly positioning another sphere), the head moves back to the original space.
 6) A [refit operation](../../Concepts/Advanced/RefitOperations.md) silently and automatically combines the original and new fragments.
 7) The alignment from the first spheres becomes effective again (because they are all in the same fragment now).
-

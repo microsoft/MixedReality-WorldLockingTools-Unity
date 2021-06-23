@@ -22,6 +22,7 @@ There are two types of refit operations.
 ## See also
 
 * [Coordinate spaces](Advanced/CoordinateSpaces.md)
+* [SessionOrigin](Advanced/SessionOrigin.md)
 * [Persistence](Advanced/Persistence.md)
 * [Space Pins](Advanced/SpacePins.md)
 * [Attachment points](Advanced/AttachmentPoints.md)
