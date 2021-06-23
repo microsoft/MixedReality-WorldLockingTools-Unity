@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/Advanced/CoordinateSpaces.html",
-          "hash": "EXmWsviF/Fb88j0RqWaeuY/v4OVpX2LpjPW9eLjzy8M="
+          "hash": "KBijt7WUaMHpp7bAK+uKRL5azKxa9mVUDBNddCeE9CU="
         }
       },
       "is_incremental": false,
@@ -86,11 +86,23 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "DocGen/Documentation/Concepts/Advanced/SessionOrigin.md",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Documentation/Concepts/Advanced/SessionOrigin.html",
+          "hash": "T/NBRkHxweGRJwWYSMB4/rK3J3ZO/oq37PNHWnYWx5g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "DocGen/Documentation/Concepts/Advanced/SpacePins.md",
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/Advanced/SpacePins.html",
-          "hash": "ZT/2TbwJqf4wxfizWdHFZ/Und624BiuvEAI8vqg8cbs="
+          "hash": "ZU/dS3Tt7+ibWstfnRYpepvS1bEg36hU5DH09zk9tA4="
         }
       },
       "is_incremental": false,
@@ -102,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts/AdvancedConcepts.html",
-          "hash": "hLlGHPEZJW19xyuBRgOSJa/B/UXoxypA78G7xAC6uxg="
+          "hash": "AE8m8WdlBgUoNqyxah8DuzTKdcGdlgej+Ei/zR6p3QI="
         }
       },
       "is_incremental": false,
@@ -174,7 +186,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/InitialSetup.html",
-          "hash": "FrjPhRum1GAkvDd7uB8cgG/3H33thh7Eaegi8WcATZc="
+          "hash": "jCKD6SB7Gc0qTVvdazs99AFFvSTWZWONR7vC7wRkYWU="
         }
       },
       "is_incremental": false,
@@ -198,7 +210,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/ReleaseProcess.html",
-          "hash": "JFZzWcefcdbHWNGMU9vLXF0aNsvpr32yICGy+g0Nd0E="
+          "hash": "6fbaR4S/FEcWH98QxFBZh/4q+3BO1v2Z5u3REuMOJ4c="
         }
       },
       "is_incremental": false,
@@ -234,7 +246,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/Samples/SpacePin.html",
-          "hash": "0LmgigwRwzPoTzW8NVtMKR7Awg3mdu+eI/CXA1YCOzA="
+          "hash": "Kb0l9KAkmbfvfz6cMxkdAWPWz/OVBdccsiIZcJT4Ojs="
         }
       },
       "is_incremental": false,
@@ -402,7 +414,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/toc.html",
-          "hash": "ezpwEUzytnE9ELJsN6w/BEUXlk9GzkaaYsDHJVqWgZM="
+          "hash": "N5lvzP8bshhY5xf0KHZzjjudVxo34GF1fYChf2Gv+W4="
         }
       },
       "is_incremental": false,
@@ -854,6 +866,83 @@
       "output": {
         "resource": {
           "relative_path": "DocGen/Images/Screens/UPMSamples/Samples.JPG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/SessionOrigin/00_SimpleScene.png",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/SessionOrigin/00_SimpleScene.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/SessionOrigin/01_Options.png",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/SessionOrigin/01_Options.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/SessionOrigin/02_MixedReality.png",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/SessionOrigin/02_MixedReality.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/SessionOrigin/03_RepositionCoords.png",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/SessionOrigin/03_RepositionCoords.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/SessionOrigin/04_Goal.png",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/SessionOrigin/04_Goal.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/SessionOrigin/05_Initial.png",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/SessionOrigin/05_Initial.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/SessionOrigin/06_Adjusted.png",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/SessionOrigin/06_Adjusted.png"
         }
       },
       "is_incremental": false,
@@ -2013,7 +2102,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/api_doc/Architecture.html",
-          "hash": "B8kwzPudFYIW9rEfPobAMrluwZ8dIwO8dh4LhH3uMQw="
+          "hash": "zWSW/7vX5KvyOPUjp7h+ltnlsQMHgQE0zi3QDJ1LeUg="
         }
       },
       "is_incremental": false,
@@ -2175,7 +2264,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 40,
+          "total_file_count": 41,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {

@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Understanding the SessionOrigin | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Understanding the SessionOrigin | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.58.0.0">
+    
+    <link rel="shortcut icon" href="../../../../DocGen/Images/Logos/favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../DocGen/Images/Logos/WorldLock64.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="understanding-the-sessionorigin">Understanding the SessionOrigin</h1>
+
+<p>The SessionOrigin is a relatively new implementation, introduced in AR Foundation, but the idea has appeared in camera rigs going back decades of rendering engines. You might be familiar with it as the MRTK Playspace node. It is quite powerful, but unfortunately poorly explained and consequently poorly understood.</p>
+<h2 id="what-is-the-sessionorigin">What is the SessionOrigin?</h2>
+<p>The SessionOrigin is just a Transform object to which the camera is attached. Most plainly, it allows placement of the camera in the virtual scene. More subtly, it defines a special coordinate space.</p>
+<p>As is usual with the transform parent-child relationship in Unity (and all modern rendering engines), &quot;moving&quot; the parent will &quot;move&quot; the child. What's meant by the term &quot;move&quot; in this context is that a change in the global pose of the parent will change the global coordinates of the child, and when the global coordinates of one object change, that object will appear to have moved relative to objects whose global coordinates have not changed.</p>
+<p>The camera is rather special in this sense, as it is not rendered. It determines the renderer's viewpoint. A concrete example might clarify this.</p>
+<h2 id="simplest-example-of-sessionorigin">Simplest example of SessionOrigin</h2>
+<p>Imagine a very simple scene, in which the camera is at the origin at startup (as is normal in AR applications), and there is a single red sphere placed on the Z-axis 10 meters in front of the camera (position=(0,0,10)).</p>
+<p><img src="../../../Images/SessionOrigin/00_SimpleScene.png" alt="Simplest virtual scene"></p>
+<p>For whatever reason, imagine that we want the user to start 1 meter away from the sphere instead.</p>
+<p>We have two interesting options:</p>
+<ol>
+<li>Move the camera to new position (0,0,9).</li>
+<li>Move the sphere to new position (0,0,1).</li>
+</ol>
+<p><img src="../../../Images/SessionOrigin/01_Options.png" alt="Two options"></p>
+<p>It's fairly obvious that the two options are ultimately equivalent without any other context. In both cases, at startup the sphere is 1 meter in front of the camera. The only difference is the absolute global coordinates of the two objects. Their relative coordinates, that is the vector between the two, is the same in either case.</p>
+<p>If we want to use option 1., how would we go about it? If we set the coordinates of the camera, they will be overwritten by the tracking system. Instead, we attach the camera to a parent object, then move the parent. The tracker sets the local pose of the camera, which moves it relative to the parent. The parent is now the SessionOrigin.</p>
+<h2 id="why-move-the-camera-instead-of-the-sphere">Why move the camera instead of the sphere?</h2>
+<p>In this simple case, the two options are clearly interchangeable. But remember that &quot;the sphere&quot; really represents &quot;everything in the scene but the camera&quot;. As the complexity of the scene grows, moving everything becomes more complicated. Moving the camera, via the SessionOrigin, is always the exact same operation.</p>
+<p>Furthermore, there are types of objects which are difficult or impossible to reposition, such as particle systems or navigation meshes. But even if none of those are involved, there are clear advantages to changing the coordinates of a single object in the scene, the SessionOrigin, versus changing the global coordinates of everything else.</p>
+<h2 id="the-sessionorigin-shouldnt-move-everything">The SessionOrigin shouldn't move everything</h2>
+<p>Consider again our simplest example. But this is an AR application, so along with the rendered red sphere, the user will also see the physical environment. In the interest of simplicity, our physical environment will be limited to the single green chair as shown.</p>
+<p><img src="../../../Images/SessionOrigin/02_MixedReality.png" alt="Both virtual and physical objects"></p>
+<p>Now, when we move the camera via the SessionOrigin, we have moved it relative to the red sphere, but obviously we haven't picked up the user and moved them relative to the green chair. The sphere now appears closer, but the chair is in the exact same position.</p>
+<p><img src="../../../Images/SessionOrigin/03_RepositionCoords.png" alt="Physical objects fixed relative to physical user"></p>
+<p>What if there is an anchor on the chair seat? Should the anchor move with the red sphere, or remain fixed relative to the chair seat? The whole point of the anchor is to remain fixed relative to the physical world, so clearly it should stay with the chair.</p>
+<p>Another example is the spatial mesh. That's the mesh generated to provide a virtual version of the physical environment for context, ray-casting, etc. We definitely want the spatial mesh to remain fixed to the physical world.</p>
+<p>Further examples range from hand meshes to eye gaze vectors. All share the common trait that if the coordinates of the camera are adjusted (transformed), then the coordinates of those objects should receive the same adjustment.</p>
+<p>So conceptually, all of those objects that move in coordination with the camera, are also attached to the SessionOrigin. When the SessionOrigin is moved relative to global objects like the red sphere, all of those objects are brought along with it.</p>
+<p>It's important to stress that this is independent of the motion of the camera due to head tracking. The tracker moves the camera relative to the SessionOrigin.</p>
+<h2 id="a-slightly-more-mathematical-explanation">A slightly more mathematical explanation</h2>
+<p>Unity's global coordinate system is somewhat arbitrarily located by default in an AR application. Aside from aligning the gravity vector (Y-axis) with &quot;up&quot;, the position and orientation are entirely determined by where the tracker places the camera at startup.</p>
+<p>While that may be fine for many applications, a wide range of possibilities are opened up by being able to remove that arbitrariness of the global coordinate space.</p>
+<p>Looking back at the previous example, imagine that it is significant for the application that the virtual red sphere be positioned relative to the physical chair as shown. We can accomplish that by adjusting the SessionOrigin.</p>
+<p><img src="../../../Images/SessionOrigin/04_Goal.png" alt="Desired layout"></p>
+<p>If we want the sphere at (0,0,10) to be 1 meter along the X-axis from the chair, then we want the chair to be at (-1,0,10). If we determine the camera to be 2 meters back from the chair directly along the negative Z-axis when the camera is at the origin, then the chair is currently at (0,0,2). (Remember, physical objects have no innate coordinates, only coordinates implied by proximity to the camera and virtual objects).</p>
+<p><img src="../../../Images/SessionOrigin/05_Initial.png" alt="Initial layout"></p>
+<p>However, if we set the SessionOrigin transform to (-1,0,8), now the camera's position is (-1,0,8). The chair, 2 meters directly ahead, is at (-1,0,10). And the red sphere, at (0,0,10), will appear 1 meter right of the chair as desired.</p>
+<p><img src="../../../Images/SessionOrigin/06_Adjusted.png" alt="Adjusted layout"></p>
+<p>So we have effectively used the SessionOrigin transform to reposition Unity's global space so that the red sphere, and all other global objects, just happen to appear in the correct position relative to the physical world.</p>
+<p>This simple but powerful mechanism for aligning Unity's global coordinate space to the physical world can be leveraged to support complex layout, persistence of coordinate spaces, coordinate spaces shared across devices, and more.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="https://forum.unity.com/threads/scaling-with-arfoundation.543953/">Unity blog introducing the SessionOrigin</a></li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/manual/index.html#ar-session-origin">AR Foundation description of Session Origin</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/Concepts/Advanced/SessionOrigin.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>
