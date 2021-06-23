@@ -1,7 +1,7 @@
 
 # Understanding the SessionOrigin
 
-The SessionOrigin is a relatively new implementation, introduced in AR Foundation, but the idea has appeared in camera rigs going back decades of rendering engines. It is quite powerful, but unfortunately poorly explained and consequently poorly understood.
+The SessionOrigin is a relatively new implementation, introduced in AR Foundation, but the idea has appeared in camera rigs going back decades of rendering engines. You might be familiar with it as the MRTK Playspace node. It is quite powerful, but unfortunately poorly explained and consequently poorly understood.
 
 ## What is the SessionOrigin?
 
@@ -77,3 +77,8 @@ However, if we set the SessionOrigin transform to (-1,0,8), now the camera's pos
 So we have effectively used the SessionOrigin transform to reposition Unity's global space so that the red sphere, and all other global objects, just happen to appear in the correct position relative to the physical world.
 
 This simple but powerful mechanism for aligning Unity's global coordinate space to the physical world can be leveraged to support complex layout, persistence of coordinate spaces, coordinate spaces shared across devices, and more.
+
+## See also
+
+* [Unity blog introducing the SessionOrigin](https://forum.unity.com/threads/scaling-with-arfoundation.543953/)
+* [AR Foundation description of Session Origin](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/manual/index.html#ar-session-origin)

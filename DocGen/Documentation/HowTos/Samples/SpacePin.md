@@ -113,4 +113,3 @@ Automatic refit operations will most probably manifest as follows:
 5) After moving about the new section of space (possibly positioning another sphere), the head moves back to the original space.
 6) A [refit operation](../../Concepts/Advanced/RefitOperations.md) silently and automatically combines the original and new fragments.
 7) The alignment from the first spheres becomes effective again (because they are all in the same fragment now).
-
