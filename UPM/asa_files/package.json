@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "com.microsoft.azure.spatial-anchors-sdk.core": "2.9.0",
-    "com.microsoft.mixedreality.worldlockingtools": "1.4.0"
+    "com.microsoft.mixedreality.wlt": "1.4.0"
   },
   "files": [
     "WorldLocking.ASA",

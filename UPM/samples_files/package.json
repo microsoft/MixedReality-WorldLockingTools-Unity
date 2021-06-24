@@ -1,5 +1,5 @@
 {
-  "name": "com.microsoft.mixedreality.worldlockingsamples",
+  "name": "com.microsoft.mixedreality.wlt.samples",
   "displayName": "WLT Samples",
   "version": "1.4.0",
   "unity": "2019.4",
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "com.microsoft.mixedreality.toolkit.foundation": "2.7.0",
-    "com.microsoft.mixedreality.worldlockingtools": "1.4.0"
+    "com.microsoft.mixedreality.wlt": "1.4.0"
   },
   "files": [
     "package.json.meta",
@@ -45,7 +45,7 @@
   "samples": [
     {
       "displayName": "WLT Examples",
-      "description": "Basic examples on using World Locking Tools for Unity",
+      "description": "Basic examples using World Locking Tools for Unity",
       "path": "Samples~/WorldLocking.Examples"
     }
   ]
