@@ -44,7 +44,7 @@
   ],
   "samples": [
     {
-      "displayName": "World Locking Examples",
+      "displayName": "WLT Examples",
       "description": "Basic examples on using World Locking Tools for Unity",
       "path": "Samples~/WorldLocking.Examples"
     }

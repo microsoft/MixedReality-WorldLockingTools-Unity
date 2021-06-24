@@ -38,7 +38,8 @@
     "com.microsoft.mixedreality.worldlockingtools": "1.4.0"
   },
   "files": [
-    "WorldLocking.ASA*",
+    "WorldLocking.ASA",
+    "WorldLocking.ASA.meta",
     "package.json.meta",
     "LICENSE*",
     "NOTICE*",

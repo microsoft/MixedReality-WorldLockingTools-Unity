@@ -1,6 +1,6 @@
 {
   "name": "com.microsoft.mixedreality.wlt.asa.samples",
-  "displayName": "WLT ASA Samples",
+  "displayName": "WLT+ASA Samples",
   "version": "1.4.0",
   "unity": "2020.3",
   "msftFeatureCategory" : "World Locking Tools",
@@ -49,7 +49,7 @@
   ],
   "samples": [
     {
-      "displayName": "World Locking ASA Examples",
+      "displayName": "WLT+ASA Examples",
       "description": "Examples on using World Locking Tools for Unity with ASA",
       "path": "Samples~/WorldLocking.ASA.Examples"
     }
