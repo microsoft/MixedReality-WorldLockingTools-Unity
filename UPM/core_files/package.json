@@ -1,5 +1,5 @@
 {
-  "name": "com.microsoft.mixedreality.wlt",
+  "name": "com.microsoft.mixedreality.worldlockingtools",
   "displayName": "WLT Core",
   "version": "1.4.0",
   "unity": "2019.4",
