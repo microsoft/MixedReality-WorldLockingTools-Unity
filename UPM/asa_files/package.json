@@ -1,10 +1,10 @@
 {
-  "name": "com.microsoft.mixedreality.worldlockingtools",
-  "displayName": "WLT Core",
+  "name": "com.microsoft.mixedreality.wlt.asa",
+  "displayName": "WLT+ASA",
   "version": "1.4.0",
-  "unity": "2019.4",
-  "msftFeatureCategory" : "World Locking Tools",
-  "description": "World Locking Tools for Unity (WLT)\n\nLock AR virtual space to physical space automatically and intuitively, without requiring application management of anchors.\nPreserve object relative layout, while remaining perceptually stationary in the physical world.",
+  "unity": "2020.3",
+  "msftFeatureCategory": "World Locking Tools",
+  "description": "World Locking Tools for Unity (WLT) + Azure Spatial Anchors (ASA)\n\nThis optional add-on to WLT leverages ASA to persist coordinate spaces across sessions and share them across devices.\nCross platform support includes HoloLens, Android, and iOS.",
   "keywords": [
     "mrtk",
     "reality",
@@ -17,6 +17,8 @@
     "xr",
     "anchor",
     "worldlock",
+    "asa",
+    "azure",
     "hololens",
     "android",
     "ios",
@@ -32,13 +34,11 @@
     "url": "https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues"
   },
   "dependencies": {
+    "com.microsoft.azure.spatial-anchors-sdk.core": "2.9.0",
+    "com.microsoft.mixedreality.worldlockingtools": "1.4.0"
   },
   "files": [
-    "WorldLocking.Core*",
-    "WorldLocking.Engine*",
-    "WorldLocking.Tools*",
-    "Packages\\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.1*",
-    "Packages.meta",
+    "WorldLocking.ASA*",
     "package.json.meta",
     "LICENSE*",
     "NOTICE*",

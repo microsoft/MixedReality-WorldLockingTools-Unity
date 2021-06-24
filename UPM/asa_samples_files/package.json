@@ -1,10 +1,10 @@
 {
-  "name": "com.microsoft.mixedreality.worldlockingsamples",
-  "displayName": "WLT Samples",
+  "name": "com.microsoft.mixedreality.wlt.asa.samples",
+  "displayName": "WLT ASA Samples",
   "version": "1.4.0",
-  "unity": "2019.4",
+  "unity": "2020.3",
   "msftFeatureCategory" : "World Locking Tools",
-  "description": "Basic examples for World Locking Tools.\n\nFurther samples available at\nhttps://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html",
+  "description": "Example scenes and scripts leveraging Azure Space Anchors (ASA) to persist World Locked coordinate spaces across sessions and share across devices.\n\nFurther samples available at\nhttps://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html",
   "keywords": [
     "mrtk",
     "reality",
@@ -16,9 +16,12 @@
     "virtual",
     "xr",
     "anchor",
+    "asa",
+    "azure",
     "hololens",
     "android",
     "ios",
+    "openxr",
     "xrsdk"
   ],
   "author": "Microsoft",
@@ -31,7 +34,9 @@
     "url": "https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues"
   },
   "dependencies": {
+    "com.microsoft.azure.spatial-anchors-sdk.core": "2.9.0",
     "com.microsoft.mixedreality.toolkit.foundation": "2.7.0",
+    "com.microsoft.mixedreality.wlt.asa": "1.4.0",
     "com.microsoft.mixedreality.worldlockingtools": "1.4.0"
   },
   "files": [
@@ -44,9 +49,9 @@
   ],
   "samples": [
     {
-      "displayName": "World Locking Examples",
-      "description": "Basic examples on using World Locking Tools for Unity",
-      "path": "Samples~/WorldLocking.Examples"
+      "displayName": "World Locking ASA Examples",
+      "description": "Examples on using World Locking Tools for Unity with ASA",
+      "path": "Samples~/WorldLocking.ASA.Examples"
     }
   ]
 }
