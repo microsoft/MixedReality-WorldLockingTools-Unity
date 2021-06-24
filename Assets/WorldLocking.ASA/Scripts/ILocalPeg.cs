@@ -32,8 +32,14 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
     /// </summary>
     public class LocalPegAndProperties
     {
-        public ILocalPeg localPeg;
-        public IDictionary<string, string> properties;
+        public readonly ILocalPeg localPeg;
+        public readonly IDictionary<string, string> properties;
+
+        public LocalPegAndProperties(ILocalPeg lp, IDictionary<string, string> props)
+        {
+            this.localPeg = lp;
+            this.properties = props;
+        }
     };
 
 }

@@ -1,3 +1,4 @@
+
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
@@ -451,9 +452,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 return null;
             }
 
-            LocalPegAndProperties ret = new LocalPegAndProperties();
-            ret.localPeg = spacePin.LocalPeg;
-            ret.properties = spacePin.Properties;
+            LocalPegAndProperties ret = new LocalPegAndProperties(spacePin.LocalPeg, spacePin.Properties);
 
             return ret;
         }
