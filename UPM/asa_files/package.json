@@ -1,6 +1,6 @@
 {
   "name": "com.microsoft.mixedreality.wlt.asa",
-  "displayName": "WLT+ASA",
+  "displayName": "WLT-ASA",
   "version": "1.4.0",
   "unity": "2020.3",
   "msftFeatureCategory": "World Locking Tools",
