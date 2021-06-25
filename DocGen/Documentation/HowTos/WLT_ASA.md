@@ -21,8 +21,6 @@ Use of ASA imposes these additional restrictions:
 * Unity 2020.3 or later
 * XR SDK or OpenXR
 
-Support of future releases of ASA will be ongoing work.
-
 ## Setup for using ASA with WLT
 
 Before deploying and running the samples leveraging ASA with WLT, some external software and configuration is necessary. In particular, enabling coarse relocation requires some non-intuitive setup. These additional steps are detailed in the [WLT+ASA Sample documentation](Samples/WLT_ASA_Sample.md).

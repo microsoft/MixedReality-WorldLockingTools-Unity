@@ -5,7 +5,7 @@
 
 World Locking Tools for Unity (WLT) provides a stable coordinate system based on local tracking. When combined with Azure Spatial Anchors (ASA), that stable coordinate system can be persisted across sessions, and shared across devices.
 
-See the [accompanying video](https://youtu.be/28lYjbQh8RA) for visual clarification.
+[This video](https://youtu.be/28lYjbQh8RA) might give you an idea what to expect when running the sample.
 
 ## What is in this sample?
 
@@ -18,9 +18,8 @@ This sample provides assets and scripts to:
 ### Structure of this document
 
 1. Setup - How to install and deploy the sample application.
-2. A video walkthrough.
-3. Notes on running the application, along with suggested steps.
-4. Architectural description of the supporting scripts.
+2. Notes on running the application, along with suggested steps.
+3. Architectural description of the supporting scripts.
 
 ## Setup and tested versions
 
@@ -87,10 +86,6 @@ When you hit Build & Run, if your build fails with a Shader error in the MRTK_St
 In Project Settings/XR Plugin Management, make sure that ARCore is the selected Plugin-Provider under the Android tab.
 
 The MRTK profile `XAmple AR ToolkitConfigurationProfile` is suitable for running on mobile. Don't forget to run the script `Mixed Reality Toolkit/Utilities/UnityAR/Update Scripting Defines` after switching to Android or iOS.
-
-## Video walkthrough
-
-[This video](https://youtu.be/28lYjbQh8RA) might give you an idea what to expect when running the sample. Further details follow.
 
 ## What the buttons do
 

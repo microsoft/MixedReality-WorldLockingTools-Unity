@@ -39,5 +39,6 @@ The [SpacePinASA](xref:Microsoft.MixedReality.WorldLocking.ASA.SpacePinASA) does
 
 ## See also
 
+* [WLT+ASA Samples Setup and Walkthrough](WLT_ASA_Sample.md)
 * [Space Pins Concepts](~/DocGen/Documentation/Concepts/Advanced/SpacePins.md)
 * [Space Pins Sample](SpacePin.md)
