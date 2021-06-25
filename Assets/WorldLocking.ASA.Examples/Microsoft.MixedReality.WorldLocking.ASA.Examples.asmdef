@@ -1,0 +1,19 @@
+{
+    "name": "Microsoft.MixedReality.WorldLocking.ASA.Examples",
+    "references": [
+        "Microsoft.MixedReality.WorldLocking.Core",
+        "Microsoft.MixedReality.WorldLocking.Tools",
+        "Microsoft.MixedReality.WorldLocking.ASA",
+        "Microsoft.MixedReality.Toolkit",
+        "Microsoft.MixedReality.WorldLocking.Examples",
+        "Unity.TextMeshPro"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

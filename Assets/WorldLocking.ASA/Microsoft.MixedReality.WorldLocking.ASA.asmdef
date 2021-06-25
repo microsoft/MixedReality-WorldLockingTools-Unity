@@ -1,0 +1,31 @@
+{
+    "name": "Microsoft.MixedReality.WorldLocking.ASA",
+    "rootNamespace": "",
+    "references": [
+        "AzureSpatialAnchors.SDK.Core.Runtime",
+        "Microsoft.MixedReality.WorldLocking.Core",
+        "Microsoft.MixedReality.WorldLocking.Tools",
+        "AzureSpatialAnchors.SDK.Windows.Runtime",
+        "AzureSpatialAnchors.SDK.Android.Runtime"
+    ],
+    "includePlatforms": [
+        "Android",
+        "Editor",
+        "iOS",
+        "WSA"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.microsoft.azure.spatial-anchors-sdk.core",
+            "expression": "",
+            "define": "WLT_ASA_INCLUDED"
+        }
+    ],
+    "noEngineReferences": false
+}

@@ -2,6 +2,8 @@
 
 [See release notes](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases)
 
+## 1.4.0 - Optional integration of Azure Spatial Anchors for persistence and sharing.
+
 ## 1.3.5 - Automated setup from MRTK Unity menu.
 
 ## 1.3.4 - Fix timing issue on SpacePin save.

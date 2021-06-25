@@ -22,7 +22,7 @@ This is not an issue for many tasks. If the goal is to cast a ray into the spati
 
 Likewise, when popping up UX elements around the user, the absolute coordinates to place a UX element don't matter, only the coordinates relative to the user.
 
-However, more involved scenarios can be complicated by the unpredictable coordinate system. To load a large collection of objects, for example a user's desktop or an entire office room, into virtual space with a fixed relation to physical space, requires some compensating transform to align the modeling space objects with the head based coordinate frame. 
+However, more involved scenarios can be complicated by the unpredictable coordinate system. To load a large collection of objects, for example a user's desktop or an entire office room, into virtual space with a fixed relation to physical space, requires some compensating transform to align the modeling space objects with the head based coordinate frame.
 
 That compensation is often done by attaching all objects to a single Unity transform, and adjusting that single transform to position and orient the virtual objects in alignment with the real world.
 
@@ -52,7 +52,7 @@ While a single Space Pin removes the indeterminacy of the relation between virtu
 
 That is, while it may have moved the origin to a physical world aligned position and orientation, walking 10 meters in the real world might still only move the user 9 meters in virtual space.
 
-For this, multiple Space Pins provide the complete solution. When near any specific Space Pin, the world will be aligned according to that Space Pin. The other Space Pins will be off, but being more distant, that generally proves to be acceptable, and often imperceptible. 
+For this, multiple Space Pins provide the complete solution. When near any specific Space Pin, the world will be aligned according to that Space Pin. The other Space Pins will be off, but being more distant, that generally proves to be acceptable, and often imperceptible.
 
 As the user moves between Space Pins, a smooth interpolation minimizes the scale error at any given point in space. With an adequate density of Space Pins as reference points, misalignment of real world and virtual features is reduced to the order of head tracker error.
 
@@ -70,7 +70,7 @@ In practice, this means that a single or small number of preliminary sessions ma
 
 Interpolation and extrapolation are both techniques for estimating data values where no direct measurement has been made. The space pins, as discussed so far, are locations where measurements have been made. The virtual coordinates are the desired coordinates, and the physical coordinates are measured coordinates we want those virtual coordinates to appear at.
 
-The system performs interpolation, but not extrapolation, as discussed below. In general, interpolation is safer and more stable than extrapolation. The piecewise linear interpolation provided will fulfill most applications' needs. Extrapolation is less safe, and its ideal implementation generally requires knowledge at the application level. It is therefore left for the application to handle extrapolation as described below. 
+The system performs interpolation, but not extrapolation, as discussed below. In general, interpolation is safer and more stable than extrapolation. The piecewise linear interpolation provided will fulfill most applications' needs. Extrapolation is less safe, and its ideal implementation generally requires knowledge at the application level. It is therefore left for the application to handle extrapolation as described below.
 
 Without the application adding extrapolation pins, outside the bounds of the pins the space is pinned exclusively by the value at the nearest boundary. If there are only two pins, A and B, then as the user moves from A to B the pinning blends between that specified by A and that specified by B (interpolation). But when the user passes B then the pinning locks to exactly that specified by B (constant extension).
 
@@ -90,7 +90,7 @@ However, if the application has knowledge about the error distribution, or is sa
 
 Consider a scene with four space pins, placed in a square with edges 4 meters long.
 
-Now, let's say that the actual space the user will be moving around in is twelve by twelve (12 x 12) meters, with the physical markers corresponding to the 4 pins surrounding the center of the space. 
+Now, let's say that the actual space the user will be moving around in is twelve by twelve (12 x 12) meters, with the physical markers corresponding to the 4 pins surrounding the center of the space.
 
 If the application is satisfied with a constant error approximation, then it has all the information it needs to add 4 or more space pins to provide coverage over the entire 12x12m space.
 
@@ -100,7 +100,7 @@ We'll label the pins at the corners of the 4x4 square by their cardinal directio
 
 One strategy would be to add outer cardinal points creating a 12x12 meter square surrounding the inner square, by adding 4 more cardinal points, outerNE, outerNW, outerSW, and outerSE. The virtual and physical positions of each of these is simple to compute. Taking outerNE for example:
 
-```lang-cs
+```csharp
 virtualOuterNE = virtualNE + (virtualNE - virtualSW);
 physicalOuterNE = physicalNE + (physicalNE - virtualSW);
 ```
@@ -109,7 +109,7 @@ physicalOuterNE = physicalNE + (physicalNE - virtualSW);
 
 Note that creating an extrapolation space of 20x20 meters only changes the scale of the delta applied:
 
-```lang-cs
+```csharp
 scale = (outerSize - innerSize) / innerSize / 2;
 virtualOuterNE = virtualNE + (virtualNE - virtualSW) * scale;
 physicalOuterNE = physicalNE + (physicalNE - virtualSW) * scale;
@@ -117,7 +117,7 @@ physicalOuterNE = physicalNE + (physicalNE - virtualSW) * scale;
 
 With an outerSize of 20m, and an innerSize of 4m, the scale would be 2.
 
-An alternate strategy might be to add eight more points in addition to the corners as shown below. Computing the new pin locations from the existing ones is exactly as above. Be cautioned that, while it is true that adding additional pins generally improves stability, it does not necessarily improve accuracy. 
+An alternate strategy might be to add eight more points in addition to the corners as shown below. Computing the new pin locations from the existing ones is exactly as above. Be cautioned that, while it is true that adding additional pins generally improves stability, it does not necessarily improve accuracy.
 
 ![Twelve space pins](../../../Images/Simple4and12Pins.png)
 

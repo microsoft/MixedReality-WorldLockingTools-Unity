@@ -21,10 +21,14 @@ pushd ..\Assets
 
 rem Stash the .nupkg, it is redundant with the installation of the libs.
 mkdir stash
-move /Y Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.0\*.nupkg stash >nul
-move /Y Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.0\*.nupkg.meta stash >nul
+move /Y Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.1\*.nupkg stash >nul
+move /Y Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.1\*.nupkg.meta stash >nul
 
 xcopy ..\UPM\core_files . /QY >nul
+echo Exit npm window after checking results (enter "exit" on npm window's command line).
+start /WAIT npm pack
+
+xcopy ..\UPM\asa_files . /QY >nul
 echo Exit npm window after checking results (enter "exit" on npm window's command line).
 start /WAIT npm pack
 
@@ -36,6 +40,14 @@ xcopy ..\UPM\samples_files . /QY >nul
 echo Exit npm window after checking results (enter "exit" on npm window's command line).
 start /WAIT npm pack
 
+if exist Samples~ (rd/s/q Samples~)
+mkdir Samples~
+xcopy WorldLocking.ASA.Examples Samples~\WorldLocking.ASA.Examples /QIS >nul
+
+xcopy ..\UPM\asa_samples_files . /QY >nul
+echo Exit npm window after checking results (enter "exit" on npm window's command line).
+start /WAIT npm pack
+
 rem Cleanup.
 rd/s/q Samples~
 del package.json
@@ -44,7 +56,7 @@ del CHANGELOG.*
 del LICENSE.*
 del NOTICE.*
 
-move /Y stash\* Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.0 >nul
+move /Y stash\* Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.1 >nul
 rd/s/q stash
 
 popd

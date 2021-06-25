@@ -46,6 +46,8 @@
     href: HowTos/WLTviaMRFeatureTool.md
   - name: Cross Platform with XR SDK
     href: HowTos/XRSDK.md
+  - name: Combining World Locking Tools with Azure Spatial Anchors
+    href: HowTos/WLT_ASA.md
   - name: Tools and Visualizers
     href: HowTos/Tools.md
   - name: Trouble Shooting
@@ -61,6 +63,8 @@
         href: HowTos/Samples/SpacePin.md
       - name: Ray Pin Example
         href: HowTos/Samples/RayPins.md
+      - name: World Locking Tools with Azure Spatial Anchors Sample
+        href: HowTos/Samples/WLT_ASA_Sample.md
   - name: Contributing
     href: HowTos/Contributing.md
   - name: Coding Conventions

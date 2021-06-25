@@ -52,8 +52,8 @@ Other [convenient utilities](Tools.md) are included, but are expected to be help
 
 ### Examples
 
-The Examples layer attempts to present samples of setting up common scenarios when using World Locking Tools, as well as best practices in World Locking Tools' integration into various scenarios. 
- 
+The Examples layer attempts to present samples of setting up common scenarios when using World Locking Tools, as well as best practices in World Locking Tools' integration into various scenarios.
+
 Any necessary MRTK dependencies for UX and object manipulation are restricted to the scripts and prefabs at the Examples layer. This leaves the lower layers free of any external dependencies.
 
 Scripts and assets in the Examples layer are not expected to be integrated directly into shipping products, although there is no prohibition against it. Rather, their construction favors simplicity and clarity over reusability and efficiency.
@@ -66,22 +66,22 @@ During development, many visualizations and other helpers for understanding unex
 
 For advanced use, as well as experimentation of World Locking Tools' full capabilities, the Plugin layer offers low level imperative access to the Engine DLL.
 
-If access to the Plugin layer becomes necessary, it may point to a deficiency in the API surface offered in the Core layer. The World Locking Tools team is always looking to fill such gaps. Consider contributing such insights to the team. See [contributing](Contributing.md). 
+If access to the Plugin layer becomes necessary, it may point to a deficiency in the API surface offered in the Core layer. The World Locking Tools team is always looking to fill such gaps. Consider contributing such insights to the team. See [contributing](Contributing.md).
 
 ## *A warning note on installation path length*
 
 Some versions of MRTK have an issue with long installation paths. The full path length of deep subfolders in the MRTK installation can exceed the Windows path limit (260 characters). If a build error of the following form appears:
 
-```
+```shell
 DirectoryNotFoundException: Could not find a part of the path "D:\MyOverTwentyEightCharacterLongLengthInstallPath\MixedReality-WorldLockingTools-Unity\Assets\MRTK\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\net46\Microsoft.Windows.MixedReality.DotNetWinRT\Editor\Microsoft.Windows.MixedReality.DotNetWinRT.Editor.asmdef"
 ```
 
 but the file is actually there on the drive, then the issue is likely the path length. The MRTK team is aware of this and is working to improve on it (note: I believe they have made great improvements here and it is no longer an issue). In the meantime, the workaround is to shorten the path prefix by a combination of the following:
 
 1) Install the Unity project into a shorter length path root, e.g. "D:\Proj"
-2) If cloning the repo, clone the root of the World Locking Tools into something shorter than the default "\MixedReality-WorldLockingTools-Unity", e.g. 
+2) If cloning the repo, clone the root of the World Locking Tools into something shorter than the default "\MixedReality-WorldLockingTools-Unity", e.g.
 
-```
+```lang-dos
 git clone https://github.com/microsoft/MixedReality-WorldLockingTools-Unity.git d:\MyGit\wlt
 ```
 
@@ -90,14 +90,14 @@ This is generally not an issue with the World Locking Tools themselves, as they 
 ## Adding World Locking Tools to a Unity project
 
 > [!NOTE]
-> 
-> The following describes manual installation of World Locking Tools and dependencies. A much more streamlined installation process is available via the [Mixed Reality Feature Tool](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool). Installation via the Feature Tool is described [here](WLTviaMRFeatureTool.md). If the Feature Tool installs WLT, you can skip the following and proceed to [adding WLT to your scene](#adding-world-locking-tools-to-a-unity-scene)
+>
+> The following describes manual installation of World Locking Tools and dependencies. A much more streamlined installation process is available via the [Mixed Reality Feature Tool](https://docs.microsoft.com/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool). Installation via the Feature Tool is described [here](WLTviaMRFeatureTool.md). If the Feature Tool installs WLT, you can skip the following and proceed to [adding WLT to your scene](#adding-world-locking-tools-to-a-unity-scene)
 
-World Locking Tools relies on NuGet for Unity for distribution. 
+World Locking Tools relies on NuGet for Unity for distribution.
 
-To begin, make sure NuGet for Unity is installed into the Unity project. It is available from the (NuGet for Unity github releases)[https://github.com/GlitchEnzo/NuGetForUnity/releases].
+To begin, make sure NuGet for Unity is installed into the Unity project. It is available from the [NuGet for Unity github releases](https://github.com/GlitchEnzo/NuGetForUnity/releases).
 
-If the target Unity project is the World Locking Tools project (or a derivative of it), then all necessary and optional resources are already included. 
+If the target Unity project is the World Locking Tools project (or a derivative of it), then all necessary and optional resources are already included.
 
 If adding World Locking Tools to an existing project, it is advisable to start with a project that has been verified to build and deploy to a HoloLens device. This will help separate issues with getting an app to run on HoloLens in the first place, which can be complicated, from issues with the World Locking Tools. Then proceed to the *NuGet setup* and *World Locking Tools Assets* sections below.
 
@@ -110,8 +110,9 @@ The Frozen World Engine DLL may be obtained from NuGet either using the excellen
 Make sure the nuget.org feed is in sources. Check this in Unity > Edit > Preferences > NuGet for Unity. If not, *either*:
 
 Use the *Add New Source* GUI in Unity > Edit > Preferences > NuGet For Unity to add the same share.
-  * Replace "New Source" with a name of your choosing (e.g. "NuGet").
-  * Replace "source_path" with "http://www.nuget.org/api/v2/".
+
+* Replace "New Source" with a name of your choosing (e.g. "NuGet").
+* Replace "source_path" with "http://www.nuget.org/api/v2/".
 
 After confirming the nuget.org feed, in Unity > NuGet > Manage NuGet Packages, find and install the latest version of Microsoft.MixedReality.FrozenWorld.Engine. (Search for "FrozenWorld".)
 
@@ -121,7 +122,7 @@ To update to a later version, open the Unity > NuGet > Manage NuGet Packages aga
 
 Use a text editor to add a packagesource line to Assets/NuGet.config, e.g.
 
-```
+```xml
   <packageSources>
     <add key="NuGet" value="http://www.nuget.org/api/v2/" />
   </packageSources>
@@ -131,7 +132,7 @@ If you don't already have a file Assets/NuGet.config, you can copy it from the W
 
 Using a text editor, add the Frozen World Engine DLL package to Assets/packages.config, e.g.
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <packages>
   <package id="Microsoft.MixedReality.Unity.FrozenWorld.Engine" version="1.0.0" />
@@ -146,26 +147,24 @@ Having setup NuGet.config and packages.config, install by:
 2. Make sure nuget.exe is in your path (here I'll assume it was copied into Assets).
 3. Open a powershell command window and change directory to the Assets folder.
 4. Run the following command:
-```
-.\nuget.exe restore
-```
+
+  ```shell
+  .\nuget.exe restore
+  ```
 
 To upgrade to a later version:
 
 1. Update the FrozenWorld.Engine version number in the packages.config file above to the desired version (e.g. version="1.0.0" becomes version="1.0.1").
 2. Delete anything in the Assets/Packages folder starting with "Microsoft.MixedReality.Unity.FrozenWorld.Engine".
-3. Rerun nuget.exe as above. 
+3. Rerun nuget.exe as above.
 
 ### World Locking Tools Assets
 
-Either import the required World Locking Tools .unitypackage files into the project (preferred method), or copy them in. They may be moved into a sub-folder within Assets to get them out of the way for application development. 
+Either import the required World Locking Tools .unitypackage files into the project (preferred method), or copy them in. They may be moved into a sub-folder within Assets to get them out of the way for application development.
 
-The latest stable .unitypackage files can be found in:
- ``` 
- https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases
- ```
+The latest stable .unitypackage files can be found in [World Locking Tools for Unity Releases](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases).
 
-The WorldLocking.Core and Engine layer will definitely be required, so a minimal install package would be WorldLockingCoreEngine.unitypackage. 
+The WorldLocking.Core and Engine layer will definitely be required, so a minimal install package would be WorldLockingCoreEngine.unitypackage.
 
 To determine what other layers might be required, see the discussion of World Locking Tools layers and their dependencies above. Each layer is contained in a single Unity package.
 
@@ -176,7 +175,7 @@ Note that since some of the World Locking Tools Examples use features from MRTK,
 > [!NOTE]
 >
 > The steps listed below are all automated in the WLT Configure scene utility, which can be found in the menu Mixed Reality Toolkit > Utilities > World Locking Tools.
-> ![](~/DocGen/Images/Screens/ConfigureScene.jpg)
+> ![Configuraton menu](~/DocGen/Images/Screens/ConfigureScene.jpg)
 
 Within a Unity project containing the FrozenWorld engine (from nuget.org), import any desired World Locking Tools Assets layers (but at least WorldLocking.Core), and optionally MRTK. Then create a new scene (or open an existing scene).
 
@@ -194,7 +193,7 @@ See [World Locking Tools Context](WorldLockingContext.md) for explanations of th
 
 ### [Optional] MRTK
 
-World Locking Tools is complementary with but orthogonal to MRTK. The use of MRTK along with World Locking Tools is entirely optional. 
+World Locking Tools is complementary with but orthogonal to MRTK. The use of MRTK along with World Locking Tools is entirely optional.
 
 That said, the World Locking Tools samples are built using MRTK, and MRTK is generally extremely valuable in developing the types of MR applications that benefit most from World Locking Tools.
 
@@ -203,7 +202,7 @@ If using MRTK, rather than using the snapshot included with the examples, it's r
 * MixedReality.Toolkit
 * MixedReality.Toolkit.Providers
 * MixedReality.Toolkit.Services
-* MixedReality.Toolkit.SDK 
+* MixedReality.Toolkit.SDK
 
 ### [Optional] Visualizing spongy and world locked anchors
 
@@ -229,13 +228,13 @@ Not only are spatial anchors unnecessary, they won't work correctly, as they fai
 
 Therefore, any and all spatial anchors should be removed from the scene, and any scripts adding spatial anchors should discontinue doing so. The spatial anchors don't need to be replaced by anything; World Locking Tools will anchor their targets to the real world.
 
-If it is desirable to compare world-locking with and without World Locking Tools, then instead of removing WorldAnchors, they may be replaced with the [ToggleWorldAnchor](xref:Microsoft.MixedReality.WorldLocking.Tools.ToggleWorldAnchor) supplied in WorldLocking.Tools. 
+If it is desirable to compare world-locking with and without World Locking Tools, then instead of removing WorldAnchors, they may be replaced with the [ToggleWorldAnchor](xref:Microsoft.MixedReality.WorldLocking.Tools.ToggleWorldAnchor) supplied in WorldLocking.Tools.
 
-ToggleWorldAnchor works exactly the same as a WorldAnchor, with the important difference that when the World Locking Tools Manager is active, it conveniently disables itself and gets out of the way. When the World Locking Tools Manager is disabled, it behaves as a normal WorldAnchor. 
+ToggleWorldAnchor works exactly the same as a WorldAnchor, with the important difference that when the World Locking Tools Manager is active, it conveniently disables itself and gets out of the way. When the World Locking Tools Manager is disabled, it behaves as a normal WorldAnchor.
 
 If for some other reason WorldAnchors are still required in the scene (e.g. for network sharing), their can be used with an adapter, supplied as [WorldAnchorAdapter](xref:Microsoft.MixedReality.WorldLocking.Tools.WorldAnchorAdapter).
 
-The WorldAnchorAdapter transforms the raw position of a GameObject positioned by a WorldAnchor, into the world locked Unity global space, and then applies the transform to a target object. To use it, rather than adding a WorldAnchor directly to an object, the WorldAnchor should be applied to a proxy object (usually an otherwise empty GameObject), and then on Update() the WorldAnchorAdapter reads the pose of the WorldAnchor, transforms it correctly, and applies it to the target. 
+The WorldAnchorAdapter transforms the raw position of a GameObject positioned by a WorldAnchor, into the world locked Unity global space, and then applies the transform to a target object. To use it, rather than adding a WorldAnchor directly to an object, the WorldAnchor should be applied to a proxy object (usually an otherwise empty GameObject), and then on Update() the WorldAnchorAdapter reads the pose of the WorldAnchor, transforms it correctly, and applies it to the target.
 
 ## Setup complete
 
@@ -243,7 +242,7 @@ Having followed the above steps, the project deployed to device will run adjuste
 
 ## Available example applications
 
-[Sample scenes](SampleApplications.md), including both scripts and assets are provided to demonstrate more complex use of World Locking Tools' capabilities. 
+[Sample scenes](SampleApplications.md), including both scripts and assets are provided to demonstrate more complex use of World Locking Tools' capabilities.
 
 For example, [the WorldLockedPhysicsSample](Samples/WorldLockedPhysicsSample.md) provides a simple environment in which physically simulated objects can be created and removed, interacting with each other and with the environment (the spatial mapping).
 
@@ -255,15 +254,14 @@ The [RayPins](Samples/RayPins.md) expands on the capabilities introduced by the 
 
 If unfamiliar with the basics of creating, building, and deploying AR apps to the HoloLens family of devices, here are some references that might help get your started.
 
-> [Unity Development Overview](https://docs.microsoft.com/en-us/windows/mixed-reality/unity-development-overview) - Unity for MR/AR development.
-> 
-> [MR Basics 100](https://docs.microsoft.com/en-us/windows/mixed-reality/holograms-100) - Walk through getting started developing for HoloLens
+> [Unity Development Overview](https://docs.microsoft.com/windows/mixed-reality/unity-development-overview) - Unity for MR/AR development.
 >
-> [HoloLens 2 Tutorials](https://docs.microsoft.com/en-us/windows/mixed-reality/mrlearning-base) - Walk through getting started developing for HoloLens 2.  
-> 
-> [Coordinate Systems](https://docs.microsoft.com/en-us/windows/mixed-reality/coordinate-systems) Coordinate space implications in AR development.
-> - Note that World Locking Tools solve the issues discussed [here](https://docs.microsoft.com/en-us/windows/mixed-reality/coordinate-systems#why-a-single-rigid-coordinate-system-cannot-be-used-beyond-5-meters).
-
+> [MR Basics 100](https://docs.microsoft.com/windows/mixed-reality/holograms-100) - Walk through getting started developing for HoloLens
+>
+> [HoloLens 2 Tutorials](https://docs.microsoft.com/windows/mixed-reality/mrlearning-base) - Walk through getting started developing for HoloLens 2.  
+>
+> [Coordinate Systems](https://docs.microsoft.com/windows/mixed-reality/coordinate-systems) Coordinate space implications in AR development.
+> * Note that World Locking Tools solve the issues discussed [here](https://docs.microsoft.com/windows/mixed-reality/coordinate-systems#why-a-single-rigid-coordinate-system-cannot-be-used-beyond-5-meters).
 
 ## Having trouble?
 
