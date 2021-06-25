@@ -89,12 +89,12 @@ namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
         {
             if (statusLine != null)
             {
-                var status = new IPublisher.ReadinessStatus();
+                var status = new ReadinessStatus();
                 if (binder != null)
                 {
                     status = binder.PublisherStatus;
                 }
-                statusLine.faceColor = status.readiness == IPublisher.Readiness.Ready ? Color.white : Color.red;
+                statusLine.faceColor = status.readiness == PublisherReadiness.Ready ? Color.white : Color.red;
                 statusLine.text = $"Status: {status.readiness.ToString()}, Create={status.recommendedForCreate.ToString("0.00")}, {status.readyForCreate.ToString("0.00")}";
             }
         }

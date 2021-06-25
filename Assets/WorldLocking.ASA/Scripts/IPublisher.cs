@@ -13,81 +13,82 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
     using CloudAnchorId = System.String;
 
     /// <summary>
+    /// Readiness states. 
+    /// </summary>
+    /// <remarks>
+    /// The publisher is only able to process requested tasks when its state is "Ready".
+    /// </remarks>
+    public enum PublisherReadiness
+    {
+        NotSetup, // Setup hasn't been completed yet.
+        NoManager, // There is no manager created, probably an installation/setup error.
+        Starting, // Waiting on internal systems to boot.
+        NotReadyToCreate, // System running, but not scanned enough to reliably create cloud anchors.
+        NotReadyToLocate, // System running, but still searching for relocation signals. Only ever in this state when coarse relocation is enabled.
+        Ready, // Ready to process requests.
+        Busy // Currently processing a request.
+    };
+
+    /// <summary>
+    /// Class wrapping the readiness state, along with the progress to readiness to create cloud anchors
+    /// </summary>
+    /// <remarks>
+    /// The floating point progress indicators are a bleed-through of the internal implementation,
+    /// but are very useful to the application/user when establishing tracking.
+    /// </remarks>
+    public class ReadinessStatus
+    {
+        /// <summary>
+        /// Readiness state.
+        /// </summary>
+        public PublisherReadiness readiness = PublisherReadiness.NotSetup;
+
+        /// <summary>
+        /// Progress to recommended for create. Recommended when recommendedForCreate >= 1.0f.
+        /// </summary>
+        public float recommendedForCreate = 0;
+
+        /// <summary>
+        /// Progress to ready for create. Ready (but not necessarily recommended) when readyForCreate >= 1.0f;
+        /// </summary>
+        public float readyForCreate = 0;
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public ReadinessStatus()
+        {
+        }
+
+        /// <summary>
+        /// Constructor setting readiness, leaving progress indicators at defaults.
+        /// </summary>
+        /// <param name="r"></param>
+        public ReadinessStatus(PublisherReadiness r)
+        {
+            readiness = r;
+        }
+
+        /// <summary>
+        /// Full constructor.
+        /// </summary>
+        /// <param name="r">Readiness to set.</param>
+        /// <param name="recommended">Recommended for create progress value.</param>
+        /// <param name="ready">Ready for create progress value.</param>
+        public ReadinessStatus(PublisherReadiness r, float recommended, float ready)
+        {
+            readiness = r;
+            recommendedForCreate = recommended;
+            readyForCreate = ready;
+        }
+    }
+
+
+    /// <summary>
     /// The IPublisher abstracts the process of publishing and downloading cloud anchors.
     /// </summary>
     public interface IPublisher
     {
-        /// <summary>
-        /// Readiness states. 
-        /// </summary>
-        /// <remarks>
-        /// The publisher is only able to process requested tasks when its state is "Ready".
-        /// </remarks>
-        public enum Readiness
-        {
-            NotSetup, // Setup hasn't been completed yet.
-            NoManager, // There is no manager created, probably an installation/setup error.
-            Starting, // Waiting on internal systems to boot.
-            NotReadyToCreate, // System running, but not scanned enough to reliably create cloud anchors.
-            NotReadyToLocate, // System running, but still searching for relocation signals. Only ever in this state when coarse relocation is enabled.
-            Ready, // Ready to process requests.
-            Busy // Currently processing a request.
-        };
-
-        /// <summary>
-        /// Class wrapping the readiness state, along with the progress to readiness to create cloud anchors
-        /// </summary>
-        /// <remarks>
-        /// The floating point progress indicators are a bleed-through of the internal implementation,
-        /// but are very useful to the application/user when establishing tracking.
-        /// </remarks>
-        public class ReadinessStatus
-        {
-            /// <summary>
-            /// Readiness state.
-            /// </summary>
-            public Readiness readiness = Readiness.NotSetup;
-
-            /// <summary>
-            /// Progress to recommended for create. Recommended when recommendedForCreate >= 1.0f.
-            /// </summary>
-            public float recommendedForCreate = 0;
-
-            /// <summary>
-            /// Progress to ready for create. Ready (but not necessarily recommended) when readyForCreate >= 1.0f;
-            /// </summary>
-            public float readyForCreate = 0;
-
-            /// <summary>
-            /// Default constructor.
-            /// </summary>
-            public ReadinessStatus()
-            {
-            }
-
-            /// <summary>
-            /// Constructor setting readiness, leaving progress indicators at defaults.
-            /// </summary>
-            /// <param name="r"></param>
-            public ReadinessStatus(Readiness r)
-            {
-                readiness = r;
-            }
-
-            /// <summary>
-            /// Full constructor.
-            /// </summary>
-            /// <param name="r">Readiness to set.</param>
-            /// <param name="recommended">Recommended for create progress value.</param>
-            /// <param name="ready">Ready for create progress value.</param>
-            public ReadinessStatus(Readiness r, float recommended, float ready)
-            {
-                readiness = r;
-                recommendedForCreate = recommended;
-                readyForCreate = ready;
-            }
-        }
-
         /// <summary>
         /// Get the current status, including progress to readiness to create.
         /// </summary>

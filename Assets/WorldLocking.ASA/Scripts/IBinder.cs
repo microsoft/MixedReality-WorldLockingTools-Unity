@@ -46,7 +46,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         /// <summary>
         /// The current status of the publisher.
         /// </summary>
-        IPublisher.ReadinessStatus PublisherStatus { get; }
+        ReadinessStatus PublisherStatus { get; }
 
         /// <summary>
         /// Known bindings between space pins and cloud anchors.

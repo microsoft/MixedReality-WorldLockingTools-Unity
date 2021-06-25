@@ -90,11 +90,11 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         /// <inheritdoc/>
         public bool IsReady
         {
-            get { return PublisherStatus.readiness == IPublisher.Readiness.Ready; }
+            get { return PublisherStatus.readiness == PublisherReadiness.Ready; }
         }
 
         /// <inheritdoc/>
-        public IPublisher.ReadinessStatus PublisherStatus { get { return publisher != null ? publisher.Status : new IPublisher.ReadinessStatus(); } }
+        public ReadinessStatus PublisherStatus { get { return publisher != null ? publisher.Status : new ReadinessStatus(); } }
 
         #region Create and maintain bindings between space pins and cloud anchors
         /// <inheritdoc/>
