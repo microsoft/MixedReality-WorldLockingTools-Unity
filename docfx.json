@@ -3,7 +3,7 @@
     {
       "src": [
         {
-          "files": [ "WorldLocking.Plugin/**/*.cs", "WorldLocking.Core/**/*.cs", "WorldLocking.Tools/**/*.cs", "WorldLocking.Examples/**/*.cs" ],
+          "files": [ "WorldLocking.Plugin/**/*.cs", "WorldLocking.Core/**/*.cs", "WorldLocking.Tools/**/*.cs", "WorldLocking.Examples/**/*.cs", "WorldLocking.ASA/**/*.cs", "WorldLocking.ASA.Examples/**/*.cs" ],
           "exclude": [ "**/bin/**", "**/obj/**" ],
           "src": "Assets"
         }
