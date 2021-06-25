@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Struct Diagnostics.Record
+    <title>Interface ILocalPeg
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Struct Diagnostics.Record
+    <meta name="title" content="Interface ILocalPeg
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.58.0.0">
     
@@ -81,53 +81,44 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Record" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record" class="text-break">Struct Diagnostics.Record
+  <h1 id="Microsoft_MixedReality_WorldLocking_ASA_ILocalPeg" data-uid="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg" class="text-break">Interface ILocalPeg
   </h1>
-  <div class="markdown level0 summary"><p>One record (chunk) of data.</p>
+  <div class="markdown level0 summary"><p>A data blob with enough information to be saved to the cloud and
+reconstructed from the cloud in a later session or on a different device.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.equals#System_ValueType_Equals_System_Object_">ValueType.Equals(Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.gethashcode#System_ValueType_GetHashCode">ValueType.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.tostring#System_ValueType_ToString">ValueType.ToString()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.html">Microsoft.MixedReality.WorldLocking.ASA</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Record_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_ILocalPeg_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected struct Record</code></pre>
+    <pre><code class="lang-csharp hljs">public interface ILocalPeg</code></pre>
   </div>
-  <h3 id="fields">Fields
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_ILocalPeg_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>In a better world, this construct would be hidden in the internals of the
+IPublisher interface. Unfortunately, the IPublisher doesn't know when the best
+time to create a local peg is, and so has to leave that to the application.
+See <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.html#Microsoft_MixedReality_WorldLocking_ASA_IPublisher_CreateLocalPeg_System_String_Pose_">CreateLocalPeg(String, Pose)</a>.
+In general, a local peg will be of better quality if it is created when
+the tracker is near the local peg's location, and the area has been adequately
+scanned.</p>
+</div>
+  <h3 id="properties">Properties
   </h3>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Record_Data" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record.Data">Data</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_ILocalPeg_GlobalPose_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg.GlobalPose*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_ILocalPeg_GlobalPose" data-uid="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg.GlobalPose">GlobalPose</h4>
+  <div class="markdown level1 summary"><p>The current global pose for the blob.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;byte[]&gt; Data</code></pre>
+    <pre><code class="lang-csharp hljs">Pose GlobalPose { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -137,22 +128,23 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>[]&gt;</td>
+        <td><span class="xref">Pose</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Record_StartNextFile" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record.StartNextFile">StartNextFile</h4>
-  <div class="markdown level1 summary"><p>If true, finish current</p>
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_ILocalPeg_IsReadyForPublish_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg.IsReadyForPublish*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_ILocalPeg_IsReadyForPublish" data-uid="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg.IsReadyForPublish">IsReadyForPublish</h4>
+  <div class="markdown level1 summary"><p>Is there enough information to publish this anchor to the cloud?</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool StartNextFile</code></pre>
+    <pre><code class="lang-csharp hljs">bool IsReadyForPublish { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -169,14 +161,16 @@
   </table>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Record_Time" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record.Time">Time</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_ILocalPeg_Name_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg.Name*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_ILocalPeg_Name" data-uid="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg.Name">Name</h4>
+  <div class="markdown level1 summary"><p>The name for this peg.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime Time</code></pre>
+    <pre><code class="lang-csharp hljs">string Name { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -186,7 +180,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td></td>
       </tr>
     </tbody>

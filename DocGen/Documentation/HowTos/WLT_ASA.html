@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Example applications | World Locking Tools for Unity Documentation </title>
+    <title>World Locking Tools (WLT) combined with Azure Spatial Anchors (ASA) | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Example applications | World Locking Tools for Unity Documentation ">
+    <meta name="title" content="World Locking Tools (WLT) combined with Azure Spatial Anchors (ASA) | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
@@ -80,16 +80,34 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="example-applications">Example applications</h1>
+<h1 id="world-locking-tools-wlt-combined-with-azure-spatial-anchors-asa">World Locking Tools (WLT) combined with Azure Spatial Anchors (ASA)</h1>
 
-<p>This project ships with a number of sample applications. These are working apps which demonstrate World Locking Tools' capabilities as well as scenarios which World Locking Tools enables.</p>
-<p>They also attempt to show best practices in coding against the World Locking Tools APIs.</p>
-<p>Supplementary samples can be found in the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Samples">World Locking Tools Samples</a> sibling repository, which has its own <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html">documentation</a>. That repo contains a number of projects illustrating the use of World Locking Tools in both minimal settings, and in more advanced usage. In particular, more advanced samples are free to incorporate external libraries, which would be inappropriate to include in the base configuration here, to show how World Locking Tools working in cooperation with other technologies can produce results beyond what either is capable of alone.</p>
+<p>Azure Spatial Anchors (ASA), provide a powerful cross-platform method for persistence across sessions and sharing across devices of spatial coordinates of physical features.</p>
+<p>World Locking Tools (WLT), on the other hand, leverage a device's local tracking system to stabilize Unity's global coordinate space relative to the physical environment.</p>
+<p>Combining the two gives stationary coordinate space(s) which are maintained across sessions, and sharable between different devices.</p>
+<h2 id="supported-configurations">Supported configurations</h2>
+<p>WLT supports:</p>
+<ul>
+<li>Unity 2018.4, Unity 2019.4, Unity 2020.3</li>
+<li>HoloLens, HoloLens2, Android, and iOS</li>
+<li>Unity Legacy XR, XR SDK, or OpenXR</li>
+<li>Azure Spatial Anchors v2.9.0-v2.10.0</li>
+</ul>
+<p>Use of ASA imposes these additional restrictions:</p>
+<ul>
+<li>Unity 2020.3 or later</li>
+<li>XR SDK or OpenXR</li>
+</ul>
+<h2 id="setup-for-using-asa-with-wlt">Setup for using ASA with WLT</h2>
+<p>Before deploying and running the samples leveraging ASA with WLT, some external software and configuration is necessary. In particular, enabling coarse relocation requires some non-intuitive setup. These additional steps are detailed in the <a href="Samples/WLT_ASA_Sample.html">WLT+ASA Sample documentation</a>.</p>
+<p>Additionally, <a href="Samples/WLT_ASA_Software.html">notes on the software bridging the two systems</a>, ASA and WLT, may prove helpful in understanding what's going on.</p>
 <h2 id="see-also">See also</h2>
-<p><a href="Samples/WorldLockedPhysicsSample.html">World Locked Physics Sample</a></p>
-<p><a href="Samples/SpacePin.html">Space Pin Sample</a></p>
-<p><a href="Samples/RayPins.html">Ray Pin Sample</a></p>
-<p><a href="Samples/WLT_ASA_Sample.html">World Locking Tools with Azure Spatial Anchors Sample</a></p>
+<ul>
+<li><a href="Samples/WLT_ASA_Software.html">WLT+ASA software overview</a></li>
+<li><a href="Samples/WLT_ASA_Sample.html">WLT_ASA Samples Walkthrough</a></li>
+<li><a href="https://docs.microsoft.com/azure/spatial-anchors/unity-overview">Azure Spatial Anchors Quick Start</a></li>
+<li><a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Unity/README.html">World Locking Tools for Unity</a></li>
+</ul>
 </article>
           </div>
           
@@ -98,7 +116,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/HowTos/SampleApplications.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/HowTos/WLT_ASA.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

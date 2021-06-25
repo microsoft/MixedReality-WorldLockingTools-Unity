@@ -1,0 +1,733 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class SpacePinBinder
+   | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class SpacePinBinder
+   | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.58.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../api_doc/toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/Images/Logos/WorldLock64.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder">
+  
+  
+  <h1 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder" class="text-break">Class SpacePinBinder
+  </h1>
+  <div class="markdown level0 summary"><p>Implementation of the IBinder interface, managing the relationship between space pins and cloud anchors.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">SpacePinBinder</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.IBinder.html">IBinder</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.html">Microsoft.MixedReality.WorldLocking.ASA</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SpacePinBinder : MonoBehaviour, IBinder</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_SpacePinIdKey" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.SpacePinIdKey">SpacePinIdKey</h4>
+  <div class="markdown level1 summary"><p>The key for the key-value pair in the space pin/cloud anchor properties identifying the space pin id in the value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly string SpacePinIdKey</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_IsReady_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.IsReady*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_IsReady" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.IsReady">IsReady</h4>
+  <div class="markdown level1 summary"><p>If the binder is ready to execute tasks.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsReady { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_IsReady_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Reasons not be be ready include initialization not complete, or already busy on another task.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Name_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Name*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Name" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Name">Name</h4>
+  <div class="markdown level1 summary"><p>The name of this binder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_PublisherStatus_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.PublisherStatus*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_PublisherStatus" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.PublisherStatus">PublisherStatus</h4>
+  <div class="markdown level1 summary"><p>The current status of the publisher.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadinessStatus PublisherStatus { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.ReadinessStatus.html">ReadinessStatus</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_SearchRadius_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.SearchRadius*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_SearchRadius" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.SearchRadius">SearchRadius</h4>
+  <div class="markdown level1 summary"><p>Distance (roughly) to search from device when looking for cloud anchors using coarse relocation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float SearchRadius { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_SpacePins_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.SpacePins*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_SpacePins" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.SpacePins">SpacePins</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyCollection&lt;SpacePinASA&gt; SpacePins { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;<a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.SpacePinASA.html">SpacePinASA</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_AddSpacePin_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.AddSpacePin*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_AddSpacePin_Microsoft_MixedReality_WorldLocking_ASA_SpacePinASA_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.AddSpacePin(Microsoft.MixedReality.WorldLocking.ASA.SpacePinASA)">AddSpacePin(SpacePinASA)</h4>
+  <div class="markdown level1 summary"><p>Add a space pin to the list of managed pins.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AddSpacePin(SpacePinASA spacePin)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.SpacePinASA.html">SpacePinASA</a></td>
+        <td><span class="parametername">spacePin</span></td>
+        <td><p>Pin to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if not already there but added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Clear_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Clear*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Clear" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Clear">Clear()</h4>
+  <div class="markdown level1 summary"><p>Delete all known (bound) cloud anchors from the cloud, and erase their bindings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;bool&gt; Clear()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><p>True on success.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Clear_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Bound space pins are unaffected, but will no longer be bound.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_CreateBinding_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.CreateBinding*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_CreateBinding_System_String_System_String_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.CreateBinding(System.String,System.String)">CreateBinding(String, String)</h4>
+  <div class="markdown level1 summary"><p>Set the cloud anchor id associated with this space pin.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CreateBinding(string spacePinId, string cloudAnchorId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">spacePinId</span></td>
+        <td><p>Name of the space pin to be bound to this cloud id.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">cloudAnchorId</span></td>
+        <td><p>Cloud id to be bound to the space pin.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>False if space pin is unknown. Space pin must be registered before being bound.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_CreateBinding_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A space pin must be bound to a cloud anchor id before it can be downloaded.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Download_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Download*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Download" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Download">Download()</h4>
+  <div class="markdown level1 summary"><p>Pull down cloud anchors for all known bindings, and apply them to the bound space pins.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;bool&gt; Download()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><p>True on success.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_GetBindings_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.GetBindings*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_GetBindings" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.GetBindings">GetBindings()</h4>
+  <div class="markdown level1 summary"><p>Known bindings between space pins and cloud anchors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;SpacePinCloudBinding&gt; GetBindings()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.SpacePinCloudBinding.html">SpacePinCloudBinding</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Publish_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Publish*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Publish" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Publish">Publish()</h4>
+  <div class="markdown level1 summary"><p>Publish all active space pins to the cloud.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;bool&gt; Publish()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><p>True on success.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Publish_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Space pins which are previously published in this session, i.e. that have a binding to a cloud anchor, will have that cloud anchor deleted
+first, and a new binding created to the newly published cloud anchor.
+To be publishable, a SpacePin must have an <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg.html">ILocalPeg</a> created from <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.html#Microsoft_MixedReality_WorldLocking_ASA_IPublisher_CreateLocalPeg_System_String_Pose_">CreateLocalPeg(String, Pose)</a>. The <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.SpacePinASA.html">SpacePinASA</a>
+manages this automatically.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Publish_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Publish*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Publish_Microsoft_MixedReality_WorldLocking_ASA_SpacePinASA_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Publish(Microsoft.MixedReality.WorldLocking.ASA.SpacePinASA)">Publish(SpacePinASA)</h4>
+  <div class="markdown level1 summary"><p>Publish the spacePin.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;bool&gt; Publish(SpacePinASA spacePin)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.SpacePinASA.html">SpacePinASA</a></td>
+        <td><span class="parametername">spacePin</span></td>
+        <td><p>SpacePinASA to publish</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><p>True on success.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Publish_Microsoft_MixedReality_WorldLocking_ASA_SpacePinASA__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>It may be this should be a private member.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Purge_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Purge*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Purge" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Purge">Purge()</h4>
+  <div class="markdown level1 summary"><p>Find all cloud anchors in the area, delete them, and release their bindings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;bool&gt; Purge()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><p>True on success.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_RemoveBinding_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.RemoveBinding*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_RemoveBinding_System_String_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.RemoveBinding(System.String)">RemoveBinding(String)</h4>
+  <div class="markdown level1 summary"><p>Erase a binding between a space pin and its corresponding cloud anchor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveBinding(string spacePinId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">spacePinId</span></td>
+        <td><p>Space pin to unbind.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if found and unbound.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_RemoveBinding_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Neither the space pin nor the cloud anchor are affected by this, but will be independent of one another after.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_RemoveSpacePin_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.RemoveSpacePin*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_RemoveSpacePin_System_String_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.RemoveSpacePin(System.String)">RemoveSpacePin(String)</h4>
+  <div class="markdown level1 summary"><p>Remove the space pin binding associated with this SpacePin.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveSpacePin(string spacePinId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">spacePinId</span></td>
+        <td><p>Space pin id of binding to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if found and removed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_RemoveSpacePin_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Any binding between this pin and a cloud anchor is also severed.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Search_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Search*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_Search" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.Search">Search()</h4>
+  <div class="markdown level1 summary"><p>Search for cloud anchors in the area, download them, and apply to associated space pins.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;bool&gt; Search()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><p>True on success</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_UnPin_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.UnPin*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinder_UnPin" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.UnPin">UnPin()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnPin()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.IBinder.html">IBinder</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

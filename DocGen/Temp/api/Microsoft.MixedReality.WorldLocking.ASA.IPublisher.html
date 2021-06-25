@@ -1,0 +1,531 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IPublisher
+   | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IPublisher
+   | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.58.0.0">
+    
+    <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../api_doc/toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../DocGen/Images/Logos/WorldLock64.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher">
+  
+  
+  <h1 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher" class="text-break">Interface IPublisher
+  </h1>
+  <div class="markdown level0 summary"><p>The IPublisher abstracts the process of publishing and downloading cloud anchors.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.html">Microsoft.MixedReality.WorldLocking.ASA</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IPublisher</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Status_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Status*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Status" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Status">Status</h4>
+  <div class="markdown level1 summary"><p>Get the current status, including progress to readiness to create.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ReadinessStatus Status { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.ReadinessStatus.html">ReadinessStatus</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Status_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The publisher processes requests when its ReadinessStatus.readiness == Readiness.Ready.
+If that is not the current status, methods will return an error, unless otherwise noted.</p>
+</div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Create_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Create*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Create_Microsoft_MixedReality_WorldLocking_ASA_LocalPegAndProperties_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Create(Microsoft.MixedReality.WorldLocking.ASA.LocalPegAndProperties)">Create(LocalPegAndProperties)</h4>
+  <div class="markdown level1 summary"><p>Create a cloud anchor corresponding to the input local peg and its properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; Create(LocalPegAndProperties pegAndProps)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.LocalPegAndProperties.html">LocalPegAndProperties</a></td>
+        <td><span class="parametername">pegAndProps</span></td>
+        <td><p>Peg and properties to be captured to the cloud.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><p>Awaitable identifier for the cloud anchor.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_CreateLocalPeg_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.CreateLocalPeg*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_CreateLocalPeg_System_String_Pose_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.CreateLocalPeg(System.String,Pose)">CreateLocalPeg(String, Pose)</h4>
+  <div class="markdown level1 summary"><p>Create a local position holder blob.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;ILocalPeg&gt; CreateLocalPeg(string id, Pose lockedPose)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>Unique name to give the local peg.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td><span class="parametername">lockedPose</span></td>
+        <td><p>The position in WLT.LockedSpace to capture</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg.html">ILocalPeg</a>&gt;</td>
+        <td><p>Awaitable created blob.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_CreateLocalPeg_System_String_Pose__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This can be called anytime, regardless of the ReadinessStatus.
+See <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg.html">ILocalPeg</a> for more details.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Delete_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Delete*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Delete_System_String_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Delete(System.String)">Delete(String)</h4>
+  <div class="markdown level1 summary"><p>Delete the indicated cloud anchor from the cloud database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task Delete(string cloudAnchorId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">cloudAnchorId</span></td>
+        <td><p>Cloud anchor to destroy.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>Awaitable task.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Find_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Find*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Find_System_Single_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Find(System.Single)">Find(Single)</h4>
+  <div class="markdown level1 summary"><p>Search the area around the device for cloud anchors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;Dictionary&lt;string, LocalPegAndProperties&gt;&gt; Find(float radiusFromDevice)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">radiusFromDevice</span></td>
+        <td><p>Distance (roughly) from device to search.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.LocalPegAndProperties.html">LocalPegAndProperties</a>&gt;&gt;</td>
+        <td><p>Awaitable dictionary of cloud anchor ids and corresponding local peg and properties.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Modify_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Modify*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Modify_System_String_Microsoft_MixedReality_WorldLocking_ASA_LocalPegAndProperties_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Modify(System.String,Microsoft.MixedReality.WorldLocking.ASA.LocalPegAndProperties)">Modify(String, LocalPegAndProperties)</h4>
+  <div class="markdown level1 summary"><p>Delete a cloud anchor, and create a new one based on input local peg and its properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; Modify(string cloudAnchorId, LocalPegAndProperties pegAndProps)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">cloudAnchorId</span></td>
+        <td><p>Cloud anchor to delete.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.LocalPegAndProperties.html">LocalPegAndProperties</a></td>
+        <td><span class="parametername">pegAndProps</span></td>
+        <td><p>Local anchor and properties to create new cloud anchor from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><p>Awaitable identifier for the new cloud anchor.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_PurgeArea_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.PurgeArea*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_PurgeArea_System_Single_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.PurgeArea(System.Single)">PurgeArea(Single)</h4>
+  <div class="markdown level1 summary"><p>Search the area around the device, and destroy any anchors found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task PurgeArea(float radius)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">radius</span></td>
+        <td><p>Distance (roughly) from device to search.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>Awaitable task.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Read_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Read*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Read_System_String_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Read(System.String)">Read(String)</h4>
+  <div class="markdown level1 summary"><p>Download a cloud anchor with the given identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;LocalPegAndProperties&gt; Read(string cloudAnchorId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">cloudAnchorId</span></td>
+        <td><p>Identifier for the desired cloud anchor.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.LocalPegAndProperties.html">LocalPegAndProperties</a>&gt;</td>
+        <td><p>Awaitable local peg and its properties that were used to create the cloud anchor are reconstructed and returned.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_ReleaseLocalPeg_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.ReleaseLocalPeg*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_ReleaseLocalPeg_Microsoft_MixedReality_WorldLocking_ASA_ILocalPeg_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.ReleaseLocalPeg(Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg)">ReleaseLocalPeg(ILocalPeg)</h4>
+  <div class="markdown level1 summary"><p>Free up the resources from an ILocalPeg.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ReleaseLocalPeg(ILocalPeg peg)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg.html">ILocalPeg</a></td>
+        <td><span class="parametername">peg</span></td>
+        <td><p>The peg to clean up.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_IPublisher_ReleaseLocalPeg_Microsoft_MixedReality_WorldLocking_ASA_ILocalPeg__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Param &quot;peg&quot; will be invalid after this call.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

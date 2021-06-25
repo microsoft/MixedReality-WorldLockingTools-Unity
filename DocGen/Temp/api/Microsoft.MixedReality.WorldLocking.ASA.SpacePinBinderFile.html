@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Struct Diagnostics.Record
+    <title>Class SpacePinBinderFile
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Struct Diagnostics.Record
+    <meta name="title" content="Class SpacePinBinderFile
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.58.0.0">
     
@@ -81,53 +81,50 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinderFile">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Record" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record" class="text-break">Struct Diagnostics.Record
+  <h1 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinderFile" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinderFile" class="text-break">Class SpacePinBinderFile
   </h1>
-  <div class="markdown level0 summary"><p>One record (chunk) of data.</p>
+  <div class="markdown level0 summary"><p>Simple implementation of an IBindingOracle interface, which puts and gets binding from file locally.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.equals#System_ValueType_Equals_System_Object_">ValueType.Equals(Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.gethashcode#System_ValueType_GetHashCode">ValueType.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.tostring#System_ValueType_ToString">ValueType.ToString()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
-    </div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">SpacePinBinderFile</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.IBindingOracle.html">IBindingOracle</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.html">Microsoft.MixedReality.WorldLocking.ASA</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Record_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinderFile_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected struct Record</code></pre>
+    <pre><code class="lang-csharp hljs">public class SpacePinBinderFile : MonoBehaviour, IBindingOracle</code></pre>
   </div>
-  <h3 id="fields">Fields
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinderFile_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Note that this implements spatial persistence locally across sessions.
+Also, the file can be transferred from device to device, allowing shared spaces
+between HoloLens, Android, and iOS.
+A more sophisticated implementation would be very similar, but instead of saving to and loading from
+a local file, would save to and load from a shared location in the cloud.</p>
+</div>
+  <h3 id="properties">Properties
   </h3>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Record_Data" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record.Data">Data</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinderFile_Name_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinderFile.Name*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinderFile_Name" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinderFile.Name">Name</h4>
+  <div class="markdown level1 summary"><p>Name of this oracle.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;byte[]&gt; Data</code></pre>
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -137,22 +134,43 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>[]&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h3 id="methods">Methods
+  </h3>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Record_StartNextFile" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record.StartNextFile">StartNextFile</h4>
-  <div class="markdown level1 summary"><p>If true, finish current</p>
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinderFile_Get_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinderFile.Get*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinderFile_Get_Microsoft_MixedReality_WorldLocking_ASA_IBinder_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinderFile.Get(Microsoft.MixedReality.WorldLocking.ASA.IBinder)">Get(IBinder)</h4>
+  <div class="markdown level1 summary"><p>Retrieve bindings from file and apply them to the input binder.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool StartNextFile</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Get(IBinder binder)</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.IBinder.html">IBinder</a></td>
+        <td><span class="parametername">binder</span></td>
+        <td><p>Binder to apply them to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -163,20 +181,41 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True on success.</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Record_Time" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record.Time">Time</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinderFile_Put_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinderFile.Put*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_SpacePinBinderFile_Put_Microsoft_MixedReality_WorldLocking_ASA_IBinder_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinderFile.Put(Microsoft.MixedReality.WorldLocking.ASA.IBinder)">Put(IBinder)</h4>
+  <div class="markdown level1 summary"><p>Pull bindings from the binder and save them to file.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime Time</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Put(IBinder binder)</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.IBinder.html">IBinder</a></td>
+        <td><span class="parametername">binder</span></td>
+        <td><p>Binder to pull from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -186,11 +225,16 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
-        <td></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True on success.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.IBindingOracle.html">IBindingOracle</a>
+  </div>
 </article>
           </div>
           

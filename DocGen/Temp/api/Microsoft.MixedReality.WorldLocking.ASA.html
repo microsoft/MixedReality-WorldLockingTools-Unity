@@ -5,9 +5,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Example applications | World Locking Tools for Unity Documentation </title>
+    <title>Namespace Microsoft.MixedReality.WorldLocking.ASA
+   | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Example applications | World Locking Tools for Unity Documentation ">
+    <meta name="title" content="Namespace Microsoft.MixedReality.WorldLocking.ASA
+   | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
@@ -15,7 +17,7 @@
     <link rel="stylesheet" href="../../../styles/docfx.css">
     <link rel="stylesheet" href="../../../styles/main.css">
     <meta property="docfx:navrel" content="../../../toc.html">
-    <meta property="docfx:tocrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="../../api_doc/toc.html">
     
     <meta property="docfx:rel" content="../../../">
     
@@ -79,17 +81,59 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="">
-<h1 id="example-applications">Example applications</h1>
-
-<p>This project ships with a number of sample applications. These are working apps which demonstrate World Locking Tools' capabilities as well as scenarios which World Locking Tools enables.</p>
-<p>They also attempt to show best practices in coding against the World Locking Tools APIs.</p>
-<p>Supplementary samples can be found in the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Samples">World Locking Tools Samples</a> sibling repository, which has its own <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html">documentation</a>. That repo contains a number of projects illustrating the use of World Locking Tools in both minimal settings, and in more advanced usage. In particular, more advanced samples are free to incorporate external libraries, which would be inappropriate to include in the base configuration here, to show how World Locking Tools working in cooperation with other technologies can produce results beyond what either is capable of alone.</p>
-<h2 id="see-also">See also</h2>
-<p><a href="Samples/WorldLockedPhysicsSample.html">World Locked Physics Sample</a></p>
-<p><a href="Samples/SpacePin.html">Space Pin Sample</a></p>
-<p><a href="Samples/RayPins.html">Ray Pin Sample</a></p>
-<p><a href="Samples/WLT_ASA_Sample.html">World Locking Tools with Azure Spatial Anchors Sample</a></p>
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.ASA">
+  
+  <h1 id="Microsoft_MixedReality_WorldLocking_ASA" data-uid="Microsoft.MixedReality.WorldLocking.ASA" class="text-break">Namespace Microsoft.MixedReality.WorldLocking.ASA
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.LocalPegAndProperties.html">LocalPegAndProperties</a></h4>
+      <section><p>A local peg, with an associated properties dictionary.</p>
+</section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.PublisherASA.html">PublisherASA</a></h4>
+      <section><p>Implementation of IPublisher using ASA to push anchors to and retrieve them from the cloud.</p>
+</section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.ReadinessStatus.html">ReadinessStatus</a></h4>
+      <section><p>Class wrapping the readiness state, along with the progress to readiness to create cloud anchors</p>
+</section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.SpacePinASA.html">SpacePinASA</a></h4>
+      <section></section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.SpacePinASA.KeyValPair.html">SpacePinASA.KeyValPair</a></h4>
+      <section></section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.html">SpacePinBinder</a></h4>
+      <section><p>Implementation of the IBinder interface, managing the relationship between space pins and cloud anchors.</p>
+</section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinderFile.html">SpacePinBinderFile</a></h4>
+      <section><p>Simple implementation of an IBindingOracle interface, which puts and gets binding from file locally.</p>
+</section>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.SpacePinCloudBinding.html">SpacePinCloudBinding</a></h4>
+      <section><p>A binding between a space pin and a cloud anchor, by their respective id's.</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.IBinder.html">IBinder</a></h4>
+      <section><p>Interface for a binding layer between space pins and cloud anchors.</p>
+</section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.IBindingOracle.html">IBindingOracle</a></h4>
+      <section><p>Interface for a magical oracle that communicates IBinder bindings across space and time.</p>
+</section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.ILocalPeg.html">ILocalPeg</a></h4>
+      <section><p>A data blob with enough information to be saved to the cloud and
+reconstructed from the cloud in a later session or on a different device.</p>
+</section>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.IPublisher.html">IPublisher</a></h4>
+      <section><p>The IPublisher abstracts the process of publishing and downloading cloud anchors.</p>
+</section>
+    <h3 id="enums">Enums
+  </h3>
+      <h4><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.PublisherReadiness.html">PublisherReadiness</a></h4>
+      <section><p>Readiness states.</p>
+</section>
 </article>
           </div>
           
@@ -97,9 +141,6 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/HowTos/SampleApplications.md/#L1" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

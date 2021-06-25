@@ -118,23 +118,23 @@
 <p>If access to the Plugin layer becomes necessary, it may point to a deficiency in the API surface offered in the Core layer. The World Locking Tools team is always looking to fill such gaps. Consider contributing such insights to the team. See <a href="Contributing.html">contributing</a>.</p>
 <h2 id="a-warning-note-on-installation-path-length"><em>A warning note on installation path length</em></h2>
 <p>Some versions of MRTK have an issue with long installation paths. The full path length of deep subfolders in the MRTK installation can exceed the Windows path limit (260 characters). If a build error of the following form appears:</p>
-<pre><code>DirectoryNotFoundException: Could not find a part of the path &quot;D:\MyOverTwentyEightCharacterLongLengthInstallPath\MixedReality-WorldLockingTools-Unity\Assets\MRTK\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\net46\Microsoft.Windows.MixedReality.DotNetWinRT\Editor\Microsoft.Windows.MixedReality.DotNetWinRT.Editor.asmdef&quot;
+<pre><code class="lang-shell">DirectoryNotFoundException: Could not find a part of the path &quot;D:\MyOverTwentyEightCharacterLongLengthInstallPath\MixedReality-WorldLockingTools-Unity\Assets\MRTK\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\net46\Microsoft.Windows.MixedReality.DotNetWinRT\Editor\Microsoft.Windows.MixedReality.DotNetWinRT.Editor.asmdef&quot;
 </code></pre>
 <p>but the file is actually there on the drive, then the issue is likely the path length. The MRTK team is aware of this and is working to improve on it (note: I believe they have made great improvements here and it is no longer an issue). In the meantime, the workaround is to shorten the path prefix by a combination of the following:</p>
 <ol>
 <li>Install the Unity project into a shorter length path root, e.g. &quot;D:\Proj&quot;</li>
 <li>If cloning the repo, clone the root of the World Locking Tools into something shorter than the default &quot;\MixedReality-WorldLockingTools-Unity&quot;, e.g.</li>
 </ol>
-<pre><code>git clone https://github.com/microsoft/MixedReality-WorldLockingTools-Unity.git d:\MyGit\wlt
+<pre><code class="lang-lang-dos">git clone https://github.com/microsoft/MixedReality-WorldLockingTools-Unity.git d:\MyGit\wlt
 </code></pre>
 <p>This is generally not an issue with the World Locking Tools themselves, as they don't utilize as deep a folder structure.</p>
 <h2 id="adding-world-locking-tools-to-a-unity-project">Adding World Locking Tools to a Unity project</h2>
 <div class="NOTE">
 <h5>Note</h5>
-<p>The following describes manual installation of World Locking Tools and dependencies. A much more streamlined installation process is available via the <a href="https://docs.microsoft.com/en-us/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool">Mixed Reality Feature Tool</a>. Installation via the Feature Tool is described <a href="WLTviaMRFeatureTool.html">here</a>. If the Feature Tool installs WLT, you can skip the following and proceed to <a href="#adding-world-locking-tools-to-a-unity-scene">adding WLT to your scene</a></p>
+<p>The following describes manual installation of World Locking Tools and dependencies. A much more streamlined installation process is available via the <a href="https://docs.microsoft.com/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool">Mixed Reality Feature Tool</a>. Installation via the Feature Tool is described <a href="WLTviaMRFeatureTool.html">here</a>. If the Feature Tool installs WLT, you can skip the following and proceed to <a href="#adding-world-locking-tools-to-a-unity-scene">adding WLT to your scene</a></p>
 </div>
 <p>World Locking Tools relies on NuGet for Unity for distribution.</p>
-<p>To begin, make sure NuGet for Unity is installed into the Unity project. It is available from the (NuGet for Unity github releases)[https://github.com/GlitchEnzo/NuGetForUnity/releases].</p>
+<p>To begin, make sure NuGet for Unity is installed into the Unity project. It is available from the <a href="https://github.com/GlitchEnzo/NuGetForUnity/releases">NuGet for Unity github releases</a>.</p>
 <p>If the target Unity project is the World Locking Tools project (or a derivative of it), then all necessary and optional resources are already included.</p>
 <p>If adding World Locking Tools to an existing project, it is advisable to start with a project that has been verified to build and deploy to a HoloLens device. This will help separate issues with getting an app to run on HoloLens in the first place, which can be complicated, from issues with the World Locking Tools. Then proceed to the <em>NuGet setup</em> and <em>World Locking Tools Assets</em> sections below.</p>
 <h3 id="frozenworld-engine-installation">FrozenWorld Engine installation</h3>
@@ -150,13 +150,13 @@
 <p>To update to a later version, open the Unity &gt; NuGet &gt; Manage NuGet Packages again, and find the FrozenWorld.Engine package and select Update. Note: You may have to the Updates tab to find the version you are looking for.</p>
 <h4 id="manual-frozen-world-engine-dll-installation">Manual Frozen World Engine DLL installation</h4>
 <p>Use a text editor to add a packagesource line to Assets/NuGet.config, e.g.</p>
-<pre><code>  &lt;packageSources&gt;
+<pre><code class="lang-xml">  &lt;packageSources&gt;
     &lt;add key=&quot;NuGet&quot; value=&quot;http://www.nuget.org/api/v2/&quot; /&gt;
   &lt;/packageSources&gt;
 </code></pre>
 <p>If you don't already have a file Assets/NuGet.config, you can copy it from the World Locking Tools github repo.</p>
 <p>Using a text editor, add the Frozen World Engine DLL package to Assets/packages.config, e.g.</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;packages&gt;
   &lt;package id=&quot;Microsoft.MixedReality.Unity.FrozenWorld.Engine&quot; version=&quot;1.0.0&quot; /&gt;
 &lt;/packages&gt;
@@ -169,7 +169,7 @@
 <li>Open a powershell command window and change directory to the Assets folder.</li>
 <li>Run the following command:</li>
 </ol>
-<pre><code>.\nuget.exe restore
+<pre><code class="lang-shell">.\nuget.exe restore
 </code></pre>
 <p>To upgrade to a later version:</p>
 <ol>
@@ -179,9 +179,7 @@
 </ol>
 <h3 id="world-locking-tools-assets">World Locking Tools Assets</h3>
 <p>Either import the required World Locking Tools .unitypackage files into the project (preferred method), or copy them in. They may be moved into a sub-folder within Assets to get them out of the way for application development.</p>
-<p>The latest stable .unitypackage files can be found in:</p>
-<pre><code>https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases
-</code></pre>
+<p>The latest stable .unitypackage files can be found in <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases">World Locking Tools for Unity Releases</a>.</p>
 <p>The WorldLocking.Core and Engine layer will definitely be required, so a minimal install package would be WorldLockingCoreEngine.unitypackage.</p>
 <p>To determine what other layers might be required, see the discussion of World Locking Tools layers and their dependencies above. Each layer is contained in a single Unity package.</p>
 <p>Note that since some of the World Locking Tools Examples use features from MRTK, a compatible MRTK snapshot is included with the Examples unitypackage. For the latest MRTK release, look <a href="https://github.com/Microsoft/MixedRealityToolkit-Unity/releases">here</a>.</p>
@@ -189,7 +187,7 @@
 <div class="NOTE">
 <h5>Note</h5>
 <p>The steps listed below are all automated in the WLT Configure scene utility, which can be found in the menu Mixed Reality Toolkit &gt; Utilities &gt; World Locking Tools.
-<img src="../../Images/Screens/ConfigureScene.jpg" alt=""></p>
+<img src="../../Images/Screens/ConfigureScene.jpg" alt="Configuraton menu"></p>
 </div>
 <p>Within a Unity project containing the FrozenWorld engine (from nuget.org), import any desired World Locking Tools Assets layers (but at least WorldLocking.Core), and optionally MRTK. Then create a new scene (or open an existing scene).</p>
 <div class="NOTE">
@@ -236,12 +234,12 @@
 <h2 id="references-for-getting-started">References for getting started</h2>
 <p>If unfamiliar with the basics of creating, building, and deploying AR apps to the HoloLens family of devices, here are some references that might help get your started.</p>
 <blockquote>
-<p><a href="https://docs.microsoft.com/en-us/windows/mixed-reality/unity-development-overview">Unity Development Overview</a> - Unity for MR/AR development.</p>
-<p><a href="https://docs.microsoft.com/en-us/windows/mixed-reality/holograms-100">MR Basics 100</a> - Walk through getting started developing for HoloLens</p>
-<p><a href="https://docs.microsoft.com/en-us/windows/mixed-reality/mrlearning-base">HoloLens 2 Tutorials</a> - Walk through getting started developing for HoloLens 2.</p>
-<p><a href="https://docs.microsoft.com/en-us/windows/mixed-reality/coordinate-systems">Coordinate Systems</a> Coordinate space implications in AR development.</p>
+<p><a href="https://docs.microsoft.com/windows/mixed-reality/unity-development-overview">Unity Development Overview</a> - Unity for MR/AR development.</p>
+<p><a href="https://docs.microsoft.com/windows/mixed-reality/holograms-100">MR Basics 100</a> - Walk through getting started developing for HoloLens</p>
+<p><a href="https://docs.microsoft.com/windows/mixed-reality/mrlearning-base">HoloLens 2 Tutorials</a> - Walk through getting started developing for HoloLens 2.</p>
+<p><a href="https://docs.microsoft.com/windows/mixed-reality/coordinate-systems">Coordinate Systems</a> Coordinate space implications in AR development.</p>
 <ul>
-<li>Note that World Locking Tools solve the issues discussed <a href="https://docs.microsoft.com/en-us/windows/mixed-reality/coordinate-systems#why-a-single-rigid-coordinate-system-cannot-be-used-beyond-5-meters">here</a>.</li>
+<li>Note that World Locking Tools solve the issues discussed <a href="https://docs.microsoft.com/windows/mixed-reality/coordinate-systems#why-a-single-rigid-coordinate-system-cannot-be-used-beyond-5-meters">here</a>.</li>
 </ul>
 </blockquote>
 <h2 id="having-trouble">Having trouble?</h2>

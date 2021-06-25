@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Setting up and running the WLT+ASA samples | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Setting up and running the WLT+ASA samples | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.58.0.0">
+    
+    <link rel="shortcut icon" href="../../../../DocGen/Images/Logos/favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../DocGen/Images/Logos/WorldLock64.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="setting-up-and-running-the-wltasa-samples">Setting up and running the WLT+ASA samples</h1>
+
+<h2 id="summary">Summary</h2>
+<p>World Locking Tools for Unity (WLT) provides a stable coordinate system based on local tracking. When combined with Azure Spatial Anchors (ASA), that stable coordinate system can be persisted across sessions, and shared across devices.</p>
+<p><a href="https://youtu.be/28lYjbQh8RA">This video</a> might give you an idea what to expect when running the sample.</p>
+<h2 id="what-is-in-this-sample">What is in this sample?</h2>
+<p>This sample provides assets and scripts to:</p>
+<ol>
+<li>Configure Unity's global coordinate system with respect to the physical environment.</li>
+<li>Publish that coordinate system configuration to Azure using Azure Spatial Anchors.</li>
+<li>Retrieve the data from Azure to restore the coordinate system in later sessions or on other devices.</li>
+</ol>
+<h3 id="structure-of-this-document">Structure of this document</h3>
+<ol>
+<li>Setup - How to install and deploy the sample application.</li>
+<li>Notes on running the application, along with suggested steps.</li>
+<li>Architectural description of the supporting scripts.</li>
+</ol>
+<h2 id="setup-and-tested-versions">Setup and tested versions</h2>
+<p>This sample has been developed and tested using:</p>
+<ul>
+<li>Unity 2020.3.2f1</li>
+<li>Azure Spatial Anchors (ASA) v2.9.0</li>
+<li>Mixed Reality Toolkit v2.6.2</li>
+<li>World Locking Tools for Unity v1.3.6</li>
+<li>FrozenWorldEngine v1.1.1</li>
+</ul>
+<p>The following instructions assume you are starting from the Unity assets as included in the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Samples">WLT Samples github repo</a>. Specifically, installing WLT and/or MRTK for this sample from the Mixed Reality Feature Tool is not supported.</p>
+<h3 id="install-the-frozen-world-engine-dll-into-the-project">Install the Frozen World Engine DLL into the project</h3>
+<p>The first step is to install the Frozen World Engine DLL, v1.1.1. <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Unity/DocGen/Documentation/HowTos/InitialSetup.html#frozenworld-engine-installation">Instructions here</a>, using either NuGet for Unity, or command line nuget.exe.</p>
+<h3 id="install-asa">Install ASA</h3>
+<h4 id="creating-spatial-anchor-resources">Creating spatial anchor resources</h4>
+<p>This <a href="https://docs.microsoft.com/azure/spatial-anchors/quickstarts/get-started-unity-hololens?tabs=azure-portal">Quick Start Guide</a> goes through the steps to create an Azure account and the necessary spatial anchors resources. The Account Id, Account Domain, and Account Key will be necessary to run the sample. You will add them into the proper fields on the &quot;Spatial Anchor Manager&quot; script, on the SpacePinBinder object in the scene. Other authentication methods are supported, but the Account Id/Domain/Key is the easiest when getting started.</p>
+<p><img src="../../../Images/ASA/InspectorAccount.jpg" alt="Credentials fields"></p>
+<h4 id="install-the-sdk">Install the SDK</h4>
+<p>Next, install Azure Spatial Anchors v2.9.0 using one of the methods described in <a href="https://docs.microsoft.com/azure/spatial-anchors/how-tos/setup-unity-project?tabs=unity-package-web-ui">these instructions</a>. I used the MR Feature Tool method.</p>
+<h3 id="additional-setup-for-coarse-relocation">Additional setup for Coarse Relocation</h3>
+<p>When using Coarse Relocation, additional setup is required when deploying to Android or HoloLens2.</p>
+<h4 id="what-is-coarse-relocation">What is Coarse Relocation?</h4>
+<p>Coarse Relocation is a technology which allows you to search for previously created cloud anchors within your current vicinity. Additional details on Course Relocation can be found in the <a href="https://docs.microsoft.com/azure/spatial-anchors/concepts/coarse-reloc">Course Relocation section of the Azure Spatial Anchors documentation</a>.</p>
+<p>This sample demonstrates finding cloud anchors either by Coarse Relocation, or explicitly by cloud anchor id (GUID). If Coarse Relocation is enabled, the following additional setup steps are required. If you aren't interested in Coarse Relocation, you can disable it in the &quot;Publisher ASA&quot; component on the SpacePinBinder object.</p>
+<p><img src="../../../Images/ASA/InspectorPublisher.jpg" alt="Disabling coarse relocation"></p>
+<h4 id="additional-setup-steps-for-hololens2">Additional setup steps for HoloLens2</h4>
+<p>To enable Coarse Relocation on HoloLens2, you must add a permission to the Package.appxmanifest file generated into ARM/WLT_ASA/Package.appxmanifest (assuming you selected the folder ARM as your build target). Add the following line into the Capabilities section:</p>
+<pre><code class="lang-xml">    &lt;DeviceCapability Name=&quot;wiFiControl&quot;/&gt;
+</code></pre>
+<p>For more information, see <a href="https://github.com/Azure/azure-spatial-anchors-samples/issues/98#issuecomment-574235197">this post on github</a>.</p>
+<p>In Project Settings/XR Plugin Management, make sure that Windows Mixed Reality is the selected Plugin-Provider under the UWP tab (OpenXR is also supported for WLT, but not tested yet with ASA).</p>
+<p>The MRTK profile <code>XAmple XRSDK ToolkitConfigurationProfile</code> in XAmpleApp/CustomProfiles is suitable for running on HoloLens2.</p>
+<h4 id="additional-setup-steps-for-android">Additional setup steps for Android</h4>
+<p>To enable Coarse Relocation on Android, follow <a href="https://docs.microsoft.com/azure/spatial-anchors/how-tos/setup-unity-project?tabs=unity-package-web-ui#android-only-configure-the-maintemplategradle-file">these instructions</a> to configure the Assets/Plugins/Android/mainTemplate.gradle file. This should be included in the project already, but is worth checking. For your own project, you would have to configure that yourself.</p>
+<p>Also, in the Assets/Plugins/Android/AndroidManifest.xml included in the project, a lot of permissions are enabled in order to allow access to Wi-Fi on Android. Again, if incorporating elements of this project into your own project, you need to follow these steps as well in order to use Coarse Relocation. More details on required permissions to access Wi-Fi on Android are in <a href="https://answers.unity.com/questions/1543095/cant-enable-wifi-in-unity-on-android-device-duplic.html">this post</a>, and the post it links to.</p>
+<p>When you hit Build &amp; Run, if your build fails with a Shader error in the MRTK_Standard material, just try Build &amp; Run again. It works second try for me. There is some info on that in the MRTK issues, but as far as I can tell all the info there is incorrect.</p>
+<p>In Project Settings/XR Plugin Management, make sure that ARCore is the selected Plugin-Provider under the Android tab.</p>
+<p>The MRTK profile <code>XAmple AR ToolkitConfigurationProfile</code> is suitable for running on mobile. Don't forget to run the script <code>Mixed Reality Toolkit/Utilities/UnityAR/Update Scripting Defines</code> after switching to Android or iOS.</p>
+<h2 id="what-the-buttons-do">What the buttons do</h2>
+<p><img src="../../../Images/ASA/ReadyHL2.jpg" alt="Ready"></p>
+<ul>
+<li>Toggle Pins - When the SpacePins are not active, their manipulation handles may be hidden.</li>
+<li>Publish - Save the current configuration, enabling its retrieval in later session or on other devices.</li>
+<li>Load Oracle - Use previously stored bindings to restore a spatial configuration.</li>
+<li>Clear Oracle - Delete all backing resources, especially Azure spatial anchors, and clear the bindings oracle.</li>
+<li>Search - Find all Azure spatial anchors in the immediate vicinity, and restore the spatial configuration from them.</li>
+<li>Purge - Find all Azure spatial anchors in the immediate vicinity, and clear them.</li>
+<li>Reset Pins - Undo any Space Pin manipulations. Does not clear any Azure spatial anchors.</li>
+</ul>
+<p>The menu on mobile is slightly different in form, but button positions and meanings are the same.</p>
+<h2 id="walkthrough---publish-from-hololens2">Walkthrough - Publish from HoloLens2</h2>
+<h3 id="place-the-scene-using-spacepins">Place the scene using SpacePins</h3>
+<p>When you start up the sample, the coordinate system is position and oriented based on the head tracker pose at startup. Which is to say, it is fairly arbitrary. The first thing to do is to adjust the coordinate system to a desired reference state.</p>
+<p>The sofa in the PinTestSofa scene is 2.18 meters long, 0.78m high, and 1.0m deep. The SpacePin handles on each end of the top back of the sofa are, therefore, 2.18m apart, and 0;78m off the ground. I recommend measuring and placing temporary markers 2.18m apart, at some convenient height. Alternatively, you can adjust the scene to fit your physical space.</p>
+<p>Having built and deployed the application to a HoloLens2 device, wait until the status on the floating menu says Ready (hint - the status line will go from red to white when ready).</p>
+<p><img src="../../../Images/ASA/NotReadyHL2.jpg" alt="Not ready"></p>
+<p>One at a time, grab each of the SpacePin handles (the white wireframe spheres) and drag it into position relative to your reference markers.</p>
+<p>After releasing each of the markers into position, the scene should have shifted to restore the back of the sofa relative to the SpacePin. The objects in the scene aren't being moved, the entire coordinate space is adjusted so that the original coordinates of the SpacePins are at the location in the physical world that you dragged them to.</p>
+<h3 id="publish-the-coordinate-space">Publish the coordinate space</h3>
+<p>Having established the space that you want, you can now Publish that space to make it available in later sessions and on other devices.</p>
+<p>If using Coarse Relocation, it's a good idea to clear out any previously created cloud anchors at this point. Hit the &quot;Purge from Search&quot; button and wait for that to complete.</p>
+<p>Now, on the floating menu, hit the &quot;Publish&quot; button and wait for it to complete.</p>
+<p><img src="../../../Images/ASA/ReadyHL2.jpg" alt="Ready"></p>
+<h2 id="walkthrough---consume-from-hololens2-using-coarse-relocation">Walkthrough - Consume from HoloLens2 using Coarse Relocation</h2>
+<p>Start the application again on a different HoloLens2 device, or on the same device after closing the previous session. When the status shows as Ready, press the &quot;Load from Search&quot; button. When the operation completes, the Unity global coordinate system will have realigned to your physical environment as it was in the previous (Published) session.</p>
+<h2 id="walkthrough---consume-from-hololens2-using-ibindingoracle-spacepinbinderfile">Walkthrough - Consume from HoloLens2 using IBindingOracle (SpacePinBinderFile)</h2>
+<p>When the bindings are published on a device, or when they are restored from search, they are recorded into an IBindingOracle. This sample includes the most basic Oracle, one that simply writes the bindings to a text file.</p>
+<p>Restart the application to a new session. If this is the same HoloLens2 as the Publish was performed from, then there is a binding file left from the publish. If this is a different HoloLens2, but a Search was successfully performed in a previous session, then the binding file will be left from that.</p>
+<p>Hit the &quot;Load from File&quot; button to load the previously recorded bindings and restore that coordinate space.</p>
+<h2 id="walkthrough---consume-from-android-using-coarse-relocation">Walkthrough - Consume from Android using Coarse Relocation</h2>
+<p>The UX looks slightly different on Android, but works exactly the same. The main difference is that a little more scanning of the environment at startup is required relative to HoloLens2, before ASA is ready to proceed.</p>
+<p>When the system shows as Ready, you can hit the blue button (3rd from right) to search for the previously published bindings and restore the coordinate system.</p>
+<h2 id="walkthrough---consume-from-android-using-ibindingoracle-spacepinbinderfile">Walkthrough - Consume from Android using IBindingOracle (SpacePinBinderFile)</h2>
+<p>Having successfully completed a Load from Search, a bindings file has been left on the device. In later sessions you can just hit Load from File to restore the coordinate system.</p>
+<p>Alternatively, you could just copy the bindings text file from the publishing device to the consuming device. The default location of the bindings text file is:</p>
+<p>HoloLens2: User Folders/LocalAppData/WLT-ASA/LocalState/BinderFile.txt</p>
+<p>Android: Internal shared storage/Android/data/com.WorldLockingTools.WLTASA/files/BinderFile.txt</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="WLT_ASA_Software.html">WLT+ASA software overview</a></li>
+<li><a href="https://docs.microsoft.com/azure/spatial-anchors/unity-overview">Azure Spatial Anchors Quick Start</a></li>
+<li><a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Unity/README.html">World Locking Tools for Unity</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/HowTos/Samples/WLT_ASA_Sample.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

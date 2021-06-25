@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Diagnostics
+    <title>Class ActionPublish
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Diagnostics
+    <meta name="title" content="Class ActionPublish
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.58.0.0">
     
@@ -81,36 +81,54 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics" class="text-break">Class Diagnostics
+  <h1 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish" class="text-break">Class ActionPublish
   </h1>
-  <div class="markdown level0 summary"><p>Writer of diagnostics for postmortem analysis.</p>
+  <div class="markdown level0 summary"><p>Script for implementing button actions. Simple passthrough to perform publisher actions on interaction events.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">Diagnostics</span></div>
+    <div class="level1"><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionCube.html">ActionCube</a></div>
+    <div class="level2"><span class="xref">ActionPublish</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.html">Microsoft.MixedReality.WorldLocking.Core</a></h6>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionCube.html#Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionCube_DoThing">ActionCube.DoThing()</a>
+    </div>
+    <div>
+      <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionCube.html#Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionCube_ChangeColorForSeconds_System_Single_Color_">ActionCube.ChangeColorForSeconds(Single, Color)</a>
+    </div>
+    <div>
+      <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionCube.html#Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionCube_SetColors_Color_">ActionCube.SetColors(Color)</a>
+    </div>
+    <div>
+      <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionCube.html#Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionCube_RestoreColors">ActionCube.RestoreColors()</a>
+    </div>
+    <div>
+      <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionCube.html#Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionCube_OnSelect">ActionCube.OnSelect()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.Examples.html">Microsoft.MixedReality.WorldLocking.ASA.Examples</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
-public class Diagnostics : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class ActionPublish : ActionCube</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_persistentDataPath" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.persistentDataPath">persistentDataPath</h4>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_finishSeconds" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.finishSeconds">finishSeconds</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected string persistentDataPath</code></pre>
+    <pre><code class="lang-csharp hljs">public float finishSeconds</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -122,19 +140,19 @@ public class Diagnostics : IDisposable</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_serializer" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.serializer">serializer</h4>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_notReadyColor" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.notReadyColor">notReadyColor</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected IPluginSerializer serializer</code></pre>
+    <pre><code class="lang-csharp hljs">public Color notReadyColor</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -146,19 +164,19 @@ public class Diagnostics : IDisposable</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IPluginSerializer</span></td>
+        <td><span class="xref">Color</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_writeQueue" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.writeQueue">writeQueue</h4>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_spacePinBinder" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.spacePinBinder">spacePinBinder</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected BlockingCollection&lt;Diagnostics.Record&gt; writeQueue</code></pre>
+    <pre><code class="lang-csharp hljs">public SpacePinBinder spacePinBinder</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -170,19 +188,19 @@ public class Diagnostics : IDisposable</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">BlockingCollection</span>&lt;<a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Record.html">Diagnostics.Record</a>&gt;</td>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinder.html">SpacePinBinder</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_writeTask" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.writeTask">writeTask</h4>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_spacePinBinderFile" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.spacePinBinderFile">spacePinBinderFile</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Task writeTask</code></pre>
+    <pre><code class="lang-csharp hljs">public SpacePinBinderFile spacePinBinderFile</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -194,26 +212,21 @@ public class Diagnostics : IDisposable</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.ASA.SpacePinBinderFile.html">SpacePinBinderFile</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="properties">Properties
-  </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_SharedSettings_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.SharedSettings*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_SharedSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.SharedSettings">SharedSettings</h4>
-  <div class="markdown level1 summary"><p>Provide access to the shared configuration. Get and set of settings
-is through <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_DiagnosticsSettings">DiagnosticsSettings</a></p>
-</div>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_statusLine" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.statusLine">statusLine</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SharedDiagnosticsSettings SharedSettings { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public TextMeshPro statusLine</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -223,7 +236,31 @@ is through <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.WorldL
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SharedDiagnosticsSettings.html">SharedDiagnosticsSettings</a></td>
+        <td><span class="xref">TextMeshPro</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_workingColor" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.workingColor">workingColor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color workingColor</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -232,116 +269,73 @@ is through <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.WorldL
   </h3>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_createNextFile_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.createNextFile*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_createNextFile_DateTime_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.createNextFile(DateTime)">createNextFile(DateTime)</h4>
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoClear_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoClear*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoClear" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoClear">DoClear()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Stream createNextFile(DateTime time)</code></pre>
+    <pre><code class="lang-csharp hljs">public async void DoClear()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">DateTime</span></td>
-        <td><span class="parametername">time</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Stream</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_deleteObsoleteFiles_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.deleteObsoleteFiles*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_deleteObsoleteFiles" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.deleteObsoleteFiles">deleteObsoleteFiles()</h4>
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoDownload_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoDownload*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoDownload" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoDownload">DoDownload()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void deleteObsoleteFiles()</code></pre>
+    <pre><code class="lang-csharp hljs">public async void DoDownload()</code></pre>
   </div>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Dispose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Dispose*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Dispose" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Dispose">Dispose()</h4>
-  <div class="markdown level1 summary"><p>Free all, after possible wait for finish.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
-  </div>
-  
-  
-  <a id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_processWriteQueue_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.processWriteQueue*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_processWriteQueue" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.processWriteQueue">processWriteQueue()</h4>
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoPublish_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoPublish*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoPublish" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoPublish">DoPublish()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void processWriteQueue()</code></pre>
+    <pre><code class="lang-csharp hljs">public async void DoPublish()</code></pre>
   </div>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Start_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Start*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Start_IPlugin_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Start(IPlugin)">Start(IPlugin)</h4>
-  <div class="markdown level1 summary"><p>Get set up.</p>
-</div>
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoPurge_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoPurge*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoPurge" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoPurge">DoPurge()</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Start(IPlugin plugin)</code></pre>
+    <pre><code class="lang-csharp hljs">public async void DoPurge()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IPlugin</span></td>
-        <td><span class="parametername">plugin</span></td>
-        <td><p>The plugin providing necessary resources</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Update_" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Update*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_Diagnostics_Update" data-uid="Microsoft.MixedReality.WorldLocking.Core.Diagnostics.Update">Update()</h4>
-  <div class="markdown level1 summary"><p>Use a time slice for processing any accrued data.</p>
-</div>
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoReset_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoReset*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoReset" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoReset">DoReset()</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
+    <pre><code class="lang-csharp hljs">public async void DoReset()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoSearch_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoSearch*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoSearch" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoSearch">DoSearch()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async void DoSearch()</code></pre>
+  </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoTogglePin_" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoTogglePin*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_ASA_Examples_ActionPublish_DoTogglePin" data-uid="Microsoft.MixedReality.WorldLocking.ASA.Examples.ActionPublish.DoTogglePin">DoTogglePin()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async void DoTogglePin()</code></pre>
   </div>
 </article>
           </div>
