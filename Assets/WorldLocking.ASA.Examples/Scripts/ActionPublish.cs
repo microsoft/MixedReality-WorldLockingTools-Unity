@@ -12,6 +12,9 @@ using TMPro;
 
 namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
 {
+    /// <summary>
+    /// Script for implementing button actions. Simple passthrough to perform publisher actions on interaction events.
+    /// </summary>
     public class ActionPublish : ActionCube
     {
         public SpacePinBinder spacePinBinder;

@@ -10,6 +10,9 @@ using Microsoft.MixedReality.WorldLocking.Core;
 
 namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
 {
+    /// <summary>
+    /// Adjust a menu based on whether camera is in portrait or landscape mode.
+    /// </summary>
     public class ScreenSpacer : MonoBehaviour
     {
         [SerializeField]

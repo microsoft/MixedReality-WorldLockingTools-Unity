@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-#if UNITY_2020_3_OR_NEWER
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +16,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
     /// </summary>
     public class SpacePinASAManipulation : SpacePinASA
     {
-#region Inspector fields
+        #region Inspector fields
 
         [SerializeField]
         [Tooltip("Proxy renderable to show axis alignment during manipulations.")]
@@ -42,18 +40,18 @@ namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
         /// is implied by the alignment of the pin objects, and actual orientation of the objects is ignored.
         /// </remarks>
         public bool AllowRotation { get { return allowRotation; } set { allowRotation = value; } }
-#endregion Inspector fields
+        #endregion Inspector fields
 
-#region Internal fields
+        #region Internal fields
 
         /// <summary>
         /// Utility helper for setting up MRTK manipulation controls.
         /// </summary>
         PinManipulator pinManipulator;
 
-#endregion Internal fields
+        #endregion Internal fields
 
-#region Unity methods
+        #region Unity methods
 
         /// <summary>
         /// Start(), and set up MRTK manipulation controls.
@@ -84,7 +82,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
             pinManipulator.Shutdown();
         }
 
-#endregion Unity methods
+        #endregion Unity methods
 
         /// <summary>
         /// Callback for when the user has finished positioning the target.
@@ -97,4 +95,3 @@ namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
     }
 }
 
-#endif // UNITY_2020_3_OR_NEWER

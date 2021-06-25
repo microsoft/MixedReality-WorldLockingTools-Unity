@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
 {
+    /// <summary>
+    /// Simple script to select between equivalent menus at build time based on platform.
+    /// </summary>
     public class PlatformMenuSelector : MonoBehaviour
     {
         [SerializeField]

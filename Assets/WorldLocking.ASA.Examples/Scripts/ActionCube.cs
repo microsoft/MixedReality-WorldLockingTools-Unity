@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
 {
+    /// <summary>
+    /// Simple object for interaction. Not to be taken seriously.
+    /// </summary>
     public class ActionCube : MonoBehaviour
     {
         private List<Material> materials = new List<Material>();
