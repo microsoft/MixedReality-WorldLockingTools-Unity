@@ -83,7 +83,7 @@
 <h1 id="just-world-lock-everything">Just world-lock everything</h1>
 
 <p>Achieving baseline world-locked behavior for your application requires no code and very little setup. Before getting to the setup, which is described below, let's look at that baseline behavior in more detail.</p>
-<h2 id="basic-locking-of-the-global-unity-coordinate-system-to-the-physical-world">Basic locking of the global Unity coordinate system to the physical world.</h2>
+<h2 id="basic-locking-of-the-global-unity-coordinate-system-to-the-physical-world">Basic locking of the global Unity coordinate system to the physical world</h2>
 <p>Integrating WLT into your application provides a number of features straight out of the box, with no additional code or interaction with your app.</p>
 <p>Simply put, with WLT, a point in Unity's global coordinate system will maintain its position relative to physical world features.</p>
 <p>That means that if you place a hologram in your global space, it will stay where it is in the physical world. No application use of anchors is needed.</p>
@@ -93,7 +93,7 @@
 <h2 id="how-to-set-it-up">How to set it up</h2>
 <h3 id="automated-setup">Automated setup</h3>
 <p>For the most automated setup experience, <a href="../WLTviaMRFeatureTool.html">install the latest WLT Core from the MR Feature Tool</a>, then run the WLT Configure scene utility from the Mixed Reality Toolkit Utilities menu.</p>
-<p><img src="../../../Images/Screens/ConfigureScene.jpg" alt=""></p>
+<p><img src="../../../Images/Screens/ConfigureScene.jpg" alt="Automated setup screenshot"></p>
 <p>The Configure scene utility can be rerun at any time. For example, it should be rerun if the AR target has been changed from Legacy to XR SDK. If the scene is already properly configured, running the utility has no effect.</p>
 <p>During early development, adding the visualizers can be helpful to ensure WLT is setup and working properly. They can be removed for production performance, or if for any reason are no longer needed, using the Remove visualizers utility. More details on the visualizers can be found in the <a href="../Tools.html#visualizers">Tools documentation</a>.</p>
 <h3 id="manual-setup">Manual setup</h3>
@@ -104,7 +104,7 @@
 <li>Drop the <a href="../InitialSetup.html#the-core-experience">WorldLockingManager prefab</a> into your scene.</li>
 <li>Add an <a href="../InitialSetup.html#adding-world-locking-tools-to-a-unity-scene">&quot;adjustment&quot; game object</a> to your camera hierarchy.</li>
 </ol>
-<p><img src="../../../Images/Screens/Simplest.jpg" alt=""></p>
+<p><img src="../../../Images/Screens/Simplest.jpg" alt="Unity screenshot of simplest setup"></p>
 <p>A <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html">walk-through of this basic setup</a> con be found in the <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html">World Locking Tools Samples</a>, a sibling repository devoted to more specialized examples of WLT use.</p>
 <h2 id="see-also">See also</h2>
 <ul>
