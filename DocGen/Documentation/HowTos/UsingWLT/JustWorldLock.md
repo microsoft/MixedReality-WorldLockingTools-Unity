@@ -3,7 +3,7 @@
 
 Achieving baseline world-locked behavior for your application requires no code and very little setup. Before getting to the setup, which is described below, let's look at that baseline behavior in more detail.
 
-## Basic locking of the global Unity coordinate system to the physical world.
+## Basic locking of the global Unity coordinate system to the physical world
 
 Integrating WLT into your application provides a number of features straight out of the box, with no additional code or interaction with your app.
 
@@ -21,13 +21,13 @@ In addition to the simplicity provided, there are a [number of advantages to usi
 
 ### Automated setup
 
-For the most automated setup experience, [install the latest WLT Core from the MR Feature Tool](../WLTviaMRFeatureTool.md), then run the WLT Configure scene utility from the Mixed Reality Toolkit Utilities menu. 
+For the most automated setup experience, [install the latest WLT Core from the MR Feature Tool](../WLTviaMRFeatureTool.md), then run the WLT Configure scene utility from the Mixed Reality Toolkit Utilities menu.
 
-![](~/DocGen/Images/Screens/ConfigureScene.jpg)
+![Automated setup screenshot](~/DocGen/Images/Screens/ConfigureScene.jpg)
 
 The Configure scene utility can be rerun at any time. For example, it should be rerun if the AR target has been changed from Legacy to XR SDK. If the scene is already properly configured, running the utility has no effect.
 
-During early development, adding the visualizers can be helpful to ensure WLT is setup and working properly. They can be removed for production performance, or if for any reason are no longer needed, using the Remove visualizers utility. More details on the visualizers can be found in the [Tools documentation](../Tools.md#visualizers). 
+During early development, adding the visualizers can be helpful to ensure WLT is setup and working properly. They can be removed for production performance, or if for any reason are no longer needed, using the Remove visualizers utility. More details on the visualizers can be found in the [Tools documentation](../Tools.md#visualizers).
 
 ### Manual setup
 
@@ -38,7 +38,7 @@ Setup for gaining the advantages of baseline WLT behavior is very simple, and ca
 3. Drop the [WorldLockingManager prefab](../InitialSetup.md#the-core-experience) into your scene.
 4. Add an ["adjustment" game object](../InitialSetup.md#adding-world-locking-tools-to-a-unity-scene) to your camera hierarchy.
 
-![](~/DocGen/Images/Screens/Simplest.jpg)
+![Unity screenshot of simplest setup](~/DocGen/Images/Screens/Simplest.jpg)
 
 A [walk-through of this basic setup](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html) con be found in the [World Locking Tools Samples](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html), a sibling repository devoted to more specialized examples of WLT use.
 
