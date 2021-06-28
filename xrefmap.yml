@@ -629,6 +629,15 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.ASA.IPublisher.PurgeArea
   nameWithType: IPublisher.PurgeArea
+- uid: Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Read(System.Collections.Generic.IReadOnlyCollection{System.String})
+  name: Read(IReadOnlyCollection<String>)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.ASA.IPublisher.html#Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Read_System_Collections_Generic_IReadOnlyCollection_System_String__
+  commentId: M:Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Read(System.Collections.Generic.IReadOnlyCollection{System.String})
+  name.vb: Read(IReadOnlyCollection(Of String))
+  fullName: Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Read(System.Collections.Generic.IReadOnlyCollection<System.String>)
+  fullName.vb: Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Read(System.Collections.Generic.IReadOnlyCollection(Of System.String))
+  nameWithType: IPublisher.Read(IReadOnlyCollection<String>)
+  nameWithType.vb: IPublisher.Read(IReadOnlyCollection(Of String))
 - uid: Microsoft.MixedReality.WorldLocking.ASA.IPublisher.Read(System.String)
   name: Read(String)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.ASA.IPublisher.html#Microsoft_MixedReality_WorldLocking_ASA_IPublisher_Read_System_String_
@@ -929,6 +938,15 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.ASA.PublisherASA.PurgeArea
   nameWithType: PublisherASA.PurgeArea
+- uid: Microsoft.MixedReality.WorldLocking.ASA.PublisherASA.Read(System.Collections.Generic.IReadOnlyCollection{System.String})
+  name: Read(IReadOnlyCollection<String>)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.ASA.PublisherASA.html#Microsoft_MixedReality_WorldLocking_ASA_PublisherASA_Read_System_Collections_Generic_IReadOnlyCollection_System_String__
+  commentId: M:Microsoft.MixedReality.WorldLocking.ASA.PublisherASA.Read(System.Collections.Generic.IReadOnlyCollection{System.String})
+  name.vb: Read(IReadOnlyCollection(Of String))
+  fullName: Microsoft.MixedReality.WorldLocking.ASA.PublisherASA.Read(System.Collections.Generic.IReadOnlyCollection<System.String>)
+  fullName.vb: Microsoft.MixedReality.WorldLocking.ASA.PublisherASA.Read(System.Collections.Generic.IReadOnlyCollection(Of System.String))
+  nameWithType: PublisherASA.Read(IReadOnlyCollection<String>)
+  nameWithType.vb: PublisherASA.Read(IReadOnlyCollection(Of String))
 - uid: Microsoft.MixedReality.WorldLocking.ASA.PublisherASA.Read(System.String)
   name: Read(String)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.ASA.PublisherASA.html#Microsoft_MixedReality_WorldLocking_ASA_PublisherASA_Read_System_String_
