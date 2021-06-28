@@ -540,6 +540,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 #endif // WLT_ASA_INCLUDED
         }
 
+        /// <inheritdocs />
         public async Task<Dictionary<CloudAnchorId, LocalPegAndProperties>> Read(IReadOnlyCollection<CloudAnchorId> cloudAnchorIds)
         {
 #if WLT_ASA_INCLUDED
@@ -777,10 +778,13 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         }
 
         /// <summary>
-        /// Retrieve cloud anchors near the device.
+        /// Retrieve a list of cloud anchors by id.
         /// </summary>
-        /// <param name="radiusFromDevice">Area (roughly) to search.</param>
+        /// <param name="cloudAnchorIds">List of ids to download.</param>
         /// <returns>Awaitable dictionary of local pegs with properties by cloud anchor id</returns>
+        /// <remarks>
+        /// If any cloud anchor ids have already been downloaded, the downloaded record will be updated and returned (not downloaded again).
+        /// </remarks>
         private async Task<Dictionary<CloudAnchorId, LocalPegAndProperties>> DownloadList(IReadOnlyCollection<CloudAnchorId> cloudAnchorIds)
         {
             List<CloudAnchorId> idsToDownload = new List<CloudAnchorId>();
@@ -911,34 +915,15 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             return locatedRecords;
         }
 
-        private CloudAnchorId[] ExtractIdsForCriteria(IReadOnlyCollection<CloudAnchorId> cloudAnchorIds)
-        {
-            CloudAnchorId[] anchorIdArray = new CloudAnchorId[cloudAnchorIds.Count];
-            int idx = 0;
-            foreach (var id in cloudAnchorIds)
-            {
-                SimpleConsole.AddLine(ConsoleMid, $"Copy {id} to {anchorIdArray.Length}");
-                anchorIdArray[idx++] = id;
-            }
-
-            return anchorIdArray;
-        }
-
         /// <summary>
-        /// Invoke a search for cloud anchors, and process them as they come in.
+        /// Invoke a search for cloud anchors by id, and process them as they come in.
         /// </summary>
         /// <param name="cloudAnchorIds">List of cloud anchor ids to try to download.</param>
         /// <returns>Awaitable list of records, one for each cloud anchor found.</returns>
         /// <remarks>
-        /// We initiate a search, and then at some point we need to know to stop waiting. 
-        /// The LocateAnchorsCompleted event seems just the thing, but it doesn't seem to ever fire
-        /// for the NearDevice search. (It does for looking up by id, but then we already know whether
-        /// all queries have come in yet or not.)
-        /// It isn't documented whether all anchors are guaranteed to come in at once (same frame) or not,
-        /// so we assume not. So the basic idea is that when we get a batch of anchors in, we start a timer,
-        /// and if no other anchors come in before the timer goes off, we give up. If any anchors do come in,
-        /// we restart the timer.
-        /// There's also a second timer for if we never get any anchors at all.
+        /// See notes on SearchForRecords regarding timers. Note that in this function, since we know
+        /// how many ids we are looking for, we can terminate when we have all of them, and not have
+        /// to wait in case more come in later.
         /// </remarks>
         private async Task<List<AnchorRecord>> DownloadRecordList(IReadOnlyCollection<CloudAnchorId> cloudAnchorIds)
         {
@@ -949,7 +934,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             }
             SimpleConsole.AddLine(ConsoleMid, $"Criteria to search for {cloudAnchorIds.Count} ids");
             anchorLocateCriteria.NearAnchor = new NearAnchorCriteria();
-        
+
             anchorLocateCriteria.Identifiers = ExtractIdsForCriteria(cloudAnchorIds);
 
             SimpleConsole.AddLine(ConsoleMid, $"Crit id: len={anchorLocateCriteria.Identifiers.Length} m={(int)anchorLocateCriteria.RequestedCategories} cache={!anchorLocateCriteria.BypassCache}");
@@ -1053,9 +1038,31 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         }
 
 
-#endregion // Internal implementations
+        #endregion // Internal implementations
 
-            #region Internal helpers
+        #region Internal helpers
+
+        /// <summary>
+        /// Convert the collection of ids to an array.
+        /// </summary>
+        /// <param name="cloudAnchorIds">Source collection of ids</param>
+        /// <returns>Same strings as in cloudAnchorIds, but in array form.</returns>
+        /// <remarks>
+        /// This just seemed too trivial to bring linq in for.
+        /// </remarks>
+        private CloudAnchorId[] ExtractIdsForCriteria(IReadOnlyCollection<CloudAnchorId> cloudAnchorIds)
+        {
+            CloudAnchorId[] anchorIdArray = new CloudAnchorId[cloudAnchorIds.Count];
+            int idx = 0;
+            foreach (var id in cloudAnchorIds)
+            {
+                SimpleConsole.AddLine(ConsoleMid, $"Copy {id} to {anchorIdArray.Length}");
+                anchorIdArray[idx++] = id;
+            }
+
+            return anchorIdArray;
+        }
+
 
         /// <summary>
         /// Package the current readiness with the current progress to creates (if applicable).
@@ -1201,7 +1208,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             return peg;
         }
 
-            #region TRASH
+        #region TRASH
 
 #if WLT_EXTRA_LOGGING
         private static void PrintScene()
@@ -1245,7 +1252,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         }
 #endif // WLT_EXTRA_LOGGING
 
-            #endregion // TRASH
+        #endregion // TRASH
 
         /// <summary>
         /// If cloud anchor id is unknown, add the record, else update the record.
@@ -1334,9 +1341,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             return record;
         }
 
-            #endregion // Internal helpers
+        #endregion // Internal helpers
 
-            #region ASA events
+        #region ASA events
 
         /// <summary>
         /// Put incoming cloud anchors (from ASA thread) into a list for processing on main thread.
@@ -1399,9 +1406,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 );
         }
 
-            #endregion // ASA events
+        #endregion // ASA events
 
-            #region Setup helpers
+        #region Setup helpers
 
         /// <summary>
         /// Create a location provider if coarse relocation is enabled.
@@ -1501,9 +1508,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             Debug.Assert(busy != null);
             busy = null;
         }
-            #endregion // Setup helpers
+        #endregion // Setup helpers
 
-            #region Awful stuff
+        #region Awful stuff
 
 #if UNITY_ANDROID
         private static readonly string[] androidPermissions = new string[]
@@ -1595,9 +1602,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             waitingState = PermissionWaiting.Denied;
         }
 #endif
-            #endregion // Awful stuff
+        #endregion // Awful stuff
 
 #endif // WLT_ASA_INCLUDED
-        }
+    }
 }
 
