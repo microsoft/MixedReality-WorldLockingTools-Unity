@@ -253,22 +253,35 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 
             bool allSuccessful = true;
             List<SpacePinPegAndProps> readObjects = new List<SpacePinPegAndProps>();
+            List<CloudAnchorId> cloudAnchorList = new List<CloudAnchorId>();
+            Dictionary<CloudAnchorId, SpacePinASA> spacePinByCloudId = new Dictionary<CloudAnchorId, SpacePinASA>();
             foreach (var spacePin in spacePins)
             {
                 int bindingIdx = FindBindingBySpacePinId(spacePin.SpacePinId);
                 if (bindingIdx >= 0)
                 {
                     string cloudAnchorId = bindings[bindingIdx].cloudAnchorId;
-                    var obj = await publisher.Read(cloudAnchorId);
-                    if (obj == null)
+                    cloudAnchorList.Add(cloudAnchorId);
+                    spacePinByCloudId[cloudAnchorId] = spacePin;
+                }
+            }
+            if (cloudAnchorList.Count > 0)
+            {
+                var found = await publisher.Read(cloudAnchorList);
+                if (found != null)
+                {
+                    foreach (var keyVal in found)
                     {
-                        allSuccessful = false;
+                        var cloudAnchorId = keyVal.Key;
+                        var spacePin = spacePinByCloudId[cloudAnchorId];
+                        var pegAndProps = keyVal.Value;
+                        Debug.Assert(pegAndProps.localPeg != null);
+                        readObjects.Add(new SpacePinPegAndProps() { spacePin = spacePin, pegAndProps = pegAndProps });
                     }
-                    else
-                    {
-                        Debug.Assert(obj.localPeg != null);
-                        readObjects.Add(new SpacePinPegAndProps() { spacePin = spacePin, pegAndProps = obj });
-                    }
+                }
+                else
+                {
+                    SimpleConsole.AddLine(ConsoleHigh, $"publisher Read returned null looking for {cloudAnchorList.Count} ids");
                 }
             }
             var wltMgr = WorldLockingManager.GetInstance();
@@ -318,9 +331,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             }
             return foundAny;
         }
-        #endregion // Download from cloud
+#endregion // Download from cloud
 
-        #region Cleanup
+#region Cleanup
 
         /// <inheritdoc/>
         public async Task<bool> Purge()
@@ -359,11 +372,11 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 }
             }
         }
-        #endregion // Cleanup
+#endregion // Cleanup
 
-        #endregion // Public APIs
+#endregion // Public APIs
 
-        #region Unity
+#region Unity
         /// <summary>
         /// Establish relationship with the publisher.
         /// </summary>
@@ -375,9 +388,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             SetSpacePinsPublisher(publisherASA);
         }
 
-        #endregion // Unity
+#endregion // Unity
 
-        #region Internal helpers
+#region Internal helpers
 
         /// <summary>
         /// Capture the publisher we'll be using, and pass it on to all managed space pins.
@@ -508,7 +521,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             return idx;
         }
 
-        #endregion // Internal helpers
+#endregion // Internal helpers
     }
 
 }
