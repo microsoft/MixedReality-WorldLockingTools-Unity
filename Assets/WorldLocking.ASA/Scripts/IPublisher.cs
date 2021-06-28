@@ -131,6 +131,8 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         /// <returns>Awaitable local peg and its properties that were used to create the cloud anchor are reconstructed and returned.</returns>
         Task<LocalPegAndProperties> Read(CloudAnchorId cloudAnchorId);
 
+        Task<Dictionary<CloudAnchorId, LocalPegAndProperties>> Read(IReadOnlyCollection<CloudAnchorId> cloudAnchorIds);
+
         /// <summary>
         /// Delete a cloud anchor, and create a new one based on input local peg and its properties.
         /// </summary>
