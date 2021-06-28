@@ -331,9 +331,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             }
             return foundAny;
         }
-#endregion // Download from cloud
+        #endregion // Download from cloud
 
-#region Cleanup
+        #region Cleanup
 
         /// <inheritdoc/>
         public async Task<bool> Purge()
@@ -372,11 +372,11 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 }
             }
         }
-#endregion // Cleanup
+        #endregion // Cleanup
 
-#endregion // Public APIs
+        #endregion // Public APIs
 
-#region Unity
+        #region Unity
         /// <summary>
         /// Establish relationship with the publisher.
         /// </summary>
@@ -388,9 +388,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             SetSpacePinsPublisher(publisherASA);
         }
 
-#endregion // Unity
+        #endregion // Unity
 
-#region Internal helpers
+        #region Internal helpers
 
         /// <summary>
         /// Capture the publisher we'll be using, and pass it on to all managed space pins.
@@ -521,7 +521,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             return idx;
         }
 
-#endregion // Internal helpers
+        #endregion // Internal helpers
     }
 
 }
