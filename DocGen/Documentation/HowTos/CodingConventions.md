@@ -1,6 +1,6 @@
 # Coding Guidelines
 
-This document outlines the recommended coding guidelines for World Locking Tools for Unity.  The majority of these suggestions follow the [recommended standards from MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions).
+This document outlines the recommended coding guidelines for World Locking Tools for Unity.  The majority of these suggestions follow the [recommended standards from MSDN](https://docs.microsoft.com/dotnet/csharp/programming-guide/inside-a-program/coding-conventions).
 
 ---
 

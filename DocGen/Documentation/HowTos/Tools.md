@@ -33,13 +33,13 @@ In particular, [MRTK](https://microsoft.github.io/MixedRealityToolkit-Unity/READ
 
 There may be times, especially if not using MRTK, when conversion from native resources, which will report in Spongy Space coordinates, to Frozen Space. In those cases, the application developer may find one of the Adapters included here to be a good reference.
 
- * [WorldAnchorAdapter](xref:Microsoft.MixedReality.WorldLocking.Tools.WorldAnchorAdapter) - An WorldAnchor will adjust an object's pose in Spongy space to remain fixed in physical space. This is redundant with the world-locked space provided by World Locking Tools, and so the object will drift in Frozen Space. This adapter allows a WorldAnchor to maintain the pose of an object in Frozen Space. Note that this is unnecessary except for diagnostics. All objects in Unity's global coordinate space are world-locked by World Locking Tools.
+* [WorldAnchorAdapter](xref:Microsoft.MixedReality.WorldLocking.Tools.WorldAnchorAdapter) - An WorldAnchor will adjust an object's pose in Spongy space to remain fixed in physical space. This is redundant with the world-locked space provided by World Locking Tools, and so the object will drift in Frozen Space. This adapter allows a WorldAnchor to maintain the pose of an object in Frozen Space. Note that this is unnecessary except for diagnostics. All objects in Unity's global coordinate space are world-locked by World Locking Tools.
 
- * [ToggleWorldAnchor](xref:Microsoft.MixedReality.WorldLocking.Tools.ToggleWorldAnchor) - Similar to the WorldAnchorAdapter, but can be toggled. Also automatically converts to regular WorldAnchor behavior when the WorldLockingManager is disabled. Useful only for diagnostics.
+* [ToggleWorldAnchor](xref:Microsoft.MixedReality.WorldLocking.Tools.ToggleWorldAnchor) - Similar to the WorldAnchorAdapter, but can be toggled. Also automatically converts to regular WorldAnchor behavior when the WorldLockingManager is disabled. Useful only for diagnostics.
 
- * [FrozenSpatialMapping](xref:Microsoft.MixedReality.WorldLocking.Tools.FrozenSpatialMapping) - An adapter manage and correctly render the results from a [SurfaceObserver](https://docs.microsoft.com/en-us/windows/mixed-reality/spatial-mapping). Note that the [MRTK Spatial Awareness](https://microsoft.github.io/MixedRealityToolkit-Unity/Documentation/SpatialAwareness/SpatialAwarenessGettingStarted.html?q=spatial) system provides all of this functionality and more, and requires no adapter to work with World Locking Tools.
+* [FrozenSpatialMapping](xref:Microsoft.MixedReality.WorldLocking.Tools.FrozenSpatialMapping) - An adapter manage and correctly render the results from a [SurfaceObserver](https://docs.microsoft.com/windows/mixed-reality/spatial-mapping). Note that the [MRTK Spatial Awareness](https://microsoft.github.io/MixedRealityToolkit-Unity/Documentation/SpatialAwareness/SpatialAwarenessGettingStarted.html?q=spatial) system provides all of this functionality and more, and requires no adapter to work with World Locking Tools.
 
- * [FrozenTapToAdd](xref:Microsoft.MixedReality.WorldLocking.Tools.FrozenTapToAdd) - Directly interfacing with Unity's Input system requires conversion of incoming coordinate data as shown here. Note that this is unnecessary with MRTK's input system. 
+* [FrozenTapToAdd](xref:Microsoft.MixedReality.WorldLocking.Tools.FrozenTapToAdd) - Directly interfacing with Unity's Input system requires conversion of incoming coordinate data as shown here. Note that this is unnecessary with MRTK's input system.
 
 ## Visualizers
 
@@ -59,9 +59,11 @@ The [AnchorGraphVisual](xref:Microsoft.MixedReality.WorldLocking.Tools.AnchorGra
 
 3. Frozen Anchors - These are the corresponding reference points in Frozen Space. In the absence of tracker error, these will be exactly aligned with the Spongy Anchors. 
 
-4. Edges - These connect the Spongy Anchors to their corresponding Frozen Anchors. Since in the absence of tracker error, these would be coincident, not seeing these edges means everything is working perfectly. In any case, these edges should not be longer than a few centimeters. They are red on the frozen end, and fade to blue on the spongy end.
+4. Spongy-Frozen Edges - These connect the Spongy Anchors to their corresponding Frozen Anchors. Since in the absence of tracker error, these would be coincident, not seeing these edges means everything is working perfectly. In any case, these edges should not be longer than a few centimeters. They are red on the frozen end, and fade to blue on the spongy end.
 
-![](~/DocGen/Images/Screens/AnchorGraph.jpg)
+5. Anchor Edges - These thin blue lines show the connections between Spongy Anchors in the anchor graph.
+
+![Typical anchor graph traversing a room](~/DocGen/Images/Screens/AnchorGraph.jpg)
 
 Enabling the display of the anchor graph that World Locking Tools generates as the user moves about the physical environment requires only dropping the WorldLockingTools > Prefabs > AnchorGraphVisual prefab into the scene. It is customarily added as a sibling to the WorldLockingContext, but its exact placement in the hierarchy is unimportant. However, it should not be placed in the camera hierarchy.
 
@@ -69,6 +71,6 @@ Enabling the display of the anchor graph that World Locking Tools generates as t
 
 The [World Locking Examples](xref:Microsoft.MixedReality.WorldLocking.Examples) includes text diagnostics. Most of these are relevant only to developers of the World Locking Tools, rather than clients of its abilities. However, they are available for read and, as shown in the [StatusToText](xref:Microsoft.MixedReality.WorldLocking.Tools.StatusToText) script, for realtime display.
 
-![](~/DocGen/Images/Screens/DiagStats.jpg)
+![Typical diagnostics display](~/DocGen/Images/Screens/DiagStats.jpg)
 
 For post mortem analysis, the [Diagnostics](xref:Microsoft.MixedReality.WorldLocking.Core.Diagnostics) section of the [WorldLockingContext](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext) can be very useful in reporting Frozen World Engine failures. See [Reporting a bug](Contributing.md#reporting-a-bug) for further information.

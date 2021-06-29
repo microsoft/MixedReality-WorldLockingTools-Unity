@@ -5,7 +5,7 @@
 
 The Mixed Reality Feature Tool can be an extremely useful way to get the World Locking Tools, as well as other valuable Mixed Reality packages for Unity.
 
-More information on the MR Feature Tool can be found in its [online documentation](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool), but it is extremely easy to use.
+More information on the MR Feature Tool can be found in its [online documentation](https://docs.microsoft.com/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool), but it is extremely easy to use.
 
 ![](~/DocGen/Images/Screens/UPMSamples/MRFeatureTool.JPG)
 
@@ -43,7 +43,7 @@ To finish importing the samples into your project:
 
 ## Differences between installation methods
 
-There are some subtle considerations when deciding which installation method to use. 
+There are some subtle considerations when deciding which installation method to use.
 
 ### MR Feature Tool (UPM packages)
 
