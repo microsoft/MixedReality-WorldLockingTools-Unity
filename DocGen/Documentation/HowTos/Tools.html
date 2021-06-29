@@ -103,7 +103,7 @@
 </li>
 <li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.ToggleWorldAnchor.html">ToggleWorldAnchor</a> - Similar to the WorldAnchorAdapter, but can be toggled. Also automatically converts to regular WorldAnchor behavior when the WorldLockingManager is disabled. Useful only for diagnostics.</p>
 </li>
-<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenSpatialMapping.html">FrozenSpatialMapping</a> - An adapter manage and correctly render the results from a <a href="https://docs.microsoft.com/en-us/windows/mixed-reality/spatial-mapping">SurfaceObserver</a>. Note that the <a href="https://microsoft.github.io/MixedRealityToolkit-Unity/Documentation/SpatialAwareness/SpatialAwarenessGettingStarted.html?q=spatial">MRTK Spatial Awareness</a> system provides all of this functionality and more, and requires no adapter to work with World Locking Tools.</p>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenSpatialMapping.html">FrozenSpatialMapping</a> - An adapter manage and correctly render the results from a <a href="https://docs.microsoft.com/windows/mixed-reality/spatial-mapping">SurfaceObserver</a>. Note that the <a href="https://microsoft.github.io/MixedRealityToolkit-Unity/Documentation/SpatialAwareness/SpatialAwarenessGettingStarted.html?q=spatial">MRTK Spatial Awareness</a> system provides all of this functionality and more, and requires no adapter to work with World Locking Tools.</p>
 </li>
 <li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenTapToAdd.html">FrozenTapToAdd</a> - Directly interfacing with Unity's Input system requires conversion of incoming coordinate data as shown here. Note that this is unnecessary with MRTK's input system.</p>
 </li>
@@ -130,14 +130,16 @@
 <ol start="3">
 <li><p>Frozen Anchors - These are the corresponding reference points in Frozen Space. In the absence of tracker error, these will be exactly aligned with the Spongy Anchors.</p>
 </li>
-<li><p>Edges - These connect the Spongy Anchors to their corresponding Frozen Anchors. Since in the absence of tracker error, these would be coincident, not seeing these edges means everything is working perfectly. In any case, these edges should not be longer than a few centimeters. They are red on the frozen end, and fade to blue on the spongy end.</p>
+<li><p>Spongy-Frozen Edges - These connect the Spongy Anchors to their corresponding Frozen Anchors. Since in the absence of tracker error, these would be coincident, not seeing these edges means everything is working perfectly. In any case, these edges should not be longer than a few centimeters. They are red on the frozen end, and fade to blue on the spongy end.</p>
+</li>
+<li><p>Anchor Edges - These thin blue lines show the connections between Spongy Anchors in the anchor graph.</p>
 </li>
 </ol>
-<p><img src="../../Images/Screens/AnchorGraph.jpg" alt=""></p>
+<p><img src="../../Images/Screens/AnchorGraph.jpg" alt="Typical anchor graph traversing a room"></p>
 <p>Enabling the display of the anchor graph that World Locking Tools generates as the user moves about the physical environment requires only dropping the WorldLockingTools &gt; Prefabs &gt; AnchorGraphVisual prefab into the scene. It is customarily added as a sibling to the WorldLockingContext, but its exact placement in the hierarchy is unimportant. However, it should not be placed in the camera hierarchy.</p>
 <h3 id="additional-output">Additional output</h3>
 <p>The <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Examples.html">World Locking Examples</a> includes text diagnostics. Most of these are relevant only to developers of the World Locking Tools, rather than clients of its abilities. However, they are available for read and, as shown in the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.StatusToText.html">StatusToText</a> script, for realtime display.</p>
-<p><img src="../../Images/Screens/DiagStats.jpg" alt=""></p>
+<p><img src="../../Images/Screens/DiagStats.jpg" alt="Typical diagnostics display"></p>
 <p>For post mortem analysis, the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.Diagnostics.html">Diagnostics</a> section of the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.html">WorldLockingContext</a> can be very useful in reporting Frozen World Engine failures. See <a href="Contributing.html#reporting-a-bug">Reporting a bug</a> for further information.</p>
 </article>
           </div>
