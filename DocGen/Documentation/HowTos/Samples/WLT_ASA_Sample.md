@@ -79,9 +79,9 @@ The MRTK profile `XAmple XRSDK ToolkitConfigurationProfile` in XAmpleApp/CustomP
 
 To enable Coarse Relocation on Android, follow [these instructions](https://docs.microsoft.com/azure/spatial-anchors/how-tos/setup-unity-project?tabs=unity-package-web-ui#android-only-configure-the-maintemplategradle-file) to configure the Assets/Plugins/Android/mainTemplate.gradle file.
 
-Also, in the Assets/Plugins/Android/AndroidManifest.xml included in the project, a lot of permissions are enabled in order to allow access to Wi-Fi on Android. Again, if incorporating elements of this project into your own project, you need to follow these steps as well in order to use Coarse Relocation. More details on required permissions to access Wi-Fi on Android are in [this post](https://answers.unity.com/questions/1543095/cant-enable-wifi-in-unity-on-android-device-duplic.html), and the post it links to.
+Also, in the Assets/Plugins/Android/AndroidManifest.xml, a lot of permissions must be enabled in order to allow access to Wi-Fi on Android. Again, if incorporating elements of this project into your own project, you need to follow these steps as well in order to use Coarse Relocation. More details on required permissions to access Wi-Fi on Android are in [this post](https://answers.unity.com/questions/1543095/cant-enable-wifi-in-unity-on-android-device-duplic.html), and the post it links to.
 
-Samples of the modified mainTemplate.gradle and AndroidManifest.xml are included in the [WLT-ASA Sample Project](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Advanced/ASA/ASA.html), which is configured specifically for using WLT and ASA together.
+Samples of the modified mainTemplate.gradle and AndroidManifest.xml are included in the [WLT-ASA Sample Project](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Advanced/ASA/ASA.html), which is configured specifically for using WLT and ASA together. They can be copied directly into your project, **after** enabling "Custom Main Manifest" and "Custom Main Gradle Template" in the Player Publishing Settings as described.
 
 When you hit Build & Run, if your build fails with a Shader error in the MRTK_Standard material, just try Build & Run again. It works second try for me. There is some info on that in the MRTK issues, but as far as I can tell all the info there is incorrect.
 
