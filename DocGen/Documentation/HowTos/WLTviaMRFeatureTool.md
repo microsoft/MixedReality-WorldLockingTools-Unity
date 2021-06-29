@@ -43,7 +43,7 @@ To finish importing the samples into your project:
 
 ## Differences between installation methods
 
-There are some subtle considerations when deciding which installation method to use. 
+There are some subtle considerations when deciding which installation method to use.
 
 ### MR Feature Tool (UPM packages)
 
