@@ -85,10 +85,14 @@
 <h2 id="the-mr-feature-tool">The MR Feature Tool</h2>
 <p>The Mixed Reality Feature Tool can be an extremely useful way to get the World Locking Tools, as well as other valuable Mixed Reality packages for Unity.</p>
 <p>More information on the MR Feature Tool can be found in its <a href="https://docs.microsoft.com/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool">online documentation</a>, but it is extremely easy to use.</p>
-<p><img src="../../Images/Screens/UPMSamples/MRFeatureTool.JPG" alt=""></p>
+<p><img src="../../Images/Screens/UPMSamples/MRFeatureTool.JPG" alt="Mixed Reality Feature Tool screenshot"></p>
 <h2 id="installing-wlt-via-mr-feature-tool">Installing WLT via MR Feature Tool</h2>
 <p>To get the full WLT functionality, simply select the latest version of &quot;World Locking Tools&quot; from the MR Feature Tool. Then proceed to <a href="InitialSetup.html#adding-world-locking-tools-to-a-unity-scene">adding WLT to a scene</a>, or the <a href="QuickStart.html">quick start guide</a>.</p>
-<p>If getting the samples (which also requires MRTK), it is not necessary to first install the dependencies. Simply select the Samples package and the minimal set of required dependencies will also be installed. But see below.</p>
+<p>If getting the samples (which also requires MRTK), it is not necessary to first install the dependencies. Simply select the Samples package and the minimal set of required dependencies will also be installed. But see <a href="#samples-in-the-mr-feature-tool-writable-packages">below</a>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>TL;DR version - If installing from the MR Feature Tool, you must install into a folder whose path length is 11 characters long or less, including the drive. This is explained in greater detail at the <a href="#about-the-installation-path-length-limit">end of this article</a>. So <code>e:\stuff\T1</code> will work, but <code>e:\stuff\T12</code> won't.</p>
+</div>
 <h2 id="samples-in-the-mr-feature-tool-writable-packages">Samples in the MR Feature Tool (writable packages)</h2>
 <p>As mentioned above, the MR Feature Tool and UPM install packages as read-only resources. For samples, that is inconvenient, because much of the value of samples is in supplying volatile assets which can be modified for experimentation.</p>
 <p>To enable this, samples installed by the MR Feature Tool (or UPM) follow a slightly different path. Installing them is a two part process.</p>
@@ -132,6 +136,14 @@
 <h3 id="from-github-code-copy-in-source">From GitHub code (copy in source)</h3>
 <p>Another option for acquiring WLT is to get the source directly from GitHub (either via git or as a zipfile) and copy it into your project. This is equivalent to installing from the .unitypackages above.</p>
 <p>To get the source matching a release, find the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/branches">appropriate branch</a>. For example, the source for release v1.2.4 is in branch <code>release/v1.2.4</code>.</p>
+<h2 id="about-the-installation-path-length-limit">About the installation path length limit</h2>
+<h3 id="when-installing-from-mixed-reality-feature-tool">When installing from Mixed Reality Feature Tool</h3>
+<p>Windows imposes a <a href="https://docs.microsoft.com/windows/win32/fileio/maximum-file-path-limitation?tabs=cmd">maximum path length of 260 characters</a>. The Frozen World Engine package has some very long internal paths. The Mixed Reality Feature Tool (or Unity's UPM, depending whom you want to blame), adds some very long strings in the middle.</p>
+<p>You will know if you have passed the MAX_PATH limit if you see errors in the Unity Console complaining about not being able to find part of a path.</p>
+<p>Ironically, the first file to hit the limit isn't even used on Windows, it's for the iOS build (iOS doesn't have the MAX_PATH limit). WLT will build and run fine without it. However, the existence of the file will interfere with the running of some important MRTK scripts, and probably destabilize Unity in other subtle ways.</p>
+<h3 id="when-installing-from-unitypackage-files-or-from-github">When installing from .unitypackage files or from github</h3>
+<p>Without the UPM/MRFeatureTool inserting characters into the installation paths, there is a bit more breathing room. However, the internal path hierarchy within the Frozen World Engine is still quite deep. When installing from unitypackage files or from github, the installation folder should be about 100 characters long or less.</p>
+<p>There are more investigations and discussions in this <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues/161">WLT issue</a>.</p>
 </article>
           </div>
           
