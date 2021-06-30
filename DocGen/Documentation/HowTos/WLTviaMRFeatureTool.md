@@ -85,6 +85,10 @@ Windows imposes a [maximum path length of 260 characters](https://docs.microsoft
 
 You will know if you have passed the MAX_PATH limit if you see errors in the Unity Console complaining about not being able to find part of a path.
 
+![Long path error](~/DocGen/Images/Screens/LongPathError.PNG)
+
+Again, the installation path `e:\stuff\T1` will work, but `e:\stuff\T12` will be too long.
+
 Ironically, the first file to hit the limit isn't even used on Windows, it's for the iOS build (iOS doesn't have the MAX_PATH limit). WLT will build and run fine without it. However, the existence of the file will interfere with the running of some important MRTK scripts, and probably destabilize Unity in other subtle ways.
 
 ### When installing from .unitypackage files or from github
