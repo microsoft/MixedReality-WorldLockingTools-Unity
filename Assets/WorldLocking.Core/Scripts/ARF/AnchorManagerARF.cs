@@ -3,6 +3,10 @@
 
 #if UNITY_2020_1_OR_NEWER
 
+#if UNITY_2020_4_OR_NEWER
+#define WLT_ADD_ANCHOR_COMPONENT
+#endif // UNITY_2020_4_OR_NEWER
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -127,6 +131,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             Debug.Log($"Creating anchor {id.FormatStr()}");
 #endif // WLT_EXTRA_LOGGING
             initialPose = AnchorFromSpongy.Multiply(initialPose);
+#if WLT_ADD_ANCHOR_COMPONENT
+            GameObject go = new GameObject(id.FormatStr());
+            go.transform.SetParent(parent);
+            go.transform.SetGlobalPose(initialPose);
+            go.AddComponent<ARAnchor>();
+            SpongyAnchorARF newAnchor = go.AddComponent<SpongyAnchorARF>();
+            return newAnchor;
+#else // WLT_ADD_ANCHOR_COMPONENT
             var arAnchor = arAnchorManager.AddAnchor(initialPose);
             if (arAnchor == null)
             {
@@ -136,6 +148,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             arAnchor.gameObject.name = id.FormatStr();
             SpongyAnchorARF newAnchor =  arAnchor.gameObject.AddComponent<SpongyAnchorARF>();
             return newAnchor;
+#endif // WLT_ADD_ANCHOR_COMPONENT
         }
 
         protected override SpongyAnchor DestroyAnchor(AnchorId id, SpongyAnchor spongyAnchor)

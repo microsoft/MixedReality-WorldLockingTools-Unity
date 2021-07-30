@@ -3,6 +3,10 @@
 
 #if UNITY_2020_1_OR_NEWER
 
+#if UNITY_2020_4_OR_NEWER
+#define WLT_ADD_ANCHOR_COMPONENT
+#endif // UNITY_2020_4_OR_NEWER
+
 using UnityEngine;
 #if WLT_ARFOUNDATION_PRESENT
 using UnityEngine.XR.ARFoundation;
@@ -122,11 +126,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 #if WLT_ARFOUNDATION_PRESENT
         public void Cleanup(ARAnchorManager arAnchorManager)
         {
+#if WLT_ADD_ANCHOR_COMPONENT
+            GameObject.Destroy(gameObject);
+#else // WLT_ADD_ANCHOR_COMPONENT
             if ((arAnchorManager != null) && (arAnchor != null))
             {
                 arAnchorManager.RemoveAnchor(arAnchor);
                 arAnchor = null;
             }
+#endif // WLT_ADD_ANCHOR_COMPONENT
         }
 #endif // WLT_ARFOUNDATION_PRESENT
 
