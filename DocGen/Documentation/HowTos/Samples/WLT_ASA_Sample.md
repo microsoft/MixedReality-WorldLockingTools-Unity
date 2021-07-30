@@ -25,10 +25,10 @@ This sample provides assets and scripts to:
 
 This sample has been developed and tested using:
 
-* Unity 2020.3.2f1
-* Azure Spatial Anchors (ASA) v2.9.0
+* Unity 2020.3.8f1
+* Azure Spatial Anchors (ASA) v2.9.0 - v2.10.2.
 * Mixed Reality Toolkit v2.7.2
-* World Locking Tools for Unity v1.4.0
+* World Locking Tools for Unity v1.4.1
 * FrozenWorldEngine v1.1.1
 
 You can install WLT and this sample either from [WLT releases .unitypackage](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases) or from the Mixed Reality Feature Tool. Note that if installing from the FeatureTool, you must not only install the WLT Examples dependency (automatic), but also Import the Examples into your project. See [Installing WLT from MR Feature Tool](../WLTviaMRFeatureTool.md) for details.
