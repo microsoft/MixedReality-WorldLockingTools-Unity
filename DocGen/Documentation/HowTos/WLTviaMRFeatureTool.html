@@ -140,6 +140,8 @@
 <h3 id="when-installing-from-mixed-reality-feature-tool">When installing from Mixed Reality Feature Tool</h3>
 <p>Windows imposes a <a href="https://docs.microsoft.com/windows/win32/fileio/maximum-file-path-limitation?tabs=cmd">maximum path length of 260 characters</a>. The Frozen World Engine package has some very long internal paths. The Mixed Reality Feature Tool (or Unity's UPM, depending whom you want to blame), adds some very long strings in the middle.</p>
 <p>You will know if you have passed the MAX_PATH limit if you see errors in the Unity Console complaining about not being able to find part of a path.</p>
+<p><img src="../../Images/Screens/LongPathError.png" alt="Long path error"></p>
+<p>Again, the installation path <code>e:\stuff\T1</code> will work, but <code>e:\stuff\T12</code> will be too long.</p>
 <p>Ironically, the first file to hit the limit isn't even used on Windows, it's for the iOS build (iOS doesn't have the MAX_PATH limit). WLT will build and run fine without it. However, the existence of the file will interfere with the running of some important MRTK scripts, and probably destabilize Unity in other subtle ways.</p>
 <h3 id="when-installing-from-unitypackage-files-or-from-github">When installing from .unitypackage files or from github</h3>
 <p>Without the UPM/MRFeatureTool inserting characters into the installation paths, there is a bit more breathing room. However, the internal path hierarchy within the Frozen World Engine is still quite deep. When installing from unitypackage files or from github, the installation folder should be about 100 characters long or less.</p>

@@ -390,7 +390,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/WLTviaMRFeatureTool.html",
-          "hash": "rEUhTwJKsO3NpirXvFTNpgjvlHm1Fawv15J8EoulZoQ="
+          "hash": "yWMwrBDEA8x71oY6a5b13YzmrcvnvRF2nv48Q1WagIQ="
         }
       },
       "is_incremental": false,
@@ -869,6 +869,17 @@
       "output": {
         "resource": {
           "relative_path": "DocGen/Images/Screens/DiagStats.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "DocGen/Images/Screens/LongPathError.png",
+      "output": {
+        "resource": {
+          "relative_path": "DocGen/Images/Screens/LongPathError.png"
         }
       },
       "is_incremental": false,
