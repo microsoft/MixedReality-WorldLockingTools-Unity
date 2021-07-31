@@ -348,10 +348,13 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             asaManager.AnchorLocated += OnAnchorLocated;
             asaManager.LocateAnchorsCompleted += OnAnchorLocateCompleted;
 
+            int delayBeforeCreateMS = 1000;
+            await Task.Delay(delayBeforeCreateMS);
+
             Debug.Log($"To create session");
             await asaManager.CreateSessionAsync();
 
-            int delayBeforeStartMS = 3000;
+            int delayBeforeStartMS = 2000;
             await Task.Delay(delayBeforeStartMS);
 
             Debug.Log($"To start session");

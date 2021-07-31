@@ -130,7 +130,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     {
                         activeSubsystem = sub;
                         ++numFound;
-                        Debug.Log($"Start changed an anchor subsystem to running.");
+                        Debug.Log($"Start changed anchor subsystem {sub.subsystemDescriptor.id} to running.");
                     }
                 }
             }
@@ -150,6 +150,17 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         private static XRSessionSubsystem FindSessionSubsystem()
         {
+#if WLT_XR_MANAGEMENT_PRESENT
+            /// Workaround. OpenXR is now returning a SessionSubsystem, but it is reporting 
+            /// its trackingStatus as TrackingStatus.None forever. Since the (incorrect) tracking status
+            /// is all we want the XRSessionSubsystem for, leave it as null for now.
+            bool isOpenXR = XRGeneralSettings.Instance.Manager.activeLoader.name.StartsWith("Open XR");
+            if (isOpenXR)
+            {
+                return null;
+            }
+#endif // WLT_XR_MANAGEMENT_PRESENT
+
             List<XRSessionSubsystem> sessionSubsystems = new List<XRSessionSubsystem>();
             SubsystemManager.GetInstances(sessionSubsystems);
             Debug.Log($"Found {sessionSubsystems.Count} session subsystems");
@@ -159,7 +170,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 if (session.running)
                 {
-                    Debug.Log($"Found active session subsystem");
+                    Debug.Log($"Found active session subsystem {session.subsystemDescriptor.id}");
                     activeSession = session;
                     ++numFound;
                 }
@@ -174,7 +185,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     {
                         activeSession = session;
                         ++numFound;
-                        Debug.Log($"Start changed a session to running.");
+                        Debug.Log($"Start changed session {session.subsystemDescriptor.id} to running.");
                     }
                 }
             }
@@ -335,8 +346,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// Currently a problem obtaining the sessionSubsystem in OpenXR. Until that is remediated,
             /// we will assume that if we have no sessionSubsystem, then tracking is fine.
             if (sessionSubsystem == null)
+            {
                 return true;
-            //Debug.Log($"AnchorManagerXR F{Time.frameCount}: session is {(sessionSubsystem != null && sessionSubsystem.running ? "running" : "null")} and {(sessionSubsystem != null && sessionSubsystem.trackingState != TrackingState.None ? "tracking" : "not-tracking")}");
+            }
+            //Debug.Log($"AMXR F{Time.frameCount} session running={sessionSubsystem.running} state={sessionSubsystem.trackingState}");
             return sessionSubsystem != null
                 && sessionSubsystem.running
                 && sessionSubsystem.trackingState != TrackingState.None;

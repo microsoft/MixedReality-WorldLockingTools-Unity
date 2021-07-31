@@ -2,6 +2,8 @@
 
 [See release notes](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases)
 
+## 1.4.1 - Workaround for OpenXR session tracking state issue.
+
 ## 1.4.0 - Optional integration of Azure Spatial Anchors for persistence and sharing.
 
 ## 1.3.5 - Dependency on WLT v1.3.5 for automated setup tools.
