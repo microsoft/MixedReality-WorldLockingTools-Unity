@@ -23,10 +23,10 @@ using UnityEngine.XR;
 
 using UnityEngine.XR.ARFoundation;
 
-#if WLT_MICROSOFT_OPENXR_PRESENT
+#if WLT_XR_PERSISTENCE
 using Microsoft.MixedReality.OpenXR;
 using UnityEngine.XR.ARSubsystems;
-#endif // WLT_MICROSOFT_OPENXR_PRESENT
+#endif // WLT_XR_PERSISTENCE
 
 
 namespace Microsoft.MixedReality.WorldLocking.Core
@@ -145,7 +145,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 #endif // WLT_XR_PERSISTENCE
         }
 
+#if WLT_XR_PERSISTENCE
         private readonly Dictionary<TrackableId, AnchorId> waitOnLoading = new Dictionary<TrackableId, AnchorId>();
+#endif // WLT_XR_PERSISTENCE
 
         /// <summary>
         /// Load the spongy anchors from persistent storage

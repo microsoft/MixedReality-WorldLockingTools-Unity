@@ -101,7 +101,12 @@ namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
                 {
                     statusText += $" Create={status.recommendedForCreate.ToString("0.00")}, {status.readyForCreate.ToString("0.00")}";
                 }
-                statusText += $" {WorldLocking.Core.WorldLockingManager.GetInstance().ErrorStatus}";
+                string wltStatus = WorldLocking.Core.WorldLockingManager.GetInstance().ErrorStatus;
+                if (string.IsNullOrEmpty(wltStatus))
+                {
+                    wltStatus = "Okay";
+                }
+                statusText += $" {wltStatus}";
                 statusLine.text = statusText;
             }
         }

@@ -24,6 +24,10 @@ using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.Management;
 #endif // WLT_XR_MANAGEMENT_PRESENT
 
+#if WLT_MICROSOFT_OPENXR_PRESENT && UNITY_WSA
+#define WLT_XR_PERSISTENCE
+#endif // WLT_XR_PERSISTENCE
+
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
     /// <summary>
@@ -130,9 +134,23 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 this.arAnchorManager = arSessionOrigin.gameObject.AddComponent<ARAnchorManager>();
             }
             Debug.Log($"ARF: Created AnchorManager ARF");
+#if WLT_XR_PERSISTENCE
+            // See notes at OnAnchorsChanged definition.
             this.arAnchorManager.anchorsChanged += OnAnchorsChanged;
+#endif // WLT_XR_PERSISTENCE
         }
 
+#if WLT_XR_PERSISTENCE
+        /// <summary>
+        /// Callback when the set of active spatial anchors changes.
+        /// </summary>
+        /// <param name="obj">Callback arguments</param>
+        /// <remarks>
+        /// The only anchor change event we care about is when anchors, which are in the "waitOnLoading" dictionary,
+        /// are added. Those are anchors which have been loaded but now need to be finalized.
+        /// We ignore other anchor added/changed/removed events. 
+        /// And in fact, when anchor persistence isn't supported, we don't even bother registering for this event.
+        /// </remarks>
         private void OnAnchorsChanged(ARAnchorsChangedEventArgs obj)
         {
             foreach (var added in obj.added)
@@ -161,6 +179,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
             }
         }
+#endif // WLT_XR_PERSISTENCE
 
         protected override bool IsTracking()
         {
