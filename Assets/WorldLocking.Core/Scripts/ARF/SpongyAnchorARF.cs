@@ -29,9 +29,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         public TrackableId TrackableId { get { return trackableId; } set { trackableId = value; } }
 
-        private bool isSaved = false;
-
-        public bool IsSaved { get { return isSaved; } set { isSaved = value; } }
 #endif // WLT_ARFOUNDATION_PRESENT
 
         private float lastNotLocatedTime = float.NegativeInfinity;

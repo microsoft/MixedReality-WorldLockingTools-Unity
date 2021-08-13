@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-#define WLT_EXTRA_LOGGING
+//#define WLT_EXTRA_LOGGING
 
 #if UNITY_2020_1_OR_NEWER
 
@@ -165,7 +165,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         protected override bool IsTracking()
         {
             Debug.Assert(arSession != null);
-
             return ARSession.notTrackingReason == UnityEngine.XR.ARSubsystems.NotTrackingReason.None;
         }
 
@@ -213,34 +212,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             return null;
         }
-
-#if false // mafinc
-        private static void UpdateTracker(string label, ARAnchor arAnchor, Dictionary<TrackableId, SpongyAnchorARF> anchors)
-        {
-            SpongyAnchorARF tracker;
-            if (anchors.TryGetValue(arAnchor.trackableId, out tracker))
-            {
-                DebugOutExtra(label, arAnchor, tracker);
-
-                Pose newpose = arAnchor.transform.GetGlobalPose();
-                Vector3 delta = newpose.position - tracker.transform.position;
-                tracker.Delta = delta;
-                tracker.transform.position = newpose.position;
-                tracker.transform.rotation = newpose.rotation;
-            }
-            else
-            {
-                Debug.LogError($"Missing trackableId {arAnchor.trackableId} from DB, ignoring.");
-            }
-        }
-
-        private static bool RemoveTracker(TrackableId trackableId, Dictionary<TrackableId, SpongyAnchorARF> anchors)
-        {
-            DebugLogExtra($"Removed:: id={trackableId}");
-
-            return anchors.Remove(trackableId);
-        }
-#endif // mafinc
 
         private static void DebugLogExtra(string msg)
         {

@@ -22,6 +22,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public abstract Pose SpongyPose { get; }
 
         /// <summary>
+        /// Whether the underlying spatial anchor is known to be in the local anchor store.
+        /// </summary>
+        /// <remarks>
+        /// Note that the anchor might be in the anchor store but isn't known to be, so IsSaved  == false.
+        /// In particular, a different anchor might be stored under the same name, in which case saving
+        /// this anchor probably requires deleting the old anchor first.
+        /// </remarks>
+        public virtual bool IsSaved { get; set; } = false;
+
+        /// <summary>
         /// Diagnostic only - to be removed.
         /// </summary>
         public virtual Vector3 Delta { get; set; }

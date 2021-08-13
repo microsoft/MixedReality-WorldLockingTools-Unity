@@ -329,7 +329,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 if (!frozenFragmentVizs.TryGetValue(fragmentId, out frozenFragmentViz))
                 {
                     frozenFragmentViz = Instantiate(Prefab_FrameViz, worldLockingRoot.transform);
-                    frozenFragmentViz.name = fragmentId.ToString();
+                    frozenFragmentViz.name = fragmentId.FormatStr();
                     frozenFragmentVizs[fragmentId] = frozenFragmentViz;
                 }
                 Color fragmentColor = Color.gray;
