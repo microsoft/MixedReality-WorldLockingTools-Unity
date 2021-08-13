@@ -11,6 +11,10 @@
 
 #if WLT_ARFOUNDATION_PRESENT
 
+#if WLT_MICROSOFT_OPENXR_PRESENT && UNITY_WSA
+#define WLT_XR_PERSISTENCE
+#endif // WLT_XR_PERSISTENCE
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -23,10 +27,6 @@ using UnityEngine.XR.ARSubsystems;
 #if WLT_XR_MANAGEMENT_PRESENT
 using UnityEngine.XR.Management;
 #endif // WLT_XR_MANAGEMENT_PRESENT
-
-#if WLT_MICROSOFT_OPENXR_PRESENT && UNITY_WSA
-#define WLT_XR_PERSISTENCE
-#endif // WLT_XR_PERSISTENCE
 
 namespace Microsoft.MixedReality.WorldLocking.Core
 {
