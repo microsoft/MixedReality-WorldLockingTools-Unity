@@ -1067,8 +1067,8 @@ MonoBehaviour:
       Enabled: 1
       AutoMerge: 1
       AutoRefreeze: 1
-      AutoLoad: 1
-      AutoSave: 1
+      AutoLoad: 0
+      AutoSave: 0
     linkageSettings:
       useExisting: 0
       AdjustmentFrame: {fileID: 118694855}
