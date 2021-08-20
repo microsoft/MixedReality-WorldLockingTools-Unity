@@ -104,7 +104,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
                 string wltStatus = WorldLocking.Core.WorldLockingManager.GetInstance().ErrorStatus;
                 if (string.IsNullOrEmpty(wltStatus))
                 {
-                    wltStatus = "Okay";
+                    wltStatus = "Tracking";
                 }
                 statusText += $" {wltStatus}";
                 statusLine.text = statusText;
