@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1067,8 +1067,8 @@ MonoBehaviour:
       Enabled: 1
       AutoMerge: 1
       AutoRefreeze: 1
-      AutoLoad: 0
-      AutoSave: 0
+      AutoLoad: 1
+      AutoSave: 1
     linkageSettings:
       useExisting: 0
       AdjustmentFrame: {fileID: 118694855}
