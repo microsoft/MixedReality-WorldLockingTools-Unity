@@ -161,6 +161,37 @@
   </table>
   
   
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_IsSaved_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsSaved*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_IsSaved" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsSaved">IsSaved</h4>
+  <div class="markdown level1 summary"><p>Whether the underlying spatial anchor is known to be in the local anchor store.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool IsSaved { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_IsSaved_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Note that the anchor might be in the anchor store but isn't known to be, so IsSaved  == false.
+In particular, a different anchor might be stored under the same name, in which case saving
+this anchor probably requires deleting the old anchor first.</p>
+</div>
+  
+  
   <a id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_SpongyPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.SpongyPose*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_SpongyPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.SpongyPose">SpongyPose</h4>
   <div class="markdown level1 summary"><p>Return the anchor's pose in spongy space.</p>

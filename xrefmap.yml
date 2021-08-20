@@ -5274,6 +5274,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsLocated
   nameWithType: SpongyAnchor.IsLocated
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsSaved
+  name: IsSaved
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_IsSaved
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsSaved
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsSaved
+  nameWithType: SpongyAnchor.IsSaved
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsSaved*
+  name: IsSaved
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_IsSaved_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsSaved
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.IsSaved
+  nameWithType: SpongyAnchor.IsSaved
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.SpongyPose
   name: SpongyPose
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor.html#Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_SpongyPose

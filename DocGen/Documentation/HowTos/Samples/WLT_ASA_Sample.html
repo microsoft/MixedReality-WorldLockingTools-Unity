@@ -127,6 +127,11 @@
 <pre><code class="lang-xml">    &lt;DeviceCapability Name=&quot;wiFiControl&quot;/&gt;
 </code></pre>
 <p>For more information, see <a href="https://github.com/Azure/azure-spatial-anchors-samples/issues/98#issuecomment-574235197">this post on github</a>.</p>
+<p>If you miss this step, the Publisher &quot;Readiness&quot; will never reach the &quot;Ready&quot; state, your framerate will be extremely low, and your UnityPlayer.log (if generated) will be full of exceptions of the form:</p>
+<blockquote>
+<p>InvalidOperationException: CoarseReloc: WiFi access has been declined. Request CV: . Response CV: .</p>
+</blockquote>
+<p>Note that you will need to add that capability to your Package.appxmanifest each time the solution is built from clean. But subsequent builds from Unity will preserve the capability.</p>
 <p>In Project Settings/XR Plugin Management, make sure that Windows Mixed Reality is the selected Plugin-Provider under the UWP tab (OpenXR is also supported for WLT with ASA).</p>
 <p>The MRTK profile <code>XAmple XRSDK ToolkitConfigurationProfile</code> in XAmpleApp/CustomProfiles is suitable for running on HoloLens2.</p>
 <h4 id="additional-setup-steps-for-android">Additional setup steps for Android</h4>
