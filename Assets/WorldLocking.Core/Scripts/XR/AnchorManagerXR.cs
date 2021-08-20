@@ -326,7 +326,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             else
             {
-                Debug.LogError($"Missing trackableId {xrAnchor.trackableId} from DB, adding now.");
+                Debug.LogError($"Missing trackableId {xrAnchor.trackableId} from DB, ignoring.");
             }
         }
 

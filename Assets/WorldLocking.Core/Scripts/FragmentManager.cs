@@ -493,7 +493,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
                 else
                 {
-                    Debug.LogError($"Try to merge in a non-existent fragment {sourceId.ToString()}");
+                    Debug.LogError($"Try to merge in a non-existent fragment {sourceId.FormatStr()}");
                 }
             }
             CurrentFragmentId = targetFragmentId;
@@ -536,7 +536,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     }
                     else
                     {
-                        Debug.LogError($"Try to merge in a non-existent fragment {sourceId.ToString()}");
+                        Debug.LogError($"Try to merge in a non-existent fragment {sourceId.FormatStr()}");
                     }
                 }
             }

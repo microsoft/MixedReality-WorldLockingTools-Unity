@@ -96,7 +96,18 @@ namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
                     status = binder.PublisherStatus;
                 }
                 statusLine.faceColor = status.readiness == PublisherReadiness.Ready ? Color.white : Color.red;
-                statusLine.text = $"Status: {status.readiness.ToString()}, Create={status.recommendedForCreate.ToString("0.00")}, {status.readyForCreate.ToString("0.00")}";
+                string statusText = $"Status: {status.readiness}";
+                if (status.readiness == PublisherReadiness.NotReadyToCreate)
+                {
+                    statusText += $" Create={status.recommendedForCreate.ToString("0.00")}, {status.readyForCreate.ToString("0.00")}";
+                }
+                string wltStatus = WorldLocking.Core.WorldLockingManager.GetInstance().ErrorStatus;
+                if (string.IsNullOrEmpty(wltStatus))
+                {
+                    wltStatus = "Tracking";
+                }
+                statusText += $" {wltStatus}";
+                statusLine.text = statusText;
             }
         }
 

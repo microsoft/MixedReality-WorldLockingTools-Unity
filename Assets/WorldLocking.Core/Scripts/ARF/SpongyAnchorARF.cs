@@ -24,6 +24,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
 #if WLT_ARFOUNDATION_PRESENT
         private ARAnchor arAnchor = null;
+
+        private TrackableId trackableId = TrackableId.invalidId;
+
+        public TrackableId TrackableId { get { return trackableId; } set { trackableId = value; } }
+
 #endif // WLT_ARFOUNDATION_PRESENT
 
         private float lastNotLocatedTime = float.NegativeInfinity;

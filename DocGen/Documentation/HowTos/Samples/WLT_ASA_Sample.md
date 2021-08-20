@@ -71,6 +71,12 @@ To enable Coarse Relocation on HoloLens2, you must add a permission to the Packa
 
 For more information, see [this post on github](https://github.com/Azure/azure-spatial-anchors-samples/issues/98#issuecomment-574235197).
 
+If you miss this step, the Publisher "Readiness" will never reach the "Ready" state, your framerate will be extremely low, and your UnityPlayer.log (if generated) will be full of exceptions of the form:
+
+> InvalidOperationException: CoarseReloc: WiFi access has been declined. Request CV: . Response CV: .
+
+Note that you will need to add that capability to your Package.appxmanifest each time the solution is built from clean. But subsequent builds from Unity will preserve the capability.
+
 In Project Settings/XR Plugin Management, make sure that Windows Mixed Reality is the selected Plugin-Provider under the UWP tab (OpenXR is also supported for WLT with ASA).
 
 The MRTK profile `XAmple XRSDK ToolkitConfigurationProfile` in XAmpleApp/CustomProfiles is suitable for running on HoloLens2.

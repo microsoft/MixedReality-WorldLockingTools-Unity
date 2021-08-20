@@ -39,7 +39,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public static float TrackingStartDelayTime = 0.3f;
 
         private float lastNotLocatedTime = float.NegativeInfinity;
-        private bool isSaved = false;
 #if WLT_ENABLE_LEGACY_WSA
         private WorldAnchor worldAnchor = null;
 #else
@@ -82,9 +81,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
 #else
             dummy = this;
-            if (isSaved && lastNotLocatedTime > 0)
+            if (IsSaved && lastNotLocatedTime > 0)
             {
-                isSaved = false;
+                IsSaved = false;
                 lastNotLocatedTime = float.NegativeInfinity;
             }
 #endif // WLT_ENABLE_LEGACY_WSA
@@ -109,7 +108,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <param name="store"></param>
         public void Save (WorldAnchorStore store)
         {
-            if (isSaved)
+            if (IsSaved)
             {
                 return;
             }
@@ -121,7 +120,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             store.Delete(name);
             bool success = store.Save(name, worldAnchor);
             Debug.Assert(success);
-            isSaved = true;
+            IsSaved = true;
         }
 
         /// <summary>
@@ -136,7 +135,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 Destroy(worldAnchor);
             }
             worldAnchor = store.Load(name, gameObject);
-            isSaved = true;
+            IsSaved = true;
             return worldAnchor != null;
         }
 #endif // WLT_ENABLE_LEGACY_WSA

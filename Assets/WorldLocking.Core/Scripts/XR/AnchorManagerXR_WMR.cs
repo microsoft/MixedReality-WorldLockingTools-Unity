@@ -66,10 +66,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 var id = keyval.anchorId;
                 var anchor = keyval.spongyAnchor;
                 Debug.Assert(anchor.name == id.FormatStr());
-                var anchorXR = anchor as SpongyAnchorXR;
-                Debug.Assert(anchorXR != null);
-                anchorStore.TryPersistAnchor(anchorXR.TrackableId, anchor.name);
-
+                if (!anchor.IsSaved)
+                {
+                    var anchorXR = anchor as SpongyAnchorXR;
+                    Debug.Assert(anchorXR != null);
+                    anchorStore.UnpersistAnchor(anchor.name);
+                    anchorStore.TryPersistAnchor(anchorXR.TrackableId, anchor.name);
+                    anchor.IsSaved = true;
+                }
             }
 
 #else // WLT_XR_PERSISTENCE
@@ -117,6 +121,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                         anchorId = id,
                         spongyAnchor = spongyAnchorXR
                     });
+                    spongyAnchorXR.IsSaved = true;
                 }
                 else
                 {
