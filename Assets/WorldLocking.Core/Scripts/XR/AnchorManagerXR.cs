@@ -78,12 +78,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
 
             var session = FindSessionSubsystem();
-            /// mafinc - Currently a problem in OpenXR obtaining the session subsystem.
-            /// Everything can function without it, it is only used for detecting loss of tracking.
-            //if (session == null)
-            //{
-            //    return null;
-            //}
 
             AnchorManagerXR anchorManager = new AnchorManagerXR(plugin, headTracker, xrAnchorManager, session);
 
@@ -150,17 +144,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         private static XRSessionSubsystem FindSessionSubsystem()
         {
-#if WLT_XR_MANAGEMENT_PRESENT
-            /// Workaround. OpenXR is now returning a SessionSubsystem, but it is reporting 
-            /// its trackingStatus as TrackingStatus.None forever. Since the (incorrect) tracking status
-            /// is all we want the XRSessionSubsystem for, leave it as null for now.
-            bool isOpenXR = XRGeneralSettings.Instance.Manager.activeLoader.name.StartsWith("Open XR");
-            if (isOpenXR)
-            {
-                return null;
-            }
-#endif // WLT_XR_MANAGEMENT_PRESENT
-
             List<XRSessionSubsystem> sessionSubsystems = new List<XRSessionSubsystem>();
             SubsystemManager.GetInstances(sessionSubsystems);
             Debug.Log($"Found {sessionSubsystems.Count} session subsystems");
@@ -205,7 +188,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             this.xrAnchorManager = xrAnchorManager;
             this.sessionSubsystem = session;
-            Debug.Log($"XR: Created AnchorManager XR, xrMgr={(this.xrAnchorManager != null ? "good" : "null")}");
+            Debug.Log($"XR: Created AnchorManager XR, xrMgr={(this.xrAnchorManager != null ? "good" : "null")} session={(session != null ? "good" : "null")}");
 
             Debug.Log($"ActiveLoader name:[{XRGeneralSettings.Instance.Manager.activeLoader.name}] type:[{XRGeneralSettings.Instance.Manager.activeLoader.GetType().FullName}]");
 
@@ -230,6 +213,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             if (xrAnchorManager == null)
             {
                 return false;
+            }
+            if (sessionSubsystem != null)
+            {
+                sessionSubsystem.Update(new XRSessionUpdateParams
+                {
+                    screenOrientation = Screen.orientation,
+                    screenDimensions = new Vector2Int(Screen.width, Screen.height)
+                });
             }
             DebugLogExtra($"UpdateTrackables {Time.frameCount} XRAnchorSubsystem is {xrAnchorManager.running}");
             TrackableChanges<XRAnchor> changes = xrAnchorManager.GetChanges(Unity.Collections.Allocator.Temp);
@@ -343,16 +334,19 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected override bool IsTracking()
         {
-            /// Currently a problem obtaining the sessionSubsystem in OpenXR. Until that is remediated,
-            /// we will assume that if we have no sessionSubsystem, then tracking is fine.
             if (sessionSubsystem == null)
             {
-                return true;
+                Debug.LogError($"Frame={Time.frameCount} have null sessionSubsystem.");
+                return false;
             }
-            //Debug.Log($"AMXR F{Time.frameCount} session running={sessionSubsystem.running} state={sessionSubsystem.trackingState}");
-            return sessionSubsystem != null
-                && sessionSubsystem.running
-                && sessionSubsystem.trackingState != TrackingState.None;
+            DebugLogExtra($"AMXR F{Time.frameCount} session running={sessionSubsystem.running} state={sessionSubsystem.trackingState}");
+            if (!sessionSubsystem.running)
+            {
+                // This is probably a catastrophic failure case.
+                Debug.Log($"Frame={Time.frameCount} LostTracking: Have session subsystem but not running.");
+                return false;
+            }
+            return sessionSubsystem.notTrackingReason == NotTrackingReason.None;
         }
 
         protected override SpongyAnchor CreateAnchor(AnchorId id, Transform parent, Pose initialPose)
