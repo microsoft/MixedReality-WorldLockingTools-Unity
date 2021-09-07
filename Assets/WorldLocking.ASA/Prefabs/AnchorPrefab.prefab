@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6839943469978392780}
   - component: {fileID: 5073717699584951819}
   - component: {fileID: 751258931817676157}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AnchorPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,12 +55,10 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67e4ae112f094f3082e033060c3cd298, type: 2}
+  - {fileID: 2100000, guid: 0e3f68a0b25245e4d9a3e2380c8ac1d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -68,7 +66,6 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -81,7 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &751258931817676157
 BoxCollider:
   m_ObjectHideFlags: 0
