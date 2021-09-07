@@ -334,36 +334,19 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         protected override bool IsTracking()
         {
+            if (sessionSubsystem == null)
+            {
+                Debug.LogError($"Frame={Time.frameCount} have null sessionSubsystem.");
+                return false;
+            }
             DebugLogExtra($"AMXR F{Time.frameCount} session running={sessionSubsystem.running} state={sessionSubsystem.trackingState}");
             if (!sessionSubsystem.running)
             {
                 // This is probably a catastrophic failure case.
-                DebugLogExtra($"LostTracking: Have session subsystem but not running.");
+                Debug.Log($"Frame={Time.frameCount} LostTracking: Have session subsystem but not running.");
                 return false;
             }
-            if (sessionSubsystem.trackingState == TrackingState.Tracking)
-            {
-                // Something we can all agree on. If trackingState is Tracking, device is tracking.
-                return true;
-            }
-            if (sessionSubsystem.trackingState == TrackingState.None)
-            {
-                // Another thing we all agree on. If trackingState is None, there is no tracking.
-                return false;
-            }
-            // Then trackingState is TrackingState.Limited. There seems to be no agreement on what that means.
-            if (openXRPersistence)
-            {
-                // If you put a blanket over your head, OpenXR calls that tracking state "Limited".
-                return false;
-            }
-#if UNITY_ANDROID || UNITY_IOS
-            // On mobile, loss of tracking goes to trackingState==TrackingState.Limited
-            return false;
-#else // last case is WMR XR Plugin
-            // WMR XR Plugin only ever returns None (not tracking) or Limited (is tracking).
-            return true;
-#endif // WMR XR Plugin
+            return sessionSubsystem.notTrackingReason == NotTrackingReason.None;
         }
 
         protected override SpongyAnchor CreateAnchor(AnchorId id, Transform parent, Pose initialPose)
