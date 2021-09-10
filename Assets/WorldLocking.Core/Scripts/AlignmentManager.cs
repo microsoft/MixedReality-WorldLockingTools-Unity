@@ -1,7 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-//#define EXTRA_DEBUGGING
+//#define WLT_NAN_EXTRA_DEBUGGING
+//#define WLT_LOG_SAVE_LOAD
 
 using System;
 using System.Collections.Generic;
@@ -645,9 +646,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// <returns>True if successfully saved.</returns>
             private bool Save(Stream stream)
             {
+                DebugLogSaveLoad($"Enter save {SaveFileName}");
                 bool saved = false;
                 using (BinaryWriter writer = new BinaryWriter(stream))
                 {
+                    DebugLogSaveLoad($"Saving {SaveFileName} v={version} c={data.Count}");
                     writer.Write((uint)version);
                     writer.Write((int)data.Count);
                     foreach (var keyVal in data)
@@ -671,6 +674,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             /// </remarks>
             private bool Load(Stream stream)
             {
+                DebugLogSaveLoad($"Enter load {SaveFileName}");
                 data.Clear();
                 bool loaded = false;
                 using (BinaryReader reader = new BinaryReader(stream))
@@ -679,6 +683,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     if (v == version)
                     {
                         int count = reader.ReadInt32();
+                        DebugLogSaveLoad($"Loading {SaveFileName} v={version} c={count}");
                         for (int i = 0; i < count; ++i)
                         {
                             string name = reader.ReadString();
@@ -947,6 +952,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private void ActivateCurrentFragment()
         {
+            DebugLogSaveLoad($"Active fragment from {ActiveFragmentId.FormatStr()} to {CurrentFragmentId.FormatStr()}");
             activePoses.Clear();
             for (int i = 0; i < sentPoses.Count; ++i)
             {
@@ -979,12 +985,20 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         #region Persistence synchronizations
 
+        private static void DebugLogSaveLoad(string message)
+        {
+#if WLT_LOG_SAVE_LOAD
+            Debug.Log($"F={Time.frameCount}: {message}");
+#endif // WLT_LOG_SAVE_LOAD
+        }
+
         /// <summary>
         /// Add to queue for being saved to database next chance.
         /// </summary>
         /// <param name="refPose"></param>
         private void QueueForSave(ReferencePose refPose)
         {
+            DebugLogSaveLoad($"QueueForSave {SaveFileName}");
             int idx = FindReferencePoseById(referencePosesToSave, refPose.anchorId);
             if (idx < 0)
             {
@@ -999,6 +1013,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (referencePosesToSave.Count > 0)
             {
+                DebugLogSaveLoad($"{SaveFileName} has {referencePosesToSave.Count} to save");
                 for (int i = referencePosesToSave.Count - 1; i >= 0; --i)
                 {
                     poseDB.Set(referencePosesToSave[i]);
@@ -1033,6 +1048,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 {
                     if (!referencePoses[i].fragmentId.IsKnown())
                     {
+                        DebugLogSaveLoad($"Transfer {referencePoses[i].anchorId.FormatStr()} from frag={referencePoses[i].fragmentId.FormatStr()} to {fragmentId.FormatStr()}");
                         referencePoses[i].fragmentId = fragmentId;
                         changed = true;
                     }
@@ -1095,19 +1111,19 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 };
             }
             float interp = rhs.weight / (lhs.weight + rhs.weight);
-#if EXTRA_DEBUGGING
+#if WLT_NAN_EXTRA_DEBUGGING
             if (float.IsNaN(interp))
             {
                 Debug.LogError("Interp NAN");
             }
-#endif // EXTRA_DEBUGGING
+#endif // WLT_NAN_EXTRA_DEBUGGING
 
             WeightedPose ret;
             ret.pose.position = lhs.pose.position + interp * (rhs.pose.position - lhs.pose.position);
             ret.pose.rotation = Quaternion.Slerp(lhs.pose.rotation, rhs.pose.rotation, interp);
             ret.pose.rotation = Quaternion.Normalize(ret.pose.rotation);
             ret.weight = lhs.weight + rhs.weight;
-#if EXTRA_DEBUGGING
+#if WLT_NAN_EXTRA_DEBUGGING
             if (float.IsNaN(ret.pose.position.x))
             {
                 Debug.LogError("Position NAN");
@@ -1116,7 +1132,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 Debug.LogError("Weight NAN");
             }
-#endif // EXTRA_DEBUGGING
+#endif // WLT_NAN_EXTRA_DEBUGGING
 
             return ret;
         }

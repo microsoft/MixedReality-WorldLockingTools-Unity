@@ -135,12 +135,22 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 }
             }
 
-            transform.position = new Vector3(transform.position.x, GetFrozenHeadPosition().y + verticalOffset, transform.position.z);
+            transform.position = new Vector3(transform.position.x, GetGlobalHeadPosition().y + verticalOffset, transform.position.z);
             triangleIsDirty = true;
         }
 
+        private static Pose GetGlobalFromLocked()
+        {
+            var wltMgr = WorldLockingManager.GetInstance();
+            Pose globalFromLocked = wltMgr.ApplyAdjustment
+                ? wltMgr.FrozenFromLocked
+                : wltMgr.SpongyFromLocked;
+
+            return globalFromLocked;
+        }
+
         /// <summary>
-        /// Generates the whole mesh inside the triangulation data, except for the boundry triangles/vertices.
+        /// Generates the whole mesh inside the triangulation data, except for the boundary triangles/vertices.
         /// </summary>
         /// <returns></returns>
         private Mesh GenerateTriangulationWireFrameMesh()
@@ -152,10 +162,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             Array.Copy(originalVertices, 4, vertices, 0, originalVertices.Length - 4);
 
-            Pose frozenFromLocked = WorldLockingManager.GetInstance().FrozenFromLocked;
+            Pose globalFromLocked = GetGlobalFromLocked();
             for (int i = 0; i < vertices.Length; i++)
             {
-                vertices[i] = frozenFromLocked.Multiply(vertices[i]);
+                vertices[i] = globalFromLocked.Multiply(vertices[i]);
                 vertices[i].y = 0.0f;
             }
 
@@ -388,10 +398,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             secondPinPosition = currentBoundaryVertexIDx == 1 ? lockedHeadPosition : triangulator.Vertices[currentInterpolant.idx[1] + 4];
             thirdPinPosition = currentBoundaryVertexIDx == 2 ? lockedHeadPosition : triangulator.Vertices[currentInterpolant.idx[2] + 4];
 
-            Pose frozenFromLocked = WorldLockingManager.GetInstance().FrozenFromLocked;
-            firstPinPosition = frozenFromLocked.Multiply(firstPinPosition);
-            secondPinPosition = frozenFromLocked.Multiply(secondPinPosition);
-            thirdPinPosition = frozenFromLocked.Multiply(thirdPinPosition);
+            Pose globalFromLocked = GetGlobalFromLocked();
+            firstPinPosition = globalFromLocked.Multiply(firstPinPosition);
+            secondPinPosition = globalFromLocked.Multiply(secondPinPosition);
+            thirdPinPosition = globalFromLocked.Multiply(thirdPinPosition);
 
             //    DEBUG TRIANGLE    //
             //firstPinPosition = new Vector3(5.0f, 0.0f, 0.0f);
@@ -485,10 +495,15 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             return lockedHeadPose.position;
         }
 
-        private Vector3 GetFrozenHeadPosition()
+        private Vector3 GetGlobalHeadPosition()
         {
             WorldLockingManager wltMgr = WorldLockingManager.GetInstance();
-            return wltMgr.FrozenFromSpongy.Multiply(wltMgr.SpongyFromCamera).position;
+            Vector3 position = wltMgr.SpongyFromCamera.position;
+            if (wltMgr.ApplyAdjustment)
+            {
+                position = wltMgr.FrozenFromSpongy.Multiply(position);
+            }
+            return position;
         }
 
         private void FindAlignmentManager()

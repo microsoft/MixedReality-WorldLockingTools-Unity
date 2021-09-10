@@ -76,6 +76,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 {
                     using (new EditorGUI.IndentLevelScope())
                     {
+                        AddProperty(mgrPath, "applyAdjustment");
+
                         AddProperty(mgrPath, "AdjustmentFrame");
 
                         AddProperty(mgrPath, "CameraParent");

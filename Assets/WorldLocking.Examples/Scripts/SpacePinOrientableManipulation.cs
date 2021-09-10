@@ -87,7 +87,14 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// </summary>
         private void OnFinishManipulation()
         {
-            SetFrozenPose(ExtractModelPose());
+            if (WorldLockingManager.GetInstance().ApplyAdjustment)
+            {
+                SetFrozenPose(ExtractModelPose());
+            }
+            else
+            {
+                SetSpongyPose(ExtractModelPose());
+            }
         }
     }
 }
