@@ -3,6 +3,11 @@ rem Simple script to create NPM packages suitable for Unity.
 rem Does NOT publish the packages, they will be left in Assets folder.
 rem NOTE: Unity must be run on the project at least once, to ensure all
 rem necessary .meta files are present.
+rem
+rem Before running this script, go through all of the folders in .\UPM
+rem and update at least:
+rem CHANGELOG.md - what is new version and what is special about it. 
+rem package.json - update target version and version dependencies.
 rem 
 rem Run this script from project's .\UPM folder (where it exists).
 rem 
@@ -11,7 +16,7 @@ rem After each packaging, inspect the results in the spawned window.
 rem If results look good, close the window (enter "exit") to proceed to next package.
 rem
 rem After creating and verifying both packages, from command prompt go to Assets folder,
-rem and run 
+rem and, for each .tgz package generated, run 
 rem    'npm publish com.microsoft.mixedreality.worldlockingtools-1.2.3.tgz'
 rem and 
 rem    'npm publish com.microsoft.mixedreality.worldlockingsamples-1.2.3.tgz'
