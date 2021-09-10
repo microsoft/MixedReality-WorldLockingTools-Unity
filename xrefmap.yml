@@ -1844,6 +1844,19 @@ references:
   commentId: E:Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.OnAlignManagerCreated
   fullName: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.OnAlignManagerCreated
   nameWithType: AlignSubtree.OnAlignManagerCreated
+- uid: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.Orienter
+  name: Orienter
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_Orienter
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.Orienter
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.Orienter
+  nameWithType: AlignSubtree.Orienter
+- uid: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.Orienter*
+  name: Orienter
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_Orienter_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.Orienter
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.Orienter
+  nameWithType: AlignSubtree.Orienter
 - uid: Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.RemoveOwnedPin(Microsoft.MixedReality.WorldLocking.Core.SpacePin)
   name: RemoveOwnedPin(SpacePin)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignSubtree.html#Microsoft_MixedReality_WorldLocking_Core_AlignSubtree_RemoveOwnedPin_Microsoft_MixedReality_WorldLocking_Core_SpacePin_
@@ -4111,6 +4124,19 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Core.IOrienter
   fullName: Microsoft.MixedReality.WorldLocking.Core.IOrienter
   nameWithType: IOrienter
+- uid: Microsoft.MixedReality.WorldLocking.Core.IOrienter.AlignmentManager
+  name: AlignmentManager
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrienter.html#Microsoft_MixedReality_WorldLocking_Core_IOrienter_AlignmentManager
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.IOrienter.AlignmentManager
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IOrienter.AlignmentManager
+  nameWithType: IOrienter.AlignmentManager
+- uid: Microsoft.MixedReality.WorldLocking.Core.IOrienter.AlignmentManager*
+  name: AlignmentManager
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrienter.html#Microsoft_MixedReality_WorldLocking_Core_IOrienter_AlignmentManager_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.IOrienter.AlignmentManager
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IOrienter.AlignmentManager
+  nameWithType: IOrienter.AlignmentManager
 - uid: Microsoft.MixedReality.WorldLocking.Core.IOrienter.Register(Microsoft.MixedReality.WorldLocking.Core.IOrientable)
   name: Register(IOrientable)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IOrienter.html#Microsoft_MixedReality_WorldLocking_Core_IOrienter_Register_Microsoft_MixedReality_WorldLocking_Core_IOrientable_
@@ -4162,6 +4188,19 @@ references:
   commentId: F:Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.AdjustmentFrame
   fullName: Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.AdjustmentFrame
   nameWithType: LinkageSettings.AdjustmentFrame
+- uid: Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.ApplyAdjustment
+  name: ApplyAdjustment
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.html#Microsoft_MixedReality_WorldLocking_Core_LinkageSettings_ApplyAdjustment
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.ApplyAdjustment
+  fullName: Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.ApplyAdjustment
+  nameWithType: LinkageSettings.ApplyAdjustment
+- uid: Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.ApplyAdjustment*
+  name: ApplyAdjustment
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.html#Microsoft_MixedReality_WorldLocking_Core_LinkageSettings_ApplyAdjustment_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.ApplyAdjustment
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.ApplyAdjustment
+  nameWithType: LinkageSettings.ApplyAdjustment
 - uid: Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.CameraParent
   name: CameraParent
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.html#Microsoft_MixedReality_WorldLocking_Core_LinkageSettings_CameraParent
@@ -4268,6 +4307,19 @@ references:
   commentId: F:Microsoft.MixedReality.WorldLocking.Core.Orienter.actives
   fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.actives
   nameWithType: Orienter.actives
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.AlignmentManager
+  name: AlignmentManager
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_AlignmentManager
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.Orienter.AlignmentManager
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.AlignmentManager
+  nameWithType: Orienter.AlignmentManager
+- uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.AlignmentManager*
+  name: AlignmentManager
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_AlignmentManager_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.Orienter.AlignmentManager
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.Orienter.AlignmentManager
+  nameWithType: Orienter.AlignmentManager
 - uid: Microsoft.MixedReality.WorldLocking.Core.Orienter.AverageRotation(Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation,Microsoft.MixedReality.WorldLocking.Core.Orienter.WeightedRotation)
   name: AverageRotation(Orienter.WeightedRotation, Orienter.WeightedRotation)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.Orienter.html#Microsoft_MixedReality_WorldLocking_Core_Orienter_AverageRotation_Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_Microsoft_MixedReality_WorldLocking_Core_Orienter_WeightedRotation_
@@ -5836,6 +5888,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorSettings
   nameWithType: WorldLockingManager.AnchorSettings
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ApplyAdjustment
+  name: ApplyAdjustment
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_ApplyAdjustment
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ApplyAdjustment
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ApplyAdjustment
+  nameWithType: WorldLockingManager.ApplyAdjustment
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ApplyAdjustment*
+  name: ApplyAdjustment
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_ApplyAdjustment_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ApplyAdjustment
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ApplyAdjustment
+  nameWithType: WorldLockingManager.ApplyAdjustment
 - uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AttachmentPointManager
   name: AttachmentPointManager
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AttachmentPointManager
