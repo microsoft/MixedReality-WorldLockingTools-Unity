@@ -116,6 +116,11 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 Debug.Log($"Scene has no main camera, camera linkage will not be configured.");
                 return;
             }
+            if (!worldLockingContext.SharedSettings.linkageSettings.ApplyAdjustment)
+            {
+                Debug.Log($"System application of world locking adjustments is disabled. Ignoring camera linkage.");
+                return;
+            }
             Transform mainCamera = Camera.main.transform;
 
             // If the camera doesn't have a parent
