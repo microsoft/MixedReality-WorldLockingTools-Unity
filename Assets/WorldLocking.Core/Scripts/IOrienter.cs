@@ -50,6 +50,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     public interface IOrienter
     {
         /// <summary>
+        /// Optional subtree alignment manager. 
+        /// </summary>
+        /// <remarks>
+        /// If unset, will use global alignment manager, ie WorldLockingManager.GetInstance().AlignmentManager.
+        /// </remarks>
+        IAlignmentManager AlignmentManager { get; set; }
+
+        /// <summary>
         /// Add this orientable to the list to be both source of rotation computation, and targets to apply the computed rotation.
         /// </summary>
         /// <param name="orientable">The object to start maintining the orientation of.</param>

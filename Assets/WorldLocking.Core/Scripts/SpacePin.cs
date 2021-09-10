@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+//#define WLT_LOG_SAVE_LOAD
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -91,6 +93,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 if (alignmentManager != value)
                 {
+                    DebugLogSaveLoad($"Changing {name} pin's alignmentmanager {(value == WorldLockingManager.GetInstance().AlignmentManager ? "to global" : "from global")}");
                     Reset();
                     if (alignmentManager != null)
                     {
@@ -191,6 +194,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
+        private void DebugLogSaveLoad(string message)
+        {
+#if WLT_LOG_SAVE_LOAD
+            Debug.Log($"F={Time.frameCount} {message}");
+#endif // WLT_LOG_SAVE_LOAD
+        }
         private void CheckDependencies()
         {
             /// Cache the WorldLockingManager as a dependency.
@@ -198,6 +207,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             if (AlignmentManager == null)
             {
+                DebugLogSaveLoad($"Setting {name} pin's alignment manager to global because unset.");
                 AlignmentManager = manager.AlignmentManager;
             }
         }
@@ -251,6 +261,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public virtual void SetLockedPose(Pose lockedPose)
         {
             this.lockedPose = lockedPose;
+
+            DebugLogSaveLoad($"SetLockedPose {name}: mgr={(AlignmentManager == WorldLockingManager.GetInstance().AlignmentManager ? "global" : "local")}");
 
             PushAlignmentData(AlignmentManager);
 

@@ -29,7 +29,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
         /// </summary>
-        public static string Version => "1.4.3";
+        public static string Version => "1.5.0";
 
         /// <summary>
         /// The configuration settings may only be set as a block.
@@ -116,6 +116,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// Periodically save the WorldLocking state to disk.
         /// </summary>
         public bool AutoSave => shared.settings.AutoSave;
+
+        /// <summary>
+        /// Apply the computed adjustment via the AdjustmentFrame transform.
+        /// </summary>
+        /// <remarks>
+        /// If ApplyAdjustment is false, then WLT does the same computations, but it is up to the application to apply the computed transforms
+        /// correctly, either in the camera hierarchy, or elsewhere in the scene hierarchy.
+        /// </remarks>
+        public bool ApplyAdjustment => shared.linkageSettings.ApplyAdjustment;
 
 
         /// <summary>
@@ -525,13 +534,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 useDefaultFrame = true;
             }
             Debug.Assert(AdjustmentFrame != Camera.main.transform, "ERROR: AdjustmentFrame can't be camera, adjustments will be overwritten. Add parent to camera");
-            if (useDefaultFrame && CameraParent == null)
+            if (shared.linkageSettings.ApplyAdjustment)
             {
-                Debug.LogWarning($"Warning! Camera {Camera.main.gameObject.name} needs at least one parent for applying adjustments!");
-            }
-            if (AdjustmentFrame == CameraParent)
-            {
-                Debug.LogWarning($"Warning! Camera needs at least parent and grandparent for teleport and manual camera movement to work.");
+                if (useDefaultFrame && CameraParent == null)
+                {
+                    Debug.LogWarning($"Warning! Camera {Camera.main.gameObject.name} needs at least one parent for applying adjustments!");
+                }
+                if (AdjustmentFrame == CameraParent)
+                {
+                    Debug.LogWarning($"Warning! Camera needs at least parent and grandparent for teleport and manual camera movement to work.");
+                }
             }
         }
 
@@ -547,8 +559,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 ErrorStatus = "pending background load task";
                 return;
             }
-
-            if (AdjustmentFrame == null)
+            if (ApplyAdjustment && (AdjustmentFrame == null))
             {
                 Debug.Log("No WLM update because no adjustment frame set");
                 ErrorStatus = "no adjustment frame";
@@ -621,7 +632,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 /// comparison of behavior when toggling FW enabled.
             }
 
-            AdjustmentFrame.SetLocalPose(PinnedFromLocked.Multiply(LockedFromPlayspace));
+            if (AdjustmentFrame != null && ApplyAdjustment)
+            {
+                AdjustmentFrame.SetLocalPose(PinnedFromLocked.Multiply(LockedFromPlayspace));
+            }
 
 #if false && WLT_ARSUBSYSTEMS_PRESENT
             if ((AdjustmentFrame.GetGlobalPose().position != Vector3.zero) || (AdjustmentFrame.GetGlobalPose().rotation != Quaternion.identity))

@@ -82,6 +82,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <param name="lockedRotation">The new world locked rotation to adopt.</param>
         public void PushRotation(IAlignmentManager mgr, Quaternion lockedRotation)
         {
+            //Debug.Log($"PushRotation {name}: mgr={(mgr == WorldLockingManager.GetInstance().AlignmentManager ? "global" : "local")}");
             /// Append the modeling pose rotation. This will cancel out when computing the 
             /// pinnedFromLocked transform, so that the computed rotation gets applied as is.
             LockedPose = new Pose(LockedPose.position, lockedRotation * ModelingPoseGlobal.rotation);

@@ -219,9 +219,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             UpdateFragmentVisuals();
 
             /// The "frozen" coordinates here are ignoring the rest of the transform up the camera tree.
-            Pose frozenFromLocked = manager.FrozenFromLocked;
+            Pose globalFromLocked = manager.ApplyAdjustment ? manager.FrozenFromLocked : manager.SpongyFromLocked;
 
-            var frozenCreator = new FrozenAnchorVisualCreator(Prefab_FrozenAnchorViz, frozenFragmentVizs, frozenFromLocked);
+            var frozenCreator = new FrozenAnchorVisualCreator(Prefab_FrozenAnchorViz, frozenFragmentVizs, globalFromLocked);
             ResourceMirror.Sync(
                 frozenItems,
                 frozenResources,

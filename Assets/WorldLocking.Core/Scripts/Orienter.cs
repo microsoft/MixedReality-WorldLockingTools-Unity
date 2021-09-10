@@ -41,10 +41,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         protected readonly List<WeightedRotation> actives = new List<WeightedRotation>();
 
         /// <summary>
-        /// Cache the alignment manager in use, in case of a refit operation.
+        /// Backing store for AlignmentManager property. If null, will use global AlignmentManager.
         /// </summary>
-        private IAlignmentManager cachedAlignmentManager = null;
-
+        private IAlignmentManager alignmentManager = null;
         #endregion Private members
 
         #region Unity overloads
@@ -61,6 +60,21 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         #endregion Unity overloads
 
         #region Public APIs
+        /// <inheritdocs />
+        public IAlignmentManager AlignmentManager 
+        { 
+            get
+            {
+                return alignmentManager == null 
+                    ? WorldLockingManager.GetInstance().AlignmentManager 
+                    : alignmentManager;
+            }
+            set 
+            { 
+                alignmentManager = value; 
+            } 
+        }
+
         /// <inheritdocs />
         public void Register(IOrientable orientable)
         {
@@ -80,6 +94,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <inheritdocs />
         public void Reorient(FragmentId fragmentId, IAlignmentManager mgr)
         {
+            Debug.Assert(mgr == AlignmentManager);
             if (!InitRotations(fragmentId))
             {
                 return;
@@ -92,7 +107,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 return;
             }
-            cachedAlignmentManager = mgr;
         }
 
         #endregion Public APIs
@@ -118,14 +132,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         private void OnRefit(FragmentId mainId, FragmentId[] absorbedIds)
         {
-            /// Use the last alignment manager used. If none, use the wlt manager's current alignment manager.
-            IAlignmentManager alignMgr = cachedAlignmentManager;
-            if (alignMgr == null)
-            {
-                alignMgr = WorldLockingManager.GetInstance().AlignmentManager;
-            }
-            Reorient(mainId, alignMgr);
-            alignMgr.SendAlignmentAnchors();
+            Reorient(mainId, AlignmentManager);
+            AlignmentManager.SendAlignmentAnchors();
         }
 
         /// <summary>
