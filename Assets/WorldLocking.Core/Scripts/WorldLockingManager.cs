@@ -506,7 +506,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 if (Camera.main != null)
                 {
                     string parentName = Camera.main.transform.parent != null ? Camera.main.transform.parent.name : "null";
-                    Debug.Log($"No camera parent set on WorldLockingManager, using parent {parentName} of scene's main camera.");
+                    Debug.LogWarning($"No camera parent set on WorldLockingManager, using parent {parentName} of scene's main camera.");
                     CameraParent = Camera.main.transform.parent;
                 }
                 else
@@ -519,12 +519,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 if (CameraParent != null && CameraParent.parent != null)
                 {
-                    Debug.Log($"No Adjustment Frame set on WorldLockingManager, using Transform {CameraParent.parent.gameObject.name} from scene's main camera hierarchy.");
+                    Debug.LogWarning($"No Adjustment Frame set on WorldLockingManager, using Transform {CameraParent.parent.gameObject.name} from scene's main camera hierarchy.");
                     AdjustmentFrame = CameraParent.parent;
                 }
                 else if (Camera.main != null)
                 {
-                    Debug.Log($"No Adjustment Frame set on WorldLockingManager, using root Transform {Camera.main.transform.root.gameObject.name} from scene's main camera.");
+                    Debug.LogWarning($"No Adjustment Frame set on WorldLockingManager, using root Transform {Camera.main.transform.root.gameObject.name} from scene's main camera.");
                     AdjustmentFrame = Camera.main.transform.root;
                 }
                 else
@@ -561,7 +561,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             if (ApplyAdjustment && (AdjustmentFrame == null))
             {
-                Debug.Log("No WLM update because no adjustment frame set");
+                Debug.LogWarning($"F={Time.frameCount}: No WLM update because no adjustment frame set");
                 ErrorStatus = "no adjustment frame";
                 return;
             }

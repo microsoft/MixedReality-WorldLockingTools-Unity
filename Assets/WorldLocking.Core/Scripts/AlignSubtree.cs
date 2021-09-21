@@ -292,7 +292,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             if (orienter == null)
             {
                 orienter = GetComponentInChildren<Orienter>();
-                Debug.Log($"No Orienter found on {name}, implicit Orienter found in subtree is {(orienter == null ? "null" : orienter.name)}");
+                Debug.LogWarning($"No Orienter found on {name}, implicit Orienter found in subtree is {(orienter == null ? "null" : orienter.name)}");
             }
             if (Orienter != null)
             {

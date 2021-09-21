@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 //#define WLT_LOG_SAVE_LOAD
+//#define WLT_EXTRA_LOGGING
 
 using System;
 using System.Collections;
@@ -200,6 +201,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             Debug.Log($"F={Time.frameCount} {message}");
 #endif // WLT_LOG_SAVE_LOAD
         }
+
+        private void DebugLogExtra(string message)
+        {
+#if WLT_EXTRA_LOGGING
+            Debug.Log(msg);
+#endif // WLT_EXTRA_LOGGING
+        }
+
         private void CheckDependencies()
         {
             /// Cache the WorldLockingManager as a dependency.
@@ -314,19 +323,19 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 case ModelPositionSourceEnum.Transform:
                     {
                         modelPose = ExtractModelPoseFromTransform();
-                        Debug.Log($"Extracted pose from transform on {name}");
+                        DebugLogExtra($"Extracted pose from transform on {name}");
                     }
                     break;
                 case ModelPositionSourceEnum.RendererBounds:
                     {
                         modelPose = ExtractModelPoseFromRenderer();
-                        Debug.Log($"Extracted pose from renderer on {name}");
+                        DebugLogExtra($"Extracted pose from renderer on {name}");
                     }
                     break;
                 case ModelPositionSourceEnum.ColliderBounds:
                     {
                         modelPose = ExtractModelPoseFromCollider();
-                        Debug.Log($"Extracted pose from collider on {name}");
+                        DebugLogExtra($"Extracted pose from collider on {name}");
                     }
                     break;
                 default:
