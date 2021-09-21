@@ -509,7 +509,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.LogWarning($"No camera parent set on WorldLockingManager, using parent {parentName} of scene's main camera.");
                     CameraParent = Camera.main.transform.parent;
                 }
-                else
+                else if (ApplyAdjustment)
                 {
                     Debug.LogError("No CameraParent set on WorldLockingManager, and no main camera to infer parent from.");
                 }
@@ -522,12 +522,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     Debug.LogWarning($"No Adjustment Frame set on WorldLockingManager, using Transform {CameraParent.parent.gameObject.name} from scene's main camera hierarchy.");
                     AdjustmentFrame = CameraParent.parent;
                 }
-                else if (Camera.main != null)
+                else if (CameraParent != null)
                 {
-                    Debug.LogWarning($"No Adjustment Frame set on WorldLockingManager, using root Transform {Camera.main.transform.root.gameObject.name} from scene's main camera.");
-                    AdjustmentFrame = Camera.main.transform.root;
+                    Debug.LogWarning($"No Adjustment Frame set on WorldLockingManager, using root Transform {CameraParent.transform.root.gameObject.name} from scene's main camera.");
+                    AdjustmentFrame = CameraParent.transform.root;
                 }
-                else
+                else if (ApplyAdjustment)
                 {
                     Debug.LogError("No Adjustment Frame set and no main camera to infer node from.");
                 }
