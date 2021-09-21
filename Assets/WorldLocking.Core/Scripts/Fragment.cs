@@ -168,7 +168,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 }
                 else
                 {
-                    Debug.Log($"No adjustment during refreeze for {attach.AnchorId.FormatStr()}");
+                    Debug.LogWarning($"No adjustment during refreeze for {attach.AnchorId.FormatStr()}");
                 }
 
             }

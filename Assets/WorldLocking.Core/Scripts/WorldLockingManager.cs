@@ -29,7 +29,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
         /// </summary>
-        public static string Version => "1.5.0";
+        public static string Version => "1.5.1";
 
         /// <summary>
         /// The configuration settings may only be set as a block.
@@ -506,10 +506,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 if (Camera.main != null)
                 {
                     string parentName = Camera.main.transform.parent != null ? Camera.main.transform.parent.name : "null";
-                    Debug.Log($"No camera parent set on WorldLockingManager, using parent {parentName} of scene's main camera.");
+                    Debug.LogWarning($"No camera parent set on WorldLockingManager, using parent {parentName} of scene's main camera.");
                     CameraParent = Camera.main.transform.parent;
                 }
-                else
+                else if (ApplyAdjustment)
                 {
                     Debug.LogError("No CameraParent set on WorldLockingManager, and no main camera to infer parent from.");
                 }
@@ -519,15 +519,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 if (CameraParent != null && CameraParent.parent != null)
                 {
-                    Debug.Log($"No Adjustment Frame set on WorldLockingManager, using Transform {CameraParent.parent.gameObject.name} from scene's main camera hierarchy.");
+                    Debug.LogWarning($"No Adjustment Frame set on WorldLockingManager, using Transform {CameraParent.parent.gameObject.name} from scene's main camera hierarchy.");
                     AdjustmentFrame = CameraParent.parent;
                 }
-                else if (Camera.main != null)
+                else if (CameraParent != null)
                 {
-                    Debug.Log($"No Adjustment Frame set on WorldLockingManager, using root Transform {Camera.main.transform.root.gameObject.name} from scene's main camera.");
-                    AdjustmentFrame = Camera.main.transform.root;
+                    Debug.LogWarning($"No Adjustment Frame set on WorldLockingManager, using root Transform {CameraParent.transform.root.gameObject.name} from scene's main camera.");
+                    AdjustmentFrame = CameraParent.transform.root;
                 }
-                else
+                else if (ApplyAdjustment)
                 {
                     Debug.LogError("No Adjustment Frame set and no main camera to infer node from.");
                 }
@@ -561,7 +561,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             if (ApplyAdjustment && (AdjustmentFrame == null))
             {
-                Debug.Log("No WLM update because no adjustment frame set");
+                Debug.LogWarning($"F={Time.frameCount}: No WLM update because no adjustment frame set");
                 ErrorStatus = "no adjustment frame";
                 return;
             }
