@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-#if !WLT_DISABLE_LOGGING
 #define WLT_ARCORE_EXTRA_DEBUGGING
+
+#if WLT_DISABLE_LOGGING
+#undef WLT_ARCORE_EXTRA_DEBUGGING
 #endif // WLT_DISABLE_LOGGING
 
 using System.Collections;

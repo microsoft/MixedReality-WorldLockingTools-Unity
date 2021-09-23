@@ -3,9 +3,11 @@
 
 #if !UNITY_2020_1_OR_NEWER
 
-#if !WLT_DISABLE_LOGGING
 //#define WLT_EXTRA_LOGGING
-#endif // !WLT_DISABLE_LOGGING
+
+#if WLT_DISABLE_LOGGING
+#undef WLT_EXTRA_LOGGING
+#endif // WLT_DISABLE_LOGGING
 
 using System;
 using System.Collections.Generic;

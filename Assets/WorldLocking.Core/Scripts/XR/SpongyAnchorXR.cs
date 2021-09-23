@@ -1,9 +1,11 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-#if !WLT_DISABLE_LOGGING
 //#define WLT_EXTRA_LOGGING
-#endif // !WLT_DISABLE_LOGGING
+
+#if WLT_DISABLE_LOGGING
+#undef WLT_EXTRA_LOGGING
+#endif // WLT_DISABLE_LOGGING
 
 using UnityEngine;
 #if WLT_ARSUBSYSTEMS_PRESENT

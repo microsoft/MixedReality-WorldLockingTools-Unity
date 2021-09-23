@@ -2,9 +2,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-#if !WLT_DISABLE_LOGGING
 #define WLT_EXTRA_LOGGING
-#endif // !WLT_DISABLE_LOGGING
+
+#if WLT_DISABLE_LOGGING
+#undef WLT_EXTRA_LOGGING
+#endif // WLT_DISABLE_LOGGING
 
 using System;
 using System.Collections;
@@ -33,7 +35,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
     [RequireComponent(typeof(PublisherASA))]
     public partial class SpacePinBinder : MonoBehaviour, IBinder
     {
-        #region Inspector members
+#region Inspector members
         [Tooltip("List of space pins to manage. These may also be added from script using AddSpacePin()")]
         [SerializeField]
         private List<SpacePinASA> spacePins = new List<SpacePinASA>();
@@ -49,9 +51,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         /// </summary>
         public float SearchRadius { get { return searchRadius; } set { searchRadius = value; } }
 
-        #endregion // Inspector members
+#endregion // Inspector members
 
-        #region Internal types
+#region Internal types
         /// <summary>
         /// Convenience bundle of a space pin and associated local peg and its properties. Some redundancy there.
         /// </summary>
@@ -61,9 +63,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             public LocalPegAndProperties pegAndProps;
         };
 
-        #endregion // Internal types
+#endregion // Internal types
 
-        #region Internal members
+#region Internal members
 
         /// <summary>
         /// The list of bindings. Could be a Dictionary or something.
@@ -77,9 +79,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 
         private readonly int ConsoleHigh = 8;
         private readonly int ConsoleLow = 3;
-        #endregion // Internal members
+#endregion // Internal members
 
-        #region Public APIs
+#region Public APIs
 
         /// <inheritdoc/>
         public string Name { get { return name; } }
@@ -98,7 +100,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         /// <inheritdoc/>
         public ReadinessStatus PublisherStatus { get { return publisher != null ? publisher.Status : new ReadinessStatus(); } }
 
-        #region Create and maintain bindings between space pins and cloud anchors
+#region Create and maintain bindings between space pins and cloud anchors
         /// <inheritdoc/>
         public IReadOnlyList<SpacePinCloudBinding> GetBindings()
         {
@@ -130,9 +132,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             bindings.RemoveAt(bindingIdx);
             return true;
         }
-        #endregion // Create and maintain bindings between space pins and cloud anchors
+#endregion // Create and maintain bindings between space pins and cloud anchors
 
-        #region Space pin list control from script
+#region Space pin list control from script
         /// <summary>
         /// Add a space pin to the list of managed pins.
         /// </summary>
@@ -176,9 +178,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             }
             return true;
         }
-        #endregion Space pin list control from script
+#endregion Space pin list control from script
 
-        #region Publish to cloud
+#region Publish to cloud
         /// <inheritdoc/>
         public async Task<bool> Publish()
         {
@@ -244,9 +246,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             return true;
         }
 
-        #endregion // Publish to cloud
+#endregion // Publish to cloud
 
-        #region Download from cloud
+#region Download from cloud
         /// <inheritdoc/>
         public async Task<bool> Download()
         {
@@ -335,9 +337,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             }
             return foundAny;
         }
-        #endregion // Download from cloud
+#endregion // Download from cloud
 
-        #region Cleanup
+#region Cleanup
 
         /// <inheritdoc/>
         public async Task<bool> Purge()
@@ -376,11 +378,11 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 }
             }
         }
-        #endregion // Cleanup
+#endregion // Cleanup
 
-        #endregion // Public APIs
+#endregion // Public APIs
 
-        #region Unity
+#region Unity
         /// <summary>
         /// Establish relationship with the publisher.
         /// </summary>
@@ -392,9 +394,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             SetSpacePinsPublisher(publisherASA);
         }
 
-        #endregion // Unity
+#endregion // Unity
 
-        #region Internal helpers
+#region Internal helpers
 
         [System.Diagnostics.Conditional("WLT_EXTRA_LOGGING")]
         private static void DebugLogExtra(string msg)
@@ -531,7 +533,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             return idx;
         }
 
-        #endregion // Internal helpers
+#endregion // Internal helpers
     }
 
 }
