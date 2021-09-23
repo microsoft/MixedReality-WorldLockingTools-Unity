@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+#if !WLT_DISABLE_LOGGING
 //#define WLT_EXTRA_LOGGING
+#define WLT_LOG_ASA_SETUP
+#endif // !WLT_DISABLE_LOGGING
 
 using System;
 using System.Collections;
@@ -259,16 +262,15 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             /// </summary>
             /// <param name="record">The record to dump.</param>
             /// <param name="msg">A prefacing message.</param>
+            [System.Diagnostics.Conditional("WLT_EXTRA_LOGGING")]
             public static void DebugLog(AnchorRecord record, string msg)
             {
-#if WLT_EXTRA_LOGGING
                 SimpleConsole.AddLine(ConsoleLow, DebugString(record, msg));
-#endif // WLT_EXTRA_LOGGING
             }
         };
 
         /// <summary>
-        /// Concreate internal implementation of ILocalPeg.
+        /// Concrete internal implementation of ILocalPeg.
         /// </summary>
         private class LocalPeg : ILocalPeg
         {
@@ -338,7 +340,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             }
 #endif // UNITY_ANDROID
 
-            Debug.Log($"Setting up publisher.");
+            LogASASetup($"Setting up publisher.");
             asaManager = GameObject.FindObjectOfType<SpatialAnchorManager>();
             if (asaManager == null)
             {
@@ -351,19 +353,19 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             int delayBeforeCreateMS = 1000;
             await Task.Delay(delayBeforeCreateMS);
 
-            Debug.Log($"To create session");
+            LogASASetup($"To create session");
             await asaManager.CreateSessionAsync();
 
             int delayBeforeStartMS = 2000;
             await Task.Delay(delayBeforeStartMS);
 
-            Debug.Log($"To start session");
+            LogASASetup($"To start session");
             await asaManager.StartSessionAsync();
 
             asaManager.Session.OnLogDebug += OnASALog;
             asaManager.Session.Error += OnASAError;
 
-            Debug.Log($"To create criteria");
+            LogASASetup($"To create criteria");
             anchorLocateCriteria = new AnchorLocateCriteria();
 
             locationProvider = CreateLocationProvider();
@@ -380,7 +382,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 #endif // WLT_ASA_INCLUDED
         }
 
-        #region Implementation of IPublisher
+#region Implementation of IPublisher
         /// <inheritdocs />
         public ReadinessStatus Status
         {
@@ -463,7 +465,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 
                     AnchorRecord.DebugLog(record, "Past ToCloud");
 
-                    Debug.Log($"asaMgr:{(asaManager != null ? "valid" : "null")}, session:{(asaManager != null && asaManager.Session != null ? "valid" : "null")}");
+                    LogASASetup($"asaMgr:{(asaManager != null ? "valid" : "null")}, session:{(asaManager != null && asaManager.Session != null ? "valid" : "null")}");
 
                     await asaManager.Session.CreateAnchorAsync(record.cloudAnchor);
 
@@ -505,10 +507,10 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                     SimpleConsole.AddLine(ConsoleMid, $"Read CID={cloudAnchorId}");
                     // mafinc - do we want an option here to force downloading, even if we already have it cached locally?
                     AnchorRecord record = GetRecord(cloudAnchorId);
-                    Debug.Log($"GetRecord ca={cloudAnchorId}, record={(record == null ? "null" : record.localPeg.Name)}");
+                    LogASASetup($"GetRecord ca={cloudAnchorId}, record={(record == null ? "null" : record.localPeg.Name)}");
                     if (record == null)
                     {
-                        Debug.Log($"Downloading record ca={cloudAnchorId}");
+                        LogASASetup($"Downloading record ca={cloudAnchorId}");
                         record = await DownloadRecord(cloudAnchorId);
                         if (record == null)
                         {
@@ -688,6 +690,14 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 
         #region Internal implementations
 
+        private static void LogASASetup(string message)
+        {
+#if WLT_LOG_ASA_SETUP
+            Debug.Log(message);
+#endif // WLT_LOG_ASA_SETUP
+        }
+
+
         /// <summary>
         /// Implementation of downloading a cloud anchor by its cloud anchor id.
         /// </summary>
@@ -695,7 +705,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         /// <returns>Awaitable internal <see cref="AnchorRecord"/> created from cloud anchor.</returns>
         private async Task<AnchorRecord> DownloadRecord(CloudAnchorId cloudAnchorId)
         {
-            Debug.Log($"Criteria.Identifiers to [{cloudAnchorId}]");
+            LogASASetup($"Criteria.Identifiers to [{cloudAnchorId}]");
             var cachedRecord = GetRecord(cloudAnchorId);
             if (cachedRecord != null)
             {
@@ -710,7 +720,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 
             var watcher = asaManager.Session.CreateWatcher(anchorLocateCriteria);
 
-            Debug.Log($"Got watcher, start waiting");
+            LogASASetup($"Got watcher, start waiting");
 
             AnchorRecord record = null;
             bool waiting = true;
@@ -727,11 +737,11 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 }
                 if (locatedCopy != null && locatedCopy.Count > 0)
                 {
-                    Debug.Log($"Got {locatedCopy.Count} located anchors");
+                    LogASASetup($"Got {locatedCopy.Count} located anchors");
                     int idx = locatedCopy.FindIndex(x => x.Identifier == cloudAnchorId);
                     if (idx >= 0)
                     {
-                        Debug.Log($"Found located anchor {cloudAnchorId}, status={locatedCopy[idx].Status}");
+                        LogASASetup($"Found located anchor {cloudAnchorId}, status={locatedCopy[idx].Status}");
                         if (locatedCopy[idx].Status == LocateAnchorStatus.Located)
                         {
                             record = new AnchorRecord();
@@ -861,7 +871,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 
             var watcher = asaManager.Session.CreateWatcher(anchorLocateCriteria);
 
-            Debug.Log($"Got watcher, start waiting");
+            LogASASetup($"Got watcher, start waiting");
 
             double startTime = Time.timeAsDouble;
             List<AnchorRecord> locatedRecords = new List<AnchorRecord>();
@@ -880,7 +890,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 }
                 if (locatedCopy != null && locatedCopy.Count > 0)
                 {
-                    Debug.Log($"Got {locatedCopy.Count} located anchors");
+                    LogASASetup($"Got {locatedCopy.Count} located anchors");
                     foreach (var located in locatedCopy)
                     {
                         SimpleConsole.AddLine(ConsoleMid, $"Found located anchor {located.Identifier}, status={located.Status}");
@@ -944,7 +954,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 
             var watcher = asaManager.Session.CreateWatcher(anchorLocateCriteria);
 
-            Debug.Log($"Got watcher, start waiting");
+            LogASASetup($"Got watcher, start waiting");
 
             double startTime = Time.timeAsDouble;
             List<AnchorRecord> locatedRecords = new List<AnchorRecord>();
@@ -963,7 +973,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 }
                 if (locatedCopy != null && locatedCopy.Count > 0)
                 {
-                    Debug.Log($"Got {locatedCopy.Count} located anchors");
+                    LogASASetup($"Got {locatedCopy.Count} located anchors");
                     foreach (var located in locatedCopy)
                     {
                         SimpleConsole.AddLine(ConsoleMid, $"Found located anchor {located.Identifier}, status={located.Status}");
@@ -1419,7 +1429,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         /// <returns>Location provider or null.</returns>
         private PlatformLocationProvider CreateLocationProvider()
         {
-            Debug.Log($"To create location provider");
+            LogASASetup($"To create location provider");
 
             if (!CoarseRelocationEnabled)
             {

@@ -9,7 +9,9 @@
 #define WLT_XR_PERSISTENCE
 #endif // WLT_XR_PERSISTENCE
 
+#if !WLT_DISABLE_LOGGING
 //#define WLT_EXTRA_LOGGING
+#endif // !WLT_DISABLE_LOGGING
 
 using System;
 using System.Collections.Generic;

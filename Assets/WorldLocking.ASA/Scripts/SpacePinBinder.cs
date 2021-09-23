@@ -2,6 +2,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+#if !WLT_DISABLE_LOGGING
+#define WLT_EXTRA_LOGGING
+#endif // !WLT_DISABLE_LOGGING
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -392,6 +396,12 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 
         #region Internal helpers
 
+        [System.Diagnostics.Conditional("WLT_EXTRA_LOGGING")]
+        private static void DebugLogExtra(string msg)
+        {
+            Debug.Log(msg);
+        }
+
         /// <summary>
         /// Capture the publisher we'll be using, and pass it on to all managed space pins.
         /// </summary>
@@ -435,17 +445,17 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         /// <param name="cloudAnchorId">Id of the cloud anchor.</param>
         private void SetBinding(string spacePinId, CloudAnchorId cloudAnchorId)
         {
-            Debug.Log($"Setting binding between sp={spacePinId} ca={cloudAnchorId}");
+            DebugLogExtra($"Setting binding between sp={spacePinId} ca={cloudAnchorId}");
             int bindingIdx = FindBindingBySpacePinId(spacePinId);
             var binding = new SpacePinCloudBinding() { spacePinId = spacePinId, cloudAnchorId = cloudAnchorId };
             if (bindingIdx < 0)
             {
-                Debug.Log($"Adding new binding sp={spacePinId} ca={cloudAnchorId}");
+                DebugLogExtra($"Adding new binding sp={spacePinId} ca={cloudAnchorId}");
                 bindings.Add(binding);
             }
             else
             {
-                Debug.Log($"Updating existing binding sp={spacePinId} from ca={bindings[bindingIdx].cloudAnchorId} to ca={cloudAnchorId}");
+                DebugLogExtra($"Updating existing binding sp={spacePinId} from ca={bindings[bindingIdx].cloudAnchorId} to ca={cloudAnchorId}");
                 bindings[bindingIdx] = binding;
             }
         }

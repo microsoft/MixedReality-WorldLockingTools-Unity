@@ -1,6 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+#if !WLT_DISABLE_LOGGING
+#define WLT_LOG_SETUP
+#endif // WLT_DISABLE_LOGGING
+
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -364,6 +368,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         #region Startup and settings refresh
 
+        [System.Diagnostics.Conditional("WLT_LOG_SETUP")]
+        private static void DebugLogSetup(string message)
+        {
+            Debug.Log(message);
+        }
+
         /// <summary>
         /// Start using shared settings from given context.
         /// </summary>
@@ -380,7 +390,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             ApplyNewSettings();
 
-            Debug.Log($"Context {context.name} set, Adjustment={(AdjustmentFrame == null ? "Null" : AdjustmentFrame.name)}");
+            DebugLogSetup($"Context {context.name} set, Adjustment={(AdjustmentFrame == null ? "Null" : AdjustmentFrame.name)}");
         }
 
         /// <summary>
@@ -405,38 +415,38 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private IAnchorManager SelectAnchorManager(IPlugin plugin, IHeadPoseTracker headTracker)
         {
-            Debug.Log($"Select {shared.anchorSettings.anchorSubsystem} anchor manager.");
+            DebugLogSetup($"Select {shared.anchorSettings.anchorSubsystem} anchor manager.");
             if (AnchorManager != null)
             {
-                Debug.Log("Creating new anchormanager, but have old one. Reseting it before replacing.");
+                DebugLogSetup("Creating new anchormanager, but have old one. Reseting it before replacing.");
                 AnchorManager.Reset();
             }
             var anchorSettings = shared.anchorSettings;
 #if WLT_ARFOUNDATION_PRESENT
             if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.ARFoundation)
             {
-                Debug.Log($"Trying to create ARF anchor manager on {anchorSettings.ARSessionSource.name} and {anchorSettings.ARSessionOriginSource.name}");
+                DebugLogSetup($"Trying to create ARF anchor manager on {anchorSettings.ARSessionSource.name} and {anchorSettings.ARSessionOriginSource.name}");
                 AnchorManagerARF arfAnchorManager = AnchorManagerARF.TryCreate(plugin, headTracker,
                     anchorSettings.ARSessionSource, anchorSettings.ARSessionOriginSource);
                 if (arfAnchorManager != null)
                 {
-                    Debug.Log("Success creating ARF anchor manager");
+                    DebugLogSetup("Success creating ARF anchor manager");
                     return arfAnchorManager;
                 }
-                Debug.Log("Failed to create requested AR Foundation anchor manager!");
+                Debug.LogError("Failed to create requested AR Foundation anchor manager!");
             }
 #endif // WLT_ARFOUNDATION_PRESENT
 #if WLT_ARSUBSYSTEMS_PRESENT
             if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.XRSDK)
             {
-                Debug.Log($"Trying to create XR anchor manager");
+                DebugLogSetup($"Trying to create XR anchor manager");
                 AnchorManagerXR xrAnchorManager = AnchorManagerXR.TryCreate(plugin, headTracker);
                 if (xrAnchorManager != null)
                 {
-                    Debug.Log("Success creating XR anchor manager");
+                    DebugLogSetup("Success creating XR anchor manager");
                     return xrAnchorManager;
                 }
-                Debug.Log("Failed to create requested XR SDK anchor manager!");
+                Debug.LogError("Failed to create requested XR SDK anchor manager!");
             }
 #endif // WLT_ARSUBSYSTEMS_PRESENT
 #if UNITY_WSA && !UNITY_2020_1_OR_NEWER
@@ -445,10 +455,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 AnchorManagerWSA wsaAnchorManager = AnchorManagerWSA.TryCreate(plugin, headTracker);
                 if (wsaAnchorManager != null)
                 {
-                    Debug.Log("Success creating WSA anchor manager");
+                    DebugLogSetup("Success creating WSA anchor manager");
                     return wsaAnchorManager;
                 }
-                Debug.Log("Failed to create requested WSA anchor manager!");
+                Debug.LogError("Failed to create requested WSA anchor manager!");
             }
 #endif // UNITY_WSA
 #if WLT_ARCORE_SDK_INCLUDED
@@ -457,15 +467,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 AnchorManagerARCore arCoreAnchorManager = AnchorManagerARCore.TryCreate(plugin, headTracker);
                 if (arCoreAnchorManager != null)
                 {
-                    Debug.Log("Success creating ARCore anchor manager");
+                    DebugLogSetup("Success creating ARCore anchor manager");
                     return arCoreAnchorManager;
                 }
-                Debug.Log("Failed to create requested ARCore anchor manager!");
+                Debug.LogError("Failed to create requested ARCore anchor manager!");
             }
 #endif // WLT_ARCORE_SDK_INCLUDED
             if (anchorSettings.anchorSubsystem != AnchorSettings.AnchorSubsystem.Null)
             {
-                Debug.Log("Failure creating useful anchor manager of any type. Creating null manager");
+                DebugLogSetup("Failure creating useful anchor manager of any type. Creating null manager");
                 anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.Null;
                 shared.anchorSettings = anchorSettings;
             }
@@ -481,7 +491,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (!shared.anchorSettings.IsValid)
             {
-                Debug.Log("Invalid anchor management settings detected!");
+                Debug.LogError("Invalid anchor management settings detected!");
             }
             AnchorManager.MinNewAnchorDistance = shared.anchorSettings.MinNewAnchorDistance;
             AnchorManager.MaxAnchorEdgeLength = shared.anchorSettings.MaxAnchorEdgeLength;

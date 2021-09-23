@@ -29,7 +29,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private AnchorManagerNull(IPlugin plugin, IHeadPoseTracker headTracker)
             : base(plugin, headTracker)
         {
-            Debug.Log($"Null: Creating AnchorManagerNull");
+            DebugLogSetup($"Null: Creating AnchorManagerNull");
         }
 
         protected override bool IsTracking()

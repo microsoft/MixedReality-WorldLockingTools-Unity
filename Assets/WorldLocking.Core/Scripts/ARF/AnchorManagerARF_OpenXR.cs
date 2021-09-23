@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+#if !WLT_DISABLE_LOGGING
 //#define WLT_EXTRA_LOGGING
+#endif // WLT_DISABLE_LOGGING
 
 #if UNITY_2020_1_OR_NEWER
 
@@ -201,7 +203,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             while (waitOnLoading.Count > 0)
             {
-                Debug.Log($"Waiting for load of {waitOnLoading.Count} more anchors at frame {Time.frameCount}");
+                DebugLogExtra($"Waiting for load of {waitOnLoading.Count} more anchors at frame {Time.frameCount}");
                 await Task.Yield();
             }
 

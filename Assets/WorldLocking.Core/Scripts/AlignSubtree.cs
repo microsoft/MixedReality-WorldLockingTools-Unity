@@ -1,7 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+#if !WLT_DISABLE_LOGGING
 //#define WLT_LOG_SAVE_LOAD
+#endif // !WLT_DISABLE_LOGGING
 
 using System;
 using System.Collections;
@@ -258,11 +260,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         #region Internal utilility
 
+        [System.Diagnostics.Conditional("WLT_LOG_SAVE_LOAD")]
         private static void DebugLogSaveLoad(string message)
         {
-#if WLT_LOG_SAVE_LOAD
             Debug.Log($"F={Time.frameCount} {message}");
-#endif // WLT_LOG_SAVE_LOAD
         }
         #endregion // Internal utility
 

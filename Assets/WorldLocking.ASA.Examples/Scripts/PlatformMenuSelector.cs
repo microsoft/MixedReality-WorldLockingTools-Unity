@@ -13,13 +13,13 @@ namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
     public class PlatformMenuSelector : MonoBehaviour
     {
         [SerializeField]
-        private GameObject HoloLensMenu;
+        private GameObject HoloLensMenu = null;
 
         [SerializeField]
-        private GameObject AndroidMenu;
+        private GameObject AndroidMenu = null;
 
         [SerializeField]
-        private GameObject iOSMenu;
+        private GameObject iOSMenu = null;
 
         private void Awake()
         {
