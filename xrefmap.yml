@@ -1947,6 +1947,32 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.CreateAnchor
   nameWithType: AnchorManager.CreateAnchor
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DebugLogExtra(System.String)
+  name: DebugLogExtra(String)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_DebugLogExtra_System_String_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DebugLogExtra(System.String)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DebugLogExtra(System.String)
+  nameWithType: AnchorManager.DebugLogExtra(String)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DebugLogExtra*
+  name: DebugLogExtra
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_DebugLogExtra_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DebugLogExtra
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DebugLogExtra
+  nameWithType: AnchorManager.DebugLogExtra
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DebugLogSetup(System.String)
+  name: DebugLogSetup(String)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_DebugLogSetup_System_String_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DebugLogSetup(System.String)
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DebugLogSetup(System.String)
+  nameWithType: AnchorManager.DebugLogSetup(String)
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DebugLogSetup*
+  name: DebugLogSetup
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_DebugLogSetup_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DebugLogSetup
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DebugLogSetup
+  nameWithType: AnchorManager.DebugLogSetup
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorManager.DestroyAnchor(AnchorId,Microsoft.MixedReality.WorldLocking.Core.SpongyAnchor)
   name: DestroyAnchor(AnchorId, SpongyAnchor)
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorManager.html#Microsoft_MixedReality_WorldLocking_Core_AnchorManager_DestroyAnchor_AnchorId_Microsoft_MixedReality_WorldLocking_Core_SpongyAnchor_
