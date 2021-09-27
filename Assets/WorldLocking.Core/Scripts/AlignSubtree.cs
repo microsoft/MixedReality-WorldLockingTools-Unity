@@ -3,6 +3,10 @@
 
 //#define WLT_LOG_SAVE_LOAD
 
+#if WLT_DISABLE_LOGGING
+#undef WLT_LOG_SAVE_LOAD
+#endif // WLT_DISABLE_LOGGING
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,7 +35,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
     /// </remarks>
     public class AlignSubtree : MonoBehaviour
     {
-        #region Inspector fields
+#region Inspector fields
 
         [SerializeField]
         [Tooltip("Collect all SpacePins from this subtree to manage.")]
@@ -117,9 +121,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         public Transform subTree = null;
 
-        #endregion Inspector fields
+#endregion Inspector fields
 
-        #region Internal members
+#region Internal members
 
         /// <summary>
         /// Owned independent AlignmentManager.
@@ -156,9 +160,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// just check whether, if it would be good to save, the system is ready to.
         /// </remarks>
         private bool ReadyToAutoSave { get { return !needAutoLoad && autoSave; } }
-        #endregion Internal members
+#endregion Internal members
 
-        #region Public APIs
+#region Public APIs
 
         /// <summary>
         /// Explicit command to save the alignment manager to store.
@@ -254,19 +258,18 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public event EventHandler<IAlignmentManager> OnAlignManagerCreated;
 
-        #endregion Public APIs
+#endregion Public APIs
 
-        #region Internal utilility
+#region Internal utilility
 
+        [System.Diagnostics.Conditional("WLT_LOG_SAVE_LOAD")]
         private static void DebugLogSaveLoad(string message)
         {
-#if WLT_LOG_SAVE_LOAD
             Debug.Log($"F={Time.frameCount} {message}");
-#endif // WLT_LOG_SAVE_LOAD
         }
-        #endregion // Internal utility
+#endregion // Internal utility
 
-        #region Internal AlignmentManager management
+#region Internal AlignmentManager management
         /// <summary>
         /// Create the alignmentManager if needed.
         /// </summary>
@@ -397,6 +400,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             DebugLogSaveLoad($"Subtree {name} OnEnable");
         }
 
-        #endregion Internal AlignmentManager management
+#endregion Internal AlignmentManager management
     }
 }

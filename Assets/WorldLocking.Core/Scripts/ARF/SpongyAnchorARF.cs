@@ -90,10 +90,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             get
             {
-                Pose frozenFromAnchor = transform.GetGlobalPose();
-                Pose spongyFromFrozen = WorldLockingManager.GetInstance().SpongyFromFrozen;
-                Pose spongyFromAnchor = spongyFromFrozen.Multiply(frozenFromAnchor);
-                return spongyFromAnchor;
+                if (WorldLockingManager.GetInstance().ApplyAdjustment)
+                {
+                    // Global space is frozen space. Transform into spongy space.
+                    Pose frozenFromAnchor = transform.GetGlobalPose();
+                    Pose spongyFromFrozen = WorldLockingManager.GetInstance().SpongyFromFrozen;
+                    Pose spongyFromAnchor = spongyFromFrozen.Multiply(frozenFromAnchor);
+                    return spongyFromAnchor;
+                }
+                // Global space is spongy space. Return global pose.
+                return transform.GetGlobalPose();
             }
         }
 

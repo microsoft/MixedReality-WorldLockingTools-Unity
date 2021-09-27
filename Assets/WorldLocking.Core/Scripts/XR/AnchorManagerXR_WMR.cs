@@ -11,6 +11,10 @@
 
 //#define WLT_EXTRA_LOGGING
 
+#if WLT_DISABLE_LOGGING
+#undef WLT_EXTRA_LOGGING
+#endif // WLT_DISABLE_LOGGING
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

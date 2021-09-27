@@ -113,12 +113,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             // Find main camera. If not found, issue warning but we are done.
             if (Camera.main == null)
             {
-                Debug.Log($"Scene has no main camera, camera linkage will not be configured.");
+                Debug.LogWarning($"Scene has no main camera, camera linkage will not be configured.");
                 return;
             }
             if (!worldLockingContext.SharedSettings.linkageSettings.ApplyAdjustment)
             {
-                Debug.Log($"System application of world locking adjustments is disabled. Ignoring camera linkage.");
+                Debug.LogWarning($"System application of world locking adjustments is disabled. Ignoring camera linkage.");
                 return;
             }
             Transform mainCamera = Camera.main.transform;
@@ -256,7 +256,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 Debug.LogError($"Found too many global space pin visualizers in the scene, deleting all but one.");
                 for (int i = 1; i < globalVisualizers.Count; ++i)
                 {
-                    Debug.Log($"Deleting global space pin visualizer {globalVisualizers[i].name}");
+                    Debug.LogWarning($"Deleting global space pin visualizer {globalVisualizers[i].name}");
                     GameObject.DestroyImmediate(globalVisualizers[i].gameObject);
                 }
             }

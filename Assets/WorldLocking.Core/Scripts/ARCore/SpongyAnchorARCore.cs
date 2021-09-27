@@ -3,6 +3,10 @@
 
 #define WLT_ARCORE_EXTRA_DEBUGGING
 
+#if WLT_DISABLE_LOGGING
+#undef WLT_ARCORE_EXTRA_DEBUGGING
+#endif // WLT_DISABLE_LOGGING
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

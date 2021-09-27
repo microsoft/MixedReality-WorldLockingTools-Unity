@@ -9,6 +9,10 @@
 
 //#define WLT_EXTRA_LOGGING
 
+#if WLT_DISABLE_LOGGING
+#undef WLT_EXTRA_LOGGING
+#endif // WLT_DISABLE_LOGGING
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -102,21 +106,21 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             List<XRAnchorSubsystem> anchorSubsystems = new List<XRAnchorSubsystem>();
             SubsystemManager.GetInstances(anchorSubsystems);
-            Debug.Log($"Found {anchorSubsystems.Count} anchor subsystems.");
+            DebugLogSetup($"Found {anchorSubsystems.Count} anchor subsystems.");
             XRAnchorSubsystem activeSubsystem = null;
             int numFound = 0;
             foreach (var sub in anchorSubsystems)
             {
                 if (sub.running)
                 {
-                    Debug.Log($"Found active anchor subsystem {sub.subsystemDescriptor.id}.");
+                    DebugLogSetup($"Found active anchor subsystem {sub.subsystemDescriptor.id}.");
                     activeSubsystem = sub;
                     ++numFound;
                 }
             }
             if (activeSubsystem == null)
             {
-                Debug.Log($"Found no anchor subsystem running, will try starting one.");
+                DebugLogSetup($"Found no anchor subsystem running, will try starting one.");
                 foreach (var sub in anchorSubsystems)
                 {
                     sub.Start();
@@ -124,7 +128,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     {
                         activeSubsystem = sub;
                         ++numFound;
-                        Debug.Log($"Start changed anchor subsystem {sub.subsystemDescriptor.id} to running.");
+                        DebugLogSetup($"Start changed anchor subsystem {sub.subsystemDescriptor.id} to running.");
                     }
                 }
             }
@@ -146,21 +150,21 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             List<XRSessionSubsystem> sessionSubsystems = new List<XRSessionSubsystem>();
             SubsystemManager.GetInstances(sessionSubsystems);
-            Debug.Log($"Found {sessionSubsystems.Count} session subsystems");
+            DebugLogSetup($"Found {sessionSubsystems.Count} session subsystems");
             XRSessionSubsystem activeSession = null;
             int numFound = 0;
             foreach (var session in sessionSubsystems)
             {
                 if (session.running)
                 {
-                    Debug.Log($"Found active session subsystem {session.subsystemDescriptor.id}");
+                    DebugLogSetup($"Found active session subsystem {session.subsystemDescriptor.id}");
                     activeSession = session;
                     ++numFound;
                 }
             }
             if (activeSession == null)
             {
-                Debug.Log($"Found no active session subsystem, will try starting one.");
+                DebugLogSetup($"Found no active session subsystem, will try starting one.");
                 foreach (var session in sessionSubsystems)
                 {
                     session.Start();
@@ -168,7 +172,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     {
                         activeSession = session;
                         ++numFound;
-                        Debug.Log($"Start changed session {session.subsystemDescriptor.id} to running.");
+                        DebugLogSetup($"Start changed session {session.subsystemDescriptor.id} to running.");
                     }
                 }
             }
@@ -188,15 +192,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             this.xrAnchorManager = xrAnchorManager;
             this.sessionSubsystem = session;
-            Debug.Log($"XR: Created AnchorManager XR, xrMgr={(this.xrAnchorManager != null ? "good" : "null")} session={(session != null ? "good" : "null")}");
+            DebugLogSetup($"XR: Created AnchorManager XR, xrMgr={(this.xrAnchorManager != null ? "good" : "null")} session={(session != null ? "good" : "null")}");
 
-            Debug.Log($"ActiveLoader name:[{XRGeneralSettings.Instance.Manager.activeLoader.name}] type:[{XRGeneralSettings.Instance.Manager.activeLoader.GetType().FullName}]");
+            DebugLogSetup($"ActiveLoader name:[{XRGeneralSettings.Instance.Manager.activeLoader.name}] type:[{XRGeneralSettings.Instance.Manager.activeLoader.GetType().FullName}]");
 
 #if WLT_XR_MANAGEMENT_PRESENT
             wmrPersistence = XRGeneralSettings.Instance.Manager.activeLoader.name.StartsWith("Windows MR");
             openXRPersistence = XRGeneralSettings.Instance.Manager.activeLoader.name.StartsWith("Open XR");
 #endif // WLT_XR_MANAGEMENT_PRESENT
-            Debug.Log($"XRSDK Persistence: WMR={wmrPersistence} OpenXR={openXRPersistence}");
+            DebugLogSetup($"XRSDK Persistence: WMR={wmrPersistence} OpenXR={openXRPersistence}");
         }
 
         public override bool Update()
@@ -280,9 +284,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return $"{label}({p.x:0.000},{p.y:0.000},{p.z:0.000})";
         }
 
+        [System.Diagnostics.Conditional("WLT_EXTRA_LOGGING")]
         private static void DebugOutExtra(string label, XRAnchor xrAnchor, SpongyAnchorXR tracker)
         {
-#if WLT_EXTRA_LOGGING
             Debug.Assert(xrAnchor.trackableId == tracker.TrackableId);
             Vector3 tP = tracker.transform.position;
             Vector3 tR = tracker.transform.rotation.eulerAngles;
@@ -290,14 +294,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             Vector3 rR = xrAnchor.pose.rotation.eulerAngles;
             rR = new Vector3(1.0f, 2.0f, 3.0f);
             Debug.Log($"{label}{tracker.name}-{tracker.TrackableId}/{xrAnchor.trackingState}: {DebugVector3("tP=", tP)}|{DebugEuler("tR=", tR)} <=> {DebugVector3("rP=", rP)}|{DebugEuler("rR=", rR)}");
-#endif // WLT_EXTRA_LOGGING
-        }
-
-        private static void DebugLogExtra(string msg)
-        {
-#if WLT_EXTRA_LOGGING
-            Debug.Log(msg);
-#endif // WLT_EXTRA_LOGGING
         }
 
         private static void UpdateTracker(string label, XRAnchor xrAnchor, Dictionary<TrackableId, SpongyAnchorXR> anchors)
@@ -343,7 +339,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             if (!sessionSubsystem.running)
             {
                 // This is probably a catastrophic failure case.
-                Debug.Log($"Frame={Time.frameCount} LostTracking: Have session subsystem but not running.");
+                Debug.LogError($"Frame={Time.frameCount} LostTracking: Have session subsystem but not running.");
                 return false;
             }
             return sessionSubsystem.notTrackingReason == NotTrackingReason.None;

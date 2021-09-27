@@ -4,6 +4,11 @@
 //#define WLT_LOG_SAVE_LOAD
 //#define WLT_EXTRA_LOGGING
 
+#if WLT_DISABLE_LOGGING
+#undef WLT_LOG_SAVE_LOAD
+#undef WLT_EXTRA_LOGGING
+#endif // WLT_DISABLE_LOGGING
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -195,18 +200,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
         }
 
+        [System.Diagnostics.Conditional("WLT_LOG_SAVE_LOAD")]
         private void DebugLogSaveLoad(string message)
         {
-#if WLT_LOG_SAVE_LOAD
             Debug.Log($"F={Time.frameCount} {message}");
-#endif // WLT_LOG_SAVE_LOAD
         }
 
+        [System.Diagnostics.Conditional("WLT_EXTRA_LOGGING")]
         private void DebugLogExtra(string message)
         {
-#if WLT_EXTRA_LOGGING
-            Debug.Log(msg);
-#endif // WLT_EXTRA_LOGGING
+            Debug.Log(message);
         }
 
         private void CheckDependencies()

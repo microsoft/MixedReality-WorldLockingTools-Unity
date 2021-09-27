@@ -3,6 +3,10 @@
 
 //#define WLT_EXTRA_LOGGING
 
+#if WLT_DISABLE_LOGGING
+#undef WLT_EXTRA_LOGGING
+#endif // WLT_DISABLE_LOGGING
+
 #if UNITY_2020_1_OR_NEWER
 
 #if UNITY_2020_4_OR_NEWER
@@ -89,7 +93,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             ARSession arSession = arSessionSource.GetComponent<ARSession>();
             if (arSession == null)
             {
-                Debug.Log($"Adding AR session to {arSessionSource.name}");
+                DebugLogSetup($"Adding AR session to {arSessionSource.name}");
                 arSession = arSessionSource.AddComponent<ARSession>();
             }
             if (arSession == null)
@@ -100,7 +104,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             ARSessionOrigin arSessionOrigin = arSessionOriginSource.GetComponent<ARSessionOrigin>();
             if (arSessionOrigin == null)
             {
-                Debug.Log($"Adding AR session origin to {arSessionOriginSource.name}");
+                DebugLogSetup($"Adding AR session origin to {arSessionOriginSource.name}");
                 arSessionOrigin = arSessionOriginSource.AddComponent<ARSessionOrigin>();
             }
             if (arSessionOrigin == null)
@@ -119,7 +123,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private AnchorManagerARF(IPlugin plugin, IHeadPoseTracker headTracker, ARSession arSession, ARSessionOrigin arSessionOrigin) 
             : base(plugin, headTracker)
         {
-            Debug.Log($"ARF: Creating AnchorManagerARF with {arSession.name} and {arSessionOrigin.name}");
+            DebugLogSetup($"ARF: Creating AnchorManagerARF with {arSession.name} and {arSessionOrigin.name}");
             this.arSession = arSession;
             this.arSessionOrigin = arSessionOrigin;
 
@@ -130,10 +134,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             this.arAnchorManager = arSessionOrigin.gameObject.GetComponent<ARAnchorManager>();
             if (this.arAnchorManager == null)
             {
-                Debug.Log($"Adding AR reference point manager to {arSessionOrigin.name}");
+                DebugLogSetup($"Adding AR reference point manager to {arSessionOrigin.name}");
                 this.arAnchorManager = arSessionOrigin.gameObject.AddComponent<ARAnchorManager>();
             }
-            Debug.Log($"ARF: Created AnchorManager ARF");
+            DebugLogSetup($"ARF: Created AnchorManager ARF");
 #if WLT_XR_PERSISTENCE
             // See notes at OnAnchorsChanged definition.
             this.arAnchorManager.anchorsChanged += OnAnchorsChanged;
@@ -202,7 +206,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             var arAnchor = arAnchorManager.AddAnchor(initialPose);
             if (arAnchor == null)
             {
-                Debug.Log($"ARAnchorManager failed to create ARAnchor {id}");
+                Debug.LogError($"ARAnchorManager failed to create ARAnchor {id}");
                 return null;
             }
             arAnchor.gameObject.name = id.FormatStr();
@@ -232,27 +236,18 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return null;
         }
 
-        private static void DebugLogExtra(string msg)
-        {
-#if WLT_EXTRA_LOGGING
-            Debug.Log(msg);
-#endif // WLT_EXTRA_LOGGING
-        }
-
+        [System.Diagnostics.Conditional("WLT_EXTRA_LOGGING")]
         private static void DebugOutExtra(string label, ARAnchor arAnchor, SpongyAnchorARF tracker)
         {
-#if WLT_EXTRA_LOGGING
             Debug.Assert(arAnchor.trackableId == tracker.TrackableId);
             Debug.Log($"{label}{tracker.name}-{tracker.TrackableId}/{arAnchor.trackingState}: T={tracker.transform.GetGlobalPose().ToString("F3")} AR={arAnchor.transform.GetGlobalPose().ToString("F3")}");
-#endif // WLT_EXTRA_LOGGING
         }
-
 
         protected override async Task SaveAnchors(List<SpongyAnchorWithId> spongyAnchors)
         {
             if (openXRPersistence)
             {
-                DebugLogExtra($"Saving {spongyAnchors.Count} spongyAnchors.");
+                DebugLogSetup($"Saving {spongyAnchors.Count} spongyAnchors.");
                 await SaveAnchorsOpenXR(spongyAnchors);
             }
         }

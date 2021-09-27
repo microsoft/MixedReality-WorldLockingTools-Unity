@@ -71,7 +71,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             ARSession arSession = arSessionSource.GetComponent<ARSession>();
             if (arSession == null)
             {
-                Debug.Log($"Adding AR session to {arSessionSource.name}");
+                DebugLogSetup($"Adding AR session to {arSessionSource.name}");
                 arSession = arSessionSource.AddComponent<ARSession>();
             }
             if (arSession == null)
@@ -82,7 +82,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             ARSessionOrigin arSessionOrigin = arSessionOriginSource.GetComponent<ARSessionOrigin>();
             if (arSessionOrigin == null)
             {
-                Debug.Log($"Adding AR session origin to {arSessionOriginSource.name}");
+                DebugLogSetup($"Adding AR session origin to {arSessionOriginSource.name}");
                 arSessionOrigin = arSessionOriginSource.AddComponent<ARSessionOrigin>();
             }
             if (arSessionOrigin == null)
@@ -101,17 +101,17 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private AnchorManagerARF(IPlugin plugin, IHeadPoseTracker headTracker, ARSession arSession, ARSessionOrigin arSessionOrigin) 
             : base(plugin, headTracker)
         {
-            Debug.Log($"ARF: Creating AnchorManagerARF with {arSession.name} and {arSessionOrigin.name}");
+            DebugLogSetup($"ARF: Creating AnchorManagerARF with {arSession.name} and {arSessionOrigin.name}");
             this.arSession = arSession;
             this.arSessionOrigin = arSessionOrigin;
 
             this.arReferencePointManager = arSessionOrigin.gameObject.GetComponent<ARReferencePointManager>();
             if (this.arReferencePointManager == null)
             {
-                Debug.Log($"Adding AR reference point manager to {arSessionOrigin.name}");
+                DebugLogSetup($"Adding AR reference point manager to {arSessionOrigin.name}");
                 this.arReferencePointManager = arSessionOrigin.gameObject.AddComponent<ARReferencePointManager>();
             }
-            Debug.Log($"ARF: Created AnchorManager ARF");
+            DebugLogSetup($"ARF: Created AnchorManager ARF");
         }
 
         protected override bool IsTracking()
@@ -130,7 +130,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             var arAnchor = arReferencePointManager.AddReferencePoint(initialPose);
             if (arAnchor == null)
             {
-                Debug.Log($"ARReferencePoinManager failed to create ARAnchor {id}");
+                Debug.LogError($"ARReferencePoinManager failed to create ARAnchor {id}");
                 return null;                
             }
             arAnchor.gameObject.name = id.FormatStr();

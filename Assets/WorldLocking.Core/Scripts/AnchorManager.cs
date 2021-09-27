@@ -3,6 +3,13 @@
 
 //#define WLT_EXTRA_LOGGING
 //#define WLT_DUMP_SPONGY
+#define WLT_LOG_SETUP
+
+#if WLT_DISABLE_LOGGING
+#undef WLT_EXTRA_LOGGING
+#undef WLT_DUMP_SPONGY
+#undef WLT_LOG_SETUP
+#endif // WLT_DISABLE_LOGGING
 
 using System;
 using System.Collections.Generic;
@@ -285,21 +292,17 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 if (Time.unscaledTime <= lastTrackingInactiveTime + TrackingStartDelayTime)
                 {
-#if WLT_EXTRA_LOGGING
                     // Tracking has become active only recently. We suppress creation of new anchors while
                     // new anchors may still be in transition due to SpatialAnchor easing.
-                    Debug.Log($"Skip new anchor creation because only recently gained tracking {Time.unscaledTime - lastTrackingInactiveTime}");
-#endif // WLT_EXTRA_LOGGING
+                    DebugLogExtra($"Skip new anchor creation because only recently gained tracking {Time.unscaledTime - lastTrackingInactiveTime}");
                 }
                 else if (Time.unscaledTime < lastAnchorAddTime + AnchorAddOutTime)
                 {
-#if WLT_EXTRA_LOGGING
                     // short timeout after creating one anchor to prevent bursts of new, unlocatable anchors
                     // in case of problems in the anchor generation
-                    Debug.Log($"Skip new anchor creation because waiting on recently made anchor "
+                    DebugLogExtra($"Skip new anchor creation because waiting on recently made anchor "
                         + $"{Time.unscaledTime - lastAnchorAddTime} "
                         + $"- {(newSpongyAnchor != null ? newSpongyAnchor.name : "null")}");
-#endif // WLT_EXTRA_LOGGING
                 }
                 else
                 {
@@ -380,9 +383,21 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 #endif // WLT_DUMP_SPONGY
 
+        [System.Diagnostics.Conditional("WLT_EXTRA_LOGGING")]
+        protected static void DebugLogExtra(string message)
+        {
+            Debug.Log(message);
+        }
+
+        [System.Diagnostics.Conditional("WLT_LOG_SETUP")]
+        protected static void DebugLogSetup(string message)
+        {
+            Debug.Log(message);
+        }
+
         private bool LostTrackingCleanup(string message)
         {
-            Debug.Log($"{message} Frame {Time.frameCount}");
+            DebugLogExtra($"{message} Frame {Time.frameCount}");
             lastTrackingInactiveTime = Time.unscaledTime;
 
             if (newSpongyAnchor)
@@ -448,7 +463,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (newSpongyAnchor != null)
             {
-                Debug.Log($"Discarding {newSpongyAnchor.name} (located={newSpongyAnchor.IsLocated}) because still not located");
+                DebugLogExtra($"Discarding {newSpongyAnchor.name} (located={newSpongyAnchor.IsLocated}) because still not located");
                 newSpongyAnchor = DestroyAnchor(AnchorId.Invalid, newSpongyAnchor);
             }
 
@@ -471,7 +486,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 #if WLT_EXTRA_LOGGING
                 if (newSpongyAnchor != null)
                 {
-                    Debug.Log($"Can't finalize {newSpongyAnchor.name} because it's still not located.");
+                    DebugLogExtra($"Can't finalize {newSpongyAnchor.name} because it's still not located.");
                 }
 #endif // WLT_EXTRA_LOGGING
                 return AnchorId.Invalid;

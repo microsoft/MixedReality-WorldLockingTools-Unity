@@ -3,6 +3,10 @@
 
 //#define WLT_EXTRA_LOGGING
 
+#if WLT_DISABLE_LOGGING
+#undef WLT_EXTRA_LOGGING
+#endif // WLT_DISABLE_LOGGING
+
 using UnityEngine;
 #if WLT_ARSUBSYSTEMS_PRESENT
 using UnityEngine.XR.ARSubsystems;

@@ -49,12 +49,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 if (MinNewAnchorDistance <= 0)
                 {
-                    Debug.Log($"Setting Invalid: MinNewAnchorDistance = {MinNewAnchorDistance}");
+                    Debug.LogWarning($"Setting Invalid: MinNewAnchorDistance = {MinNewAnchorDistance}");
                     return false;
                 }
                 if (MaxAnchorEdgeLength <= MinNewAnchorDistance)
                 {
-                    Debug.Log($"Setting Invalid: MinNewAnchorDistance = {MinNewAnchorDistance} - MaxNewAnchorEdgeLength = {MaxAnchorEdgeLength}");
+                    Debug.LogWarning($"Setting Invalid: MinNewAnchorDistance = {MinNewAnchorDistance} - MaxNewAnchorEdgeLength = {MaxAnchorEdgeLength}");
                     return false;
                 }
                 if (anchorSubsystem == AnchorSubsystem.ARFoundation)
@@ -62,32 +62,32 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     /// These must be supplied for ARF. Ignored otherwise.
                     if ((ARSessionSource == null) || (ARSessionOriginSource == null))
                     {
-                        Debug.Log($"Setting Invalid: ARSessionSource and ARSessionOriginSource must be set.");
+                        Debug.LogWarning($"Setting Invalid: ARSessionSource and ARSessionOriginSource must be set.");
                         return false;
                     }
 #if !WLT_ARFOUNDATION_PRESENT
-                    Debug.Log($"Setting Invalid: ARF selected, but no ARFOUNDATION_PRESENT");
+                    Debug.LogWarning($"Setting Invalid: ARF selected, but no ARFOUNDATION_PRESENT");
                     return false;
 #endif // WLT_ARFOUNDATION_PRESENT
                 }
                 if (anchorSubsystem == AnchorSubsystem.XRSDK)
                 {
 #if !WLT_ARSUBSYSTEMS_PRESENT
-                    Debug.Log($"Setting Invalid: XRSDK selected, but no ARSUBSYSTEMS_PRESENT");
+                    Debug.LogWarning($"Setting Invalid: XRSDK selected, but no ARSUBSYSTEMS_PRESENT");
                     return false;
 #endif // WLT_ARSUBSYSTEMS_PRESENT
                 }
                 if (anchorSubsystem == AnchorSubsystem.WSA)
                 {
 #if !UNITY_WSA
-                    Debug.Log($"Setting Invalid: WSA selected but no UNITY_WSA");
+                    Debug.LogWarning($"Setting Invalid: WSA selected but no UNITY_WSA");
                     return false;
 #endif // UNITY_WSA
                 }
                 if (anchorSubsystem == AnchorSubsystem.ARCore)
                 {
 #if !WLT_ARCORE_SDK_INCLUDED
-                    Debug.Log($"Setting Invalid: ARCore selected but ARCore SDK not imported.");
+                    Debug.LogWarning($"Setting Invalid: ARCore selected but ARCore SDK not imported.");
                     return false;
 #endif // WLT_ARCORE_SDK_INCLUDED
                 }
