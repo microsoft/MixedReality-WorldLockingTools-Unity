@@ -303,7 +303,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// Keep track of whether one-time initializations have been performed yet.
         /// </summary>
-        private bool hasBeenStarted = false;
+        private enum InitializationState { Uninitialized, Starting, Started };
+        private InitializationState initializationState = InitializationState.Uninitialized;
 
         /// <summary>
         /// A handle of the class offering the optional feature of periodically logging the FrozenWorld engine state to disk
@@ -385,7 +386,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             shared = context.SharedSettings;
             DiagnosticRecordings.SharedSettings = context.DiagnosticsSettings;
 
-            if (!hasBeenStarted)
+            if (initializationState == InitializationState.Uninitialized)
             {
                 OneTimeStartUp();
             }
@@ -399,9 +400,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// Perform any initialization only appropriate once. This is called after
         /// giving the caller a chance to change settings.
         /// </summary>
-        private void OneTimeStartUp()
+        private async void OneTimeStartUp()
         {
-            anchorManager = SelectAnchorManager(Plugin, headPoseTracker);
+            initializationState = InitializationState.Starting;
+
+            anchorManager = await SelectAnchorManager(Plugin, headPoseTracker);
 
             if (AutoLoad)
             {
@@ -412,11 +415,23 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 Reset();
             }
 
-            hasBeenStarted = true;
+            initializationState = InitializationState.Started;
         }
 
-        private IAnchorManager SelectAnchorManager(IPlugin plugin, IHeadPoseTracker headTracker)
+        private async Task<IAnchorManager> SelectAnchorManager(IPlugin plugin, IHeadPoseTracker headTracker)
         {
+#if WLT_XR_MANAGEMENT_PRESENT
+            // Wait for XR initialization before initializing the anchor subsystem to ensure that any pending Remoting connection has been established first.
+            while (UnityEngine.XR.Management.XRGeneralSettings.Instance == null ||
+                   UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager == null ||
+                   UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager.activeLoader == null)
+            {
+                await Task.Yield();
+            }
+#else
+            await Task.CompletedTask;
+#endif
+
             DebugLogSetup($"Select {shared.anchorSettings.anchorSubsystem} anchor manager.");
             if (AnchorManager != null)
             {
