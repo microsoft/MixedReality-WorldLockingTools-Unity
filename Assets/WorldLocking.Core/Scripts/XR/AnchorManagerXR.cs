@@ -63,8 +63,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private readonly Dictionary<TrackableId, SpongyAnchorXR> anchorsByTrackableId = new Dictionary<TrackableId, SpongyAnchorXR>();
 
-        public static AnchorManagerXR TryCreate(IPlugin plugin, IHeadPoseTracker headTracker)
+        public static async Task<AnchorManagerXR> TryCreate(IPlugin plugin, IHeadPoseTracker headTracker)
         {
+            bool xrRunning = await CheckXRRunning();
+
             /// Try to find an XRAnchorManager (to be XRAnchorManager) here. 
             /// If we fail that,
             ///     give up. 
@@ -86,6 +88,19 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             AnchorManagerXR anchorManager = new AnchorManagerXR(plugin, headTracker, xrAnchorManager, session);
 
             return anchorManager;
+        }
+
+        private static async Task<bool> CheckXRRunning()
+        {
+            // Wait for XR initialization before initializing the anchor subsystem to ensure that any pending Remoting connection has been established first.
+            while (UnityEngine.XR.Management.XRGeneralSettings.Instance == null ||
+                   UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager == null ||
+                   UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager.activeLoader == null)
+            {
+                DebugLogSetup($"F={Time.frameCount} waiting on XR startup.");
+                await Task.Yield();
+            }
+            return true;
         }
 
         /// <summary>

@@ -303,7 +303,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// Keep track of whether one-time initializations have been performed yet.
         /// </summary>
-        private bool hasBeenStarted = false;
+        private enum InitializationState { Uninitialized, Starting, Running };
+        private InitializationState initializationState = InitializationState.Uninitialized;
 
         /// <summary>
         /// A handle of the class offering the optional feature of periodically logging the FrozenWorld engine state to disk
@@ -385,9 +386,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             shared = context.SharedSettings;
             DiagnosticRecordings.SharedSettings = context.DiagnosticsSettings;
 
-            if (!hasBeenStarted)
+            if (initializationState == InitializationState.Uninitialized)
             {
-                OneTimeStartUp();
+                ResetAnchorManager();
             }
 
             ApplyNewSettings();
@@ -399,9 +400,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// Perform any initialization only appropriate once. This is called after
         /// giving the caller a chance to change settings.
         /// </summary>
-        private void OneTimeStartUp()
+        public async void ResetAnchorManager()
         {
-            anchorManager = SelectAnchorManager(Plugin, headPoseTracker);
+            initializationState = InitializationState.Starting;
+
+            anchorManager = await SelectAnchorManager(Plugin, headPoseTracker);
 
             if (AutoLoad)
             {
@@ -412,15 +415,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 Reset();
             }
 
-            hasBeenStarted = true;
+            initializationState = InitializationState.Running;
         }
 
-        private IAnchorManager SelectAnchorManager(IPlugin plugin, IHeadPoseTracker headTracker)
+        private async Task<IAnchorManager> SelectAnchorManager(IPlugin plugin, IHeadPoseTracker headTracker)
         {
             DebugLogSetup($"Select {shared.anchorSettings.anchorSubsystem} anchor manager.");
             if (AnchorManager != null)
             {
-                DebugLogSetup("Creating new anchormanager, but have old one. Reseting it before replacing.");
+                DebugLogSetup("Creating new anchor manager, but have old one. Reseting it before replacing.");
                 AnchorManager.Reset();
             }
             var anchorSettings = shared.anchorSettings;
@@ -442,7 +445,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.XRSDK)
             {
                 DebugLogSetup($"Trying to create XR anchor manager");
-                AnchorManagerXR xrAnchorManager = AnchorManagerXR.TryCreate(plugin, headTracker);
+                AnchorManagerXR xrAnchorManager = await AnchorManagerXR.TryCreate(plugin, headTracker);
                 if (xrAnchorManager != null)
                 {
                     DebugLogSetup("Success creating XR anchor manager");
@@ -483,6 +486,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
             AnchorManagerNull nullAnchorManager = AnchorManagerNull.TryCreate(plugin, headTracker);
             Debug.Assert(nullAnchorManager != null, "Creation of Null anchor manager should never fail.");
+            /// No-op await here to suppress warnings if no anchor manager system which requires asynchronous startup is compiled in.
+            await Task.CompletedTask;
             return nullAnchorManager;
         }
 
@@ -566,6 +571,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             ErrorStatus = "";
 
+            if (initializationState != InitializationState.Running)
+            {
+                ErrorStatus = $"Init: F={Time.frameCount} - {initializationState}";
+                return;
+            }
             if (hasPendingLoadTask)
             {
                 ErrorStatus = "pending background load task";

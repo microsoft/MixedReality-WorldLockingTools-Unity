@@ -37,7 +37,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         /// </summary>
         [Tooltip("Placeholder material to ensure the required shader is packaged.")]
         [SerializeField]
-        private Material connectingLine;
+        private Material connectingLine = null;
 
         #endregion Public properties
 
@@ -750,6 +750,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 spongyWorldViz = Instantiate(Prefab_FrameViz, parentTransform);
                 spongyWorldViz.name = "Spongy";
                 spongyWorldViz.color = Color.green;
+                if (connectingLine != null)
+                {
+                    /// Connecting line material is only included to force import of the shader.
+                    /// No-op access it here to suppress warning that it is unused.
+                    spongyWorldViz.color = Color.green;
+                }
             }
         }
         #endregion Visualizations management helpers

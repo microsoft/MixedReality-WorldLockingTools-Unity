@@ -40,7 +40,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA.Examples
         }
 
         [SerializeField]
-        private MeshFilter meshFilter;
+        private MeshFilter meshFilter = null;
 
         private void Awake()
         {
