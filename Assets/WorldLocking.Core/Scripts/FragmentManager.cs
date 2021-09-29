@@ -78,7 +78,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public void Update(bool autoRefreeze, bool autoMerge)
         {
             CurrentFragmentId = plugin.GetMostSignificantFragmentId();
-            Debug.Assert(CurrentFragmentId.IsKnown(), "Update shouldn't be called with no active fragment.");
+            Debug.Assert(CurrentFragmentId.IsKnown(), $"F={Time.frameCount} - Update shouldn't be called with no active fragment.");
+            if (!CurrentFragmentId.IsKnown())
+            {
+                return;
+            }
             EnsureFragment(CurrentFragmentId);
 
             if (plugin.Metrics.RefitRefreezeIndicated && autoRefreeze)

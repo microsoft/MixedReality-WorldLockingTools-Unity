@@ -8,6 +8,7 @@
 #endif // WLT_XR_PERSISTENCE
 
 //#define WLT_EXTRA_LOGGING
+#define WLT_LOG_SETUP
 
 #if WLT_DISABLE_LOGGING
 #undef WLT_EXTRA_LOGGING
@@ -66,6 +67,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public static async Task<AnchorManagerXR> TryCreate(IPlugin plugin, IHeadPoseTracker headTracker)
         {
             bool xrRunning = await CheckXRRunning();
+            if (!xrRunning)
+            {
+                return null;
+            }
 
             /// Try to find an XRAnchorManager (to be XRAnchorManager) here. 
             /// If we fail that,
@@ -92,6 +97,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private static async Task<bool> CheckXRRunning()
         {
+            DebugLogSetup($"F={Time.frameCount} checking that XR is running.");
             // Wait for XR initialization before initializing the anchor subsystem to ensure that any pending Remoting connection has been established first.
             while (UnityEngine.XR.Management.XRGeneralSettings.Instance == null ||
                    UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager == null ||
@@ -100,6 +106,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 DebugLogSetup($"F={Time.frameCount} waiting on XR startup.");
                 await Task.Yield();
             }
+            DebugLogSetup($"F={Time.frameCount} XR is running.");
             return true;
         }
 
@@ -143,7 +150,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     {
                         activeSubsystem = sub;
                         ++numFound;
-                        DebugLogSetup($"Start changed anchor subsystem {sub.subsystemDescriptor.id} to running.");
+                        DebugLogSetup($"Start changed anchor subsystem [{sub.subsystemDescriptor.id}] to running.");
                     }
                 }
             }
@@ -187,7 +194,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     {
                         activeSession = session;
                         ++numFound;
-                        DebugLogSetup($"Start changed session {session.subsystemDescriptor.id} to running.");
+                        DebugLogSetup($"Start changed session [{session.subsystemDescriptor.id}] to running.");
                     }
                 }
             }

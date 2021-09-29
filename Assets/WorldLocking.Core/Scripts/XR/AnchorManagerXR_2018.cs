@@ -4,6 +4,7 @@
 #if !UNITY_2020_1_OR_NEWER
 
 //#define WLT_EXTRA_LOGGING
+#define WLT_LOG_SETUP
 
 #if WLT_DISABLE_LOGGING
 #undef WLT_EXTRA_LOGGING
@@ -53,8 +54,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private readonly Dictionary<TrackableId, SpongyAnchorXR> anchorsByTrackableId = new Dictionary<TrackableId, SpongyAnchorXR>();
 
-        public static AnchorManagerXR TryCreate(IPlugin plugin, IHeadPoseTracker headTracker)
+        public static async Task<AnchorManagerXR> TryCreate(IPlugin plugin, IHeadPoseTracker headTracker)
         {
+            bool xrRunning = await CheckXRRunning();
+            if (!xrRunning)
+            {
+                return null;
+            }
+
             /// Try to find an XRReferencePointManager (to be XRAnchorManager) here. 
             /// If we fail that,
             ///     give up. 
@@ -81,6 +88,26 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
             return anchorManager;
         }
+
+        private static async Task<bool> CheckXRRunning()
+        {
+            DebugLogSetup($"F={Time.frameCount} checking that XR is running.");
+            // Wait for XR initialization before initializing the anchor subsystem to ensure that any pending Remoting connection has been established first.
+            while (UnityEngine.XR.Management.XRGeneralSettings.Instance == null ||
+                   UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager == null ||
+                   UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager.activeLoader == null)
+            {
+                if ((Time.frameCount / 100) * 100 == Time.frameCount)
+                {
+                    DebugLogSetup($"F={Time.frameCount} waiting on XR startup.");
+                }
+                await Task.Yield();
+            }
+            DebugLogSetup($"F={Time.frameCount} XR is running.");
+            return true;
+        }
+
+
 
         /// <summary>
         /// Find the correct ReferencePointManager for this session.
@@ -122,7 +149,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     {
                         activeSubsystem = sub;
                         ++numFound;
-                        DebugLogSetup($"Start changed an anchor subsystem to running.");
+                        DebugLogSetup($"Start changed an anchor subsystem [{sub.SubsystemDescriptor.id}] to running.");
                     }
                 }
             }
@@ -166,7 +193,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     {
                         activeSession = session;
                         ++numFound;
-                        DebugLogSetup($"Start changed a session to running.");
+                        DebugLogSetup($"Start changed session [{session.SubsystemDescriptor.id}] to running.");
                     }
                 }
             }
@@ -200,7 +227,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private bool UpdateTrackables()
         {
-            if (xrReferencePointManager == null)
+            if (xrReferencePointManager == null || !xrReferencePointManager.running)
             {
                 return false;
             }
