@@ -2,6 +2,8 @@
 
 [See release notes](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases)
 
+## 1.5.2 - Delay startup for Holographic Remoting.
+
 ## 1.5.1 - Fixes for local world locking.
 
 ## 1.5.0 - WLT can be limited to subgraph in scene hierarchy.
