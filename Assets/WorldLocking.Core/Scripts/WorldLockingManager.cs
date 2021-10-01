@@ -431,7 +431,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.ARFoundation)
             {
                 DebugLogSetup($"Trying to create ARF anchor manager on {anchorSettings.ARSessionSource.name} and {anchorSettings.ARSessionOriginSource.name}");
-                AnchorManagerARF arfAnchorManager = AnchorManagerARF.TryCreate(plugin, headTracker,
+                AnchorManagerARF arfAnchorManager = await AnchorManagerARF.TryCreate(plugin, headTracker,
                     anchorSettings.ARSessionSource, anchorSettings.ARSessionOriginSource);
                 if (arfAnchorManager != null)
                 {

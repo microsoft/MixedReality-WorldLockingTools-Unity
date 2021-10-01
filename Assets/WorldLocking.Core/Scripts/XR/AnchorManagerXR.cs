@@ -97,6 +97,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private static async Task<bool> CheckXRRunning()
         {
+#if WLT_XR_MANAGEMENT_PRESENT
             DebugLogSetup($"F={Time.frameCount} checking that XR is running.");
             // Wait for XR initialization before initializing the anchor subsystem to ensure that any pending Remoting connection has been established first.
             while (UnityEngine.XR.Management.XRGeneralSettings.Instance == null ||
@@ -107,6 +108,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 await Task.Yield();
             }
             DebugLogSetup($"F={Time.frameCount} XR is running.");
+#endif // WLT_XR_MANAGEMENT_PRESENT
             return true;
         }
 
