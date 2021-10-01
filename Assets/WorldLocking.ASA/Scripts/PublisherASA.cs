@@ -150,10 +150,10 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         /// </summary>
         public float MinRecommendedForCreateProgress { get { return minRecommendedForCreateProgress; } set { minRecommendedForCreateProgress = value; } }
 
-#endregion // Inspector fields
+        #endregion // Inspector fields
 
 #if WLT_ASA_INCLUDED
-#region Internal members
+        #region Internal members
         /// <summary>
         /// The ASA manager
         /// </summary>
@@ -204,9 +204,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 
         private bool IsBusy { get { return busy != null; } }
 
-#endregion // Internal members
+        #endregion // Internal members
 
-#region Internal types
+        #region Internal types
 
         /// <summary>
         /// All of the information we know about a cloud anchor.
@@ -268,7 +268,10 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             [System.Diagnostics.Conditional("WLT_EXTRA_LOGGING")]
             public static void DebugLog(AnchorRecord record, string msg)
             {
+                // Wrap in WLT_EXTRA_LOGGING because DebugString is only defined then.
+#if WLT_EXTRA_LOGGING
                 SimpleConsole.AddLine(ConsoleLow, DebugString(record, msg));
+#endif // WLT_EXTRA_LOGGING
             }
         };
 
@@ -316,10 +319,10 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 
         }
 
-#endregion // Internal types
+        #endregion // Internal types
 #endif // WLT_ASA_INCLUDED
 
-#region Public API
+        #region Public API
 
         /// <summary>
         /// Initialization. 
