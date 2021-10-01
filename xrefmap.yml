@@ -6323,6 +6323,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Reset
   nameWithType: WorldLockingManager.Reset
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ResetAnchorManager
+  name: ResetAnchorManager()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_ResetAnchorManager
+  commentId: M:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ResetAnchorManager
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ResetAnchorManager()
+  nameWithType: WorldLockingManager.ResetAnchorManager()
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ResetAnchorManager*
+  name: ResetAnchorManager
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_ResetAnchorManager_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ResetAnchorManager
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.ResetAnchorManager
+  nameWithType: WorldLockingManager.ResetAnchorManager
 - uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Save
   name: Save()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Save
