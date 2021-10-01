@@ -150,7 +150,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// <summary>
         /// Encapsulate all prerequisites for successful load here.
         /// </summary>
-        private bool ReadyToAutoLoad { get { return needAutoLoad && (alignmentManager != null); } }
+        private bool ReadyToAutoLoad { get { return needAutoLoad && (alignmentManager != null) && SupportsPersistence; } }
 
         /// <summary>
         /// Encapsulate all prerequisites for successful save here.
@@ -159,7 +159,26 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// This does not check to see if a save is actually warranted, that check is elsewhere. This
         /// just check whether, if it would be good to save, the system is ready to.
         /// </remarks>
-        private bool ReadyToAutoSave { get { return !needAutoLoad && autoSave; } }
+        private bool ReadyToAutoSave { get { return !needAutoLoad && autoSave && SupportsPersistence; } }
+
+        /// <summary>
+        /// Check if persistence is supported, to avoid useless (and confusing) spacepin auto-save and load when anchors can't be saved and loaded.
+        /// </summary>
+        /// <remarks>
+        /// This is done on demand, because at start the final anchor manager may or may not have been created yet.
+        /// </remarks>
+        private bool SupportsPersistence
+        {
+            get
+            {
+                var wltMgr = WorldLockingManager.GetInstance();
+                if (wltMgr.AnchorManager != null && wltMgr.AnchorManager.SupportsPersistence)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
 #endregion Internal members
 
 #region Public APIs
