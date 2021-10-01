@@ -696,8 +696,11 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
 
         private void FinishCurrentAction()
         {
-            lineRenderer.enabled = false;
-            SetupWorldLockSelect(false);
+            if (lineRenderer != null)
+            {
+                lineRenderer.enabled = false;
+                SetupWorldLockSelect(false);
+            }
         }
 
 #endregion Mode transitions
@@ -706,12 +709,12 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
 
         protected override void RegisterHandlers()
         {
-            MixedRealityToolkit.Instance.GetService<IMixedRealityInputSystem>()?.RegisterHandler<IMixedRealityPointerHandler>(this);
+            MixedRealityToolkit.Instance?.GetService<IMixedRealityInputSystem>()?.RegisterHandler<IMixedRealityPointerHandler>(this);
         }
 
         protected override void UnregisterHandlers()
         {
-            MixedRealityToolkit.Instance.GetService<IMixedRealityInputSystem>()?.UnregisterHandler<IMixedRealityPointerHandler>(this);
+            MixedRealityToolkit.Instance?.GetService<IMixedRealityInputSystem>()?.UnregisterHandler<IMixedRealityPointerHandler>(this);
         }
 
 #endregion InputSystemGlobalHandlerListener Implementation
