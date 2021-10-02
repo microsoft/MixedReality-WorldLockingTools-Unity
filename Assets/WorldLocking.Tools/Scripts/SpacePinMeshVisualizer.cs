@@ -149,6 +149,20 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             return globalFromLocked;
         }
 
+        private struct IndexedTriangle
+        {
+            public int index0;
+            public int index1;
+            public int index2;
+
+            public IndexedTriangle(int i0, int i1, int i2)
+            {
+                index0 = i0;
+                index1 = i1;
+                index2 = i2;
+            }
+        }
+
         /// <summary>
         /// Generates the whole mesh inside the triangulation data, except for the boundary triangles/vertices.
         /// </summary>
@@ -171,7 +185,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             wholeMesh.vertices = vertices;
 
-            List<(int, int, int)> trimmedTriangles = new List<(int, int, int)>();
+            List<IndexedTriangle> trimmedTriangles = new List<IndexedTriangle>();
 
             for (int i = 0; i < triangulator.Triangles.Length; i += 3)
             {
@@ -187,7 +201,11 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 if (currentInterpolant != null && (triangleDataSameAsClosestTriangle && !AnyWeightInTriangleZero()))
                     continue;
 
-                trimmedTriangles.Add((triangulator.Triangles[i] - 4, triangulator.Triangles[i + 1] - 4, triangulator.Triangles[i + 2] - 4));
+                trimmedTriangles.Add(new IndexedTriangle(
+                        triangulator.Triangles[i] - 4,
+                        triangulator.Triangles[i + 1] - 4,
+                        triangulator.Triangles[i + 2] - 4
+                    ));
             }
 
             int[] tris = new int[trimmedTriangles.Count * 3];
@@ -195,9 +213,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             int triIndex = 0;
             for (int i = 0; i < trimmedTriangles.Count; i++)
             {
-                tris[triIndex] = trimmedTriangles[i].Item1;
-                tris[triIndex + 1] = trimmedTriangles[i].Item2;
-                tris[triIndex + 2] = trimmedTriangles[i].Item3;
+                tris[triIndex] = trimmedTriangles[i].index0;
+                tris[triIndex + 1] = trimmedTriangles[i].index1;
+                tris[triIndex + 2] = trimmedTriangles[i].index2;
                 triIndex += 3;
             }
 
