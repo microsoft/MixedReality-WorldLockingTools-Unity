@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/Concepts.html",
-          "hash": "w7OsMxKLCsXN6b9ejqm7CW/fUsIP++Ci4Vr+UZ2ql0E="
+          "hash": "yvbMdcDeDKtLSwZLGf1ptXJloPWd/m4gf9qDFPQaaXA="
         }
       },
       "is_incremental": false,
@@ -378,7 +378,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Documentation/HowTos/WLT_ASA.html",
-          "hash": "6CDhfNZco0TjYBNF9apQv/SQEgwzRvmHjujmKhtB00c="
+          "hash": "wGDLDJIQeYfyaJOdx3HK6AAZVYedMqBZsOuheHaPF6I="
         }
       },
       "is_incremental": false,
@@ -451,50 +451,6 @@
         ".html": {
           "relative_path": "DocGen/Documentation/toc.html",
           "hash": "GvPB/iX874i8eNq9dCz9kA97ejRJfXV4heCi7zIDClc="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "DocGen/External/ReadMeImages/MRTK170802_Short_17.png",
-      "output": {
-        "resource": {
-          "relative_path": "DocGen/External/ReadMeImages/MRTK170802_Short_17.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "DocGen/External/ReadMeImages/MRTK170802_Short_18.png",
-      "output": {
-        "resource": {
-          "relative_path": "DocGen/External/ReadMeImages/MRTK170802_Short_18.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "DocGen/External/ReadMeImages/MRTK170802_Short_19.png",
-      "output": {
-        "resource": {
-          "relative_path": "DocGen/External/ReadMeImages/MRTK170802_Short_19.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "DocGen/External/ReadMeImages/MRTK170802_Short_20.png",
-      "output": {
-        "resource": {
-          "relative_path": "DocGen/External/ReadMeImages/MRTK170802_Short_20.png"
         }
       },
       "is_incremental": false,
