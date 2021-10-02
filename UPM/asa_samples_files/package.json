@@ -1,7 +1,7 @@
 {
   "name": "com.microsoft.mixedreality.wlt.asa.samples",
   "displayName": "WLT-ASA Samples",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "unity": "2020.3",
   "msftFeatureCategory" : "World Locking Tools",
   "description": "Example scenes and scripts leveraging Azure Space Anchors (ASA) to persist World Locked coordinate spaces across sessions and share across devices.\n\nFurther samples available at\nhttps://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html",
@@ -36,9 +36,9 @@
   "dependencies": {
     "com.microsoft.azure.spatial-anchors-sdk.core": "2.9.0",
     "com.microsoft.mixedreality.toolkit.foundation": "2.7.0",
-    "com.microsoft.mixedreality.wlt.asa": "1.5.1",
-    "com.microsoft.mixedreality.worldlockingtools": "1.5.2",
-    "com.microsoft.mixedreality.worldlockingsamples": "1.5.2"
+    "com.microsoft.mixedreality.wlt.asa": "1.5.3",
+    "com.microsoft.mixedreality.worldlockingtools": "1.5.3",
+    "com.microsoft.mixedreality.worldlockingsamples": "1.5.3"
   },
   "files": [
     "package.json.meta",
