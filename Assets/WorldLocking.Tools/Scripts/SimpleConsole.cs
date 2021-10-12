@@ -129,7 +129,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         {
             if (logWriter != null)
             {
-                logWriter.Close();
+                logWriter.Dispose();
                 logWriter = null;
             }
             if (!string.IsNullOrEmpty(LogFile))
@@ -137,7 +137,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                 string path = Application.persistentDataPath;
                 path = Path.Combine(path, LogFile);
 
-                logWriter = new StreamWriter(path);
+                logWriter = new StreamWriter(new FileStream(path, FileMode.Create));
             }
         }
 
