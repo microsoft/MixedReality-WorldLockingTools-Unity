@@ -2,6 +2,8 @@
 
 [See release notes](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases)
 
+## 1.5.4 - Dependency on WLT 1.5.4.
+
 ## 1.5.3 - Remove dependency on tuple, and add MR Feature Tool support back to Unity 2018.4.
 
 ## 1.5.2 - Delay startup for Holographic Remoting.
