@@ -116,22 +116,54 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         }
 
         /// <summary>
-        /// Cache the instance.
+        /// Cache this as the instance and open log writer.
+        /// </summary>
+        private void Awake()
+        {
+            SetupInstance(this);
+        }
+
+        /// <summary>
+        /// Cache this as the instance and open log writer.
         /// </summary>
         private void Start()
         {
-            Debug.Assert(_consoleInstance == null, "More than one Status component in the scene?");
-            _consoleInstance = this;
-            OpenLogWriter();
+            SetupInstance(this);
         }
 
-        private void OpenLogWriter()
+        /// <summary>
+        /// Cache the provided instance and open log writer.
+        /// </summary>
+        /// <param name="simpleConsole"></param>
+        private static void SetupInstance(SimpleConsole simpleConsole)
+        {
+            if (_consoleInstance != simpleConsole)
+            {
+                if (_consoleInstance != null)
+                {
+                    Debug.LogWarning($"More than one SimpleConsole in the scene? {simpleConsole.name} overriding {_consoleInstance.name}");
+                    _consoleInstance.CloseLogWriter();
+                }
+                _consoleInstance = simpleConsole;
+                if (_consoleInstance != null)
+                {
+                    _consoleInstance.OpenLogWriter();
+                }
+            }
+        }
+
+        private void CloseLogWriter()
         {
             if (logWriter != null)
             {
                 logWriter.Dispose();
                 logWriter = null;
             }
+        }
+
+        private void OpenLogWriter()
+        {
+            CloseLogWriter();
             if (!string.IsNullOrEmpty(LogFile))
             {
                 string path = Application.persistentDataPath;

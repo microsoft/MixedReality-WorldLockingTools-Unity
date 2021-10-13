@@ -66,12 +66,15 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 return false;
             }
             var bindings = binder.GetBindings();
-            using (StreamWriter writer = new StreamWriter(new FileStream(GetFullPath(), FileMode.Create)))
+            using FileStream fileStream = new FileStream(GetFullPath(), FileMode.Create);
             {
-                writer.WriteLine($"{binderKey}{binder.Name}");
-                foreach (var binding in bindings)
+                using (StreamWriter writer = new StreamWriter(fileStream))
                 {
-                    writer.WriteLine($"{binding.spacePinId}, {binding.cloudAnchorId}");
+                    writer.WriteLine($"{binderKey}{binder.Name}");
+                    foreach (var binding in bindings)
+                    {
+                        writer.WriteLine($"{binding.spacePinId}, {binding.cloudAnchorId}");
+                    }
                 }
             }
             return true;
@@ -95,25 +98,28 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 Debug.LogError($"{name} can't find file {fullPath}");
                 return false;
             }
-            using (StreamReader reader = new StreamReader(new FileStream(GetFullPath(), FileMode.Open)))
+            using (FileStream fileStream = new FileStream(GetFullPath(), FileMode.Open, FileAccess.Read))
             {
-                string line = reader.ReadLine();
-                while (line != null)
+                using (StreamReader reader = new StreamReader(fileStream))
                 {
-                    string binderName = line.Replace(binderKey, "");
-                    bool isCorrectBinder = binderName == binder.Name;
-                    Tools.SimpleConsole.AddLine(8, $"Got:{binderName}, Want:{binder.Name}, Math={isCorrectBinder}");
-                    char[] separators = new char[] { ' ', ',' };
-                    while ((line = reader.ReadLine()) != null)
+                    string line = reader.ReadLine();
+                    while (line != null)
                     {
-                        if (line.StartsWith(binderKey))
+                        string binderName = line.Replace(binderKey, "");
+                        bool isCorrectBinder = binderName == binder.Name;
+                        Tools.SimpleConsole.AddLine(8, $"Got:{binderName}, Want:{binder.Name}, Math={isCorrectBinder}");
+                        char[] separators = new char[] { ' ', ',' };
+                        while ((line = reader.ReadLine()) != null)
                         {
-                            break;
-                        }
-                        if (isCorrectBinder)
-                        {
-                            string[] tokens = line.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
-                            binder.CreateBinding(tokens[0], tokens[1]);
+                            if (line.StartsWith(binderKey))
+                            {
+                                break;
+                            }
+                            if (isCorrectBinder)
+                            {
+                                string[] tokens = line.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
+                                binder.CreateBinding(tokens[0], tokens[1]);
+                            }
                         }
                     }
                 }
