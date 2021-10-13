@@ -66,8 +66,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 return false;
             }
             var bindings = binder.GetBindings();
-			FileStream fileStream = null;
-//            using FileStream fileStream = new FileStream(GetFullPath(), FileMode.Create);
+            using (FileStream fileStream = new FileStream(GetFullPath(), FileMode.Create))
             {
                 using (StreamWriter writer = new StreamWriter(fileStream))
                 {
@@ -99,8 +98,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 Debug.LogError($"{name} can't find file {fullPath}");
                 return false;
             }
-			FileStream fileStream = null;
-//            using (FileStream fileStream = new FileStream(GetFullPath(), FileMode.Open, FileAccess.Read))
+            using (FileStream fileStream = new FileStream(GetFullPath(), FileMode.Open, FileAccess.Read))
             {
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
