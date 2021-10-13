@@ -1341,6 +1341,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         {
             Debug.Assert(record.cloudAnchor != null, $"Trying to create native resources from a null cloud anchor");
             var wltMgr = WorldLockingManager.GetInstance();
+            await Task.Yield();
 #if UNITY_WSA
             Pose spongyPose = record.cloudAnchor.GetPose();
             var lockedPose = wltMgr.LockedFromSpongy.Multiply(spongyPose);
