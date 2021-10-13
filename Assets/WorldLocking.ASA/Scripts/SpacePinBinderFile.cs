@@ -66,7 +66,8 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 return false;
             }
             var bindings = binder.GetBindings();
-            using FileStream fileStream = new FileStream(GetFullPath(), FileMode.Create);
+			FileStream fileStream = null;
+//            using FileStream fileStream = new FileStream(GetFullPath(), FileMode.Create);
             {
                 using (StreamWriter writer = new StreamWriter(fileStream))
                 {
