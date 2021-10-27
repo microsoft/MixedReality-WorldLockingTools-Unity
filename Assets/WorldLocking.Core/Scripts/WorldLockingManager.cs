@@ -35,7 +35,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
         /// </summary>
-        public static string Version => "1.5.4";
+        public static string Version => "1.5.5";
 
         /// <summary>
         /// The configuration settings may only be set as a block.
@@ -420,13 +420,20 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private async Task<IAnchorManager> SelectAnchorManager(IPlugin plugin, IHeadPoseTracker headTracker)
         {
-            DebugLogSetup($"Select {shared.anchorSettings.anchorSubsystem} anchor manager.");
             if (AnchorManager != null)
             {
                 DebugLogSetup("Creating new anchor manager, but have old one. Reseting it before replacing.");
                 AnchorManager.Reset();
             }
             var anchorSettings = shared.anchorSettings;
+#if UNITY_EDITOR
+            if (anchorSettings.NullSubsystemInEditor)
+            {
+                DebugLogSetup($"Switching from {anchorSettings.anchorSubsystem} to AnchorSubsystem.Null because running in editor.");
+                anchorSettings.anchorSubsystem = AnchorSettings.AnchorSubsystem.Null;
+            }
+#endif // UNITY_EDITOR
+            DebugLogSetup($"Select {anchorSettings.anchorSubsystem} anchor manager.");
 #if WLT_ARFOUNDATION_PRESENT
             if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.ARFoundation)
             {

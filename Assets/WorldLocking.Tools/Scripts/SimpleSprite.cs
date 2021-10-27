@@ -44,7 +44,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             {
                 fromTarget.y = 0;
             }
-            else
+            else if (target.up.sqrMagnitude > 0)
             {
                 targetUp = target.up;
             }

@@ -144,6 +144,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public int MaxLocalAnchors;
 
         /// <summary>
+        /// Use the Null anchor subsystem when running in Unity Editor.
+        /// </summary>
+        [Tooltip("Switch to Null anchor subsystem when running in Unity Editor.")]
+        public bool NullSubsystemInEditor;
+
+        /// <summary>
         /// Init all fields to default values.
         /// </summary>
         public void InitToDefaults()
@@ -155,6 +161,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             MinNewAnchorDistance = 1.0f;
             MaxAnchorEdgeLength = 1.2f;
             MaxLocalAnchors = 0;
+            NullSubsystemInEditor = true;
         }
     }
 }
