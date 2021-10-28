@@ -60,17 +60,36 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 
         /// <summary>
-        /// Readonly access to linkage settings. These must be set from a context.
+        /// Access to linkage settings. 
         /// </summary>
-        public LinkageSettings LinkageSettings => shared.linkageSettings;
+        public LinkageSettings LinkageSettings
+        {
+            get { return shared.linkageSettings; }
+            set
+            {
+                shared.linkageSettings = value;
+            }
+        }
 
         /// <summary>
-        /// Readonly access to anchor management settings. These must be set from a context.
+        /// Access to anchor management settings. 
         /// </summary>
         /// <remarks>
-        /// Note that anchor manager type cannot be changed after initial startup.
+        /// Use <see cref="ResetAnchorManager"/> to change the type of the anchor manager after startup, or just rebuild it from scratch.
         /// </remarks>
-        public AnchorSettings AnchorSettings => shared.anchorSettings;
+        public AnchorSettings AnchorSettings
+        {
+            get { return shared.anchorSettings; }
+            set
+            {
+                bool changedSubsystem = shared.anchorSettings.anchorSubsystem != value.anchorSubsystem;
+                shared.anchorSettings = value;
+                if (changedSubsystem)
+                {
+                    ResetAnchorManager();
+                }
+            }
+        }
 
         /// <summary>
         /// Get a copy of the shared diagnostics configuration settings, or set the
@@ -285,6 +304,14 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public Pose CameraFromSpongy { get { return SpongyFromCamera.Inverse(); } }
 
+        /// <summary>
+        /// Whether the manager is currently asynchronously loading or saving state.
+        /// </summary>
+        /// <remarks>
+        /// Any attempt to manually initiate a Save or Load while HasPendingIO is true will quietly fail.
+        /// </remarks>
+        public bool HasPendingIO { get { return hasPendingLoadTask || hasPendingSaveTask; } }
+
         #endregion
 
         #region Private members
@@ -420,6 +447,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private async Task<IAnchorManager> SelectAnchorManager(IPlugin plugin, IHeadPoseTracker headTracker)
         {
+#if false
+            DebugLogSetup($"Select {shared.anchorSettings.anchorSubsystem} anchor manager.");
+            if (AnchorManager != null)
+            {
+                DebugLogSetup("Creating new anchor manager, but have old one. Reseting it before replacing.");
+                AnchorManager.Reset();
+            }
+            var anchorSettings = shared.anchorSettings;
+#else
             if (AnchorManager != null)
             {
                 DebugLogSetup("Creating new anchor manager, but have old one. Reseting it before replacing.");
@@ -434,6 +470,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             }
 #endif // UNITY_EDITOR
             DebugLogSetup($"Select {anchorSettings.anchorSubsystem} anchor manager.");
+#endif
 #if WLT_ARFOUNDATION_PRESENT
             if (anchorSettings.anchorSubsystem == AnchorSettings.AnchorSubsystem.ARFoundation)
             {
@@ -804,8 +841,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private async Task saveAsync()
         {
-            if (hasPendingLoadTask || hasPendingSaveTask)
+            if (HasPendingIO)
+            {
                 return;
+            }
 
             hasPendingSaveTask = true;
 
@@ -859,8 +898,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         private async Task loadAsync()
         {
-            if (hasPendingLoadTask || hasPendingSaveTask)
+            if (HasPendingIO)
+            {
                 return;
+            }
 
             hasPendingLoadTask = true;
 

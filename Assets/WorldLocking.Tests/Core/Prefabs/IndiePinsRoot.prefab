@@ -424,6 +424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectFromTree: 1
+  orienter: {fileID: 0}
   ownedPins: []
   saveFileName: 
   subTree: {fileID: 0}
@@ -503,6 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectFromTree: 1
+  orienter: {fileID: 0}
   ownedPins: []
   saveFileName: 
   subTree: {fileID: 0}
@@ -881,7 +883,7 @@ GameObject:
   - component: {fileID: 3219558931519431034}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1014,6 +1016,16 @@ PrefabInstance:
         type: 3}
       propertyPath: shared.linkageSettings.CameraParent
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
+        type: 3}
+      propertyPath: shared.anchorSettings.useDefaults
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114794997547214612, guid: f0777d53f35d4cb42827b5c3bdf227bd,
+        type: 3}
+      propertyPath: shared.anchorSettings.NullSubsystemInEditor
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0777d53f35d4cb42827b5c3bdf227bd, type: 3}
