@@ -242,6 +242,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 return false;
             }
+#if !UNITY_ANDROID && !UNITY_IOS
             if (sessionSubsystem != null)
             {
                 sessionSubsystem.Update(new XRSessionUpdateParams
@@ -250,6 +251,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     screenDimensions = new Vector2Int(Screen.width, Screen.height)
                 });
             }
+#endif // !UNITY_ANDROID && !UNITY_IOS            
             DebugLogExtra($"UpdateTrackables {Time.frameCount} XRAnchorSubsystem is {xrAnchorManager.running}");
             TrackableChanges<XRAnchor> changes = xrAnchorManager.GetChanges(Unity.Collections.Allocator.Temp);
             if (changes.isCreated && (changes.added.Length + changes.updated.Length + changes.removed.Length > 0))
