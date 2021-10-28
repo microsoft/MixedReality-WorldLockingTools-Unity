@@ -91,6 +91,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private static async Task<bool> CheckXRRunning()
         {
+#if WLT_XR_MANAGEMENT_PRESENT
             DebugLogSetup($"F={Time.frameCount} checking that XR is running.");
             // Wait for XR initialization before initializing the anchor subsystem to ensure that any pending Remoting connection has been established first.
             while (UnityEngine.XR.Management.XRGeneralSettings.Instance == null ||
@@ -104,6 +105,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 await Task.Yield();
             }
             DebugLogSetup($"F={Time.frameCount} XR is running.");
+#endif // WLT_XR_MANAGEMENT_PRESENT
             return true;
         }
 
@@ -231,6 +233,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 return false;
             }
+#if !UNITY_ANDROID && !UNITY_IOS
+            if (sessionSubsystem != null)
+            {
+                sessionSubsystem.Update(new XRSessionUpdateParams
+                {
+                    screenOrientation = Screen.orientation,
+                    screenDimensions = new Vector2Int(Screen.width, Screen.height)
+                });
+            }
+#endif // !UNITY_ANDROID && !UNITY_IOS            
             TrackableChanges<XRReferencePoint> changes = xrReferencePointManager.GetChanges(Unity.Collections.Allocator.Temp);
             if (changes.isCreated && (changes.added.Length + changes.updated.Length + changes.removed.Length > 0))
             {
