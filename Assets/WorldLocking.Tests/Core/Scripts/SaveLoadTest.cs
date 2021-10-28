@@ -76,10 +76,33 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
         public IEnumerator SaveLoadIndieAlign()
         {
             Debug.Log("Enter IndieAlign");
+            // Load the prefab to get the WLT context set.
             GameObject rig = loadHelper.LoadGameObject("Prefabs/IndiePinsRoot.prefab");
 
             var wltMgr = WorldLockingManager.GetInstance();
+            // Wait for load to finish completely.
+            while (wltMgr.HasPendingIO)
+            {
+                yield return null;
+            }
+            wltMgr.Reset();
+            // A previous test might have created a Null anchor manager, which doesn't implement persistence.
+            // Since we are testing persistence here, reset to get a real (WSA) anchor manager.
+            wltMgr.ResetAnchorManager();
 
+            yield return null;
+
+            // Discard the rig and reload it, now that we have the anchor management subsystem to be tested.
+            GameObject.Destroy(rig);
+
+            yield return null;
+
+            rig = loadHelper.LoadGameObject("Prefabs/IndiePinsRoot.prefab");
+
+            while (wltMgr.HasPendingIO)
+            {
+                yield return null;
+            }
             yield return null;
 
             FindAndSetPin(rig, "GPin1", new Vector3(0, 1, 0));
@@ -101,6 +124,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             yield return null;
 
             wltMgr.Save();
+            while (wltMgr.HasPendingIO)
+            {
+                yield return null;
+            }
 
             GameObject.Destroy(rig);
 
@@ -127,8 +154,13 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             yield return null;
 
             wltMgr.Load();
+            while (wltMgr.HasPendingIO)
+            {
+                yield return null;
+            }
 
             yield return null;
+            wltMgr.AlignmentManager.ComputePinnedPose(new Pose(Vector3.zero, Quaternion.identity));
 
             FindAndCheckPin(rig, "GPin1");
             FindAndCheckPin(rig, "GPin2");

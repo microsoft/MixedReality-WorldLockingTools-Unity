@@ -117,6 +117,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                         AddProperty(mgrPath, "MaxAnchorEdgeLength");
 
                         AddProperty(mgrPath, "MaxLocalAnchors");
+
+                        AddProperty(mgrPath, "NullSubsystemInEditor");
                     }
                 }
 

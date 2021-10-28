@@ -71,6 +71,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public void InitToDefaults()
         {
+            UseExisting = false;
             ApplyAdjustment = true;
             AdjustmentFrame = null;
             CameraParent = null;
