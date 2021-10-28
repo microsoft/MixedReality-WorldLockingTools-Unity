@@ -2663,6 +2663,12 @@ references:
   commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.MinNewAnchorDistance
   fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.MinNewAnchorDistance
   nameWithType: AnchorSettings.MinNewAnchorDistance
+- uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.NullSubsystemInEditor
+  name: NullSubsystemInEditor
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_NullSubsystemInEditor
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.NullSubsystemInEditor
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.NullSubsystemInEditor
+  nameWithType: AnchorSettings.NullSubsystemInEditor
 - uid: Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.UseDefaults
   name: UseDefaults
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AnchorSettings.html#Microsoft_MixedReality_WorldLocking_Core_AnchorSettings_UseDefaults
@@ -6148,6 +6154,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.GetInstance
   nameWithType: WorldLockingManager.GetInstance
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.HasPendingIO
+  name: HasPendingIO
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_HasPendingIO
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.HasPendingIO
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.HasPendingIO
+  nameWithType: WorldLockingManager.HasPendingIO
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.HasPendingIO*
+  name: HasPendingIO
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_HasPendingIO_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.HasPendingIO
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.HasPendingIO
+  nameWithType: WorldLockingManager.HasPendingIO
 - uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings
   name: LinkageSettings
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LinkageSettings

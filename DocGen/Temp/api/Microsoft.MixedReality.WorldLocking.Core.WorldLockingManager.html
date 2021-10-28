@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class WorldLockingManager
    | World Locking Tools for Unity Documentation ">
-    <meta name="generator" content="docfx 2.58.4.0">
+    <meta name="generator" content="docfx 2.58.5.0">
     
     <link rel="shortcut icon" href="../../../DocGen/Images/Logos/favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -239,12 +239,12 @@ descendant of this node.</p>
   
   <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AnchorSettings_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorSettings*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AnchorSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AnchorSettings">AnchorSettings</h4>
-  <div class="markdown level1 summary"><p>Readonly access to anchor management settings. These must be set from a context.</p>
+  <div class="markdown level1 summary"><p>Access to anchor management settings.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AnchorSettings AnchorSettings { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public AnchorSettings AnchorSettings { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -262,7 +262,7 @@ descendant of this node.</p>
     </tbody>
   </table>
   <h5 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_AnchorSettings_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Note that anchor manager type cannot be changed after initial startup.</p>
+  <div class="markdown level1 remarks"><p>Use <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_ResetAnchorManager">ResetAnchorManager()</a> to change the type of the anchor manager after startup, or just rebuild it from scratch.</p>
 </div>
   
   
@@ -667,14 +667,43 @@ well as any other transforms applied to the camera (e.g. teleport).</p>
   </table>
   
   
-  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LinkageSettings_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LinkageSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings">LinkageSettings</h4>
-  <div class="markdown level1 summary"><p>Readonly access to linkage settings. These must be set from a context.</p>
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_HasPendingIO_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.HasPendingIO*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_HasPendingIO" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.HasPendingIO">HasPendingIO</h4>
+  <div class="markdown level1 summary"><p>Whether the manager is currently asynchronously loading or saving state.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LinkageSettings LinkageSettings { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool HasPendingIO { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_HasPendingIO_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Any attempt to manually initiate a Save or Load while HasPendingIO is true will quietly fail.</p>
+</div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LinkageSettings_" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_LinkageSettings" data-uid="Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.LinkageSettings">LinkageSettings</h4>
+  <div class="markdown level1 summary"><p>Access to linkage settings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LinkageSettings LinkageSettings { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
