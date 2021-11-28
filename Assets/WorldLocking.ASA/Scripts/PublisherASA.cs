@@ -18,7 +18,7 @@ using UnityEngine;
 #if WLT_ASA_INCLUDED
 using Microsoft.Azure.SpatialAnchors;
 using Microsoft.Azure.SpatialAnchors.Unity;
-using NativeAnchor = Microsoft.Azure.SpatialAnchors.Unity.ARFoundation.UnityARFoundationAnchorComponent;
+using UnityEngine.XR.ARFoundation;
 #endif // WLT_ASA_INCLUDED
 
 using Microsoft.MixedReality.WorldLocking.Core;
@@ -288,7 +288,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             /// <summary>
             /// Safe accessor for the NativeAnchor, may return null.
             /// </summary>
-            public NativeAnchor NativeAnchor
+            public ARAnchor NativeAnchor
             {
                 get
                 {
