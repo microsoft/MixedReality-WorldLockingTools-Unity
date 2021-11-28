@@ -6,7 +6,8 @@
         "Microsoft.MixedReality.WorldLocking.Core",
         "Microsoft.MixedReality.WorldLocking.Tools",
         "AzureSpatialAnchors.SDK.Windows.Runtime",
-        "AzureSpatialAnchors.SDK.Android.Runtime"
+        "AzureSpatialAnchors.SDK.Android.Runtime",
+        "AzureSpatialAnchors.SDK.iOS.Runtime"
     ],
     "includePlatforms": [
         "Android",
