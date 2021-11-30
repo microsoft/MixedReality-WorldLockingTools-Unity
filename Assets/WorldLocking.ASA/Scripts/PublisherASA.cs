@@ -4,6 +4,14 @@
 //#define WLT_EXTRA_LOGGING
 #define WLT_LOG_ASA_SETUP
 
+#if !WLT_ASA_V2_11_0_OR_NEWER
+#define WLT_ASA_V2_10_2_OR_OLDER
+#endif // WLT_ASA_V2_11_0_OR_NEWER
+
+#if UNITY_WSA && !WLT_ASA_V2_12_0_OR_NEWER
+#define WLT_ASA_SESSION_ORIGIN_WORKAROUND
+#endif // UNITY_WSA
+
 #if WLT_DISABLE_LOGGING
 #undef WLT_EXTRA_LOGGING
 #undef WLT_LOG_ASA_SETUP
@@ -18,7 +26,16 @@ using UnityEngine;
 #if WLT_ASA_INCLUDED
 using Microsoft.Azure.SpatialAnchors;
 using Microsoft.Azure.SpatialAnchors.Unity;
+#if WLT_ASA_V2_10_2_OR_OLDER
 using NativeAnchor = Microsoft.Azure.SpatialAnchors.Unity.ARFoundation.UnityARFoundationAnchorComponent;
+#endif // WLT_ASA_V2_10_2_OR_OLDER
+#if WLT_ASA_V2_11_0_OR_NEWER
+#if WLT_ARFOUNDATION_PRESENT
+using NativeAnchor = UnityEngine.XR.ARFoundation.ARAnchor;
+#else // WLT_ARFOUNDATION_PRESENT
+#error AR Foundation required for ASA v2.11.0 or newer. Please install AR Foundation package.
+#endif // WLT_ARFOUNDATION_PRESENT
+#endif // WLT_ASA_V2_11_0_OR_NEWER
 #endif // WLT_ASA_INCLUDED
 
 using Microsoft.MixedReality.WorldLocking.Core;
@@ -41,7 +58,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
     /// </remarks>
     public class PublisherASA : MonoBehaviour, IPublisher
     {
-#region Inspector fields
+        #region Inspector fields
 
         [Tooltip("Enable coarse relocation")]
         [SerializeField]
@@ -388,7 +405,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
 #endif // WLT_ASA_INCLUDED
         }
 
-#region Implementation of IPublisher
+        #region Implementation of IPublisher
         /// <inheritdocs />
         public ReadinessStatus Status
         {
@@ -688,13 +705,13 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             throw new NotSupportedException("Trying to use PublisherASA without Azure Spatial Anchors installed.");
 #endif // WLT_ASA_INCLUDED
         }
-#endregion // Implementation of IPublisher
+        #endregion // Implementation of IPublisher
 
-#endregion // Public API
+        #endregion // Public API
 
 #if WLT_ASA_INCLUDED
 
-#region Internal implementations
+        #region Internal implementations
 
         private static void LogASASetup(string message)
         {
@@ -1057,9 +1074,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         }
 
 
-#endregion // Internal implementations
+        #endregion // Internal implementations
 
-#region Internal helpers
+        #region Internal helpers
 
         /// <summary>
         /// Convert the collection of ids to an array.
@@ -1214,10 +1231,10 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 + $" pa={WorldLockingManager.GetInstance().AnchorManager.AnchorFromSpongy.Inverse().Multiply(frozenPose).position.ToString("F3")}"
                 );
 
-#if UNITY_WSA
+#if WLT_ASA_SESSION_ORIGIN_WORKAROUND
             // mafinc - workaround for bug in ASA NativeAnchor.
             peg.anchorHanger.transform.SetLocalPose(Pose.identity);
-#endif // UNITY_WSA
+#endif // WLT_ASA_SESSION_ORIGIN_WORKAROUND
 
 #if WLT_EXTRA_LOGGING
             // mafinc - trash
@@ -1227,7 +1244,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             return peg;
         }
 
-#region TRASH
+        #region TRASH
 
 #if WLT_EXTRA_LOGGING
         private static void PrintScene()
@@ -1271,7 +1288,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         }
 #endif // WLT_EXTRA_LOGGING
 
-#endregion // TRASH
+        #endregion // TRASH
 
         /// <summary>
         /// If cloud anchor id is unknown, add the record, else update the record.
@@ -1342,7 +1359,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             Debug.Assert(record.cloudAnchor != null, $"Trying to create native resources from a null cloud anchor");
             var wltMgr = WorldLockingManager.GetInstance();
             await Task.Yield();
-#if UNITY_WSA
+#if WLT_ASA_SESSION_ORIGIN_WORKAROUND
             Pose spongyPose = record.cloudAnchor.GetPose();
             var lockedPose = wltMgr.LockedFromSpongy.Multiply(spongyPose);
             SimpleConsole.AddLine(ConsoleMid, $"RFC: sp={spongyPose.position.ToString("F3")} lp={lockedPose.position.ToString("F3")}");
@@ -1350,7 +1367,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             Pose frozenPose = record.cloudAnchor.GetPose();
             var lockedPose = wltMgr.LockedFromFrozen.Multiply(frozenPose);
             SimpleConsole.AddLine(ConsoleMid, $"RFC: fp={frozenPose.position.ToString("F3")} lp={lockedPose.position.ToString("F3")}");
-#endif // UNITY_WSA
+#endif // WLT_ASA_SESSION_ORIGIN_WORKAROUND
             record.localPeg = await InternalCreateLocalPeg(record.cloudAnchorId, lockedPose);
             AnchorRecord.DebugLog(record, "RecordFromCloud:");
             SimpleConsole.AddLine(ConsoleMid, $"Got record={record.cloudAnchorId} with {record.cloudAnchor.AppProperties.Count} properties.");
@@ -1361,9 +1378,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             return record;
         }
 
-#endregion // Internal helpers
+        #endregion // Internal helpers
 
-#region ASA events
+        #region ASA events
 
         /// <summary>
         /// Put incoming cloud anchors (from ASA thread) into a list for processing on main thread.
@@ -1426,9 +1443,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 );
         }
 
-#endregion // ASA events
+        #endregion // ASA events
 
-#region Setup helpers
+        #region Setup helpers
 
         /// <summary>
         /// Create a location provider if coarse relocation is enabled.
@@ -1528,9 +1545,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             Debug.Assert(busy != null);
             busy = null;
         }
-#endregion // Setup helpers
+        #endregion // Setup helpers
 
-#region Awful stuff
+        #region Awful stuff
 
 #if UNITY_ANDROID
         private static readonly string[] androidPermissions = new string[]
@@ -1622,7 +1639,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             waitingState = PermissionWaiting.Denied;
         }
 #endif
-#endregion // Awful stuff
+        #endregion // Awful stuff
 
 #endif // WLT_ASA_INCLUDED
     }

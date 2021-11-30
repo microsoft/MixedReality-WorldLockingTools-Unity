@@ -6,7 +6,9 @@
         "Microsoft.MixedReality.WorldLocking.Core",
         "Microsoft.MixedReality.WorldLocking.Tools",
         "AzureSpatialAnchors.SDK.Windows.Runtime",
-        "AzureSpatialAnchors.SDK.Android.Runtime"
+        "AzureSpatialAnchors.SDK.Android.Runtime",
+        "AzureSpatialAnchors.SDK.iOS.Runtime",
+        "Unity.XR.ARFoundation"
     ],
     "includePlatforms": [
         "Android",
@@ -25,6 +27,21 @@
             "name": "com.microsoft.azure.spatial-anchors-sdk.core",
             "expression": "",
             "define": "WLT_ASA_INCLUDED"
+        },
+        {
+            "name": "com.microsoft.azure.spatial-anchors-sdk.core",
+            "expression": "2.11",
+            "define": "WLT_ASA_V2_11_0_OR_NEWER"
+        },
+        {
+            "name": "com.microsoft.azure.spatial-anchors-sdk.core",
+            "expression": "2.12",
+            "define": "WLT_ASA_V2_12_0_OR_NEWER"
+        },
+        {
+            "name": "com.unity.xr.arfoundation",
+            "expression": "",
+            "define": "WLT_ARFOUNDATION_PRESENT"
         }
     ],
     "noEngineReferences": false
