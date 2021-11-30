@@ -2,6 +2,8 @@
 
 [See release notes](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases)
 
+## 1.5.6 - Update to ASA v2.11.0.
+
 ## 1.5.4 - Backward compatibility for Unity 2018 .NET backend.
 
 ## 1.5.3 - Remove dependency on tuple, and add MR Feature Tool support back to Unity 2018.4.
