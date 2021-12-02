@@ -1,3 +1,12 @@
+---
+title: Using the Mixed Reality Feature Tool to install World Locking Tools
+description: Practical notes on using MR Feature Tool to install WLT.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # Using the Mixed Reality Feature Tool to install World Locking Tools
 
@@ -32,17 +41,17 @@ To finish importing the samples into your project:
 
 2. If the Package Manager is set to "Unity Registry", change it to "In Project"
 
-![Package manager In Project](~/DocGen/Images/Screens/UPMSamples/InProject.JPG)
+    ![Package manager In Project](~/DocGen/Images/Screens/UPMSamples/InProject.JPG)
 
 3. Find the Samples you want to finish installing. Here we are targeting "World Locking Samples v1.2.4".
 
-![Import into project button](~/DocGen/Images/Screens/UPMSamples/ImportIntoProject.JPG)
+    ![Import into project button](~/DocGen/Images/Screens/UPMSamples/ImportIntoProject.JPG)
 
 4. Hit the "Import into project" button.
 
 5. The examples will now appear under a Samples folder in Assets, as shown here. They can be relocated to suit your project's organization.
 
-![Samples shown in Unity project](~/DocGen/Images/Screens/UPMSamples/Samples.JPG)
+    ![Samples shown in Unity project](~/DocGen/Images/Screens/UPMSamples/Samples.JPG)
 
 ## Differences between installation methods
 

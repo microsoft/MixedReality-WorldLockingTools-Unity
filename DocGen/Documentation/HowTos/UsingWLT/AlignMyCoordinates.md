@@ -1,3 +1,12 @@
+---
+title: Align my coordinates
+description: Explanation of why an application might want to align its coordinate space to the physical world, and how WLT accomplishes that.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # Align my coordinates
 
@@ -21,4 +30,3 @@ In order to do that, the system needs more information from your application. Th
 * [Most Basic Setup](JustWorldLock.md)
 * [Loss of Tracking](LossOfTracking.md)
 * [Across Sessions](PersistenceTricks.md)
-

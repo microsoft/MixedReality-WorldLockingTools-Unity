@@ -1,3 +1,12 @@
+---
+title: Setting up and running the WLT+ASA samples
+description: Step-by-step instructions on deploying the sample combining WLT and ASA to persist and share coordinate spaces.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK, ASA
+---
 
 # Setting up and running the WLT+ASA samples
 
@@ -31,17 +40,17 @@ This sample has been developed and tested using:
 * World Locking Tools for Unity v1.4.1
 * FrozenWorldEngine v1.1.1
 
-You can install WLT and this sample either from [WLT releases .unitypackage](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases) or from the Mixed Reality Feature Tool. Note that if installing from the FeatureTool, you must not only install the WLT Examples dependency (automatic), but also Import the Examples into your project. See [Installing WLT from MR Feature Tool](../WLTviaMRFeatureTool.md) for details.
+You can install WLT and this sample either from [WLT releases .unitypackage](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases) or from the Mixed Reality Feature Tool. If installing from the FeatureTool, you must not only install the WLT Examples dependency (automatic), but also Import the Examples into your project. See [Installing WLT from MR Feature Tool](../WLTviaMRFeatureTool.md) for details.
 
 ### Install the Frozen World Engine DLL into the project
 
-The first step is to install the Frozen World Engine DLL, v1.1.1. [Instructions here](https://microsoft.github.io/MixedReality-WorldLockingTools-Unity/DocGen/Documentation/HowTos/InitialSetup.html#frozenworld-engine-installation), using either NuGet for Unity, or command line nuget.exe.
+The first step is to install the Frozen World Engine DLL, v1.1.1. [Instructions here](~/DocGen/Documentation/HowTos/InitialSetup.md#frozenworld-engine-installation), using either NuGet for Unity, or command-line nuget.exe.
 
 ### Install ASA
 
 #### Creating spatial anchor resources
 
-This [Quick Start Guide](https://docs.microsoft.com/azure/spatial-anchors/quickstarts/get-started-unity-hololens?tabs=azure-portal) goes through the steps to create an Azure account and the necessary spatial anchors resources. The Account Id, Account Domain, and Account Key will be necessary to run the sample. You will add them into the proper fields on the "Spatial Anchor Manager" script, on the SpacePinBinder object in the scene. Other authentication methods are supported, but the Account Id/Domain/Key is the easiest when getting started.
+This [Quick Start Guide](https://docs.microsoft.com/azure/spatial-anchors/quickstarts/get-started-unity-hololens?tabs=azure-portal) goes through the steps to create an Azure account and the necessary spatial anchors resources. The Account ID, Account Domain, and Account Key will be necessary to run the sample. You will add them into the proper fields on the "Spatial Anchor Manager" script, on the SpacePinBinder object in the scene. Other authentication methods are supported, but the Account ID/Domain/Key is the easiest when getting started.
 
 ![Credentials fields](~/DocGen/Images/ASA/InspectorAccount.jpg)
 
@@ -55,15 +64,15 @@ When using Coarse Relocation, additional setup is required when deploying to And
 
 #### What is Coarse Relocation?
 
-Coarse Relocation is a technology which allows you to search for previously created cloud anchors within your current vicinity. Additional details on Course Relocation can be found in the [Course Relocation section of the Azure Spatial Anchors documentation](https://docs.microsoft.com/azure/spatial-anchors/concepts/coarse-reloc).
+Coarse Relocation is a technology that allows you to search for previously created cloud anchors within your current vicinity. Details on Course Relocation can be found in the [Course Relocation section of the Azure Spatial Anchors documentation](https://docs.microsoft.com/azure/spatial-anchors/concepts/coarse-reloc).
 
-This sample demonstrates finding cloud anchors either by Coarse Relocation, or explicitly by cloud anchor id (GUID). If Coarse Relocation is enabled, the following additional setup steps are required. If you aren't interested in Coarse Relocation, you can disable it in the "Publisher ASA" component on the SpacePinBinder object.
+This sample demonstrates finding cloud anchors either by Coarse Relocation, or explicitly by cloud anchor ID (GUID). If Coarse Relocation is enabled, the following additional setup steps are required. If you aren't interested in Coarse Relocation, you can disable it in the "Publisher ASA" component on the SpacePinBinder object.
 
 ![Disabling coarse relocation](~/DocGen/Images/ASA/InspectorPublisher.jpg)
 
 #### Additional setup steps for HoloLens2
 
-To enable Coarse Relocation on HoloLens2, you must add a permission to the Package.appxmanifest file generated into ARM/WorldLockingTools/Package.appxmanifest (assuming you selected the folder ARM as your build target). If this is your own project, substitute the appropriate name for WorldLockingTools in that path. Add the following line into the Capabilities section:
+To enable Coarse Relocation on HoloLens2, you must add a permission to the Package.appxmanifest file generated into ARM/WorldLockingTools/Package.appxmanifest (assuming you selected the folder ARM as your build target). If this project is your own, substitute the appropriate name for WorldLockingTools in that path. Add the following line into the Capabilities section:
 
 ```xml
     <DeviceCapability Name="wiFiControl"/>
@@ -75,7 +84,7 @@ If you miss this step, the Publisher "Readiness" will never reach the "Ready" st
 
 > InvalidOperationException: CoarseReloc: WiFi access has been declined. Request CV: . Response CV: .
 
-Note that you will need to add that capability to your Package.appxmanifest each time the solution is built from clean. But subsequent builds from Unity will preserve the capability.
+You will need to add that capability to your Package.appxmanifest each time the solution is built from clean. But subsequent builds from Unity will preserve the capability.
 
 In Project Settings/XR Plugin Management, make sure that Windows Mixed Reality is the selected Plugin-Provider under the UWP tab (OpenXR is also supported for WLT with ASA).
 
@@ -115,7 +124,7 @@ The menu on mobile is slightly different in form, but button positions and meani
 
 When you start up the sample, the coordinate system is position and oriented based on the head tracker pose at startup. Which is to say, it is fairly arbitrary. The first thing to do is to adjust the coordinate system to a desired reference state.
 
-The sofa in the PinTestSofa scene is 2.18 meters long, 0.78m high, and 1.0m deep. The SpacePin handles on each end of the top back of the sofa are, therefore, 2.18m apart, and 0;78m off the ground. I recommend measuring and placing temporary markers 2.18m apart, at some convenient height. Alternatively, you can adjust the scene to fit your physical space.
+The sofa in the PinTestSofa scene is 2.18 meters long, 0.78 m high, and 1.0 m deep. The SpacePin handles on each end of the top back of the sofa are, therefore, 2.18 m apart, and 0.78 m off the ground. I recommend measuring and placing temporary markers 2.18 m apart, at some convenient height. Alternatively, you can adjust the scene to fit your physical space.
 
 Having built and deployed the application to a HoloLens2 device, wait until the status on the floating menu says Ready (hint - the status line will go from red to white when ready).
 

@@ -1,9 +1,18 @@
+---
+title: Persisting spatial coordinate systems
+description: Persisting local spatial tracking state across sessions.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
-# Persistence
+# Persisting spatial coordinate systems
 
-In general, the benefits of World Locking Tools' persistence capabilities are of more interest than the details of their implementation. 
+In general, the benefits of World Locking Tools' persistence capabilities are of more interest than the details of their implementation.
 
-This article will therefore begin with a discussion of the experiences that World Locking Tools persistence enables, and how World Locking Tools State persistence may be managed. It will then close with a brief sketch of what data is actually saved and loaded.
+This article will therefore begin with a discussion of the experiences that World Locking Tools persistence enables. After that comes a look at how World Locking Tools State persistence may be managed. It will then close with a brief sketch of what data is saved and loaded.
 
 ## World Locking Tools across sessions
 
@@ -11,7 +20,7 @@ As defined [elsewhere](../BasicConcepts.md), the Frozen State is all data necess
 
 The primary utility of World Locking Tools' persistence is in allowing the benefits of a preliminary session's work, scanning an area and aligning virtual space to the real world, to be used in subsequent sessions.
 
-This allows subsequent sessions to forego tedious or time consuming setup and get straight to the focal experience.
+Restoration of this state allows subsequent sessions to forego tedious or time consuming setup and get straight to the focal experience.
 
 ## Saving World Locking Tools State
 
@@ -37,7 +46,7 @@ If more control over the timing of the saving of state is required, then the Aut
 WorldLockingManager.GetInstance().Save();
 ```
 
-As the save is asynchronous, additional attempts to invoke a `Save()` while a previous is still under way will be ignored.
+As the save is asynchronous, other attempts to invoke a `Save()` while a previous is still under way will be ignored.
 
 ## Loading Frozen State
 
@@ -47,7 +56,7 @@ As in saving Frozen State, there are two paths for loading state.
 
 If the AutoLoad flag on the World Locking Tools Manager is enabled, then any previous saved state will be loaded at startup time. If there is no saved state to load, no error is generated and startup proceeds as if the flag wasn't set.
 
-Note that setting the AutoLoad flag from false to true (e.g. via script) at runtime will have no effect. The AutoLoad either happens at initial load, or doesn't happen at all.
+Setting the AutoLoad flag from false to true (for example, via script) at runtime will have no effect. The AutoLoad either happens at initial load, or doesn't happen at all.
 
 However, a load may be initiated from script at any time through the World Locking Tools Manager's Load function:
 
@@ -61,15 +70,15 @@ As with the Save, the Load is performed asynchronously. Any subsequent calls to 
 
 The data required to reconstruct the World Locking Tools mapping, that is the alignment of the virtual world to the real world, can be broken into three groups.
 
-* **Spatial Anchors** - The underlying network of spatial anchors created and maintained internally by World Locking Tools' [Anchor Manager](xref:Microsoft.MixedReality.WorldLocking.Core.IAnchorManager), supply the requisite binding to the real world. Those anchors are persisted via the platforms underlying storage mechanism. 
+* **Spatial Anchors** - The underlying network of spatial anchors created and maintained internally by World Locking Tools' [Anchor Manager](xref:Microsoft.MixedReality.WorldLocking.Core.IAnchorManager), supply the requisite binding to the real world. Those anchors are persisted via the platforms underlying storage mechanism.
 
-* **Engine State** - Additional state is persisted in to allow the engine to resume its current mapping. This removes such indeterminacies as the initial pose of the head in the previous session(s).
+* **Engine State** - Engine state is persisted to allow the engine to resume its current mapping. Restoring this state removes such indeterminacies as the initial pose of the head in the previous session(s).
 
-* **Space Pinning** - If the application has applied any further Space Pins to force alignment of modeling coordinates to the real world at a discrete set of points, that additional mapping is also persisted.
+* **Space Pinning** - If the application has applied any further Space Pins to force alignment of modeling coordinates to the real world at a discrete set of points, that mapping is also persisted.
 
 ## What is not saved?
 
-Note that only state is saved. In particular, settings are not saved. Any configuration changes by the application, for example changes made through the WorldLockingManager API, are reset each time the application starts up to their values as set in the Unity Inspector, or if they aren't set in the Inspector then to their default values in code.
+Only state is saved. In particular, settings are not saved. Any configuration changes by the application, for example changes made through the WorldLockingManager API, are reset each time the application starts up to their values as set in the Unity Inspector, or if they aren't set in the Inspector then to their default values in code.
 
 For example, say the application wants to present the user with the option to AutoSave World Locking state, and have the user's preference persist across sessions until changed. Then the application must:
 

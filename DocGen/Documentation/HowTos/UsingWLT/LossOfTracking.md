@@ -1,7 +1,16 @@
+---
+title: Handling exceptional conditions
+description: Fail-safes in place for when things temporarily go wrong.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # Handling exceptional conditions
 
-For the most part, WLT can detect and fix tracking errors quietly without the application's involvement. 
+For the most part, WLT can detect and fix tracking errors quietly without the application's involvement.
 
 But some exceptional conditions lead to errors which the application might want to adjust to.
 
@@ -30,7 +39,7 @@ It is important to recognize that the Adjuster components serve two roles:
 
 ### AttachmentPoint management
 
-Examining the `Start()` and `OnDestroy()` members captures most of the management of the AttachmentPoint required. 
+Examining the `Start()` and `OnDestroy()` members captures most of the management of the AttachmentPoint required.
 
 On `Start()`, the underlying AttachmentPoint is created, giving the AdjusterFixed's member functions as callbacks (see below).
 
@@ -44,7 +53,7 @@ The two callbacks implement the application's desired behavior during these exce
 
 In `HandleStateAdjust()`, the AdjusterFixed component disables objects contained in a fragment which isn't currently being tracked.
 
-```
+```csharp
         protected virtual void HandleAdjustState(AttachmentPointStateType state)
         {
             bool visible = state == AttachmentPointStateType.Normal;
@@ -73,7 +82,7 @@ As described in the [conceptual documentation](../../Concepts/Advanced/RefitOper
 
 The application is, of course, free to ignore such adjustments. However, the behavior provided by the AdjusterFixed (and AdjusterMoving) component is to apply that repositioning transform immediately.
 
-```
+```csharp
         protected virtual void HandleAdjustLocation(Pose adjustment)
         {
             Pose pose = gameObject.transform.GetGlobalPose();
@@ -92,9 +101,9 @@ A closer look at the [AdjusterMoving](xref:Microsoft.MixedReality.WorldLocking.T
 
 The difference between the two is that the AdjusterMoving assumes that its target is constantly being moved around the environment. Therefore, each update it notifies the WLT system of its new Pose.
 
-The cost of the AdjusterMoving comes mostly from the addition of an [Update()](href:https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html) function, rather than the work done within the function. However, for an object that is "mostly" stationary, and is only moved infrequently from script, it can be advantageous to use an AdjusterFixed component, and call [AdjusterFixed.UpdatePosition()](xref:Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.UpdatePosition) after each time the object is moved.
+The cost of the AdjusterMoving comes mostly from the addition of an [Update()](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html) function, rather than the work done within the function. However, for an object that is "mostly" stationary, and is only moved infrequently from script, it can be advantageous to use an AdjusterFixed component, and call [AdjusterFixed.UpdatePosition()](xref:Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.UpdatePosition) after each time the object is moved.
 
-## Customize the behavior, but only if you want to.
+## Customize the behavior, but only if you want to
 
 Again, the pattern here is hopefully consistent throughout the World Locking Tools. WLT provides simple but generally useful baseline behavior. It is hoped that this implementation will either:
 

@@ -1,3 +1,13 @@
+---
+title: Advanced capabilities of World Locking Tools
+description: Describing the next level up of solutions World Locking Tools offers.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
+
 # Advanced capabilities of World Locking Tools
 
 Some definition of terms might be helpful before diving deeper into World Locking Tools' more advanced usage. 

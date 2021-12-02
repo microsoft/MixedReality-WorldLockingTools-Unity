@@ -1,3 +1,12 @@
+---
+title: Persistence tricks
+description: Advanced capabilities around WLT persistence.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # Persistence tricks
 
@@ -7,40 +16,40 @@ Persistence is available where supported by the underlying platform. Currently, 
 
 Basic persistence for World Locking Tools comes enabled by default. This enabling comes in two parts.
 
-![](~/DocGen/Images/Screens/PersistSaveLoad.jpg)
+![Inspector settings for persistence](~/DocGen/Images/Screens/PersistSaveLoad.jpg)
 
-The relevant checkboxes here are the "Auto Load" and "Auto Save", which are checked. You might notice they are greyed out. That's because they are part of the "Use Defaults" choice. Disabling "Use Defaults" enables the selection of arbitrary combinations of the Automation options. 
+The relevant checkboxes here are the "Auto Load" and "Auto Save", which are checked. You might notice they are greyed out. That's because they are part of the "Use Defaults" choice. Disabling "Use Defaults" enables the selection of arbitrary combinations of the Automation options.
 
 Further reading is available on [these settings](xref:Microsoft.MixedReality.WorldLocking.Core.ManagerSettings), and on [manipulating them from script](../WorldLockingContext.md).
 
-### Auto Save
+### AutoSave
 
-The Auto Save option directs WLT to make frequent and regular state saves while running the application. At any time, the application may be terminated with minimal loss of state.
+The AutoSave option directs WLT to make frequent and regular state saves while running the application. At any time, the application may be terminated with minimal loss of state.
 
-### Auto Load
+### AutoLoad
 
-The Auto Load option directs WLT to load any previously saved state at startup. This effectively allows the application to resume a new session where it left off (w.r.t. WLT) from the last session.
+The AutoLoad option directs WLT to load any previously saved state at startup. This effectively allows the application to resume a new session where it left off (w.r.t. WLT) from the last session.
 
 ### Full persistence
 
-With both Auto Save and Auto Load enabled, WLT operates seamlessly across sessions. While the position and orientation of global space is essentially arbitrary on the first run (since there is no previous state saved, it uses the head pose at startup as the origin), subsequent runs will share that same coordinate frame.
+With both AutoSave and AutoLoad enabled, WLT operates seamlessly across sessions. While the position and orientation of global space are arbitrary on the first run (since there is no previous state saved, it uses the head pose at startup as the origin), subsequent runs will share that same coordinate frame.
 
 This leads to interesting behavior when the application starts a new session in a space disconnected from the previous session's space. See the [persistence by location](#persistence-by-location) section below for details.
 
 > [!NOTE]
-> The Auto Save and Auto Load settings also apply to global SpacePins. See [below](#persistence-of-spacepins) for details.
+> The AutoSave and AutoLoad settings also apply to global SpacePins. See [below](#persistence-of-spacepins) for details.
 
 ## Application control over persistence
 
-The default full persistence is quite suitable for a broad range of applications. 
+The default full persistence is suitable for a broad range of applications.
 
 Some applications, however, might want finer control over the process.
 
-It may seem odd that enabling WLT automatic persistence is broken into two properties, the Auto Save and the Auto Load. Examining cases where the two are used independently might provide insights into the overall persistence system.
+It may seem odd that enabling WLT automatic persistence is broken into two properties, the AutoSave and the AutoLoad. Examining cases where the two are used independently might provide insights into the overall persistence system.
 
-### Auto Save but not Auto Load
+### AutoSave but not AutoLoad
 
-![](~/DocGen/Images/Screens/PersistSave.jpg)
+![Setting for auto-saving but application controlled loading](~/DocGen/Images/Screens/PersistSave.jpg)
 
 With this configuration, WLT is set to periodically save its state. However, it will not automatically load any persisted state at startup.
 
@@ -52,21 +61,21 @@ The general WLT save state is in the file "_LocalState_/frozenWorldState.hkfw". 
 
 The save file for alignment (SpacePin) data defaults to "_LocalState_/Persistence/Alignment.fwb". However, that can be overridden by the application via the alignment manager's [SaveFileName](xref:Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.SaveFileName).
 
-Note that the decision to load the previous session's state with this configuration needs to be made at startup. Once running the previous session's saved state will be overwritten with this session's state. For a more flexible setup, see [Manual save and load](#manual-save-and-load) below.
+The decision to load the previous session's state with this configuration needs to be made at startup. Once running the previous session's saved state will be overwritten with this session's state. For a more flexible setup, see [Manual save and load](#manual-save-and-load) below.
 
-### Manual save but Auto Load
+### Manual save but AutoLoad
 
-![](~/DocGen/Images/Screens/PersistLoad.jpg)
+![Settings for auto-load but application controlled save](~/DocGen/Images/Screens/PersistLoad.jpg)
 
 In this configuration, WLT will load any available state from a previous session at startup. It will not, however, automatically save state. This allows the application to decide if and when state is worth saving, with a call to [Save()](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Save).
 
-Note that Auto Load only tells WLT to load any available state at startup. The application is free to restore any saved state at any time with an explicit call to Load().
+AutoLoad only tells WLT to load any available state at startup. The application is free to restore any saved state at any time with an explicit call to Load().
 
 ### Manual save and load
 
-![](~/DocGen/Images/Screens/PersistNone.jpg)
+![Settings for no persistence or application controlled persistence](~/DocGen/Images/Screens/PersistNone.jpg)
 
-The application may choose to keep total control over the save and load process. 
+The application may choose to keep total control over the save and load process.
 
 State will then only be saved with an explicit call from the application to [Save()](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Save), and only loaded with an explicit call to [Load()](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.Load).
 
@@ -76,17 +85,17 @@ The state loaded by the call to Load() might have been saved earlier in this ses
 
 As explained above, persistence is always available to the application from script. Automated persistence may be enabled and disabled from script or through the WorldLockingContext in the Inspector. If automated persistence is disabled, WLT will make no attempt to save or load state without explicit requests from the application. 
 
-Of course, since the Auto Load directive only affects whether to load or not at startup, changing the value from script after startup has no effect. 
+Of course, since the AutoLoad directive only affects whether to load or not at startup, changing the value from script after startup has no effect.
 
 ## A caution during development
 
-As noted above, the location of the save files for global WLT and alignment are global to the application. In particular, the alignment nodes, aka SpacePins, are persisted by name (see [below](#persistence-of-spacepins)). If an application saves state with a set of SpacePins from one scene, and then loads state with a set of SpacePins from another scene, and both sets of SpacePins share common names, then the behavior is undefined.
+As noted above, the location of the save files for global WLT and alignment are global to the application. In particular, the alignment nodes, also known as SpacePins, are persisted by name (see [below](#persistence-of-spacepins)). If an application saves state with a set of SpacePins from one scene, and then loads state with a set of SpacePins from another scene, and both sets of SpacePins share common names, then the behavior is undefined.
 
 There are multiple ways around this issue. If possible, the best is to simply avoid reusing SpacePin names within a project. If after re-deployment, you see unexpected scene sliding behavior, try deleting WLT save state. Likewise, when radically changing the application, the overly cautious might want to either delete their WLT save files from device, or simply uninstall the application before installing the new version.
 
 ## Persistence by location
 
-### The scenario 
+### The scenario
 
 There is an interesting class of applications which are run in multiple physical locations. The application might be run in Room A, the device closed, relocated, and then the application restarted in Room B. Room B might be down the hall from Room A, or might be on another continent. The application and the device have no way of knowing.
 
@@ -96,29 +105,29 @@ For simplicity, let's say that the application is configured for manual WLT pers
 
 Consider these unconnected rooms A and B.
 
-![](~/DocGen/Images/IntroDiags/S1_Empty.jpg)
+![Empty rooms on different continents](~/DocGen/Images/IntroDiags/S1_Empty.jpg)
 
 The application is started in Room A. After establishing a contiguous frozen coordinate space within the room, the entire room maps to [fragment](../../Concepts/Advanced/Fragments.md) 1. A persistent hologram Object X is placed in the room. Then the application saves state, and is quit.
 
-![](~/DocGen/Images/IntroDiags/S2_RoomA.jpg)
+![World locking room A.](~/DocGen/Images/IntroDiags/S2_RoomA.jpg)
 
-The device is powered off, taken to Room B, and started again. 
+The device is powered off, taken to Room B, and started again.
 
-The device recognizes this to not be Room A, so WLT assigns a new fragment id to its contents, say id == 29. Why 29? Because it isn't 1. [Fragment ids](xref:Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.FragmentIds) are arbitrary in value, other than one fragment's id will not be FragmentId.Invalid, or FragmentId.Unknown, or the same as any other known fragment.
+The device recognizes this to not be Room A, so WLT assigns a new fragment ID to its contents, say ID == 29. Why 29? Because it isn't 1. [Fragment IDs](xref:Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.FragmentIds) are arbitrary in value, other than one fragment's ID will not be FragmentId.Invalid, or FragmentId.Unknown, or the same as any other known fragment.
 
-![](~/DocGen/Images/IntroDiags/S3_RoomB.jpg)
+![World locking room B with room A untracked](~/DocGen/Images/IntroDiags/S3_RoomB.jpg)
 
 Now there are two fragments, and no way to merge them (since there is no information available on their relative locations).
 
 The interested application developer might ask: I placed a persistent Object X in Room A, what happens when Object X is loaded when the application starts in Room B?
 
-The answer is that the behavior is left to the application developer to determine. The [current fragment id](xref:Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.CurrentFragmentId) when the Object X is placed in Room A is available, and can be persisted. The application can then decide at startup whether to show Object X or not based on whether the current fragment is the same as when it was created or not.
+The answer is that the behavior is left to the application developer to determine. The [current fragment ID](xref:Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.CurrentFragmentId) when the Object X is placed in Room A is available, and can be persisted. The application can then decide at startup whether to show Object X or not based on whether the current fragment is the same as when it was created or not.
 
-Here, the developer decides (and implements) that Object X will only be loaded if the current fragment id is 1, and Object Y, from Room B, will only be loaded if the current fragment is 29.
+Here, the developer decides (and implements) that Object X will only be loaded if the current fragment ID is one, and Object Y, from Room B, will only be loaded if the current fragment is 29.
 
-The persistence of the fragment id associated with a space is saved as part of the persistence of World Locking Tools. However, the persistence of the fragment id associated with an object, as well as actions to take based on it, are left to the application.
+The persistence of the fragment ID associated with a space is saved as part of the persistence of World Locking Tools. However, the persistence of the fragment ID associated with an object, as well as actions to take based on it, are left to the application.
 
-Note that along with the object's associated fragment id, it's Pose in global space can be saved. Then if the fragment id matches, after the object is loaded its Pose can be restored, returning it to its position in the physical world during the last session. With World Locking Tools persistence, a Pose remains fixed across sessions relative to the physical world features around it.
+Along with the object's associated fragment ID, its Pose in global space can be saved. Then if the fragment ID matches, after the object is loaded its Pose can be restored, returning it to its position in the physical world during the last session. With World Locking Tools persistence, a Pose remains fixed across sessions relative to the physical world features around it.
 
 ## Persistence of SpacePins
 
@@ -126,7 +135,7 @@ SpacePins can be thought of as application-side wrappers for AlignmentAnchors. W
 
 However, it might otherwise be confusing that an AlignmentManager can persist SpacePins, when it has no notion of SpacePins. That is because the AlignmentManager manages the conceptual AlignmentAnchor, which embodies the essence of a SpacePin, and from which a SpacePin can be reconstituted.
 
-There are more application level controls for the persistence of SpacePins then with the general WLT persistence system, because SpacePins are inherently more driven by application input than rest of the World Locking Tools.
+There are more application level controls for the persistence of SpacePins than with the general WLT persistence system, because SpacePins are inherently more driven by application input than rest of the World Locking Tools.
 
 It is important to remember that SpacePins (and AlignmentAnchors) are persisted by name. This is a slightly stronger requirement than the general one that no two *active* SpacePins in the same IAlignmentManager have the same name. If persisting SpacePins, then no two SpacePins in the same database can have the same name, whether active or not.
 
@@ -146,7 +155,7 @@ Each AlignSubtree component's AlignmentManager has its own save file location, w
 
 ### But really
 
-It is heavily recommended that, in the long run, it is simpler and more robust to give SpacePins/AlignmentAnchors globally unique names, than to try to manage the lighter locally unique requirement. But do what you like. 
+It is heavily recommended that, in the long run, it is simpler and more robust to give SpacePins/AlignmentAnchors globally unique names, than to try to manage the lighter locally unique requirement. But do what you like.
 
 ## See also
 

@@ -1,3 +1,12 @@
+---
+title: Before getting started
+description: A few notes on WLT to consider before diving in.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # Before getting started
 
@@ -9,7 +18,7 @@ The answer, which may surprise you, is "None."
 
 WLT has been carefully structured to handle the vast majority of usage cases with a simple drag and drop interface. Some slight modifications to your scene, [as described here](JustWorldLock.md), and your application is world-locked and anchor free.
 
-![](~/DocGen/Images/Screens/BasicSetup.jpg)
+![Screenshot of Unity with most basic WLT setup](~/DocGen/Images/Screens/BasicSetup.jpg)
 
 ## Customizing behavior through code
 
@@ -23,7 +32,7 @@ The other case is where additional input is required from your application in or
 
 WLT strives to maintain this pattern throughout. To get the most commonly desired functionality requires no coding and minimal setup. Default behavior is implemented as available components. Customizing the default behavior requires only enough code to override the provided behavior with the behavior you want. Additional features require only enough interaction with your application to indicate your intentions.
 
-There is a lot of API surface in WLT. Those are growth opportunities for farther down the road, so that WLT never boxes you in. But start off simple. You may find WLT does everything you require from it without a line of code. 
+There is a lot of API surface in WLT. Those are growth opportunities for farther down the road, so that WLT never boxes you in. But start off simple. You may find WLT does everything you require from it without a line of code.
 
 ## See also
 

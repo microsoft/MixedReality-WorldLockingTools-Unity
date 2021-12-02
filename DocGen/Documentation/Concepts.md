@@ -1,4 +1,14 @@
-# World Locking Tools Concepts
+---
+title: World Locking Tools concepts
+description: Explaining the problems World Locking Tools solves, and how it solves them.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
+
+# World Locking Tools concepts
 
 ## The problem
 

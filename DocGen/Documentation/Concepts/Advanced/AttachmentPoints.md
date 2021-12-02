@@ -1,3 +1,13 @@
+---
+title: Attachment points
+description: Pinning the virtual and physical worlds together at discrete points.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
+
 # Attachment points
 
 First and foremost, World Locking Tools provides a stable world-locked coordinate system, the world locked space. This space remains as fixed as possible relative to the physical world. And objects within world locked space enjoy capabilities requiring such a stable frame of reference, such as maintaining relative placement to other virtual objects, simulation of natural physics laws, kinematics, and other animation techniques.
@@ -12,7 +22,7 @@ Using Unity's spatial anchor system, the two anchors would just silently move in
 
 But World Locking Tools guarantees that in world locked space, non-moving objects will "mostly" never move. And in fact, any motion is up to the owning application.
 
-Another common "abnormal" condition is **loss of tracking**. When tracking is lost in one environment (e.g. room) and regained in another environment, then at first there is no information linking the two spaces. The coordinates in one space are meaningless relative to coordinates in the other space. The attachment point paradigm allows the application to gracefully handle the initial phase when spatial information about the old space is unknown (e.g. by hiding the objects in that old space), as well as recovering when the spatial relationship between the two spaces does become known.
+Another common "abnormal" condition is **loss of tracking**. When tracking is lost in one environment (for example, room) and regained in another environment, then at first there is no information linking the two spaces. The coordinates in one space are meaningless relative to coordinates in the other space. The attachment point paradigm allows the application to gracefully handle the initial phase when spatial information about the old space is unknown (for example, by hiding the objects in that old space), as well as recovering when the spatial relationship between the two spaces does become known.
 
 More discussion can be found of these special conditions and the [refit operations](RefitOperations.md) which WLT performs to handle them. The discussion here is focused on the contract between WLT and the application on smoothly resolving such conditions.
 
@@ -52,7 +62,7 @@ How to best handle these notifications is left to the application, as each will 
 
 For an attachment point that is to remain fixed in the physical world, and which should hide its contents when its tracking is not valid, [AdjusterFixed](xref:Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed) implements the [AdjustStateDelegate](xref:Microsoft.MixedReality.WorldLocking.Core.AdjustStateDelegate) with its HandleAdjustState member,and the [AdjustLocationDelegate](xref:Microsoft.MixedReality.WorldLocking.Core.AdjustLocationDelegate) with its HandleAdjustLocation member. A similar component for moving objects is in [AdjusterMoving](xref:Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving).
 
-It is worth noting that supplying either or both these delegates is optional, and in fact reactions to state and location changes may be implemented based on polling rather than events. But unless their use is impossible due to specifics of the application, the event based system using delegates forms a much more efficient implementation.
+It is worth noting that supplying either or both these delegates is optional, and in fact reactions to state and location changes may be implemented based on polling rather than events. But unless their use is impossible due to specifics of the application, the event-based system using delegates forms a much more efficient implementation.
 
 The recommendation is that you start with the AdjusterFixed component (or very similar AdjusterMoving), and modify the handlers [HandleAdjustLocation](xref:Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.HandleAdjustLocation*) and [HandleAdjustState](xref:Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.HandleAdjustState*) to suit your applications needs.
 

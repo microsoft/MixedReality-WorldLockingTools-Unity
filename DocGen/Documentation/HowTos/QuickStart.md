@@ -1,3 +1,12 @@
+---
+title: Quick start guide
+description: The fast path for getting up and running with World Locking Tools.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # Quick start guide
 
@@ -13,4 +22,4 @@ It is suggested that you proceed through these in the order presented here.
 * [Most basic setup](UsingWLT/JustWorldLock.md) - Minimal work to get 99% of WLT's value.
 * [Loss of tracking](UsingWLT/LossOfTracking.md) - Elegant handling of exceptional conditions.
 * [Across sessions](UsingWLT/PersistenceTricks.md)  - Getting a seamless experience across sessions.
-* [Pinning it down](UsingWLT/AlignMyCoordinates.md)  - Putting the coordinate space where you want it.  
+* [Pinning it down](UsingWLT/AlignMyCoordinates.md)  - Putting the coordinate space where you want it.
