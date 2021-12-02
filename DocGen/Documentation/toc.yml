@@ -10,6 +10,21 @@
   - name: Advanced Topics
     href: Concepts/AdvancedConcepts.md
     items: 
+    - name: Architecture
+      href: Concepts/Advanced/Architecture/Architecture.md
+      items: 
+      - name: World Locking Manager
+        href: Concepts/Advanced/Architecture/Managers/WorldLockingManager.md
+      - name: Anchor management
+        href: Concepts/Advanced/Architecture/Managers/IAnchorManager.md
+      - name: Fragment management
+        href: Concepts/Advanced/Architecture/Managers/IFragmentManager.md
+      - name: Attachment point management
+        href: Concepts/Advanced/Architecture/Managers/IAttachmentPointManager.md
+      - name: Alignment management
+        href: Concepts/Advanced/Architecture/Managers/IAlignmentManager.md
+      - name: Frozen World Engine DLL
+        href: Concepts/Advanced/Architecture/FrozenWorldDLL.md
     - name: Coordinate Spaces
       href: Concepts/Advanced/CoordinateSpaces.md
     - name: SessionOrigin

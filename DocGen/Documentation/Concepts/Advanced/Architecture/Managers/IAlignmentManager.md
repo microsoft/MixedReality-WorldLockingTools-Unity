@@ -2,7 +2,7 @@
 
 The IAlignmentManager interface abstracts the service of translating and rotating the world-locked space to align with the physical world at a discrete set of Space Pins.
 
-The alignment concepts are described in detail in an article dedicated to [Space Pins](../../Documentation/Concepts/Advanced/SpacePins.md).
+The alignment concepts are described in detail in an article dedicated to [Space Pins](~/DocGen/Documentation/Concepts/Advanced/SpacePins.md).
 
 Application interactions with the IAlignmentManager are not generally required. Rather, the helper component class [Space Pin](xref:Microsoft.MixedReality.WorldLocking.Core.SpacePin), and components derived from it, is provided to handle the minimal bookkeeping involved.
 

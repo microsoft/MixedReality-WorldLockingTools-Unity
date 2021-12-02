@@ -1,8 +1,8 @@
 # WorldLockingManager
 
-The World Locking Tools for Unity is managed by the [WorldLockingManager](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager). There is only one WorldLockingManager in an application. 
+The World Locking Tools for Unity is managed by the [WorldLockingManager](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager). There is only one WorldLockingManager in an application.
 
-The manager may be configured by setting of properties in the Unity editor's inspector, or at runtime. See [WorldLockingContext](../../Documentation/HowTos/WorldLockingContext.md).
+The manager may be configured by setting of properties in the Unity editor's inspector, or at runtime. See [WorldLockingContext](~/DocGen/Documentation/HowTos/WorldLockingContext.md).
 
 In addition to managing user options, the WorldLockingManager provides access to three interfaces:
 

@@ -35,7 +35,7 @@ These ideas are further explored in the conceptual guide. To complement the theo
 * [How-to articles](DocGen/Documentation/HowTos.md)
 * [Samples](DocGen/Documentation/HowTos/SampleApplications.md)
 
-Further, reference materials for interfacing through script with World Locking Tools is included in the [API Documentation](DocGen/api_doc/Architecture.md).
+Further, reference materials for interfacing through script with World Locking Tools is included in the [API Documentation](DocGen/Documentation/Concepts/Advanced/Architecture/Architecture.md).
 
 # Build Status
 
