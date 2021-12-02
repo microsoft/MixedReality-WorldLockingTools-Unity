@@ -1,3 +1,13 @@
+---
+title: IAlignmentManager
+description: Pinning the virtual and physical worlds together at discrete points.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
+
 # IAlignmentManager
 
 The IAlignmentManager interface abstracts the service of translating and rotating the world-locked space to align with the physical world at a discrete set of Space Pins.

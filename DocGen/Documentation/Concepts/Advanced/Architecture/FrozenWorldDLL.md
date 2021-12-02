@@ -1,13 +1,25 @@
-# Typedefs, structs, and constants used throughout this documentation
+---
+title: FrozenWorldEngine
+description: Low level information about the Frozen World Engine.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
-## Typedefs
+# Inside the Frozen World Engine
+
+## `Typedefs`, `structs`, and constants used throughout this documentation
+
+### `Typedefs`
 
 ```cpp
 typedef uint64_t FrozenWorld_AnchorId;
 typedef uint64_t FrozenWorld_FragmentId;
 ```
 
-## Structs
+### `Structs`
 
 ```cpp
 struct FrozenWorld_Vector
@@ -38,7 +50,7 @@ struct FrozenWorld_AttachmentPoint
 };
 ```
 
-## Constants
+### Constants
 
 ```cpp
 // Special values for FrozenWorld_AnchorId
@@ -55,9 +67,9 @@ The most significant practical distinction between the INVALID and UNKNOWN ancho
 You can use `FrozenWorld_FragmentId_UNKNOWN` as the fragment association of all anchors you add to a SPONGY snapshot, for example, as Frozen World ignores them anyway and automatically assigns unique fragment identifiers to all anchors when they are added to the FROZEN snapshot during alignment.
 
 
-# General considerations and conventions
+## General considerations and conventions
 
-## Parameter naming conventions
+### Parameter naming conventions
 
 Parameters may have an implied contract based on their name if it matches any of the following patterns (with foo in the following description being a generic placeholder that's substituted by any valid symbol name):
 
@@ -67,7 +79,7 @@ Parameters may have an implied contract based on their name if it matches any of
 | fooOut	| <ul><li>The memory pointed to by fooOut must be safe to be written to.</li><li>Existing data in the pointed-to memory location is ignored.</li><li>The function will not change the pointed-to memory except by writing a valid update to it; if fooOut points to a buffer intended to receive multiple elements of the same type, only some of the elements may have been written if an error occurs, but each of the written elements will have been written completely.</li></ul> |
 | fooInOut	| <ul><li>The memory pointed to by fooInOut may be read and must be safe to be written to.</li><li>The information at the memory location pointed to by fooInOut must be valid (per the function's description).</li><li>The function will not change the pointed-to memory except by writing a valid update to it; if fooInOut points to a buffer containing multiple elements of the same type, only some of the elements may have been updated if an error occurs, but each of the actually updated elements will have been updated completely.</li></ul> |
 
-## Thread safety
+### Thread safety
 
 This library is thread-aware, but functions in this library that change its state are not generally re-entrant or safe for being called concurrently unless explicitly noted otherwise. Read or query operations can be called safely from different threads in parallel as long as there are no concurrent calls to any functions that change the internal state of the library.
 
@@ -79,9 +91,9 @@ This library is thread-aware, but functions in this library that change its stat
   * __Persistence__ allows reading or writing to streams in a background thread – though `Gather()` and `Apply()` must be externally synchronized with all other accesses to the snapshots they read and modify.
 
 
-# Diagnostics and errors
+## Diagnostics and errors
 
-## Version information
+### Version information
 
 ```cpp
 // -> number of chars (excluding trailing null) copied to the buffer
@@ -100,7 +112,7 @@ Under extraordinary circumstances, e.g. if you received a bleeding-edge test bui
 This function can be called safely regardless of the library's state (i.e. even before startup and after teardown) and the thread they're called from.
 
 
-## Error flag and diagnostic error messages
+### Error flag and diagnostic error messages
 
 ```cpp
 bool FrozenWorld_GetError();
@@ -118,14 +130,14 @@ Call `FrozenWorld_GetErrorMessage()` to get further detailed diagnostic informat
 These functions can be called safely regardless of the library's state (i.e. even before startup and after teardown). The error information returned by these functions always relates to the most recent (other) function call executed on the same thread.
 
 
-## Diagnostic data recordings
+### Diagnostic data recordings
 
 Frozen World's serialization facility can be used to create a continuous recording of all state necessary to investigate Frozen World's runtime behavior after the fact. Diagnostic recordings can be invaluable assets for offline debugging and testing and are designed to be sufficiently compact and unobtrusive to allow them to be created by default.
 
 See [Persistence](#persistence) below.
 
 
-# Startup and teardown
+## Startup and teardown
 
 ```cpp
 void FrozenWorld_Init();
@@ -141,11 +153,11 @@ Both functions can be called multiple times, but must be called in pairs: The fi
 These functions are internally synchronized. It is acceptable to call `FrozenWorld_Destroy()` from a different thread than `FrozenWorld_Init()`.
 
 
-# Alignment (frame-to-frame)
+## Alignment (frame-to-frame)
 
-## Initializing the spongy snapshot and aligning the frozen frame of reference
+### Initializing the spongy snapshot and aligning the frozen frame of reference
 
-### 1. Initialize the spongy snapshot
+#### 1. Initialize the spongy snapshot
 
 ```cpp
 // Step 1 of 3:
@@ -165,7 +177,7 @@ This clears the SPONGY snapshot. After you've called `FrozenWorld_Step_Init()`, 
 See [Accessing snapshots](#accessing-snapshots) below (also for an introduction on the different kinds of snapshots).
 
 
-### 2. Gather alignment supports from the spongy snapshot
+#### 2. Gather alignment supports from the spongy snapshot
 
 ```cpp
 // Step 2 of 3:
@@ -181,7 +193,7 @@ Calling this function is optional: You can just as well implement this step manu
 See [Configuring Frozen World alignment](#configuring-frozen-world-alignment) and [Accessing alignment supports](#accessing-alignment-supports) below.
 
 
-### 3. Align the Frozen World to the alignment supports
+#### 3. Align the Frozen World to the alignment supports
 
 ```cpp
 // Step 3 of 3:
@@ -197,7 +209,7 @@ In addition, after running this function all alignment metrics are also updated 
 See [Accessing snapshots](#accessing-snapshots) and [Querying metrics](#querying-metrics) below.
 
 
-## Configuring Frozen World alignment
+### Configuring Frozen World alignment
 
 Modify the Frozen World alignment configuration to tweak the results of `FrozenWorld_Step_GatherSupports()`, which affect alignment quality, to the requirements of the implemented scenario. There is a default Frozen World alignment configuration, so doing this is optional.
 
@@ -226,7 +238,7 @@ void FrozenWorld_SetAlignConfig(
     FrozenWorld_AlignConfig* config);
 ```
 
-## Accessing alignment supports
+### Accessing alignment supports
 
 Access alignment supports after the `FrozenWorld_Step_Gather()` function has run to extend, filter, change, or just inspect the alignment supports gathered from the SPONGY snapshot. Doing this is optional.
 
@@ -250,7 +262,7 @@ void FrozenWorld_SetSupports(
     FrozenWorld_Support* supports);
 ```
 
-## Accessing snapshots
+### Accessing snapshots
 
 Anchor and edge data is organized in different snapshots. Each snapshot contains (at least) any number of anchors along with their poses, fragment associations, and connecting edges. In addition, the SPONGY and FROZEN snapshots contain information about the current head pose and most significant anchor.
 
@@ -270,7 +282,7 @@ enum FrozenWorld_Snapshot
 It is safe to read and modify different snapshots concurrently from different threads. It is unsafe to access the same snapshot (read or modify) concurrently from different threads, including through the use of functions that are documented to require access to these snapshots (e.g. all alignment functions, which require access to the SPONGY and FROZEN snapshots).
 
 
-## Accessing the head pose and alignment
+### Accessing the head pose and alignment
 
 Get or set the head (i.e. camera) location and directions (only SPONGY and FROZEN snapshots):
 
@@ -301,7 +313,7 @@ void FrozenWorld_SetAlignment(
 The alignment transform together with the most recent spongy head transform is wholly redundant with the frozen head transform. Use whichever is more convenient for you.
 
 
-## Accessing the most significant anchor
+### Accessing the most significant anchor
 
 Get or set the most significant anchor, i.e. the anchor whose pose relative to the head is currently known best (only SPONGY and FROZEN snapshots):
 
@@ -328,7 +340,7 @@ If the queried snapshot's most significant anchor is `FrozenWorld_AnchorId_INVAL
 If you query the fragment identifier of the most significant anchor in the SPONGY snapshot, this will still look up this anchor's fragment stored in the FROZEN snapshot (because fragment associations in the SPONGY snapshot are ignored). If the spongy most significant anchor doesn't exist in the FROZEN snapshot yet, querying its fragment identifier returns `FrozenWorld_FragmentId_UNKNOWN`.
 
 
-## Accessing anchors
+### Accessing anchors
 
 ```cpp
 struct FrozenWorld_Anchor
@@ -381,7 +393,7 @@ void FrozenWorld_ClearAnchors(
     FrozenWorld_Snapshot snapshot);
 ```
 
-## Accessing graph edges
+### Accessing graph edges
 
 ```cpp
 struct FrozenWorld_Edge
@@ -426,9 +438,9 @@ void FrozenWorld_ClearEdges(
     FrozenWorld_Snapshot snapshot);
 ```
 
-# Utility functions
+## Utility functions
 
-## Merging anchors and edges
+### Merging anchors and edges
 
 ```cpp
 int FrozenWorld_MergeAnchorsAndEdges(  // -> number of anchors added to the target snapshot
@@ -449,7 +461,7 @@ While doing that, this function adapts fragment associations and anchor poses of
 You can use this function to bulk-integrate an entire SPONGY snapshot into the FROZEN snapshot instead of relying on auto-discovery of not-yet-seen support anchors during alignment. This is not usually needed, but it can be useful if you require a guarantee that all anchors you have in your SPONGY snapshot have meaningful corresponding FROZEN poses.
 
 
-## Identifying missing edges that would guarantee full graph connectivity
+### Identifying missing edges that would guarantee full graph connectivity
 
 ```cpp
 int FrozenWorld_GuessMissingEdges(  // -> number of elements copied to the buffer
@@ -467,7 +479,7 @@ This function attempts (on a best-effort basis) to avoid very short edges betwee
 If the return value of this function indicates that the entire `guessedEdgesOut` buffer was filled with data, there may be more missing edges than can be returned given the buffer size specified by `guessedEdgesBufferSize`. In this case, you can add the guessed edges to the snapshot using the `FrozenWorld_AddEdges()` function and call `FrozenWorld_GuessMissingEdges()` again to identify more missing edges.
 
 
-## Inspecting metrics and indicators
+### Inspecting metrics and indicators
 
 Query Frozen World alignment metrics to get a standardized high-level view on the current alignment quality. Metrics include indicator flags you can use to determine if a fragment merge is currently possible or if a refreeze is indicated (based on thresholds you configured in your Frozen World alignment and metric configuration settings).
 
@@ -481,7 +493,7 @@ Visual deviation, which is caused by trade-offs made while aligning the Frozen W
 
 Other than being convenient, using these functions is optional: All metrics calculated by the built-in function could just as well be calculated in user code.
 
-## Querying metrics
+### Querying metrics
 
 ```cpp
 struct FrozenWorld_Metrics
@@ -526,7 +538,7 @@ Some metrics are also affected by metrics configuration settings (see [Configuri
 Metrics apply to the most recent result of calling `FrozenWorld_Step_Align()` and are calculated lazily when    `FrozenWorld_GetMetrics()` is called either for the first time during a step or after `FrozenWorld_SetMetricsConfig()` was called.
 
 
-## Configuring metrics
+### Configuring metrics
 
 Modify the metrics configuration to tweak indicators and frustum-dependent metrics to the requirements of the implemented scenario. There is a default metrics configuration, so doing this is optional.
 
@@ -553,7 +565,7 @@ void FrozenWorld_SetMetricsConfig(
     FrozenWorld_MetricsConfig* config);
 ```
 
-# Understanding refit operations (fragment merge and refreeze)
+## Understanding refit operations (fragment merge and refreeze)
 
 In general, you can simply work with locations, distances, and scene object transforms in your scene graph as in any big, rigid coordinate system. Allowing you to do this is at the core of what Frozen World wants to provide to you.
 
@@ -568,7 +580,7 @@ A refit operation becomes indicated (see [Inspecting metrics and indicators](#in
 As the last step of doing a refit operation, some or all of your scene objects must change their actual transform in the scene coordinate system so they stay visually aligned with the real world. Since you are yourself in control of initiating refit operations, there is no need for this 'scene refit' to be done in realtime on a per-frame budget: Your code can take however much time it needs to get it right.
 
 
-## Creating and tracking scene object attachment points
+### Creating and tracking scene object attachment points
 
 Unfortunately, as device tracking errors accumulate, the result can be that things are close to each other (or even overlap) in Frozen World coordinate space that are nowhere near each other in the real world. For that reason, Frozen World coordinates alone aren't sufficient to fullly describe which ways two nearby scene objects should move, respectively, as the result of a refit operation.
 
@@ -585,7 +597,7 @@ This seems not so different from attaching a scene object directly to an anchor 
 __Attachment points are lightweight__. Creating or using an attachment point leaves no footprint inside the Frozen World library. None of the library functions that accept FrozenWorld_AttachmentPoint parameters alter the state of the Frozen World in any way (though they _do_ inspect it). There is no library-side overhead involved in creating or maintaining a great number of attachment points (aside from, obviously, the compute involved in calling library functions with them).
 
 
-### Create an attachment point for a newly placed scene object
+#### Create an attachment point for a newly placed scene object
 
 ```cpp
 void FrozenWorld_Tracking_CreateFromHead(
@@ -603,7 +615,7 @@ Which one of these functions you should call to create an attachment point for a
 If you are placing a scene object without an initial relation to any existing scene objects, use `FrozenWorld_Tracking_CreateFromHead()`, which creates the initial attachment point for the scene object as if the device had spawned it. Otherwise, use `FrozenWorld_Tracking_CreateFromSpawner()` and pass the existing scene object's attachment point as the spawnerAttachmentPoint.
 
 
-### Track an attachment point when its scene object moves
+#### Track an attachment point when its scene object moves
 
 When your scene object continuously moves through the scene (because it is animated or simulated; this does not apply to scene objects being relocated because of a refit operation!), you should move its attachment point along with it.
 
@@ -618,12 +630,12 @@ It is not necessary to move a scene object's attachment point every frame during
 Note that if you teleport a scene object through the scene (instead of continuously moving it through the scene), you should forget its prior attachment point data and initialize a new one from scratch based on the same considerations as for a newly placed scene object.
 
 
-## Initiating and executing a fragment merge
+### Initiating and executing a fragment merge
 
 Fragment merge is due when there are multiple simultaneously trackable fragments represented in the SPONGY snapshot. (Built-in Frozen World metrics take only the support anchors used for alignment into consideration for the `refitMergeIndicated` flag.)
 
 
-### 1. Initialize the fragment merge
+#### 1. Initialize the fragment merge
 
 ```cpp
 // Step 1 of 4:
@@ -637,7 +649,7 @@ The fragment merge operation is initialized with the current version of the SPON
 Successfully initializing a fragment merge operation while any other refit operation is running silently cancels the previous refit operation and discards its results. If initializing the fragment merge operation is not successful, the other refit operation (if any) remains unaffected.
 
 
-### 2. Prepare the fragment merge
+#### 2. Prepare the fragment merge
 
 ```cpp
 // Step 2 of 4:
@@ -650,7 +662,7 @@ Preparing the fragment merge is done based on information gathered by `FrozenWor
 Normally, this step executes quickly, but if guaranteed realtime performance is a concern, it is safe to execute `FrozenWorld_RefitMerge_Prepare()` asynchronously in a background worker thread even across several frames while the SPONGY snapshot continues to evolve and the Frozen World alignment continues to be done. However, you must take care to not initialize another refit operation while this one is being prepared in the background.
 
 
-### 3. Inspect fragment merge results and refit the scene
+#### 3. Inspect fragment merge results and refit the scene
 
 When `FrozenWorld_RefitMerge_Prepare()` has finished executing, you must change the transforms of some or all of your scene objects to accommodate the pending fragment merge. The scene objects affected by this are identified by the `anchorId` (or more precisely: the `fragmentId` of that anchor) stored in the attachment point you created and maintained for that scene object (see [Creating and tracking scene object attachment points](#creating-and-tracking-scene-object-attachment-points) above).
 
@@ -688,7 +700,7 @@ All scene objects that are in the same Frozen World fragment (i.e. attached to a
 Note that the fragment itself that everything else is merged into is kept stationary. (Among all fragments that need to be merged, the one whose axis-aligned bounding box has the greatest volume in the Frozen World is chosen to remain stationary and be merged into.) Scene objects in the stationary fragment don't require adjustment, so this fragment isn't reported as an adjusted fragment.
 
 
-### 4. Apply the fragment merge results to the Frozen World itself
+#### 4. Apply the fragment merge results to the Frozen World itself
 
 Finally, after you have taken care of adjusting your own scene objects, corresponding adjustments must be applied to the Frozen World itself to finalize the fragment merge operation.
 
@@ -700,13 +712,13 @@ void FrozenWorld_RefitMerge_Apply();
 You can only call `FrozenWorld_RefitMerge_Apply()` only once for a fragment merge operation. After `FrozenWorld_RefitMerge_Apply()` has been called, the function calls required to refit your scene's objects (see [3. Inspect fragment merge results and refit the scene](#3-inspect-fragment-merge-results-and-refit-the-scene) above) cannot be called any longer until the next fragment merge has been prepared.
 
 
-## Initiating and executing a refreeze
+### Initiating and executing a refreeze
 
 Refreeze is due when anchor relations in the SPONGY snapshot have become so different from their Frozen World counterparts that the visual trade-offs made to align the Frozen World to the SPONGY snapshot are too significant to simply ignore. There is no clear-cut, objective threshold for this: Whether a refreeze is advisable depends on the quality trade-offs you are willing to make in your particular scenario. (Built-in Frozen World metrics use configurable thresholds and take only support anchors into consideration for the refitRefreezeIndicated flag.)
 
 If a refreeze is executed when there are multiple simultaneously trackable fragments in the SPONGY snapshot, it will implicitly merge all anchors in those fragments into a single fragment during the refreeze.
 
-### 1. Initialize the refreeze
+#### 1. Initialize the refreeze
 
 ```cpp
 // Step 1 of 4:
@@ -720,7 +732,7 @@ The refreeze operation is initialized with the current version of the SPONGY sna
 Initializing a refreeze operation while any other refit operation is running silently cancels the previous refit operation and discards its results. If initializing the refreeze operation is not successful, the other refit operation (if any) remains unaffected.
 
 
-### 2. Prepare the refreeze
+#### 2. Prepare the refreeze
 
 ```cpp
 // Step 2 of 4:
@@ -733,7 +745,7 @@ Preparing the refreeze is done based on information gathered by `FrozenWorld_Ref
 Normally, this step executes quickly, but if guaranteed realtime performance is a concern, it is safe to execute `FrozenWorld_RefitRefreeze_Prepare()` asynchronously in a background worker thread even across several frames while the SPONGY snapshot continues to evolve and the Frozen World alignment continues to be done. However, you must take care to not initialize another refit operation while this one is being prepared in the background.
 
 
-### 3. Inspect refreeze results and refit the scene
+#### 3. Inspect refreeze results and refit the scene
 
 When `FrozenWorld_RefitRefreeze_Prepare()` has finished executing, you must change the transforms of some or all of your scene objects to accommodate the pending refreeze. The scene objects affected by this are identified by the anchorId stored in the attachment point you created and maintained for that scene object (see Creating and tracking scene object attachment points above).
 
@@ -768,7 +780,7 @@ All scene objects that are attached to one of the anchors reported by `FrozenWor
 It's possible for an anchor (or fragment) to be reported by `FrozenWorld_RefitRefreeze_GetAdjustedAnchorIds()` or `…_GetAdjustedFragmentIds()` but for `FrozenWorld_RefitRefreeze_CalcAdjustment()` still to return false when it is called with an attachment point attached to that anchor. This can happen when the more in-depth calculations performed by `FrozenWorld_RefitRefreeze_CalcAdjustment()` come to the conclusion that, despite this anchor being within the refrozen area, it doesn't actually require any adjustment. In this case you're free to simply skip any follow-on processing you might otherwise want to do on your side after an adjustment.
 
 
-### 4. Apply the refreeze results to the Frozen World itself
+#### 4. Apply the refreeze results to the Frozen World itself
 
 Finally, after you have taken care of adjusting your own scene objects, corresponding adjustments must be applied to the Frozen World itself to finalize the refreeze operation.
 
@@ -780,7 +792,7 @@ void FrozenWorld_RefitRefreeze_Apply();
 You can only call `FrozenWorld_RefitRefreeze_Apply()` only once for a refreeze operation. After `FrozenWorld_RefitRefreeze_Apply()` has been called, the function calls required to refit your scene's objects (see [3. Inspect refreeze results and refit the scene](#3-inspect-refreeze-results-and-refit-the-scene) above) cannot be called any longer until the next refreeze has been prepared.
 
 
-# Persistence
+## Persistence
 
 The Frozen World library's persistence support is mainly there for your convenience – there's no inaccessible essential internal state in the library and the binary recording/persistence format is simple and well-documented (see [Frozen World binary recording format](#frozen-world-binary-recording-format) for details).
 
@@ -815,7 +827,7 @@ For any given stream you create using these functions, you can select what data 
 Note that you should enable both flags to get useful diagnostic recordings. Enabling just the includeTransient flag by itself only really makes sense if your only intention is to replay SPONGY snapshot data for offline scene testing.
 
 
-## Serializing (saving) Frozen World state
+### Serializing (saving) Frozen World state
 
 ```cpp
 struct FrozenWorld_Serialize_Stream
@@ -846,7 +858,7 @@ The granularity of updates is entirely up to you:
   * For recordings intended for diagnostics and replay, keep the stream open and frequently (i.e. once every step, just after doing Frozen World alignment) append updates to your recording file. The recording format is designed to be space-efficient and doesn't write a lot of data if nothing much changed since the last record.
 
 
-### 1. Opening the stream
+#### 1. Opening the stream
 
 ```cpp
 // Step 1 of 3:
@@ -861,7 +873,7 @@ The stream's time property passed to `FrozenWorld_Serialize_Open()` defines the 
 It's best to set the stream's initial time property to your scene's current absolute runtime when you call  `FrozenWorld_Serialize_Open()`.
 
 
-### 2. Preparing a data record and getting its binary data to save
+#### 2. Preparing a data record and getting its binary data to save
 
 After opening the stream (which allocates and prepares some resources in the library) you can then repeat the following steps as often as you like, even across an entire session:
 
@@ -889,7 +901,7 @@ Reading serialized binary data by calling `FrozenWorld_Serialize_Read()` can be 
 You mustn't call `FrozenWorld_Serialize_Gather()` again before all data from the previous record has been read (it will signal an error if you do), but it is safe to simply skip a call to `FrozenWorld_Serialize_Gather()` if writing the previous record's data is still in progress in your background thread. This won't cause your saved recording to become inconsistent or lose data – it will only reduce the granularity of the recording in that instance.
 
 
-### 3. Closing the stream to release internal resources
+#### 3. Closing the stream to release internal resources
 
 ```cpp
 // Step 3 of 3:
@@ -904,7 +916,7 @@ Close the stream after you're finished using it to release some memory used inte
 After calling `FrozenWorld_Serialize_Close()`, the stream's internal handle is deallocated (and set to zero) and cannot be used anymore. You can, however, reuse the `FrozenWorld_Serialize_Stream` data structure to open a new stream later.
 
 
-## Deserializing (loading and restoring) Frozen World state
+### Deserializing (loading and restoring) Frozen World state
 
 ```cpp
 struct FrozenWorld_Deserialize_Stream
@@ -933,7 +945,7 @@ However, there is no requirement to do this in real time, and you can read and a
 You can choose to read just a subset of the data contained in the stream by setting the stream's `includePersistent` and `includeTransient` flags. Of course, enabling `includePersistent` won't do anything if the stream doesn't contain such data (i.e. wasn't created with the `includePersistent` flag set during serialization), and the same goes for `includeTransient`.
 
 
-### 1. Opening the stream
+#### 1. Opening the stream
 
 ```cpp
 // Step 1 of 3:
@@ -948,7 +960,7 @@ The stream's time property is ignored by `FrozenWorld_Deserialize_Open()`, but i
 It's best to set the stream's initial time property either to zero (in order to track this stream's progress in time) or to your scene's current absolute runtime (in order to track the stream's progress in terms of your scene's absolute runtime).
 
 
-### 2. Loading binary data into the stream and applying the results
+#### 2. Loading binary data into the stream and applying the results
 
 After opening the stream (which allocates and prepares some resources in the library) you can then repeat the following steps as often as you like and as long as you have data to feed into the stream:
 
@@ -978,7 +990,7 @@ You mustn't call `FrozenWorld_Deserialize_Apply()` until and unless a full recor
 You can change the `includePersistent` and `includeTransient` flags in between calls to `FrozenWorld_Deserialize_Apply()`. However, after the first call to `FrozenWorld_Deserialize_Apply()` for a given stream, you can only switch those flags off – you cannot start out with one or both of the flags disabled and switch them on mid-stream. The reason for this is that individual records might only encode an update instead of being fully self-contained, so skipping some records in the middle of the stream may leave the affected Frozen World data structures in an incomplete state.
 
 
-### 3. Closing the stream to release internal resources
+#### 3. Closing the stream to release internal resources
 
 ```cpp
 // Step 3 of 3:
@@ -992,14 +1004,14 @@ After calling `FrozenWorld_Deserialize_Close()`, the stream's internal handle is
 
 Frozen World configuration and snapshots (both spongy and frozen) can be recorded in a platform-independent, compact, binary, streaming format to help with debugging and diagnostics and to create (or record) test scenarios.
 
-# Frozen World binary recording format
+## Frozen World binary recording format
 
-## General structure
+### General structure
 
 A recording stream is an unbounded sequence of records. Each record is a sequence of tagged chunks. Each chunk is a sequence of fields.
 
 
-### Field types
+#### Field types
 
 | Symbol | Storage | Description |
 |---|---|---|
@@ -1010,19 +1022,19 @@ A recording stream is an unbounded sequence of records. Each record is a sequenc
 | *type*[N] | N times the size of *type* | Sequence of N instances of *type* |
 
 
-### Field padding and alignment
+#### Field padding and alignment
 
 No padding is inserted between fields. Fields therefore have no particular guaranteed alignment (with respect to the start of the stream).
 
 
-### General record structure
+#### General record structure
 
 Each record starts with a record header chunk, followed by any number of data chunks (including potentially no data chunks at all), and completed with a record footer chunk. The required presence of a record footer is designed to allow readers to read a recording data stream without having to look ahead into the next record's data.
 
 While records may contain any number of chunks, each chunk tag (see [General chunk structure](#general-chunk-structure) below) can appear at most once per record. Readers are not required to support records that contain several instances (or several versions) of the same kind of chunk.
 
 
-### General chunk structure
+#### General chunk structure
 
 Each chunk has the following structure:
 
@@ -1036,9 +1048,9 @@ Each chunk has the following structure:
 The presence of the payload size in the chunk header is designed to allow readers to load entire chunks without having to parse them to find the end of the chunk or to skip chunks they cannot read.
 
 
-## Record header and footer chunks
+### Record header and footer chunks
 
-### Record header chunk
+#### Record header chunk
 
 | Type | Content | Additional information
 |---|---|---|
@@ -1048,7 +1060,7 @@ The presence of the payload size in the chunk header is designed to allow reader
 | float | relative time since last record | Number of (usually fractional) seconds that have passed since the last record in the stream. The value in the first record of the stream is ignored by readers.
 
 
-### Record footer chunk
+#### Record footer chunk
 
 | Type | Content | Additional information
 |---|---|---|
@@ -1057,9 +1069,9 @@ The presence of the payload size in the chunk header is designed to allow reader
 | uint32 | payload size | 0
 
 
-## Data chunks
+### Data chunks
 
-### Alignment configuration chunk
+#### Alignment configuration chunk
 
 | Type | Content | Additional information
 |---|---|---|
@@ -1073,7 +1085,7 @@ The presence of the payload size in the chunk header is designed to allow reader
 | float | tightness drop-off radius | Greater than tightness saturation radius.
 
 
-### Alignment supports chunk
+#### Alignment supports chunk
 
 | Type | Content | Additional information |
 |---|---|---|
@@ -1083,7 +1095,7 @@ The presence of the payload size in the chunk header is designed to allow reader
 | uint32 | number of supports | |	
 | […] | [Support definitions](#support-definition) | One definition per support, in no particular order. |
 
-### Support definition
+#### Support definition
 
 | Type | Content | Additional information
 |---|---|---|
@@ -1092,7 +1104,7 @@ The presence of the payload size in the chunk header is designed to allow reader
 | float | support relevance | 0.0 … 1.0 |
 | float | support tightness | 0.0 … 1.0 |
 
-## Spongy snapshot chunks
+### Spongy snapshot chunks
 
 Spongy snapshots are stored as multiple chunks: the spongy snapshot header and, if required, the spongy graph.
 
@@ -1107,7 +1119,7 @@ In order to improve the stream's compactness (and potentially reader performance
 Readers assume that the spongy graph is initially empty when a recording stream starts. The first spongy snapshot stored in a recording stream usually includes a complete graph definition (but is not required to).
 
 
-### Spongy snapshot header chunk
+#### Spongy snapshot header chunk
 
 | Type | Content | Additional information |
 |---|---|---|
@@ -1119,7 +1131,7 @@ Readers assume that the spongy graph is initially empty when a recording stream 
 | uint64 | most significant anchor identifier | |	
 
 
-### Spongy graph chunk
+#### Spongy graph chunk
 
 See [Graph chunk alternatives](#graph-chunk-alternatives) below for version, payload size, and payload.
 
@@ -1131,7 +1143,7 @@ See [Graph chunk alternatives](#graph-chunk-alternatives) below for version, pay
 | (…) | (…) | |
 
 
-## Frozen snapshot chunks
+### Frozen snapshot chunks
 
 Frozen snapshots are stored as multiple chunks: the frozen snapshot header and, if required, the frozen graph.
 
@@ -1146,7 +1158,7 @@ In order to improve the stream's compactness (and potentially reader performance
 Readers assume that the spongy graph is initially empty when a recording stream starts. The first spongy snapshot stored in a recording stream usually includes a complete graph definition (but is not required to).
 
 
-### Frozen snapshot header chunk
+#### Frozen snapshot header chunk
 
 | Type | Content | Additional information |
 |---|---|---|
@@ -1160,7 +1172,7 @@ Readers assume that the spongy graph is initially empty when a recording stream 
 | uint64 | most significant anchor identifier | |
 
 
-### Frozen graph chunk
+#### Frozen graph chunk
 
 See [Graph chunk alternatives](#graph-chunk-alternatives) below for version, payload size, and payload.
 
@@ -1172,14 +1184,14 @@ See [Graph chunk alternatives](#graph-chunk-alternatives) below for version, pay
 | (…) | (…)	|
 
 
-## Graph chunk alternatives
+### Graph chunk alternatives
 
 Writers should choose the most compact representation for a given graph. If the graph is unchanged compared to its last version written to this stream, no graph chunk should be written at all.
 
 Readers are required to support any graph chunk representation at any time.
 
 
-### Complete graph definition
+#### Complete graph definition
 
 | Type | Content | Additional information |
 |---|---|---|
@@ -1191,7 +1203,7 @@ Readers are required to support any graph chunk representation at any time.
 | […] | [Anchor definitions](#anchor-definition) | One definition per anchor, in no particular order.<br/>Each anchor identifier can appear only once in this chunk. |
 | […] | [Edge definitions](#edge-definition) | One definition per edge, in no particular order.<br/>Each pair of edge anchor identifiers (1/2 or 2/1) can appear only once in this chunk. |
 
-### Graph update
+#### Graph update
 
 | Type | Content | Additional information |
 |---|---|---|
@@ -1207,7 +1219,7 @@ Readers are required to support any graph chunk representation at any time.
 | […] | Removed [anchor identifiers](#anchor-identifier-definition) | One identifier per removed anchor, in no particular order.<br/>Each anchor identifier can appear only once in this chunk. |	
 | […] | Removed [edge anchor identifiers](#edge-anchor-identifier-definition) | One definition per removed edge, in no particular order.<br/>Each pair of edge anchor identifiers (1/2 or 2/1) can appear only once in this chunk. |
 
-### Anchor definition
+#### Anchor definition
 
 | Type | Content | Additional information |
 |---|---|---|
@@ -1216,7 +1228,7 @@ Readers are required to support any graph chunk representation at any time.
 | float[3]| anchor position | X,Y,Z (meters) |
 | float[4] | anchor orientation | X,Y,Z,W (quaternion) |
 
-### Edge definition
+#### Edge definition
 
 | Type | Content | Additional information |
 |---|---|---|
@@ -1224,13 +1236,13 @@ Readers are required to support any graph chunk representation at any time.
 | uint64 | edge anchor identifier 2 | |
 | float | edge confidence | 0.0 … 1.0 |
 
-### Anchor identifier definition
+#### Anchor identifier definition
 
 | Type | Content | Additional information |
 |---|---|---|
 | uint64 | anchor identifier | |
 
-### Edge anchor identifier definition
+#### Edge anchor identifier definition
 
 | Type | Content | Additional information |
 |---|---|---|

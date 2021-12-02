@@ -1,3 +1,13 @@
+---
+title: Architecture
+description: An introduction to the architecture underlying the World Locking Tools.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
+
 # Architecture
 
 The World Locking Tools for Unity architecture may be summarized by the following diagram.

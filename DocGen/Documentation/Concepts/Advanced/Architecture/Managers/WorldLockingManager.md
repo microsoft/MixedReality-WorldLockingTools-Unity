@@ -1,3 +1,13 @@
+---
+title: WorldLockingManager
+description: Managing the managers.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
+
 # WorldLockingManager
 
 The World Locking Tools for Unity is managed by the [WorldLockingManager](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager). There is only one WorldLockingManager in an application.
