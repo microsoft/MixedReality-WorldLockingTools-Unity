@@ -4252,6 +4252,12 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.InitToDefaults
   nameWithType: LinkageSettings.InitToDefaults
+- uid: Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.NoPitchAndRoll
+  name: NoPitchAndRoll
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.html#Microsoft_MixedReality_WorldLocking_Core_LinkageSettings_NoPitchAndRoll
+  commentId: F:Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.NoPitchAndRoll
+  fullName: Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.NoPitchAndRoll
+  nameWithType: LinkageSettings.NoPitchAndRoll
 - uid: Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.UseExisting
   name: UseExisting
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.LinkageSettings.html#Microsoft_MixedReality_WorldLocking_Core_LinkageSettings_UseExisting
@@ -6258,6 +6264,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.MergeIndicated
   nameWithType: WorldLockingManager.MergeIndicated
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.NoPitchAndRoll
+  name: NoPitchAndRoll
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_NoPitchAndRoll
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.NoPitchAndRoll
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.NoPitchAndRoll
+  nameWithType: WorldLockingManager.NoPitchAndRoll
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.NoPitchAndRoll*
+  name: NoPitchAndRoll
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_NoPitchAndRoll_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.NoPitchAndRoll
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.NoPitchAndRoll
+  nameWithType: WorldLockingManager.NoPitchAndRoll
 - uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.PinnedFromFrozen
   name: PinnedFromFrozen
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_PinnedFromFrozen
@@ -7599,6 +7618,19 @@ references:
   commentId: F:Microsoft.MixedReality.WorldLocking.Tools.AnchorGraphVisual.Prefab_SpongyAnchorViz
   fullName: Microsoft.MixedReality.WorldLocking.Tools.AnchorGraphVisual.Prefab_SpongyAnchorViz
   nameWithType: AnchorGraphVisual.Prefab_SpongyAnchorViz
+- uid: Microsoft.MixedReality.WorldLocking.Tools.AnchorGraphVisual.VerticalDisplacement
+  name: VerticalDisplacement
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AnchorGraphVisual.html#Microsoft_MixedReality_WorldLocking_Tools_AnchorGraphVisual_VerticalDisplacement
+  commentId: P:Microsoft.MixedReality.WorldLocking.Tools.AnchorGraphVisual.VerticalDisplacement
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.AnchorGraphVisual.VerticalDisplacement
+  nameWithType: AnchorGraphVisual.VerticalDisplacement
+- uid: Microsoft.MixedReality.WorldLocking.Tools.AnchorGraphVisual.VerticalDisplacement*
+  name: VerticalDisplacement
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AnchorGraphVisual.html#Microsoft_MixedReality_WorldLocking_Tools_AnchorGraphVisual_VerticalDisplacement_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Tools.AnchorGraphVisual.VerticalDisplacement
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.AnchorGraphVisual.VerticalDisplacement
+  nameWithType: AnchorGraphVisual.VerticalDisplacement
 - uid: Microsoft.MixedReality.WorldLocking.Tools.ConnectingLine
   name: ConnectingLine
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.ConnectingLine.html
@@ -8122,12 +8154,12 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual
   fullName: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual
   nameWithType: SpongyAnchorVisual
-- uid: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate(Microsoft.MixedReality.WorldLocking.Tools.FrameVisual,SpongyAnchor)
-  name: Instantiate(FrameVisual, SpongyAnchor)
-  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.html#Microsoft_MixedReality_WorldLocking_Tools_SpongyAnchorVisual_Instantiate_Microsoft_MixedReality_WorldLocking_Tools_FrameVisual_SpongyAnchor_
-  commentId: M:Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate(Microsoft.MixedReality.WorldLocking.Tools.FrameVisual,SpongyAnchor)
-  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate(Microsoft.MixedReality.WorldLocking.Tools.FrameVisual, SpongyAnchor)
-  nameWithType: SpongyAnchorVisual.Instantiate(FrameVisual, SpongyAnchor)
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate(Microsoft.MixedReality.WorldLocking.Tools.FrameVisual,SpongyAnchor,System.Single)
+  name: Instantiate(FrameVisual, SpongyAnchor, Single)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.html#Microsoft_MixedReality_WorldLocking_Tools_SpongyAnchorVisual_Instantiate_Microsoft_MixedReality_WorldLocking_Tools_FrameVisual_SpongyAnchor_System_Single_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate(Microsoft.MixedReality.WorldLocking.Tools.FrameVisual,SpongyAnchor,System.Single)
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate(Microsoft.MixedReality.WorldLocking.Tools.FrameVisual, SpongyAnchor, System.Single)
+  nameWithType: SpongyAnchorVisual.Instantiate(FrameVisual, SpongyAnchor, Single)
 - uid: Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.Instantiate*
   name: Instantiate
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpongyAnchorVisual.html#Microsoft_MixedReality_WorldLocking_Tools_SpongyAnchorVisual_Instantiate_
