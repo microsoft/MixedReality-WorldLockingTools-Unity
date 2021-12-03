@@ -39,6 +39,23 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         [SerializeField]
         private Material connectingLine = null;
 
+        /// <summary>
+        /// Vertical distance to offset from actual anchors, to avoid visuals at eye level.
+        /// </summary>
+        /// <remarks>
+        /// Set this to zero to display visuals at actual anchor locations.
+        /// </remarks>
+        public float VerticalDisplacement { get { return verticalDisplacement; } set { verticalDisplacement = value; } }
+
+        /// <summary>
+        /// Vertical distance to offset from actual anchors, to avoid visuals at eye level.
+        /// </summary>
+        /// <remarks>
+        /// Set this to zero to display visuals at actual anchor locations.
+        /// </remarks>
+        [Tooltip("Vertical distance to offset from actual anchors, to avoid visuals at eye level.")]
+        [SerializeField]
+        private float verticalDisplacement = -1.0f;
         #endregion Public properties
 
         #region Internal properties
@@ -166,7 +183,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             var spongyCurrent = anchorManager.SpongyAnchors;
             spongyCurrent.Sort((x, y) => x.anchorId.CompareTo(y.anchorId));
 
-            SpongyVisualCreator spongyCreator = new SpongyVisualCreator(Prefab_SpongyAnchorViz, spongyWorldViz);
+            SpongyVisualCreator spongyCreator = new SpongyVisualCreator(Prefab_SpongyAnchorViz, spongyWorldViz, verticalDisplacement);
             ResourceMirror.Sync(
                 spongyCurrent,
                 spongyResources,
@@ -220,6 +237,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             /// The "frozen" coordinates here are ignoring the rest of the transform up the camera tree.
             Pose globalFromLocked = manager.ApplyAdjustment ? manager.FrozenFromLocked : manager.SpongyFromLocked;
+            /// Apply the vertical displacement through the globalFromLocked transform.
+            globalFromLocked.position = new Vector3(globalFromLocked.position.x, globalFromLocked.position.y + verticalDisplacement, globalFromLocked.position.z);
 
             var frozenCreator = new FrozenAnchorVisualCreator(Prefab_FrozenAnchorViz, frozenFragmentVizs, globalFromLocked);
             ResourceMirror.Sync(
@@ -443,6 +462,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         {
             private readonly SpongyAnchorVisual Prefab_SpongyAnchorVisual;
             private readonly FrameVisual spongyWorldVisual;
+            private readonly float verticalDisplacement;
 
             /// <summary>
             /// Constructor takes the prefab to construct the visual out of, and a FrameVisual
@@ -450,10 +470,11 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             /// </summary>
             /// <param name="prefab">Prefab to create the visual out of.</param>
             /// <param name="spongyWorldVisual">Parent of created visuals.</param>
-            public SpongyVisualCreator(SpongyAnchorVisual prefab, FrameVisual spongyWorldVisual)
+            public SpongyVisualCreator(SpongyAnchorVisual prefab, FrameVisual spongyWorldVisual, float verticalDisplacement)
             {
                 Prefab_SpongyAnchorVisual = prefab;
                 this.spongyWorldVisual = spongyWorldVisual;
+                this.verticalDisplacement = verticalDisplacement;
             }
 
             /// <summary>
@@ -466,7 +487,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             {
                 var spongyAnchorVisual = Prefab_SpongyAnchorVisual.Instantiate(
                     spongyWorldVisual,
-                    source.spongyAnchor);
+                    source.spongyAnchor,
+                    verticalDisplacement);
 
                 resource = new IdPair<AnchorId, SpongyAnchorVisual>()
                 {

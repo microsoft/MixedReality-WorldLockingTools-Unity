@@ -234,9 +234,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             // 
             Pose spongyHead = headTracker.GetHeadPose();
 
-            // place new anchors 1m below head
+            // place new anchors at head
             Pose newSpongyAnchorPose = spongyHead;
-            newSpongyAnchorPose.position.y -= 1;
             newSpongyAnchorPose.rotation = Quaternion.identity;
 
             var activeAnchors = new List<AnchorPose>();

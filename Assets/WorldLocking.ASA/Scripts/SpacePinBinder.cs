@@ -327,6 +327,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                     SpacePinASA spacePin = spacePins[idx];
 
                     Pose lockedPose = wltMgr.LockedFromFrozen.Multiply(pegAndProps.localPeg.GlobalPose);
+                    SimpleConsole.AddLine(ConsoleLow, $"Srch: {lockedPose.ToString("F3")}");
                     spacePin.SetLockedPose(lockedPose);
                     spacePin.SetLocalPeg(pegAndProps.localPeg);
                 }
