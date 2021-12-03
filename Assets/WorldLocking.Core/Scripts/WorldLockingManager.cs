@@ -151,6 +151,13 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         public bool ApplyAdjustment => shared.linkageSettings.ApplyAdjustment;
 
+        /// <summary>
+        /// Zero out pitch and roll from FrozenWorldEngine's computed correction.
+        /// </summary>
+        /// <remarks>
+        /// This does not affect pitch and roll from the AlignmentManager (SpacePins).
+        /// </remarks>
+        public bool NoPitchAndRoll => shared.linkageSettings.NoPitchAndRoll;
 
         /// <summary>
         /// Direct interface to the plugin. It is not generally necessary or desired to 
@@ -683,6 +690,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             if (Enabled)
             {
                 Pose playspaceFromLocked = Plugin.GetAlignment();
+                if (NoPitchAndRoll)
+                {
+                    playspaceFromLocked.rotation = Quaternion.Euler(0f, playspaceFromLocked.rotation.eulerAngles.y, 0f); // Zero out X and Z rotation from frozen world engine
+                }
                 LockedFromPlayspace = playspaceFromLocked.Inverse();
 
                 SpongyFromCamera = Plugin.GetSpongyHead();

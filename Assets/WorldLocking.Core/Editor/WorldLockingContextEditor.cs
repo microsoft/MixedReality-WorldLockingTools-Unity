@@ -78,6 +78,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     {
                         AddProperty(mgrPath, "applyAdjustment");
 
+                        AddProperty(mgrPath, "NoPitchAndRoll");
+
                         AddProperty(mgrPath, "AdjustmentFrame");
 
                         AddProperty(mgrPath, "CameraParent");

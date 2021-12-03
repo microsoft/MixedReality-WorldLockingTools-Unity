@@ -42,6 +42,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private bool applyAdjustment;
 
         /// <summary>
+        /// Zero out pitch and roll from the FrozenWorldEngine correction.
+        /// </summary>
+        [Tooltip("Zero out pitch and roll from the FrozenWorldEngine correction.")]
+        public bool NoPitchAndRoll;
+
+        /// <summary>
         /// Apply world locking adjustment to the AdjustmentFrame.
         /// </summary>
         /// <remarks>
@@ -72,6 +78,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public void InitToDefaults()
         {
             UseExisting = false;
+            NoPitchAndRoll = false;
             ApplyAdjustment = true;
             AdjustmentFrame = null;
             CameraParent = null;
