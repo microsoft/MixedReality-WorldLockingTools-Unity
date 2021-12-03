@@ -1231,8 +1231,8 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 + $" pa={WorldLockingManager.GetInstance().AnchorManager.AnchorFromSpongy.Inverse().Multiply(frozenPose).position.ToString("F3")}"
                 );
 
-#if WLT_ASA_SESSION_ORIGIN_WORKAROUND
-            // mafinc - workaround for bug in ASA NativeAnchor.
+#if WLT_ASA_V2_10_2_OR_OLDER && WLT_ASA_SESSION_ORIGIN_WORKAROUND
+            // mafinc - workaround for bug in ASA NativeAnchor. Not needed (and breaks things) for ASA v2.11 and later.
             peg.anchorHanger.transform.SetLocalPose(Pose.identity);
 #endif // WLT_ASA_SESSION_ORIGIN_WORKAROUND
 

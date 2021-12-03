@@ -44,12 +44,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         private Color color;
 
         /// <summary>
+        /// Set in AnchorGraphVisual.
+        /// </summary>
+        private float verticalDisplacement = 0;
+
+        /// <summary>
         /// Create a visualizer for a spongy anchor.
         /// </summary>
         /// <param name="parent">Coordinate space to create the visualizer in</param>
         /// <param name="spongyAnchor">The spongyAnchor component assigned to some other object that this object is supposed to sync with</param>
         /// <returns></returns>
-        public SpongyAnchorVisual Instantiate(FrameVisual parent, SpongyAnchor spongyAnchor)
+        public SpongyAnchorVisual Instantiate(FrameVisual parent, SpongyAnchor spongyAnchor, float verticalDisplacement)
         {
             var res = Instantiate(this, parent.transform);
             res.name = spongyAnchor.name;
@@ -59,6 +64,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             }
             res.spongyAnchor = spongyAnchor;
             res.color = Color.gray;
+            res.verticalDisplacement = verticalDisplacement;
             return res;
         }
 
@@ -74,7 +80,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             // The SpongyFrame is adjusted by FrozeWorld every frame. This means that giving a transform M relative to the SpongyFrame,
             // as done here, will put the object _relative to the camera_ in the same place as setting M as the world transform
             // if SpongyFrame wasn't there, i.e. Unity World Space.
-            transform.SetLocalPose(spongyAnchor.SpongyPose);
+            Pose localPose = spongyAnchor.SpongyPose;
+            localPose.position = new Vector3(localPose.position.x, localPose.position.y + verticalDisplacement, localPose.position.z);
+            transform.SetLocalPose(localPose);
 
             if (!spongyAnchor.IsLocated)
                 color = Color.gray;
