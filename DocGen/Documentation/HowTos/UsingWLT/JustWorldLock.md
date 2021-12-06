@@ -1,3 +1,12 @@
+---
+title: Just world-lock everything
+description: Integrating WLT into a Unity project in the simplest and easiest way, while getting 90% of its value.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # Just world-lock everything
 

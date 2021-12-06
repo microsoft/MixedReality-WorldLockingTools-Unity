@@ -1,3 +1,12 @@
+---
+title: Coordinate spaces
+description: Understanding the relationship between the various coordinate spaces when using World Locking Tools.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # Coordinate Spaces in World Locking Tools for Unity
 

@@ -1,3 +1,13 @@
+---
+title: IAnchorManager
+description: Managing a graph of connected local spatial anchors.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
+
 # IAnchorManager
 
 The Frozen World engine relies on a network of spatial anchors surrounding the user, from which to calculate the ideal world locked space.

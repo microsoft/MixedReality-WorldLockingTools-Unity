@@ -1,3 +1,12 @@
+---
+title: World Locking Tools Context and Manager settings
+description: Configuring World Locking Tools from the Unity Inspector.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # World Locking Tools Context and Manager settings
 
@@ -26,7 +35,7 @@ At any point in the runtime, the application may apply custom settings to the Wo
 
 While there are some convenience members to get individual property values from the WorldLockingManager, for example [AutoSave](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AutoSave), setting of parameters always happens in aggregate. For example, code to toggle the AutoMerge and AutoRefreeze features might look like this:
 
-```
+```c#
 /// Get a copy of the current settings
 var settings = WorldLockingManager.GetInstance().Settings;
 /// Modify the copy
@@ -54,19 +63,19 @@ Caution should be used when mixing World Locking Tools Manager settings from con
 
 The available settings for controlling World Locking Tools behavior are broken into groups as follows.
 
-![](~/DocGen/Images/Screens/Context/WLTContext.JPG)
+![A basic world locking context setup](~/DocGen/Images/Screens/Context/WLTContext.JPG)
 
 ### Automation settings
 
-Automation settings control the runtime behavior of the World Locking Tools Manager. The fields available for modification and their implications are documented within the [ManagerSettings](xref:Microsoft.MixedReality.WorldLocking.Core.ManagerSettings) class. They are focused on enabling or disabling automated periodic actions by the manager. Any disabled automated action can be performed manually instead. 
+Automation settings control the runtime behavior of the World Locking Tools Manager. The fields available for modification and their implications are documented within the [ManagerSettings](xref:Microsoft.MixedReality.WorldLocking.Core.ManagerSettings) class. They are focused on enabling or disabling automated periodic actions by the manager. Any disabled automated action can be performed manually instead.
 
-![](~/DocGen/Images/Screens/Context/WLTContextAutomation.JPG)
+![The automation section of the context](~/DocGen/Images/Screens/Context/WLTContextAutomation.JPG)
 
 ### Linkage settings
 
-Linkage settings are used to explicitly define the scene GameObjects whose transforms will be used to apply World Locking Tools' corrections.
+Linkage settings are used to explicitly define the scene `GameObjects` whose transforms will be used to apply World Locking Tools' corrections.
 
-![](~/DocGen/Images/Screens/Context/WLTContextLinkage.JPG)
+![The linkage section of the context](~/DocGen/Images/Screens/Context/WLTContextLinkage.JPG)
 
 The "Use Existing" field allows the linked objects to be set once in the scene with the camera rig (with "Use Existing" false), and not overridden by loading subsequent content scenes (with "Use Existing" true).
 
@@ -75,6 +84,12 @@ Conversely, setting "Use Existing" to false allows allows multiple scenes each w
 When creating and managing the camera hierarchy from script, the "Use Existing" field should be set to true on all Contexts,and the linkages updated explicitly from the camera managing scripts.
 
 When the required transforms are not supplied, either left null or all Contexts have "Use Existing", then the system issues a warning and tries to infer good choices. It is recommended, but not required, to explicitly set the appropriate transforms, rather than having the system guess.
+
+There are two additional options here that control how the camera transform correction will be applied.
+
+The first checkbox, for "Apply Adjustment", defaults to enabled. This tells the system to apply the computed camera correction each frame to the "Adjustment Frame" `GameObject`. Disabling this is a very advanced feature, and should only be tried after all other issues are resolved, and a deep understanding of World Locking Tools has been achieved. In short, it tells the system that the camera correction is not to be applied to the camera, but will be applied by other means. Typically, this is through an `AlignSubtree` component, but doesn't need to be.
+
+The second checkbox, for "No Pitch And Roll", tells the system to zero out any pitch and roll computed in the transform from `Playspace` to Locked Space. (See this [discussion of WLT coordinate spaces](../Concepts/Advanced/CoordinateSpaces.md)). This has no effect on the rotation applied by the `SpacePin` system, but only affects the world locking camera correction transform computed by the Frozen World Engine.
 
 ### Anchor Management settings
 
@@ -88,7 +103,7 @@ It should be noted that in order to pass the edge creation test, the MaxAnchorEd
 
 The MaxLocalAnchors parameter, rather than modifying density, directly limits the number of internal anchors. Currently, when the anchor count is over the limit, anchors most distant from the camera are recycled to bring the number down. However, other algorithms are interesting and being investigated, so an application should not depend on this particular implementation.
 
-![](~/DocGen/Images/Screens/Context/WLTContextAnchor30.JPG)
+![The anchor management section of the context](~/DocGen/Images/Screens/Context/WLTContextAnchor30.JPG)
 
 More details are documenting within the [AnchorSettings](xref:Microsoft.MixedReality.WorldLocking.Core.AnchorSettings) struct.
 
@@ -96,7 +111,7 @@ More details are documenting within the [AnchorSettings](xref:Microsoft.MixedRea
 
 The Diagnostics settings control the gather of diagnostics for analysis of behavior and debugging. They should normally be left with "Use Defaults" set, which, among other things, disables the collection of diagnostics. The diagnostics collection is a great performance drag, so should be avoided unless needed.
 
-![](~/DocGen/Images/Screens/Context/WLTContextDiagnostics.JPG)
+![The diagnostics section of the context](~/DocGen/Images/Screens/Context/WLTContextDiagnostics.JPG)
 
 During development, when unexpected and undesirable behavior is being seen, the diagnostics data collected by disabling [Use Defaults](xref:Microsoft.MixedReality.WorldLocking.Core.DiagnosticsSettings.UseDefaults) and enabling [DiagnosticsSettings.Enabled](xref:Microsoft.MixedReality.WorldLocking.Core.DiagnosticsSettings.Enabled) will enable the collection of data which can be instrumental in understanding and fixing that behavior.
 

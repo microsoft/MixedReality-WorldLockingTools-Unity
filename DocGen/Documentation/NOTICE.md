@@ -1,3 +1,13 @@
+---
+title: NOTICES AND INFORMATON
+description: Legal notices.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
+
 NOTICES AND INFORMATION
 Do Not Translate or Localize
 

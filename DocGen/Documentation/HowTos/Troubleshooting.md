@@ -1,3 +1,12 @@
+---
+title: Trouble shooting
+description: Notes on things that have gone wrong and what was done to fix them.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # Trouble shooting
 
@@ -14,9 +23,9 @@ If you see a framerate drop after adding World Locking Tools to your application
 ### Missing dll's etc.
 
 This has been seen from the Frozen World Engine dll. Go to NuGet for Unity:
- 
->  `NuGet > Manage NuGet Packages > Installed`
- 
+
+> `NuGet > Manage NuGet Packages > Installed`
+
 uninstall and re-install the latest FrozenWorld.Engine package. See [NuGet Setup](InitialSetup.md#frozenworld-engine-installation).
 
 Alternately, [install using the MR Feature Tool](WLTviaMRFeatureTool.md) and have dependencies installation handled for you.
@@ -33,7 +42,7 @@ Alternately, [install using the MR Feature Tool](WLTviaMRFeatureTool.md) and hav
 
 ### It's not working
 
-Check the Unity logs for errors and exceptions. 
+Check the Unity logs for errors and exceptions.
 
 Check that your scene camera is attached to at least one other object. See the setup in WorldLocking.Examples.WorldLockingPhysicsSample for example. If you are doing dynamic camera manipulation, you may need to keep the WorldLockingManager informed of the current camera. See [WorldLockingManager.AdjustmentFrame](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.AdjustmentFrame) and [WorldLockingManager.CameraParent](xref:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.CameraParent).
 
@@ -43,21 +52,21 @@ Check that your scene camera is attached to at least one other object. See the s
 
 The path has grown too long. See fuller [explanation here](InitialSetup.md#a-warning-note-on-installation-path-length).
 
-### "A remote operation is taking longer than expected" message box then failure to deploy.
+### "A remote operation is taking longer than expected" message box then failure to deploy
 
 Check your USB connection. A bad cable, a bad port, missing IPOverUSB, can all cause this. But it's probably somewhere on the communication path from your PC to your device.
 
-### Missing Windows SDK components.
+### Missing Windows SDK components
 
 Mismatch between Visual Studio version indicated in Unity versus Visual Studio version you're trying to build with. Check:
 
-> `Unity > File > Build Settings > Visual Studio Version` 
+> `Unity > File > Build Settings > Visual Studio Version`
 
 Especially dangerous is if that's set to `Latest Installed` and you have multiple versions of Visual Studio installed.
 
-### On HoloLens, application starts up as a slate, rather than an AR experience.
+### On HoloLens, application starts up as a slate, rather than an AR experience
 
-If targeting the Unity's built-in VR support, also known as Legacy XR, then check: 
+If targeting the Unity's built-in VR support, also known as Legacy XR, then check:
 
 > `Unity > Project Settings > Player > XR Settings`  
 
@@ -65,11 +74,11 @@ You must have Virtual Reality Supported checked, and the Windows Mixed Reality i
 
 If using Unity's AR Subsystems / XR SDK, then check that you've followed all the steps [here](XRSDK.md). Likely culprits are missing one of the required packages, or if using MRTK, that the appropriate profile has not been setup on the MixedRealityToolkit object.
 
-### When building for ARM on HoloLens2, app stops at startup. ARM64 works fine.
+### When building for ARM on HoloLens2, app stops at startup. ARM64 works fine
 
-[Known issue](https://issuetracker.unity3d.com/issues/enabling-graphics-jobs-in-2019-dot-3-x-results-in-a-crash-or-nothing-rendering-on-hololens-2). 
+[Known issue](https://issuetracker.unity3d.com/issues/enabling-graphics-jobs-in-2019-dot-3-x-results-in-a-crash-or-nothing-rendering-on-hololens-2).
 
-The fix is either disable Graphics Jobs under 
+The fix is either disable Graphics Jobs under
 
 > `Project Settings > Player > Other Settings > Graphics Jobs`
 

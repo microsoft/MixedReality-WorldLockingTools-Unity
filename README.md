@@ -1,6 +1,15 @@
-<img src="DocGen/Images/WorldLockingTools.svg">
+---
+title: Welcome!
+description: Welcome landing page for World Locking Tools for Unity.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # Welcome!
+
 World Locking Tools for Unity provides a stable and reliable world-locked coordinate system, binding the virtual/holographic world to the physical world.
 
 World Locking Tools take the burden of world-locking holograms off of the developer, as well as enabling scenarios that were previously unreachable. It currently supports the **HoloLens family of devices** via Unity's built-in VR support. Initial support for **other platforms [via Unity's new XR SDK plugin system](~/DocGen/Documentation/HowTos/XRSDK.md)** is also available.
@@ -11,15 +20,15 @@ World Locking Tools scale naturally with both the size and complexity of the sce
 
 ## Published documentation
 
-For the most up-to-date documentation, see the [World Locking Tools for Unity documentation portal](https://microsoft.github.io/MixedReality-WorldLockingTools-Unity/README.html). 
+For the most up-to-date documentation, see the [World Locking Tools for Unity documentation portal](https://microsoft.github.io/MixedReality-WorldLockingTools-Unity/README.html).
 
 ## Getting started
 
-Dive into the full documentation, beginning with the organization of the documentation itself, from the [Guides section](DocGen/Documentation/GettingStartedWithWorldLocking.md).
+Dive into the full documentation, beginning with the organization of the documentation itself, from the [Guides section](~/DocGen/Documentation/GettingStartedWithWorldLocking.md).
 
-Or a quick overview of key concepts behind World Locking Tools is contained in this [FAQ](DocGen/Documentation/IntroFAQ.md).
+Or a quick overview of key concepts behind World Locking Tools is contained in this [FAQ](~/DocGen/Documentation/IntroFAQ.md).
 
-Or skip straight into introduction of key concepts, leading to further details of concepts and solutions, beginning in the [Concepts section](DocGen/Documentation/Concepts.md).
+Or skip straight into introduction of key concepts, leading to further details of concepts and solutions, beginning in the [Concepts section](~/DocGen/Documentation/Concepts.md).
 
 A number of samples are contained in a sibling repo, [World Locking Tools Samples](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html). Be sure to have a look there for an instructive example. And if you don't find what you are looking for there, you are [encouraged to submit](https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/CONTRIBUTING.html) a suggestion or even your own sample.
 
@@ -31,11 +40,11 @@ World Locking Tools is both powerful and easy to use. Furthermore, it strives to
 
 These ideas are further explored in the conceptual guide. To complement the theoretical description, pragmatic samples are provided, along with how-to articles to walk through the steps involved in building applications using the World Locking Tools' stable and reliable coordinate system.
 
-* [Conceptual guide](DocGen/Documentation/GettingStartedWithWorldLocking.md)
-* [How-to articles](DocGen/Documentation/HowTos.md)
-* [Samples](DocGen/Documentation/HowTos/SampleApplications.md)
+* [Conceptual guide](~/DocGen/Documentation/GettingStartedWithWorldLocking.md)
+* [How-to articles](~/DocGen/Documentation/HowTos.md)
+* [Samples](~/DocGen/Documentation/HowTos/SampleApplications.md)
 
-Further, reference materials for interfacing through script with World Locking Tools is included in the [API Documentation](DocGen/api_doc/Architecture.md).
+Further, reference materials for interfacing through script with World Locking Tools is included in the [API Documentation](~/DocGen/Documentation/Concepts/Advanced/Architecture/Architecture.md).
 
 # Build Status
 
@@ -45,7 +54,7 @@ Further, reference materials for interfacing through script with World Locking T
 
 
 # Useful resources on Microsoft Windows Dev Center
-| ![Academy](DocGen/External/ReadMeImages/icon_academy.png) [Academy](https://developer.microsoft.com/en-us/windows/mixed-reality/academy)| ![Design](DocGen/External/ReadMeImages/icon_design.png) [Design](https://developer.microsoft.com/en-us/windows/mixed-reality/design)| ![Development](DocGen/External/ReadMeImages/icon_development.png) [Development](https://developer.microsoft.com/en-us/windows/mixed-reality/development)| ![Community)](DocGen/External/ReadMeImages/icon_community.png) [Community](https://developer.microsoft.com/en-us/windows/mixed-reality/community)|
+| ![Academy](~/DocGen/External/ReadMeImages/icon_academy.png) [Academy](https://developer.microsoft.com/en-us/windows/mixed-reality/academy)| ![Design](DocGen/External/ReadMeImages/icon_design.png) [Design](https://developer.microsoft.com/en-us/windows/mixed-reality/design)| ![Development](DocGen/External/ReadMeImages/icon_development.png) [Development](https://developer.microsoft.com/en-us/windows/mixed-reality/development)| ![Community)](DocGen/External/ReadMeImages/icon_community.png) [Community](https://developer.microsoft.com/en-us/windows/mixed-reality/community)|
 | :--------------------- | :----------------- | :------------------ | :------------------------ |
 | See code examples. Do a coding tutorial. Watch guest lectures.          | Get design guides. Build user interface. Learn interactions and input.     | Get development guides. Learn the technology. Understand the science.       | Join open source projects. Ask questions on forums. Attend events and meetups. |
 
@@ -55,7 +64,7 @@ This project welcomes contributions and suggestions. Most contributions require 
 
 When you submit a pull request, a CLA-bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
 
-View the [**How To Contribute**](DocGen/Documentation/HowTos/Contributing.md) page for the most up to date instructions on contributing to World Locking Tools for Unity.
+View the [**How To Contribute**](~/DocGen/Documentation/HowTos/Contributing.md) page for the most up to date instructions on contributing to World Locking Tools for Unity.
 
 # Microsoft Open Source Code of Conduct
 

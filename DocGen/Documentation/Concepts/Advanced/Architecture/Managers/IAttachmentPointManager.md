@@ -1,3 +1,13 @@
+---
+title: IAttachmentPointManager
+description: Provide callbacks on (infrequent) refit events.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
+
 # IAttachmentPointManager
 
 The IAttachmentPointManager is the most common World Locking Tools interface for a client application to access.

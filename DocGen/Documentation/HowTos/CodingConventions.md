@@ -1,6 +1,16 @@
-# Coding Guidelines
+---
+title: Coding guidelines
+description: Coding standards followed in World Locking Tools.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
-This document outlines the recommended coding guidelines for World Locking Tools for Unity.  The majority of these suggestions follow the [recommended standards from MSDN](https://docs.microsoft.com/dotnet/csharp/programming-guide/inside-a-program/coding-conventions).
+# Coding guidelines
+
+This document outlines the recommended coding guidelines for World Locking Tools for Unity.  Most of these suggestions follow the [recommended standards from MSDN](https://docs.microsoft.com/dotnet/csharp/programming-guide/inside-a-program/coding-conventions).
 
 ---
 
@@ -32,7 +42,7 @@ All public classes, structs, enums, functions, properties, fields posted should 
     }
 ```
 
-This ensures documentation is properly generated and disseminated for all all classes, methods, and properties.
+This rule ensures documentation is properly generated and disseminated for all classes, methods, and properties.
 
 >Any script files submitted without proper summary tags will be rejected.
 
@@ -48,7 +58,7 @@ All classes and extensions should be scoped by namespace, chosen appropriately f
 
 Related features within one of the above namespaces may be grouped by extending to a new sub-namespace.
 
-### Do:
+### Do
 
 ```c#
 namespace Microsoft.MixedReality.WorldLocking.Examples.Placement
@@ -60,11 +70,12 @@ namespace Microsoft.MixedReality.WorldLocking.Examples.Placement
 Omitting the namespace for an interface, class or data type will cause your change to be blocked.
 
 ## Spaces vs Tabs
-Please be sure to use 4 spaces instead of tabs when contributing to this project.
+
+Be sure to use four spaces instead of tabs when contributing to this project.
 
 Additionally, ensure that spaces are added for conditional / loop functions like if / while / for
 
-### Don't:
+### Don't
 
 ```c#
 private Foo () // < - space between Foo and ()
@@ -81,7 +92,7 @@ private Foo () // < - space between Foo and ()
 }
 ```
 
-### Do:
+### Do
 
  ```c#
 private Foo()
@@ -100,9 +111,9 @@ private Foo()
 
 ## Spacing
 
-Do not to add additional spaces between square brackets and parenthesis:
+Do not add additional spaces between square brackets and parenthesis:
 
-### Don't:
+### Don't
 
 ```c#
 private Foo()
@@ -113,7 +124,7 @@ private Foo()
 
 ```
 
-### Do:
+### Do
 
 ```c#
 private Foo()
@@ -128,14 +139,14 @@ private Foo()
 Always use `PascalCase` for public / protected / virtual properties, and `camelCase` for private properties and fields.
 >The only exception to this is for data structures that require the fields to be serialized by the `JsonUtility`.
 
-### Don't:
+### Don't
 
 ```c#
 public string myProperty; // <- Starts with a lower case letter
 private string MyProperty; // <- Starts with an uppercase case letter
 ```
 
-### Do:
+### Do
 
  ```c#
 public string MyProperty;
@@ -145,13 +156,13 @@ private string myProperty;
 
 ## Access Modifiers
 
-Always declare an access modifier for all fields, properties and methods.
+Always declare an access modifier for all fields, properties, and methods.
 
 >All Unity API Methods should be `private` by default, unless you need to override them in a derived class. In this case `protected` should be used.
 
 >Fields should always be `private`, with `public` or `protected` property accessors.
 
-### Don't:
+### Don't
 
 ```c#
 // protected field should be private
@@ -165,7 +176,7 @@ void Foo() { }
 void Bar() { }
 ```
 
-### Do:
+### Do
 
  ```c#
 public int MyVariable { get; protected set; } = 0;
@@ -179,7 +190,7 @@ protected virtual void FooBar() { }
 
 Always use braces after each statement block, and place them on the next line.
 
-### Don't:
+### Don't
 
 ```c#
 private Foo()
@@ -191,7 +202,7 @@ private Foo()
 }
 ```
 
-### Don't:
+### Don't
 
 ```c#
 private Foo() { // <- Open bracket on same line
@@ -200,7 +211,7 @@ private Foo() { // <- Open bracket on same line
 }
 ```
 
-### Do:
+### Do
 
 ```c#
 private Foo()
@@ -218,9 +229,9 @@ private Foo()
 
 ## Public classes, structs, and enums should all go in their own files.
 
-If the class, struct, or enum can be made private then it's okay to be included in the same file.  This avoids compilations issues with Unity and ensure that proper code abstraction occurs, it also reduces conflicts and breaking changes when code needs to change.
+If the class, struct, or enum can be made private, then it's okay to be included in the same file.  This inclusion avoids compilations issues with Unity and ensures that proper code abstraction occurs. It also reduces conflicts and breaking changes when code needs to change.
 
-### Don't:
+### Don't
 
 ```c#
 public class MyClass
@@ -231,7 +242,7 @@ public class MyClass
 }
 ```
 
-### Do:
+### Do
 
  ```c#
  // Private references for use inside the class only
@@ -243,9 +254,10 @@ public class MyClass
 }
  ```
 
- ### Do:
+### Do
 
  MyStruct.cs
+
  ```c#
  // Public Struct / Enum definitions for use in your class.  Try to make them generic for reuse.
 public struct MyStruct
@@ -256,6 +268,7 @@ public struct MyStruct
 ```
 
 MyEnumType.cs
+
 ```c#
 public enum MuEnumType
 {
@@ -265,6 +278,7 @@ public enum MuEnumType
 ```
 
 MyClass.cs
+
 ```c#
 public class MyClass
 {
@@ -275,9 +289,9 @@ public class MyClass
 
 ## Order Enums for appropriate extension.
 
-It is critical that if an Enum is likely to be extended in the future, to order defaults at the top of the Enum, this ensures Enum indexes are not affected with new additions.
+It is critical that if an Enum is likely to be extended in the future, to order defaults at the top of the Enum. This ordering ensures Enum indexes are not affected with new additions.
 
-### Don't:
+### Don't
 
 ```c#
 public enum SDKType
@@ -290,7 +304,7 @@ public enum SDKType
 }
 ```
 
-### Do:
+### Do
 
  ```c#
     /// <summary>
@@ -323,8 +337,11 @@ public enum SDKType
 ```
 
 ## End Enum names with "Type"
+
 Enum names should clearly indicate their nature by using the Type suffix.
-### Don't:
+
+### Don't
+
 ```c#
 public enum Ordering
 {
@@ -333,6 +350,7 @@ public enum Ordering
     Third
 }
 ```
+
 ```c#
 public enum OrderingEnum
 {
@@ -341,7 +359,9 @@ public enum OrderingEnum
     Third
 }
 ```
-### Do:
+
+### Do
+
 ```c#
 public enum OrderingType
 {
@@ -351,14 +371,13 @@ public enum OrderingType
 }
 ```
 
+## Review Enum use for Bitfields
 
-## Review Enum use for Bitfields.
-
-If there is a possibility for an enum to require multiple states as a value, e.g. Handedness = Left & Right. Then the Enum needs to be decorated correctly with BitFlags to enable it to be used correctly
+If there is a possibility for an enum to require multiple states as a value, for example, Handedness = Left & Right. Then the Enum needs to be decorated with BitFlags to enable it to be used correctly
 
 > The Handedness.cs file has a concrete implementation for this
 
-### Don't:
+### Don't
 
 ```c#
 public enum Handedness
@@ -369,7 +388,7 @@ public enum Handedness
 }
 ```
 
-### Do:
+### Do
 
  ```c#
  [flags]
@@ -382,33 +401,32 @@ public enum HandednessType
 }
  ```
 
-
 ## Best Practices, including Unity recommendations
 
-Some of the target platforms of this project require to take performance into consideration. With this in mind always be careful when allocating memory in frequently called code in tight update loops or algorithms.
+Some of the target platforms of this project require to take performance into consideration. With this in mind, always be careful when allocating memory in frequently called code in tight update loops or algorithms.
 
 ## Encapsulation
 
-Always use private fields and public properties if access to the field is needed from outside the class or struct.  Be sure to co-locate the private field and the public property. This makes it easier to see, at a glance, what backs the property and that the field is modifiable by script.
+Always use private fields and public properties if access to the field is needed from outside the class or struct.  Be sure to co-locate the private field and the public property. This location makes it easier to see, at a glance, what backs the property and that the field is modifiable by script.
 
 If you need to have the ability to edit your field in the inspector, it's best practice to follow the rules for Encapsulation and serialize your backing field.
 
 >The only exception to this is for data structures that require the fields to be serialized by the `JsonUtility`, where a data class is required to have all public fields for the serialization to work.
 
-### Don't:
+### Don't
 
 ```c#
 public float MyValue;
 ```
 
-### Do:
+### Do
 
  ```c#
  // private field, only accessible within script (field is not serialized in Unity)
  private float myValue;
   ```
 
-### Do:
+### Do
 
  ```c#
  // Enable private field to be configurable only in editor (field is correctly serialized in Unity)
@@ -418,7 +436,7 @@ public float MyValue;
 
 ---
 
- ### Don't:
+ ### Don't
 
  ```c#
  private float myValue1;
@@ -437,7 +455,7 @@ public float MyValue;
  }
 ```
 
- ### Do:
+ ### Do
 
  ```c#
  // Enable field to be configurable in the editor and available externally to other scripts (field is correctly serialized in Unity)
@@ -455,17 +473,17 @@ public float MyValue;
  }
  ```
 
-## Use `for` instead of `foreach` when possible.
+## Use `for` instead of `foreach` when possible
 
-In some cases a foreach is required, e.g. when looping over an IEnumerable.  But for performance benefit, avoid foreach when you can.
+In some cases a foreach is required, for example, when looping over an IEnumerable.  But for performance benefit, avoid foreach when you can.
 
-### Don't:
+### Don't
 
 ```c#
 foreach(var item in items)
 ```
 
-### Do:
+### Do
 
  ```c#
 int length = items.length; // cache reference to list/array length
@@ -476,7 +494,7 @@ for(int i=0; i < length; i++)
 
 With the HoloLens in mind, it's best to optimize for performance and cache references in the scene or prefab to limit runtime memory allocations.
 
-### Don't:
+### Don't
 
 ```c#
 void Update()
@@ -485,7 +503,7 @@ void Update()
 }
 ```
 
-### Do:
+### Do
 
  ```c#
 [SerializeField] // To enable setting the reference in the inspector.
@@ -510,7 +528,7 @@ private void Update()
 
 Unity will create a new material each time you use ".material", which will cause a memory leak if not cleaned up properly.
 
-### Don't:
+### Don't
 
 ```c#
 public class MyClass
@@ -523,7 +541,7 @@ public class MyClass
 }
 ```
 
-### Do:
+### Do
 
  ```c#
  // Private references for use inside the class only
@@ -552,8 +570,8 @@ public class MyClass
 
 ## Use [platform dependent compilation](https://docs.unity3d.com/Manual/PlatformDependentCompilation.html) to ensure the Toolkit won't break the build on another platform
 
-* Use `WINDOWS_UWP` in order to use UWP-specific, non-Unity APIs. This will prevent them from trying to run in the Editor or on unsupported platforms. This is equivalent to `UNITY_WSA && !UNITY_EDITOR` and should be used in favor of.
-* Use `UNITY_WSA` to use UWP-specific Unity APIs, such as the `UnityEngine.XR.WSA` namespace. This will run in the Editor when the platform is set to UWP, as well as in built UWP apps.
+* Use `WINDOWS_UWP` in order to use UWP-specific, non-Unity APIs. This define will prevent them from trying to run in the Editor or on unsupported platforms. This define is equivalent to `UNITY_WSA && !UNITY_EDITOR` and should be used in favor of.
+* Use `UNITY_WSA` to use UWP-specific Unity APIs, such as the `UnityEngine.XR.WSA` namespace. This will run in the Editor when the platform is set to UWP, and in built UWP apps.
 
 This chart can help you decide which `#if` to use, depending on your use cases and the build settings you expect.
 
@@ -570,4 +588,4 @@ This chart can help you decide which `#if` to use, depending on your use cases a
 
 DateTime.UtcNow is faster than DateTime.Now. In previous performance investigations we've found that using DateTime.Now adds significant overhead especially when used in the Update() loop. [Others have hit the same issue](https://stackoverflow.com/questions/1561791/optimizing-alternatives-to-datetime-now).
 
-Prefer using DateTime.UtcNow unless you actually need the localized times (a legitmate reason may be you wanting to show the current time in the user's time zone). If you are dealing with relative times (i.e. the delta between some last update and now), it's best to use DateTime.UtcNow to avoid the overhead of doing timezone conversions.
+Prefer using DateTime.UtcNow unless you actually need the localized times (a legitimate reason may be you wanting to show the current time in the user's time zone). If you are dealing with relative times (that is, the delta between some last update and now), it's best to use DateTime.UtcNow to avoid the overhead of doing timezone conversions.

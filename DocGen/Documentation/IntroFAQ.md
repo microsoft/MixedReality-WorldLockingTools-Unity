@@ -1,3 +1,12 @@
+---
+title: Frequently asked questions
+description: The thinking behind World Locking Tools.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # Frequently asked questions
 
@@ -11,7 +20,7 @@
 
 *Physical world* - the real world.
 
-*Virtual world* - synthetically generated and simulated world presented via electronic media. 
+*Virtual world* - synthetically generated and simulated world presented via electronic media.
 
 *Virtual world marker* – a pose in the virtual (modeling) coordinate system. That’s it, just a reference position and orientation.
 
@@ -23,13 +32,13 @@
 
 Given inconsistencies between virtual and real world markers, World Locking Tools provides a stable coordinate system and camera adjustment that minimizes the visible inconsistencies.
 
-Put another way, it world-locks the entire scene with a shared pool of anchors, rather than locking each group of objects with the group's own individual anchor. 
+Put another way, it world-locks the entire scene with a shared pool of anchors, rather than locking each group of objects with the group's own individual anchor.
 
 ## Why are the virtual and real world markers inconsistent?
 
 Among the many amazing technologies behind Microsoft Mixed Reality, the ability to track the headset's pose in the physical world in real time, without the aid of external devices, is especially amazing.
 
-The head tracking system is remarkably accurate at determining the head's pose relative to known virtual reference points in the physical environment. For this discussion, those virtual reference points will be called "visible features". 
+The head tracking system is remarkably accurate at determining the head's pose relative to known virtual reference points in the physical environment. For this discussion, those virtual reference points will be called "visible features".
 
 On leaving a position known relative to surrounding visible features, for instance if the user walks around the room, and then returning to that same position, the system will recognize many of those same visible features. It can also determine the  poses of those visible features relative to the current head pose, and do so with surprising accuracy.
 
@@ -41,7 +50,7 @@ But if the new head virtual pose coordinates have shifted toward positive X, for
 
 Yes, with limitations. Unity provides an excellent mechanism for dealing with this, known as spatial anchors. If the virtual space has shifted relative to physical space, by keeping track of underlying visible features, a spatial anchor knows to shift itself in virtual space to remain locked in physical space. Anything attached to the spatial anchor will likewise be dragged through Unity's virtual space to remain stationary in physical space.
 
-The limitations are related to the fact that visible features become unreliable when they are far from the head tracker's cameras. This is not surprising. Visible features that aren't visible make poor reference points. 
+The limitations are related to the fact that visible features become unreliable when they are far from the head tracker's cameras. This is not surprising. Visible features that aren't visible make poor reference points.
 
 A spatial anchor's useful range is therefore limited to 3 meters. Depending on the accuracy requirements of the application, the usable range might be less.
 
@@ -59,7 +68,7 @@ On returning to a previously occupied pose, World Locking Tools has enough infor
 
 But drift may occur on a one way trip, as well as a round trip.
 
-As a concrete example, consider measuring 10 meters between two QR codes placed in a physical room, and therefore modeling two boxes in the virtual room as 10 meters apart. But at runtime, because of drift of the head pose in the virtual space, walking the 10 meters between the QR codes moves 11 meters through virtual space. 
+As a concrete example, consider measuring 10 meters between two QR codes placed in a physical room, and therefore modeling two boxes in the virtual room as 10 meters apart. But at runtime, because of drift of the head pose in the virtual space, walking the 10 meters between the QR codes moves 11 meters through virtual space.
 
 The application may opt into a feature of World Locking Tools to address this by providing information calibrating distance in virtual space to distance in physical space. The behavior that World Locking Tools provides is that, standing over the first QR code and looking down will see the first box. As the 10 meters are walked through the physical world, the extra meter in virtual space is quietly absorbed, leaving the head moved 10 meters in virtual space as well. So on reaching the second physical QR code and looking down, the second virtual box will be there as expected.
 
@@ -75,9 +84,6 @@ Note that this compensation for updates in anchor positions can happen even in t
 
 ## What if the inconsistencies get really bad?
 
-World Locking Tools can detect several scenarios in which the inconsistencies between real and virtual markers are large and can be improved upon. For example, more information may be obtained which establishes the spatial relationship between two previously isolated pools of markers. Or loop closure might suggest a shift of markers along the route to allow the endpoints to meet. 
+World Locking Tools can detect several scenarios in which the inconsistencies between real and virtual markers are large and can be improved upon. For example, more information may be obtained which establishes the spatial relationship between two previously isolated pools of markers. Or loop closure might suggest a shift of markers along the route to allow the endpoints to meet.
 
 In these cases, World Locking Tools notifies the client of the potential fix, and on the client's bequest performs the fix and notifies the client of adjustments it should make in its objects which track virtual markers. Until the client requests such a fix (if ever), World Locking Tools continues to minimize the perceived inconsistencies.
-
-
-

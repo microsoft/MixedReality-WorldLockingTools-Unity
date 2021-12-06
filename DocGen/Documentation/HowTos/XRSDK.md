@@ -1,11 +1,20 @@
+---
+title: Cross Platform using Unity's XR SDK Plugin system
+description: Building HoloLens and mobile applications leveraging World Locking Tools using Unity's XR SDK Plugin system.
+author: fast-slow-still
+ms.author: mafinc
+ms.date: 10/06/2021
+ms.localizationpriority: high
+keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
+---
 
 # Cross Platform using Unity's XR SDK Plugin system
 
-Initial development of the World Locking Tools targeted the HoloLens family of devices via Unity's XR.WSA (VR/AR Windows Store App) APIs. This is part of what has become commonly known as Unity's Legacy XR interface, or Unity's built-in VR support. 
+Initial development of the World Locking Tools targeted the HoloLens family of devices via Unity's XR.WSA (VR/AR Windows Store App) APIs. This is part of what has become commonly known as Unity's Legacy XR interface, or Unity's built-in VR support.
 
 Unity has since introduced its [XR Plugin architecture](https://docs.unity3d.com/Manual/XRPluginArchitecture.html), whose goal is to provide cross platform abstractions giving developers access to common features across available VR and AR devices.
 
-During this transition phase, WLT supports both the Legacy XR interface for HoloLens, and the AR Subsystems for cross-platform. It should be noted that the Legacy XR interface is deprecated since Unity 2019, and will no longer be supported as of Unity 2020. 
+During this transition phase, WLT supports both the Legacy XR interface for HoloLens, and the AR Subsystems for cross-platform. It should be noted that the Legacy XR interface is deprecated since Unity 2019, and will no longer be supported as of Unity 2020.
 
 WLT currently supports **AR Subsystems versioned 2.X.Y for Unity 2019.4 (LTS)**. Further version support will be rolled out in subsequent releases.
 
@@ -20,7 +29,7 @@ Retargeting WLT for XR SDK is exceedingly simple. First, configure your project 
 5. Change the Anchor Subsystem type to XRSDK.
 6. NOTE: Do not use the ARF Anchor Subsystem type. If using AR Foundation for your app, still select XRSDK subsystem.
 
-![](~/DocGen/Images/Screens/Context/WLTContextAnchor.JPG)
+![The anchor management section of the context settings](~/DocGen/Images/Screens/Context/WLTContextAnchor.JPG)
 
 ## Using MRTK with WLT on XR SDK
 
@@ -37,6 +46,7 @@ See full instructions at [Getting started with MRTK and XR SDK](https://microsof
 If working in the WLT project, I suggest using the WLT provided “XRSDKMixedRealityToolkitConfigurationProfile” to start.
 
 WLT using Windows XR Plugin has been tested on Unity 2019.4, using the following versions:
+
 > * XR Plugin Management: v3.2.16 (expected to work with v3.X.Y, X >= 2)
 > * Windows XR Plugin: v2.4.1 (prior to v2.4.1 anchors were broken. Expected to work v2.4.Y, Y>=1, v2.X.Y, X>=1). 
 
@@ -45,6 +55,7 @@ WLT using Windows XR Plugin has been tested on Unity 2019.4, using the following
 To get an Android XR Plugin driving an MRTK AR application, follow the instructions at [How to configure MRTK for iOS and Android](https://microsoft.github.io/MixedRealityToolkit-Unity/version/releases/2.5.1/Documentation/CrossPlatform/UsingARFoundation.html?q=2020)
 
 > NOTE: You need ALL of:
+>
 > * XR Plugin Management (tested v3.2.16, expected v3.X.Y, X>=2).
 > * AR Subsystems (tested v2.1.3, expected v2.X.Y, X>1).
 > * AR Core XR Plugin (tested v2.1.12, expected v2.X.Y, X>1).
