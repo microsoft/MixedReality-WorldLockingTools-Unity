@@ -73,7 +73,7 @@ Automation settings control the runtime behavior of the World Locking Tools Mana
 
 ### Linkage settings
 
-Linkage settings are used to explicitly define the scene GameObjects whose transforms will be used to apply World Locking Tools' corrections.
+Linkage settings are used to explicitly define the scene `GameObjects` whose transforms will be used to apply World Locking Tools' corrections.
 
 ![The linkage section of the context](~/DocGen/Images/Screens/Context/WLTContextLinkage.JPG)
 
@@ -84,6 +84,12 @@ Conversely, setting "Use Existing" to false allows allows multiple scenes each w
 When creating and managing the camera hierarchy from script, the "Use Existing" field should be set to true on all Contexts,and the linkages updated explicitly from the camera managing scripts.
 
 When the required transforms are not supplied, either left null or all Contexts have "Use Existing", then the system issues a warning and tries to infer good choices. It is recommended, but not required, to explicitly set the appropriate transforms, rather than having the system guess.
+
+There are two additional options here that control how the camera transform correction will be applied.
+
+The first checkbox, for "Apply Adjustment", defaults to enabled. This tells the system to apply the computed camera correction each frame to the "Adjustment Frame" `GameObject`. Disabling this is a very advanced feature, and should only be tried after all other issues are resolved, and a deep understanding of World Locking Tools has been achieved. In short, it tells the system that the camera correction is not to be applied to the camera, but will be applied by other means. Typically, this is through an `AlignSubtree` component, but doesn't need to be.
+
+The second checkbox, for "No Pitch And Roll", tells the system to zero out any pitch and roll computed in the transform from `Playspace` to Locked Space. (See this [discussion of WLT coordinate spaces](../Concepts/Advanced/CoordinateSpaces.md)). This has no effect on the rotation applied by the `SpacePin` system, but only affects the world locking camera correction transform computed by the Frozen World Engine.
 
 ### Anchor Management settings
 
