@@ -76,6 +76,8 @@ The [AnchorGraphVisual](xref:Microsoft.MixedReality.WorldLocking.Tools.AnchorGra
 
 Enabling the display of the anchor graph that World Locking Tools generates as the user moves about the physical environment requires only dropping the WorldLockingTools > Prefabs > AnchorGraphVisual prefab into the scene. It is customarily added as a sibling to the WorldLockingContext, but its exact placement in the hierarchy is unimportant. However, it should not be placed in the camera hierarchy.
 
+The spatial anchors which WLT creates and uses internally are created at the camera position. Because it is disconcerting to be walking through a field of anchor visualizations at eye level, the system defaults to displaying them 1 meter down from their true position. To see the anchor visualizations at the actual anchor positions, set the Anchor Graph Visual component's Vertical Displacement parameter to zero.
+
 ### Additional output
 
 The [World Locking Examples](xref:Microsoft.MixedReality.WorldLocking.Examples) includes text diagnostics. Most of these are relevant only to developers of the World Locking Tools, rather than clients of its abilities. However, they are available for read and, as shown in the [StatusToText](xref:Microsoft.MixedReality.WorldLocking.Tools.StatusToText) script, for real-time display.
