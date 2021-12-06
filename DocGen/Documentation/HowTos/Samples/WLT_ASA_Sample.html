@@ -107,23 +107,23 @@
 <li>World Locking Tools for Unity v1.4.1</li>
 <li>FrozenWorldEngine v1.1.1</li>
 </ul>
-<p>You can install WLT and this sample either from <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases">WLT releases .unitypackage</a> or from the Mixed Reality Feature Tool. Note that if installing from the FeatureTool, you must not only install the WLT Examples dependency (automatic), but also Import the Examples into your project. See <a href="../WLTviaMRFeatureTool.html">Installing WLT from MR Feature Tool</a> for details.</p>
+<p>You can install WLT and this sample either from <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases">WLT releases .unitypackage</a> or from the Mixed Reality Feature Tool. If installing from the FeatureTool, you must not only install the WLT Examples dependency (automatic), but also Import the Examples into your project. See <a href="../WLTviaMRFeatureTool.html">Installing WLT from MR Feature Tool</a> for details.</p>
 <h3 id="install-the-frozen-world-engine-dll-into-the-project">Install the Frozen World Engine DLL into the project</h3>
-<p>The first step is to install the Frozen World Engine DLL, v1.1.1. <a href="https://microsoft.github.io/MixedReality-WorldLockingTools-Unity/DocGen/Documentation/HowTos/InitialSetup.html#frozenworld-engine-installation">Instructions here</a>, using either NuGet for Unity, or command line nuget.exe.</p>
+<p>The first step is to install the Frozen World Engine DLL, v1.1.1. <a href="../InitialSetup.html#frozenworld-engine-installation">Instructions here</a>, using either NuGet for Unity, or command-line nuget.exe.</p>
 <h3 id="install-asa">Install ASA</h3>
 <h4 id="creating-spatial-anchor-resources">Creating spatial anchor resources</h4>
-<p>This <a href="https://docs.microsoft.com/azure/spatial-anchors/quickstarts/get-started-unity-hololens?tabs=azure-portal">Quick Start Guide</a> goes through the steps to create an Azure account and the necessary spatial anchors resources. The Account Id, Account Domain, and Account Key will be necessary to run the sample. You will add them into the proper fields on the &quot;Spatial Anchor Manager&quot; script, on the SpacePinBinder object in the scene. Other authentication methods are supported, but the Account Id/Domain/Key is the easiest when getting started.</p>
+<p>This <a href="https://docs.microsoft.com/azure/spatial-anchors/quickstarts/get-started-unity-hololens?tabs=azure-portal">Quick Start Guide</a> goes through the steps to create an Azure account and the necessary spatial anchors resources. The Account ID, Account Domain, and Account Key will be necessary to run the sample. You will add them into the proper fields on the &quot;Spatial Anchor Manager&quot; script, on the SpacePinBinder object in the scene. Other authentication methods are supported, but the Account ID/Domain/Key is the easiest when getting started.</p>
 <p><img src="../../../Images/ASA/InspectorAccount.jpg" alt="Credentials fields"></p>
 <h4 id="install-the-sdk">Install the SDK</h4>
 <p>Next, install Azure Spatial Anchors v2.9.0 using one of the methods described in <a href="https://docs.microsoft.com/azure/spatial-anchors/how-tos/setup-unity-project?tabs=unity-package-web-ui">these instructions</a>. I used the MR Feature Tool method.</p>
 <h3 id="additional-setup-for-coarse-relocation">Additional setup for Coarse Relocation</h3>
 <p>When using Coarse Relocation, additional setup is required when deploying to Android or HoloLens2.</p>
 <h4 id="what-is-coarse-relocation">What is Coarse Relocation?</h4>
-<p>Coarse Relocation is a technology which allows you to search for previously created cloud anchors within your current vicinity. Additional details on Course Relocation can be found in the <a href="https://docs.microsoft.com/azure/spatial-anchors/concepts/coarse-reloc">Course Relocation section of the Azure Spatial Anchors documentation</a>.</p>
-<p>This sample demonstrates finding cloud anchors either by Coarse Relocation, or explicitly by cloud anchor id (GUID). If Coarse Relocation is enabled, the following additional setup steps are required. If you aren't interested in Coarse Relocation, you can disable it in the &quot;Publisher ASA&quot; component on the SpacePinBinder object.</p>
+<p>Coarse Relocation is a technology that allows you to search for previously created cloud anchors within your current vicinity. Details on Course Relocation can be found in the <a href="https://docs.microsoft.com/azure/spatial-anchors/concepts/coarse-reloc">Course Relocation section of the Azure Spatial Anchors documentation</a>.</p>
+<p>This sample demonstrates finding cloud anchors either by Coarse Relocation, or explicitly by cloud anchor ID (GUID). If Coarse Relocation is enabled, the following additional setup steps are required. If you aren't interested in Coarse Relocation, you can disable it in the &quot;Publisher ASA&quot; component on the SpacePinBinder object.</p>
 <p><img src="../../../Images/ASA/InspectorPublisher.jpg" alt="Disabling coarse relocation"></p>
 <h4 id="additional-setup-steps-for-hololens2">Additional setup steps for HoloLens2</h4>
-<p>To enable Coarse Relocation on HoloLens2, you must add a permission to the Package.appxmanifest file generated into ARM/WorldLockingTools/Package.appxmanifest (assuming you selected the folder ARM as your build target). If this is your own project, substitute the appropriate name for WorldLockingTools in that path. Add the following line into the Capabilities section:</p>
+<p>To enable Coarse Relocation on HoloLens2, you must add a permission to the Package.appxmanifest file generated into ARM/WorldLockingTools/Package.appxmanifest (assuming you selected the folder ARM as your build target). If this project is your own, substitute the appropriate name for WorldLockingTools in that path. Add the following line into the Capabilities section:</p>
 <pre><code class="lang-xml">    &lt;DeviceCapability Name=&quot;wiFiControl&quot;/&gt;
 </code></pre>
 <p>For more information, see <a href="https://github.com/Azure/azure-spatial-anchors-samples/issues/98#issuecomment-574235197">this post on github</a>.</p>
@@ -131,7 +131,7 @@
 <blockquote>
 <p>InvalidOperationException: CoarseReloc: WiFi access has been declined. Request CV: . Response CV: .</p>
 </blockquote>
-<p>Note that you will need to add that capability to your Package.appxmanifest each time the solution is built from clean. But subsequent builds from Unity will preserve the capability.</p>
+<p>You will need to add that capability to your Package.appxmanifest each time the solution is built from clean. But subsequent builds from Unity will preserve the capability.</p>
 <p>In Project Settings/XR Plugin Management, make sure that Windows Mixed Reality is the selected Plugin-Provider under the UWP tab (OpenXR is also supported for WLT with ASA).</p>
 <p>The MRTK profile <code>XAmple XRSDK ToolkitConfigurationProfile</code> in XAmpleApp/CustomProfiles is suitable for running on HoloLens2.</p>
 <h4 id="additional-setup-steps-for-android">Additional setup steps for Android</h4>
@@ -156,7 +156,7 @@
 <h2 id="walkthrough---publish-from-hololens2">Walkthrough - Publish from HoloLens2</h2>
 <h3 id="place-the-scene-using-spacepins">Place the scene using SpacePins</h3>
 <p>When you start up the sample, the coordinate system is position and oriented based on the head tracker pose at startup. Which is to say, it is fairly arbitrary. The first thing to do is to adjust the coordinate system to a desired reference state.</p>
-<p>The sofa in the PinTestSofa scene is 2.18 meters long, 0.78m high, and 1.0m deep. The SpacePin handles on each end of the top back of the sofa are, therefore, 2.18m apart, and 0;78m off the ground. I recommend measuring and placing temporary markers 2.18m apart, at some convenient height. Alternatively, you can adjust the scene to fit your physical space.</p>
+<p>The sofa in the PinTestSofa scene is 2.18 meters long, 0.78 m high, and 1.0 m deep. The SpacePin handles on each end of the top back of the sofa are, therefore, 2.18 m apart, and 0.78 m off the ground. I recommend measuring and placing temporary markers 2.18 m apart, at some convenient height. Alternatively, you can adjust the scene to fit your physical space.</p>
 <p>Having built and deployed the application to a HoloLens2 device, wait until the status on the floating menu says Ready (hint - the status line will go from red to white when ready).</p>
 <p><img src="../../../Images/ASA/NotReadyHL2.jpg" alt="Not ready"></p>
 <p>One at a time, grab each of the SpacePin handles (the white wireframe spheres) and drag it into position relative to your reference markers.</p>

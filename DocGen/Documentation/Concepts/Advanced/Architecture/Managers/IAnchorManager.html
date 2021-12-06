@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>IAnchorManager | World Locking Tools for Unity Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="IAnchorManager | World Locking Tools for Unity Documentation ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../../../../../../DocGen/Images/Logos/favicon.ico">
+    <link rel="stylesheet" href="../../../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../../../index.html">
+                <img id="logo" class="svg" src="../../../../../../DocGen/Images/Logos/WorldLock64.png" alt="">
+              </a>
+            </div>
+          
+          <div class="version-dropdown" id="versionDropdown">
+           </div>
+         
+          <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="ianchormanager">IAnchorManager</h1>
+
+<p>The Frozen World engine relies on a network of spatial anchors surrounding the user, from which to calculate the ideal world locked space.</p>
+<p>The IAnchorManager maintains that network, and supplies it to the engine for processing each frame.</p>
+<p>There are currently a number of implementations of IAnchorManager, all of which derive from the base class AnchorManager in Assets/WorldLocking.Core/Scripts/AnchorManager.cs. AnchorManager manipulates abstract SpongyAnchors, performing common anchor graph maintenance operations. Specializations interact with platform specific APIs. For example, class AnchorManagerXR manages SpongyAnchors built atop XRAnchors. The Frozen World engine itself is agnostic to the type of anchors used.</p>
+<p>As the user moves around the environment, AnchorManager grows the graph of anchors according to the following simple but effective algorithm:</p>
+<ul>
+<li>If the nearest existing anchor is more than X meters from the user then:
+<ul>
+<li>Add a new anchor.</li>
+<li>Add edges from the new anchor to all existing anchors less than Y meters from the new anchor.</li>
+</ul>
+</li>
+</ul>
+<p>The values of 'X' and 'Y' above are constants in the AnchorManager, as MinAnchorDistance and MaxAnchorDistance respectively. These could be converted to properties, giving more flexibility at the cost of complexity in the WorldLockingContext API surface. However, the current values of 1 meter and 1.2 meters, respectively, have been satisfactory to date.</p>
+<p>The above algorithm grows the graph of anchors in the space traversed by the user during the initial exploration, eventually settling into a static network.</p>
+<p>The anchor manager may also persist the anchor graph across multiple sessions.</p>
+<p>AnchorManager has options to automatically save its anchor graph during the session, load the previously saved graph at startup, or save and load on demand. Persistence availability is dependent on platform support.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="WorldLockingManager.html">WorldLockingManager</a></li>
+<li><a href="IFragmentManager.html">IFragmentManager</a></li>
+<li><a href="IAttachmentPointManager.html">IAttachmentPointManager</a></li>
+</ul>
+<p>And in API reference:</p>
+<ul>
+<li><a class="xref" href="../../../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html">WorldLockingManager</a></li>
+<li><a class="xref" href="../../../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAnchorManager.html">IAnchorManager</a></li>
+<li><a class="xref" href="../../../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IFragmentManager.html">IFragmentManager</a></li>
+<li><a class="xref" href="../../../../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAttachmentPointManager.html">IAttachmentPointManager</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Microsoft/MixedReality-WorldLockingTools-Unity/blob/master/DocGen/Documentation/Concepts/Advanced/Architecture/Managers/IAnchorManager.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../../../styles/main.js"></script>
+  </body>
+</html>

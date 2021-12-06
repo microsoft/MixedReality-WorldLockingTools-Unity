@@ -84,67 +84,64 @@
 
 <p>Depending on access level, new code and documentation may be developed in a new feature branch, or in a fork. In general, working from a separate fork is preferred, and is sometimes the only alternative.</p>
 <p>Best practices in git/GitHub development are outside the scope of this documentation, but further reading may be found <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks">here</a>.</p>
-<h2 id="submitting-a-pull-request-pr">Submitting a pull request (PR)</h2>
-<p>Any pull request should include a manual run through the CI build pipeline. The pipeline is triggered by adding a comment to the PR. The following will trigger a full build:</p>
-<pre><code>/azp run
+<h2 id="new-code">New code</h2>
+<h3 id="submitting-a-pull-request-pr">Submitting a pull request (PR)</h3>
+<p>Any pull request should include a manual run through the CI build pipeline. The pipeline is triggered by adding a comment to the PR. The following command will trigger a full build:</p>
+<pre><code class="lang-batch">/azp run
 </code></pre>
-<p>If it is known that the changes are entirely restricted to either code or documentation, then only that side of the build may be run. For example, to check only code changes:</p>
-<pre><code>/azp run wlt_ci
+<p>If it's known that the changes are entirely restricted to either code or documentation, then only that side of the build may be run. For example, to check only code changes:</p>
+<pre><code class="lang-batch">/azp run wlt_ci
 </code></pre>
 <p>Or to check only documentation changes:</p>
-<pre><code>/azp run wlt_docs
+<pre><code class="lang-batch">/azp run wlt_docs
 </code></pre>
-<p>However, keep in mind that even changes restricted to code (.cs) files may trigger documentation changes. It is always safer to run the full build.</p>
-<p>Please run the appropriate version after any significant changes to a PR, and before final completion of the PR. Remember, those tools are in place to protect contributors from breaking the build. Using them is to your own benefit, as well as the benefit of others working in the same space.</p>
-<h2 id="code-review">Code review</h2>
-<p>All PRs must also be reviewed by another developer before they may be completed.</p>
-<p>When performing code reviews, please maintain a friendly and collaborative atmosphere. It is always worth a little extra time to find a way to express a suggestion or correction which leaves the other side feeling positive about the changes.</p>
-<h1 id="publishing-a-new-release">Publishing a new release</h1>
+<p>However, keep in mind that even changes restricted to code (.cs) files may trigger documentation changes. It's always safer to run the full build.</p>
+<p>Run the appropriate version after any significant changes to a PR, and before final completion of the PR. Remember, those tools are in place to protect contributors from breaking the build. Using them is to your own benefit, and the benefit of others working in the same space.</p>
+<h3 id="code-review">Code review</h3>
+<p>All PRs must be reviewed by another developer before they may be completed.</p>
+<p>When performing code reviews, maintain a friendly and collaborative atmosphere. It's always worth a little extra time to find a way to express a suggestion or correction that leaves the other side feeling positive about the changes.</p>
+<h2 id="publishing-a-new-release">Publishing a new release</h2>
 <p>After thorough testing and stabilization, a new <strong>safe</strong> version of the product may be published.</p>
 <p>The product is made available through two channels:</p>
 <ol>
-<li>Via the open source GitHub repo, tagged for verified release commits.</li>
-<li>Via published .unitypackage files.</li>
+<li>Via the open-source GitHub repo, tagged for verified release commits.</li>
+<li>Via published <code>.unitypackage</code> files.</li>
 </ol>
 <p>Both channels are available on the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases">WLTU's GitHub releases page</a>.</p>
-<h2 id="building-the-unity-packages">Building the unity packages</h2>
+<h3 id="building-the-unity-packages">Building the unity packages</h3>
 <p>NOTE: The exact UI of the process described here is subject to frequent change. If what you see on your screen doesn't match the screenshots here, that's probably okay. Just look for the relevant keywords and follow through.</p>
 <ol>
 <li><p>First, go to the <a href="https://dev.azure.com/aipmr/MixedReality-WorldLockingTools-Unity-CI/_build?definitionId=50">build pipeline page</a>. Be sure that &quot;wlt_ci&quot; is selected.</p>
 </li>
 <li><p>Select the build that matches the commit that will be the basis for the release.</p>
-</li>
-</ol>
 <p><img src="../../Images/Release/SelectBuild.PNG" alt="Select the build"></p>
-<ol start="3">
-<li>That will lead to the following screen, from which the build artifacts may be accessed.*</li>
-</ol>
+</li>
+<li><p>That selection will lead to the following screen, from which the build artifacts may be accessed.*</p>
 <p><img src="../../Images/Release/Artifacts.PNG" alt="Find build artifacts"></p>
-<ol start="4">
-<li>Select the unity packages.</li>
-</ol>
+</li>
+<li><p>Select the unity packages.</p>
 <p><img src="../../Images/Release/ArtifactUnityPackages.png" alt="Select unity packages"></p>
-<ol start="5">
-<li>Then download as zip.</li>
-</ol>
+</li>
+<li><p>Then download as zip.</p>
 <p><img src="../../Images/Release/DownloadUnityPackages.png" alt="Download unity packages as a zip file"></p>
-<ol start="6">
-<li>After installing and testing the packages, they may be integrated into a new release.</li>
+</li>
+<li><p>After installing and testing the packages, they may be integrated into a new release.</p>
+</li>
 </ol>
 <h2 id="creating-the-release">Creating the release</h2>
 <h3 id="update-the-version-field-in-code">Update the Version field in code</h3>
 <p>Update the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Version">WorldLockingManager.Version field</a> to properly reflect the new version.</p>
 <h3 id="create-a-release-branch">Create a release branch</h3>
-<p>For example, create a branch named &quot;release/v0.3.6-alpha&quot;. While somewhat redundant with the tag, this will facilitate hot-fixes to the release which wouldn't be suitable for the main development branch &quot;master&quot;.</p>
+<p>For example, create a branch named &quot;release/v0.3.6-alpha&quot;. While redundant with the tag, this branch will facilitate hot-fixes to the release, which wouldn't be suitable for the main development branch &quot;master&quot;.</p>
 <h3 id="publish-the-release">Publish the release</h3>
 <p>Go to the <a href="https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases">World Locking Tools for Unity releases page</a>.</p>
 <p>Click the &quot;Create a new release&quot; button.</p>
-<p>Specify a tag. The tag should be of the form vX.Y.Z[-prerelease-modifier]. This X.Y.Z of this tag are 3 integers which should match the version as specified in the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Version">WorldLockingManager.Version field</a>. This should also match the release branch name.</p>
+<p>Specify a tag. The tag should be of the form vX.Y.Z[-prerelease-modifier]. The X, Y, and Z of this tag are three integers that should match the version as specified in the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_Version">WorldLockingManager.Version field</a>. These numbers should also match the release branch name.</p>
 <p>Specify the release branch created above as the target.</p>
 <p>Fill in the title and description fields appropriately.</p>
-<p>Drag the .unitypackage files created <a href="#building-the-unity-packages">above</a> into the rectangle labeled &quot;Attach binaries by dropping them here or selecting them&quot;.</p>
-<p>The large Examples package, which also contains a snapshot of its MRTK dependency, may take considerable time to upload. It is safest to not leave that page until the upload has completed successfully.</p>
-<p>When the .unitypackage files have successfully uploaded, click the Publish Release button.</p>
+<p>Drag the <code>.unitypackage</code> files created <a href="#building-the-unity-packages">above</a> into the rectangle labeled &quot;Attach binaries by dropping them here or selecting them&quot;.</p>
+<p>The large Examples package, which also contains a snapshot of its MRTK dependency, may take considerable time to upload. It's safest to not leave that page until the upload has completed successfully.</p>
+<p>When the <code>.unitypackage</code> files have successfully uploaded, click the Publish Release button.</p>
 <p>Verify that everything looks correct on the releases page.</p>
 </article>
           </div>

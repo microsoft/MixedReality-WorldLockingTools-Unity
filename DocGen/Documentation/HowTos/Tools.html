@@ -83,14 +83,14 @@
 <h1 id="tools-and-visualizers">Tools and visualizers</h1>
 
 <p>The tools and visualizers in the Microsoft.MixedReality.WorldLocking.Tools namespace are intended to help during development. They may also be a starting point for advanced direct interaction with the World Locking Tools (WLT) system.</p>
-<p>While they aren't intended for direct usage as is within an application, the application developer is certainly free to choose to do so.</p>
-<p>But whereas the WorldLocking.Core is intended to work as-is in any appropriate application scenario, the Tools may make assumptions about the application which make them inappropriate in other applications.</p>
+<p>While they aren't intended for direct usage as is within an application, the application developer is free to choose to do so.</p>
+<p>The WorldLocking.Core is intended to work as-is in any appropriate application scenario. However, the Tools may make assumptions about the application. These assumptions may make them inappropriate in some situations.</p>
 <p>Before incorporating any of the tools directly within your shipping application, then, consider creating a version of that tool customized for your own requirements and resources.</p>
 <h2 id="tools">Tools</h2>
 <h3 id="adjusters">Adjusters</h3>
-<p>Adjusters are components which handle <a href="../Concepts/Advanced/RefitOperations.html">refit events</a>. In particular, they create <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.AttachmentPoint.html">Attachment Points</a>. In the event of a refit operation, the AttachmentPoint serves as a notification callback. The Adjuster handles that event appropriately.</p>
+<p>Adjusters are components that handle <a href="../Concepts/Advanced/RefitOperations.html">refit events</a>. In particular, they create <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.AttachmentPoint.html">Attachment Points</a>. In the event of a refit operation, the AttachmentPoint serves as a notification callback. The Adjuster handles that event appropriately.</p>
 <p>See further conceptual discussion of <a href="../Concepts/Advanced/AttachmentPoints.html">AttachmentPoints</a>.</p>
-<p>Note that the exact right reaction to a refit event will vary for different types of objects, and is very application specific. For example, if the object's <a href="../Concepts/Advanced/Fragments.html">Fragment</a> is currently inactive, then should the object be displayed? For some applications, since the proper placement of the object cannot be determined, it should be hidden. For other applications, it might be better to display the object in a temporarily incorrect pose than to suffer the confusion of its disappearance. And even for applications which should hide the object, there are various ways to perform the hiding (e.g. disabling versus moving far away).</p>
+<p>The exact right reaction to a refit event will vary for different types of objects, and is very application-specific. For example, if the object's <a href="../Concepts/Advanced/Fragments.html">Fragment</a> is currently inactive, then should the object be displayed? For some applications, since the proper placement of the object cannot be determined, it should be hidden. For other applications, it might be better to display the object in a temporarily incorrect pose than to suffer the confusion of its disappearance. And even for applications which should hide the object, there are various ways to perform the hiding (for example, disabling versus moving far away).</p>
 <p>The <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html">AdjusterFixed</a> and <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving.html">AdjusterMoving</a> components handle two common scenarios minimally.</p>
 <p>The AdjusterFixed component assumes that its target is generally non-moving. If the World Locking Tools sends an adjustment pose due to a refit event, it is intended to keep the AdjusterFixed's object stationary in the world.</p>
 <p>In contrast, the AdjusterMoving component assumes that its target is mobile through the Unity coordinate space. It keeps the World Locking Tools system appraised of its target's location, so that in the event of a refit operation, the system can give the most accurate correction to keep the target's position relative to the physical world constant at that moment.</p>
@@ -99,13 +99,13 @@
 <p>In particular, <a href="https://microsoft.github.io/MixedRealityToolkit-Unity/README.html">MRTK</a> already has built-in adapters, so no further coordinate system transform is required on the part of the application.</p>
 <p>There may be times, especially if not using MRTK, when conversion from native resources, which will report in Spongy Space coordinates, to Frozen Space. In those cases, the application developer may find one of the Adapters included here to be a good reference.</p>
 <ul>
-<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.WorldAnchorAdapter.html">WorldAnchorAdapter</a> - An WorldAnchor will adjust an object's pose in Spongy space to remain fixed in physical space. This is redundant with the world-locked space provided by World Locking Tools, and so the object will drift in Frozen Space. This adapter allows a WorldAnchor to maintain the pose of an object in Frozen Space. Note that this is unnecessary except for diagnostics. All objects in Unity's global coordinate space are world-locked by World Locking Tools.</p>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.WorldAnchorAdapter.html">WorldAnchorAdapter</a> - An WorldAnchor will adjust an object's pose in Spongy space to remain fixed in physical space. This is redundant with the world-locked space provided by World Locking Tools, and so the object will drift in Frozen Space. This adapter allows a WorldAnchor to maintain the pose of an object in Frozen Space. This is unnecessary except for diagnostics. All objects in Unity's global coordinate space are world-locked by World Locking Tools.</p>
 </li>
 <li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.ToggleWorldAnchor.html">ToggleWorldAnchor</a> - Similar to the WorldAnchorAdapter, but can be toggled. Also automatically converts to regular WorldAnchor behavior when the WorldLockingManager is disabled. Useful only for diagnostics.</p>
 </li>
-<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenSpatialMapping.html">FrozenSpatialMapping</a> - An adapter manage and correctly render the results from a <a href="https://docs.microsoft.com/windows/mixed-reality/spatial-mapping">SurfaceObserver</a>. Note that the <a href="https://microsoft.github.io/MixedRealityToolkit-Unity/Documentation/SpatialAwareness/SpatialAwarenessGettingStarted.html?q=spatial">MRTK Spatial Awareness</a> system provides all of this functionality and more, and requires no adapter to work with World Locking Tools.</p>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenSpatialMapping.html">FrozenSpatialMapping</a> - An adapter manage and correctly render the results from a <a href="https://docs.microsoft.com/windows/mixed-reality/spatial-mapping">SurfaceObserver</a>. The <a href="https://microsoft.github.io/MixedRealityToolkit-Unity/Documentation/SpatialAwareness/SpatialAwarenessGettingStarted.html?q=spatial">MRTK Spatial Awareness</a> system provides all of this functionality and more, and requires no adapter to work with World Locking Tools.</p>
 </li>
-<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenTapToAdd.html">FrozenTapToAdd</a> - Directly interfacing with Unity's Input system requires conversion of incoming coordinate data as shown here. Note that this is unnecessary with MRTK's input system.</p>
+<li><p><a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.FrozenTapToAdd.html">FrozenTapToAdd</a> - Directly interfacing with Unity's Input system requires conversion of incoming coordinate data as shown here. This is unnecessary with MRTK's input system.</p>
 </li>
 </ul>
 <h2 id="visualizers">Visualizers</h2>
@@ -115,8 +115,6 @@
 <li><p>Axes - The current poses for the origins of Spongy Space (green) and Frozen Space (blue) are shown as standard 3 arrow axis identifiers.</p>
 </li>
 <li><p>Spongy Anchors - These are the native underlying anchors which have been created to feed the Frozen World Engine optimization. Each is represented by a ring, along with a text tag identifying it. Also, more information is conveyed by color and size.</p>
-</li>
-</ol>
 <ul>
 <li><p>An active tracked anchor will be green.</p>
 </li>
@@ -127,20 +125,21 @@
 <li><p>The larger the ring, the greater the relevance for that anchor.</p>
 </li>
 </ul>
-<ol start="3">
+</li>
 <li><p>Frozen Anchors - These are the corresponding reference points in Frozen Space. In the absence of tracker error, these will be exactly aligned with the Spongy Anchors.</p>
 </li>
-<li><p>Spongy-Frozen Edges - These connect the Spongy Anchors to their corresponding Frozen Anchors. Since in the absence of tracker error, these would be coincident, not seeing these edges means everything is working perfectly. In any case, these edges should not be longer than a few centimeters. They are red on the frozen end, and fade to blue on the spongy end.</p>
+<li><p>Spongy-Frozen Edges - These connect the Spongy Anchors to their corresponding Frozen Anchors. Since in the absence of tracker error, these would be coincident, not seeing these edges means everything is working perfectly. In any case, these edges should not be longer than a few centimeters. They are red on the frozen end. The color fades to blue on the spongy end.</p>
 </li>
 <li><p>Anchor Edges - These thin blue lines show the connections between Spongy Anchors in the anchor graph.</p>
 </li>
 </ol>
 <p><img src="../../Images/Screens/AnchorGraph.jpg" alt="Typical anchor graph traversing a room"></p>
 <p>Enabling the display of the anchor graph that World Locking Tools generates as the user moves about the physical environment requires only dropping the WorldLockingTools &gt; Prefabs &gt; AnchorGraphVisual prefab into the scene. It is customarily added as a sibling to the WorldLockingContext, but its exact placement in the hierarchy is unimportant. However, it should not be placed in the camera hierarchy.</p>
+<p>The spatial anchors which WLT creates and uses internally are created at the camera position. Because it is disconcerting to be walking through a field of anchor visualizations at eye level, the system defaults to displaying them 1 meter down from their true position. To see the anchor visualizations at the actual anchor positions, set the Anchor Graph Visual component's Vertical Displacement parameter to zero.</p>
 <h3 id="additional-output">Additional output</h3>
-<p>The <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Examples.html">World Locking Examples</a> includes text diagnostics. Most of these are relevant only to developers of the World Locking Tools, rather than clients of its abilities. However, they are available for read and, as shown in the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.StatusToText.html">StatusToText</a> script, for realtime display.</p>
+<p>The <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Examples.html">World Locking Examples</a> includes text diagnostics. Most of these are relevant only to developers of the World Locking Tools, rather than clients of its abilities. However, they are available for read and, as shown in the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.StatusToText.html">StatusToText</a> script, for real-time display.</p>
 <p><img src="../../Images/Screens/DiagStats.jpg" alt="Typical diagnostics display"></p>
-<p>For post mortem analysis, the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.Diagnostics.html">Diagnostics</a> section of the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.html">WorldLockingContext</a> can be very useful in reporting Frozen World Engine failures. See <a href="Contributing.html#reporting-a-bug">Reporting a bug</a> for further information.</p>
+<p>For postmortem analysis, the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.Diagnostics.html">Diagnostics</a> section of the <a class="xref" href="../../Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingContext.html">WorldLockingContext</a> can be very useful in reporting Frozen World Engine failures. See <a href="Contributing.html#reporting-a-bug">Reporting a bug</a> for further information.</p>
 </article>
           </div>
           

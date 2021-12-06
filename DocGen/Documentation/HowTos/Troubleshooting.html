@@ -107,22 +107,22 @@
 <h2 id="more-general-unityar-problems">More general Unity/AR problems</h2>
 <h3 id="directorynotfoundexception-could-not-find-a-part-of-the-path">&quot;DirectoryNotFoundException: Could not find a part of the path&quot;</h3>
 <p>The path has grown too long. See fuller <a href="InitialSetup.html#a-warning-note-on-installation-path-length">explanation here</a>.</p>
-<h3 id="a-remote-operation-is-taking-longer-than-expected-message-box-then-failure-to-deploy">&quot;A remote operation is taking longer than expected&quot; message box then failure to deploy.</h3>
+<h3 id="a-remote-operation-is-taking-longer-than-expected-message-box-then-failure-to-deploy">&quot;A remote operation is taking longer than expected&quot; message box then failure to deploy</h3>
 <p>Check your USB connection. A bad cable, a bad port, missing IPOverUSB, can all cause this. But it's probably somewhere on the communication path from your PC to your device.</p>
-<h3 id="missing-windows-sdk-components">Missing Windows SDK components.</h3>
+<h3 id="missing-windows-sdk-components">Missing Windows SDK components</h3>
 <p>Mismatch between Visual Studio version indicated in Unity versus Visual Studio version you're trying to build with. Check:</p>
 <blockquote>
 <p><code>Unity &gt; File &gt; Build Settings &gt; Visual Studio Version</code></p>
 </blockquote>
 <p>Especially dangerous is if that's set to <code>Latest Installed</code> and you have multiple versions of Visual Studio installed.</p>
-<h3 id="on-hololens-application-starts-up-as-a-slate-rather-than-an-ar-experience">On HoloLens, application starts up as a slate, rather than an AR experience.</h3>
+<h3 id="on-hololens-application-starts-up-as-a-slate-rather-than-an-ar-experience">On HoloLens, application starts up as a slate, rather than an AR experience</h3>
 <p>If targeting the Unity's built-in VR support, also known as Legacy XR, then check:</p>
 <blockquote>
 <p><code>Unity &gt; Project Settings &gt; Player &gt; XR Settings</code></p>
 </blockquote>
 <p>You must have Virtual Reality Supported checked, and the Windows Mixed Reality in Virtual Reality SDKs.</p>
 <p>If using Unity's AR Subsystems / XR SDK, then check that you've followed all the steps <a href="XRSDK.html">here</a>. Likely culprits are missing one of the required packages, or if using MRTK, that the appropriate profile has not been setup on the MixedRealityToolkit object.</p>
-<h3 id="when-building-for-arm-on-hololens2-app-stops-at-startup-arm64-works-fine">When building for ARM on HoloLens2, app stops at startup. ARM64 works fine.</h3>
+<h3 id="when-building-for-arm-on-hololens2-app-stops-at-startup-arm64-works-fine">When building for ARM on HoloLens2, app stops at startup. ARM64 works fine</h3>
 <p><a href="https://issuetracker.unity3d.com/issues/enabling-graphics-jobs-in-2019-dot-3-x-results-in-a-crash-or-nothing-rendering-on-hololens-2">Known issue</a>.</p>
 <p>The fix is either disable Graphics Jobs under</p>
 <blockquote>

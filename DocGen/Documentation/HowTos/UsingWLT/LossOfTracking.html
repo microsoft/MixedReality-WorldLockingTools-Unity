@@ -106,7 +106,7 @@
 <p>The two callbacks implement the application's desired behavior during these exceptional conditions.</p>
 <h4 id="handling-tracking-state">Handling tracking state</h4>
 <p>In <code>HandleStateAdjust()</code>, the AdjusterFixed component disables objects contained in a fragment which isn't currently being tracked.</p>
-<pre><code>        protected virtual void HandleAdjustState(AttachmentPointStateType state)
+<pre><code class="lang-csharp">        protected virtual void HandleAdjustState(AttachmentPointStateType state)
         {
             bool visible = state == AttachmentPointStateType.Normal;
             if (visible != gameObject.activeSelf)
@@ -128,7 +128,7 @@
 <h4 id="handling-repositioning">Handling repositioning</h4>
 <p>As described in the <a href="../../Concepts/Advanced/RefitOperations.html">conceptual documentation</a>, the WLT system may decide that an object can be best held in its position in the physical world by repositioning it in frozen space. It will inform the application of that situation via the AttachmentPoint mechanism.</p>
 <p>The application is, of course, free to ignore such adjustments. However, the behavior provided by the AdjusterFixed (and AdjusterMoving) component is to apply that repositioning transform immediately.</p>
-<pre><code>        protected virtual void HandleAdjustLocation(Pose adjustment)
+<pre><code class="lang-csharp">        protected virtual void HandleAdjustLocation(Pose adjustment)
         {
             Pose pose = gameObject.transform.GetGlobalPose();
             pose = adjustment.Multiply(pose);
@@ -140,8 +140,8 @@
 <h2 id="adjusterfixed-vs-adjustermoving">AdjusterFixed vs AdjusterMoving</h2>
 <p>A closer look at the <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterMoving.html">AdjusterMoving</a> component shows it to be nearly identical to the <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html">AdjusterFixed</a> component it derives from.</p>
 <p>The difference between the two is that the AdjusterMoving assumes that its target is constantly being moved around the environment. Therefore, each update it notifies the WLT system of its new Pose.</p>
-<p>The cost of the AdjusterMoving comes mostly from the addition of an <a href="href:https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update()</a> function, rather than the work done within the function. However, for an object that is &quot;mostly&quot; stationary, and is only moved infrequently from script, it can be advantageous to use an AdjusterFixed component, and call <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_UpdatePosition">AdjusterFixed.UpdatePosition()</a> after each time the object is moved.</p>
-<h2 id="customize-the-behavior-but-only-if-you-want-to">Customize the behavior, but only if you want to.</h2>
+<p>The cost of the AdjusterMoving comes mostly from the addition of an <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update()</a> function, rather than the work done within the function. However, for an object that is &quot;mostly&quot; stationary, and is only moved infrequently from script, it can be advantageous to use an AdjusterFixed component, and call <a class="xref" href="../../../Temp/api/Microsoft.MixedReality.WorldLocking.Tools.AdjusterFixed.html#Microsoft_MixedReality_WorldLocking_Tools_AdjusterFixed_UpdatePosition">AdjusterFixed.UpdatePosition()</a> after each time the object is moved.</p>
+<h2 id="customize-the-behavior-but-only-if-you-want-to">Customize the behavior, but only if you want to</h2>
 <p>Again, the pattern here is hopefully consistent throughout the World Locking Tools. WLT provides simple but generally useful baseline behavior. It is hoped that this implementation will either:</p>
 <ol>
 <li>Satisfy the needs of your application.</li>
