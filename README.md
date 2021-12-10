@@ -16,7 +16,7 @@ World Locking Tools take the burden of world-locking holograms off of the develo
 
 World Locking Tools locks the entire holograph space of your application to the physical world. A hologram put in position relative to physical world features will stay fixed relative to those features, as well as remaining fixed relative to other holograms.
 
-World Locking Tools scale naturally with both the size and complexity of the scene. Large models, large collections of models, and multi-room environments are all handled gracefully.
+World Locking Tools scale naturally with both the complexity and size of the scene. Large models, large collections of models, and multi-room environments are all handled gracefully.
 
 ## Published documentation
 
