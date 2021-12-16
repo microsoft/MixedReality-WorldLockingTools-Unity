@@ -31,6 +31,12 @@ In either case, you will end up with Unity's `XR Plug-in Management` system inst
 
 Once the necessary resources have been installed, change the Anchor Subsystem type in the World Locking Context in your scene.
 
+### Automatic selection
+
+Running the script [`Mixed Reality => World Locking Tools => Configure scene`](UsingWLT/JustWorldLock.md#automated-setup) will select the correct Anchor Subsystem based on how your project and scene are configured. It is safe to run the `Configure scene` script repeatedly. If the scene is already properly configured, it will make no changes.
+
+### Manual selection
+
 1. Go to the WorldLockingManager GameObject in your initial (or global) scene.
 2. In the inspector, find the [WorldLockingContext](WorldLockingContext.md).
 3. Open Anchor Management settings.
@@ -38,8 +44,6 @@ Once the necessary resources have been installed, change the Anchor Subsystem ty
 5. Change the Anchor Subsystem type to `XRSDK`.
 
 If your project and scene are setup to use `AR Foundation`, then select the `AR Foundation` Anchor Subsystem instead. The Azure Spatial Anchors samples show a proper configuration for using `AR Foundation` (currently an ASA requirement).
-
-Running the script [`Mixed Reality => World Locking Tools => Configure scene`](UsingWLT/JustWorldLock.md#automated-setup) will select the correct Anchor Subsystem based on how your project and scene are configured. It is safe to run the `Configure scene` script repeatedly. If the scene is already properly configured, it will make no changes.
 
 ![The anchor management section of the context settings](~/Images/Screens/Context/WLTContextAnchor.JPG)
 
