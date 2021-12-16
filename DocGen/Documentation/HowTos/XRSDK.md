@@ -45,7 +45,7 @@ Running the script [`Mixed Reality => World Locking Tools => Configure scene`](U
 
 If your project and scene are setup to use `AR Foundation`, then select the `AR Foundation` Anchor Subsystem instead. The Azure Spatial Anchors samples show a proper configuration for using `AR Foundation` (currently an ASA requirement).
 
-![The anchor management section of the context settings](~/Images/Screens/Context/WLTContextAnchor.JPG)
+![The anchor management section of the context settings](~/DocGen/Images/Screens/Context/WLTContextAnchor.JPG)
 
 ## Using MRTK with WLT on XR SDK
 
@@ -87,4 +87,4 @@ https://developers.google.com/ar/develop/unity/android-11-build
 
 ### Setup for other XR Plugins (ARKit, Oculus, etc.)
 
-Setup for other platforms might be analogous to setup for ARCore, but have not been tested. If you have access to such devices and a chance to try them, any [feedback](~/Documentation/Howtos/Contributing.md) would help the community and be greatly appreciated.
+Setup for other platforms might be analogous to setup for ARCore, but have not been tested. If you have access to such devices and a chance to try them, any [feedback](~/DocGen/Documentation/Howtos/Contributing.md) would help the community and be greatly appreciated.
