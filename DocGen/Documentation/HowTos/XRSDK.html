@@ -84,18 +84,25 @@
 
 <p>Initial development of the World Locking Tools targeted the HoloLens family of devices via Unity's XR.WSA (VR/AR Windows Store App) APIs. This is part of what has become commonly known as Unity's Legacy XR interface, or Unity's built-in VR support.</p>
 <p>Unity has since introduced its <a href="https://docs.unity3d.com/Manual/XRPluginArchitecture.html">XR Plugin architecture</a>, whose goal is to provide cross platform abstractions giving developers access to common features across available VR and AR devices.</p>
-<p>During this transition phase, WLT supports both the Legacy XR interface for HoloLens, and the AR Subsystems for cross-platform. It should be noted that the Legacy XR interface is deprecated since Unity 2019, and will no longer be supported as of Unity 2020.</p>
-<p>WLT currently supports <strong>AR Subsystems versioned 2.X.Y for Unity 2019.4 (LTS)</strong>. Further version support will be rolled out in subsequent releases.</p>
+<p>During this transition phase, WLT has supported both the Legacy XR interface for HoloLens, and the <code>AR Subsystems</code>/<code>XR Plugin Management</code> for cross-platform. It should be noted that the Legacy XR interface is deprecated since Unity 2019, and is no longer supported as of Unity 2020.</p>
+<p>WLT currently supports <strong>AR Subsystems versioned 2.X.Y for Unity 2019.4 (LTS)</strong> and <strong>XR Plugin Management versioned 4.0.7 and later for Unity 2020.3 (LTS)</strong>. Further version support will be rolled out in subsequent releases.</p>
 <h2 id="switching-wlt-to-target-xr-sdk">Switching WLT to target XR SDK</h2>
-<p>Retargeting WLT for XR SDK is exceedingly simple. First, configure your project to use the <a href="https://docs.unity3d.com/Manual/configuring-project-for-xr.html">XR Plugin system</a>, or AR Foundation which sits on top of the XR Plugin system. Once the necessary resources have been installed, change the Anchor Subsystem type in the World Locking Context in you</p>
+<p>Targeting WLT for XR SDK is exceedingly simple. First, configure your project to use the XR Plugin system.</p>
+<p>If using <code>MRTK</code>, follow <a href="https://docs.microsoft.com/windows/mixed-reality/mrtk-unity/configuration/getting-started-with-mrtk-and-xrsdk?view=mrtkunity-2021-05">these instructions</a>. There are additional tips and notes later in this article.</p>
+<p>If not using <code>MRTK</code>, then follow <a href="https://docs.unity3d.com/Manual/configuring-project-for-xr.html">these slightly more complicated instructions</a>.</p>
+<p>In either case, you will end up with Unity's <code>XR Plug-in Management</code> system installed and enabled, and with an <code>XR Plug-in provider</code> appropriate for your platform installed and selected.</p>
+<p>Once the necessary resources have been installed, change the Anchor Subsystem type in the World Locking Context in your scene.</p>
+<h3 id="automatic-selection">Automatic selection</h3>
+<p>Running the script <a href="UsingWLT/JustWorldLock.html#automated-setup"><code>Mixed Reality =&gt; World Locking Tools =&gt; Configure scene</code></a> will select the correct Anchor Subsystem based on how your project and scene are configured. It is safe to run the <code>Configure scene</code> script repeatedly. If the scene is already properly configured, it will make no changes.</p>
+<h3 id="manual-selection">Manual selection</h3>
 <ol>
 <li>Go to the WorldLockingManager GameObject in your initial (or global) scene.</li>
 <li>In the inspector, find the <a href="WorldLockingContext.html">WorldLockingContext</a>.</li>
 <li>Open Anchor Management settings.</li>
 <li>Make sure the &quot;Use Defaults&quot; checkbox is unchecked.</li>
-<li>Change the Anchor Subsystem type to XRSDK.</li>
-<li>NOTE: Do not use the ARF Anchor Subsystem type. If using AR Foundation for your app, still select XRSDK subsystem.</li>
+<li>Change the Anchor Subsystem type to <code>XRSDK</code>.</li>
 </ol>
+<p>If your project and scene are setup to use <code>AR Foundation</code>, then select the <code>AR Foundation</code> Anchor Subsystem instead. The Azure Spatial Anchors samples show a proper configuration for using <code>AR Foundation</code> (currently an ASA requirement).</p>
 <p><img src="../../Images/Screens/Context/WLTContextAnchor.JPG" alt="The anchor management section of the context settings"></p>
 <h2 id="using-mrtk-with-wlt-on-xr-sdk">Using MRTK with WLT on XR SDK</h2>
 <p><a href="https://microsoft.github.io/MixedRealityToolkit-Unity/README.html">MRTK</a>, in addition to the incredible value it provides for abstracting user interactions in VR and AR, simplifies targeting devices via the XR SDK greatly. The following are notes that might prove helpful when setting up MRTK to target specific devices.</p>
@@ -103,14 +110,16 @@
 <p>Be sure to run the <code>Mixed Reality Toolkit =&gt; Utilities =&gt; UnityAR =&gt; Update Scripting Defines</code> when changing plugin targets.</p>
 <h3 id="setup-for-windows-xr-plugin-hololens">Setup for Windows XR Plugin (HoloLens)</h3>
 <p>See full instructions at <a href="https://microsoft.github.io/MixedRealityToolkit-Unity/version/releases/2.5.1/Documentation/GettingStartedWithMRTKAndXRSDK.html?q=2020">Getting started with MRTK and XR SDK</a>.</p>
-<p>If working in the WLT project, I suggest using the WLT provided “XRSDKMixedRealityToolkitConfigurationProfile” to start.</p>
-<p>WLT using Windows XR Plugin has been tested on Unity 2019.4, using the following versions:</p>
+<p>If working in the WLT project, you can use the WLT provided “WLT HL2 MRTKProfile” on HoloLens2, or the &quot;WLT AR MRTKProfile&quot; on mobile devices, to start.</p>
+<p>WLT using Windows XR Plugin has been tested on Unity 2019.4 and Unity 2020.3, using the following versions:</p>
 <blockquote>
 <ul>
 <li>XR Plugin Management: v3.2.16 (expected to work with v3.X.Y, X &gt;= 2)</li>
 <li>Windows XR Plugin: v2.4.1 (prior to v2.4.1 anchors were broken. Expected to work v2.4.Y, Y&gt;=1, v2.X.Y, X&gt;=1).</li>
+<li>Mixed Reality OpenXR Plugin: v1.2.0 (earlier versions worked, with minor issues. The latest MR OpenXR Plugin is highly recommended.)</li>
 </ul>
 </blockquote>
+<p>You only need one of either the <code>Windows MR Plugin</code> or the <code>Mixed Reality OpenXR Plugin</code>.</p>
 <h3 id="setup-for-arcore-xr-plugin-android">Setup for ARCore XR Plugin (Android)</h3>
 <p>To get an Android XR Plugin driving an MRTK AR application, follow the instructions at <a href="https://microsoft.github.io/MixedRealityToolkit-Unity/version/releases/2.5.1/Documentation/CrossPlatform/UsingARFoundation.html?q=2020">How to configure MRTK for iOS and Android</a></p>
 <blockquote>
@@ -122,13 +131,13 @@
 <li>AR Foundation (tested v2.1.10, expected v2.X.Y, X&gt;1).</li>
 </ul>
 </blockquote>
-<p>I suggest using the WLT provided “AR MixedRealityToolkitConfigurationProfile” to start.</p>
+<p>I suggest using the WLT provided “WLT AR MRTKProfile” to start.</p>
 <blockquote>
 <p>NOTE: If you hit a build error about <strong>manifest-merger failed</strong>, then follow the appropriate instructions here:
 <a href="https://developers.google.com/ar/develop/unity/android-11-build">https://developers.google.com/ar/develop/unity/android-11-build</a></p>
 </blockquote>
 <h3 id="setup-for-other-xr-plugins-arkit-oculus-etc">Setup for other XR Plugins (ARKit, Oculus, etc.)</h3>
-<p>Setup for other platforms should be analogous to setup for ARCore, but have not been tested. If you have access to such devices and a chance to try them, any <a href="Contributing.html">feedback</a> would help the community and be greatly appreciated.</p>
+<p>Setup for other platforms might be analogous to setup for ARCore, but have not been tested. If you have access to such devices and a chance to try them, any <a href="Contributing.html">feedback</a> would help the community and be greatly appreciated.</p>
 </article>
           </div>
           
