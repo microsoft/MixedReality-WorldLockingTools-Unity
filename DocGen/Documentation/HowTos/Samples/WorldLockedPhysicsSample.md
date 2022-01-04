@@ -4,6 +4,7 @@ description: The most basic and general sample of World Locking Tools capabiliti
 author: fast-slow-still
 ms.author: mafinc
 ms.date: 10/06/2021
+ms.prod: mixed-reality
 ms.localizationpriority: high
 keywords: Unity, HoloLens, HoloLens 2, Augmented Reality, Mixed Reality, ARCore, ARKit, development, MRTK
 ---
