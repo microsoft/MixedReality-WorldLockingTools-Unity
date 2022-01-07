@@ -38,7 +38,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         public PluginNoop()
         {
-            Debug.LogError("Creating PluginNoop, is this intentional?");
+            Debug.LogWarning("Creating PluginNoop, is this intentional?");
             checkError();
             metrics = new MetricsAccessor();
         }
