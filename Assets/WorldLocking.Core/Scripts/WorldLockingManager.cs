@@ -35,7 +35,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
         /// </summary>
-        public static string Version => "1.5.7";
+        public static string Version => "1.5.8";
 
         /// <summary>
         /// The configuration settings may only be set as a block.
@@ -319,6 +319,50 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </remarks>
         public bool HasPendingIO { get { return hasPendingLoadTask || hasPendingSaveTask; } }
 
+        /// <summary>
+        /// Filename at which to Save subsequent FrozenWorldEngine state to, and from which to Load it.
+        /// </summary>
+        /// <remarks>
+        /// Some error checking for common mistakes is made, but some common sense should prevail.
+        /// Use valid, normal filenames.
+        /// A subpath may be introduced, but the entire path must be relative.
+        /// Some examples:
+        /// Good: 'myfile.myext', 'mypath/myfile.myext'
+        /// Bad: null, '/myfile.myext'
+        /// The actual final full path name used will be off of Application.persistentDataPath, which is platform dependent.
+        /// </remarks>
+        public string FrozenWorldFileName
+        {
+            get { return frozenWorldFile; }
+            set
+            {
+                if (Path.IsPathRooted(value))
+                {
+                    Debug.LogWarning($"Invalid FrozenWorldFileName '{value}', must be relative path (no leading '/').");
+                    value = Path.GetFileName(value);
+                    Debug.LogWarning($"Reset input FrozenWorldFileName to '{value}'");
+                }
+                if (string.IsNullOrEmpty(value))
+                {
+                    Debug.LogError("Invalid FrozenWorldFileName, null or empty not allowed, ignoring.");
+                    return;
+                }
+                // Note that changing frozenWorldFile changes stateFileNameBase.
+                frozenWorldFile = value;
+                string stateFilePath = Path.GetDirectoryName(stateFileNameBase);
+                if (!Directory.Exists(stateFilePath))
+                {
+                    Directory.CreateDirectory(stateFilePath);
+                }
+#if !WLT_DISABLE_LOGGING
+                if (AutoSave)
+                {
+                    Debug.LogWarning($"Changing FrozenWorldFileName to '{frozenWorldFile}' with AutoSave enabled is risky, consider taking manual control over Save & Load.");
+                }
+#endif // !WLT_DISABLE_LOGGING
+            }
+        }
+
         #endregion
 
         #region Private members
@@ -438,6 +482,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             initializationState = InitializationState.Starting;
 
+            if (anchorManager != null)
+            {
+                anchorManager.Dispose();
+            }
             anchorManager = await SelectAnchorManager(Plugin, headPoseTracker);
 
             if (AutoLoad)
@@ -841,7 +889,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         #region Load and Save
 
-        private string stateFileNameBase => Application.persistentDataPath + "/frozenWorldState.hkfw";
+        private string frozenWorldFile = "frozenWorldState.hkfw";
+
+        private string stateFileNameBase => $"{Application.persistentDataPath}/{frozenWorldFile}";
 
         private float lastSavingTime = float.NegativeInfinity;
 

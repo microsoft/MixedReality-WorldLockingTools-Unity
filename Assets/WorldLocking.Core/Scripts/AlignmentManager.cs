@@ -1152,18 +1152,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             if (IsGlobal)
             {
                 /// Here we essentially solve for pose Z, where
-                /// refPose.virtualPose == FrozenFromPinned * Z * refPose.lockedPose.
-                Pose pinnedFromFrozen = Pose.identity;
-                if (manager.AdjustmentFrame.parent != null)
-                {
-                    pinnedFromFrozen = manager.AdjustmentFrame.parent.GetGlobalPose().Inverse();
-                }
+                /// refPose.virtualPose == Z * refPose.lockedPose.
                 Pose frozenFromObject = refPose.virtualPose;
                 Pose objectFromLocked = refPose.LockedPose.Inverse();
 
-                pinnedFromLocked = pinnedFromFrozen
-                    .Multiply(frozenFromObject)
-                    .Multiply(objectFromLocked);
+                pinnedFromLocked = frozenFromObject.Multiply(objectFromLocked);
             }
             else
             {
