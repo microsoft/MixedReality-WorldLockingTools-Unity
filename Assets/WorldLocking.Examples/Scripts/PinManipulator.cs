@@ -14,6 +14,11 @@ using Microsoft.MixedReality.Toolkit.UI;
 namespace Microsoft.MixedReality.WorldLocking.Examples
 {
     /// <summary>
+    /// Callback for when the user starts positioning and/or orienting the target.
+    /// </summary>
+    public delegate void ManipulationStartedDelegate();
+
+    /// <summary>
     /// Callback for when the user has finished positioning and/or orienting the target.
     /// </summary>
     public delegate void ManipulationEndedDelegate();
@@ -66,6 +71,11 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         private readonly GameObject prefabFeelerRay;
 
         /// <summary>
+        /// The callback when the user starts a manipulation.
+        /// </summary>
+        private readonly ManipulationStartedDelegate manipulationStarted;
+
+        /// <summary>
         /// The callback when the user finishes a manipulation.
         /// </summary>
         private readonly ManipulationEndedDelegate manipulationEnded;
@@ -103,12 +113,13 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         /// </summary>
         /// <param name="owner">The object to manipulate.</param>
         /// <param name="prefab">The visualization prefab to instantiate.</param>
-        /// <param name="del">The manipulation ended callback.</param>
-        public PinManipulator(Transform owner, GameObject prefab, ManipulationEndedDelegate del)
+        /// <param name="ended">The manipulation ended callback.</param>
+        public PinManipulator(Transform owner, GameObject prefab, ManipulationStartedDelegate started, ManipulationEndedDelegate ended)
         {
             this.owner = owner;
             prefabFeelerRay = prefab;
-            manipulationEnded = del;
+            manipulationStarted = started;
+            manipulationEnded = ended;
 
             SetupFeelerRays();
         }
@@ -295,6 +306,11 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         private void BeginManipulation()
         {
             ShowFeelerRays();
+
+            if (manipulationStarted != null)
+            {
+                manipulationStarted();
+            }
         }
         /// <summary>
         /// Different signature for BeginManipulation() required by MRTK.

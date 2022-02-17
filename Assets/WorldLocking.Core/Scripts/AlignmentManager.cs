@@ -227,6 +227,22 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             FragmentId fragmentId = CurrentFragmentId;
             AnchorId anchorId = ClaimAnchorId();
 
+            if (IsGlobal)
+            {
+                /// Bake in current snapshot of any application imposed transform (teleport).
+                virtualPose = manager.PinnedFromFrozen.Multiply(virtualPose);
+            }
+            else
+            {
+                /// For subtree, applied adjustment transform is LockedFromPinned. Remove existing
+                /// adjustment here by premultiplying PinnedFromLocked.
+                virtualPose = PinnedFromLocked.Multiply(virtualPose);
+            }
+#if WLT_EXTRA_LOGGING
+            string label = "AddAlign1";
+            Debug.Log($"F{Time.frameCount} {label} {uniqueName} vp={virtualPose.ToString("F3")} lp={lockedPose.ToString("F3")} sp={manager.SpongyFromLocked.Multiply(lockedPose).ToString("F3")}");
+#endif // WLT_EXTRA_LOGGING
+
             ReferencePose refPose = new ReferencePose()
             {
                 name = uniqueName,
@@ -1153,10 +1169,15 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 /// Here we essentially solve for pose Z, where
                 /// refPose.virtualPose == Z * refPose.lockedPose.
-                Pose frozenFromObject = refPose.virtualPose;
+                /// More precisely, we solve for PfL in:
+                /// AppFromHolder * HolderFromObject = AppFromPinned * PinnedFromLocked * LockedFromObject, or
+                /// AfH * HfO = AfP * PfL * LfO
+                /// PfA * AfH * HfO * OfL = PfL
+                /// refPose.virtualPose == PfA * AfH * HfO, and refPose.LockedPose == LockedFromObject, so it reduces to the above simpler line.
+                Pose pinnedFromObject = refPose.virtualPose;
                 Pose objectFromLocked = refPose.LockedPose.Inverse();
 
-                pinnedFromLocked = frozenFromObject.Multiply(objectFromLocked);
+                pinnedFromLocked = pinnedFromObject.Multiply(objectFromLocked);
             }
             else
             {

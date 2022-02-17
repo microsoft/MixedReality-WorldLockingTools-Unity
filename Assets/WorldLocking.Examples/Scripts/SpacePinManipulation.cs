@@ -48,7 +48,7 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         {
             base.Start();
 
-            pinManipulator = new PinManipulator(transform, Prefab_FeelerRay, OnFinishManipulation);
+            pinManipulator = new PinManipulator(transform, Prefab_FeelerRay, OnStartManipulation, OnFinishManipulation);
             pinManipulator.UserOriented = true;
             pinManipulator.Startup();
         }
@@ -73,10 +73,18 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         #endregion Unity methods
 
         #region Manipulation callback
+
+        /// <summary>
+        /// Callback for when the user starts manipulating the target.
+        /// </summary>
+        protected virtual void OnStartManipulation()
+        {
+        }
+
         /// <summary>
         /// Callback for when the user has finished positioning the target.
         /// </summary>
-        private void OnFinishManipulation()
+        protected virtual void OnFinishManipulation()
         {
             if (WorldLockingManager.GetInstance().ApplyAdjustment)
             {
