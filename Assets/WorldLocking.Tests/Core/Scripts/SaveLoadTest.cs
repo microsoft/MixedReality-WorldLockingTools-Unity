@@ -80,6 +80,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             GameObject rig = loadHelper.LoadGameObject("Prefabs/IndiePinsRoot.prefab");
 
             var wltMgr = WorldLockingManager.GetInstance();
+
             // Wait for load to finish completely.
             while (wltMgr.HasPendingIO)
             {
@@ -137,19 +138,20 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
 
             yield return null;
             yield return null;
+
             wltMgr.AlignmentManager.ComputePinnedPose(new Pose(Vector3.zero, Quaternion.identity));
 
-            FindAndCheckPin(rig, "GPin1");
-            FindAndCheckPin(rig, "GPin2");
-            FindAndCheckPin(rig, "GPin3");
+            FindAndCheckPin(rig, "GPin1", wltMgr.AlignmentManager.PinnedFromLocked);
+            FindAndCheckPin(rig, "GPin2", wltMgr.AlignmentManager.PinnedFromLocked);
+            FindAndCheckPin(rig, "GPin3", wltMgr.AlignmentManager.PinnedFromLocked);
 
-            FindAndCheckPin(rig, "PS1Pin1");
-            FindAndCheckPin(rig, "PS1Pin2");
-            FindAndCheckPin(rig, "PS1Pin3");
+            FindAndCheckPin(rig, "PS1Pin1", Pose.identity);
+            FindAndCheckPin(rig, "PS1Pin2", Pose.identity);
+            FindAndCheckPin(rig, "PS1Pin3", Pose.identity);
 
-            FindAndCheckPin(rig, "PS2Pin1");
-            FindAndCheckPin(rig, "PS2Pin2");
-            FindAndCheckPin(rig, "PS2Pin3");
+            FindAndCheckPin(rig, "PS2Pin1", Pose.identity);
+            FindAndCheckPin(rig, "PS2Pin2", Pose.identity);
+            FindAndCheckPin(rig, "PS2Pin3", Pose.identity);
 
             yield return null;
 
@@ -162,17 +164,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             yield return null;
             wltMgr.AlignmentManager.ComputePinnedPose(new Pose(Vector3.zero, Quaternion.identity));
 
-            FindAndCheckPin(rig, "GPin1");
-            FindAndCheckPin(rig, "GPin2");
-            FindAndCheckPin(rig, "GPin3");
+            FindAndCheckPin(rig, "GPin1", wltMgr.AlignmentManager.PinnedFromLocked);
+            FindAndCheckPin(rig, "GPin2", wltMgr.AlignmentManager.PinnedFromLocked);
+            FindAndCheckPin(rig, "GPin3", wltMgr.AlignmentManager.PinnedFromLocked);
 
-            FindAndCheckPin(rig, "PS1Pin1");
-            FindAndCheckPin(rig, "PS1Pin2");
-            FindAndCheckPin(rig, "PS1Pin3");
+            FindAndCheckPin(rig, "PS1Pin1", Pose.identity);
+            FindAndCheckPin(rig, "PS1Pin2", Pose.identity);
+            FindAndCheckPin(rig, "PS1Pin3", Pose.identity);
 
-            FindAndCheckPin(rig, "PS2Pin1");
-            FindAndCheckPin(rig, "PS2Pin2");
-            FindAndCheckPin(rig, "PS2Pin3");
+            FindAndCheckPin(rig, "PS2Pin1", Pose.identity);
+            FindAndCheckPin(rig, "PS2Pin2", Pose.identity);
+            FindAndCheckPin(rig, "PS2Pin3", Pose.identity);
 
             GameObject.Destroy(rig);
 
@@ -183,7 +185,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
         }
 #endif // WLT_ENABLE_SAVE_LOAD_TESTS
 
-        private SpacePin FindPinByName(GameObject rig, string pinName)
+            private SpacePin FindPinByName(GameObject rig, string pinName)
         {
             GameObject pinObject = GameObject.Find(pinName);
             Assert.IsNotNull(pinObject);
@@ -191,17 +193,17 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             return spacePin;
         }
 
-        private void FindAndCheckPin(GameObject rig, string pinName)
+        private void FindAndCheckPin(GameObject rig, string pinName, Pose frozenFromLocked)
         {
             SpacePin spacePin = FindPinByName(rig, pinName);
 
             Pose virtualPose = spacePin.ModelingPoseGlobal;
             Pose lockedPose = spacePin.LockedPose;
-            Debug.Log($"FFL:{WorldLockingManager.GetInstance().FrozenFromLocked.position.ToString("F3")}"
-                + $"/ {WorldLockingManager.GetInstance().FrozenFromLocked.rotation.ToString("F3")}");
-            Pose frozenPose = WorldLockingManager.GetInstance().FrozenFromLocked.Multiply(lockedPose);
+            Debug.Log($"FFL:{frozenFromLocked.position.ToString("F3")}"
+                + $"/ {frozenFromLocked.rotation.ToString("F3")}");
+            Pose frozenPose = frozenFromLocked.Multiply(lockedPose);
             Vector3 offset = frozenPose.position - virtualPose.position;
-            float len = Mathf.Abs(offset.magnitude - 1.0f);
+            float len = Mathf.Abs(offset.magnitude);
             Assert.Less(len, 1.0e-4f, $"pin={spacePin.name} fr={frozenPose.position.ToString("F3")} vi={virtualPose.position.ToString("F3")}");
         }
 
