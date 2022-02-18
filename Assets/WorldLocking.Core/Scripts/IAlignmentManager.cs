@@ -114,6 +114,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         AnchorId RestoreAlignmentAnchor(string uniqueName, Pose virtualPose);
 
         /// <summary>
+        /// True if the persistent state of the alignment manager has changed since the last save.
+        /// </summary>
+        bool NeedSave { get; }
+
+        /// <summary>
         /// Save state needed to reconstruct later from persistent storage.
         /// </summary>
         /// <returns>True if saved (even if empty).</returns>

@@ -143,11 +143,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private bool autoSave = false;
 
         /// <summary>
-        /// When the number of saved pins changes (usually increases), then we need to save.
-        /// </summary>
-        private int numSavedPins = 0;
-
-        /// <summary>
         /// Encapsulate all prerequisites for successful load here.
         /// </summary>
         private bool ReadyToAutoLoad { get { return needAutoLoad && (alignmentManager != null) && SupportsPersistence; } }
@@ -159,7 +154,12 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// This does not check to see if a save is actually warranted, that check is elsewhere. This
         /// just check whether, if it would be good to save, the system is ready to.
         /// </remarks>
-        private bool ReadyToAutoSave { get { return !needAutoLoad && autoSave && SupportsPersistence; } }
+        private bool ReadyToAutoSave { get { return !needAutoLoad && autoSave && AlignmentManagerDirty && SupportsPersistence; } }
+
+        /// <summary>
+        /// Return true if the alignment manager has changed since the last time it was saved (or loaded).
+        /// </summary>
+        private bool AlignmentManagerDirty { get { return (alignmentManager != null) && alignmentManager.NeedSave; } }
 
         /// <summary>
         /// Check if persistence is supported, to avoid useless (and confusing) spacepin auto-save and load when anchors can't be saved and loaded.
@@ -390,12 +390,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             if (ReadyToAutoSave)
             {
-                int numActive = CountActivePins();
-                if (numActive != numSavedPins)
-                {
-                    Save();
-                    numSavedPins = numActive;
-                }
+                Save();
             }
         }
 

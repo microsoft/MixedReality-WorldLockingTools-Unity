@@ -179,20 +179,26 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 afterLoadNotifications?.Invoke();
                 SendAlignmentAnchors();
+                needSave = false;
             }
             return loaded;
         }
+
+        /// <inheritdocs />
+        public bool NeedSave { get { return needSave; } }
 
         /// <summary>
         /// Explicitly save the database.
         /// </summary>
         /// <returns>True if successfully saved.</returns>
-        /// <remarks>
-        /// The database is also implicitly saved whenever dirtied if WorldLockingManager.AutoSave is enabled.
-        /// </remarks>
         public bool Save()
         {
-            return poseDB.Save();
+            bool saved = poseDB.Save();
+            if (saved)
+            {
+                needSave = false;
+            }
+            return saved;
         }
 
         /// <summary>
@@ -915,6 +921,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private PostAlignmentLoadedDelegate afterLoadNotifications;
 
         /// <summary>
+        /// Flag that the current state has not been saved to persistent storage.
+        /// </summary>
+        private bool needSave = false;
+
+        /// <summary>
         /// Flag that a the reference pose list needs to be updated to the active list.
         /// </summary>
         private bool needSend = false;
@@ -1039,6 +1050,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     poseDB.Set(referencePosesToSave[i]);
                 }
                 referencePosesToSave.Clear();
+                needSave = true;
             }
         }
 
