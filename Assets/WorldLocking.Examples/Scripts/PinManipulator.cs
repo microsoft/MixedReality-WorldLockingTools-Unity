@@ -109,10 +109,22 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
         #endregion Internal fields
 
         /// <summary>
+        /// Backward compat with no specified manipulation started callback.
+        /// </summary>
+        /// <param name="owner">The object to manipulate.</param>
+        /// <param name="prefab">The visualization prefab to instantiate.</param>
+        /// <param name="ended">The manipulation ended callback.</param>
+        public PinManipulator(Transform ownder, GameObject prefab, ManipulationEndedDelegate ended)
+            : this(ownder, prefab, null, ended)
+        {
+        }
+
+        /// <summary>
         /// Constructor accepts readonly dependencies.
         /// </summary>
         /// <param name="owner">The object to manipulate.</param>
         /// <param name="prefab">The visualization prefab to instantiate.</param>
+        /// <param name="started">The manipulation started callback.</param>
         /// <param name="ended">The manipulation ended callback.</param>
         public PinManipulator(Transform owner, GameObject prefab, ManipulationStartedDelegate started, ManipulationEndedDelegate ended)
         {
