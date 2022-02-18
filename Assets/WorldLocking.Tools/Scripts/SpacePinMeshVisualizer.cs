@@ -176,10 +176,8 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             Array.Copy(originalVertices, 4, vertices, 0, originalVertices.Length - 4);
 
-            Pose globalFromLocked = GetGlobalFromLocked();
             for (int i = 0; i < vertices.Length; i++)
             {
-                vertices[i] = globalFromLocked.Multiply(vertices[i]);
                 vertices[i].y = 0.0f;
             }
 
@@ -416,11 +414,6 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             secondPinPosition = currentBoundaryVertexIDx == 1 ? lockedHeadPosition : triangulator.Vertices[currentInterpolant.idx[1] + 4];
             thirdPinPosition = currentBoundaryVertexIDx == 2 ? lockedHeadPosition : triangulator.Vertices[currentInterpolant.idx[2] + 4];
 
-            Pose globalFromLocked = GetGlobalFromLocked();
-            firstPinPosition = globalFromLocked.Multiply(firstPinPosition);
-            secondPinPosition = globalFromLocked.Multiply(secondPinPosition);
-            thirdPinPosition = globalFromLocked.Multiply(thirdPinPosition);
-
             //    DEBUG TRIANGLE    //
             //firstPinPosition = new Vector3(5.0f, 0.0f, 0.0f);
             //secondPinPosition = new Vector3(1.0f, 0.0f, 1.0f);
@@ -616,7 +609,15 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
                     UpdateMaterialProperties();
                     UpdatePercentageTexts();
                 }
+                TransformFromLockedToGlobal();
             }
+        }
+
+        private void TransformFromLockedToGlobal()
+        {
+            Pose globalFromLocked = GetGlobalFromLocked();
+            globalFromLocked.position += new Vector3(0.0f, verticalOffset, 0.0f);
+            transform.SetGlobalPose(globalFromLocked);
         }
     }
 }
