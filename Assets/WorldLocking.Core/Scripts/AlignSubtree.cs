@@ -367,23 +367,6 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 
         /// <summary>
-        /// Go through owned space pins and count how many are active.
-        /// </summary>
-        /// <returns>Number of owned active space pins.</returns>
-        private int CountActivePins()
-        {
-            int numActive = 0;
-            for (int i = 0; i < ownedPins.Count; ++i)
-            {
-                if (ownedPins[i].PinActive)
-                {
-                    numActive++;
-                }
-            }
-            return numActive;
-        }
-
-        /// <summary>
         /// See if conditions are right for performing a save.
         /// </summary>
         private void CheckAutoSave()
