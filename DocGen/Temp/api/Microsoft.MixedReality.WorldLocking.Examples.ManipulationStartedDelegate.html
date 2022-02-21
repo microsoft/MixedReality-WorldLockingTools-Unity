@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class SpacePinManipulation
+    <title>Delegate ManipulationStartedDelegate
    | World Locking Tools for Unity Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class SpacePinManipulation
+    <meta name="title" content="Delegate ManipulationStartedDelegate
    | World Locking Tools for Unity Documentation ">
     <meta name="generator" content="docfx 2.59.0.0">
     
@@ -90,98 +90,19 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation">
+            <article class="content wrap" id="_content" data-uid="Microsoft.MixedReality.WorldLocking.Examples.ManipulationStartedDelegate">
   
   
-  <h1 id="Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation" data-uid="Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation" class="text-break">Class SpacePinManipulation
+  <h1 id="Microsoft_MixedReality_WorldLocking_Examples_ManipulationStartedDelegate" data-uid="Microsoft.MixedReality.WorldLocking.Examples.ManipulationStartedDelegate" class="text-break">Delegate ManipulationStartedDelegate
   </h1>
-  <div class="markdown level0 summary"><p>Make the <a class="xref" href="Microsoft.MixedReality.WorldLocking.Core.SpacePin.html">SpacePin</a> manually manipulable, using MRTK controls.</p>
+  <div class="markdown level0 summary"><p>Callback for when the user starts positioning and/or orienting the target.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">SpacePinManipulation</span></div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Microsoft.MixedReality.WorldLocking.Examples.html">Microsoft.MixedReality.WorldLocking.Examples</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_syntax">Syntax</h5>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Examples_ManipulationStartedDelegate_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SpacePinManipulation : SpacePin</code></pre>
-  </div>
-  <h3 id="properties">Properties
-  </h3>
-  
-  
-  <a id="Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_Prefab_FeelerRay_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.Prefab_FeelerRay*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_Prefab_FeelerRay" data-uid="Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.Prefab_FeelerRay">Prefab_FeelerRay</h4>
-  <div class="markdown level1 summary"><p>Proxy renderable to show axis alignment during manipulations.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GameObject Prefab_FeelerRay { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">GameObject</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-  </h3>
-  
-  
-  <a id="Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_OnDestroy_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnDestroy*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_OnDestroy" data-uid="Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnDestroy">OnDestroy()</h4>
-  <div class="markdown level1 summary"><p>Shutdown the manipulation controls.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnDestroy()</code></pre>
-  </div>
-  
-  
-  <a id="Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_OnFinishManipulation_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnFinishManipulation*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_OnFinishManipulation" data-uid="Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnFinishManipulation">OnFinishManipulation()</h4>
-  <div class="markdown level1 summary"><p>Callback for when the user has finished positioning the target.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnFinishManipulation()</code></pre>
-  </div>
-  
-  
-  <a id="Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_OnStartManipulation_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnStartManipulation*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_OnStartManipulation" data-uid="Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnStartManipulation">OnStartManipulation()</h4>
-  <div class="markdown level1 summary"><p>Callback for when the user starts manipulating the target.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnStartManipulation()</code></pre>
-  </div>
-  
-  
-  <a id="Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_Start_" data-uid="Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.Start*"></a>
-  <h4 id="Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_Start" data-uid="Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.Start">Start()</h4>
-  <div class="markdown level1 summary"><p>Start(), and set up MRTK manipulation controls.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void Start()</code></pre>
+    <pre><code class="lang-csharp hljs">public delegate void ManipulationStartedDelegate();</code></pre>
   </div>
 </article>
           </div>

@@ -1644,6 +1644,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.Load
   nameWithType: AlignmentManager.Load
+- uid: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.NeedSave
+  name: NeedSave
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_NeedSave
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.NeedSave
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.NeedSave
+  nameWithType: AlignmentManager.NeedSave
+- uid: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.NeedSave*
+  name: NeedSave
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_NeedSave_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.NeedSave
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.NeedSave
+  nameWithType: AlignmentManager.NeedSave
 - uid: Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.OnTriangulationBuilt
   name: OnTriangulationBuilt
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.AlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_AlignmentManager_OnTriangulationBuilt
@@ -3419,6 +3432,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.Load
   nameWithType: IAlignmentManager.Load
+- uid: Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.NeedSave
+  name: NeedSave
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_NeedSave
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.NeedSave
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.NeedSave
+  nameWithType: IAlignmentManager.NeedSave
+- uid: Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.NeedSave*
+  name: NeedSave
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_NeedSave_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.NeedSave
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.NeedSave
+  nameWithType: IAlignmentManager.NeedSave
 - uid: Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.OnTriangulationBuilt
   name: OnTriangulationBuilt
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.IAlignmentManager.html#Microsoft_MixedReality_WorldLocking_Core_IAlignmentManager_OnTriangulationBuilt
@@ -4860,6 +4886,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.GetModelPoseFromGlobalPosition
   nameWithType: SpacePin.GetModelPoseFromGlobalPosition
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.GlobalFromParent
+  name: GlobalFromParent
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_GlobalFromParent
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePin.GlobalFromParent
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.GlobalFromParent
+  nameWithType: SpacePin.GlobalFromParent
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.GlobalFromParent*
+  name: GlobalFromParent
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_GlobalFromParent_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.GlobalFromParent
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.GlobalFromParent
+  nameWithType: SpacePin.GlobalFromParent
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.LockedPose
   name: LockedPose
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_LockedPose
@@ -4962,6 +5001,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.OnLocationUpdate
   nameWithType: SpacePin.OnLocationUpdate
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ParentFromGlobal
+  name: ParentFromGlobal
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ParentFromGlobal
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ParentFromGlobal
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ParentFromGlobal
+  nameWithType: SpacePin.ParentFromGlobal
+- uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ParentFromGlobal*
+  name: ParentFromGlobal
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_ParentFromGlobal_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.SpacePin.ParentFromGlobal
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.SpacePin.ParentFromGlobal
+  nameWithType: SpacePin.ParentFromGlobal
 - uid: Microsoft.MixedReality.WorldLocking.Core.SpacePin.PinActive
   name: PinActive
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.SpacePin.html#Microsoft_MixedReality_WorldLocking_Core_SpacePin_PinActive
@@ -6147,6 +6199,19 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenFromSpongy
   nameWithType: WorldLockingManager.FrozenFromSpongy
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenWorldFileName
+  name: FrozenWorldFileName
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_FrozenWorldFileName
+  commentId: P:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenWorldFileName
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenWorldFileName
+  nameWithType: WorldLockingManager.FrozenWorldFileName
+- uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenWorldFileName*
+  name: FrozenWorldFileName
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_FrozenWorldFileName_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenWorldFileName
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.FrozenWorldFileName
+  nameWithType: WorldLockingManager.FrozenWorldFileName
 - uid: Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.GetInstance
   name: GetInstance()
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Core.WorldLockingManager.html#Microsoft_MixedReality_WorldLocking_Core_WorldLockingManager_GetInstance
@@ -6845,6 +6910,12 @@ references:
   commentId: T:Microsoft.MixedReality.WorldLocking.Examples.ManipulationEndedDelegate
   fullName: Microsoft.MixedReality.WorldLocking.Examples.ManipulationEndedDelegate
   nameWithType: ManipulationEndedDelegate
+- uid: Microsoft.MixedReality.WorldLocking.Examples.ManipulationStartedDelegate
+  name: ManipulationStartedDelegate
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.ManipulationStartedDelegate.html
+  commentId: T:Microsoft.MixedReality.WorldLocking.Examples.ManipulationStartedDelegate
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.ManipulationStartedDelegate
+  nameWithType: ManipulationStartedDelegate
 - uid: Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample
   name: PhysicsBeamSample
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.PhysicsBeamSample.html
@@ -7188,6 +7259,12 @@ references:
   commentId: M:Microsoft.MixedReality.WorldLocking.Examples.PinManipulator.#ctor(Transform,GameObject,Microsoft.MixedReality.WorldLocking.Examples.ManipulationEndedDelegate)
   fullName: Microsoft.MixedReality.WorldLocking.Examples.PinManipulator.PinManipulator(Transform, GameObject, Microsoft.MixedReality.WorldLocking.Examples.ManipulationEndedDelegate)
   nameWithType: PinManipulator.PinManipulator(Transform, GameObject, ManipulationEndedDelegate)
+- uid: Microsoft.MixedReality.WorldLocking.Examples.PinManipulator.#ctor(Transform,GameObject,Microsoft.MixedReality.WorldLocking.Examples.ManipulationStartedDelegate,Microsoft.MixedReality.WorldLocking.Examples.ManipulationEndedDelegate)
+  name: PinManipulator(Transform, GameObject, ManipulationStartedDelegate, ManipulationEndedDelegate)
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.PinManipulator.html#Microsoft_MixedReality_WorldLocking_Examples_PinManipulator__ctor_Transform_GameObject_Microsoft_MixedReality_WorldLocking_Examples_ManipulationStartedDelegate_Microsoft_MixedReality_WorldLocking_Examples_ManipulationEndedDelegate_
+  commentId: M:Microsoft.MixedReality.WorldLocking.Examples.PinManipulator.#ctor(Transform,GameObject,Microsoft.MixedReality.WorldLocking.Examples.ManipulationStartedDelegate,Microsoft.MixedReality.WorldLocking.Examples.ManipulationEndedDelegate)
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.PinManipulator.PinManipulator(Transform, GameObject, Microsoft.MixedReality.WorldLocking.Examples.ManipulationStartedDelegate, Microsoft.MixedReality.WorldLocking.Examples.ManipulationEndedDelegate)
+  nameWithType: PinManipulator.PinManipulator(Transform, GameObject, ManipulationStartedDelegate, ManipulationEndedDelegate)
 - uid: Microsoft.MixedReality.WorldLocking.Examples.PinManipulator.#ctor*
   name: PinManipulator
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.PinManipulator.html#Microsoft_MixedReality_WorldLocking_Examples_PinManipulator__ctor_
@@ -7421,6 +7498,32 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnDestroy
   nameWithType: SpacePinManipulation.OnDestroy
+- uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnFinishManipulation
+  name: OnFinishManipulation()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_OnFinishManipulation
+  commentId: M:Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnFinishManipulation
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnFinishManipulation()
+  nameWithType: SpacePinManipulation.OnFinishManipulation()
+- uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnFinishManipulation*
+  name: OnFinishManipulation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_OnFinishManipulation_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnFinishManipulation
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnFinishManipulation
+  nameWithType: SpacePinManipulation.OnFinishManipulation
+- uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnStartManipulation
+  name: OnStartManipulation()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_OnStartManipulation
+  commentId: M:Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnStartManipulation
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnStartManipulation()
+  nameWithType: SpacePinManipulation.OnStartManipulation()
+- uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnStartManipulation*
+  name: OnStartManipulation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_OnStartManipulation_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnStartManipulation
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.OnStartManipulation
+  nameWithType: SpacePinManipulation.OnStartManipulation
 - uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.Prefab_FeelerRay
   name: Prefab_FeelerRay
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinManipulation_Prefab_FeelerRay
@@ -7479,6 +7582,32 @@ references:
   isSpec: "True"
   fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnDestroy
   nameWithType: SpacePinOrientableManipulation.OnDestroy
+- uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnFinishManipulation
+  name: OnFinishManipulation()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinOrientableManipulation_OnFinishManipulation
+  commentId: M:Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnFinishManipulation
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnFinishManipulation()
+  nameWithType: SpacePinOrientableManipulation.OnFinishManipulation()
+- uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnFinishManipulation*
+  name: OnFinishManipulation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinOrientableManipulation_OnFinishManipulation_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnFinishManipulation
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnFinishManipulation
+  nameWithType: SpacePinOrientableManipulation.OnFinishManipulation
+- uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnStartManipulation
+  name: OnStartManipulation()
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinOrientableManipulation_OnStartManipulation
+  commentId: M:Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnStartManipulation
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnStartManipulation()
+  nameWithType: SpacePinOrientableManipulation.OnStartManipulation()
+- uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnStartManipulation*
+  name: OnStartManipulation
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinOrientableManipulation_OnStartManipulation_
+  commentId: Overload:Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnStartManipulation
+  isSpec: "True"
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.OnStartManipulation
+  nameWithType: SpacePinOrientableManipulation.OnStartManipulation
 - uid: Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.Prefab_FeelerRay
   name: Prefab_FeelerRay
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.SpacePinOrientableManipulation.html#Microsoft_MixedReality_WorldLocking_Examples_SpacePinOrientableManipulation_Prefab_FeelerRay

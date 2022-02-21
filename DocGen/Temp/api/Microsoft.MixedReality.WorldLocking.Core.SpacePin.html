@@ -240,6 +240,35 @@ the ulong based AnchorId.</p>
   </table>
   
   
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_GlobalFromParent_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.GlobalFromParent*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_GlobalFromParent" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.GlobalFromParent">GlobalFromParent</h4>
+  <div class="markdown level1 summary"><p>Return the Pose transforming from parent space to global space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Pose GlobalFromParent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_GlobalFromParent_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If the SpacePin has no parent, this will be the identity Pose.</p>
+</div>
+  
+  
   <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_LockedPose_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.LockedPose*"></a>
   <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_LockedPose" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.LockedPose">LockedPose</h4>
   <div class="markdown level1 summary"><p>Accessor for world locked pose for derived classes.</p>
@@ -345,6 +374,32 @@ the ulong based AnchorId.</p>
   <h5 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ModelPositionSource_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Note that orientation <strong>always</strong> comes from transform, as renderer and collider bounds have no orientation.</p>
 </div>
+  
+  
+  <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ParentFromGlobal_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ParentFromGlobal*"></a>
+  <h4 id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_ParentFromGlobal" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.ParentFromGlobal">ParentFromGlobal</h4>
+  <div class="markdown level1 summary"><p>Return the Pose transforming from global space to the parent's space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Pose ParentFromGlobal { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Pose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="Microsoft_MixedReality_WorldLocking_Core_SpacePin_PinActive_" data-uid="Microsoft.MixedReality.WorldLocking.Core.SpacePin.PinActive*"></a>
