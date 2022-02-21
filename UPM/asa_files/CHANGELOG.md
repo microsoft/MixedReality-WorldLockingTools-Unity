@@ -2,6 +2,8 @@
 
 [See release notes](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases)
 
+## 1.5.8 - Support teleporting camera.
+
 ## 1.5.7 - Increased anchor stabilization.
 
 ## 1.5.6 - Update to ASA v2.11.0.
