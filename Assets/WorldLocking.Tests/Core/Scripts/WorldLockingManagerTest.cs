@@ -342,5 +342,28 @@ namespace Microsoft.MixedReality.WorldLocking.Tests.Core
             }
         }
 
+        [UnityTest]
+        public IEnumerator WorldLockingManagerTestFrozenWorldFileName()
+        {
+            var wltMgr = WorldLockingManager.GetInstance();
+
+            string originalName = wltMgr.FrozenWorldFileName;
+
+            string goodName = "bob.xyz";
+            wltMgr.FrozenWorldFileName = goodName;
+            Assert.AreEqual(goodName, wltMgr.FrozenWorldFileName);
+
+            wltMgr.FrozenWorldFileName = $"//{goodName}";
+            Assert.AreEqual(goodName, wltMgr.FrozenWorldFileName);
+
+            string goodNameWithPath = $"testPath/{goodName}";
+            wltMgr.FrozenWorldFileName = goodNameWithPath;
+            Assert.AreEqual(goodNameWithPath, wltMgr.FrozenWorldFileName);
+
+            UnityEngine.TestTools.LogAssert.Expect(LogType.Error, "Invalid FrozenWorldFileName, null or empty not allowed, ignoring.");
+            wltMgr.FrozenWorldFileName = "";
+
+            yield return null;
+        }
     }
 }

@@ -179,20 +179,26 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             {
                 afterLoadNotifications?.Invoke();
                 SendAlignmentAnchors();
+                needSave = false;
             }
             return loaded;
         }
+
+        /// <inheritdocs />
+        public bool NeedSave { get { return needSave; } }
 
         /// <summary>
         /// Explicitly save the database.
         /// </summary>
         /// <returns>True if successfully saved.</returns>
-        /// <remarks>
-        /// The database is also implicitly saved whenever dirtied if WorldLockingManager.AutoSave is enabled.
-        /// </remarks>
         public bool Save()
         {
-            return poseDB.Save();
+            bool saved = poseDB.Save();
+            if (saved)
+            {
+                needSave = false;
+            }
+            return saved;
         }
 
         /// <summary>
@@ -226,6 +232,22 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             FragmentId fragmentId = CurrentFragmentId;
             AnchorId anchorId = ClaimAnchorId();
+
+            if (IsGlobal)
+            {
+                /// Bake in current snapshot of any application imposed transform (teleport).
+                virtualPose = manager.PinnedFromFrozen.Multiply(virtualPose);
+            }
+            else
+            {
+                /// For subtree, applied adjustment transform is LockedFromPinned. Remove existing
+                /// adjustment here by premultiplying PinnedFromLocked.
+                virtualPose = PinnedFromLocked.Multiply(virtualPose);
+            }
+#if WLT_EXTRA_LOGGING
+            string label = "AddAlign1";
+            Debug.Log($"F{Time.frameCount} {label} {uniqueName} vp={virtualPose.ToString("F3")} lp={lockedPose.ToString("F3")} sp={manager.SpongyFromLocked.Multiply(lockedPose).ToString("F3")}");
+#endif // WLT_EXTRA_LOGGING
 
             ReferencePose refPose = new ReferencePose()
             {
@@ -899,6 +921,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         private PostAlignmentLoadedDelegate afterLoadNotifications;
 
         /// <summary>
+        /// Flag that the current state has not been saved to persistent storage.
+        /// </summary>
+        private bool needSave = false;
+
+        /// <summary>
         /// Flag that a the reference pose list needs to be updated to the active list.
         /// </summary>
         private bool needSend = false;
@@ -1023,6 +1050,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                     poseDB.Set(referencePosesToSave[i]);
                 }
                 referencePosesToSave.Clear();
+                needSave = true;
             }
         }
 
@@ -1152,18 +1180,16 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             if (IsGlobal)
             {
                 /// Here we essentially solve for pose Z, where
-                /// refPose.virtualPose == FrozenFromPinned * Z * refPose.lockedPose.
-                Pose pinnedFromFrozen = Pose.identity;
-                if (manager.AdjustmentFrame.parent != null)
-                {
-                    pinnedFromFrozen = manager.AdjustmentFrame.parent.GetGlobalPose().Inverse();
-                }
-                Pose frozenFromObject = refPose.virtualPose;
+                /// refPose.virtualPose == Z * refPose.lockedPose.
+                /// More precisely, we solve for PfL in:
+                /// AppFromHolder * HolderFromObject = AppFromPinned * PinnedFromLocked * LockedFromObject, or
+                /// AfH * HfO = AfP * PfL * LfO
+                /// PfA * AfH * HfO * OfL = PfL
+                /// refPose.virtualPose == PfA * AfH * HfO, and refPose.LockedPose == LockedFromObject, so it reduces to the above simpler line.
+                Pose pinnedFromObject = refPose.virtualPose;
                 Pose objectFromLocked = refPose.LockedPose.Inverse();
 
-                pinnedFromLocked = pinnedFromFrozen
-                    .Multiply(frozenFromObject)
-                    .Multiply(objectFromLocked);
+                pinnedFromLocked = pinnedFromObject.Multiply(objectFromLocked);
             }
             else
             {

@@ -101,7 +101,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
         private readonly IPlugin plugin;
         private readonly IHeadPoseTracker headTracker = null;
-        private readonly Transform worldAnchorParent;
+        private Transform worldAnchorParent;
 
         // New anchor creation:
         // 
@@ -172,6 +172,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
                 if (worldAnchorParent != null)
                 {
                     GameObject.Destroy(worldAnchorParent.gameObject);
+                    worldAnchorParent = null;
                 }
             }
         }

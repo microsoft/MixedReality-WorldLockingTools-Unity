@@ -222,7 +222,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             + string.Format("Fragments        : {0}\n", manager.FragmentManager.NumFragments)
             + string.Format("Current Fragment : {0}\n", manager.FragmentManager.CurrentFragmentId)
             + string.Format("Anchor Subsystem : {0}\n", manager.AnchorSettings.anchorSubsystem)
-            + string.Format("Can Save/Load    : {0}\n", manager.AnchorManager.SupportsPersistence);
+            + string.Format("Can Save/Load    : {0} ({1})\n", manager.AnchorManager.SupportsPersistence, manager.FrozenWorldFileName);
             
             return infoText;
         }
