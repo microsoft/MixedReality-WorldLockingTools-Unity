@@ -629,6 +629,11 @@
     "title": "Class AlignmentControl | World Locking Tools for Unity Documentation",
     "keywords": "Class AlignmentControl Inheritance Object AlignmentControl Namespace : Microsoft.MixedReality.WorldLocking.Examples Assembly : cs.temp.dll.dll Syntax public class AlignmentControl : MonoBehaviour Methods Clear() Declaration public void Clear()"
   },
+  "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.CircleCam.html": {
+    "href": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.CircleCam.html",
+    "title": "Class CircleCam | World Locking Tools for Unity Documentation",
+    "keywords": "Class CircleCam Inheritance Object CircleCam Namespace : Microsoft.MixedReality.WorldLocking.Examples Assembly : cs.temp.dll.dll Syntax public class CircleCam : MonoBehaviour Fields distance Declaration public float distance Field Value Type Description Single rpm Declaration public float rpm Field Value Type Description Single"
+  },
   "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.DashboardCommand.html": {
     "href": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.DashboardCommand.html",
     "title": "Class DashboardCommand | World Locking Tools for Unity Documentation",
@@ -647,7 +652,7 @@
   "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.html": {
     "href": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.html",
     "title": "Namespace Microsoft.MixedReality.WorldLocking.Examples | World Locking Tools for Unity Documentation",
-    "keywords": "Namespace Microsoft.MixedReality.WorldLocking.Examples Classes AlignmentControl DashboardCommand The DashboardCommand class provides a proxy layer between interactive elements (e.g. buttons) and the actions that need to be performed (e.g. WorldLockingManager perform a merge). DashboardUI Simple class to manage synchronizing state up to UI elements. FallOut PhysicsBeamSample Example component using Frozen World to facilitate physics simulation. PinManipulator Helper class to add MRTK object manipulation controls to an object. RayPins SpacePinManipulation Make the SpacePin manually manipulable, using MRTK controls. SpacePinOrientableManipulation Component that adds MRTK object manipulation capabilities on top of the auto-orienting SpacePinOrientable . Delegates ManipulationEndedDelegate Callback for when the user has finished positioning and/or orienting the target. ManipulationStartedDelegate Callback for when the user starts positioning and/or orienting the target."
+    "keywords": "Namespace Microsoft.MixedReality.WorldLocking.Examples Classes AlignmentControl CircleCam DashboardCommand The DashboardCommand class provides a proxy layer between interactive elements (e.g. buttons) and the actions that need to be performed (e.g. WorldLockingManager perform a merge). DashboardUI Simple class to manage synchronizing state up to UI elements. FallOut PhysicsBeamSample Example component using Frozen World to facilitate physics simulation. PinManipulator Helper class to add MRTK object manipulation controls to an object. RayPins SpacePinManipulation Make the SpacePin manually manipulable, using MRTK controls. SpacePinOrientableManipulation Component that adds MRTK object manipulation capabilities on top of the auto-orienting SpacePinOrientable . Delegates ManipulationEndedDelegate Callback for when the user has finished positioning and/or orienting the target. ManipulationStartedDelegate Callback for when the user starts positioning and/or orienting the target."
   },
   "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.ManipulationEndedDelegate.html": {
     "href": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.ManipulationEndedDelegate.html",

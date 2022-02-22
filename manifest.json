@@ -2143,6 +2143,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "DocGen/Temp/obj/api/Microsoft.MixedReality.WorldLocking.Examples.CircleCam.yml",
+      "output": {
+        ".html": {
+          "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.CircleCam.html",
+          "hash": "+jemlYFO4X+v0y9Twwt2QrDIuSlCG4U/HNHdFbN6WVw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "DocGen/Temp/obj/api/Microsoft.MixedReality.WorldLocking.Examples.DashboardCommand.yml",
       "output": {
         ".html": {
@@ -2267,7 +2279,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.html",
-          "hash": "NH7V1WsMGXCiNPx1OFH27F9TzIiPDcEL9dbkAmhEdLA="
+          "hash": "qDa+QWzK8kfshzDSueYGoeZyum3LqhTz3Jm/5gCo9RM="
         }
       },
       "is_incremental": false,
@@ -2519,7 +2531,7 @@
       "output": {
         ".html": {
           "relative_path": "DocGen/api_doc/toc.html",
-          "hash": "LfKXKgGJSIzDpCR9oJSwAxbIU11qApmqJv0Ni+hFq3g="
+          "hash": "QtAYrZLlalVd1d7zF/rTWq42qC4VU/nFV0eNpo4Zpjk="
         }
       },
       "is_incremental": false,
@@ -2603,7 +2615,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 114,
+          "total_file_count": 115,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
