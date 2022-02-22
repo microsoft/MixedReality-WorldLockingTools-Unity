@@ -1,37 +1,44 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CircleCam : MonoBehaviour
+namespace Microsoft.MixedReality.WorldLocking.Examples
 {
-    public float rpm = 10.0f;
 
-    public float distance = 5.0f;
-
-    private float revolutions = 0.0f;
-
-    // Start is called before the first frame update
-    void Start()
+    public class CircleCam : MonoBehaviour
     {
-        
-    }
+        public float rpm = 10.0f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        float deltaSecs = Time.deltaTime;
-        float deltaMinutes = deltaSecs / 60.0f;
+        public float distance = 5.0f;
 
-        revolutions += rpm * deltaMinutes;
-        revolutions = (float)(revolutions - (int)revolutions);
-        float fracRevRads = revolutions * 2.0f * Mathf.PI; ;
-        float posX = Mathf.Cos(fracRevRads);
-        float posZ = Mathf.Sin(fracRevRads);
+        private float revolutions = 0.0f;
 
-        Vector3 position = new Vector3(posX, 0.0f, posZ) * distance;
-        Vector3 forward = new Vector3(-posX, 0.0f, -posZ);
+        // Start is called before the first frame update
+        void Start()
+        {
 
-        transform.position = position;
-        transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            float deltaSecs = Time.deltaTime;
+            float deltaMinutes = deltaSecs / 60.0f;
+
+            revolutions += rpm * deltaMinutes;
+            revolutions = (float)(revolutions - (int)revolutions);
+            float fracRevRads = revolutions * 2.0f * Mathf.PI; ;
+            float posX = Mathf.Cos(fracRevRads);
+            float posZ = Mathf.Sin(fracRevRads);
+
+            Vector3 position = new Vector3(posX, 0.0f, posZ) * distance;
+            Vector3 forward = new Vector3(-posX, 0.0f, -posZ);
+
+            transform.position = position;
+            transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+        }
     }
 }
