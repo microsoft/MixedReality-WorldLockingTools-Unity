@@ -27,15 +27,22 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
         public void UpdatePercentage(float percentage)
         {
-            percentageNumberText.text = (Mathf.RoundToInt(percentage)).ToString() + "%";
+            if (percentageNumberText != null)
+            {
+                percentageNumberText.text = (Mathf.RoundToInt(percentage)).ToString() + "%";
 
-            float weight = percentage / 100.0f;
-            UpdateColors(weight);
+                float weight = percentage / 100.0f;
+                UpdateColors(weight);
+            }
+
         }
 
         public void SetVisibility(bool visibility)
         {
-            percentageNumberText.enabled = visibility;
+            if (percentageNumberText != null)
+            {
+                percentageNumberText.enabled = visibility;
+            }
         }
 
         private void UpdateColors(float weight)
