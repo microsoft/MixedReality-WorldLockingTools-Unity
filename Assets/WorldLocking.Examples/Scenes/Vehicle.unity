@@ -1673,6 +1673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rpm: 3
   distance: 5
+  lookAngle: 45
 --- !u!4 &994770898
 Transform:
   m_ObjectHideFlags: 0
