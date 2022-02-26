@@ -6580,6 +6580,12 @@ references:
   commentId: F:Microsoft.MixedReality.WorldLocking.Examples.CircleCam.distance
   fullName: Microsoft.MixedReality.WorldLocking.Examples.CircleCam.distance
   nameWithType: CircleCam.distance
+- uid: Microsoft.MixedReality.WorldLocking.Examples.CircleCam.lookAngle
+  name: lookAngle
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.CircleCam.html#Microsoft_MixedReality_WorldLocking_Examples_CircleCam_lookAngle
+  commentId: F:Microsoft.MixedReality.WorldLocking.Examples.CircleCam.lookAngle
+  fullName: Microsoft.MixedReality.WorldLocking.Examples.CircleCam.lookAngle
+  nameWithType: CircleCam.lookAngle
 - uid: Microsoft.MixedReality.WorldLocking.Examples.CircleCam.rpm
   name: rpm
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Examples.CircleCam.html#Microsoft_MixedReality_WorldLocking_Examples_CircleCam_rpm
