@@ -14,6 +14,8 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
 
         public float distance = 5.0f;
 
+        public float lookAngle = 0.0f;
+
         private float revolutions = 0.0f;
 
         // Start is called before the first frame update
@@ -35,10 +37,12 @@ namespace Microsoft.MixedReality.WorldLocking.Examples
             float posZ = Mathf.Sin(fracRevRads);
 
             Vector3 position = new Vector3(posX, 0.0f, posZ) * distance;
-            Vector3 forward = new Vector3(-posX, 0.0f, -posZ);
 
             transform.position = position;
-            transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+            Vector3 forward = new Vector3(-posZ, 0.0f, posX);
+            Quaternion ahead = Quaternion.LookRotation(forward, Vector3.up);
+            Quaternion rotation = Quaternion.Euler(0.0f, -lookAngle, 0.0f);
+            transform.rotation = rotation * ahead;
         }
     }
 }
