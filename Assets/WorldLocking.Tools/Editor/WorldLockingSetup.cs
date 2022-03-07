@@ -352,7 +352,7 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         }
 
         private static readonly string WLTIssuesUrl = "https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues";
-        private static readonly string WLTDocsUrl = "https://microsoft.github.io/MixedReality-WorldLockingTools-Unity/README.html";
+        private static readonly string WLTDocsUrl = "https://docs.microsoft.com/mixed-reality/world-locking-tools/";
         private static readonly string WLTSamplesUrl = "https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/README.html";
 
         [MenuItem("Mixed Reality/World Locking Tools/Help/Show Documentation", false, priority = setupPriority)]
