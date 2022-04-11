@@ -142,9 +142,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         /// <returns>True if not already there but added.</returns>
         public bool AddSpacePin(SpacePinASA spacePin)
         {
-            // mafish - make sure it's not already in there.
+            // make sure it's not already in there.
             int idx = FindSpacePin(spacePin);
-            if (idx <= 0)
+            if (idx < 0)
             {
                 spacePins.Add(spacePin);
                 spacePin.Publisher = publisher;
