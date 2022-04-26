@@ -95,7 +95,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         public IAlignmentManager AlignmentManager
         {
             get { return alignmentManager; }
-            set 
+            set
             {
                 if (alignmentManager != value)
                 {
@@ -164,7 +164,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// </summary>
         public Pose ModelingPoseGlobal
         {
-            get { return GlobalFromParent.Multiply(modelingPoseParent); }
+            get
+            {
+                Pose rescaledModelingPose = AddScale(modelingPoseParent, transform.lossyScale);
+                return GlobalFromParent.Multiply(rescaledModelingPose);
+            }
         }
 
         /// <summary>
@@ -324,6 +328,8 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         {
             restorePoseLocal = transform.GetLocalPose();
             modelingPoseParent = ParentFromGlobal.Multiply(ExtractModelPose());
+            // Undo any scale. This will be multiplied back in in ModelingPoseGlobal().
+            modelingPoseParent = RemoveScale(modelingPoseParent, transform.lossyScale);
         }
 
         /// <summary>
@@ -403,9 +409,25 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             return GetModelPoseFromGlobalPosition(collider.bounds.center);
         }
 
-#endregion Extract modelling pose
+        private static Pose RemoveScale(Pose pose, Vector3 scale)
+        {
+            Vector3 p = pose.position;
+            p.Scale(new Vector3(1.0f / scale.x, 1.0f / scale.y, 1.0f / scale.z));
+            pose.position = p;
+            return pose;
+        }
 
-#region Alignment management
+        private Pose AddScale(Pose pose, Vector3 scale)
+        {
+            Vector3 p = pose.position;
+            p.Scale(scale);
+            pose.position = p;
+            return pose;
+        }
+
+        #endregion Extract modelling pose
+
+        #region Alignment management
 
         /// <summary>
         /// Check if an attachment point is needed, if so then setup and make current.
@@ -503,9 +525,9 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             transform.SetLocalPose(RestorePoseLocal);
         }
 
-#endregion Alignment management
+        #endregion Alignment management
 
-#endregion Internal
+        #endregion Internal
 
     }
 }
