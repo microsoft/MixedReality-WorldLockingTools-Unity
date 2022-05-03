@@ -38,6 +38,10 @@ using NativeAnchor = UnityEngine.XR.ARFoundation.ARAnchor;
 #endif // WLT_ASA_V2_11_0_OR_NEWER
 #endif // WLT_ASA_INCLUDED
 
+#if WLT_ARFOUNDATION_PRESENT
+using UnityEngine.XR.ARFoundation;
+#endif // WLT_ARFOUNDATION_PRESENT
+
 using Microsoft.MixedReality.WorldLocking.Core;
 using Microsoft.MixedReality.WorldLocking.Tools;
 
@@ -362,6 +366,13 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 SimpleConsole.AddLine(ConsoleHigh, $"Necessary coarse relocation permissions request {(havePermissions ? "Granted." : "Denied!!!")}");
             }
 #endif // UNITY_ANDROID
+
+            bool arSessionRunning = await WaitForARSession();
+            if (!arSessionRunning)
+            {
+                Debug.LogError($"Failure confirming ARSession running.");
+                return;
+            }
 
             LogASASetup($"Setting up publisher.");
             asaManager = GameObject.FindObjectOfType<SpatialAnchorManager>();
@@ -1198,6 +1209,42 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             return true;
         }
 
+        private async Task<bool> WaitForARSession()
+        {
+            bool arSessionRunning = false;
+#if WLT_ARFOUNDATION_PRESENT
+            bool arSessionUnknown = true;
+            while (arSessionUnknown)
+            {
+                // First filter out error conditions we can't just wait until they resolve themselves.
+                switch (ARSession.state)
+                {
+                    case ARSessionState.CheckingAvailability:
+                    case ARSessionState.None:
+                    case ARSessionState.NeedsInstall:
+                    case ARSessionState.SessionInitializing:
+                    case ARSessionState.Installing:
+                        SimpleConsole.AddLine(ConsoleLow, $"Waiting on AR Session, state is {ARSession.state}");
+                        break;
+                    case ARSessionState.Unsupported:
+                        SimpleConsole.AddLine(ConsoleHigh, $"AR Session state reports Unsupported, failing!");
+                        arSessionUnknown = false;
+                        arSessionRunning = false;
+                        break;
+                    case ARSessionState.Ready:
+                    case ARSessionState.SessionTracking:
+                        SimpleConsole.AddLine(ConsoleLow, $"AR Session running, state is {ARSession.state}");
+                        arSessionUnknown = false;
+                        arSessionRunning = true;
+                        break;
+                }
+                int waitDelayMS = 200;
+                await Task.Delay(waitDelayMS);
+            }
+#endif // WLT_ARFOUNDATION_PRESENT
+            return arSessionRunning;
+        }
+
         /// <summary>
         /// Helper to create an LocalPeg around the indicated id and pose.
         /// </summary>
@@ -1244,7 +1291,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             return peg;
         }
 
-        #region TRASH
+            #region TRASH
 
 #if WLT_EXTRA_LOGGING
         private static void PrintScene()
@@ -1288,7 +1335,7 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
         }
 #endif // WLT_EXTRA_LOGGING
 
-        #endregion // TRASH
+            #endregion // TRASH
 
         /// <summary>
         /// If cloud anchor id is unknown, add the record, else update the record.
@@ -1378,9 +1425,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             return record;
         }
 
-        #endregion // Internal helpers
+#endregion // Internal helpers
 
-        #region ASA events
+            #region ASA events
 
         /// <summary>
         /// Put incoming cloud anchors (from ASA thread) into a list for processing on main thread.
@@ -1443,9 +1490,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
                 );
         }
 
-        #endregion // ASA events
+            #endregion // ASA events
 
-        #region Setup helpers
+            #region Setup helpers
 
         /// <summary>
         /// Create a location provider if coarse relocation is enabled.
@@ -1545,9 +1592,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             Debug.Assert(busy != null);
             busy = null;
         }
-        #endregion // Setup helpers
+            #endregion // Setup helpers
 
-        #region Awful stuff
+            #region Awful stuff
 
 #if UNITY_ANDROID
         private static readonly string[] androidPermissions = new string[]
@@ -1639,9 +1686,9 @@ namespace Microsoft.MixedReality.WorldLocking.ASA
             waitingState = PermissionWaiting.Denied;
         }
 #endif
-        #endregion // Awful stuff
+            #endregion // Awful stuff
 
 #endif // WLT_ASA_INCLUDED
-    }
+        }
 }
 
