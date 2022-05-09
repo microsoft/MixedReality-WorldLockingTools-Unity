@@ -1,7 +1,7 @@
 {
   "name": "com.microsoft.mixedreality.wlt.asa",
   "displayName": "WLT-ASA",
-  "version": "1.5.8",
+  "version": "1.5.9",
   "unity": "2020.3",
   "msftFeatureCategory": "World Locking Tools",
   "description": "World Locking Tools for Unity (WLT) + Azure Spatial Anchors (ASA)\n\nThis optional add-on to WLT leverages ASA to persist coordinate spaces across sessions and share them across devices.\nCross platform support includes HoloLens, Android, and iOS.",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "com.microsoft.azure.spatial-anchors-sdk.core": "2.11.0",
-    "com.microsoft.mixedreality.worldlockingtools": "1.5.8"
+    "com.microsoft.mixedreality.worldlockingtools": "1.5.9"
   },
   "files": [
     "WorldLocking.ASA",
