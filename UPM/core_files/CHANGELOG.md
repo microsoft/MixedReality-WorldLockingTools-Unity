@@ -2,6 +2,8 @@
 
 [See release notes](https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/releases)
 
+## 1.5.10 - Adjust for changes in MROpenXR persistence APIs.
+
 ## 1.5.9 - Incremental fixes.
 
 ## 1.5.8 - Support teleporting camera.
