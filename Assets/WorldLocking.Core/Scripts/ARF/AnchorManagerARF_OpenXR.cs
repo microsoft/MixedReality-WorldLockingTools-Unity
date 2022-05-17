@@ -19,6 +19,10 @@
 #define WLT_XR_PERSISTENCE
 #endif // WLT_XR_PERSISTENCE
 
+#if WLT_MICROSOFT_OPENXR_1_4_OR_NEWER
+#define WLT_USE_ARMANAGER_EXTENSIONS
+#endif // WLT_MICROSOFT_OPENXR_1_4_OR_NEWER
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -30,6 +34,9 @@ using UnityEngine.XR.ARFoundation;
 #if WLT_XR_PERSISTENCE
 using Microsoft.MixedReality.OpenXR;
 using UnityEngine.XR.ARSubsystems;
+#if WLT_USE_ARMANAGER_EXTENSIONS
+using Microsoft.MixedReality.OpenXR.ARFoundation;
+#endif // WLT_USE_ARMANAGER_EXTENSIONS
 #endif // WLT_XR_PERSISTENCE
 
 
@@ -67,8 +74,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             if (openXRAnchorStore == null)
             {
                 DebugLogExtra($"Getting new OpenXR XRAnchorStore.");
-                //                openXRAnchorStore = await arAnchorManager.LoadAnchorStoreAsync();
+#if WLT_USE_ARMANAGER_EXTENSIONS
+                openXRAnchorStore = await arAnchorManager.LoadAnchorStoreAsync();
+#else // WLT_USE_ARMANAGER_EXTENSIONS
                 openXRAnchorStore = await XRAnchorStore.LoadAsync(arAnchorManager.subsystem);
+#endif // WLT_USE_ARMANAGER_EXTENSIONS
             }
             openXRPersistence = openXRAnchorStore != null;
             return openXRAnchorStore;

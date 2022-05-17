@@ -34,8 +34,10 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         /// The version of this release. This will be displayed in the WorldLockingContext component in the Unity Inspector,
         /// allowing quick visual verification of the version of World Locking Tools for Unity currently installed.
         /// It has no effect in code, but serves only as a label.
+        /// A "_dev" suffix means it's the main branch under current development (between releases). When released,
+        /// the _dev suffix is removed. For example, 1.5.9_dev is released as 1.5.9.
         /// </summary>
-        public static string Version => "1.5.9";
+        public static string Version => "1.5.10_dev";
 
         /// <summary>
         /// The configuration settings may only be set as a block.

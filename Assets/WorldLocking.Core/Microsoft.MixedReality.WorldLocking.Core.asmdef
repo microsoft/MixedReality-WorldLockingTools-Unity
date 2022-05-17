@@ -54,6 +54,11 @@
             "name": "com.unity.xr.openxr",
             "expression": "",
             "define": "WLT_XR_OPENXR_PRESENT"
+        },
+        {
+            "name": "com.microsoft.mixedreality.openxr",
+            "expression": "1.4",
+            "define": "WLT_MICROSOFT_OPENXR_1_4_OR_NEWER"
         }
     ],
     "noEngineReferences": false
