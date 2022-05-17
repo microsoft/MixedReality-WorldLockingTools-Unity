@@ -64,7 +64,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
         }
 #endif // WLT_XR_PERSISTENCE
 
-                protected async Task SaveAnchorsOpenXR(List<SpongyAnchorWithId> spongyAnchors)
+        protected async Task SaveAnchorsOpenXR(List<SpongyAnchorWithId> spongyAnchors)
         {
             Debug.Assert(openXRPersistence, "Attempting to save via OpenXR when unsupported.");
 #if WLT_XR_PERSISTENCE
