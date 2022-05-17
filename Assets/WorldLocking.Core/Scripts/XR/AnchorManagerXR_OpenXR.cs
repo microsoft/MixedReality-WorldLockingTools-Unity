@@ -9,6 +9,10 @@
 #define WLT_XR_PERSISTENCE
 #endif // WLT_XR_PERSISTENCE
 
+#if WLT_MICROSOFT_OPENXR_1_4_OR_NEWER
+#define WLT_USE_ARSUBSYSTEM_EXTENSIONS
+#endif // WLT_MICROSOFT_OPENXR_1_4_OR_NEWER
+
 //#define WLT_EXTRA_LOGGING
 
 #if WLT_DISABLE_LOGGING
@@ -22,8 +26,10 @@ using UnityEngine;
 using UnityEngine.XR;
 
 #if WLT_XR_PERSISTENCE
-//using Microsoft.MixedReality.ARSubsystems;
 using Microsoft.MixedReality.OpenXR;
+#if WLT_USE_ARSUBSYSTEM_EXTENSIONS
+using Microsoft.MixedReality.OpenXR.ARSubsystems;
+#endif // WLT_USE_ARSUBSYSTEM_EXTENSIONS
 #endif // WLT_XR_PERSISTENCE
 
 using UnityEngine.SpatialTracking;
@@ -47,15 +53,18 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             if (openXRAnchorStore == null)
             {
                 DebugLogExtra($"Getting new OpenXR XRAnchorStore.");
-                //                openXRAnchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
+#if WLT_USE_ARSUBSYSTEM_EXTENSIONS
+                openXRAnchorStore = await xrAnchorManager.LoadAnchorStoreAsync();
+#else // WLT_USE_ARSUBSYSTEM_EXTENSIONS
                 openXRAnchorStore = await XRAnchorStore.LoadAsync(xrAnchorManager);
+#endif // WLT_USE_ARSUBSYSTEM_EXTENSIONS
             }
             openXRPersistence = openXRAnchorStore != null;
             return openXRAnchorStore;
         }
 #endif // WLT_XR_PERSISTENCE
 
-        protected async Task SaveAnchorsOpenXR(List<SpongyAnchorWithId> spongyAnchors)
+                protected async Task SaveAnchorsOpenXR(List<SpongyAnchorWithId> spongyAnchors)
         {
             Debug.Assert(openXRPersistence, "Attempting to save via OpenXR when unsupported.");
 #if WLT_XR_PERSISTENCE
