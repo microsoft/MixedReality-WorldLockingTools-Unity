@@ -8197,6 +8197,12 @@ references:
   commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.textVerticalOffset
   fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.textVerticalOffset
   nameWithType: SpacePinMeshVisualizer.textVerticalOffset
+- uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.verticalFromOrigin
+  name: verticalFromOrigin
+  href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_verticalFromOrigin
+  commentId: F:Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.verticalFromOrigin
+  fullName: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.verticalFromOrigin
+  nameWithType: SpacePinMeshVisualizer.verticalFromOrigin
 - uid: Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.verticalOffset
   name: verticalOffset
   href: DocGen/Temp/api/Microsoft.MixedReality.WorldLocking.Tools.SpacePinMeshVisualizer.html#Microsoft_MixedReality_WorldLocking_Tools_SpacePinMeshVisualizer_verticalOffset
