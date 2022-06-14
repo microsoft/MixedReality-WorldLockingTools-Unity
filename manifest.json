@@ -2572,6 +2572,18 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "SECURITY.md",
+      "output": {
+        ".html": {
+          "relative_path": "SECURITY.html",
+          "hash": "T8MJxjjaeMqpg+tdQNPMj84rRPMJHBPJfzSutsW3UaI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Resource",
       "source_relative_path": "index.html",
       "output": {
@@ -2609,7 +2621,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 44,
+          "total_file_count": 45,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
