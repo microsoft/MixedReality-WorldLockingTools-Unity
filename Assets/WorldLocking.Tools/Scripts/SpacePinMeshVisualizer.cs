@@ -22,6 +22,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         public float verticalOffset = -1.65f;
         public float textVerticalOffset = -1.45f;
 
+        [Tooltip("Disable this to have SpacePin visualizations appear offset vertically from SpacePin positions.")]
+        public bool verticalFromOrigin = true;
+
         public Material wireFrameMaterial = null;
         public Material meshMaterial = null;
         public Material extrapolatedMeshMaterial = null;
@@ -176,9 +179,12 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
 
             Array.Copy(originalVertices, 4, vertices, 0, originalVertices.Length - 4);
 
-            for (int i = 0; i < vertices.Length; i++)
+            if (verticalFromOrigin)
             {
-                vertices[i].y = 0.0f;
+                for (int i = 0; i < vertices.Length; i++)
+                {
+                    vertices[i].y = 0.0f;
+                }
             }
 
             wholeMesh.vertices = vertices;
@@ -408,7 +414,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             currentBoundaryVertexIDx = hasBoundaryVertex ? currentBoundaryVertexIDx : -1;
 
             Vector3 lockedHeadPosition = GetLockedHeadPosition();
-            lockedHeadPosition.y = 0.0f;
+            if (verticalFromOrigin)
+            {
+                lockedHeadPosition.y = 0.0f;
+            }
 
             firstPinPosition = currentBoundaryVertexIDx == 0 ? lockedHeadPosition : triangulator.Vertices[currentInterpolant.idx[0] + 4];
             secondPinPosition = currentBoundaryVertexIDx == 1 ? lockedHeadPosition : triangulator.Vertices[currentInterpolant.idx[1] + 4];
@@ -419,7 +428,10 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
             //secondPinPosition = new Vector3(1.0f, 0.0f, 1.0f);
             //thirdPinPosition = new Vector3(-1.0f,0.0f,-1.0f);
 
-            firstPinPosition.y = secondPinPosition.y = thirdPinPosition.y = 0.0f;
+            if (verticalFromOrigin)
+            {
+                firstPinPosition.y = secondPinPosition.y = thirdPinPosition.y = 0.0f;
+            }
         }
 
         /// <summary>
@@ -616,8 +628,9 @@ namespace Microsoft.MixedReality.WorldLocking.Tools
         private void TransformFromLockedToGlobal()
         {
             Pose globalFromLocked = GetGlobalFromLocked();
-            globalFromLocked.position += new Vector3(0.0f, verticalOffset, 0.0f);
-            transform.SetGlobalPose(globalFromLocked);
+            Pose lockedPose = new Pose(new Vector3(0.0f, verticalOffset, 0.0f), Quaternion.identity);
+            Pose globalPose = globalFromLocked.Multiply(lockedPose);
+            transform.SetGlobalPose(globalPose);
         }
     }
 }
